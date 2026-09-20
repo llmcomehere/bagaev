@@ -1,0 +1,10 @@
+{
+  "schema": "bagaev/l0-patch/v1",
+  "base": "sha256:7c42c5cb58af9c896353c5043e78f05fb884b19df9a59590f7d773decd9d78c0",
+  "add": [
+    {"id": "unique", "op": "list.unique", "value": {"ref": "tags"}}
+  ],
+  "replace": [
+    {"id": "result", "op": "list.sort", "value": {"ref": "unique"}}
+  ]
+}

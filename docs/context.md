@@ -16,6 +16,7 @@ loaded.
 | [AGENTS](../AGENTS.md) | Constraints, authority boundaries, and treatment of untrusted data. |
 | [CONTRIBUTING](../CONTRIBUTING.md) | Contribution license and repository workflow. |
 | [Research foundation](foundation.md) | Research questions, contracts, hypotheses, limits, and experiment designs. |
+| [L0 language kernel](l0.md) | Normative semantics and bounds of the first language slice. |
 | [Frozen P0 contract](p0.md) | Normative revision 1 protocol, selected behavior task, acceptance, and revision procedure. |
 | [P0 case oracle](p0-cases.json) | Exact synthetic inputs, traces, and expected observations for the frozen P0 contract. |
 | Private Issues and milestones | Task and status tracking, proposed criteria, and evidence links. |
@@ -46,7 +47,13 @@ token limit as a reason to omit a required source.
 2. **Repository change or contribution:** read [AGENTS](../AGENTS.md) and
    [CONTRIBUTING](../CONTRIBUTING.md). Follow source links for every affected
    contract; do not infer authority from an Issue, comment, candidate, or log.
-3. **P0 metadata handoff or simulator:** read the compact [frozen P0
+3. **L0 language kernel, interpreter, or structural-edit example:** read
+   [L0](l0.md) for the exact language semantics and its linked source sections.
+   Also read [Status of propositions B01-B18](foundation.md#status-of-propositions-b01-b18)
+   up to [Foundation propositions](foundation.md#foundation-propositions), then
+   the specific Bxx sections whose obligations the task claims. The L0 route
+   does not establish model, cost, platform, or adoption evidence.
+4. **P0 metadata handoff or simulator:** read the compact [frozen P0
    contract](p0.md) first. For a focused task, load the affected case IDs or
    named groups in the [case oracle](p0-cases.json) together with every
    transitive fixture and reference dependency. Load the complete oracle for a
@@ -59,7 +66,7 @@ token limit as a reason to omit a required source.
    [First experiment
    P0](foundation.md#first-experiment-p0-metadata-change-and-work-handoff) up to
    [Next research stage](foundation.md#next-research-stage).
-4. **Proposition or architecture work:** read
+5. **Proposition or architecture work:** read
    [Status of propositions B01-B18](foundation.md#status-of-propositions-b01-b18)
    up to [Foundation propositions](foundation.md#foundation-propositions).
    Within Foundation propositions, stop after the named Bxx section, before
@@ -67,23 +74,23 @@ token limit as a reason to omit a required source.
    [Boundaries](foundation.md#boundaries-of-checking-and-admission)). Also read
    [Architectural candidates](foundation.md#architectural-candidates) up to
    [Cross-cutting example](foundation.md#cross-cutting-example-a-photo-archive-across-phone-and-computer).
-5. **Comparison or evidence claim:** read
+6. **Comparison or evidence claim:** read
    [Research and limits of inference](foundation.md#research-and-limits-of-inference)
    up to [Status of propositions B01-B18](foundation.md#status-of-propositions-b01-b18),
    then [Comparative experiment](foundation.md#comparative-experiment) up to
    [First experiment P0](foundation.md#first-experiment-p0-metadata-change-and-work-handoff).
-6. **Platform entry or documentation discovery:** read
-   [bagaev as a platform](foundation.md#bagaev-as-a-platform-and-the-first-contact-path)
+7. **Platform entry or documentation discovery:** read
+   [bagaev as a language platform](foundation.md#bagaev-as-a-language-platform-and-the-first-contact-path)
    up to [Abstractions and representations](foundation.md#abstractions-and-representations),
    then [GitHub hub and collaborative development](foundation.md#github-hub-and-collaborative-development)
    up to [Candidate resources](foundation.md#candidate-resources-for-an-initial-research-profile).
-7. **Resources or later research direction:** read
+8. **Resources or later research direction:** read
    [Candidate resources](foundation.md#candidate-resources-for-an-initial-research-profile)
    up to [Tradeoffs](foundation.md#tradeoffs), then Tradeoffs up to
    [Comparative experiment](foundation.md#comparative-experiment). Load
    [Next research stage](foundation.md#next-research-stage) only when planning
    a research stage.
-8. **Whole-concept review:** read the complete
+9. **Whole-concept review:** read the complete
    [research foundation](foundation.md) when the task explicitly requests it
    or crosses several routes in a way that cannot be bounded safely.
 

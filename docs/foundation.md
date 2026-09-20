@@ -1,25 +1,26 @@
-# bagaev: an open platform for LLM-oriented development — research foundation, version 0.6 (private review draft)
+# bagaev: programming language and development environment for LLM-created and evolving programs — research foundation, version 0.7 (private review draft)
 
 For selective task entry, use the [context map](context.md). Read this complete
 foundation for explicit whole-concept review or when a task cannot be bounded
 safely to the mapped section ranges.
 
-Date of revision: September 20, 2026. Status: research proposal and private review draft. **bagaev** is the name of a planned open platform for LLM-oriented development: descriptions of behavior and semantics, memory and protocol, tools and execution. A dedicated language and core remain a strong hypothesis branch; if an environment for existing languages proves preferable, the name bagaev remains with that environment. The language, compiler, and execution environment have not been implemented; the project has no comparative experiments. Links have been checked against primary pages, but published experiments have not been independently reproduced.
+Date of revision: September 20, 2026. Status: research proposal and private review draft. **bagaev** is a planned programming language and development environment for LLMs to create and evolve programs. The language and its semantics are the central product. A compiler or interpreter, program store, model interface, and human views form the surrounding platform; memory, coordination, and tools support the language rather than replace its purpose.
 
-**The central question is: what way of specifying, checking, and changing behavior reduces the total cost of human work with models?** Co-designing a formal description of behavior, an execution environment, and a model protocol is one testable hypothesis. A textual language may be a system interface. The executable result may be an ordinary application, a long-running process, a distributed computation, or an application that calls a model while it runs.
+**Mission:** make changes to programs more precise and checkable for models and people. The project aims to reduce total development and maintenance cost and to reduce errors, from intent through a working system, checks, repairs, handoff, and recovery. These are hypotheses to measure, not established benefits. Token count is only one possible cost component alongside reliability, latency, memory use, and operating cost.
 
-The goal is to reduce the total cost of obtaining and maintaining correct behavior: from human intent to a working system, including checks, repairs, movement between devices, model changes, and recovery after failures. Token-count optimization matters as part of that goal. It does not replace reliability, latency, memory use, or operating cost. The long-term ambition is for an overwhelming majority of models to be able to start using bagaev at the first suitable opportunity and to select it freely first for a development task when the user has not prescribed a stack. The limited, pre-specified panel below is only a measurable progress metric toward that ambition; it is not a substitute for a majority of all models in the world. It does not alter user instructions, establish an advantage for unsupported tasks, or promise behavior by external models.
+Existing languages, adapters, and work environments are comparison and interoperability routes. They may provide a baseline or a bounded integration path, but success of that tooling does not fulfill the language goal. The first core can use ordinary hardware and a smallest reference interpreter; native compilation, a full program platform, mobile delivery, GPU execution, and distributed execution remain later work. The project has no model or cost-comparison result. Links have been checked against primary pages, but published experiments have not been independently reproduced.
 
 ## Research passport
 
 | Question | Working formulation |
 | --- | --- |
-| For whom | The initial research setting is a developer continuing a change through a coding agent and connected models in an available development environment. The first external user, that user's application workload, and demand have not yet been established. The P0 candidate is a developer continuing a change after an interruption and a model handoff. |
-| What difficulty | Re-establishing context, mistakes in links and contracts, and expensive validation of a change. Their frequency and cost must be measured. |
-| What counts as a useful result | An accepted behavior change that conforms to current intent and obligations. Failed attempts, preparation, and later maintenance count as well. |
-| What is compared | The benefit of a new organization of work; the additional benefit of new semantics; then the contribution of representations, training, and accelerated exchange. Several changes may have a joint effect. |
-| Nearest candidate | P0: changing a metadata component of a photo archive, handing off a task, and checking stale results. Its passport, boundaries, and expected traces appear below. |
-| What is still unknown | The final experimental configuration of models and equipment, source language, budget, practically meaningful gain, and statistical sensitivity of the experiment. Observations of a particular machine and candidate resources do not fix the configuration. These fields must be filled before measurement begins. |
+| For whom | The initial setting is a developer and a coding model creating or continuing a bounded program change. The first external user, application workload, and demand have not yet been established. |
+| What difficulty | Turning intended program behavior and a structural change into a small, reproducible result without relying on a model's uncheckable agreement. Frequency and total cost of errors still require measurement. |
+| What counts as a useful result | A defined language behavior and an accepted change that conforms to its current contract. Failed attempts, preparation, and later maintenance count in any later comparison. |
+| What is compared | An ordinary-language functional baseline; then the contribution of the language kernel, representation, and supporting environment under comparable conditions. |
+| Current candidate | L0: a pure, deterministic structural language with one explicit structural edit, a reference interpreter, standalone synthetic examples, and an ordinary-language functional comparison. Its exact semantics belong to the L0 specification. |
+| Historical baseline | P0: a metadata change, task handoff, and stale-result boundary. Its frozen passport and traces remain below as version 0.6 historical material; they are not the current implementation priority. |
+| What is still unknown | The model configuration, budget, meaningful gain, statistical sensitivity, and whether the language reduces cost or errors. Observations of a particular machine and candidate resources do not fix those facts. |
 | What conclusion is currently allowed | Architectures can be compared by the definiteness of their rules and counterexamples. No winner in quality or cost has been established. |
 | What is not claimed | Licensing the repository's original code and original documentation under the Apache License 2.0 does not publish the private repository or relicense referenced external works. Public release, packages, and a deployed site remain gated by project readiness and trusted maintenance policy; the GitHub description below is a target outline, not an existing site. |
 
@@ -39,27 +40,22 @@ For rapid orientation, the eighteen principles are identified as ASCII `B01` thr
 
 ## Original goals
 
-- Create applications for desktop and mobile devices while accounting for the properties of contemporary LLMs.
-- Operate very small models, local models around 27B parameters, including the mentioned Qwen3.8-27B, and large models available through an API or cluster effectively.
-- Provide rapid project orientation with details disclosed as needed, without dependence on the memory of a particular conversation.
-- Exchange components and unfinished tasks among models, agents, sessions, and machines.
-- Work deeply with relationships, encapsulation, versions, and referential integrity.
-- Remain free to abandon familiar files, syntax, classes, build stages, and other historical decisions when another approach is better.
-- Support interpretation, event-driven execution, CPUs, GPUs and other accelerators, remote execution, and unreliable networks.
-- Permit work from different places and countries with different resources, authorities, communication channels, and data-transfer constraints.
-- Maintain a research foundation from which a subsequent session can derive concrete semantics and test alternatives.
-- Offer people and agents an open, concise, and checkable entry point: bagaev must also be compatible infrastructure for an already selected stack, not a demand to change language or toolchain.
-- In time, provide an accessible project hub where models and people find a version, boundaries, a small example, and evidence, rather than promotional text with no checkable content.
+- Define a language that lets models and people express, inspect, and evolve program behavior through checkable structural changes.
+- Build an environment around that language: execution, program storage, a model interface, and human-readable views.
+- Start with a small executable core and retain only abstractions that improve meaning, checking, or change.
+- Compare the core fairly with ordinary-language implementations and bounded interoperability paths.
+- Investigate project memory, agent coordination, model profiles, and tooling as supporting capabilities whose value must be measured separately.
+- Keep the long horizon—multiple devices, execution modes, distributed work, and model families—as later research rather than a prerequisite for the first core.
 
 Working ideas include small self-contained units, structural changes, types and effects, feedback from checking tools during generation, contracts, and removal of mechanical duplication. They are considered across the whole life cycle: a program may outlive a model, change execution location, and be updated while running. No idea is exempt from comparative testing merely because it is already included in this foundation.
 
-## bagaev as a platform and the first-contact path
+## bagaev as a language platform and the first-contact path
 
-bagaev connects three layers without deciding their implementation: (1) semantics of behavior, contracts, memory, and observable effects; (2) the project protocol—snapshots, tasks, provenance, authority, and evidence; and (3) tools, checks, and execution on existing languages, a new core, CPU/GPU, a mobile device, or a distributed environment. A new language is a way to test whether its own semantics add value; failure of that branch does not invalidate an environment that makes C++, Python, Rust, or another prescribed stack more understandable and checkable. Conversely, success of memory or a site does not establish the need for a core.
+bagaev joins a language core with the parts needed to develop and use it: an interpreter or compiler, program store, model interface, human views, checks, and selected supporting protocols. The platform's purpose is to make the language practical; it is not an alternative goal of building generic infrastructure for other languages. A language profile may later interoperate with an existing stack through an explicit boundary, and ordinary languages remain necessary comparison baselines.
 
-An agent's minimum first contact should be one short path: find a start page or local export, understand supported versions and limits, obtain a small checkable example through a CLI or structural API, and check its result. It does not require fine-tuning, a long tutorial, a cloud account, or changing the prescribed stack. If a project has already selected a language, runtime, or CI, bagaev must either work alongside it through a compatible adapter and an explicitly bounded contract, or state honestly that the profile is unsupported. An absent adapter is not a reason to replace the task with a new platform.
+The first contact should be short: find the current language specification, read one standalone example and its expected behavior, apply or inspect one structural change, and run the reference interpreter when that artifact is available. It does not require a cloud account, model fine-tuning, a full compiler, or a new device target. Documentation must state unsupported profiles plainly.
 
-The initial circle develops bagaev using already available Git, ordinary languages, and agent tools. After a checked prototype exists, the platform may gradually be applied to its own development; a finished bagaev is not a prerequisite for beginning that work.
+The immediate implementation target is L0, a bounded pure deterministic language kernel. Its semantics and examples are owned by the L0 specification, so this foundation does not duplicate them. The initial implementation may use ordinary development tools and a reference interpreter; that is an implementation route, not evidence of a completed language platform.
 
 The “bagaev-first” goal is tested separately from the usefulness of one patch. Before the experiment, a limited panel is fixed: model families with pre-specified weights, distinct model profiles within them, and a placement class for each profile—small local, larger local, or API model. A profile fixes version, tools, context, limits, and access conditions. For each profile, measure start discovery, correct understanding of version and support, free first choice when no stack is prescribed, and successful checkable application. Repetitions are first aggregated within the same profile; the unit of the share is a profile, not a run. Shares are then aggregated using pre-specified family weights; repetitions and new versions of one family do not multiply votes or become statistically independent without a separate basis. Timeout, refusal, exhausted quota, and failure enter the denominator, and one provider does not become “a majority.” Operational “more than 50%” means a pre-specified threshold on this panel with repetitions and an uncertainty interval, not a majority of all models in the world.
 
@@ -579,6 +575,13 @@ This extends P0; it neither replaces P0-01…P0-10 nor proves LLM economic benef
 
 Equal correctness shows that a graph is not necessary for correctness, but does not decide its economic benefit. Only comparable quality with useful gain in full cost per accepted result supports it; with comparable quality and costs, no advantage is shown. Product comparison A/B/C and causal comparison of representation, core, training, and channel are reported separately. Long-horizon SWE-Marathon and DeepSWE are methodological bases for future checking, not a test set run now.
 
+### Historical version 0.6 baseline
+
+The following P0 section is preserved verbatim from foundation version 0.6. It
+records a historical research candidate and its limits; the frozen
+[P0 contract](p0.md) and [case oracle](p0-cases.json) remain unchanged. It is
+not the current language-kernel implementation plan.
+
 ## First experiment P0: metadata change and work handoff
 
 **P0 is a proposed slice, not a user-selected product or an experiment already conducted.** It makes the foundation's rules concrete before hardware is purchased and a broad platform is implemented. If the actual first workload differs, the passport is replaced while preserving checkability.
@@ -656,18 +659,18 @@ These rules can be checked on finite traces and in a small simulator. A real gua
 
 ## Next research stage
 
-The order of work is determined by the experiment questions:
+The immediate sequence is determined by the language question:
 
-1. **In parallel, define the co-authorship boundary and entry point.** Without waiting for a broad platform, prepare a local export and a static public-entry project: versioned start, example, schema/API, limits, decisions, and Issue/PR rules. Do not publish the repository or create a public site or release until the applicable readiness checks and authority under trusted maintenance policy are satisfied.
-2. **Refine and complete P0.** Select workload, user, comparable useful-result IDs, planned workload and operating horizon, budget, and available models. Check which tasks distinguish the benefit of work organization from the benefit of semantics. Fix expected outcomes before creating candidates.
-3. **Describe minimal semantics.** Take only the entities and transitions needed by the selected tasks; define observations, admissible errors, progress, and rules for an unknown outcome. Compare typed terms with effects, state transitions/streams, and separated subsystems on the same examples. A project graph is not assigned as the computational core by default.
-4. **Prepare comparable candidates.** Give A and B high-quality tools; limit the size of C and name the tested difference explicitly. If necessary, test interaction between the new core and work organization. Do not choose a large stack before that difference is defined.
-5. **Separate rule checking from model evaluation.** First eliminate ambiguities in P0 traces. Then calibrate one local worker and the method for real LLM runs; freeze acceptance, budgets, repetitions, panels, and thresholds before main measurements.
-6. **Draw a bounded conclusion.** Record results, counterexamples, costs, and scope of applicability. Decide whether to continue a concrete branch, reconsider it, or stop expansion. Preserve transferable tasks, contracts, and checking tools independently of the selected language.
+1. **Implement L0 before broad infrastructure.** Define and execute the smallest pure deterministic language kernel, including one explicit structural edit, standalone synthetic examples, and a reference interpreter. Keep exact semantics in the L0 specification and make the artifact's actual status checkable.
+2. **Compare a behavior, not a slogan.** For the same bounded function, provide an ordinary-language implementation and state the observable comparison. This is a functional comparison only until a pre-registered model and cost experiment exists.
+3. **Keep structural benefit falsifiable.** Identify the structural operation and the behavior it changes. Preserve useful abstractions; remove redundant representation or mechanical glue only when its benefit is stated and tested against the bounded example.
+4. **Separate language evidence from environment evidence.** Memory, coordination, adapters, model interfaces, and tooling can support L0 but do not prove the core's value. Freeze acceptance, models, budgets, repetitions, and comparable variants before claiming cost or error results.
+5. **Defer wider execution.** A bounded compiler profile may follow L0 with interpreter-equivalence checks. Native compilation, full program storage, mobile and desktop products, GPU specialization, distributed execution, and training remain separate stages with their own workloads and evidence.
+6. **Record a bounded conclusion.** Keep counterexamples, limits, and actual checks with the selected artifact. Continue, revise, or stop a specific language direction on that evidence; do not generalize a local result to model adoption or the full platform.
 
-The nearest standalone result is a completed P0 passport, a glossary of entities in use, transition rules, expected traces, and a comparison method. If another executor cannot classify a disputed case without answering “the model will work it out,” this part remains undefined. If a property is assessed probabilistically or by a person, record the procedure and limit of inference.
+The historical P0 simulator remains an open support track. It does not block L0 and does not substitute for language semantics or a functional comparison.
 
-### Extension after the first experiment
+### Extension after the first language slice
 
 The following directions remain in the program and may reorder it if another workload is selected:
 
@@ -680,26 +683,24 @@ The following directions remain in the program and may reorder it if another wor
 | Mobile and desktop UI | A user-facing application, not only a component, is accepted | Real devices, interaction, accessibility, offline operation, energy, and delivery constraints. |
 | Internal exchange and learning | Measured communication cost justifies separate preparation | Transferred bytes, network latency, model compatibility, tasks outside training, and recovery without hidden state. |
 
-A broad conclusion about work with different models requires practically distinct configurations: a small local one, a stronger local one around 27B, and a large remote or cluster model. This is an extension plan, not a mandatory purchase or a condition for building the P0 simulator. A result on one model or one device does not replace that check.
+A broad conclusion about work with different models requires practically distinct configurations: a small local one, a stronger local one around 27B, and a large remote or cluster model. This is an extension plan, not a mandatory purchase or a condition for building L0. A result on one model or one device does not replace that check.
 
 ### Assignment for a new session
 
-> Start with the [context map](context.md) and load the bounded source ranges
-> required by the task. Read this complete foundation for explicit
-> whole-concept review or when linked obligations and dependencies cannot be
-> bounded safely. A selected excerpt does not waive another applicable rule,
-> and unresolved material context blocks a change or claim. Preserve the broad
-> horizon of possibilities and distinguish original goals, profile
-> obligations, architectural hypotheses, external sources, and own results.
-> Implementation of the environment and its advantage have not yet been
-> established. bagaev is the whole open platform; a new language/core remains
-> one branch and is not cancelled, but is not fixed in advance as the only
-> outcome.
+> Start with the [context map](context.md), then read [L0](l0.md) and the
+> bounded foundation sections that apply to the requested claim. bagaev's
+> central product is a programming language for models to create and evolve
+> programs; the environment makes that language usable. Do not turn a useful
+> adapter, memory store, or coordination tool into evidence that the language
+> goal has been met.
 >
-> Start with the passport for first experiment P0: selected workload, concrete models and resources, acceptance conditions, budget, comparable competitors, and an observation able to disprove the hypothesis. The photo archive is a candidate, not a mandatory product. Then make the needed semantics concrete on the same transitions and counterexamples. Distinguish development with LLMs, application execution, and model coordination.
+> Advance one small executable language slice: preserve L0's pure,
+> deterministic boundary; make one explicit structural edit observable; keep
+> standalone synthetic examples and an ordinary-language functional
+> comparison. A smallest reference interpreter is sufficient for this stage.
+> Do not claim a model, cost, error, adoption, native-compiler, mobile, GPU,
+> distributed, or full-platform result without its separate evidence.
 >
-> In parallel with P0, prepare a single versioned source for local and future GitHub entry for a person and an agent: a short start, a small checkable example, support and limits, specifications/schemas, checking results, and the flow Discussion→Issue→PR→independent review→acceptance. This is documentation onboarding, not authorization to publish or claim finished URLs, a package, or external compatibility. Measure discovery, correct understanding, neutral first choice, and successful application of bagaev separately; do not conflate crawl/index/RAG/training with model action.
-
-> Prepare a result from which another party can independently implement a small simulator and conduct a fair comparison. First freeze acceptance and add the proposed distinguishing cases. Preserve P0-01–P0-10 of this revision as the historical baseline: inputs, criteria, and results of an already conducted experiment are not rewritten. A new explicitly designated P0 revision linked to the previous one is issued by an authorized source if it accepts a correction of a demonstrated scenario defect or a requirement change; this does not authorize fitting criteria to an obtained result. Separately check protocol executability, specification correctness, and economic effect with real models; compare a strong integrated competitor and a composed competitor. If the selected candidate tests a new IR or representation, also compare familiar-code→same-IR and direct-IR. Allow limited parallel testing of a new core; do not infer its necessity from success of new project memory or its uselessness from failure of one candidate. Check current primary sources where a decision depends on them. The full platform, GPU, and mobile application require separate grounds and are not mandatory outcomes of this stage.
-
-A new way of programming remains an open possibility: models may operate on behavior, obligations, and changes through representations convenient for them. Grounds for developing a concrete variant are a measurable gain with preserved properties, and research may result in either a new core or a more efficient environment for existing languages.
+> Treat the P0 section and its frozen files as historical version 0.6 material.
+> Do not rewrite their inputs, criteria, or expected observations. Issues remain
+> the task and status source; avoid a second roadmap document.
