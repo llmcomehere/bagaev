@@ -1,9 +1,16 @@
 # bagaev
 
-Private research workspace for a possible platform for LLM-oriented
-development. It studies checkable behavior, handoff, authority, and evidence;
-it does not yet implement a language, compiler, runtime, protocol, or
-comparative results.
+Private research workspace for a programming language and development
+environment designed for LLMs to create and evolve programs. The language is
+the central product; program memory, coordination, and tools support its
+development and use. The goal is lower total cost and fewer errors across a
+program's life cycle. This is an aim to test, not a demonstrated benefit.
+
+The repository contains L0: a bounded typed pure dataflow language core, a
+reference interpreter, atomic structural edits, and linked runnable examples
+and usage. See [L0](docs/l0.md) for the contract and commands, and
+[foundation](docs/foundation.md) for research limits. L0 makes no compiler,
+model, or cost-advantage claim.
 
 Start with the [context map](docs/context.md) to load the relevant source
 sections. Read the complete [foundation](docs/foundation.md) for whole-concept
@@ -11,9 +18,10 @@ review of the 18 propositions and P0 research work. The project may support an
 existing stack through a bounded adapter; it does not replace a user-selected
 stack or promise model adoption.
 
-The first P0 workload now has a frozen [protocol and behavior
+The historical P0 workload remains frozen as a [protocol and behavior
 contract](docs/p0.md) with an independent [case oracle](docs/p0-cases.json).
-The CPU simulator and model comparison have not been implemented or run.
+It is a preserved research baseline, not the current implementation priority.
+There is no model or cost-comparison result yet.
 
 ## License
 

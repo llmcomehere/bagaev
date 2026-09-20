@@ -1,0 +1,13 @@
+{
+  "schema": "bagaev/l0-program/v1",
+  "nodes": [
+    {"id": "tags", "op": "input", "name": "tags", "type": "string_list"},
+    {"id": "extra", "op": "literal", "type": "string_list", "value": ["green"]},
+    {"id": "combined", "op": "list.concat", "items": [{"ref": "tags"}, {"ref": "extra"}]},
+    {"id": "unique", "op": "list.unique", "value": {"ref": "combined"}},
+    {"id": "count", "op": "list.length", "value": {"ref": "unique"}},
+    {"id": "one", "op": "literal", "type": "int", "value": 1},
+    {"id": "result", "op": "int.add", "left": {"ref": "count"}, "right": {"ref": "one"}}
+  ],
+  "result": {"ref": "result"}
+}

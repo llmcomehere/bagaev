@@ -1,0 +1,8 @@
+{
+  "schema": "bagaev/l0-program/v1",
+  "nodes": [
+    {"id": "tags", "op": "input", "name": "tags", "type": "string_list"},
+    {"id": "result", "op": "identity", "value": {"ref": "tags"}}
+  ],
+  "result": {"ref": "result"}
+}
