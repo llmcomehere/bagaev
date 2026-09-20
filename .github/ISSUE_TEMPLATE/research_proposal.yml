@@ -1,0 +1,20 @@
+name: Research proposal
+description: Propose a falsifiable research question or comparison.
+title: "[Research]: "
+labels: ["research"]
+body:
+  - type: textarea
+    id: question
+    attributes:
+      label: Question and hypothesis
+      description: State what could disprove the proposal.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence plan
+      description: Define the comparison, acceptance rule, and limits.
+    validations:
+      required: true
+

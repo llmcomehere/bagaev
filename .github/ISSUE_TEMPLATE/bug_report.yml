@@ -1,0 +1,23 @@
+name: Problem report
+description: Report a reproducible problem in the private workspace.
+title: "[Problem]: "
+labels: ["triage"]
+body:
+  - type: markdown
+    attributes:
+      value: "Do not include credentials, personal data, or exploit details."
+  - type: textarea
+    id: observed
+    attributes:
+      label: Observed behavior
+      description: What happened, and what did you expect?
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction
+      description: Smallest safe steps, inputs, and affected revision.
+    validations:
+      required: true
+

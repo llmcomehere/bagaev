@@ -1,0 +1,66 @@
+name: Documentation validation
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - name: Validate immutable commit identifiers
+        env:
+          TRUSTED_SHA: ${{ github.event.pull_request.base.sha || github.sha }}
+          CANDIDATE_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: |
+          /usr/bin/python3 -I -B -S -c 'import os,re,sys; pattern=re.compile(r"[0-9a-f]{40}"); sys.exit(0 if all(pattern.fullmatch(os.environ[name]) for name in ("TRUSTED_SHA","CANDIDATE_SHA")) else 2)'
+      - name: Check out trusted validator
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          ref: ${{ github.event.pull_request.base.sha || github.sha }}
+          path: trusted
+          persist-credentials: false
+      - name: Check out candidate data
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          path: candidate
+          persist-credentials: false
+      - name: Validate documentation
+        env:
+          TRUSTED_ROOT: ${{ github.workspace }}/trusted
+          CANDIDATE_ROOT: ${{ github.workspace }}/candidate
+        run: |
+          /usr/bin/python3 -I -B -S -c '
+          import json, os, pathlib, runpy, sys
+          trusted = pathlib.Path(os.environ["TRUSTED_ROOT"]).resolve(strict=True)
+          candidate = pathlib.Path(os.environ["CANDIDATE_ROOT"]).resolve(strict=True)
+          validator = trusted / "tools" / "validate_docs.py"
+          if validator.is_symlink() or not validator.is_file():
+              raise SystemExit("trusted validator is missing or unsafe")
+          pending = [candidate]
+          while pending:
+              directory = pending.pop()
+              for entry in os.scandir(directory):
+                  if entry.name == ".git" and directory == candidate:
+                      continue
+                  if entry.is_symlink():
+                      raise SystemExit("candidate contains a symbolic link")
+                  if entry.is_dir(follow_symlinks=False):
+                      pending.append(pathlib.Path(entry.path))
+          namespace = runpy.run_path(str(validator), run_name="trusted_validator")
+          errors = list(namespace["check"](candidate))
+          result = {"ok": not errors, "finding_count": len(errors),
+                    "findings": [{"message": str(item)[:1000],
+                                  "truncated": len(str(item)) > 1000}
+                                 for item in errors[:100]],
+                    "findings_truncated": len(errors) > 100}
+          print(json.dumps(result, ensure_ascii=True, separators=(",", ":")))
+          raise SystemExit(0 if not errors else 1)
+          '
