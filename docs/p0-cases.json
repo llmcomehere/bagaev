@@ -1,0 +1,810 @@
+{
+  "oracle_version": "p0-cases/1.0.0",
+  "contract_version": "p0-contract/1.0.0",
+  "normative_spec": "p0.md",
+  "result_rule": "Expected values are fixed by this file and p0.md, never by simulator output.",
+  "matching_rule": "For each step, expect defines the complete normalized observation projection for exactly its listed keys. Every listed key must exist and match recursively; unlisted runtime fields are ignored. Objects use key equality within that projection, arrays use exact length and order, and allowed_serial_results accepts exactly one listed complete alternative.",
+  "emission_rule": "Before matching, the runner emits a normalized observation by projecting the event result and resulting model state to exactly the keys listed in expect. It must not synthesize a listed value that the event did not observe.",
+  "reference_rule": "In initial, session, intent, candidate, request, late_request, and response value fields, a string matching a fixture name denotes that exact deep fixture value. Session names resolve within fixtures.sessions; other names resolve directly within fixtures. An object with $ref denotes the same deep fixture value. Strings in all other fields are literals.",
+  "event_vocabulary": {
+    "deliver_write": "Run the named write through the ordered receiver algorithm.",
+    "deliver_transfer": "Run the named transfer through the ordered receiver algorithm.",
+    "query_operation": "Query the named operation receipt with the named session.",
+    "query_transfer": "Query the named transfer receipt with the named session.",
+    "lose_response": "The receiver decision remains committed but the observer receives no response.",
+    "timeout_before_delivery": "No receiver decision is observed and the named request may still be delayed in the network.",
+    "delay_response": "Retain an already generated response for later delivery without reprocessing.",
+    "deliver_delayed_response": "Deliver the retained response without changing receiver state.",
+    "crash_before_commit": "Abort the named receiver operation before its atomic commit.",
+    "crash_after_commit_before_response": "Preserve the commit and omit response generation until recovery and retry or query.",
+    "recover": "Load committed receiver state and receipts before accepting a new request.",
+    "revoke_grant": "Remove the named current grant as an explicit fixture event.",
+    "advance_task_revision": "Set the current task revision to the stated value as an explicit fixture event.",
+    "advance_behavior_revision": "Set the current behavior revision to the stated value as an explicit fixture event.",
+    "advance_contract_revision": "Set the current contract revision to the stated value as an explicit fixture event.",
+    "deliver_cancel": "Deliver the unsupported cancellation message.",
+    "deliver_transfer_concurrently": "Serialize the named transfer requests in either listed order and reevaluate every current check.",
+    "receiver_without_enforcement": "Evaluate the stated external receiver counterexample without treating it as conforming behavior.",
+    "retain_candidate": "Apply the candidate-store permission gate, verify SHA-256 over candidate_payload_utf8 bytes, and retain the exact candidate record on success.",
+    "attempt_admission": "In one serializable decision, recheck the separate current permission, selected revisions and digest, fixed mandatory requirement, and receiver-held trusted evidence without executing candidate code.",
+    "withhold_handler_response": "Model a handler that receives a valid request and generates no response.",
+    "run_behavior": "Apply the named pure behavior operation to the supplied data.",
+    "compare_migrations": "Compare predecessor catalogs, migrate each independently, then compare the complete target catalogs as specified by p0.md.",
+    "validate_handoff": "Validate the observable checkpoint fields and frozen-oracle identity."
+  },
+  "historical_mapping": {
+    "P0-01": ["P0-01"],
+    "P0-02": ["P0-02"],
+    "P0-03": ["P0-03"],
+    "P0-04": ["P0-04"],
+    "P0-05": ["P0-05"],
+    "P0-06": ["P0-06"],
+    "P0-07": ["P0-07A", "P0-07B"],
+    "P0-08": ["P0-08"],
+    "P0-09": ["P0-09"],
+    "P0-10": ["P0-10"]
+  },
+  "fixtures": {
+    "sessions": {
+      "session-writer-a": {"authenticated": true, "principal": "writer-a", "grants": ["read:receipts", "write:catalog"]},
+      "session-writer-b": {"authenticated": true, "principal": "writer-b", "grants": ["read:receipts", "write:catalog"]},
+      "session-coordinator": {"authenticated": true, "principal": "coordinator", "grants": ["manage:transfer", "read:receipts"]},
+      "session-reader": {"authenticated": true, "principal": "reader", "grants": ["read:receipts"]},
+      "session-submitter": {"authenticated": true, "principal": "submitter", "grants": ["candidate:store"]},
+      "session-admitter": {"authenticated": true, "principal": "admitter", "grants": ["candidate:admit"]},
+      "session-outsider": {"authenticated": true, "principal": "outsider", "grants": []},
+      "anonymous": {"authenticated": false, "principal": null, "grants": []}
+    },
+    "protocol-base": {
+      "record": {"revision": 10, "tags": ["blue", "manual"]},
+      "task": {
+        "task_id": "task-catalog",
+        "task_revision": 7,
+        "behavior_revision": "catalog-set-1",
+        "contract_revision": "write-contract-1"
+      },
+      "authority": {"epoch": 4, "assignee": "writer-a", "scope": ["write:catalog"]},
+      "operation_receipts": {},
+      "transfer_receipts": {}
+    },
+    "write-intent-k": {
+      "task_id": "task-catalog",
+      "operation_id": "operation-k",
+      "task_revision": 7,
+      "behavior_revision": "catalog-set-1",
+      "contract_revision": "write-contract-1",
+      "expected_record_revision": 10,
+      "mutation": {"add": ["green"], "remove": []}
+    },
+    "write-intent-k-different": {
+      "task_id": "task-catalog",
+      "operation_id": "operation-k",
+      "task_revision": 7,
+      "behavior_revision": "catalog-set-1",
+      "contract_revision": "write-contract-1",
+      "expected_record_revision": 10,
+      "mutation": {"add": ["red"], "remove": []}
+    },
+    "write-intent-m": {
+      "task_id": "task-catalog",
+      "operation_id": "operation-m",
+      "task_revision": 7,
+      "behavior_revision": "catalog-set-1",
+      "contract_revision": "write-contract-1",
+      "expected_record_revision": 10,
+      "mutation": {"add": ["red"], "remove": []}
+    },
+    "write-intent-stale-record": {
+      "task_id": "task-catalog",
+      "operation_id": "operation-stale",
+      "task_revision": 7,
+      "behavior_revision": "catalog-set-1",
+      "contract_revision": "write-contract-1",
+      "expected_record_revision": 9,
+      "mutation": {"add": ["red"], "remove": []}
+    },
+    "write-intent-contract-refusal": {
+      "task_id": "task-catalog",
+      "operation_id": "operation-contract-refusal",
+      "task_revision": 7,
+      "behavior_revision": "catalog-set-1",
+      "contract_revision": "write-contract-1",
+      "expected_record_revision": 10,
+      "mutation": {"add": [], "remove": ["red"]}
+    },
+    "transfer-intent-t1": {
+      "task_id": "task-catalog",
+      "transfer_id": "transfer-t1",
+      "expected_epoch": 4,
+      "recipient": "writer-b",
+      "scope": ["write:catalog"]
+    },
+    "transfer-intent-t1-different": {
+      "task_id": "task-catalog",
+      "transfer_id": "transfer-t1",
+      "expected_epoch": 4,
+      "recipient": "writer-a",
+      "scope": ["write:catalog"]
+    },
+    "transfer-intent-t2": {
+      "task_id": "task-catalog",
+      "transfer_id": "transfer-t2",
+      "expected_epoch": 4,
+      "recipient": "writer-b",
+      "scope": ["write:catalog"]
+    },
+    "transfer-intent-t3": {
+      "task_id": "task-catalog",
+      "transfer_id": "transfer-t3",
+      "expected_epoch": 5,
+      "recipient": "writer-a",
+      "scope": ["write:catalog"]
+    },
+    "write-receipt-k": {
+      "task_id": "task-catalog",
+      "operation_id": "operation-k",
+      "intent": {"$ref": "write-intent-k"},
+      "outcome": {
+        "kind": "effect-committed",
+        "record_revision_before": 10,
+        "record_revision_after": 11,
+        "tags_after": ["blue", "green", "manual"]
+      }
+    },
+    "transfer-receipt-t1": {
+      "task_id": "task-catalog",
+      "transfer_id": "transfer-t1",
+      "intent": {"$ref": "transfer-intent-t1"},
+      "prior_authority": {"epoch": 4, "assignee": "writer-a", "scope": ["write:catalog"]},
+      "resulting_authority": {"epoch": 5, "assignee": "writer-b", "scope": ["write:catalog"]}
+    },
+    "behavior-case-ids": [
+      "BHV-01-MIGRATE-DUPLICATES",
+      "BHV-02-MIGRATE-EMPTY",
+      "BHV-03-INVALID-TAG-ATOMIC",
+      "BHV-04-DUPLICATE-ENTRY-ATOMIC",
+      "BHV-05-SET-EQUALITY-IGNORES-LEGACY-ORDER",
+      "BHV-06-ADD-EXISTING-IDEMPOTENT",
+      "BHV-07-ADD-NEW-CANONICAL",
+      "BHV-08-NONCANONICAL-TARGET-ATOMIC",
+      "BHV-09-MIGRATE-INVALID-SCHEMA",
+      "BHV-10-MIGRATE-REVISION-OVERFLOW",
+      "BHV-11-MIGRATE-INVALID-ENTRY-ID",
+      "BHV-12-MIGRATE-ENTRY-ORDER",
+      "BHV-13-ADD-MISSING-ENTRY",
+      "BHV-14-ADD-INVALID-TAG",
+      "BHV-15-ADD-REVISION-OVERFLOW",
+      "BHV-16-ADD-INVALID-SCHEMA",
+      "BHV-17-ADD-DUPLICATE-ENTRY",
+      "BHV-18-ADD-ENTRY-ORDER",
+      "BHV-19-ADD-INVALID-ENTRY-ID",
+      "BHV-20-ADD-EXISTING-AT-MAX",
+      "BHV-21-ADD-INVALID-STORED-TAG"
+    ],
+    "behavior-not-run-results": [
+      {"case_id": "BHV-01-MIGRATE-DUPLICATES", "status": "not-run"},
+      {"case_id": "BHV-02-MIGRATE-EMPTY", "status": "not-run"},
+      {"case_id": "BHV-03-INVALID-TAG-ATOMIC", "status": "not-run"},
+      {"case_id": "BHV-04-DUPLICATE-ENTRY-ATOMIC", "status": "not-run"},
+      {"case_id": "BHV-05-SET-EQUALITY-IGNORES-LEGACY-ORDER", "status": "not-run"},
+      {"case_id": "BHV-06-ADD-EXISTING-IDEMPOTENT", "status": "not-run"},
+      {"case_id": "BHV-07-ADD-NEW-CANONICAL", "status": "not-run"},
+      {"case_id": "BHV-08-NONCANONICAL-TARGET-ATOMIC", "status": "not-run"},
+      {"case_id": "BHV-09-MIGRATE-INVALID-SCHEMA", "status": "not-run"},
+      {"case_id": "BHV-10-MIGRATE-REVISION-OVERFLOW", "status": "not-run"},
+      {"case_id": "BHV-11-MIGRATE-INVALID-ENTRY-ID", "status": "not-run"},
+      {"case_id": "BHV-12-MIGRATE-ENTRY-ORDER", "status": "not-run"},
+      {"case_id": "BHV-13-ADD-MISSING-ENTRY", "status": "not-run"},
+      {"case_id": "BHV-14-ADD-INVALID-TAG", "status": "not-run"},
+      {"case_id": "BHV-15-ADD-REVISION-OVERFLOW", "status": "not-run"},
+      {"case_id": "BHV-16-ADD-INVALID-SCHEMA", "status": "not-run"},
+      {"case_id": "BHV-17-ADD-DUPLICATE-ENTRY", "status": "not-run"},
+      {"case_id": "BHV-18-ADD-ENTRY-ORDER", "status": "not-run"},
+      {"case_id": "BHV-19-ADD-INVALID-ENTRY-ID", "status": "not-run"},
+      {"case_id": "BHV-20-ADD-EXISTING-AT-MAX", "status": "not-run"},
+      {"case_id": "BHV-21-ADD-INVALID-STORED-TAG", "status": "not-run"}
+    ],
+    "admission-current": {
+      "selected_code_revision": "code-c8",
+      "selected_candidate_bytes_sha256": "e93e2c094b29b3c59cbd23ae8a59f47ec191d7a257a13e3f8a16b0a0a7945495",
+      "base_snapshot_revision": "base-2",
+      "behavior_revision": "catalog-set-1",
+      "contract_revision": "behavior-contract-1",
+      "mandatory_requirement": {
+        "assertion": "behavior-cases-pass",
+        "trusted_origin": "trusted-checker",
+        "tool_revision": "checker-1",
+        "result": "pass",
+        "assumptions": ["synthetic-cpu-only"],
+        "input_binding": {"oracle_version": "p0-cases/1.0.0", "case_ids": {"$ref": "behavior-case-ids"}}
+      },
+      "trusted_evidence": {
+        "evidence-c8-pass": {
+          "evidence_id": "evidence-c8-pass",
+          "trusted_origin": "trusted-checker",
+          "assertion": "behavior-cases-pass",
+          "candidate_bytes_sha256": "e93e2c094b29b3c59cbd23ae8a59f47ec191d7a257a13e3f8a16b0a0a7945495",
+          "code_revision": "code-c8",
+          "base_snapshot_revision": "base-2",
+          "behavior_revision": "catalog-set-1",
+          "contract_revision": "behavior-contract-1",
+          "tool_revision": "checker-1",
+          "result": "pass",
+          "assumptions": ["synthetic-cpu-only"],
+          "input_binding": {"oracle_version": "p0-cases/1.0.0", "case_ids": {"$ref": "behavior-case-ids"}}
+        },
+        "evidence-c7-pass": {
+          "evidence_id": "evidence-c7-pass",
+          "trusted_origin": "trusted-checker",
+          "assertion": "behavior-cases-pass",
+          "candidate_bytes_sha256": "92722c84c10343bdc9187acb4aabaea46f7695e10e043654394df7def6b18402",
+          "code_revision": "code-c7",
+          "base_snapshot_revision": "base-2",
+          "behavior_revision": "catalog-set-1",
+          "contract_revision": "behavior-contract-1",
+          "tool_revision": "checker-1",
+          "result": "pass",
+          "assumptions": ["synthetic-cpu-only"],
+          "input_binding": {"oracle_version": "p0-cases/1.0.0", "case_ids": {"$ref": "behavior-case-ids"}}
+        }
+      }
+    },
+    "candidate-current-pass": {
+      "candidate_id": "candidate-current-pass",
+      "candidate_payload_utf8": "catalog candidate c8\n",
+      "candidate_bytes_sha256": "e93e2c094b29b3c59cbd23ae8a59f47ec191d7a257a13e3f8a16b0a0a7945495",
+      "code_revision": "code-c8",
+      "base_snapshot_revision": "base-2",
+      "behavior_revision": "catalog-set-1",
+      "contract_revision": "behavior-contract-1",
+      "evidence_ids": ["evidence-c8-pass"]
+    },
+    "candidate-c8-evidence-c7": {
+      "candidate_id": "candidate-c8",
+      "candidate_payload_utf8": "catalog candidate c8\n",
+      "candidate_bytes_sha256": "e93e2c094b29b3c59cbd23ae8a59f47ec191d7a257a13e3f8a16b0a0a7945495",
+      "code_revision": "code-c8",
+      "base_snapshot_revision": "base-2",
+      "behavior_revision": "catalog-set-1",
+      "contract_revision": "behavior-contract-1",
+      "evidence_ids": ["evidence-c7-pass"]
+    },
+    "candidate-self-reported-pass": {
+      "candidate_id": "candidate-self-reported-pass",
+      "candidate_payload_utf8": "catalog candidate c8\n",
+      "candidate_bytes_sha256": "e93e2c094b29b3c59cbd23ae8a59f47ec191d7a257a13e3f8a16b0a0a7945495",
+      "code_revision": "code-c8",
+      "base_snapshot_revision": "base-2",
+      "behavior_revision": "catalog-set-1",
+      "contract_revision": "behavior-contract-1",
+      "evidence_ids": ["evidence-self-pass"],
+      "submitted_evidence": [{
+        "evidence_id": "evidence-self-pass",
+        "trusted_origin": "trusted-checker",
+        "assertion": "behavior-cases-pass",
+        "candidate_bytes_sha256": "e93e2c094b29b3c59cbd23ae8a59f47ec191d7a257a13e3f8a16b0a0a7945495",
+        "code_revision": "code-c8",
+        "base_snapshot_revision": "base-2",
+        "behavior_revision": "catalog-set-1",
+        "contract_revision": "behavior-contract-1",
+        "tool_revision": "checker-1",
+        "result": "pass",
+        "assumptions": ["synthetic-cpu-only"],
+        "input_binding": {"oracle_version": "p0-cases/1.0.0", "case_ids": {"$ref": "behavior-case-ids"}}
+      }]
+    },
+    "candidate-digest-mismatch": {
+      "candidate_id": "candidate-digest-mismatch",
+      "candidate_payload_utf8": "catalog candidate c8\n",
+      "candidate_bytes_sha256": "92722c84c10343bdc9187acb4aabaea46f7695e10e043654394df7def6b18402",
+      "code_revision": "code-c8",
+      "base_snapshot_revision": "base-2",
+      "behavior_revision": "catalog-set-1",
+      "contract_revision": "behavior-contract-1",
+      "evidence_ids": []
+    },
+    "candidate-stale-base": {
+      "candidate_id": "candidate-stale-base",
+      "candidate_payload_utf8": "catalog candidate c8\n",
+      "candidate_bytes_sha256": "e93e2c094b29b3c59cbd23ae8a59f47ec191d7a257a13e3f8a16b0a0a7945495",
+      "code_revision": "code-c8",
+      "base_snapshot_revision": "base-1",
+      "behavior_revision": "catalog-set-1",
+      "contract_revision": "behavior-contract-1",
+      "evidence_ids": []
+    },
+    "candidate-stale-contract": {
+      "candidate_id": "candidate-stale-contract",
+      "candidate_payload_utf8": "catalog candidate c8\n",
+      "candidate_bytes_sha256": "e93e2c094b29b3c59cbd23ae8a59f47ec191d7a257a13e3f8a16b0a0a7945495",
+      "code_revision": "code-c8",
+      "base_snapshot_revision": "base-2",
+      "behavior_revision": "catalog-set-1",
+      "contract_revision": "behavior-contract-0",
+      "evidence_ids": []
+    },
+    "candidate-stale-code": {
+      "candidate_id": "candidate-stale-code",
+      "candidate_payload_utf8": "catalog candidate c7\n",
+      "candidate_bytes_sha256": "92722c84c10343bdc9187acb4aabaea46f7695e10e043654394df7def6b18402",
+      "code_revision": "code-c7",
+      "base_snapshot_revision": "base-2",
+      "behavior_revision": "catalog-set-1",
+      "contract_revision": "behavior-contract-1",
+      "evidence_ids": ["evidence-c7-pass"]
+    }
+  },
+  "cases": [
+    {
+      "id": "P0-01",
+      "initial": "protocol-base",
+      "steps": [
+        {"event": "deliver_write", "session": "session-writer-a", "presented_epoch": 4, "intent": "write-intent-k", "expect": {"response": {"kind": "receipt", "value": "write-receipt-k"}, "record": {"revision": 11, "tags": ["blue", "green", "manual"]}, "operation_receipt_count": 1}}
+      ]
+    },
+    {
+      "id": "P0-02",
+      "initial": "protocol-base",
+      "steps": [
+        {"event": "deliver_write", "session": "session-writer-a", "presented_epoch": 4, "intent": "write-intent-k", "expect": {"committed": true}},
+        {"event": "lose_response", "for": "operation-k", "expect": {"observer": "unknown-outcome"}},
+        {"event": "deliver_transfer", "session": "session-coordinator", "intent": "transfer-intent-t1", "expect": {"response": {"kind": "receipt", "value": "transfer-receipt-t1"}, "authority_epoch": 5}},
+        {"event": "query_operation", "session": "session-writer-b", "task_id": "task-catalog", "operation_id": "operation-k", "expect": {"response": {"kind": "receipt", "value": "write-receipt-k"}, "record_revision": 11, "operation_receipt_count": 1}}
+      ]
+    },
+    {
+      "id": "P0-03",
+      "initial": "protocol-base",
+      "steps": [
+        {"event": "deliver_transfer", "session": "session-coordinator", "intent": "transfer-intent-t1", "expect": {"authority_epoch": 5}},
+        {"event": "deliver_write", "session": "session-writer-a", "presented_epoch": 4, "intent": "write-intent-k", "expect": {"response": {"kind": "current-refusal", "reason": "assignee-mismatch"}, "record_revision": 10, "operation_receipt_count": 0}}
+      ]
+    },
+    {
+      "id": "P0-04",
+      "initial": "protocol-base",
+      "steps": [
+        {"event": "deliver_write", "session": "session-writer-a", "presented_epoch": 4, "intent": "write-intent-k", "expect": {"committed": true}},
+        {"event": "delay_response", "for": "operation-k"},
+        {"event": "deliver_transfer", "session": "session-coordinator", "intent": "transfer-intent-t1", "expect": {"authority_epoch": 5}},
+        {"event": "deliver_delayed_response", "for": "operation-k", "expect": {"response": {"kind": "receipt", "value": "write-receipt-k"}, "record_revision": 11, "authority_epoch": 5}},
+        {"event": "deliver_write", "session": "session-writer-a", "presented_epoch": 4, "intent": "write-intent-m", "expect": {"response": {"kind": "current-refusal", "reason": "assignee-mismatch"}, "record_revision": 11}}
+      ]
+    },
+    {
+      "id": "P0-05",
+      "initial": "protocol-base",
+      "steps": [
+        {"event": "deliver_write", "session": "session-writer-a", "presented_epoch": 4, "intent": "write-intent-k", "expect": {"committed": true}},
+        {"event": "deliver_write", "session": "session-writer-a", "presented_epoch": 4, "intent": "write-intent-k", "expect": {"response": {"kind": "receipt", "value": "write-receipt-k"}, "record_revision": 11}},
+        {"event": "deliver_write", "session": "session-writer-a", "presented_epoch": 4, "intent": "write-intent-k-different", "expect": {"response": {"kind": "current-refusal", "reason": "operation-id-conflict"}, "record_revision": 11, "operation_receipt_count": 1}}
+      ]
+    },
+    {
+      "id": "P0-06",
+      "initial": "protocol-base",
+      "steps": [
+        {"event": "deliver_write", "session": "session-writer-a", "presented_epoch": 4, "intent": "write-intent-k", "expect": {"record_revision": 11}},
+        {"event": "deliver_write", "session": "session-writer-a", "presented_epoch": 4, "intent": "write-intent-m", "expect": {"response": {"kind": "receipt", "outcome": {"kind": "refusal-committed", "reason": "revision-conflict", "observed_record_revision": 11}}, "record_revision": 11, "operation_receipt_count": 2}}
+      ]
+    },
+    {
+      "id": "P0-07A",
+      "refines": "P0-07",
+      "initial": "admission-current",
+      "steps": [
+        {"event": "retain_candidate", "session": "session-submitter", "candidate": "candidate-c8-evidence-c7", "expect": {"retained": true, "admitted": false, "executed": false}},
+        {"event": "attempt_admission", "session": "session-admitter", "candidate": "candidate-c8-evidence-c7", "expect": {"response": {"kind": "admission-refusal", "reason": "evidence-not-applicable"}, "retained": true, "admitted": false, "executed": false}}
+      ]
+    },
+    {
+      "id": "P0-07B",
+      "refines": "P0-07",
+      "initial": "admission-current",
+      "steps": [
+        {"event": "retain_candidate", "session": "session-submitter", "candidate": "candidate-stale-base", "expect": {"retained": true}},
+        {"event": "attempt_admission", "session": "session-admitter", "candidate": "candidate-stale-base", "expect": {"response": {"kind": "admission-refusal", "reason": "base-stale"}, "retained": true, "admitted": false, "executed": false}}
+      ]
+    },
+    {
+      "id": "P0-08",
+      "initial": "protocol-base",
+      "steps": [
+        {"event": "timeout_before_delivery", "request": "write-intent-k", "expect": {"observer": "unknown-outcome"}},
+        {"event": "query_operation", "session": "session-reader", "task_id": "task-catalog", "operation_id": "operation-k", "expect": {"response": {"kind": "receipt-absent-at-query"}, "observer": "unknown-outcome", "operation_receipt_count": 0, "new_operation_id_permitted_for_blind_retry": false}}
+      ]
+    },
+    {
+      "id": "P0-09",
+      "initial": "protocol-base",
+      "steps": [
+        {"event": "timeout_before_delivery", "request": "write-intent-k", "expect": {"observer": "unknown-outcome"}},
+        {"event": "deliver_cancel", "session": "session-writer-a", "task_id": "task-catalog", "operation_id": "operation-k", "expect": {"response": {"kind": "current-refusal", "reason": "unsupported-action"}, "observer": "unknown-outcome", "guaranteed_stop": false, "state_changed": false}}
+      ]
+    },
+    {
+      "id": "P0-10",
+      "initial": "protocol-base",
+      "steps": [
+        {"event": "receiver_without_enforcement", "coordinator_epoch": 5, "receiver_epoch": 4, "late_request": "write-intent-k", "expect": {"late_write_possible": true, "verdict": "guarantee-failure", "conforming_implementation": false}}
+      ]
+    },
+    {
+      "id": "TR-01-LOST-DUPLICATE",
+      "initial": "protocol-base",
+      "steps": [
+        {"event": "deliver_transfer", "session": "session-coordinator", "intent": "transfer-intent-t1", "expect": {"committed": true}},
+        {"event": "lose_response", "for": "transfer-t1", "expect": {"observer": "unknown-outcome"}},
+        {"event": "deliver_transfer", "session": "session-coordinator", "intent": "transfer-intent-t1", "expect": {"response": {"kind": "receipt", "value": "transfer-receipt-t1"}, "authority_epoch": 5, "transfer_receipt_count": 1}}
+      ]
+    },
+    {
+      "id": "TR-02-REVOKED-MANAGER",
+      "initial": "protocol-base",
+      "steps": [
+        {"event": "deliver_transfer", "session": "session-coordinator", "intent": "transfer-intent-t1", "expect": {"committed": true}},
+        {"event": "revoke_grant", "principal": "coordinator", "grant": "manage:transfer"},
+        {"event": "deliver_transfer", "session": "session-coordinator", "intent": "transfer-intent-t1", "expect": {"response": {"kind": "current-refusal", "reason": "transfer-scope-required"}, "receipt_lookup_performed": false, "authority_epoch": 5, "transfer_receipt_count": 1}}
+      ]
+    },
+    {
+      "id": "TR-03-CONCURRENT",
+      "initial": "protocol-base",
+      "steps": [
+        {"event": "deliver_transfer_concurrently", "requests": [{"session": "session-coordinator", "intent": "transfer-intent-t1"}, {"session": "session-coordinator", "intent": "transfer-intent-t2"}], "expect": {"allowed_serial_results": [[{"intent": "transfer-intent-t1", "kind": "receipt"}, {"intent": "transfer-intent-t2", "kind": "current-refusal", "reason": "epoch-mismatch"}], [{"intent": "transfer-intent-t2", "kind": "receipt"}, {"intent": "transfer-intent-t1", "kind": "current-refusal", "reason": "epoch-mismatch"}]], "authority_epoch": 5, "transfer_receipt_count": 1}}
+      ]
+    },
+    {
+      "id": "TR-04-HISTORICAL-DOES-NOT-REVIVE",
+      "initial": "protocol-base",
+      "steps": [
+        {"event": "deliver_transfer", "session": "session-coordinator", "intent": "transfer-intent-t1", "expect": {"authority_epoch": 5}},
+        {"event": "deliver_transfer", "session": "session-coordinator", "intent": "transfer-intent-t3", "expect": {"authority_epoch": 6, "assignee": "writer-a"}},
+        {"event": "query_transfer", "session": "session-reader", "task_id": "task-catalog", "transfer_id": "transfer-t1", "expect": {"response": {"kind": "receipt", "value": "transfer-receipt-t1"}, "authority_epoch": 6}},
+        {"event": "deliver_write", "session": "session-writer-b", "presented_epoch": 5, "intent": "write-intent-k", "expect": {"response": {"kind": "current-refusal", "reason": "assignee-mismatch"}, "record_revision": 10}}
+      ]
+    },
+    {
+      "id": "TR-05-ID-CONFLICT",
+      "initial": "protocol-base",
+      "steps": [
+        {"event": "deliver_transfer", "session": "session-coordinator", "intent": "transfer-intent-t1", "expect": {"committed": true}},
+        {"event": "deliver_transfer", "session": "session-coordinator", "intent": "transfer-intent-t1-different", "expect": {"response": {"kind": "current-refusal", "reason": "transfer-id-conflict"}, "authority_epoch": 5, "transfer_receipt_count": 1}}
+      ]
+    },
+    {
+      "id": "ORD-01-AUTH-BEFORE-RECEIPT",
+      "initial": "protocol-base",
+      "steps": [
+        {"event": "deliver_write", "session": "session-writer-a", "presented_epoch": 4, "intent": "write-intent-k", "expect": {"committed": true}},
+        {"event": "deliver_write", "session": "anonymous", "presented_epoch": 4, "intent": "write-intent-k", "expect": {"response": {"kind": "current-refusal", "reason": "authentication-required"}, "receipt_lookup_performed": false}}
+      ]
+    },
+    {
+      "id": "ORD-02-ASSIGNEE-BEFORE-RECEIPT",
+      "initial": "protocol-base",
+      "steps": [
+        {"event": "deliver_write", "session": "session-writer-a", "presented_epoch": 4, "intent": "write-intent-k", "expect": {"committed": true}},
+        {"event": "deliver_transfer", "session": "session-coordinator", "intent": "transfer-intent-t1", "expect": {"authority_epoch": 5}},
+        {"event": "deliver_write", "session": "session-writer-a", "presented_epoch": 4, "intent": "write-intent-k-different", "expect": {"response": {"kind": "current-refusal", "reason": "assignee-mismatch"}, "receipt_lookup_performed": false}}
+      ]
+    },
+    {
+      "id": "ORD-03-SCOPE-BEFORE-RECEIPT",
+      "initial": "protocol-base",
+      "steps": [
+        {"event": "deliver_write", "session": "session-writer-a", "presented_epoch": 4, "intent": "write-intent-k", "expect": {"committed": true}},
+        {"event": "revoke_grant", "principal": "writer-a", "grant": "write:catalog"},
+        {"event": "deliver_write", "session": "session-writer-a", "presented_epoch": 4, "intent": "write-intent-k", "expect": {"response": {"kind": "current-refusal", "reason": "write-scope-required"}, "receipt_lookup_performed": false}}
+      ]
+    },
+    {
+      "id": "ORD-04-TASK-REVISION-BEFORE-RECEIPT",
+      "initial": "protocol-base",
+      "steps": [
+        {"event": "deliver_write", "session": "session-writer-a", "presented_epoch": 4, "intent": "write-intent-k", "expect": {"committed": true}},
+        {"event": "advance_task_revision", "task_revision": 8},
+        {"event": "deliver_write", "session": "session-writer-a", "presented_epoch": 4, "intent": "write-intent-k", "expect": {"response": {"kind": "current-refusal", "reason": "task-revision-mismatch"}, "receipt_lookup_performed": false}}
+      ]
+    },
+    {
+      "id": "ORD-05-BEHAVIOR-REVISION-BEFORE-RECEIPT",
+      "initial": "protocol-base",
+      "steps": [
+        {"event": "deliver_write", "session": "session-writer-a", "presented_epoch": 4, "intent": "write-intent-k", "expect": {"committed": true}},
+        {"event": "advance_behavior_revision", "behavior_revision": "catalog-set-2"},
+        {"event": "deliver_write", "session": "session-writer-a", "presented_epoch": 4, "intent": "write-intent-k", "expect": {"response": {"kind": "current-refusal", "reason": "behavior-revision-mismatch"}, "receipt_lookup_performed": false}}
+      ]
+    },
+    {
+      "id": "ORD-06-CONTRACT-REVISION-BEFORE-RECEIPT",
+      "initial": "protocol-base",
+      "steps": [
+        {"event": "deliver_write", "session": "session-writer-a", "presented_epoch": 4, "intent": "write-intent-k", "expect": {"committed": true}},
+        {"event": "advance_contract_revision", "contract_revision": "write-contract-2"},
+        {"event": "deliver_write", "session": "session-writer-a", "presented_epoch": 4, "intent": "write-intent-k", "expect": {"response": {"kind": "current-refusal", "reason": "contract-revision-mismatch"}, "receipt_lookup_performed": false}}
+      ]
+    },
+    {
+      "id": "ORD-07-ID-CONFLICT-AFTER-CURRENT-GATES",
+      "initial": "protocol-base",
+      "steps": [
+        {"event": "deliver_write", "session": "session-writer-a", "presented_epoch": 4, "intent": "write-intent-k", "expect": {"committed": true}},
+        {"event": "deliver_write", "session": "session-writer-a", "presented_epoch": 4, "intent": "write-intent-k-different", "expect": {"response": {"kind": "current-refusal", "reason": "operation-id-conflict"}, "receipt_lookup_performed": true}}
+      ]
+    },
+    {
+      "id": "ORD-08-EPOCH-BEFORE-RECEIPT",
+      "initial": "protocol-base",
+      "steps": [
+        {"event": "deliver_write", "session": "session-writer-a", "presented_epoch": 4, "intent": "write-intent-k", "expect": {"record_revision": 11, "operation_receipt_count": 1}},
+        {"event": "deliver_transfer", "session": "session-coordinator", "intent": "transfer-intent-t1", "expect": {"authority_epoch": 5, "assignee": "writer-b"}},
+        {"event": "deliver_transfer", "session": "session-coordinator", "intent": "transfer-intent-t3", "expect": {"authority_epoch": 6, "assignee": "writer-a"}},
+        {"event": "deliver_write", "session": "session-writer-a", "presented_epoch": 4, "intent": "write-intent-k", "expect": {"response": {"kind": "current-refusal", "reason": "epoch-mismatch"}, "receipt_lookup_performed": false, "record_revision": 11, "operation_receipt_count": 1}}
+      ]
+    },
+    {
+      "id": "ORD-09-SUCCESSOR-RETRIES-SAVED-INTENT",
+      "initial": "protocol-base",
+      "steps": [
+        {"event": "deliver_write", "session": "session-writer-a", "presented_epoch": 4, "intent": "write-intent-k", "expect": {"committed": true}},
+        {"event": "lose_response", "for": "operation-k", "expect": {"observer": "unknown-outcome"}},
+        {"event": "deliver_transfer", "session": "session-coordinator", "intent": "transfer-intent-t1", "expect": {"authority_epoch": 5, "assignee": "writer-b"}},
+        {"event": "deliver_write", "session": "session-writer-b", "presented_epoch": 5, "intent": "write-intent-k", "expect": {"response": {"kind": "receipt", "value": "write-receipt-k"}, "record_revision": 11, "operation_receipt_count": 1}}
+      ]
+    },
+    {
+      "id": "REC-01-REFUSAL-IMMUTABLE",
+      "initial": "protocol-base",
+      "steps": [
+        {"event": "deliver_write", "session": "session-writer-a", "presented_epoch": 4, "intent": "write-intent-stale-record", "expect": {"response": {"kind": "receipt", "outcome": {"kind": "refusal-committed", "reason": "revision-conflict", "observed_record_revision": 10}}, "operation_receipt_count": 1}},
+        {"event": "deliver_write", "session": "session-writer-a", "presented_epoch": 4, "intent": "write-intent-k", "expect": {"record_revision": 11}},
+        {"event": "deliver_write", "session": "session-writer-a", "presented_epoch": 4, "intent": "write-intent-stale-record", "expect": {"response": {"kind": "receipt", "outcome": {"kind": "refusal-committed", "reason": "revision-conflict", "observed_record_revision": 10}}, "record_revision": 11, "operation_receipt_count": 2}}
+      ]
+    },
+    {
+      "id": "REC-02-CONTRACT-REFUSAL",
+      "initial": "protocol-base",
+      "steps": [
+        {"event": "deliver_write", "session": "session-writer-a", "presented_epoch": 4, "intent": "write-intent-contract-refusal", "expect": {"response": {"kind": "receipt", "outcome": {"kind": "refusal-committed", "reason": "contract-refusal", "detail": "missing-remove", "observed_record_revision": 10}}, "record_revision": 10, "operation_receipt_count": 1}}
+      ]
+    },
+    {
+      "id": "CR-01-WRITE-BEFORE-COMMIT",
+      "initial": "protocol-base",
+      "steps": [
+        {"event": "crash_before_commit", "operation": "deliver_write", "session": "session-writer-a", "presented_epoch": 4, "intent": "write-intent-k", "expect": {"observer": "unknown-outcome"}},
+        {"event": "recover", "expect": {"record_revision": 10, "operation_receipt_count": 0}},
+        {"event": "query_operation", "session": "session-reader", "task_id": "task-catalog", "operation_id": "operation-k", "expect": {"response": {"kind": "receipt-absent-at-query"}, "observer": "unknown-outcome"}}
+      ]
+    },
+    {
+      "id": "CR-02-WRITE-AFTER-COMMIT",
+      "initial": "protocol-base",
+      "steps": [
+        {"event": "crash_after_commit_before_response", "operation": "deliver_write", "session": "session-writer-a", "presented_epoch": 4, "intent": "write-intent-k", "expect": {"observer": "unknown-outcome"}},
+        {"event": "recover", "expect": {"record_revision": 11, "operation_receipt_count": 1}},
+        {"event": "query_operation", "session": "session-reader", "task_id": "task-catalog", "operation_id": "operation-k", "expect": {"response": {"kind": "receipt", "value": "write-receipt-k"}}}
+      ]
+    },
+    {
+      "id": "CR-03-TRANSFER-BEFORE-COMMIT",
+      "initial": "protocol-base",
+      "steps": [
+        {"event": "crash_before_commit", "operation": "deliver_transfer", "session": "session-coordinator", "intent": "transfer-intent-t1", "expect": {"observer": "unknown-outcome"}},
+        {"event": "recover", "expect": {"authority_epoch": 4, "assignee": "writer-a", "transfer_receipt_count": 0}}
+      ]
+    },
+    {
+      "id": "CR-04-TRANSFER-AFTER-COMMIT",
+      "initial": "protocol-base",
+      "steps": [
+        {"event": "crash_after_commit_before_response", "operation": "deliver_transfer", "session": "session-coordinator", "intent": "transfer-intent-t1", "expect": {"observer": "unknown-outcome"}},
+        {"event": "recover", "expect": {"authority_epoch": 5, "assignee": "writer-b", "transfer_receipt_count": 1}},
+        {"event": "query_transfer", "session": "session-reader", "task_id": "task-catalog", "transfer_id": "transfer-t1", "expect": {"response": {"kind": "receipt", "value": "transfer-receipt-t1"}}}
+      ]
+    },
+    {
+      "id": "AD-01-RETENTION-NOT-ADMISSION",
+      "initial": "admission-current",
+      "steps": [
+        {"event": "retain_candidate", "session": "session-submitter", "candidate": "candidate-c8-evidence-c7", "expect": {"retained": true, "admitted": false}},
+        {"event": "attempt_admission", "session": "session-submitter", "candidate": "candidate-c8-evidence-c7", "expect": {"response": {"kind": "current-refusal", "reason": "admission-scope-required"}, "technical_checks_performed": false, "retained": true, "executed": false}}
+      ]
+    },
+    {
+      "id": "AD-02-CONTRACT-STALE",
+      "initial": "admission-current",
+      "steps": [
+        {"event": "retain_candidate", "session": "session-submitter", "candidate": "candidate-stale-contract", "expect": {"retained": true}},
+        {"event": "attempt_admission", "session": "session-admitter", "candidate": "candidate-stale-contract", "expect": {"response": {"kind": "admission-refusal", "reason": "contract-stale"}, "retained": true, "admitted": false, "executed": false}}
+      ]
+    },
+    {
+      "id": "AD-03-CODE-STALE",
+      "initial": "admission-current",
+      "steps": [
+        {"event": "retain_candidate", "session": "session-submitter", "candidate": "candidate-stale-code", "expect": {"retained": true}},
+        {"event": "attempt_admission", "session": "session-admitter", "candidate": "candidate-stale-code", "expect": {"response": {"kind": "admission-refusal", "reason": "code-stale"}, "retained": true, "admitted": false, "executed": false}}
+      ]
+    },
+    {
+      "id": "AD-04-HISTORICAL-EVIDENCE-NO-AUTHORITY",
+      "initial": "protocol-base",
+      "steps": [
+        {"event": "deliver_write", "session": "session-outsider", "presented_epoch": 4, "intent": "write-intent-k", "presented_historical_evidence": "write-receipt-k", "expect": {"response": {"kind": "current-refusal", "reason": "assignee-mismatch"}, "record_revision": 10, "operation_receipt_count": 0}}
+      ]
+    },
+    {
+      "id": "AD-05-CURRENT-EVIDENCE-ADMITTED",
+      "initial": "admission-current",
+      "steps": [
+        {"event": "retain_candidate", "session": "session-submitter", "candidate": "candidate-current-pass", "expect": {"retained": true, "admitted": false, "executed": false}},
+        {"event": "attempt_admission", "session": "session-admitter", "candidate": "candidate-current-pass", "expect": {"response": {"kind": "admitted", "candidate_id": "candidate-current-pass"}, "retained": true, "admitted": true, "executed": false}}
+      ]
+    },
+    {
+      "id": "AD-06-SELF-REPORTED-EVIDENCE-UNKNOWN",
+      "initial": "admission-current",
+      "steps": [
+        {"event": "retain_candidate", "session": "session-submitter", "candidate": "candidate-self-reported-pass", "expect": {"retained": true, "admitted": false, "executed": false}},
+        {"event": "attempt_admission", "session": "session-admitter", "candidate": "candidate-self-reported-pass", "expect": {"response": {"kind": "admission-refusal", "reason": "mandatory-evidence-unknown"}, "retained": true, "admitted": false, "executed": false}}
+      ]
+    },
+    {
+      "id": "AD-07-REVOKED-ADMITTER",
+      "initial": "admission-current",
+      "steps": [
+        {"event": "retain_candidate", "session": "session-submitter", "candidate": "candidate-current-pass", "expect": {"retained": true, "admitted": false}},
+        {"event": "revoke_grant", "principal": "admitter", "grant": "candidate:admit"},
+        {"event": "attempt_admission", "session": "session-admitter", "candidate": "candidate-current-pass", "expect": {"response": {"kind": "current-refusal", "reason": "admission-scope-required"}, "technical_checks_performed": false, "retained": true, "admitted": false, "executed": false}}
+      ]
+    },
+    {
+      "id": "AD-08-DIGEST-MISMATCH",
+      "initial": "admission-current",
+      "steps": [
+        {"event": "retain_candidate", "session": "session-submitter", "candidate": "candidate-digest-mismatch", "expect": {"response": {"kind": "retention-refusal", "reason": "candidate-digest-mismatch"}, "retained": false, "admitted": false, "executed": false}}
+      ]
+    },
+    {
+      "id": "PROG-01-NONRESPONSIVE-HANDLER",
+      "initial": "protocol-base",
+      "steps": [
+        {"event": "withhold_handler_response", "after_valid_delivery": {"event": "query_operation", "session": "session-reader", "task_id": "task-catalog", "operation_id": "operation-k"}, "expect": {"verdict": "system-obligation-failure", "network_assumption_failure": false, "conforming_implementation": false}}
+      ]
+    },
+    {
+      "id": "BHV-01-MIGRATE-DUPLICATES",
+      "steps": [
+        {"event": "run_behavior", "operation": "migrate-list-to-set", "input": {"schema": "catalog-list-1", "revision": 3, "entries": [{"id": "entry-a", "tags": ["red", "blue", "red"]}, {"id": "entry-b", "tags": ["manual", "manual"]}]}, "expect": {"kind": "success", "output": {"schema": "catalog-set-1", "revision": 4, "entries": [{"id": "entry-a", "tags": ["blue", "red"]}, {"id": "entry-b", "tags": ["manual"]}]}}}
+      ]
+    },
+    {
+      "id": "BHV-02-MIGRATE-EMPTY",
+      "steps": [
+        {"event": "run_behavior", "operation": "migrate-list-to-set", "input": {"schema": "catalog-list-1", "revision": 0, "entries": [{"id": "entry-a", "tags": []}]}, "expect": {"kind": "success", "output": {"schema": "catalog-set-1", "revision": 1, "entries": [{"id": "entry-a", "tags": []}]}}}
+      ]
+    },
+    {
+      "id": "BHV-03-INVALID-TAG-ATOMIC",
+      "steps": [
+        {"event": "run_behavior", "operation": "migrate-list-to-set", "input": {"schema": "catalog-list-1", "revision": 3, "entries": [{"id": "entry-a", "tags": ["blue"]}, {"id": "entry-b", "tags": ["INVALID"]}]}, "expect": {"kind": "refusal", "reason": "invalid-tag", "state_unchanged": true, "partial_output": false}}
+      ]
+    },
+    {
+      "id": "BHV-04-DUPLICATE-ENTRY-ATOMIC",
+      "steps": [
+        {"event": "run_behavior", "operation": "migrate-list-to-set", "input": {"schema": "catalog-list-1", "revision": 3, "entries": [{"id": "entry-a", "tags": ["blue"]}, {"id": "entry-a", "tags": ["red"]}]}, "expect": {"kind": "refusal", "reason": "duplicate-entry-id", "state_unchanged": true, "partial_output": false}}
+      ]
+    },
+    {
+      "id": "BHV-05-SET-EQUALITY-IGNORES-LEGACY-ORDER",
+      "steps": [
+        {"event": "compare_migrations", "left": {"schema": "catalog-list-1", "revision": 3, "entries": [{"id": "entry-a", "tags": ["red", "blue", "red"]}]}, "right": {"schema": "catalog-list-1", "revision": 3, "entries": [{"id": "entry-a", "tags": ["blue", "red"]}]}, "expect": {"legacy_equal": false, "left_result": {"kind": "success", "output": {"schema": "catalog-set-1", "revision": 4, "entries": [{"id": "entry-a", "tags": ["blue", "red"]}]}}, "right_result": {"kind": "success", "output": {"schema": "catalog-set-1", "revision": 4, "entries": [{"id": "entry-a", "tags": ["blue", "red"]}]}}, "migrated_equal": true}}
+      ]
+    },
+    {
+      "id": "BHV-06-ADD-EXISTING-IDEMPOTENT",
+      "steps": [
+        {"event": "run_behavior", "operation": "add-tag", "entry_id": "entry-a", "tag": "blue", "input": {"schema": "catalog-set-1", "revision": 4, "entries": [{"id": "entry-a", "tags": ["blue", "red"]}]}, "expect": {"kind": "success", "output": {"schema": "catalog-set-1", "revision": 4, "entries": [{"id": "entry-a", "tags": ["blue", "red"]}]}}}
+      ]
+    },
+    {
+      "id": "BHV-07-ADD-NEW-CANONICAL",
+      "steps": [
+        {"event": "run_behavior", "operation": "add-tag", "entry_id": "entry-a", "tag": "green", "input": {"schema": "catalog-set-1", "revision": 4, "entries": [{"id": "entry-a", "tags": ["blue", "red"]}]}, "expect": {"kind": "success", "output": {"schema": "catalog-set-1", "revision": 5, "entries": [{"id": "entry-a", "tags": ["blue", "green", "red"]}]}}}
+      ]
+    },
+    {
+      "id": "BHV-08-NONCANONICAL-TARGET-ATOMIC",
+      "steps": [
+        {"event": "run_behavior", "operation": "add-tag", "entry_id": "entry-a", "tag": "green", "input": {"schema": "catalog-set-1", "revision": 4, "entries": [{"id": "entry-a", "tags": ["red", "blue", "red"]}]}, "expect": {"kind": "refusal", "reason": "noncanonical-set", "state_unchanged": true}}
+      ]
+    },
+    {
+      "id": "BHV-09-MIGRATE-INVALID-SCHEMA",
+      "steps": [
+        {"event": "run_behavior", "operation": "migrate-list-to-set", "input": {"schema": "catalog-list-2", "revision": 3, "entries": [{"id": "entry-a", "tags": ["blue"]}]}, "expect": {"kind": "refusal", "reason": "invalid-schema", "state_unchanged": true, "partial_output": false}}
+      ]
+    },
+    {
+      "id": "BHV-10-MIGRATE-REVISION-OVERFLOW",
+      "steps": [
+        {"event": "run_behavior", "operation": "migrate-list-to-set", "input": {"schema": "catalog-list-1", "revision": 18446744073709551615, "entries": [{"id": "entry-a", "tags": ["blue"]}]}, "expect": {"kind": "refusal", "reason": "revision-overflow", "state_unchanged": true, "partial_output": false}}
+      ]
+    },
+    {
+      "id": "BHV-11-MIGRATE-INVALID-ENTRY-ID",
+      "steps": [
+        {"event": "run_behavior", "operation": "migrate-list-to-set", "input": {"schema": "catalog-list-1", "revision": 3, "entries": [{"id": "INVALID", "tags": ["blue"]}]}, "expect": {"kind": "refusal", "reason": "invalid-entry-id", "state_unchanged": true, "partial_output": false}}
+      ]
+    },
+    {
+      "id": "BHV-12-MIGRATE-ENTRY-ORDER",
+      "steps": [
+        {"event": "run_behavior", "operation": "migrate-list-to-set", "input": {"schema": "catalog-list-1", "revision": 3, "entries": [{"id": "entry-b", "tags": ["blue"]}, {"id": "entry-a", "tags": ["red"]}]}, "expect": {"kind": "refusal", "reason": "entry-order", "state_unchanged": true, "partial_output": false}}
+      ]
+    },
+    {
+      "id": "BHV-13-ADD-MISSING-ENTRY",
+      "steps": [
+        {"event": "run_behavior", "operation": "add-tag", "entry_id": "entry-b", "tag": "green", "input": {"schema": "catalog-set-1", "revision": 4, "entries": [{"id": "entry-a", "tags": ["blue"]}]}, "expect": {"kind": "refusal", "reason": "entry-not-found", "state_unchanged": true}}
+      ]
+    },
+    {
+      "id": "BHV-14-ADD-INVALID-TAG",
+      "steps": [
+        {"event": "run_behavior", "operation": "add-tag", "entry_id": "entry-a", "tag": "INVALID", "input": {"schema": "catalog-set-1", "revision": 4, "entries": [{"id": "entry-a", "tags": ["blue"]}]}, "expect": {"kind": "refusal", "reason": "invalid-tag", "state_unchanged": true}}
+      ]
+    },
+    {
+      "id": "BHV-15-ADD-REVISION-OVERFLOW",
+      "steps": [
+        {"event": "run_behavior", "operation": "add-tag", "entry_id": "entry-a", "tag": "green", "input": {"schema": "catalog-set-1", "revision": 18446744073709551615, "entries": [{"id": "entry-a", "tags": ["blue"]}]}, "expect": {"kind": "refusal", "reason": "revision-overflow", "state_unchanged": true}}
+      ]
+    },
+    {
+      "id": "BHV-16-ADD-INVALID-SCHEMA",
+      "steps": [
+        {"event": "run_behavior", "operation": "add-tag", "entry_id": "entry-a", "tag": "green", "input": {"schema": "catalog-list-1", "revision": 4, "entries": [{"id": "entry-a", "tags": ["blue"]}]}, "expect": {"kind": "refusal", "reason": "invalid-schema", "state_unchanged": true}}
+      ]
+    },
+    {
+      "id": "BHV-17-ADD-DUPLICATE-ENTRY",
+      "steps": [
+        {"event": "run_behavior", "operation": "add-tag", "entry_id": "entry-a", "tag": "green", "input": {"schema": "catalog-set-1", "revision": 4, "entries": [{"id": "entry-a", "tags": ["blue"]}, {"id": "entry-a", "tags": ["red"]}]}, "expect": {"kind": "refusal", "reason": "duplicate-entry-id", "state_unchanged": true}}
+      ]
+    },
+    {
+      "id": "BHV-18-ADD-ENTRY-ORDER",
+      "steps": [
+        {"event": "run_behavior", "operation": "add-tag", "entry_id": "entry-a", "tag": "green", "input": {"schema": "catalog-set-1", "revision": 4, "entries": [{"id": "entry-b", "tags": ["blue"]}, {"id": "entry-a", "tags": ["red"]}]}, "expect": {"kind": "refusal", "reason": "entry-order", "state_unchanged": true}}
+      ]
+    },
+    {
+      "id": "BHV-19-ADD-INVALID-ENTRY-ID",
+      "steps": [
+        {"event": "run_behavior", "operation": "add-tag", "entry_id": "INVALID", "tag": "green", "input": {"schema": "catalog-set-1", "revision": 4, "entries": [{"id": "entry-a", "tags": ["blue"]}]}, "expect": {"kind": "refusal", "reason": "invalid-entry-id", "state_unchanged": true}}
+      ]
+    },
+    {
+      "id": "BHV-20-ADD-EXISTING-AT-MAX",
+      "steps": [
+        {"event": "run_behavior", "operation": "add-tag", "entry_id": "entry-a", "tag": "blue", "input": {"schema": "catalog-set-1", "revision": 18446744073709551615, "entries": [{"id": "entry-a", "tags": ["blue"]}]}, "expect": {"kind": "success", "output": {"schema": "catalog-set-1", "revision": 18446744073709551615, "entries": [{"id": "entry-a", "tags": ["blue"]}]}}}
+      ]
+    },
+    {
+      "id": "BHV-21-ADD-INVALID-STORED-TAG",
+      "steps": [
+        {"event": "run_behavior", "operation": "add-tag", "entry_id": "entry-a", "tag": "green", "input": {"schema": "catalog-set-1", "revision": 4, "entries": [{"id": "entry-a", "tags": ["INVALID"]}]}, "expect": {"kind": "refusal", "reason": "noncanonical-set", "state_unchanged": true}}
+      ]
+    },
+    {
+      "id": "HND-01-FROZEN-BEFORE-AFTER",
+      "steps": [
+        {"event": "validate_handoff", "checkpoint": {"checkpoint_id": "checkpoint-1", "task_revision": 7, "behavior_revision": "catalog-set-1", "contract_version": "p0-contract/1.0.0", "oracle_version": "p0-cases/1.0.0", "base_snapshot": "base-2", "candidate_snapshot": "candidate-interrupted", "candidate_files": [{"path": "src/catalog.synthetic", "content_utf8": "schema catalog-set-1\nmigration pending\nadd-tag pending\n", "sha256": "103684c806b0c4cb0a1fa65ba3d31ee8797e66688fd17a5726caa14e68c4b8af"}], "completed": ["schema"], "remaining": ["migration", "add-tag"], "case_results": {"$ref": "behavior-not-run-results"}, "started_effects": [], "unknowns": []}, "successor_run": {"oracle_version": "p0-cases/1.0.0", "phases": ["before-successor-change", "after-successor-change"], "required_case_ids": {"$ref": "behavior-case-ids"}}, "expect": {"checkpoint_complete": true, "candidate_hashes_verified": true, "checkpoint_is_behavior_acceptance": false, "before_and_after_runs_required": true, "same_frozen_oracle_before_after": true, "delivery_tag_is_behavior_evidence": false, "hidden_reasoning_required": false}}
+      ]
+    }
+  ]
+}
