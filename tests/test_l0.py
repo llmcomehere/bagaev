@@ -39,11 +39,19 @@ class L0Tests(unittest.TestCase):
         patch = fixture("tag_unique_sorted.patch")
         patched = L0.apply_patch(original, patch)
         self.assertEqual(original, snapshot)
-        cases = [[], ["red", "red"], ["red", "blue"], ["blue", "red"],
-                 ["red", "blue", "red"], ["blue", "blue"]]
-        for tags in cases:
+        cases = [
+            (["red", "blue", "red"], ["red", "blue", "red"], ["blue", "red"]),
+            ([], [], []),
+            (["blue", "blue"], ["blue", "blue"], ["blue"]),
+            (["red", "blue"], ["red", "blue"], ["blue", "red"]),
+            (["blue", "green", "red"], ["blue", "green", "red"],
+             ["blue", "green", "red"]),
+        ]
+        for tags, before, after in cases:
             with self.subTest(tags=tags):
-                self.assertEqual(L0.run_program(patched, {"tags": tags}), sorted(set(tags)))
+                self.assertEqual(L0.run_program(original, {"tags": tags}), before)
+                self.assertEqual(L0.run_program(patched, {"tags": tags}), after)
+                self.assertEqual(after, sorted(set(tags)))
 
     def test_composed_integer_and_list_operations(self) -> None:
         self.assertEqual(
@@ -102,6 +110,44 @@ class L0Tests(unittest.TestCase):
                  "right": {"ref": "one"}},
             ],
             "result": {"ref": "sum"},
+        }
+        self.assert_code("integer.overflow", lambda: L0.run_program(program, {}))
+
+    def test_large_json_integer_and_deep_malformed_values_are_structured(self) -> None:
+        huge_integer = '{"n":' + "9" * 5000 + "}"
+        self.assert_code("integer.overflow", lambda: L0.loads_json(huge_integer))
+
+        nested = "[" * 600 + "0" + "]" * 600
+        deep_program = L0.loads_json(
+            '{"schema":"bagaev/l0-program/v1","nodes":['
+            '{"id":"value","op":"literal","type":"int","value":'
+            + nested
+            + '}],"result":{"ref":"value"}}'
+        )
+        self.assert_code("value.type", lambda: L0.compile_program(deep_program))
+
+        original = fixture("tag_list.json")
+        deep_patch = L0.loads_json(
+            '{"schema":"bagaev/l0-patch/v1","base":"'
+            + L0.program_digest(original)
+            + '","add":[],"replace":['
+            '{"id":"result","op":"literal","type":"int","value":'
+            + nested
+            + '}]} '
+        )
+        self.assert_code("value.type", lambda: L0.apply_patch(original, deep_patch))
+
+    def test_unreachable_runtime_failure_rejects_eager_run(self) -> None:
+        program = {
+            "schema": L0.PROGRAM_SCHEMA,
+            "nodes": [
+                {"id": "result", "op": "literal", "type": "int", "value": 0},
+                {"id": "max", "op": "literal", "type": "int", "value": L0.INT_MAX},
+                {"id": "one", "op": "literal", "type": "int", "value": 1},
+                {"id": "unused_overflow", "op": "int.add", "left": {"ref": "max"},
+                 "right": {"ref": "one"}},
+            ],
+            "result": {"ref": "result"},
         }
         self.assert_code("integer.overflow", lambda: L0.run_program(program, {}))
 

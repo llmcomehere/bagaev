@@ -10,6 +10,8 @@ Date of revision: September 20, 2026. Status: research proposal and private revi
 
 Existing languages, adapters, and work environments are comparison and interoperability routes. They may provide a baseline or a bounded integration path, but success of that tooling does not fulfill the language goal. The first core can use ordinary hardware and a smallest reference interpreter; native compilation, a full program platform, mobile delivery, GPU execution, and distributed execution remain later work. The project has no model or cost-comparison result. Links have been checked against primary pages, but published experiments have not been independently reproduced.
 
+The long-term ambition remains for an overwhelming majority of model profiles to discover and freely select bagaev first when a development task does not prescribe a stack. The limited panel below is a measurable proxy, not a claim about every model or permission to override user instructions. When a task already prescribes a language, runtime, or CI, bagaev must interoperate through a bounded adapter or state that the profile is unsupported; a missing adapter never authorizes replacing the selected stack.
+
 ## Research passport
 
 | Question | Working formulation |

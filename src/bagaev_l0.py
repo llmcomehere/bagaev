@@ -90,6 +90,16 @@ def _pairs(pairs: list[tuple[str, Any]]) -> dict[str, Any]:
     return result
 
 
+def _parse_integer(value: str) -> int:
+    digits = value[1:] if value.startswith("-") else value
+    if len(digits) > 19:
+        _reject("integer.overflow", "JSON integer is outside signed 64-bit range")
+    parsed = int(value)
+    if parsed < INT_MIN or parsed > INT_MAX:
+        _reject("integer.overflow", "JSON integer is outside signed 64-bit range")
+    return parsed
+
+
 def loads_json(data: bytes | str) -> Any:
     """Load bounded JSON and reject duplicate keys and non-JSON constants."""
     if isinstance(data, str):
@@ -109,12 +119,13 @@ def loads_json(data: bytes | str) -> Any:
             text,
             object_pairs_hook=_pairs,
             parse_constant=lambda _value: _reject("json.constant", "non-JSON numeric constant"),
+            parse_int=_parse_integer,
         )
     except L0Error:
         raise
     except UnicodeDecodeError:
         _reject("json.encoding", "JSON input is not valid UTF-8 text")
-    except (json.JSONDecodeError, RecursionError):
+    except (json.JSONDecodeError, RecursionError, ValueError):
         _reject("json.syntax", "invalid JSON document")
 
 
@@ -201,7 +212,7 @@ def _node(raw: Any) -> Node:
         _reject("operation.unknown", f"node {node_id!r} has an unknown operation")
     _fields(obj, OP_FIELDS[op], f"node {node_id!r}")
 
-    args = {key: copy.deepcopy(value) for key, value in obj.items() if key not in {"id", "op"}}
+    args = {key: value for key, value in obj.items() if key not in {"id", "op"}}
     references: tuple[str, ...]
     if op == "input":
         args["name"] = _identifier(args["name"], f"node {node_id!r}.name")
@@ -230,7 +241,7 @@ def _node(raw: Any) -> Node:
             _reference(args["left"], f"node {node_id!r}.left"),
             _reference(args["right"], f"node {node_id!r}.right"),
         )
-    return Node(node_id=node_id, op=op, args=args, references=references)
+    return Node(node_id=node_id, op=op, args=copy.deepcopy(args), references=references)
 
 
 def _topological(nodes: dict[str, Node]) -> tuple[str, ...]:
@@ -441,7 +452,7 @@ def apply_patch(program: Any, patch: Any) -> dict[str, Any]:
             obj = _object(raw, f"patch.{mode} node")
             if "id" not in obj:
                 _reject("structure.missing_field", f"patch.{mode} node is missing field 'id'")
-            node_id = _identifier(obj["id"], f"patch.{mode} node.id")
+            node_id = _node(obj).node_id
             if node_id in seen:
                 _reject("patch.duplicate", f"patch changes node {node_id!r} more than once")
             seen.add(node_id)
