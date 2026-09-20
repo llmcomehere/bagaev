@@ -25,7 +25,7 @@
     "deliver_cancel": "Deliver the unsupported cancellation message.",
     "deliver_transfer_concurrently": "Serialize the named transfer requests in either listed order and reevaluate every current check.",
     "receiver_without_enforcement": "Evaluate the stated external receiver counterexample without treating it as conforming behavior.",
-    "retain_candidate": "Apply the candidate-store permission gate, verify SHA-256 over candidate_payload_utf8 bytes, and retain the exact candidate record on success.",
+    "retain_candidate": "Apply the candidate-store permission gate, verify SHA-256 over the exact candidate bytes, enforce the zero-or-one evidence-ID boundary, and retain the exact candidate record on success.",
     "attempt_admission": "In one serializable decision, recheck the separate current permission, selected revisions and digest, fixed mandatory requirement, and receiver-held trusted evidence without executing candidate code.",
     "withhold_handler_response": "Model a handler that receives a valid request and generates no response.",
     "run_behavior": "Apply the named pure behavior operation to the supplied data.",
@@ -288,6 +288,16 @@
       "contract_revision": "behavior-contract-1",
       "evidence_ids": []
     },
+    "candidate-multiple-evidence-ids": {
+      "candidate_id": "candidate-multiple-evidence-ids",
+      "candidate_payload_utf8": "catalog candidate c8\n",
+      "candidate_bytes_sha256": "e93e2c094b29b3c59cbd23ae8a59f47ec191d7a257a13e3f8a16b0a0a7945495",
+      "code_revision": "code-c8",
+      "base_snapshot_revision": "base-2",
+      "behavior_revision": "catalog-set-1",
+      "contract_revision": "behavior-contract-1",
+      "evidence_ids": ["evidence-c7-pass", "evidence-c8-pass"]
+    },
     "admission-record-current-pass": {
       "admission_record_id": "admission-candidate-current-pass",
       "candidate_id": "candidate-current-pass",
@@ -399,6 +409,7 @@
     "behavior-fail-result-bhv-01": {"case_id": "BHV-01-MIGRATE-DUPLICATES", "input": {"$case_input": "BHV-01-MIGRATE-DUPLICATES"}, "status": "fail", "observation": {"kind": "refusal", "reason": "predecessor-incomplete"}},
     "behavior-fail-result-bhv-07": {"case_id": "BHV-07-ADD-NEW-CANONICAL", "input": {"$case_input": "BHV-07-ADD-NEW-CANONICAL"}, "status": "fail", "observation": {"kind": "refusal", "reason": "successor-wrong-result"}},
     "behavior-false-pass-result-bhv-07": {"case_id": "BHV-07-ADD-NEW-CANONICAL", "input": {"$case_input": "BHV-07-ADD-NEW-CANONICAL"}, "status": "pass", "observation": {"kind": "refusal", "reason": "self-asserted-pass"}},
+    "behavior-stale-input-result-bhv-07": {"case_id": "BHV-07-ADD-NEW-CANONICAL", "input": {"event": "run_behavior", "operation": "add-tag", "input": {"schema": "catalog-set-1", "revision": 4, "entries": [{"id": "entry-a", "tags": ["blue", "red"]}]}, "entry_id": "entry-a", "tag": "amber"}, "status": "pass", "observation": {"$case_expect": "BHV-07-ADD-NEW-CANONICAL"}},
     "handoff-checkpoint-incomplete": {
       "checkpoint_id": "checkpoint-1",
       "task_revision": 7,
@@ -406,23 +417,103 @@
       "contract_version": "p0-contract/1.0.0",
       "oracle_version": "p0-cases/1.0.0",
       "base_snapshot": "base-2",
-      "candidate_snapshot": "candidate-interrupted",
-      "candidate_files": [{"path": "src/catalog.synthetic", "content_utf8": "schema catalog-set-1\nmigration pending\nadd-tag pending\n", "sha256": "103684c806b0c4cb0a1fa65ba3d31ee8797e66688fd17a5726caa14e68c4b8af"}],
+      "candidate_snapshot": {"$ref": "handoff-predecessor-snapshot"},
       "completed": ["schema"],
       "remaining": ["migration", "add-tag"],
       "case_results": {"$ref": "behavior-not-run-results"},
       "started_effects": [],
       "unknowns": []
     },
+    "handoff-checkpoint-unresolved": {
+      "checkpoint_id": "checkpoint-unresolved",
+      "task_revision": 7,
+      "behavior_revision": "catalog-set-1",
+      "contract_version": "p0-contract/1.0.0",
+      "oracle_version": "p0-cases/1.0.0",
+      "base_snapshot": "base-2",
+      "candidate_snapshot": {"$ref": "handoff-predecessor-snapshot"},
+      "completed": ["schema"],
+      "remaining": ["migration", "add-tag"],
+      "case_results": {"$ref": "behavior-not-run-results"},
+      "started_effects": [{"effect_id": "effect-upload", "knowledge": "unknown-outcome"}],
+      "unknowns": []
+    },
+    "handoff-checkpoint-unresolved-assumption": {
+      "checkpoint_id": "checkpoint-unresolved-assumption",
+      "task_revision": 7,
+      "behavior_revision": "catalog-set-1",
+      "contract_version": "p0-contract/1.0.0",
+      "oracle_version": "p0-cases/1.0.0",
+      "base_snapshot": "base-2",
+      "candidate_snapshot": {"$ref": "handoff-predecessor-snapshot"},
+      "completed": ["schema"],
+      "remaining": ["migration", "add-tag"],
+      "case_results": {"$ref": "behavior-not-run-results"},
+      "started_effects": [],
+      "unknowns": ["snapshot-owner-unconfirmed"]
+    },
+    "handoff-predecessor-snapshot": {
+      "snapshot_id": "candidate-interrupted",
+      "snapshot_bytes_sha256": "f9e189a288d361a774f0b5ff556c25f95092cccfa4509ce8821cfc5f60bfb3d1",
+      "candidate_files": [
+        {"path": "src/catalog.synthetic", "content_utf8": "schema catalog-set-1\nmigration pending\nadd-tag pending\n", "sha256": "103684c806b0c4cb0a1fa65ba3d31ee8797e66688fd17a5726caa14e68c4b8af"},
+        {"path": "tests/catalog-cases.synthetic", "content_utf8": "oracle p0-cases/1.0.0\nstatus not-run\n", "sha256": "9eec9352725e95ca7a614984e05353db5bd2ac3214e02e2f6c9a8a6619c8a56d"}
+      ]
+    },
+    "handoff-predecessor-snapshot-changed": {
+      "snapshot_id": "candidate-interrupted",
+      "snapshot_bytes_sha256": "5b79452e423f6742ff7e82604f7ba812db43966cecfe606548e2c1ca2a4817f2",
+      "candidate_files": [
+        {"path": "src/catalog.synthetic", "content_utf8": "schema catalog-set-1\nmigration pending\nadd-tag started\n", "sha256": "b5b6c993659c1d4e36246e05911447e5d16aecd1a02e923cec1a9ba177ed22ee"},
+        {"path": "tests/catalog-cases.synthetic", "content_utf8": "oracle p0-cases/1.0.0\nstatus not-run\n", "sha256": "9eec9352725e95ca7a614984e05353db5bd2ac3214e02e2f6c9a8a6619c8a56d"}
+      ]
+    },
     "handoff-successor-snapshot": {
       "snapshot_id": "candidate-complete",
-      "candidate_files": [{"path": "src/catalog.synthetic", "content_utf8": "schema catalog-set-1\nmigration complete\nadd-tag complete\n", "sha256": "a83f1ba29b033cd5213fbba7e70e6df987ea72f49163f0e6cc06c14c72410862"}]
+      "snapshot_bytes_sha256": "36c271d04878ade267c3038516015610139447338d7180e4c62966cb3ad2abbe",
+      "candidate_files": [
+        {"path": "src/catalog.synthetic", "content_utf8": "schema catalog-set-1\nmigration complete\nadd-tag complete\n", "sha256": "a83f1ba29b033cd5213fbba7e70e6df987ea72f49163f0e6cc06c14c72410862"},
+        {"path": "tests/catalog-cases.synthetic", "content_utf8": "oracle p0-cases/1.0.0\nstatus complete\n", "sha256": "d2d16fe1bb8c3c5f1fab4e4c0ae80d3b5c5e484887e4e0977d2113e6ad7dba76"}
+      ]
+    },
+    "handoff-successor-snapshot-changed": {
+      "snapshot_id": "candidate-complete",
+      "snapshot_bytes_sha256": "e6b211f97546eeb342549952d45f226273acc0633e09e5b3e6813e1701ba915c",
+      "candidate_files": [
+        {"path": "src/catalog-renamed.synthetic", "content_utf8": "schema catalog-set-1\nmigration complete\nadd-tag incomplete\n", "sha256": "a4985bea940f12176a9dfea30ebc01a6e6f570f544b8d4f7071c5810d9b7fa37"},
+        {"path": "tests/catalog-cases.synthetic", "content_utf8": "oracle p0-cases/1.0.0\nstatus complete\n", "sha256": "d2d16fe1bb8c3c5f1fab4e4c0ae80d3b5c5e484887e4e0977d2113e6ad7dba76"}
+      ]
+    },
+    "handoff-retained-candidate": {
+      "candidate_id": "candidate-handoff-complete",
+      "candidate_snapshot": {"$ref": "handoff-successor-snapshot"},
+      "candidate_bytes_sha256": "36c271d04878ade267c3038516015610139447338d7180e4c62966cb3ad2abbe",
+      "code_revision": "candidate-complete",
+      "base_snapshot_revision": "base-2",
+      "behavior_revision": "catalog-set-1",
+      "contract_revision": "p0-contract/1.0.0",
+      "evidence_ids": ["evidence-handoff-pass"]
+    },
+    "handoff-trusted-evidence": {
+      "evidence_id": "evidence-handoff-pass",
+      "trusted_origin": "trusted-checker",
+      "assertion": "behavior-cases-pass",
+      "candidate_snapshot_id": "candidate-complete",
+      "candidate_bytes_sha256": "36c271d04878ade267c3038516015610139447338d7180e4c62966cb3ad2abbe",
+      "code_revision": "candidate-complete",
+      "base_snapshot_revision": "base-2",
+      "behavior_revision": "catalog-set-1",
+      "contract_revision": "p0-contract/1.0.0",
+      "tool_revision": "checker-1",
+      "assumptions": ["synthetic-cpu-only"],
+      "input_binding": {"oracle_version": "p0-cases/1.0.0", "case_ids": {"$ref": "behavior-case-ids"}},
+      "result": "pass"
     },
     "handoff-admission-record": {
       "admission_record_id": "admission-handoff-complete",
       "candidate_id": "candidate-handoff-complete",
       "candidate_snapshot_id": "candidate-complete",
-      "candidate_bytes_sha256": "a83f1ba29b033cd5213fbba7e70e6df987ea72f49163f0e6cc06c14c72410862",
+      "candidate_bytes_sha256": "36c271d04878ade267c3038516015610139447338d7180e4c62966cb3ad2abbe",
       "code_revision": "candidate-complete",
       "base_snapshot_revision": "base-2",
       "behavior_revision": "catalog-set-1",
@@ -434,9 +525,11 @@
       "contract_version": "p0-contract/1.0.0",
       "oracle_version": "p0-cases/1.0.0",
       "required_case_ids": {"$ref": "behavior-case-ids"},
-      "checkpoints": {"checkpoint-1": {"$ref": "handoff-checkpoint-incomplete"}},
+      "checkpoints": {"checkpoint-1": {"$ref": "handoff-checkpoint-incomplete"}, "checkpoint-unresolved": {"$ref": "handoff-checkpoint-unresolved"}, "checkpoint-unresolved-assumption": {"$ref": "handoff-checkpoint-unresolved-assumption"}},
+      "retained_candidates": {"candidate-handoff-complete": {"$ref": "handoff-retained-candidate"}},
+      "trusted_evidence": {"evidence-handoff-pass": {"$ref": "handoff-trusted-evidence"}},
       "admission_records": {"admission-handoff-complete": {"$ref": "handoff-admission-record"}},
-      "current_admission_selection": {"candidate_snapshot_id": "candidate-complete", "candidate_bytes_sha256": "a83f1ba29b033cd5213fbba7e70e6df987ea72f49163f0e6cc06c14c72410862", "code_revision": "candidate-complete", "base_snapshot_revision": "base-2", "behavior_revision": "catalog-set-1", "contract_revision": "p0-contract/1.0.0"},
+      "current_admission_selection": {"candidate_snapshot_id": "candidate-complete", "candidate_bytes_sha256": "36c271d04878ade267c3038516015610139447338d7180e4c62966cb3ad2abbe", "code_revision": "candidate-complete", "base_snapshot_revision": "base-2", "behavior_revision": "catalog-set-1", "contract_revision": "p0-contract/1.0.0"},
       "handoff_acceptance_records": {}
     },
     "handoff-acceptance-positive": {
@@ -445,7 +538,7 @@
       "contract_version": "p0-contract/1.0.0",
       "oracle_version": "p0-cases/1.0.0",
       "input_case_ids": {"$ref": "behavior-case-ids"},
-      "predecessor_snapshot_id": "candidate-interrupted",
+      "predecessor_snapshot": {"$ref": "handoff-predecessor-snapshot"},
       "successor_snapshot": {"$ref": "handoff-successor-snapshot"},
       "before_results": {"$case_results_ref": "behavior-pass-results", "replace": [{"$ref": "behavior-fail-result-bhv-01"}]},
       "after_results": {"$ref": "behavior-pass-results"},
@@ -457,7 +550,7 @@
       "contract_version": "p0-contract/1.0.0",
       "oracle_version": "p0-cases/1.0.0",
       "input_case_ids": {"$ref": "behavior-case-ids"},
-      "predecessor_snapshot_id": "candidate-interrupted",
+      "predecessor_snapshot": {"$ref": "handoff-predecessor-snapshot"},
       "successor_snapshot": {"$ref": "handoff-successor-snapshot"},
       "before_results": {"$ref": "behavior-pass-results"},
       "after_results": {"$case_results_ref": "behavior-pass-results", "omit_case_ids": ["BHV-21-ADD-INVALID-STORED-TAG"]},
@@ -469,7 +562,7 @@
       "contract_version": "p0-contract/1.0.0",
       "oracle_version": "p0-cases/1.0.0",
       "input_case_ids": {"$ref": "behavior-case-ids"},
-      "predecessor_snapshot_id": "candidate-interrupted",
+      "predecessor_snapshot": {"$ref": "handoff-predecessor-snapshot"},
       "successor_snapshot": {"$ref": "handoff-successor-snapshot"},
       "before_results": {"$ref": "behavior-pass-results"},
       "after_results": {"$case_results_ref": "behavior-pass-results", "replace": [{"$ref": "behavior-fail-result-bhv-07"}]},
@@ -481,7 +574,7 @@
       "contract_version": "p0-contract/1.0.0",
       "oracle_version": "p0-cases/1.0.0",
       "input_case_ids": {"$ref": "behavior-case-ids"},
-      "predecessor_snapshot_id": "candidate-interrupted",
+      "predecessor_snapshot": {"$ref": "handoff-predecessor-snapshot"},
       "successor_snapshot": {"$ref": "handoff-successor-snapshot"},
       "before_results": {"$ref": "behavior-pass-results"},
       "after_results": {"$case_results_ref": "behavior-pass-results", "replace": [{"$ref": "behavior-false-pass-result-bhv-07"}]},
@@ -493,7 +586,7 @@
       "contract_version": "p0-contract/1.0.0",
       "oracle_version": "p0-cases/0.9.0",
       "input_case_ids": {"$ref": "behavior-case-ids"},
-      "predecessor_snapshot_id": "candidate-interrupted",
+      "predecessor_snapshot": {"$ref": "handoff-predecessor-snapshot"},
       "successor_snapshot": {"$ref": "handoff-successor-snapshot"},
       "before_results": {"$ref": "behavior-pass-results"},
       "after_results": {"$ref": "behavior-pass-results"},
@@ -505,7 +598,7 @@
       "contract_version": "p0-contract/1.0.0",
       "oracle_version": "p0-cases/1.0.0",
       "input_case_ids": {"$ref": "behavior-case-ids"},
-      "predecessor_snapshot_id": "candidate-interrupted",
+      "predecessor_snapshot": {"$ref": "handoff-predecessor-snapshot"},
       "successor_snapshot": {"$ref": "handoff-successor-snapshot"},
       "before_results": {"$ref": "behavior-not-run-results"},
       "after_results": {"$ref": "behavior-pass-results"},
@@ -517,11 +610,71 @@
       "contract_version": "p0-contract/1.0.0",
       "oracle_version": "p0-cases/1.0.0",
       "input_case_ids": {"$ref": "behavior-case-ids"},
-      "predecessor_snapshot_id": "candidate-interrupted",
+      "predecessor_snapshot": {"$ref": "handoff-predecessor-snapshot"},
       "successor_snapshot": {"$ref": "handoff-successor-snapshot"},
       "before_results": {"$ref": "behavior-pass-results"},
       "after_results": {"$ref": "behavior-pass-results"},
       "admission_record_id": "admission-missing"
+    },
+    "handoff-acceptance-stale-input": {
+      "acceptance_id": "handoff-acceptance-stale-input",
+      "checkpoint_id": "checkpoint-1",
+      "contract_version": "p0-contract/1.0.0",
+      "oracle_version": "p0-cases/1.0.0",
+      "input_case_ids": {"$ref": "behavior-case-ids"},
+      "predecessor_snapshot": {"$ref": "handoff-predecessor-snapshot"},
+      "successor_snapshot": {"$ref": "handoff-successor-snapshot"},
+      "before_results": {"$ref": "behavior-pass-results"},
+      "after_results": {"$case_results_ref": "behavior-pass-results", "replace": [{"$ref": "behavior-stale-input-result-bhv-07"}]},
+      "admission_record_id": "admission-handoff-complete"
+    },
+    "handoff-acceptance-predecessor-mismatch": {
+      "acceptance_id": "handoff-acceptance-predecessor-mismatch",
+      "checkpoint_id": "checkpoint-1",
+      "contract_version": "p0-contract/1.0.0",
+      "oracle_version": "p0-cases/1.0.0",
+      "input_case_ids": {"$ref": "behavior-case-ids"},
+      "predecessor_snapshot": {"$ref": "handoff-predecessor-snapshot-changed"},
+      "successor_snapshot": {"$ref": "handoff-successor-snapshot"},
+      "before_results": {"$ref": "behavior-pass-results"},
+      "after_results": {"$ref": "behavior-pass-results"},
+      "admission_record_id": "admission-handoff-complete"
+    },
+    "handoff-acceptance-successor-mismatch": {
+      "acceptance_id": "handoff-acceptance-successor-mismatch",
+      "checkpoint_id": "checkpoint-1",
+      "contract_version": "p0-contract/1.0.0",
+      "oracle_version": "p0-cases/1.0.0",
+      "input_case_ids": {"$ref": "behavior-case-ids"},
+      "predecessor_snapshot": {"$ref": "handoff-predecessor-snapshot"},
+      "successor_snapshot": {"$ref": "handoff-successor-snapshot-changed"},
+      "before_results": {"$ref": "behavior-pass-results"},
+      "after_results": {"$ref": "behavior-pass-results"},
+      "admission_record_id": "admission-handoff-complete"
+    },
+    "handoff-acceptance-unresolved": {
+      "acceptance_id": "handoff-acceptance-unresolved",
+      "checkpoint_id": "checkpoint-unresolved",
+      "contract_version": "p0-contract/1.0.0",
+      "oracle_version": "p0-cases/1.0.0",
+      "input_case_ids": {"$ref": "behavior-case-ids"},
+      "predecessor_snapshot": {"$ref": "handoff-predecessor-snapshot"},
+      "successor_snapshot": {"$ref": "handoff-successor-snapshot"},
+      "before_results": {"$ref": "behavior-pass-results"},
+      "after_results": {"$ref": "behavior-pass-results"},
+      "admission_record_id": "admission-handoff-complete"
+    },
+    "handoff-acceptance-unresolved-assumption": {
+      "acceptance_id": "handoff-acceptance-unresolved-assumption",
+      "checkpoint_id": "checkpoint-unresolved-assumption",
+      "contract_version": "p0-contract/1.0.0",
+      "oracle_version": "p0-cases/1.0.0",
+      "input_case_ids": {"$ref": "behavior-case-ids"},
+      "predecessor_snapshot": {"$ref": "handoff-predecessor-snapshot"},
+      "successor_snapshot": {"$ref": "handoff-successor-snapshot"},
+      "before_results": {"$ref": "behavior-pass-results"},
+      "after_results": {"$ref": "behavior-pass-results"},
+      "admission_record_id": "admission-handoff-complete"
     },
     "handoff-acceptance-record": {
       "acceptance_id": "handoff-acceptance-1",
@@ -530,7 +683,9 @@
       "oracle_version": "p0-cases/1.0.0",
       "input_case_ids": {"$ref": "behavior-case-ids"},
       "predecessor_snapshot_id": "candidate-interrupted",
+      "predecessor_snapshot_sha256": "f9e189a288d361a774f0b5ff556c25f95092cccfa4509ce8821cfc5f60bfb3d1",
       "successor_snapshot_id": "candidate-complete",
+      "successor_snapshot_sha256": "36c271d04878ade267c3038516015610139447338d7180e4c62966cb3ad2abbe",
       "before_results": {"$case_results_ref": "behavior-pass-results", "replace": [{"$ref": "behavior-fail-result-bhv-01"}]},
       "after_results": {"$ref": "behavior-pass-results"},
       "admission_record_id": "admission-handoff-complete"
@@ -949,6 +1104,13 @@
       ]
     },
     {
+      "id": "AD-15-MULTIPLE-EVIDENCE-IDS-REFUSED",
+      "initial": "admission-current",
+      "steps": [
+        {"event": "retain_candidate", "session": "session-submitter", "candidate": "candidate-multiple-evidence-ids", "expect": {"response": {"kind": "retention-refusal", "reason": "candidate-evidence-cardinality"}, "retained": false, "retained_candidate_count": 0, "admitted": false, "executed": false}}
+      ]
+    },
+    {
       "id": "PROG-01-NONRESPONSIVE-HANDLER",
       "initial": "protocol-base",
       "steps": [
@@ -1091,7 +1253,7 @@
       "id": "HND-02-COMPLETED-ACCEPTED",
       "initial": "handoff-acceptance-state",
       "steps": [
-        {"event": "accept_handoff", "acceptance": "handoff-acceptance-positive", "expect": {"response": {"kind": "handoff-accepted", "value": "handoff-acceptance-record"}, "before_failures_retained": ["BHV-01-MIGRATE-DUPLICATES"], "after_all_match": true, "admission_checked_separately": true, "handoff_acceptance_record_count": 1}}
+        {"event": "accept_handoff", "acceptance": "handoff-acceptance-positive", "expect": {"response": {"kind": "handoff-accepted", "value": "handoff-acceptance-record"}, "predecessor_file_count": 2, "successor_file_count": 2, "aggregate_hashes_verified": true, "before_failures_retained": ["BHV-01-MIGRATE-DUPLICATES"], "after_all_match": true, "admission_checked_separately": true, "handoff_acceptance_record_count": 1}}
       ]
     },
     {
@@ -1134,6 +1296,41 @@
       "initial": "handoff-acceptance-state",
       "steps": [
         {"event": "accept_handoff", "acceptance": "handoff-acceptance-missing-admission", "expect": {"response": {"kind": "handoff-refusal", "reason": "handoff-admission-missing"}, "after_all_match": true, "handoff_acceptance_record_count": 0}}
+      ]
+    },
+    {
+      "id": "HND-09-STALE-INPUT-REJECTED",
+      "initial": "handoff-acceptance-state",
+      "steps": [
+        {"event": "accept_handoff", "acceptance": "handoff-acceptance-stale-input", "expect": {"response": {"kind": "handoff-refusal", "reason": "handoff-input-stale"}, "stale_input_case_ids": ["BHV-07-ADD-NEW-CANONICAL"], "snapshot_checks_performed": false, "handoff_acceptance_record_count": 0}}
+      ]
+    },
+    {
+      "id": "HND-10-PREDECESSOR-SNAPSHOT-MISMATCH",
+      "initial": "handoff-acceptance-state",
+      "steps": [
+        {"event": "accept_handoff", "acceptance": "handoff-acceptance-predecessor-mismatch", "expect": {"response": {"kind": "handoff-refusal", "reason": "handoff-snapshot-mismatch"}, "mismatched_snapshot": "predecessor", "result_records_examined": false, "handoff_acceptance_record_count": 0}}
+      ]
+    },
+    {
+      "id": "HND-11-SAME-ID-SUCCESSOR-SNAPSHOT-MISMATCH",
+      "initial": "handoff-acceptance-state",
+      "steps": [
+        {"event": "accept_handoff", "acceptance": "handoff-acceptance-successor-mismatch", "expect": {"response": {"kind": "handoff-refusal", "reason": "handoff-snapshot-mismatch"}, "mismatched_snapshot": "successor", "same_snapshot_id": true, "result_records_examined": false, "handoff_acceptance_record_count": 0}}
+      ]
+    },
+    {
+      "id": "HND-12-UNRESOLVED-CHECKPOINT-REJECTED",
+      "initial": "handoff-acceptance-state",
+      "steps": [
+        {"event": "accept_handoff", "acceptance": "handoff-acceptance-unresolved", "expect": {"response": {"kind": "handoff-refusal", "reason": "handoff-checkpoint-unresolved"}, "unresolved_effect_ids": ["effect-upload"], "admission_checked": false, "handoff_acceptance_record_count": 0}}
+      ]
+    },
+    {
+      "id": "HND-13-UNRESOLVED-ASSUMPTION-REJECTED",
+      "initial": "handoff-acceptance-state",
+      "steps": [
+        {"event": "accept_handoff", "acceptance": "handoff-acceptance-unresolved-assumption", "expect": {"response": {"kind": "handoff-refusal", "reason": "handoff-checkpoint-unresolved"}, "unresolved_assumptions": ["snapshot-owner-unconfirmed"], "admission_checked": false, "handoff_acceptance_record_count": 0}}
       ]
     }
   ]
