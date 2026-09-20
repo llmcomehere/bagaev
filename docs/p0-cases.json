@@ -5,7 +5,7 @@
   "result_rule": "Expected values are fixed by this file and p0.md, never by simulator output.",
   "matching_rule": "For each step, expect defines the complete normalized observation projection for exactly its listed keys. Every listed key must exist and match recursively; unlisted runtime fields are ignored. Objects use key equality within that projection, arrays use exact length and order, and allowed_serial_results accepts exactly one listed complete alternative.",
   "emission_rule": "Before matching, the runner emits a normalized observation by projecting the event result and resulting model state to exactly the keys listed in expect. It must not synthesize a listed value that the event did not observe.",
-  "reference_rule": "In initial, session, intent, candidate, request, late_request, and response value fields, a string matching a fixture name denotes that exact deep fixture value. Session names resolve within fixtures.sessions; other names resolve directly within fixtures. An object with $ref denotes the same deep fixture value. Strings in all other fields are literals.",
+  "reference_rule": "References are acyclic and resolve in this order: $ref deep-copies the named fixture; then, only in synthetic handoff fixtures, $case_input deep-copies the named BHV step without expect, $case_expect deep-copies that step's expect, and $case_results_ref deep-copies the named fixture list, omits omit_case_ids, and replaces matching case IDs with resolved replace entries while preserving frozen case order. Omit and replacement IDs must be unique, disjoint, and occur exactly once in the source list. In initial, session, intent, candidate, request, late_request, checkpoint, acceptance, and response value fields, a string matching a fixture name denotes that exact deep fixture value; session names resolve within fixtures.sessions and other names resolve directly within fixtures. A missing, cyclic, duplicate, or wrong-kind reference is invalid oracle data; there is no fallback to simulator or candidate-supplied criteria. Strings in all other fields are literals.",
   "event_vocabulary": {
     "deliver_write": "Run the named write through the ordered receiver algorithm.",
     "deliver_transfer": "Run the named transfer through the ordered receiver algorithm.",
@@ -30,7 +30,8 @@
     "withhold_handler_response": "Model a handler that receives a valid request and generates no response.",
     "run_behavior": "Apply the named pure behavior operation to the supplied data.",
     "compare_migrations": "Compare predecessor catalogs, migrate each independently, then compare the complete target catalogs as specified by p0.md.",
-    "validate_handoff": "Validate the observable checkpoint fields and frozen-oracle identity."
+    "validate_handoff": "Validate the observable checkpoint fields and frozen-oracle identity without accepting completed behavior.",
+    "accept_handoff": "Apply the ordered completed-handoff decision to exact synthetic before and after result records and separately stored admission state."
   },
   "historical_mapping": {
     "P0-01": ["P0-01"],
@@ -65,7 +66,9 @@
       },
       "authority": {"epoch": 4, "assignee": "writer-a", "scope": ["write:catalog"]},
       "operation_receipts": {},
-      "transfer_receipts": {}
+      "transfer_receipts": {},
+      "retained_candidates": {},
+      "admission_records": []
     },
     "write-intent-k": {
       "task_id": "task-catalog",
@@ -140,6 +143,13 @@
       "recipient": "writer-a",
       "scope": ["write:catalog"]
     },
+    "transfer-intent-scope-set": {
+      "task_id": "task-catalog",
+      "transfer_id": "transfer-scope-set",
+      "expected_epoch": 4,
+      "recipient": "writer-b",
+      "scope": ["read:receipts", "write:catalog"]
+    },
     "write-receipt-k": {
       "task_id": "task-catalog",
       "operation_id": "operation-k",
@@ -157,6 +167,13 @@
       "intent": {"$ref": "transfer-intent-t1"},
       "prior_authority": {"epoch": 4, "assignee": "writer-a", "scope": ["write:catalog"]},
       "resulting_authority": {"epoch": 5, "assignee": "writer-b", "scope": ["write:catalog"]}
+    },
+    "transfer-receipt-scope-set": {
+      "task_id": "task-catalog",
+      "transfer_id": "transfer-scope-set",
+      "intent": {"$ref": "transfer-intent-scope-set"},
+      "prior_authority": {"epoch": 4, "assignee": "writer-a", "scope": ["write:catalog"]},
+      "resulting_authority": {"epoch": 5, "assignee": "writer-b", "scope": ["read:receipts", "write:catalog"]}
     },
     "behavior-case-ids": [
       "BHV-01-MIGRATE-DUPLICATES",
@@ -182,27 +199,27 @@
       "BHV-21-ADD-INVALID-STORED-TAG"
     ],
     "behavior-not-run-results": [
-      {"case_id": "BHV-01-MIGRATE-DUPLICATES", "status": "not-run"},
-      {"case_id": "BHV-02-MIGRATE-EMPTY", "status": "not-run"},
-      {"case_id": "BHV-03-INVALID-TAG-ATOMIC", "status": "not-run"},
-      {"case_id": "BHV-04-DUPLICATE-ENTRY-ATOMIC", "status": "not-run"},
-      {"case_id": "BHV-05-SET-EQUALITY-IGNORES-LEGACY-ORDER", "status": "not-run"},
-      {"case_id": "BHV-06-ADD-EXISTING-IDEMPOTENT", "status": "not-run"},
-      {"case_id": "BHV-07-ADD-NEW-CANONICAL", "status": "not-run"},
-      {"case_id": "BHV-08-NONCANONICAL-TARGET-ATOMIC", "status": "not-run"},
-      {"case_id": "BHV-09-MIGRATE-INVALID-SCHEMA", "status": "not-run"},
-      {"case_id": "BHV-10-MIGRATE-REVISION-OVERFLOW", "status": "not-run"},
-      {"case_id": "BHV-11-MIGRATE-INVALID-ENTRY-ID", "status": "not-run"},
-      {"case_id": "BHV-12-MIGRATE-ENTRY-ORDER", "status": "not-run"},
-      {"case_id": "BHV-13-ADD-MISSING-ENTRY", "status": "not-run"},
-      {"case_id": "BHV-14-ADD-INVALID-TAG", "status": "not-run"},
-      {"case_id": "BHV-15-ADD-REVISION-OVERFLOW", "status": "not-run"},
-      {"case_id": "BHV-16-ADD-INVALID-SCHEMA", "status": "not-run"},
-      {"case_id": "BHV-17-ADD-DUPLICATE-ENTRY", "status": "not-run"},
-      {"case_id": "BHV-18-ADD-ENTRY-ORDER", "status": "not-run"},
-      {"case_id": "BHV-19-ADD-INVALID-ENTRY-ID", "status": "not-run"},
-      {"case_id": "BHV-20-ADD-EXISTING-AT-MAX", "status": "not-run"},
-      {"case_id": "BHV-21-ADD-INVALID-STORED-TAG", "status": "not-run"}
+      {"case_id": "BHV-01-MIGRATE-DUPLICATES", "input": {"$case_input": "BHV-01-MIGRATE-DUPLICATES"}, "status": "not-run"},
+      {"case_id": "BHV-02-MIGRATE-EMPTY", "input": {"$case_input": "BHV-02-MIGRATE-EMPTY"}, "status": "not-run"},
+      {"case_id": "BHV-03-INVALID-TAG-ATOMIC", "input": {"$case_input": "BHV-03-INVALID-TAG-ATOMIC"}, "status": "not-run"},
+      {"case_id": "BHV-04-DUPLICATE-ENTRY-ATOMIC", "input": {"$case_input": "BHV-04-DUPLICATE-ENTRY-ATOMIC"}, "status": "not-run"},
+      {"case_id": "BHV-05-SET-EQUALITY-IGNORES-LEGACY-ORDER", "input": {"$case_input": "BHV-05-SET-EQUALITY-IGNORES-LEGACY-ORDER"}, "status": "not-run"},
+      {"case_id": "BHV-06-ADD-EXISTING-IDEMPOTENT", "input": {"$case_input": "BHV-06-ADD-EXISTING-IDEMPOTENT"}, "status": "not-run"},
+      {"case_id": "BHV-07-ADD-NEW-CANONICAL", "input": {"$case_input": "BHV-07-ADD-NEW-CANONICAL"}, "status": "not-run"},
+      {"case_id": "BHV-08-NONCANONICAL-TARGET-ATOMIC", "input": {"$case_input": "BHV-08-NONCANONICAL-TARGET-ATOMIC"}, "status": "not-run"},
+      {"case_id": "BHV-09-MIGRATE-INVALID-SCHEMA", "input": {"$case_input": "BHV-09-MIGRATE-INVALID-SCHEMA"}, "status": "not-run"},
+      {"case_id": "BHV-10-MIGRATE-REVISION-OVERFLOW", "input": {"$case_input": "BHV-10-MIGRATE-REVISION-OVERFLOW"}, "status": "not-run"},
+      {"case_id": "BHV-11-MIGRATE-INVALID-ENTRY-ID", "input": {"$case_input": "BHV-11-MIGRATE-INVALID-ENTRY-ID"}, "status": "not-run"},
+      {"case_id": "BHV-12-MIGRATE-ENTRY-ORDER", "input": {"$case_input": "BHV-12-MIGRATE-ENTRY-ORDER"}, "status": "not-run"},
+      {"case_id": "BHV-13-ADD-MISSING-ENTRY", "input": {"$case_input": "BHV-13-ADD-MISSING-ENTRY"}, "status": "not-run"},
+      {"case_id": "BHV-14-ADD-INVALID-TAG", "input": {"$case_input": "BHV-14-ADD-INVALID-TAG"}, "status": "not-run"},
+      {"case_id": "BHV-15-ADD-REVISION-OVERFLOW", "input": {"$case_input": "BHV-15-ADD-REVISION-OVERFLOW"}, "status": "not-run"},
+      {"case_id": "BHV-16-ADD-INVALID-SCHEMA", "input": {"$case_input": "BHV-16-ADD-INVALID-SCHEMA"}, "status": "not-run"},
+      {"case_id": "BHV-17-ADD-DUPLICATE-ENTRY", "input": {"$case_input": "BHV-17-ADD-DUPLICATE-ENTRY"}, "status": "not-run"},
+      {"case_id": "BHV-18-ADD-ENTRY-ORDER", "input": {"$case_input": "BHV-18-ADD-ENTRY-ORDER"}, "status": "not-run"},
+      {"case_id": "BHV-19-ADD-INVALID-ENTRY-ID", "input": {"$case_input": "BHV-19-ADD-INVALID-ENTRY-ID"}, "status": "not-run"},
+      {"case_id": "BHV-20-ADD-EXISTING-AT-MAX", "input": {"$case_input": "BHV-20-ADD-EXISTING-AT-MAX"}, "status": "not-run"},
+      {"case_id": "BHV-21-ADD-INVALID-STORED-TAG", "input": {"$case_input": "BHV-21-ADD-INVALID-STORED-TAG"}, "status": "not-run"}
     ],
     "admission-current": {
       "selected_code_revision": "code-c8",
@@ -247,7 +264,9 @@
           "assumptions": ["synthetic-cpu-only"],
           "input_binding": {"oracle_version": "p0-cases/1.0.0", "case_ids": {"$ref": "behavior-case-ids"}}
         }
-      }
+      },
+      "retained_candidates": {},
+      "admission_records": []
     },
     "candidate-current-pass": {
       "candidate_id": "candidate-current-pass",
@@ -258,6 +277,27 @@
       "behavior_revision": "catalog-set-1",
       "contract_revision": "behavior-contract-1",
       "evidence_ids": ["evidence-c8-pass"]
+    },
+    "candidate-current-pass-conflict": {
+      "candidate_id": "candidate-current-pass",
+      "candidate_payload_utf8": "catalog candidate c9\n",
+      "candidate_bytes_sha256": "60e805ecc5782474e27548945fd5bdd10bc68c925569511e30dfae2c6a00d791",
+      "code_revision": "code-c9",
+      "base_snapshot_revision": "base-2",
+      "behavior_revision": "catalog-set-1",
+      "contract_revision": "behavior-contract-1",
+      "evidence_ids": []
+    },
+    "admission-record-current-pass": {
+      "admission_record_id": "admission-candidate-current-pass",
+      "candidate_id": "candidate-current-pass",
+      "candidate_bytes_sha256": "e93e2c094b29b3c59cbd23ae8a59f47ec191d7a257a13e3f8a16b0a0a7945495",
+      "code_revision": "code-c8",
+      "base_snapshot_revision": "base-2",
+      "behavior_revision": "catalog-set-1",
+      "contract_revision": "behavior-contract-1",
+      "requirement_assertion": "behavior-cases-pass",
+      "evidence_id": "evidence-c8-pass"
     },
     "candidate-c8-evidence-c7": {
       "candidate_id": "candidate-c8",
@@ -332,6 +372,168 @@
       "behavior_revision": "catalog-set-1",
       "contract_revision": "behavior-contract-1",
       "evidence_ids": ["evidence-c7-pass"]
+    },
+    "behavior-pass-results": [
+      {"case_id": "BHV-01-MIGRATE-DUPLICATES", "input": {"$case_input": "BHV-01-MIGRATE-DUPLICATES"}, "status": "pass", "observation": {"$case_expect": "BHV-01-MIGRATE-DUPLICATES"}},
+      {"case_id": "BHV-02-MIGRATE-EMPTY", "input": {"$case_input": "BHV-02-MIGRATE-EMPTY"}, "status": "pass", "observation": {"$case_expect": "BHV-02-MIGRATE-EMPTY"}},
+      {"case_id": "BHV-03-INVALID-TAG-ATOMIC", "input": {"$case_input": "BHV-03-INVALID-TAG-ATOMIC"}, "status": "pass", "observation": {"$case_expect": "BHV-03-INVALID-TAG-ATOMIC"}},
+      {"case_id": "BHV-04-DUPLICATE-ENTRY-ATOMIC", "input": {"$case_input": "BHV-04-DUPLICATE-ENTRY-ATOMIC"}, "status": "pass", "observation": {"$case_expect": "BHV-04-DUPLICATE-ENTRY-ATOMIC"}},
+      {"case_id": "BHV-05-SET-EQUALITY-IGNORES-LEGACY-ORDER", "input": {"$case_input": "BHV-05-SET-EQUALITY-IGNORES-LEGACY-ORDER"}, "status": "pass", "observation": {"$case_expect": "BHV-05-SET-EQUALITY-IGNORES-LEGACY-ORDER"}},
+      {"case_id": "BHV-06-ADD-EXISTING-IDEMPOTENT", "input": {"$case_input": "BHV-06-ADD-EXISTING-IDEMPOTENT"}, "status": "pass", "observation": {"$case_expect": "BHV-06-ADD-EXISTING-IDEMPOTENT"}},
+      {"case_id": "BHV-07-ADD-NEW-CANONICAL", "input": {"$case_input": "BHV-07-ADD-NEW-CANONICAL"}, "status": "pass", "observation": {"$case_expect": "BHV-07-ADD-NEW-CANONICAL"}},
+      {"case_id": "BHV-08-NONCANONICAL-TARGET-ATOMIC", "input": {"$case_input": "BHV-08-NONCANONICAL-TARGET-ATOMIC"}, "status": "pass", "observation": {"$case_expect": "BHV-08-NONCANONICAL-TARGET-ATOMIC"}},
+      {"case_id": "BHV-09-MIGRATE-INVALID-SCHEMA", "input": {"$case_input": "BHV-09-MIGRATE-INVALID-SCHEMA"}, "status": "pass", "observation": {"$case_expect": "BHV-09-MIGRATE-INVALID-SCHEMA"}},
+      {"case_id": "BHV-10-MIGRATE-REVISION-OVERFLOW", "input": {"$case_input": "BHV-10-MIGRATE-REVISION-OVERFLOW"}, "status": "pass", "observation": {"$case_expect": "BHV-10-MIGRATE-REVISION-OVERFLOW"}},
+      {"case_id": "BHV-11-MIGRATE-INVALID-ENTRY-ID", "input": {"$case_input": "BHV-11-MIGRATE-INVALID-ENTRY-ID"}, "status": "pass", "observation": {"$case_expect": "BHV-11-MIGRATE-INVALID-ENTRY-ID"}},
+      {"case_id": "BHV-12-MIGRATE-ENTRY-ORDER", "input": {"$case_input": "BHV-12-MIGRATE-ENTRY-ORDER"}, "status": "pass", "observation": {"$case_expect": "BHV-12-MIGRATE-ENTRY-ORDER"}},
+      {"case_id": "BHV-13-ADD-MISSING-ENTRY", "input": {"$case_input": "BHV-13-ADD-MISSING-ENTRY"}, "status": "pass", "observation": {"$case_expect": "BHV-13-ADD-MISSING-ENTRY"}},
+      {"case_id": "BHV-14-ADD-INVALID-TAG", "input": {"$case_input": "BHV-14-ADD-INVALID-TAG"}, "status": "pass", "observation": {"$case_expect": "BHV-14-ADD-INVALID-TAG"}},
+      {"case_id": "BHV-15-ADD-REVISION-OVERFLOW", "input": {"$case_input": "BHV-15-ADD-REVISION-OVERFLOW"}, "status": "pass", "observation": {"$case_expect": "BHV-15-ADD-REVISION-OVERFLOW"}},
+      {"case_id": "BHV-16-ADD-INVALID-SCHEMA", "input": {"$case_input": "BHV-16-ADD-INVALID-SCHEMA"}, "status": "pass", "observation": {"$case_expect": "BHV-16-ADD-INVALID-SCHEMA"}},
+      {"case_id": "BHV-17-ADD-DUPLICATE-ENTRY", "input": {"$case_input": "BHV-17-ADD-DUPLICATE-ENTRY"}, "status": "pass", "observation": {"$case_expect": "BHV-17-ADD-DUPLICATE-ENTRY"}},
+      {"case_id": "BHV-18-ADD-ENTRY-ORDER", "input": {"$case_input": "BHV-18-ADD-ENTRY-ORDER"}, "status": "pass", "observation": {"$case_expect": "BHV-18-ADD-ENTRY-ORDER"}},
+      {"case_id": "BHV-19-ADD-INVALID-ENTRY-ID", "input": {"$case_input": "BHV-19-ADD-INVALID-ENTRY-ID"}, "status": "pass", "observation": {"$case_expect": "BHV-19-ADD-INVALID-ENTRY-ID"}},
+      {"case_id": "BHV-20-ADD-EXISTING-AT-MAX", "input": {"$case_input": "BHV-20-ADD-EXISTING-AT-MAX"}, "status": "pass", "observation": {"$case_expect": "BHV-20-ADD-EXISTING-AT-MAX"}},
+      {"case_id": "BHV-21-ADD-INVALID-STORED-TAG", "input": {"$case_input": "BHV-21-ADD-INVALID-STORED-TAG"}, "status": "pass", "observation": {"$case_expect": "BHV-21-ADD-INVALID-STORED-TAG"}}
+    ],
+    "behavior-fail-result-bhv-01": {"case_id": "BHV-01-MIGRATE-DUPLICATES", "input": {"$case_input": "BHV-01-MIGRATE-DUPLICATES"}, "status": "fail", "observation": {"kind": "refusal", "reason": "predecessor-incomplete"}},
+    "behavior-fail-result-bhv-07": {"case_id": "BHV-07-ADD-NEW-CANONICAL", "input": {"$case_input": "BHV-07-ADD-NEW-CANONICAL"}, "status": "fail", "observation": {"kind": "refusal", "reason": "successor-wrong-result"}},
+    "behavior-false-pass-result-bhv-07": {"case_id": "BHV-07-ADD-NEW-CANONICAL", "input": {"$case_input": "BHV-07-ADD-NEW-CANONICAL"}, "status": "pass", "observation": {"kind": "refusal", "reason": "self-asserted-pass"}},
+    "handoff-checkpoint-incomplete": {
+      "checkpoint_id": "checkpoint-1",
+      "task_revision": 7,
+      "behavior_revision": "catalog-set-1",
+      "contract_version": "p0-contract/1.0.0",
+      "oracle_version": "p0-cases/1.0.0",
+      "base_snapshot": "base-2",
+      "candidate_snapshot": "candidate-interrupted",
+      "candidate_files": [{"path": "src/catalog.synthetic", "content_utf8": "schema catalog-set-1\nmigration pending\nadd-tag pending\n", "sha256": "103684c806b0c4cb0a1fa65ba3d31ee8797e66688fd17a5726caa14e68c4b8af"}],
+      "completed": ["schema"],
+      "remaining": ["migration", "add-tag"],
+      "case_results": {"$ref": "behavior-not-run-results"},
+      "started_effects": [],
+      "unknowns": []
+    },
+    "handoff-successor-snapshot": {
+      "snapshot_id": "candidate-complete",
+      "candidate_files": [{"path": "src/catalog.synthetic", "content_utf8": "schema catalog-set-1\nmigration complete\nadd-tag complete\n", "sha256": "a83f1ba29b033cd5213fbba7e70e6df987ea72f49163f0e6cc06c14c72410862"}]
+    },
+    "handoff-admission-record": {
+      "admission_record_id": "admission-handoff-complete",
+      "candidate_id": "candidate-handoff-complete",
+      "candidate_snapshot_id": "candidate-complete",
+      "candidate_bytes_sha256": "a83f1ba29b033cd5213fbba7e70e6df987ea72f49163f0e6cc06c14c72410862",
+      "code_revision": "candidate-complete",
+      "base_snapshot_revision": "base-2",
+      "behavior_revision": "catalog-set-1",
+      "contract_revision": "p0-contract/1.0.0",
+      "requirement_assertion": "behavior-cases-pass",
+      "evidence_id": "evidence-handoff-pass"
+    },
+    "handoff-acceptance-state": {
+      "contract_version": "p0-contract/1.0.0",
+      "oracle_version": "p0-cases/1.0.0",
+      "required_case_ids": {"$ref": "behavior-case-ids"},
+      "checkpoints": {"checkpoint-1": {"$ref": "handoff-checkpoint-incomplete"}},
+      "admission_records": {"admission-handoff-complete": {"$ref": "handoff-admission-record"}},
+      "current_admission_selection": {"candidate_snapshot_id": "candidate-complete", "candidate_bytes_sha256": "a83f1ba29b033cd5213fbba7e70e6df987ea72f49163f0e6cc06c14c72410862", "code_revision": "candidate-complete", "base_snapshot_revision": "base-2", "behavior_revision": "catalog-set-1", "contract_revision": "p0-contract/1.0.0"},
+      "handoff_acceptance_records": {}
+    },
+    "handoff-acceptance-positive": {
+      "acceptance_id": "handoff-acceptance-1",
+      "checkpoint_id": "checkpoint-1",
+      "contract_version": "p0-contract/1.0.0",
+      "oracle_version": "p0-cases/1.0.0",
+      "input_case_ids": {"$ref": "behavior-case-ids"},
+      "predecessor_snapshot_id": "candidate-interrupted",
+      "successor_snapshot": {"$ref": "handoff-successor-snapshot"},
+      "before_results": {"$case_results_ref": "behavior-pass-results", "replace": [{"$ref": "behavior-fail-result-bhv-01"}]},
+      "after_results": {"$ref": "behavior-pass-results"},
+      "admission_record_id": "admission-handoff-complete"
+    },
+    "handoff-acceptance-missing-after": {
+      "acceptance_id": "handoff-acceptance-missing-after",
+      "checkpoint_id": "checkpoint-1",
+      "contract_version": "p0-contract/1.0.0",
+      "oracle_version": "p0-cases/1.0.0",
+      "input_case_ids": {"$ref": "behavior-case-ids"},
+      "predecessor_snapshot_id": "candidate-interrupted",
+      "successor_snapshot": {"$ref": "handoff-successor-snapshot"},
+      "before_results": {"$ref": "behavior-pass-results"},
+      "after_results": {"$case_results_ref": "behavior-pass-results", "omit_case_ids": ["BHV-21-ADD-INVALID-STORED-TAG"]},
+      "admission_record_id": "admission-handoff-complete"
+    },
+    "handoff-acceptance-wrong-after": {
+      "acceptance_id": "handoff-acceptance-wrong-after",
+      "checkpoint_id": "checkpoint-1",
+      "contract_version": "p0-contract/1.0.0",
+      "oracle_version": "p0-cases/1.0.0",
+      "input_case_ids": {"$ref": "behavior-case-ids"},
+      "predecessor_snapshot_id": "candidate-interrupted",
+      "successor_snapshot": {"$ref": "handoff-successor-snapshot"},
+      "before_results": {"$ref": "behavior-pass-results"},
+      "after_results": {"$case_results_ref": "behavior-pass-results", "replace": [{"$ref": "behavior-fail-result-bhv-07"}]},
+      "admission_record_id": "admission-handoff-complete"
+    },
+    "handoff-acceptance-false-pass": {
+      "acceptance_id": "handoff-acceptance-false-pass",
+      "checkpoint_id": "checkpoint-1",
+      "contract_version": "p0-contract/1.0.0",
+      "oracle_version": "p0-cases/1.0.0",
+      "input_case_ids": {"$ref": "behavior-case-ids"},
+      "predecessor_snapshot_id": "candidate-interrupted",
+      "successor_snapshot": {"$ref": "handoff-successor-snapshot"},
+      "before_results": {"$ref": "behavior-pass-results"},
+      "after_results": {"$case_results_ref": "behavior-pass-results", "replace": [{"$ref": "behavior-false-pass-result-bhv-07"}]},
+      "admission_record_id": "admission-handoff-complete"
+    },
+    "handoff-acceptance-stale-oracle": {
+      "acceptance_id": "handoff-acceptance-stale-oracle",
+      "checkpoint_id": "checkpoint-1",
+      "contract_version": "p0-contract/1.0.0",
+      "oracle_version": "p0-cases/0.9.0",
+      "input_case_ids": {"$ref": "behavior-case-ids"},
+      "predecessor_snapshot_id": "candidate-interrupted",
+      "successor_snapshot": {"$ref": "handoff-successor-snapshot"},
+      "before_results": {"$ref": "behavior-pass-results"},
+      "after_results": {"$ref": "behavior-pass-results"},
+      "admission_record_id": "admission-handoff-complete"
+    },
+    "handoff-acceptance-before-not-run": {
+      "acceptance_id": "handoff-acceptance-before-not-run",
+      "checkpoint_id": "checkpoint-1",
+      "contract_version": "p0-contract/1.0.0",
+      "oracle_version": "p0-cases/1.0.0",
+      "input_case_ids": {"$ref": "behavior-case-ids"},
+      "predecessor_snapshot_id": "candidate-interrupted",
+      "successor_snapshot": {"$ref": "handoff-successor-snapshot"},
+      "before_results": {"$ref": "behavior-not-run-results"},
+      "after_results": {"$ref": "behavior-pass-results"},
+      "admission_record_id": "admission-handoff-complete"
+    },
+    "handoff-acceptance-missing-admission": {
+      "acceptance_id": "handoff-acceptance-missing-admission",
+      "checkpoint_id": "checkpoint-1",
+      "contract_version": "p0-contract/1.0.0",
+      "oracle_version": "p0-cases/1.0.0",
+      "input_case_ids": {"$ref": "behavior-case-ids"},
+      "predecessor_snapshot_id": "candidate-interrupted",
+      "successor_snapshot": {"$ref": "handoff-successor-snapshot"},
+      "before_results": {"$ref": "behavior-pass-results"},
+      "after_results": {"$ref": "behavior-pass-results"},
+      "admission_record_id": "admission-missing"
+    },
+    "handoff-acceptance-record": {
+      "acceptance_id": "handoff-acceptance-1",
+      "checkpoint_id": "checkpoint-1",
+      "contract_version": "p0-contract/1.0.0",
+      "oracle_version": "p0-cases/1.0.0",
+      "input_case_ids": {"$ref": "behavior-case-ids"},
+      "predecessor_snapshot_id": "candidate-interrupted",
+      "successor_snapshot_id": "candidate-complete",
+      "before_results": {"$case_results_ref": "behavior-pass-results", "replace": [{"$ref": "behavior-fail-result-bhv-01"}]},
+      "after_results": {"$ref": "behavior-pass-results"},
+      "admission_record_id": "admission-handoff-complete"
     }
   },
   "cases": [
@@ -470,6 +672,35 @@
       "steps": [
         {"event": "deliver_transfer", "session": "session-coordinator", "intent": "transfer-intent-t1", "expect": {"committed": true}},
         {"event": "deliver_transfer", "session": "session-coordinator", "intent": "transfer-intent-t1-different", "expect": {"response": {"kind": "current-refusal", "reason": "transfer-id-conflict"}, "authority_epoch": 5, "transfer_receipt_count": 1}}
+      ]
+    },
+    {
+      "id": "TR-06-SCOPE-CANONICAL-RETRY",
+      "initial": "protocol-base",
+      "steps": [
+        {"event": "deliver_transfer", "session": "session-coordinator", "intent": "transfer-intent-scope-set", "expect": {"response": {"kind": "receipt", "value": "transfer-receipt-scope-set"}, "authority_epoch": 5, "transfer_receipt_count": 1}},
+        {"event": "deliver_transfer", "session": "session-coordinator", "intent": "transfer-intent-scope-set", "expect": {"response": {"kind": "receipt", "value": "transfer-receipt-scope-set"}, "authority_epoch": 5, "transfer_receipt_count": 1}}
+      ]
+    },
+    {
+      "id": "TR-07-SCOPE-REORDERED-INVALID",
+      "initial": "protocol-base",
+      "steps": [
+        {"event": "deliver_transfer", "session": "session-coordinator", "intent": {"task_id": "task-catalog", "transfer_id": "transfer-scope-reordered", "expected_epoch": 4, "recipient": "writer-b", "scope": ["write:catalog", "read:receipts"]}, "expect": {"response": {"kind": "request-refusal", "reason": "invalid-request"}, "authority_epoch": 4, "transfer_receipt_count": 0, "state_changed": false}}
+      ]
+    },
+    {
+      "id": "TR-08-SCOPE-DUPLICATE-INVALID",
+      "initial": "protocol-base",
+      "steps": [
+        {"event": "deliver_transfer", "session": "session-coordinator", "intent": {"task_id": "task-catalog", "transfer_id": "transfer-scope-duplicate", "expected_epoch": 4, "recipient": "writer-b", "scope": ["write:catalog", "write:catalog"]}, "expect": {"response": {"kind": "request-refusal", "reason": "invalid-request"}, "authority_epoch": 4, "transfer_receipt_count": 0, "state_changed": false}}
+      ]
+    },
+    {
+      "id": "TR-09-SCOPE-CURRENT-GRANT-ENFORCED",
+      "initial": "protocol-base",
+      "steps": [
+        {"event": "deliver_transfer", "session": "session-coordinator", "intent": {"task_id": "task-catalog", "transfer_id": "transfer-scope-not-granted", "expected_epoch": 4, "recipient": "writer-b", "scope": ["candidate:store", "write:catalog"]}, "expect": {"response": {"kind": "current-refusal", "reason": "recipient-or-scope-unsupported"}, "authority_epoch": 4, "transfer_receipt_count": 0, "state_changed": false}}
       ]
     },
     {
@@ -640,7 +871,7 @@
       "initial": "admission-current",
       "steps": [
         {"event": "retain_candidate", "session": "session-submitter", "candidate": "candidate-current-pass", "expect": {"retained": true, "admitted": false, "executed": false}},
-        {"event": "attempt_admission", "session": "session-admitter", "candidate": "candidate-current-pass", "expect": {"response": {"kind": "admitted", "candidate_id": "candidate-current-pass"}, "retained": true, "admitted": true, "executed": false}}
+        {"event": "attempt_admission", "session": "session-admitter", "candidate": "candidate-current-pass", "expect": {"response": {"kind": "admitted", "value": "admission-record-current-pass"}, "retained": true, "admitted": true, "admission_record_count": 1, "executed": false}}
       ]
     },
     {
@@ -665,6 +896,56 @@
       "initial": "admission-current",
       "steps": [
         {"event": "retain_candidate", "session": "session-submitter", "candidate": "candidate-digest-mismatch", "expect": {"response": {"kind": "retention-refusal", "reason": "candidate-digest-mismatch"}, "retained": false, "admitted": false, "executed": false}}
+      ]
+    },
+    {
+      "id": "AD-09-RETENTION-SAME-RETRY",
+      "initial": "admission-current",
+      "steps": [
+        {"event": "retain_candidate", "session": "session-submitter", "candidate": "candidate-current-pass", "expect": {"response": {"kind": "retained", "candidate_id": "candidate-current-pass", "candidate_bytes_sha256": "e93e2c094b29b3c59cbd23ae8a59f47ec191d7a257a13e3f8a16b0a0a7945495"}, "retained_candidate_count": 1, "admitted": false}},
+        {"event": "retain_candidate", "session": "session-submitter", "candidate": "candidate-current-pass", "expect": {"response": {"kind": "retained", "candidate_id": "candidate-current-pass", "candidate_bytes_sha256": "e93e2c094b29b3c59cbd23ae8a59f47ec191d7a257a13e3f8a16b0a0a7945495"}, "retained_candidate_count": 1, "admitted": false}}
+      ]
+    },
+    {
+      "id": "AD-10-RETENTION-ID-CONFLICT",
+      "initial": "admission-current",
+      "steps": [
+        {"event": "retain_candidate", "session": "session-submitter", "candidate": "candidate-current-pass", "expect": {"retained_candidate_count": 1}},
+        {"event": "retain_candidate", "session": "session-submitter", "candidate": "candidate-current-pass-conflict", "expect": {"response": {"kind": "retention-refusal", "reason": "candidate-id-conflict"}, "retained_candidate_count": 1, "retained_candidate_sha256": "e93e2c094b29b3c59cbd23ae8a59f47ec191d7a257a13e3f8a16b0a0a7945495", "admitted": false}}
+      ]
+    },
+    {
+      "id": "AD-11-ADMISSION-NOT-RETAINED",
+      "initial": "admission-current",
+      "steps": [
+        {"event": "attempt_admission", "session": "session-admitter", "candidate": "candidate-current-pass", "expect": {"response": {"kind": "admission-refusal", "reason": "candidate-not-retained"}, "retained": false, "admission_record_count": 0, "executed": false}}
+      ]
+    },
+    {
+      "id": "AD-12-ADMISSION-TAMPERED-RECORD",
+      "initial": "admission-current",
+      "steps": [
+        {"event": "retain_candidate", "session": "session-submitter", "candidate": "candidate-current-pass", "expect": {"retained_candidate_count": 1}},
+        {"event": "attempt_admission", "session": "session-admitter", "candidate": "candidate-current-pass-conflict", "expect": {"response": {"kind": "admission-refusal", "reason": "retained-candidate-mismatch"}, "retained_candidate_count": 1, "admission_record_count": 0, "executed": false}}
+      ]
+    },
+    {
+      "id": "AD-13-HISTORICAL-ADMISSION-NOT-CURRENT",
+      "initial": "admission-current",
+      "steps": [
+        {"event": "retain_candidate", "session": "session-submitter", "candidate": "candidate-current-pass", "expect": {"retained_candidate_count": 1}},
+        {"event": "attempt_admission", "session": "session-admitter", "candidate": "candidate-current-pass", "expect": {"response": {"kind": "admitted", "value": "admission-record-current-pass"}, "admission_record_count": 1}},
+        {"event": "advance_contract_revision", "contract_revision": "behavior-contract-2"},
+        {"event": "attempt_admission", "session": "session-admitter", "candidate": "candidate-current-pass", "expect": {"response": {"kind": "admission-refusal", "reason": "contract-stale"}, "admission_record_count": 1, "historical_admission_preserved": true, "current_admission_applicable": false, "executed": false}}
+      ]
+    },
+    {
+      "id": "AD-14-ADMISSION-SAME-RETRY",
+      "initial": "admission-current",
+      "steps": [
+        {"event": "retain_candidate", "session": "session-submitter", "candidate": "candidate-current-pass", "expect": {"retained_candidate_count": 1}},
+        {"event": "attempt_admission", "session": "session-admitter", "candidate": "candidate-current-pass", "expect": {"response": {"kind": "admitted", "value": "admission-record-current-pass"}, "admission_record_count": 1}},
+        {"event": "attempt_admission", "session": "session-admitter", "candidate": "candidate-current-pass", "expect": {"response": {"kind": "admitted", "value": "admission-record-current-pass"}, "admission_record_count": 1, "executed": false}}
       ]
     },
     {
@@ -803,7 +1084,56 @@
     {
       "id": "HND-01-FROZEN-BEFORE-AFTER",
       "steps": [
-        {"event": "validate_handoff", "checkpoint": {"checkpoint_id": "checkpoint-1", "task_revision": 7, "behavior_revision": "catalog-set-1", "contract_version": "p0-contract/1.0.0", "oracle_version": "p0-cases/1.0.0", "base_snapshot": "base-2", "candidate_snapshot": "candidate-interrupted", "candidate_files": [{"path": "src/catalog.synthetic", "content_utf8": "schema catalog-set-1\nmigration pending\nadd-tag pending\n", "sha256": "103684c806b0c4cb0a1fa65ba3d31ee8797e66688fd17a5726caa14e68c4b8af"}], "completed": ["schema"], "remaining": ["migration", "add-tag"], "case_results": {"$ref": "behavior-not-run-results"}, "started_effects": [], "unknowns": []}, "successor_run": {"oracle_version": "p0-cases/1.0.0", "phases": ["before-successor-change", "after-successor-change"], "required_case_ids": {"$ref": "behavior-case-ids"}}, "expect": {"checkpoint_complete": true, "candidate_hashes_verified": true, "checkpoint_is_behavior_acceptance": false, "before_and_after_runs_required": true, "same_frozen_oracle_before_after": true, "delivery_tag_is_behavior_evidence": false, "hidden_reasoning_required": false}}
+        {"event": "validate_handoff", "checkpoint": "handoff-checkpoint-incomplete", "successor_run": {"oracle_version": "p0-cases/1.0.0", "phases": ["before-successor-change", "after-successor-change"], "required_case_ids": {"$ref": "behavior-case-ids"}}, "expect": {"checkpoint_complete": true, "candidate_hashes_verified": true, "checkpoint_is_behavior_acceptance": false, "before_and_after_runs_required": true, "same_frozen_oracle_before_after": true, "delivery_tag_is_behavior_evidence": false, "hidden_reasoning_required": false}}
+      ]
+    },
+    {
+      "id": "HND-02-COMPLETED-ACCEPTED",
+      "initial": "handoff-acceptance-state",
+      "steps": [
+        {"event": "accept_handoff", "acceptance": "handoff-acceptance-positive", "expect": {"response": {"kind": "handoff-accepted", "value": "handoff-acceptance-record"}, "before_failures_retained": ["BHV-01-MIGRATE-DUPLICATES"], "after_all_match": true, "admission_checked_separately": true, "handoff_acceptance_record_count": 1}}
+      ]
+    },
+    {
+      "id": "HND-03-MISSING-AFTER-REJECTED",
+      "initial": "handoff-acceptance-state",
+      "steps": [
+        {"event": "accept_handoff", "acceptance": "handoff-acceptance-missing-after", "expect": {"response": {"kind": "handoff-refusal", "reason": "handoff-after-incomplete"}, "missing_case_ids": ["BHV-21-ADD-INVALID-STORED-TAG"], "handoff_acceptance_record_count": 0}}
+      ]
+    },
+    {
+      "id": "HND-04-WRONG-AFTER-REJECTED",
+      "initial": "handoff-acceptance-state",
+      "steps": [
+        {"event": "accept_handoff", "acceptance": "handoff-acceptance-wrong-after", "expect": {"response": {"kind": "handoff-refusal", "reason": "handoff-after-mismatch"}, "mismatched_case_ids": ["BHV-07-ADD-NEW-CANONICAL"], "handoff_acceptance_record_count": 0}}
+      ]
+    },
+    {
+      "id": "HND-05-SELF-ASSERTED-PASS-REJECTED",
+      "initial": "handoff-acceptance-state",
+      "steps": [
+        {"event": "accept_handoff", "acceptance": "handoff-acceptance-false-pass", "expect": {"response": {"kind": "handoff-refusal", "reason": "handoff-result-invalid"}, "invalid_case_ids": ["BHV-07-ADD-NEW-CANONICAL"], "handoff_acceptance_record_count": 0}}
+      ]
+    },
+    {
+      "id": "HND-06-STALE-ORACLE-REJECTED",
+      "initial": "handoff-acceptance-state",
+      "steps": [
+        {"event": "accept_handoff", "acceptance": "handoff-acceptance-stale-oracle", "expect": {"response": {"kind": "handoff-refusal", "reason": "handoff-version-stale"}, "result_records_examined": false, "handoff_acceptance_record_count": 0}}
+      ]
+    },
+    {
+      "id": "HND-07-BEFORE-NOT-RUN-REJECTED",
+      "initial": "handoff-acceptance-state",
+      "steps": [
+        {"event": "accept_handoff", "acceptance": "handoff-acceptance-before-not-run", "expect": {"response": {"kind": "handoff-refusal", "reason": "handoff-before-incomplete"}, "not_run_case_ids": {"$ref": "behavior-case-ids"}, "handoff_acceptance_record_count": 0}}
+      ]
+    },
+    {
+      "id": "HND-08-ADMISSION-MISSING-REJECTED",
+      "initial": "handoff-acceptance-state",
+      "steps": [
+        {"event": "accept_handoff", "acceptance": "handoff-acceptance-missing-admission", "expect": {"response": {"kind": "handoff-refusal", "reason": "handoff-admission-missing"}, "after_all_match": true, "handoff_acceptance_record_count": 0}}
       ]
     }
   ]

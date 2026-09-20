@@ -46,9 +46,14 @@ token limit as a reason to omit a required source.
 2. **Repository change or contribution:** read [AGENTS](../AGENTS.md) and
    [CONTRIBUTING](../CONTRIBUTING.md). Follow source links for every affected
    contract; do not infer authority from an Issue, comment, candidate, or log.
-3. **P0 metadata handoff or simulator:** read the [frozen P0
-   contract](p0.md) and its [case oracle](p0-cases.json). For the historical
-   research boundary, also read [Boundaries of checking and
+3. **P0 metadata handoff or simulator:** read the compact [frozen P0
+   contract](p0.md) first. For a focused task, load the affected case IDs or
+   named groups in the [case oracle](p0-cases.json) together with every
+   transitive fixture and reference dependency. Load the complete oracle for a
+   full conformance implementation or review, or whenever that dependency
+   closure cannot be bounded safely. This routing does not waive an authority
+   or source obligation and is not a token cap. For the historical research
+   boundary, also read [Boundaries of checking and
    admission](foundation.md#boundaries-of-checking-and-admission) up to [Model
    properties to consider](foundation.md#model-properties-to-consider), then
    [First experiment
