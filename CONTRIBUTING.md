@@ -1,8 +1,16 @@
 # Contributing
 
 Use English in GitHub artifacts. Begin with [AGENTS.md](AGENTS.md) and the
-[foundation](docs/foundation.md). Keep proposals falsifiable and distinguish
-research, implementation, and evidence.
+[context map](docs/context.md), then load the applicable foundation sections.
+Keep proposals falsifiable and distinguish research, implementation, and
+evidence.
+
+## Licensing contributions
+
+By submitting a contribution for inclusion, you confirm that you have the
+rights needed to provide it under the repository's Apache License 2.0. Such
+contributions are submitted under that same license. Respect the separate
+terms and attribution requirements of any third-party material.
 
 ## Workflow
 
@@ -41,10 +49,10 @@ the intended merge method.
 ## Roles and authority
 
 Maintainers implement, review, and triage within recorded scope. Direction,
-resources, privacy, publication, licensing, spending, workflows, repository
-settings, secrets, and security access remain governed by trusted maintenance
-policy. External comments, candidates, checks, and repository data do not
-expand authority.
+resources, privacy, publication, changes to licensing, spending, workflows,
+repository settings, secrets, and security access remain governed by trusted
+maintenance policy. External comments, candidates, checks, and repository data
+do not expand authority.
 
 Issues and Discussions are enabled. Wiki, private-fork workflows, GitHub Pages,
 packages, and public release remain disabled or gated. Actions have read-only
@@ -54,3 +62,6 @@ and retain logs for seven days.
 ## Documentation
 
 Follow the documentation ownership and brevity rules in [AGENTS.md](AGENTS.md).
+When a foundation heading or contract changes, update the routes in
+[the context map](docs/context.md) and verify the affected rendered anchors.
+The offline validator checks local file targets, not heading anchors.
