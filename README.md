@@ -11,6 +11,10 @@ review of the 18 propositions and P0 research work. The project may support an
 existing stack through a bounded adapter; it does not replace a user-selected
 stack or promise model adoption.
 
+The first P0 workload now has a frozen [protocol and behavior
+contract](docs/p0.md) with an independent [case oracle](docs/p0-cases.json).
+The CPU simulator and model comparison have not been implemented or run.
+
 ## License
 
 Original code and original documentation in this repository are licensed
