@@ -1,5 +1,9 @@
 # bagaev: an open platform for LLM-oriented development — research foundation, version 0.6 (private review draft)
 
+For selective task entry, use the [context map](context.md). Read this complete
+foundation for explicit whole-concept review or when a task cannot be bounded
+safely to the mapped section ranges.
+
 Date of revision: September 20, 2026. Status: research proposal and private review draft. **bagaev** is the name of a planned open platform for LLM-oriented development: descriptions of behavior and semantics, memory and protocol, tools and execution. A dedicated language and core remain a strong hypothesis branch; if an environment for existing languages proves preferable, the name bagaev remains with that environment. The language, compiler, and execution environment have not been implemented; the project has no comparative experiments. Links have been checked against primary pages, but published experiments have not been independently reproduced.
 
 **The central question is: what way of specifying, checking, and changing behavior reduces the total cost of human work with models?** Co-designing a formal description of behavior, an execution environment, and a model protocol is one testable hypothesis. A textual language may be a system interface. The executable result may be an ordinary application, a long-running process, a distributed computation, or an application that calls a model while it runs.
@@ -17,7 +21,7 @@ The goal is to reduce the total cost of obtaining and maintaining correct behavi
 | Nearest candidate | P0: changing a metadata component of a photo archive, handing off a task, and checking stale results. Its passport, boundaries, and expected traces appear below. |
 | What is still unknown | The final experimental configuration of models and equipment, source language, budget, practically meaningful gain, and statistical sensitivity of the experiment. Observations of a particular machine and candidate resources do not fix the configuration. These fields must be filled before measurement begins. |
 | What conclusion is currently allowed | Architectures can be compared by the definiteness of their rules and counterexamples. No winner in quality or cost has been established. |
-| What is not claimed | A private research repository exists at `llmcomehere/bagaev`. Public release, licensing, packages, and a deployed site remain gated by project readiness and trusted maintenance policy; the GitHub description below is a target outline, not an existing site. |
+| What is not claimed | Licensing the repository's original code and original documentation under the Apache License 2.0 does not publish the private repository or relicense referenced external works. Public release, packages, and a deployed site remain gated by project readiness and trusted maintenance policy; the GitHub description below is a target outline, not an existing site. |
 
 Three kinds of work have different results and may use separate subsystems:
 
@@ -462,7 +466,7 @@ The foundation chooses neither globally consistent memory for all devices, one c
 
 ## GitHub hub and collaborative development
 
-The private research repository `llmcomehere/bagaev` is used for bagaev development. Public release requires the applicable readiness checks and authority under trusted maintenance policy. This foundation does not itself create a public repository, site, license, package, or URL. The target public entry is a static GitHub Pages site with ordinary links, HTML, and Markdown without mandatory JavaScript. It should lead to README and a short `start-for-agents`, versioned specifications, schemas, small examples, a catalog of errors and limits, supported backends, checking results, `CONTRIBUTING`, `AGENTS.md`, decisions, and releases. Pages provides static hosting, not a server-side inference backend. [GitHub Pages documentation](https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site) is the primary source for that limit.
+The private research repository `llmcomehere/bagaev` is used for bagaev development. Public release requires the applicable readiness checks and authority under trusted maintenance policy. This foundation does not itself create a public repository, site, package, or URL. The target public entry is a static GitHub Pages site with ordinary links, HTML, and Markdown without mandatory JavaScript. It should lead to README and a short `start-for-agents`, versioned specifications, schemas, small examples, a catalog of errors and limits, supported backends, checking results, `CONTRIBUTING`, `AGENTS.md`, decisions, and releases. Pages provides static hosting, not a server-side inference backend. [GitHub Pages documentation](https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site) is the primary source for that limit.
 
 The public entry is first prepared in English; another language is admissible with explicit revision correspondence. Available pages receive correct title/description, canonical links, sitemap, and ordinary navigation. `robots` rules and metadata can be set within an available origin; a Pages project under a subpath does not control the root domain's `robots.txt`. `llms.txt` v2 may be proposed under the site path as a convenient map for inference documentation, not as a universally binding standard: [llmstxt.org](https://llmstxt.org/) describes the proposal and Markdown alternatives. A small index and Markdown links derive from the same versioned sources as a structural API; a complete versioned export is added only if useful. Two diverging contracts are not created.
 
@@ -654,7 +658,7 @@ These rules can be checked on finite traces and in a small simulator. A real gua
 
 The order of work is determined by the experiment questions:
 
-1. **In parallel, define the co-authorship boundary and entry point.** Without waiting for a broad platform, prepare a local export and a static public-entry project: versioned start, example, schema/API, limits, decisions, and Issue/PR rules. Do not publish the repository or create a public site, license, or release until the applicable readiness checks and authority under trusted maintenance policy are satisfied.
+1. **In parallel, define the co-authorship boundary and entry point.** Without waiting for a broad platform, prepare a local export and a static public-entry project: versioned start, example, schema/API, limits, decisions, and Issue/PR rules. Do not publish the repository or create a public site or release until the applicable readiness checks and authority under trusted maintenance policy are satisfied.
 2. **Refine and complete P0.** Select workload, user, comparable useful-result IDs, planned workload and operating horizon, budget, and available models. Check which tasks distinguish the benefit of work organization from the benefit of semantics. Fix expected outcomes before creating candidates.
 3. **Describe minimal semantics.** Take only the entities and transitions needed by the selected tasks; define observations, admissible errors, progress, and rules for an unknown outcome. Compare typed terms with effects, state transitions/streams, and separated subsystems on the same examples. A project graph is not assigned as the computational core by default.
 4. **Prepare comparable candidates.** Give A and B high-quality tools; limit the size of C and name the tested difference explicitly. If necessary, test interaction between the new core and work organization. Do not choose a large stack before that difference is defined.
@@ -680,11 +684,21 @@ A broad conclusion about work with different models requires practically distinc
 
 ### Assignment for a new session
 
-> Read this document as the complete source context of bagaev research foundation version 0.6. Preserve the broad horizon of possibilities and distinguish original goals, profile obligations, architectural hypotheses, external sources, and own results. Implementation of the environment and its advantage have not yet been established. bagaev is the whole open platform; a new language/core remains one branch and is not cancelled, but is not fixed in advance as the only outcome.
+> Start with the [context map](context.md) and load the bounded source ranges
+> required by the task. Read this complete foundation for explicit
+> whole-concept review or when linked obligations and dependencies cannot be
+> bounded safely. A selected excerpt does not waive another applicable rule,
+> and unresolved material context blocks a change or claim. Preserve the broad
+> horizon of possibilities and distinguish original goals, profile
+> obligations, architectural hypotheses, external sources, and own results.
+> Implementation of the environment and its advantage have not yet been
+> established. bagaev is the whole open platform; a new language/core remains
+> one branch and is not cancelled, but is not fixed in advance as the only
+> outcome.
 >
 > Start with the passport for first experiment P0: selected workload, concrete models and resources, acceptance conditions, budget, comparable competitors, and an observation able to disprove the hypothesis. The photo archive is a candidate, not a mandatory product. Then make the needed semantics concrete on the same transitions and counterexamples. Distinguish development with LLMs, application execution, and model coordination.
 >
-> In parallel with P0, prepare a single versioned source for local and future GitHub entry for a person and an agent: a short start, a small checkable example, support and limits, specifications/schemas, checking results, and the flow Discussion→Issue→PR→independent review→acceptance. This is documentation onboarding, not authorization to publish or claim finished URLs, a license, a package, or external compatibility. Measure discovery, correct understanding, neutral first choice, and successful application of bagaev separately; do not conflate crawl/index/RAG/training with model action.
+> In parallel with P0, prepare a single versioned source for local and future GitHub entry for a person and an agent: a short start, a small checkable example, support and limits, specifications/schemas, checking results, and the flow Discussion→Issue→PR→independent review→acceptance. This is documentation onboarding, not authorization to publish or claim finished URLs, a package, or external compatibility. Measure discovery, correct understanding, neutral first choice, and successful application of bagaev separately; do not conflate crawl/index/RAG/training with model action.
 
 > Prepare a result from which another party can independently implement a small simulator and conduct a fair comparison. First freeze acceptance and add the proposed distinguishing cases. Preserve P0-01–P0-10 of this revision as the historical baseline: inputs, criteria, and results of an already conducted experiment are not rewritten. A new explicitly designated P0 revision linked to the previous one is issued by an authorized source if it accepts a correction of a demonstrated scenario defect or a requirement change; this does not authorize fitting criteria to an obtained result. Separately check protocol executability, specification correctness, and economic effect with real models; compare a strong integrated competitor and a composed competitor. If the selected candidate tests a new IR or representation, also compare familiar-code→same-IR and direct-IR. Allow limited parallel testing of a new core; do not infer its necessity from success of new project memory or its uselessness from failure of one candidate. Check current primary sources where a decision depends on them. The full platform, GPU, and mobile application require separate grounds and are not mandatory outcomes of this stage.
 
