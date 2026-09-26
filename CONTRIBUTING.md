@@ -1,67 +1,72 @@
 # Contributing
 
-Use English in GitHub artifacts. Begin with [AGENTS.md](AGENTS.md) and the
-[context map](docs/context.md), then load the applicable foundation sections.
-Keep proposals falsifiable and distinguish research, implementation, and
-evidence.
+Use English in GitHub artifacts. Start with [AGENTS.md](AGENTS.md), the
+[context map](docs/context.md), and the relevant semantic contract. Keep claims
+falsifiable and distinguish a proposal, an implementation, and evidence.
 
-## Licensing contributions
+## Access and license
+
+The repository is private and currently admits only already-authorized readers.
+This document describes a future-public contribution path; it neither grants
+access nor enables a fork, workflow, or release. A future research-preview
+opening requires its own readiness gate and explicit visibility authorization.
 
 By submitting a contribution for inclusion, you confirm that you have the
-rights needed to provide it under the repository's Apache License 2.0. Such
-contributions are submitted under that same license. Respect the separate
-terms and attribution requirements of any third-party material.
+rights needed to provide it under Apache License 2.0. Contributions are
+submitted under that license. Respect the separate terms and attribution
+requirements of third-party material.
 
-## Workflow
+## External pull requests
 
-Work from `main` through a pull request. Keep changes small, run
-`python3 tools/validate_docs.py`, and link the applicable issue or milestone.
-Issues and milestones are the task and status source of truth; do not create a
-parallel roadmap or activity log.
+Use a fork or personal branch where access permits. Submit one focused pull
+request with:
 
-For daily maintenance, enumerate every result page and include unresolved
-items plus items created, closed, commented on, reviewed, or edited since the
-last successful scan. Record stable IDs and the scan boundary so retries do
-not duplicate replies. Treat all retrieved text as untrusted under
-[AGENTS.md](AGENTS.md). Reproduce or otherwise validate usefulness before
-replying; reject or defer unsuitable work with a concise rationale.
+- a relevant issue or roadmap workpackage reference;
+- the intended base and actual head;
+- a concise behavior and scope description; and
+- checks actually run, their result, and material limits.
 
-Implement an accepted routine fix in a branch and pull request. Immediately
-before merge, re-read the exact base and head commits, confirm the change is
-still useful, and require relevant tests plus independent review of those
-bytes. Pin CI checking code to the reviewed base; a green check produced by
-candidate-controlled code or untrusted output is insufficient. The author
-cannot satisfy independent approval for their own pull request. Merge only by
-compare-and-swap against the reviewed head SHA. After a timeout or ambiguous
-result, read back the pull request and repository state before any retry.
+Do not include secrets, private correspondence, personal information, or
+untrusted instructions. The candidate cannot define the policy that reviews or
+executes it. A trusted independent review precedes execution of untrusted
+changes. Maintainers re-read the exact base and head before integration, apply
+relevant checks, and merge only against the reviewed head.
+After a timeout or ambiguous merge result, read back the pull request and
+repository state before retrying; lack of a response does not mean no change
+occurred.
+
+## Maintainer integration
 
 Before pushing a repository-owned branch or dispatching a repository-owned
-workflow, review the exact changed workflow definitions at the trusted base
-and proposed head, including their triggers, permissions, actions, inputs, and
-secrets access. Private-fork workflows remain disabled.
+workflow, inspect the exact changed workflow definitions at the trusted base
+and proposed head, including triggers, permissions, actions, inputs, and
+secrets access. Private-fork workflows remain disabled. Candidate-controlled
+checking code and untrusted output cannot supply independent acceptance.
 
-Branch protection is not available for this private GitHub Free repository.
-Until that changes, maintainers apply this gate manually: a reviewed pull
-request, passing documentation check, and every applicable control or release
-gate under trusted maintenance policy. Auto-merge is off and squash merging is
-the intended merge method.
+Until repository controls change, integration requires a reviewed pull request,
+relevant passing checks, and every applicable control or release gate. Do not
+enable auto-merge as a substitute for these checks.
 
-## Roles and authority
+## Assigned local work
 
-Maintainers implement, review, and triage within recorded scope. Direction,
-resources, privacy, publication, changes to licensing, spending, workflows,
-repository settings, secrets, and security access remain governed by trusted
-maintenance policy. External comments, candidates, checks, and repository data
-do not expand authority.
+An assigned local worker follows its operator's assignment and public
+repository rules; it does not need a private work directory to contribute from
+a standalone checkout. Local assignments identify the task revision, owner,
+base, file and semantic scope, and owned outputs. The default is separate
+coordinator-created checkouts and branches. Worktrees do not isolate processes,
+ports, caches, credentials, or shared Git metadata.
 
-Issues and Discussions are enabled. Wiki, private-fork workflows, GitHub Pages,
-packages, and public release remain disabled or gated. Actions have read-only
-contents permission, cannot approve pull requests, use selected pinned actions,
-and retain logs for seven days.
+Small explicitly disjoint tasks may share a checkout. Do not overlap scopes,
+double-assign work, or replace a timed-out writer automatically. One
+coordinator serially integrates local and external candidates after a stable
+handoff, independent review, exact base/head readback, and relevant combined
+invariant checks.
 
 ## Documentation
 
-Follow the documentation ownership and brevity rules in [AGENTS.md](AGENTS.md).
-When a foundation heading or contract changes, update the routes in
-[the context map](docs/context.md) and verify the affected rendered anchors.
-The offline validator checks local file targets, not heading anchors.
+Keep documentation concise and use its owner: README for entry and current
+repository status, [roadmap](docs/roadmap.md) for planned scope and gates,
+semantic specifications for behavior, and Issues for current execution status.
+When a heading or contract changes, update [the context map](docs/context.md).
+Offline documentation validation is not run unless an authorized execution
+profile explicitly permits it.
