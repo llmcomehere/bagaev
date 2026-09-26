@@ -3,18 +3,20 @@ description: Propose a falsifiable research question or comparison.
 title: "[Research]: "
 labels: ["research"]
 body:
+  - type: markdown
+    attributes:
+      value: "Check existing Issues for overlap. Keep proposals distinct from measured results and omit private data."
   - type: textarea
     id: question
     attributes:
       label: Question and hypothesis
-      description: State what could disprove the proposal.
+      description: Identify one bounded question and what could disprove the hypothesis.
     validations:
       required: true
   - type: textarea
     id: evidence
     attributes:
       label: Evidence plan
-      description: Define the comparison, acceptance rule, and limits.
+      description: Define a fair baseline, independent acceptance, full costs, and limits. State what already exists and what remains proposed; no resources are authorized by this form.
     validations:
       required: true
-

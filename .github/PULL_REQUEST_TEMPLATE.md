@@ -1,14 +1,18 @@
-## Purpose
+## Observable change
 
-Link the issue or milestone and describe the observable change.
+Link the Issue and describe the problem, resulting behavior, and scope.
+State the intended base and actual candidate head.
 
 ## Evidence
 
-State the command run, result, and remaining limits. Do not claim runtime,
-protocol, benchmark, release, or publication proof from a static check.
+Give each command actually run, its result, selected case count, skips, and
+material limits. Use NOT_RUN for checks not run. Static checks do not establish
+runtime, benchmark, release, or publication results. Exclude private logs,
+correspondence, credentials, and host details.
 
-## Control and release gates
+## Review boundaries
 
-List any unresolved gate affecting direction, resources, privacy, publication,
-licensing, workflows, repository settings, secrets, spending, or security
-access. A pull-request description does not grant authority.
+Identify affected contracts, frozen inputs, and any changes to controls,
+workflows, dependencies, permissions, or execution effects. State unresolved
+gates and unfinished processes or effects. A pull request grants no authority;
+keep the reviewed candidate stable or clearly identify subsequent changes.
