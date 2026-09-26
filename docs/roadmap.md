@@ -34,6 +34,9 @@ and latent profiles remain later stages.
 
 ### First wave
 
+M1 sources: [application contract](application.md), [frozen oracle](../examples/beta/catalog-cases.json),
+[Python reference](../src/catalog_reference.py), and [reference tests](../tests/test_catalog_reference.py).
+
 Start M1 application-contract and independent-acceptance work. In parallel,
 analyze the disjoint CLI interactions of existing L0/L1 and design the
 contribution walkthrough. Application-specific CLI schemas, examples, and
