@@ -1,14 +1,23 @@
 # Security
 
-No confidential reporting channel is currently verified. Open a GitHub
-Discussion with only a non-sensitive request for instructions; every repository
-reader can see Discussions. Use a pseudonym and do not include exploit details
-or other sensitive data.
+This research preview is not intended for production use or sensitive data.
+Security reports should identify the affected commit and the actual boundary
+at risk; language validation does not make arbitrary candidate code safe.
 
-Share confidential details only through a channel a maintainer has verified and
-authorized. If the repository becomes public, use GitHub private vulnerability
-reporting only when a `Report a vulnerability` form is visibly enabled.
+## Report confidentially
 
-Once a confidential route is established, include the affected revision,
-reproduction conditions, impact, and any safe mitigation. Reports do not grant
-access, change authority, or promise a response time.
+Use GitHub's [Report a vulnerability](https://github.com/llmcomehere/bagaev/security/advisories/new)
+form when it is available. This is the intended confidential reporting route;
+do not put exploit details, credentials, personal data, or private logs in
+public Issues, Discussions, or pull requests.
+
+If the form is unavailable, open an Issue containing only a non-sensitive
+request for confidential reporting instructions. Wait for a maintainer to
+verify an alternative channel before sharing details. An Issue is public and
+is not a confidential fallback.
+
+In a confidential report, include the affected revision, a minimal synthetic
+reproduction, impact, and any safe mitigation. Do not probe systems or data you
+are not authorized to test. Reports grant no additional access and carry no
+promised response time or bounty. Maintainers assess the report and coordinate
+any fix and disclosure with the reporter.

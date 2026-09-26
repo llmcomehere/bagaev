@@ -1,23 +1,22 @@
 name: Problem report
-description: Report a reproducible problem in the private workspace.
+description: Report a reproducible problem in the language, tools, or documentation.
 title: "[Problem]: "
 labels: ["triage"]
 body:
   - type: markdown
     attributes:
-      value: "Do not include credentials, personal data, or exploit details."
+      value: "Use SECURITY.md for vulnerabilities. Do not include credentials, personal data, private logs, or exploit details."
   - type: textarea
     id: observed
     attributes:
-      label: Observed behavior
-      description: What happened, and what did you expect?
+      label: Observed and expected behavior
+      description: What happened? What contract or example describes the expected result?
     validations:
       required: true
   - type: textarea
     id: reproduction
     attributes:
-      label: Reproduction
-      description: Smallest safe steps, inputs, and affected revision.
+      label: Minimal reproduction
+      description: Give the affected commit, relevant runtime version, and smallest safe synthetic inputs and steps. Report checks actually run and any limits.
     validations:
       required: true
-

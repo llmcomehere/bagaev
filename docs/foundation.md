@@ -1,4 +1,4 @@
-# bagaev: programming language and development environment for LLM-created and evolving programs — research foundation, version 0.7 (private review draft)
+# bagaev: programming language and development environment for LLM-created and evolving programs — research foundation, version 0.7 (research preview)
 
 For selective task entry, use the [context map](context.md). Read this complete
 foundation for explicit whole-concept review or when a task cannot be bounded
@@ -6,7 +6,7 @@ safely to the mapped section ranges. The [beta roadmap](roadmap.md) owns planned
 beta scope, dependencies, and gates; this foundation owns research hypotheses,
 limits, and later directions.
 
-Date of revision: September 26, 2026. Status: research proposal and private review draft. **bagaev** is a planned programming language and development environment for LLMs to create and evolve programs. The language and its semantics are the central product. A compiler or interpreter, program store, model interface, and human views form the surrounding platform; memory, coordination, and tools support the language rather than replace its purpose.
+Date of revision: September 26, 2026. Status: research proposal; see [README](../README.md) for the current executable preview. **bagaev** is a planned programming language and development environment for LLMs to create and evolve programs. The language and its semantics are the central product. A compiler or interpreter, program store, model interface, and human views form the surrounding platform; memory, coordination, and tools support the language rather than replace its purpose.
 
 **Mission:** make changes to programs more precise and checkable for models and people. The project aims to reduce total development and maintenance cost and to reduce errors, from intent through a working system, checks, repairs, handoff, and recovery. These are hypotheses to measure, not established benefits. Token count is only one possible cost component alongside reliability, latency, memory use, and operating cost.
 
@@ -18,7 +18,7 @@ The long-term ambition remains for an overwhelming majority of model profiles to
 
 | Question | Working formulation |
 | --- | --- |
-| For whom | The initial setting is a developer and a coding model creating or continuing a bounded program change. The first external user, application workload, and demand have not yet been established. |
+| For whom | The initial setting is a developer and a coding model creating or continuing a bounded program change. The first external user and demand have not yet been established. The selected synthetic catalog workload is defined by the accepted [application contract](application.md). |
 | What difficulty | Turning intended program behavior and a structural change into a small, reproducible result without relying on a model's uncheckable agreement. Frequency and total cost of errors still require measurement. |
 | What counts as a useful result | A defined language behavior and an accepted change that conforms to its current contract. Failed attempts, preparation, and later maintenance count in any later comparison. |
 | What is compared | An ordinary-language functional baseline; then the contribution of the language kernel, representation, and supporting environment under comparable conditions. |
@@ -26,7 +26,7 @@ The long-term ambition remains for an overwhelming majority of model profiles to
 | Historical baseline | P0: a metadata change, task handoff, and stale-result boundary. Its frozen passport and traces remain below as version 0.6 historical material; they are not the current implementation priority. |
 | What is still unknown | The model configuration, budget, meaningful gain, statistical sensitivity, and whether the language reduces cost or errors. Observations of a particular machine and candidate resources do not fix those facts. |
 | What conclusion is currently allowed | Architectures can be compared by the definiteness of their rules and counterexamples. No winner in quality or cost has been established. |
-| What is not claimed | Licensing the repository's original code and original documentation under the Apache License 2.0 does not publish the private repository or relicense referenced external works. Public release, packages, and a deployed site remain gated by project readiness and trusted maintenance policy; the GitHub description below is a target outline, not an existing site. |
+| What is not claimed | The research preview does not establish beta readiness or measured advantage. Apache License 2.0 covers the repository's original code and original documentation, not referenced external works. Packages and a deployed site remain gated by project readiness and trusted maintenance policy; the GitHub description below is a target outline, not an existing site. |
 
 Three kinds of work have different results and may use separate subsystems:
 
@@ -111,7 +111,7 @@ This is a targeted, not systematic, survey as of September 20, 2026. Each arXiv 
 
 The proposal’s strength is not a graph, hashes, effects, evidence, handoff, IR, or compiler individually, nor their combination: Linkly, Boruna, and composable systems have overlapping elements. A possible differentiation is a **falsifiable whole-lifecycle contract**: link intent, behavior change, validity of evidence, handoff among small/local/remote models, and the actual effect boundary so that continuation of a changing interdependent program can be checked more cheaply. This remains a hypothesis, not scientific novelty or demonstrated demand.
 
-Main weaknesses are that the first external user and application workload have not been selected, and quality and total-cost advantage have not been measured; analysis of imports, FFI, and dynamic dependencies may be costly and incomplete; specification remains a bottleneck; new syntax requires training and may be unfamiliar to models; and the broad platform (mobile, GPU, distributed) is too large for a first result. The ambition of a new core and the full horizon remain, but must compete with both a strong integrated system and an honestly composed alternative using existing parts.
+Main weaknesses are that the first external user and demand have not been established, and quality and total-cost advantage have not been measured; analysis of imports, FFI, and dynamic dependencies may be costly and incomplete; specification remains a bottleneck; new syntax requires training and may be unfamiliar to models; and the broad platform (mobile, GPU, distributed) is too large for a first result. The ambition of a new core and the full horizon remain, but must compete with both a strong integrated system and an honestly composed alternative using existing parts.
 
 ## Status of propositions B01-B18
 
@@ -466,7 +466,7 @@ The foundation chooses neither globally consistent memory for all devices, one c
 
 ## GitHub hub and collaborative development
 
-The private research repository `llmcomehere/bagaev` is used for bagaev development. Public release requires the applicable readiness checks and authority under trusted maintenance policy. This foundation does not itself create a public repository, site, package, or URL. The target public entry is a static GitHub Pages site with ordinary links, HTML, and Markdown without mandatory JavaScript. It should lead to README and a short `start-for-agents`, versioned specifications, schemas, small examples, a catalog of errors and limits, supported backends, checking results, `CONTRIBUTING`, `AGENTS.md`, decisions, and releases. Pages provides static hosting, not a server-side inference backend. [GitHub Pages documentation](https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site) is the primary source for that limit.
+The research repository [llmcomehere/bagaev](https://github.com/llmcomehere/bagaev) is used for bagaev development. [README](../README.md) owns current preview status and entry points; a research-preview opening is separate from beta distribution. A site or package requires its applicable readiness checks and authority under trusted maintenance policy. This foundation does not itself deploy either. A possible later entry is a static GitHub Pages site with ordinary links, HTML, and Markdown without mandatory JavaScript. It should lead to README and a short `start-for-agents`, versioned specifications, schemas, small examples, a catalog of errors and limits, supported backends, checking results, `CONTRIBUTING`, `AGENTS.md`, decisions, and releases. Pages provides static hosting, not a server-side inference backend. [GitHub Pages documentation](https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site) is the primary source for that limit.
 
 The public entry is first prepared in English; another language is admissible with explicit revision correspondence. Available pages receive correct title/description, canonical links, sitemap, and ordinary navigation. `robots` rules and metadata can be set within an available origin; a Pages project under a subpath does not control the root domain's `robots.txt`. `llms.txt` v2 may be proposed under the site path as a convenient map for inference documentation, not as a universally binding standard: [llmstxt.org](https://llmstxt.org/) describes the proposal and Markdown alternatives. A small index and Markdown links derive from the same versioned sources as a structural API; a complete versioned export is added only if useful. Two diverging contracts are not created.
 

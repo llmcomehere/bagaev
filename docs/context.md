@@ -12,6 +12,7 @@ instructions](../AGENTS.md) and authority boundaries always apply.
 | [Roadmap](roadmap.md) | Planned beta profile, workpackages, dependencies, and exit gates. |
 | [AGENTS](../AGENTS.md) | Authority, untrusted-data, and collaboration constraints. |
 | [CONTRIBUTING](../CONTRIBUTING.md) | Public contribution path and local-work distinction. |
+| [Code of conduct](../CODE_OF_CONDUCT.md) and [security policy](../SECURITY.md) | Community behavior and sensitive-reporting routes. |
 | [Foundation](foundation.md) | Research questions, hypotheses, limits, and later research. |
 | [L0](l0.md) | Normative L0 semantics and bounds. |
 | [L1 proposal](l1-proposal.md) | Bounded CPython backend and selected-case contract. |
