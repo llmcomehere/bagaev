@@ -21,6 +21,12 @@ backend and 41-case contract.
 [P0](docs/p0.md) and its [oracle](docs/p0-cases.json) are frozen historical
 research inputs. They are not the current language implementation plan.
 
+The synthetic catalog [application contract](docs/application.md) selects four
+behaviors with a frozen [99-case oracle](examples/beta/catalog-cases.json).
+Its ordinary Python [comparison reference](src/catalog_reference.py) and
+[tests](tests/test_catalog_reference.py) support M1. This reference is not an
+implementation of the application in bagaev.
+
 Read the [roadmap](docs/roadmap.md) for the bounded beta and its gates, then the
 [context map](docs/context.md) for source routes. The complete
 [foundation](docs/foundation.md) is required for a whole-concept review.

@@ -15,6 +15,7 @@ instructions](../AGENTS.md) and authority boundaries always apply.
 | [Foundation](foundation.md) | Research questions, hypotheses, limits, and later research. |
 | [L0](l0.md) | Normative L0 semantics and bounds. |
 | [L1 proposal](l1-proposal.md) | Bounded CPython backend and selected-case contract. |
+| [Catalog application](application.md) and [oracle](../examples/beta/catalog-cases.json) | Synthetic application semantics and frozen exact observations for four selected behaviors. |
 | [Frozen P0](p0.md) and [oracle](p0-cases.json) | Frozen historical protocol and exact fixture observations. |
 | Issues | Current execution status and discussion. |
 
@@ -33,6 +34,7 @@ exists.
 | [Tag program](../examples/l0/tag_list.json), [patch](../examples/l0/tag_unique_sorted.patch), and [inputs](../examples/l0/tag_inputs.json) | Frozen synthetic language program, structural change, and runtime data. |
 | [Composed program](../examples/l0/composed.json) and [inputs](../examples/l0/composed_inputs.json) | Frozen synthetic composition example and its runtime data. |
 | [L0 tests](../tests/test_l0.py) and [L1 tests](../tests/test_l1.py) | Implementation checks; L1 generator tests supplement the fixed acceptance cases and do not define language semantics. |
+| [Catalog reference](../src/catalog_reference.py) and [tests](../tests/test_catalog_reference.py) | Ordinary Python comparison implementation and checks against the independent application oracle; execution requires separate admission. |
 | [Candidate-checker tests](../tests/test_check_candidate.py) and [L1-checker tests](../tests/test_check_l1.py) | Checks of checking machinery; their results do not authorize candidate execution or integration. |
 | [Documentation validator](../tools/validate_docs.py) and [candidate checker](../tools/check_candidate.py) | Structural documentation/data validation and sensitive-control-path reporting, using separately reviewed trusted checking code. |
 | [L0 checker](../tools/check_l0.py) and [L1 checker](../tools/check_l1.py) | Bounded isolated acceptance runners; reviewed source, exact inputs, execution authority, and their required isolation/resource boundaries must be established before use. |
