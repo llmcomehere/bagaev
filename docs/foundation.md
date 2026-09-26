@@ -2,9 +2,11 @@
 
 For selective task entry, use the [context map](context.md). Read this complete
 foundation for explicit whole-concept review or when a task cannot be bounded
-safely to the mapped section ranges.
+safely to the mapped section ranges. The [beta roadmap](roadmap.md) owns planned
+beta scope, dependencies, and gates; this foundation owns research hypotheses,
+limits, and later directions.
 
-Date of revision: September 20, 2026. Status: research proposal and private review draft. **bagaev** is a planned programming language and development environment for LLMs to create and evolve programs. The language and its semantics are the central product. A compiler or interpreter, program store, model interface, and human views form the surrounding platform; memory, coordination, and tools support the language rather than replace its purpose.
+Date of revision: September 26, 2026. Status: research proposal and private review draft. **bagaev** is a planned programming language and development environment for LLMs to create and evolve programs. The language and its semantics are the central product. A compiler or interpreter, program store, model interface, and human views form the surrounding platform; memory, coordination, and tools support the language rather than replace its purpose.
 
 **Mission:** make changes to programs more precise and checkable for models and people. The project aims to reduce total development and maintenance cost and to reduce errors, from intent through a working system, checks, repairs, handoff, and recovery. These are hypotheses to measure, not established benefits. Token count is only one possible cost component alongside reliability, latency, memory use, and operating cost.
 
@@ -20,7 +22,7 @@ The long-term ambition remains for an overwhelming majority of model profiles to
 | What difficulty | Turning intended program behavior and a structural change into a small, reproducible result without relying on a model's uncheckable agreement. Frequency and total cost of errors still require measurement. |
 | What counts as a useful result | A defined language behavior and an accepted change that conforms to its current contract. Failed attempts, preparation, and later maintenance count in any later comparison. |
 | What is compared | An ordinary-language functional baseline; then the contribution of the language kernel, representation, and supporting environment under comparable conditions. |
-| Current candidate | L0: a pure, deterministic structural language with one explicit structural edit, a reference interpreter, standalone synthetic examples, and an ordinary-language functional comparison. Its exact semantics belong to the L0 specification. |
+| Current candidate | L0: a pure, deterministic structural language with one explicit structural edit, a reference interpreter, standalone synthetic examples, and an ordinary-language functional comparison. L1 is a bounded CPython backend for all L0; selected local evidence is not a platform or cost conclusion. Exact semantics belong to the L0 specification. |
 | Historical baseline | P0: a metadata change, task handoff, and stale-result boundary. Its frozen passport and traces remain below as version 0.6 historical material; they are not the current implementation priority. |
 | What is still unknown | The model configuration, budget, meaningful gain, statistical sensitivity, and whether the language reduces cost or errors. Observations of a particular machine and candidate resources do not fix those facts. |
 | What conclusion is currently allowed | Architectures can be compared by the definiteness of their rules and counterexamples. No winner in quality or cost has been established. |
@@ -57,7 +59,7 @@ bagaev joins a language core with the parts needed to develop and use it: an int
 
 The first contact should be short: find the current language specification, read one standalone example and its expected behavior, apply or inspect one structural change, and run the reference interpreter when that artifact is available. It does not require a cloud account, model fine-tuning, a full compiler, or a new device target. Documentation must state unsupported profiles plainly.
 
-The immediate implementation target is L0, a bounded pure deterministic language kernel. Its semantics and examples are owned by the L0 specification, so this foundation does not duplicate them. The initial implementation may use ordinary development tools and a reference interpreter; that is an implementation route, not evidence of a completed language platform.
+The accepted starting point is L0, a bounded pure deterministic language kernel. Its semantics and examples are owned by the L0 specification, so this foundation does not duplicate them. L1 defines a bounded CPython backend for all L0. Its selected local 41-case evidence is a profile-specific parity observation, not universal equivalence, native compilation, model benefit, or cost evidence. The [roadmap](roadmap.md) sequences the next application, language, tooling, persistence, model, and beta work without changing these limits.
 
 The “bagaev-first” goal is tested separately from the usefulness of one patch. Before the experiment, a limited panel is fixed: model families with pre-specified weights, distinct model profiles within them, and a placement class for each profile—small local, larger local, or API model. A profile fixes version, tools, context, limits, and access conditions. For each profile, measure start discovery, correct understanding of version and support, free first choice when no stack is prescribed, and successful checkable application. Repetitions are first aggregated within the same profile; the unit of the share is a profile, not a run. Shares are then aggregated using pre-specified family weights; repetitions and new versions of one family do not multiply votes or become statistically independent without a separate basis. Timeout, refusal, exhausted quota, and failure enter the denominator, and one provider does not become “a majority.” Operational “more than 50%” means a pre-specified threshold on this panel with repetitions and an uncertainty interval, not a majority of all models in the world.
 
@@ -661,16 +663,9 @@ These rules can be checked on finite traces and in a small simulator. A real gua
 
 ## Next research stage
 
-The immediate sequence is determined by the language question:
+The next sequence is owned by the [beta roadmap](roadmap.md). Its first workpackage defines a new synthetic application contract and independent reference; the language successor follows only from accepted gaps in that contract. L0 remains the bounded kernel, L1 remains a profile-specific CPython backend, and frozen P0 remains historical input.
 
-1. **Implement L0 before broad infrastructure.** Define and execute the smallest pure deterministic language kernel, including one explicit structural edit, standalone synthetic examples, and a reference interpreter. Keep exact semantics in the L0 specification and make the artifact's actual status checkable.
-2. **Compare a behavior, not a slogan.** For the same bounded function, provide an ordinary-language implementation and state the observable comparison. This is a functional comparison only until a pre-registered model and cost experiment exists.
-3. **Keep structural benefit falsifiable.** Identify the structural operation and the behavior it changes. Preserve useful abstractions; remove redundant representation or mechanical glue only when its benefit is stated and tested against the bounded example.
-4. **Separate language evidence from environment evidence.** Memory, coordination, adapters, model interfaces, and tooling can support L0 but do not prove the core's value. Freeze acceptance, models, budgets, repetitions, and comparable variants before claiming cost or error results.
-5. **Defer wider execution.** A bounded compiler profile may follow L0 with interpreter-equivalence checks. Native compilation, full program storage, mobile and desktop products, GPU specialization, distributed execution, and training remain separate stages with their own workloads and evidence.
-6. **Record a bounded conclusion.** Keep counterexamples, limits, and actual checks with the selected artifact. Continue, revise, or stop a specific language direction on that evidence; do not generalize a local result to model adoption or the full platform.
-
-The historical P0 simulator remains an open support track. It does not block L0 and does not substitute for language semantics or a functional comparison.
+Every later comparison must still compare behavior rather than a slogan, preserve explicit structural benefit, freeze measurement conditions before model work, and separate language evidence from environment evidence. Native compilation, a persistent platform, mobile, GPU, distributed execution, training, and adoption remain separate stages with their own evidence. A negative or indeterminate measured result revises or stops the affected branch; it never becomes a positive language claim.
 
 ### Extension after the first language slice
 
@@ -704,5 +699,6 @@ A broad conclusion about work with different models requires practically distinc
 > distributed, or full-platform result without its separate evidence.
 >
 > Treat the P0 section and its frozen files as historical version 0.6 material.
-> Do not rewrite their inputs, criteria, or expected observations. Issues remain
-> the task and status source; avoid a second roadmap document.
+> Do not rewrite their inputs, criteria, or expected observations. Issues own
+> current execution status; [the roadmap](roadmap.md) owns the single planned
+> beta sequence and its exit gates.

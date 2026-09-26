@@ -1,27 +1,39 @@
 # L1 profile proposal: bounded CPython backend
 
-Status: proposal for independent review. This document chooses one existing
-local backend for a bounded L1 language profile before any implementation. It
-is not permission to compile, run, install, fetch, or modify L0, and it makes
-no native-performance, model, or cost claim. The [L0 contract](l0.md) and the
-frozen P0 inputs and expectations remain unchanged and outside this profile's
-execution scope.
+Status: accepted bounded backend contract; selected local evidence is recorded
+below. L1 emits self-contained deterministic CPython artifacts for all L0. The
+selected local evidence recorded 41 of 41 cases matching, 17 checker tests,
+and 10 generator tests with zero failures or skips and exit 0 on observed CPython
+3.14.4. This is selected-case evidence only: it is not universal equivalence,
+native compilation or a model/cost result. [Issue #11](https://github.com/llmcomehere/bagaev/issues/11)
+owns integration status.
+
+This document fixes the backend contract and is not permission to compile, run,
+install, fetch, or modify L0. The [L0 contract](l0.md) and frozen P0 inputs and
+expectations remain unchanged and outside this profile's execution scope.
+
+Sections 1–4 preserve the original proposal and acceptance contract. Their
+future-tense references to generation, execution, and checking describe the
+planned gates at that stage, not current implementation status. The status
+above records the later selected observations; it does not verify another
+machine, a current interpreter installation, or behavior beyond those cases.
 
 ## 1. Backend selection
 
 Chosen backend: **CPython 3.14.4 at `/usr/bin/python3`**, used as the
 execution engine for a generated deterministic artifact.
 
-Observed on this machine (read-only discovery and version query, 2026-09-23):
-`/usr/bin/python3` resolves to `python3.14`, and its `--version` reports
-Python 3.14.4. The query invoked the interpreter only to report its version;
-this proposal records no compilation, candidate-code, test, or generated-
-artifact result. Their behavior remains unverified; a version query alone
-does not establish the environment's full command history.
+Historical read-only discovery and version query (2026-09-23) recorded that
+`/usr/bin/python3` resolved to `python3.14`, and its `--version` reported
+Python 3.14.4. That query invoked the interpreter only to report its version;
+it provided no compilation, candidate-code, test, or generated-artifact result.
+The selected execution evidence in the status above is a separate later
+observation; a version query alone does not establish runtime behavior.
 
-Unverified: standard-library integrity beyond the version query, behavior of
-any generated artifact, and availability of the isolation tools on a future
-check machine.
+That discovery did not verify standard-library integrity or generated-artifact
+behavior. The later selected results do not establish behavior outside their
+checked scope or availability/integrity of runtime and isolation tools on a
+future check machine.
 
 Why this backend is useful for a small language prototype:
 
