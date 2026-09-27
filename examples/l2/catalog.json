@@ -1,0 +1,100 @@
+{
+  "schema": "bagaev-l2/1",
+  "entry": "main",
+  "pins": {
+    "dated":"sha256:fc3de7a8a5b6a1940396aa33d2b6588ed9366050d8df2fa6a4a3e78813ee667f",
+    "disjoint":"sha256:d421199af285619f8f45eb462398444c640c96226dfe5c17c6111eec4ebe644f",
+    "entry-valid":"sha256:a600d700937285ddf5e5e88bbdf706510660d34b419ac0fbf7541d70da4c05c6",
+    "identifier":"sha256:be492262fbf08cfa4a3760ece994f00f6596ec7fcb3f6b6005ea31eb37165803",
+    "key":"sha256:7ebd53b5bb4eea473a9b7555187a3f55962eea295818e70416e7625577f4a3d9",
+    "main":"sha256:d6b81b32c5897ccfb1ef5024695f19dfc022961c7a7b861e6bea80e49add004b",
+    "manual":"sha256:7f52992ed4b06480f988d0a488e969e74260cdb311637ba90cc911b92709f1b8",
+    "normalize":"sha256:fb2491fa0ba60350817125ed3a7311c24da80f29c45db034103ff21ad1b820be",
+    "refuse":"sha256:c1add4f479f2698f804141bc526d5cbf04021eeb7b62b47121499aac9d42f682",
+    "replacement-ok":"sha256:50f044dac9ea584376e1693d538d82128b98c9bb76063521bfcab371b7403039",
+    "success":"sha256:084e2d8f44bae8526442056f81269eb45c2efe37437bb5ba43ba350f86728954",
+    "supported":"sha256:fbf6a9244ce6702e715da7b7e5a647fc54f4eaa31335a9bf065cdbdf8a3f6a2f",
+    "tags-valid":"sha256:2689963840677b1d3c3426a60f552e7ed16704f2f8d6a03184a651e51186af75",
+    "transform":"sha256:b5d6390ee9722250b0573b28e2cf8970cbc1c6d52008bf1cddd318c028981327",
+    "valid":"sha256:20ddb1c67eb8b063c398ff91d55034c67f0b0190572e75d52c7904c1620f1e66"
+  },
+  "definitions": {
+    "supported": {"params": ["r"], "body": ["int.range", ["var", "r"], 0, 0]},
+    "identifier": {"params": ["x"], "body": ["text", ["var", "x"], 1, 8, [[97,122]], [[45,45],[48,57],[97,122]]]},
+    "tags-valid": {"params": ["x"], "body": ["and", ["array.bound", ["var", "x"], 4], ["all", ["var", "x"], "t", ["call", "identifier", ["var", "t"]]]]},
+    "entry-valid": {"params": ["e"], "body": ["and",
+      ["shape", ["var", "e"], ["id","title","manual_tags","indexed_tags"], ["date"]],
+      ["call", "identifier", ["get", ["var", "e"], "id"]],
+      ["text", ["get", ["var", "e"], "title"], 1, 16, [[32,126]], [[32,126]]],
+      ["call", "tags-valid", ["get", ["var", "e"], "manual_tags"]],
+      ["call", "tags-valid", ["get", ["var", "e"], "indexed_tags"]]
+    ]},
+    "valid": {"params": ["q"], "body": ["and",
+      ["shape", ["var", "q"], ["interface","behavior_revision","state","reindex"], []],
+      ["eq", ["get", ["var", "q"], "interface"], "catalog-application/2"],
+      ["call", "supported", ["get", ["var", "q"], "behavior_revision"]],
+      ["shape", ["get", ["var", "q"], "state"], ["entries"], []],
+      ["array.bound", ["get", ["get", ["var", "q"], "state"], "entries"], 4],
+      ["all", ["get", ["get", ["var", "q"], "state"], "entries"], "e", ["call", "entry-valid", ["var", "e"]]],
+      ["let", [["op", ["get", ["var", "q"], "reindex"]]], ["or",
+        ["null", ["var", "op"]],
+        ["and", ["shape", ["var", "op"], ["entry_id","tags"], []],
+          ["call", "identifier", ["get", ["var", "op"], "entry_id"]],
+          ["call", "tags-valid", ["get", ["var", "op"], "tags"]]]
+      ]]
+    ]},
+    "dated": {"params": ["e"], "body": ["or", ["not", ["has", ["var", "e"], "date"]], ["int.range", ["get", ["var", "e"], "date"], 0, 31]]},
+    "disjoint": {"params": ["a","b"], "body": ["not", ["any", ["var", "a"], "x", ["any", ["var", "b"], "y", ["eq", ["var", "x"], ["var", "y"]]]]]},
+    "refuse": {"params": ["reason"], "body": ["object", {"kind":"refusal", "reason":["var","reason"]}]},
+    "normalize": {"params": ["tags","revision"], "body": ["var","tags"]},
+    "manual": {"params": ["tags","revision"], "body": ["literal",[]]},
+    "replacement-ok": {"params": ["entries","op","revision"], "body": true},
+    "key": {"params": ["e","revision"], "body": ["array",
+      ["if", ["has", ["var","e"], "date"], 1, 0],
+      ["if", ["has", ["var","e"], "date"], ["get", ["var","e"], "date"], 0],
+      ["get", ["var","e"], "id"]
+    ]},
+    "transform": {"params": ["entries","op","revision"], "body": ["map", ["var","entries"], "e",
+      ["let", [["changed", ["if", ["and", ["not", ["null", ["var","op"]]], ["eq", ["get", ["var","e"], "id"], ["get", ["var","op"], "entry_id"]]],
+        ["set", ["var","e"], {
+          "manual_tags": ["call","manual",["get",["var","e"],"manual_tags"],["var","revision"]],
+          "indexed_tags": ["get",["var","op"],"tags"]
+        }], ["var","e"]]]],
+        ["set", ["var","changed"], {
+          "manual_tags": ["call","normalize",["get",["var","changed"],"manual_tags"],["var","revision"]],
+          "indexed_tags": ["call","normalize",["get",["var","changed"],"indexed_tags"],["var","revision"]]
+        }]
+      ]
+    ]},
+    "success": {"params": ["entries","op","revision"], "body": ["let", [["out", ["call","transform",["var","entries"],["var","op"],["var","revision"]]]],
+      ["object", {
+        "kind":"success",
+        "state":["object",{"entries":["var","out"]}],
+        "entry_ids":["map",["sort.by",["var","out"],"e",["call","key",["var","e"],["var","revision"]]],"e",["get",["var","e"],"id"]]
+      }]
+    ]},
+    "main": {"params": ["q"], "body": ["if", ["call","valid",["var","q"]],
+      ["let", [
+        ["entries",["get",["get",["var","q"],"state"],"entries"]],
+        ["op",["get",["var","q"],"reindex"]],
+        ["revision",["get",["var","q"],"behavior_revision"]],
+        ["ids",["map",["var","entries"],"e",["get",["var","e"],"id"]]]
+      ],
+        ["if", ["all",["var","entries"],"e",["call","dated",["var","e"]]],
+          ["if", ["eq",["length",["unique",["var","ids"]]],["length",["var","ids"]]],
+            ["if", ["increasing",["var","ids"]],
+              ["if", ["all",["var","entries"],"e",["call","disjoint",["get",["var","e"],"manual_tags"],["get",["var","e"],"indexed_tags"]]],
+                ["if", ["or",["null",["var","op"]],["any",["var","ids"],"id",["eq",["var","id"],["get",["var","op"],"entry_id"]]]],
+                  ["if",["call","replacement-ok",["var","entries"],["var","op"],["var","revision"]],
+                    ["call","success",["var","entries"],["var","op"],["var","revision"]],
+                    ["call","refuse","origin-collision"]],
+                  ["call","refuse","entry-not-found"]],
+                ["call","refuse","origin-collision"]],
+              ["call","refuse","entry-order"]],
+            ["call","refuse","duplicate-entry-id"]],
+          ["call","refuse","invalid-date"]]
+      ],
+      ["call","refuse","invalid-request"]
+    ]}
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "schema":"bagaev-l2-patch/1",
+  "base":"sha256:f3cce511fd0e162c1ef83f7a86ecea0936d9c0b7b9e55f29496dbdfa2f07a44f",
+  "target":"sha256:21861f3a9b0cffd3f940f876e3fe0d82e39ff5bfc8dd9a4f0c75b41df0323ac0",
+  "add":{},
+  "replace":{
+    "supported":{"params":["r"],"body":["int.range",["var","r"],0,3]},
+    "key":{"params":["e","revision"],"body":["array",
+      ["if",["eq",["var","revision"],3],["if",["has",["var","e"],"date"],0,1],["if",["has",["var","e"],"date"],1,0]],
+      ["if",["has",["var","e"],"date"],["get",["var","e"],"date"],0],
+      ["get",["var","e"],"id"]
+    ]}
+  }
+}
