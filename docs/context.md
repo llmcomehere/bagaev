@@ -19,6 +19,7 @@ instructions](../AGENTS.md) and authority boundaries always apply.
 | [L2](l2.md) and [language oracle](../examples/l2/oracle.json) | Structured pure language, pinned definitions, transactional changes, and independent language expectations. |
 | [Toolchain](toolchain.md) | L2 CLI commands, JSON observations, file transport/effects, generated artifact identity and verification, and clean-checkout walkthrough. |
 | [Local store](store.md) | Immutable L2 revisions, receiver admission, operation receipts, continuation, canonical exchange and explicit backup restore. |
+| [Model proposals](model.md) | Pure provider-neutral packets, Python/L2 named edits, public continuation and bounded accounting. |
 | [Catalog application](application.md) and [oracle](../examples/beta/catalog-cases.json) | Synthetic application semantics and frozen exact observations for four selected behaviors. |
 | [Frozen P0](p0.md) and [oracle](p0-cases.json) | Frozen historical protocol and exact fixture observations. |
 | Issues | Current execution status and discussion. |
@@ -39,6 +40,7 @@ exists.
 | [L2 CLI](../src/bagaev.py), [backend](../src/bagaev_l2_backend.py), and [fixed runtime](../src/bagaev_l2_runtime.py) | Explicit local CLI and independent lowering to self-contained CPython; the [toolchain contract](toolchain.md) owns interfaces and transport boundaries. |
 | [Toolchain tests](../tests/test_toolchain.py) and [catalog input](../examples/l2/catalog-input.json) | Bounded parity, file-effect/refusal checks and walkthrough data; their existence does not claim execution. |
 | [Store library](../src/bagaev_store.py) and [tests](../tests/test_store.py) | Bounded SQLite transactions and failure-boundary cases; [store semantics](store.md) own the contract. Tests are not execution evidence. |
+| [Model library](../src/bagaev_model.py) and [tests](../tests/test_model.py) | Pure proposal construction and accounting; no model invocation, source execution or admission. |
 | [L2 catalog](../examples/l2/catalog.json) and patches [01](../examples/l2/catalog-01.patch), [12](../examples/l2/catalog-12.patch), [23](../examples/l2/catalog-23.patch) | Language-form application and three successive changes; the [catalog contract](application.md) owns application behavior. |
 | [L2 tests](../tests/test_l2.py) | Implementation checks against language and application contracts; current execution status belongs to [README](../README.md#what-exists-today). |
 | [Tag program](../examples/l0/tag_list.json), [patch](../examples/l0/tag_unique_sorted.patch), and [inputs](../examples/l0/tag_inputs.json) | Frozen synthetic language program, structural change, and runtime data. |
@@ -121,6 +123,13 @@ a `code`; application refusals are returned records. The separate
 and verified generated artifacts. Its execution status belongs to README and
 Issue #16. The [local store](store.md) adds explicit persistence and admission;
 its execution and acceptance status belongs to README and Issue #17.
+
+## Model proposal entry
+
+Read [the model contract](model.md) for portable packets, matched ordinary-Python
+and L2 named edits, explicit public continuation and accounting. Its standalone
+example needs no provider or private workspace. Model calls and candidate execution
+still require the applicable trusted profile; transport metadata is not authority.
 
 ## Handoff
 
