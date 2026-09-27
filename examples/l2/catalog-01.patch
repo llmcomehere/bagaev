@@ -1,0 +1,10 @@
+{
+  "schema":"bagaev-l2-patch/1",
+  "base":"sha256:ae3f5475db26ec74c878cf727b389aa9166e67922cd358985dd96a8077cab29c",
+  "target":"sha256:bc9dd15cb2346209c7655e70e784aa0661f2dcd12f1c8aa3ec02bf44bb2ea76a",
+  "add":{},
+  "replace":{
+    "supported":{"params":["r"],"body":["int.range",["var","r"],0,1]},
+    "normalize":{"params":["tags","revision"],"body":["if",["int.range",["var","revision"],1,3],["sort",["unique",["var","tags"]]],["var","tags"]]}
+  }
+}

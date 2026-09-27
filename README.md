@@ -65,8 +65,12 @@ untrusted code. No model account is needed for this example.
   [The backend contract](docs/l1-proposal.md) defines that scope.
 - **Application baseline:** a [synthetic catalog contract](docs/application.md),
   a frozen [99-case oracle](examples/beta/catalog-cases.json), and an ordinary
-  [Python comparison reference](src/catalog_reference.py). This application is
-  not yet implemented in bagaev.
+  [Python comparison reference](src/catalog_reference.py).
+- **L2:** a [structured pure language contract](docs/l2.md),
+  [reference library](src/bagaev_l2.py), and a catalog program with three
+  structural changes. The [L2 source and API guide](docs/context.md#l2-library-entry)
+  links the programs, oracle, and tests. See [Issue #15](https://github.com/llmcomehere/bagaev/issues/15)
+  for current execution and acceptance status. There is no L2 CLI, backend, or store yet.
 
 Selected-case parity is not universal equivalence or a model/cost result.
 The [roadmap](docs/roadmap.md) covers language expansion, a cohesive CLI,

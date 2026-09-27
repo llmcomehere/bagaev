@@ -1,0 +1,18 @@
+{
+  "schema":"bagaev-l2-patch/1",
+  "base":"sha256:bc9dd15cb2346209c7655e70e784aa0661f2dcd12f1c8aa3ec02bf44bb2ea76a",
+  "target":"sha256:f3cce511fd0e162c1ef83f7a86ecea0936d9c0b7b9e55f29496dbdfa2f07a44f",
+  "add":{},
+  "replace":{
+    "supported":{"params":["r"],"body":["int.range",["var","r"],0,2]},
+    "manual":{"params":["tags","revision"],"body":["if",["int.range",["var","revision"],2,3],["var","tags"],["literal",[]]]},
+    "replacement-ok":{"params":["entries","op","revision"],"body":["or",
+      ["null",["var","op"]],
+      ["not",["int.range",["var","revision"],2,3]],
+      ["all",["var","entries"],"e",["or",
+        ["not",["eq",["get",["var","e"],"id"],["get",["var","op"],"entry_id"]]],
+        ["call","disjoint",["get",["var","e"],"manual_tags"],["get",["var","op"],"tags"]]
+      ]]
+    ]}
+  }
+}
