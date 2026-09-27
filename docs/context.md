@@ -10,6 +10,7 @@ instructions](../AGENTS.md) and authority boundaries always apply.
 | --- | --- |
 | [README](../README.md) | Entry points and current repository status. |
 | [Roadmap](roadmap.md) | Planned beta profile, workpackages, dependencies, and exit gates. |
+| [Integrated beta guide](beta.md) | Standalone integrated workflow, expected observations, compatibility and recovery navigation; README and Issues retain current status. |
 | [AGENTS](../AGENTS.md) | Authority, untrusted-data, and collaboration constraints. |
 | [CONTRIBUTING](../CONTRIBUTING.md) | Public contribution path and local-work distinction. |
 | [Code of conduct](../CODE_OF_CONDUCT.md) and [security policy](../SECURITY.md) | Community behavior and sensitive-reporting routes. |
@@ -40,6 +41,7 @@ exists.
 | [L2 CLI](../src/bagaev.py), [backend](../src/bagaev_l2_backend.py), and [fixed runtime](../src/bagaev_l2_runtime.py) | Explicit local CLI and independent lowering to self-contained CPython; the [toolchain contract](toolchain.md) owns interfaces and transport boundaries. |
 | [Toolchain tests](../tests/test_toolchain.py) and [catalog input](../examples/l2/catalog-input.json) | Bounded parity, file-effect/refusal checks and walkthrough data; their existence does not claim execution. |
 | [Store library](../src/bagaev_store.py) and [tests](../tests/test_store.py) | Bounded SQLite transactions and failure-boundary cases; [store semantics](store.md) own the contract. Tests are not execution evidence. |
+| [Integrated beta test](../tests/test_beta.py) | Actual CLI subprocess scenario with persisted A1 stop, fresh-process continuation to A3 and exact restore; [beta guide](beta.md) explains selected scope and expected observations. Test source is not execution evidence. |
 | [Model library](../src/bagaev_model.py) and [tests](../tests/test_model.py) | Pure proposal construction and accounting; no model invocation, source execution or admission. |
 | [L2 catalog](../examples/l2/catalog.json) and patches [01](../examples/l2/catalog-01.patch), [12](../examples/l2/catalog-12.patch), [23](../examples/l2/catalog-23.patch) | Language-form application and three successive changes; the [catalog contract](application.md) owns application behavior. |
 | [L2 tests](../tests/test_l2.py) | Implementation checks against language and application contracts; current execution status belongs to [README](../README.md#what-exists-today). |
@@ -62,8 +64,9 @@ link or finding a helper here never authorizes running it.
 ## Routes
 
 1. **Entry, status, or planned beta:** read [README](../README.md) and
-   [roadmap](roadmap.md). Read [CONTRIBUTING](../CONTRIBUTING.md) for a
-   contribution path.
+   [roadmap](roadmap.md). Use the [integrated guide](beta.md) for a standalone
+   CLI/Store continuation walkthrough. Read [CONTRIBUTING](../CONTRIBUTING.md)
+   for a contribution path.
 2. **Any repository change:** read [AGENTS](../AGENTS.md), then every linked
    contract affected by the proposed behavior. An Issue supplies status, not
    semantics or authority.

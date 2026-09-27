@@ -100,6 +100,11 @@ untrusted code. No model account is needed for this example.
   universal equivalence, or proof of savings; older-stage **NOT_RUN** boundaries remain.
 
 Selected-case parity is not universal equivalence or a model/cost result.
+The [integrated beta candidate guide](docs/beta.md) connects application changes,
+CLI subprocesses, persisted continuation and backup/restore in a standalone
+workflow. Its new selected integration test is **NOT_RUN**; integrated acceptance
+and contribution rehearsal remain pending in
+[Issue #18](https://github.com/llmcomehere/bagaev/issues/18).
 The [roadmap](docs/roadmap.md) covers language expansion, a cohesive CLI,
 durable revisions, continuation, and measured model work. Frozen [P0](docs/p0.md)
 is historical research input, not the current language plan.
