@@ -70,7 +70,16 @@ untrusted code. No model account is needed for this example.
   [reference library](src/bagaev_l2.py), and a catalog program with three
   structural changes. The [L2 source and API guide](docs/context.md#l2-library-entry)
   links the programs, oracle, and tests. See [Issue #15](https://github.com/llmcomehere/bagaev/issues/15)
-  for current execution and acceptance status. There is no L2 CLI, backend, or store yet.
+  for reference execution and acceptance status.
+- **L2 toolchain:** a cohesive [CLI and CPython backend](docs/toolchain.md)
+  for checking, running, patching, compiling, inspecting and comparing L2 programs.
+  The guide includes a clean-checkout walkthrough and explicit artifact verification.
+  Bounded local acceptance matched 575 primary records and passed three selected backend
+  test methods with zero errors or skips on CPython 3.14.4. The CLI entry was
+  exercised in-process, not through a shell or subprocess. Nine other authored
+  methods and the full suite remain **NOT_RUN**; current acceptance is tracked
+  in [Issue #16](https://github.com/llmcomehere/bagaev/issues/16).
+  There is no persistent revision store yet.
 
 Selected-case parity is not universal equivalence or a model/cost result.
 The [roadmap](docs/roadmap.md) covers language expansion, a cohesive CLI,

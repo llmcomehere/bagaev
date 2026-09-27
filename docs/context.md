@@ -17,6 +17,7 @@ instructions](../AGENTS.md) and authority boundaries always apply.
 | [L0](l0.md) | Normative L0 semantics and bounds. |
 | [L1 proposal](l1-proposal.md) | Bounded CPython backend and selected-case contract. |
 | [L2](l2.md) and [language oracle](../examples/l2/oracle.json) | Structured pure language, pinned definitions, transactional changes, and independent language expectations. |
+| [Toolchain](toolchain.md) | L2 CLI commands, JSON observations, file transport/effects, generated artifact identity and verification, and clean-checkout walkthrough. |
 | [Catalog application](application.md) and [oracle](../examples/beta/catalog-cases.json) | Synthetic application semantics and frozen exact observations for four selected behaviors. |
 | [Frozen P0](p0.md) and [oracle](p0-cases.json) | Frozen historical protocol and exact fixture observations. |
 | Issues | Current execution status and discussion. |
@@ -34,6 +35,8 @@ exists.
 | [L0 interpreter](../src/bagaev_l0.py) | Reference validation, evaluation, digest-bound structural edits, and the current check/run/patch CLI; behavior is defined by [L0](l0.md). |
 | [L1 generator](../src/bagaev_l1.py) | Library that lowers a checked L0 program to deterministic CPython source bytes and identities; it neither writes nor executes the artifact. [L1](l1-proposal.md) owns the backend contract. |
 | [L2 reference library](../src/bagaev_l2.py) | Program checking, pure evaluation, immutable snapshots, and transactional structural changes; behavior is defined by [L2](l2.md). |
+| [L2 CLI](../src/bagaev.py), [backend](../src/bagaev_l2_backend.py), and [fixed runtime](../src/bagaev_l2_runtime.py) | Explicit local CLI and independent lowering to self-contained CPython; the [toolchain contract](toolchain.md) owns interfaces and transport boundaries. |
+| [Toolchain tests](../tests/test_toolchain.py) and [catalog input](../examples/l2/catalog-input.json) | Bounded parity, file-effect/refusal checks and walkthrough data; their existence does not claim execution. |
 | [L2 catalog](../examples/l2/catalog.json) and patches [01](../examples/l2/catalog-01.patch), [12](../examples/l2/catalog-12.patch), [23](../examples/l2/catalog-23.patch) | Language-form application and three successive changes; the [catalog contract](application.md) owns application behavior. |
 | [L2 tests](../tests/test_l2.py) | Implementation checks against language and application contracts; current execution status belongs to [README](../README.md#what-exists-today). |
 | [Tag program](../examples/l0/tag_list.json), [patch](../examples/l0/tag_unique_sorted.patch), and [inputs](../examples/l0/tag_inputs.json) | Frozen synthetic language program, structural change, and runtime data. |
@@ -69,7 +72,8 @@ link or finding a helper here never authorizes running it.
 5. **L2 language or catalog evolution:** read [L2](l2.md), its
    [language oracle](../examples/l2/oracle.json), and the affected source.
    For application behavior, also read the [catalog contract](application.md)
-   and its [frozen oracle](../examples/beta/catalog-cases.json).
+   and its [frozen oracle](../examples/beta/catalog-cases.json). For CLI or backend
+   changes, also read [the toolchain contract](toolchain.md) and its linked sources.
 6. **P0 metadata, handoff, or admission:** read [P0](p0.md) and the affected
    oracle cases; preserve their frozen inputs and expectations. Also read
    [Boundaries of checking and admission](foundation.md#boundaries-of-checking-and-admission)
@@ -107,8 +111,10 @@ The specified result is `{"kind": "success", "state": {"entries": []},
 "entry_ids": []}`. This is a usage example, not execution evidence; see
 [Issue #15](https://github.com/llmcomehere/bagaev/issues/15) for current execution
 and acceptance status. Language failures raise `L2Error` with
-a `code`; application refusals are returned records. The library has no L2
-CLI, backend, or persistent store; those remain [roadmap](roadmap.md) work.
+a `code`; application refusals are returned records. The separate
+[L2 CLI and backend](toolchain.md) provides explicit file operations
+and verified generated artifacts. Its execution status belongs to README and
+Issue #16. Persistent storage remains [roadmap](roadmap.md) work.
 
 ## Handoff
 
