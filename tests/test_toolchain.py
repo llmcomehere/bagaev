@@ -30,6 +30,13 @@ def canonical(value):
                       separators=(",", ":")).encode("utf-8")
 
 
+def argument_snapshot(value):
+    # Keep borrowed inputs as text: isolated surrogates need not encode as UTF-8.
+    # Preserve surrogate pairs versus single scalars; identities stay canonical.
+    return json.dumps(value, sort_keys=True, ensure_ascii=False,
+                      separators=(",", ":"))
+
+
 def digest(value):
     return "sha256:" + hashlib.sha256(canonical(value)).hexdigest()
 
@@ -139,10 +146,10 @@ class BackendTests(unittest.TestCase):
         cls.modules = [compiled(p)[0] for p in cls.snapshots]
 
     def observe(self, function, argument, expected):
-        before = canonical(argument)
+        before = argument_snapshot(argument)
         result = function(argument)
         self.assertEqual(canonical(result), canonical(expected))
-        self.assertEqual(canonical(argument), before)
+        self.assertEqual(argument_snapshot(argument), before)
         self.assertFalse(containers(result) & containers(argument))
         again = function(argument)
         self.assertEqual(canonical(again), canonical(expected))

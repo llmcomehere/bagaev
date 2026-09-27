@@ -3,10 +3,11 @@
 **A small change should stay a small change.**
 
 bagaev is a programming language and development environment being built for
-LLMs to create and evolve programs. This is a **research preview**: a small
-executable language core, explicit contracts, and a testable direction—not a
-beta or a production platform. Lower total cost and fewer errors remain
-hypotheses.
+LLMs to create and evolve programs. This is a **bounded functional beta
+candidate** for local Linux/CPython CPU use: an executable language core,
+explicit contracts, durable revisions and a checked continuation workflow.
+This is an experimental platform, not a production platform.
+Lower total cost and fewer errors remain hypotheses.
 
 ## Why a language for change?
 
@@ -74,19 +75,17 @@ untrusted code. No model account is needed for this example.
 - **L2 toolchain:** a cohesive [CLI and CPython backend](docs/toolchain.md)
   for checking, running, patching, compiling, inspecting and comparing L2 programs.
   The guide includes a clean-checkout walkthrough and explicit artifact verification.
-  Bounded local acceptance matched 575 primary records and passed three selected backend
-  test methods with zero errors or skips on CPython 3.14.4. The CLI entry was
-  exercised in-process, not through a shell or subprocess. Nine other authored
-  methods and the full suite remain **NOT_RUN**; current acceptance is tracked
-  in [Issue #16](https://github.com/llmcomehere/bagaev/issues/16).
+  Earlier M3 acceptance matched 575 primary records and three selected backend
+  methods; its CLI observations were in-process. The integrated run below also
+  exercised all authored toolchain methods and actual CLI subprocesses.
+  [Issue #16](https://github.com/llmcomehere/bagaev/issues/16) retains M3 history.
 - **Local revisions:** an explicit [store and continuation contract](docs/store.md)
   and `store` CLI commands for immutable candidates, checked admission, portable
-  export and verified restore. The latest bounded local run passed on CPython
-  3.14.4 (x86_64) and SQLite 3.46.1: 96 primary records matched, with 19 CLI
+  export and verified restore. Earlier M4 acceptance matched 96 primary records, with 19 CLI
   observations nested in one record. It used 17 fresh child processes and rejected
   seven wrong-observation controls. Selected cases cover process-interruption
   recovery, stale-base/CAS refusal, receipt replay, and receiver import/restore.
-  All 16 authored test methods and the full suite remain **NOT_RUN**. This is
+  The integrated run below exercised all 16 authored Store methods. This is
   process-interruption evidence, not power-loss or physical-disk durability
   evidence. See [Issue #17](https://github.com/llmcomehere/bagaev/issues/17).
 
@@ -97,9 +96,17 @@ untrusted code. No model account is needed for this example.
   Full USD lifecycle cost was not observed, so the cost result is indeterminate. See the
   measured [model results](docs/model.md#measured-m5-results) and its
   [sanitized data summary](examples/model/results.json). This is not a beta release,
-  universal equivalence, or proof of savings; older-stage **NOT_RUN** boundaries remain.
+  universal equivalence, or proof of savings; it does not imply full-suite coverage.
 
 Selected-case parity is not universal equivalence or a model/cost result.
+The integrated M6 run passed all 88 selected product methods with zero failures,
+errors or skips on Linux x86_64, CPython 3.14.4 and SQLite 3.46.1. It includes
+actual CLI subprocesses, persisted A1 continuation into a fresh process, A3
+completion and exact backup restore. The [beta guide](docs/beta.md) records the
+tested source, bounded oracle checks, local contribution rehearsal and limits;
+25 specialized checker methods remain **NOT_RUN**, so this is not the full suite.
+Current independent candidate acceptance and integration status is tracked in
+[Issue #18](https://github.com/llmcomehere/bagaev/issues/18).
 The [roadmap](docs/roadmap.md) covers language expansion, a cohesive CLI,
 durable revisions, continuation, and measured model work. Frozen [P0](docs/p0.md)
 is historical research input, not the current language plan.
