@@ -290,7 +290,8 @@ def _ledger(state, ledger):
         _eligible(state, continuation, ledger["policy"], replay=False)
         head = {"generation": head["generation"] + 1, "source": continuation["target"]}
         _need(receipt["head"] == head and receipt["request"] == digest({"continuation": receipt["continuation"]}))
-        _need(ledger["operations"].get(operation) == receipt)
+        # Receipt copies must retain exact JSON types (true != 1 != 1.0).
+        _need(canonical(ledger["operations"].get(operation)) == canonical(receipt))
     _need(ledger["head"] == head)
 
 

@@ -202,6 +202,51 @@ class StoreTests(unittest.TestCase):
         self.assertEqual(error.exception.code, "STORE_POLICY")
         self.assertFalse(destination.exists())
 
+    def test_operation_receipts_preserve_exact_scalar_types(self):
+        continuation = self.continuation(self.s0)
+        receipt = self.store.admit("receipt", continuation)
+        exported = self.store.export()
+        self.assertIs(type(receipt["head"]["generation"]), int)
+        self.assertEqual(raw(self.store.admit("receipt", continuation)), raw(receipt))
+        self.assertEqual(self.store.export(), exported)
+
+        restored_path = self.root / "typed-restore"
+        S.restore(restored_path, exported, self.policy, identity(json.loads(exported)["state"]))
+        with S.Store(restored_path) as restored:
+            observed = restored.inspect("receipt")["receipt"]
+            self.assertIs(type(observed["head"]["generation"]), int)
+            self.assertEqual(raw(observed), raw(receipt))
+            self.assertEqual(raw(restored.admit("receipt", continuation)), raw(receipt))
+            self.assertEqual(restored.export(), exported)
+
+        imported_path = self.root / "typed-history"
+        S.import_package(imported_path, exported, self.policy)
+        with S.Store(imported_path) as imported:
+            historical = json.loads(imported.export())
+        for location, original in (("active", json.loads(exported)), ("historical", historical)):
+            for label, generation in (("boolean", True), ("float", 1.0)):
+                malformed = copy.deepcopy(original)
+                state = malformed["state"]
+                ledger = state if location == "active" else state["historical"][0]["ledger"]
+                # Keep the checked admission intact; corrupt only its operation copy.
+                self.assertIs(type(ledger["admissions"][0]["head"]["generation"]), int)
+                ledger["operations"]["receipt"]["head"]["generation"] = generation
+                malformed["snapshot"] = identity(state)
+                data = raw(malformed)
+                for action in ("import", "restore"):
+                    destination = self.root / f"invalid-receipt-{location}-{label}-{action}"
+                    with self.subTest(location=location, scalar=label, action=action), \
+                            self.assertRaises(S.StoreError) as raised:
+                        if action == "import":
+                            S.import_package(destination, data, self.policy)
+                        else:
+                            # Supply this malformed package's own exact pin, so an
+                            # unrelated snapshot mismatch cannot mask the defect.
+                            S.restore(destination, data, self.policy, malformed["snapshot"])
+                    self.assertEqual(raised.exception.code, "STORE_FORMAT")
+                    self.assertFalse(destination.exists())
+                    self.assertEqual(self.store.export(), exported)
+
     def test_canonical_integrity_and_no_partial_import(self):
         exported = self.store.export()
         corruptions = [exported + b"\n", exported[:-1], b"{}", b'{"x":0,"x":1}',
