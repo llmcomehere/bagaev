@@ -1,0 +1,64 @@
+{
+  "schema": "bagaev-model-registration/1",
+  "status": "template-not-activated",
+  "workload": "queue-view/1",
+  "units": [
+    "U-long",
+    "U-control"
+  ],
+  "paired_repetitions": 2,
+  "variant_order": [
+    [
+      "python",
+      "l2"
+    ],
+    [
+      "l2",
+      "python"
+    ]
+  ],
+  "model": "gpt-6-sol",
+  "reasoning": "high",
+  "tools": "none-by-instruction-audit-required",
+  "main_max_responses": 32,
+  "proposals_per_step": 2,
+  "calibration": {
+    "task": "identifier-array-length",
+    "proposals_per_variant": 1,
+    "counts_in_main": false
+  },
+  "successor": "After first Q1 proposal, fresh supplied history and variant-local packet only",
+  "budgets": {
+    "turn_wall_ms": 120000,
+    "long_unit_wall_ms": 1200000,
+    "control_wall_ms": 300000,
+    "main_wall_ms": 7200000,
+    "packet_bytes": 65536,
+    "response_bytes": 65536,
+    "provider_token_hard_cap": null,
+    "deadline_enforcement": "observed-interruption-request"
+  },
+  "horizon": "Four requested changes; one invocation per frozen operational case/checkpoint/control",
+  "primary_unit": "usd_micros",
+  "delta_basis_points": 1000,
+  "completion_epsilon_basis_points": 1000,
+  "completion_interval_percent": 95,
+  "paired_differences": "descriptive",
+  "cost_interval_if_incomplete": null,
+  "hard_constraints": [
+    "accepted_correctness",
+    "source_binding",
+    "privacy",
+    "authority"
+  ],
+  "missing_primary_cost": "unknown; no positive full-cost claim",
+  "candidate_selection": "Last structurally valid proposal; no hidden best-of-N",
+  "execution_profile": null,
+  "receiver_source_manifest": null,
+  "oracle_hash": null,
+  "public_case_hash": null,
+  "operational_case_hash": null,
+  "measurement_window": null,
+  "preparation_costs": null,
+  "authority": "Separate operator authorization required; this file grants none"
+}

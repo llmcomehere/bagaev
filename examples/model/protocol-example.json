@@ -1,0 +1,64 @@
+{
+  "packet_fields": {
+    "schema": "bagaev-model-task/1",
+    "task": "constant-demo",
+    "revision": 1,
+    "run": "demo-1",
+    "step": "replace",
+    "attempt": 1,
+    "variant": "python",
+    "profile": {
+      "model": "unavailable",
+      "reasoning": "unavailable",
+      "harness": "data-only-example",
+      "history": "fresh"
+    },
+    "base": {
+      "source": "sha256:afe7269e539c7f431dbb308496779c7388a9322180465ed82b3809b725800d79",
+      "checkpoint": 0,
+      "head": null
+    },
+    "goal": {
+      "contract": "sha256:aa1d33de34c98e862a9dcf3754dc5a8fa1119045424a7c16a33593f852cbf8ca",
+      "text": "Return the constant string ready for any argument."
+    },
+    "source": "def evaluate(request):\n    return \"pending\"\n",
+    "references": [],
+    "observations": [],
+    "continuation": {
+      "next_question": "Replace the constant result.",
+      "unresolved": [],
+      "hypotheses": [],
+      "checkpoints": [],
+      "effects": [],
+      "receipt": null
+    },
+    "limits": {
+      "packet_bytes": 65536,
+      "response_bytes": 65536,
+      "proposals_left": 1,
+      "wall_ms": 120000
+    }
+  },
+  "response_fields": {
+    "schema": "bagaev-model-response/1",
+    "task": "constant-demo",
+    "revision": 1,
+    "run": "demo-1",
+    "step": "replace",
+    "attempt": 1,
+    "variant": "python",
+    "base": {
+      "source": "sha256:afe7269e539c7f431dbb308496779c7388a9322180465ed82b3809b725800d79",
+      "checkpoint": 0,
+      "head": null
+    },
+    "status": "proposed",
+    "add": {},
+    "replace": {
+      "evaluate": "def evaluate(request):\n    return \"ready\"\n"
+    },
+    "unresolved": [],
+    "hypotheses": []
+  }
+}

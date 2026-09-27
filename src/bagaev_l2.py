@@ -402,6 +402,27 @@ def program_digest(program):
     return check_program(program).digest
 
 
+def prepare_patch(original, add, replace):
+    """Prepare a structural proposal with mechanical pins; no evaluation."""
+    before, value = _check(original)
+    for changes in (add, replace):
+        _need(type(changes) is dict, "L2_PATCH")
+        for name, definition in changes.items():
+            _need(type(name) is str and _ID.fullmatch(name) is not None
+                  and type(definition) is dict, "L2_PATCH")
+    _need(add or replace, "L2_PATCH")
+    _need(not add.keys() & replace.keys(), "L2_PATCH")
+    _need(not add.keys() & value["definitions"].keys()
+          and replace.keys() <= value["definitions"].keys(), "L2_PATCH")
+    definitions = {**value["definitions"], **add, **replace}
+    candidate, _value = _check({**value, "definitions": definitions}, repin=True)
+    patch = {"schema": PATCH_SCHEMA, "base": before.digest,
+             "target": candidate.digest, "add": add, "replace": replace}
+    data = _canonical(patch)
+    _need(len(data) <= BYTE_LIMIT, "L2_BOUNDS")
+    return _parse(data)
+
+
 def apply_patch(original, patch):
     before, value = _check(original)
     if type(patch) in (str, bytes):

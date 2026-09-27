@@ -1,0 +1,65 @@
+{
+  "schema": "bagaev-model-seeds/1",
+  "calibration": {
+    "python": "def evaluate(request):\n    return 0\n",
+    "l2": {
+      "schema": "bagaev-l2/1",
+      "entry": "main",
+      "definitions": {
+        "main": {
+          "params": [
+            "request"
+          ],
+          "body": 0
+        }
+      },
+      "pins": {
+        "main": "sha256:281f6310dd21cf1a8515522d0cb25d23eaf18b0e99b05b5ee9a0ca6b33010b2a"
+      }
+    }
+  },
+  "control": {
+    "python": "def evaluate(request):\n    return list(request)\n",
+    "l2": {
+      "schema": "bagaev-l2/1",
+      "entry": "main",
+      "definitions": {
+        "main": {
+          "params": [
+            "request"
+          ],
+          "body": [
+            "var",
+            "request"
+          ]
+        }
+      },
+      "pins": {
+        "main": "sha256:6e50b943f85645bf173f1f21b2bc45c1407315f8f721292cd3432c7968805c62"
+      }
+    }
+  },
+  "queue": {
+    "python": "def evaluate(request):\n    return {\"kind\": \"unsupported\"}\n",
+    "l2": {
+      "schema": "bagaev-l2/1",
+      "entry": "main",
+      "definitions": {
+        "main": {
+          "params": [
+            "request"
+          ],
+          "body": [
+            "object",
+            {
+              "kind": "unsupported"
+            }
+          ]
+        }
+      },
+      "pins": {
+        "main": "sha256:b51530956ae7bf17284d9b9f9f26e991c67635589365662ba8c29aef78afba92"
+      }
+    }
+  }
+}

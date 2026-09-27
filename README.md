@@ -90,6 +90,15 @@ untrusted code. No model account is needed for this example.
   process-interruption evidence, not power-loss or physical-disk durability
   evidence. See [Issue #17](https://github.com/llmcomehere/bagaev/issues/17).
 
+- **Model proposal interface:** a pure [packet/response and named-change library](docs/model.md)
+  with matched Python/L2 edits, explicit continuation views and bounded accounting.
+  A bounded M5 run passed 19 selected product methods and all 8/8 main units, including
+  four fresh successors; it recorded 16 main and 2 separate calibration native responses.
+  Full USD lifecycle cost was not observed, so the cost result is indeterminate. See the
+  measured [model results](docs/model.md#measured-m5-results) and its
+  [sanitized data summary](examples/model/results.json). This is not a beta release,
+  universal equivalence, or proof of savings; older-stage **NOT_RUN** boundaries remain.
+
 Selected-case parity is not universal equivalence or a model/cost result.
 The [roadmap](docs/roadmap.md) covers language expansion, a cohesive CLI,
 durable revisions, continuation, and measured model work. Frozen [P0](docs/p0.md)

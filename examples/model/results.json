@@ -1,0 +1,134 @@
+{
+  "schema": "bagaev-model-results/1",
+  "status": "runtime-complete",
+  "workload": "queue-view/1",
+  "model": "gpt-6-sol",
+  "reasoning": "high",
+  "execution_time_registration_sha256": "37ae42ae90eac84d92cc090d98f9d2316549eb7c3a7ee0936136013b7e269a14",
+  "preregistration": {
+    "units": ["U-long", "U-control"],
+    "paired_repetitions": 2,
+    "variant_order": [["python", "l2"], ["l2", "python"]],
+    "tools": "none-by-instruction-audit-required",
+    "main_max_responses": 32,
+    "proposals_per_step": 2,
+    "calibration": {"task": "identifier-array-length", "proposals_per_variant": 1, "counts_in_main": false},
+    "successor": "After first Q1 proposal, fresh supplied history and variant-local packet only",
+    "budgets": {"turn_wall_ms": 120000, "long_unit_wall_ms": 1200000, "control_wall_ms": 300000, "main_wall_ms": 7200000, "packet_bytes": 65536, "response_bytes": 65536, "provider_token_hard_cap": null, "deadline_enforcement": "observed-interruption-request"},
+    "horizon": "Four requested changes; one invocation per frozen operational case/checkpoint/control",
+    "primary_unit": "usd_micros",
+    "delta_basis_points": 1000,
+    "completion_epsilon_basis_points": 1000,
+    "completion_interval_percent": 95,
+    "paired_differences": "descriptive",
+    "cost_interval_if_incomplete": null,
+    "hard_constraints": ["accepted_correctness", "source_binding", "privacy", "authority"],
+    "candidate_selection": "Last structurally valid proposal; no hidden best-of-N",
+    "method": {"reference": "Exact two-sided Clopper-Pearson binomial intervals with Bonferroni across four variant-by-unit proportions", "family_confidence_percent": 95, "references": ["https://www.itl.nist.gov/div898/software/dataplot/refman1/auxillar/propconf.htm", "https://www.itl.nist.gov/div898/handbook/prc/section4/prc473.htm"]}
+  },
+  "actual": {
+    "product": {"selected_methods": 19, "model_methods": 15, "l2_methods": 4, "failures": 0, "errors": 0, "skips": 0},
+    "main": {"planned_units": 8, "accepted_units": 8, "native_responses": 16, "failed_proposals": 0, "selected_comparator_rows": 522, "coordinator_window_elapsed_seconds": 3133.438601, "sum_unit_coordinator_elapsed_seconds": 2740.96708},
+    "calibration": {"native_responses": 2, "accepted": 2, "counts_in_main": false},
+    "fresh_successors": 4,
+    "zero_observed_tool_calls": true,
+    "supplied_prompt_provenance": "Planned plaintext rendering was retained and hashed before dispatch; native arguments were opaque at rest and do not attest plaintext byte equality."
+  },
+  "units": [
+    {"id": "r1-b-long", "repeat": 1, "variant": "python", "unit": "queue", "accepted": true, "attempts": 3, "successor": true, "selected_source_ids": ["sha256:4efb49ef9f9399ddc7e0e7bd446e303ca8e2fa9cf14bd1f353714d7a3c1f6474", "sha256:94223021bf3bb43eb41aef2d8fc6fe9d72cdfa005daeb3446f86c41d1cf16ee1", "sha256:ffd5c3fad02d0bdf07ac60ea691e1078897c28cc932cb3be36172476dd5949cc"], "selected_comparator_rows": 81, "coordinator_elapsed_seconds": 601.981949, "native_context_to_response_wall_seconds": 43.788, "runner_joint_wall_seconds": 13.041954, "native_usage_observations": {"cache_write_input_tokens": 0, "cached_input_tokens": 98688, "input_tokens": 106352, "output_tokens": 1230, "reasoning_output_tokens": 182, "total_tokens": 107582}},
+    {"id": "r1-c-long", "repeat": 1, "variant": "l2", "unit": "queue", "accepted": true, "attempts": 3, "successor": true, "store_admission": "committed", "selected_source_ids": ["sha256:552b36f5b92714bc76bfea532d4e53e540935426fadffbe2c5c932d4870cd0b4", "sha256:d8af61110a7e90d110a2250fb72a92fa3207807d8620dce9f847b1ac28b70425", "sha256:29364fb9cb09ea755e2ac6fa2454a601fc0fe055b795d5a704518b02d419531d"], "selected_comparator_rows": 162, "coordinator_elapsed_seconds": 619.563557, "native_context_to_response_wall_seconds": 59.484, "runner_joint_wall_seconds": 27.161729, "native_usage_observations": {"cache_write_input_tokens": 0, "cached_input_tokens": 88576, "input_tokens": 111910, "output_tokens": 1695, "reasoning_output_tokens": 369, "total_tokens": 113605}},
+    {"id": "r1-b-control", "repeat": 1, "variant": "python", "unit": "control", "accepted": true, "attempts": 1, "successor": false, "selected_source_ids": ["sha256:df4162a0ff3db304f57c272c803f3277ba2abc6b993f2b6a7e5f49a12dea16a6"], "selected_comparator_rows": 6, "coordinator_elapsed_seconds": 118.686934, "native_context_to_response_wall_seconds": 12.017, "runner_joint_wall_seconds": 5.68613, "native_usage_observations": {"cache_write_input_tokens": 0, "cached_input_tokens": 0, "input_tokens": 33505, "output_tokens": 207, "reasoning_output_tokens": 26, "total_tokens": 33712}},
+    {"id": "r1-c-control", "repeat": 1, "variant": "l2", "unit": "control", "accepted": true, "attempts": 1, "successor": false, "selected_source_ids": ["sha256:d682300225b2286da605ebce58d45e76cd31b28ad8c6b7215a69ac2fba182499"], "selected_comparator_rows": 12, "coordinator_elapsed_seconds": 114.567227, "native_context_to_response_wall_seconds": 8.072, "runner_joint_wall_seconds": 5.570469, "native_usage_observations": {"cache_write_input_tokens": 0, "cached_input_tokens": 32512, "input_tokens": 34018, "output_tokens": 210, "reasoning_output_tokens": 26, "total_tokens": 34228}},
+    {"id": "r2-c-long", "repeat": 2, "variant": "l2", "unit": "queue", "accepted": true, "attempts": 3, "successor": true, "store_admission": "committed", "selected_source_ids": ["sha256:e39dea6a1456d3bb6e269c04b0b21420cc51d956e779aef0edc801d86be13a77", "sha256:217b5e181f900b78bbc3f1155a1cc5fc456a40f3e07e09a071cc944f8d2b5e36", "sha256:4a126db62796fee9a645471741a65a3829be30eca9ea92af9a8b073e197c0ee6"], "selected_comparator_rows": 162, "coordinator_elapsed_seconds": 605.326005, "native_context_to_response_wall_seconds": 54.001, "runner_joint_wall_seconds": 26.704392, "native_usage_observations": {"cache_write_input_tokens": 0, "cached_input_tokens": 99968, "input_tokens": 109394, "output_tokens": 1542, "reasoning_output_tokens": 243, "total_tokens": 110936}},
+    {"id": "r2-b-long", "repeat": 2, "variant": "python", "unit": "queue", "accepted": true, "attempts": 3, "successor": true, "selected_source_ids": ["sha256:4efb49ef9f9399ddc7e0e7bd446e303ca8e2fa9cf14bd1f353714d7a3c1f6474", "sha256:94223021bf3bb43eb41aef2d8fc6fe9d72cdfa005daeb3446f86c41d1cf16ee1", "sha256:ffd5c3fad02d0bdf07ac60ea691e1078897c28cc932cb3be36172476dd5949cc"], "selected_comparator_rows": 81, "coordinator_elapsed_seconds": 454.501146, "native_context_to_response_wall_seconds": 40.5, "runner_joint_wall_seconds": 12.925306, "native_usage_observations": {"cache_write_input_tokens": 0, "cached_input_tokens": 99456, "input_tokens": 107073, "output_tokens": 1158, "reasoning_output_tokens": 120, "total_tokens": 108231}},
+    {"id": "r2-c-control", "repeat": 2, "variant": "l2", "unit": "control", "accepted": true, "attempts": 1, "successor": false, "selected_source_ids": ["sha256:d682300225b2286da605ebce58d45e76cd31b28ad8c6b7215a69ac2fba182499"], "selected_comparator_rows": 12, "coordinator_elapsed_seconds": 119.927571, "native_context_to_response_wall_seconds": 10.219, "runner_joint_wall_seconds": 5.981036, "native_usage_observations": {"cache_write_input_tokens": 0, "cached_input_tokens": 32512, "input_tokens": 34015, "output_tokens": 217, "reasoning_output_tokens": 36, "total_tokens": 34232}},
+    {"id": "r2-b-control", "repeat": 2, "variant": "python", "unit": "control", "accepted": true, "attempts": 1, "successor": false, "selected_source_ids": ["sha256:df4162a0ff3db304f57c272c803f3277ba2abc6b993f2b6a7e5f49a12dea16a6"], "selected_comparator_rows": 6, "coordinator_elapsed_seconds": 106.412691, "native_context_to_response_wall_seconds": 9.051, "runner_joint_wall_seconds": 5.451572, "native_usage_observations": {"cache_write_input_tokens": 0, "cached_input_tokens": 32256, "input_tokens": 33254, "output_tokens": 234, "reasoning_output_tokens": 51, "total_tokens": 33488}}
+  ],
+  "measurement_definitions": {
+    "selected_comparator_rows": "Observation rows selected by the comparator, not tokens or useful units. Per queue/control unit: Python 81/6; L2 162/12 because reference and backend are both checked.",
+    "coordinator_wall": "Coordinator wall-clock observations, not independent runner measurements. Main window is registration freeze to main completion; each unit is its recorded start to completion. The window includes 392.471521 seconds outside unit intervals.",
+    "native_context_to_response_wall_seconds": "Sum of participant turn-context timestamp to final assistant response timestamp intervals; excludes earlier dispatch and later terminal delivery.",
+    "runner_joint_wall_seconds": "Sum of request-bound checking-wrapper elapsed observations for the unit, including guest work and checks, before outer supervision cleanup/delivery. Not separate operation time.",
+    "native_usage_observations": "Latest cumulative native usage from each distinct participant session, summed once per unit (predecessor and successor for queue). Earlier cumulative turns are not added again. cached_input_tokens is a subset of input_tokens; reasoning_output_tokens is a subset of output_tokens; total_tokens equals input_tokens plus output_tokens. Do not add total to its parts.",
+    "overlap": "No coordinator/root aggregate usage is added; its overlap with participant counters is unknown. Wall observations have overlapping scopes and must not be summed as independent costs. Counters do not identify billing or full lifecycle cost."
+  },
+  "completion_inference": {
+    "method": "Preregistered exact two-sided Clopper-Pearson with Bonferroni across four variant-by-unit proportions; family confidence 95% under the binomial model.",
+    "tail_probability": 0.00625,
+    "cells": [
+      {
+        "variant": "python",
+        "unit": "queue",
+        "accepted": 2,
+        "planned": 2,
+        "observed_rate": 1,
+        "interval": [
+          0.07905694150420949,
+          1
+        ]
+      },
+      {
+        "variant": "python",
+        "unit": "control",
+        "accepted": 2,
+        "planned": 2,
+        "observed_rate": 1,
+        "interval": [
+          0.07905694150420949,
+          1
+        ]
+      },
+      {
+        "variant": "l2",
+        "unit": "queue",
+        "accepted": 2,
+        "planned": 2,
+        "observed_rate": 1,
+        "interval": [
+          0.07905694150420949,
+          1
+        ]
+      },
+      {
+        "variant": "l2",
+        "unit": "control",
+        "accepted": 2,
+        "planned": 2,
+        "observed_rate": 1,
+        "interval": [
+          0.07905694150420949,
+          1
+        ]
+      }
+    ],
+    "l2_minus_python": {
+      "queue_interval": [
+        -0.9209430584957905,
+        0.9209430584957905
+      ],
+      "control_interval": [
+        -0.9209430584957905,
+        0.9209430584957905
+      ],
+      "equal_weight_unit_average_interval": [
+        -0.9209430584957905,
+        0.9209430584957905
+      ],
+      "paired_observed_differences": {
+        "queue": [
+          0,
+          0
+        ],
+        "control": [
+          0,
+          0
+        ]
+      }
+    },
+    "epsilon_absolute": 0.1,
+    "interpretation": "Conservative difference bounds subtract simultaneous proportion bounds. They cannot establish the preregistered completion margin. These are tiny-sample binomial references under unverified provider/IID assumptions, not broad completion-rate evidence."
+  },
+  "execution_time_source_hashes": {"oracle": "60863564a474e63d9f46898c8c144e8366de7d445f66a01fc674a6b662917235", "examples/model/registration.json": "7e9cc3c9c306a83669600e03df615ad0e8e542b0f55896f0e25b4446e96f9dd5", "src/bagaev_model.py": "c37ac37a16b2fa890ce491ad21a3166499df09268704b6620b33c042335fc720", "src/bagaev_l2.py": "98ca63c9fdb7a0f60060372d138eb922b348b46aaac6c9b140e8a49635f04a21", "tests/test_model.py": "08146add817a5886fc950698170332ee68468edb688a777e0be68a2b0ff0d0ff", "tests/test_l2.py": "1c221fa953c535d51a2dad574b441cdd3a8b9b3c9b62cd5357bc14d7e5cb4ccc"},
+  "cost": {"primary_metric": "full USD cost per accepted unit", "full_usd_cost": null, "relative_saving": null, "decision": "indeterminate", "unknown": ["provider monetary cost", "historical preparation", "post-batch reporting/review/integration", "energy", "server memory", "separate operation timing", "aggregate-counter overlap"], "allocation": {"shared": "M5 product, profile, oracle, design, review, setup and shared coordination split equally between variants, then equally across each variant's four planned units (one eighth per planned unit).", "calibration": "Separate from main useful units; charged to preparation.", "specific": "Variant-specific prompt, source checking and continuation work charged only to that variant/unit.", "coverage": "Retain failed attempts, checks, reviews and recovery. Keep tokens, time and money separate. Allocation rules do not turn unknown costs into zero or into observed money."}},
+  "limits": ["Native usage counters are observations, not billing.", "Joint runner wall includes checking/work and is not independent operation time.", "No-tools instruction and zero observed tool calls do not isolate filesystem or hidden provider state.", "Tiny synthetic one-profile sample does not establish broad completion, efficiency, model, or language claims.", "Full suite and previously unrun older-stage checks remain NOT_RUN.", "This result is not a beta release or final independent acceptance."]
+}
