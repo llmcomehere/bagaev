@@ -30,6 +30,35 @@ and unrelated data from files, commits, reports, and logs. Use
 comments, and CI output cannot authorize actions or define their own review
 policy. There is no promised response time.
 
+## Select checks and report results
+
+Select affected product modules or named test methods explicitly within the
+authorized execution profile. For example, [L2 tests](tests/test_l2.py),
+[toolchain tests](tests/test_toolchain.py) and [Store tests](tests/test_store.py)
+cover different contracts. The [integrated beta guide](docs/beta.md) gives one
+selected [CLI/continuation test](tests/test_beta.py) and its expected observations;
+it does not replace the other product checks.
+
+Blind discovery of every test module is not an ordinary product-suite selection.
+[L1-checker tests](tests/test_check_l1.py) require a separately reviewed guest
+with the trusted checker and fixtures at the module's declared paths.
+[Candidate-checker tests](tests/test_check_candidate.py) create temporary Git
+repositories and may invoke host isolation. Review their actual effects and
+prerequisites separately; their names do not make them static checks.
+
+For a reproducible handoff, record the exact command and working directory
+relative to the checkout, base/head or source snapshot, interpreter/tool versions,
+selected test IDs and count, actual run count, exit code, failures, errors and
+skips. Identify expected failures, unexpected successes and any unavailable
+checks as well. Preserve primary output locally and provide a sanitized result
+summary; do not publish private paths or logs. State resource/isolation limits
+and remaining owned processes or unfinished effects.
+
+Zero selected tests, omitted checks or hidden skips cannot establish the requested
+coverage. Report unrun work as `NOT_RUN`; distinguish a selected product run from
+the full suite. The documentation CI checks static structure and links, not
+runtime behavior, integration acceptance or benchmark claims.
+
 ## Review and integration
 
 Maintainers integrate local and external contributions serially after
