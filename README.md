@@ -79,7 +79,11 @@ untrusted code. No model account is needed for this example.
   exercised in-process, not through a shell or subprocess. Nine other authored
   methods and the full suite remain **NOT_RUN**; current acceptance is tracked
   in [Issue #16](https://github.com/llmcomehere/bagaev/issues/16).
-  There is no persistent revision store yet.
+- **Local revisions:** an explicit [store and continuation contract](docs/store.md)
+  and `store` CLI commands for immutable candidates, checked admission, portable
+  export and verified restore. Source and authored failure-boundary tests remain
+  **NOT_RUN** pending independent execution acceptance; persistence is not yet a
+  demonstrated result. See [Issue #17](https://github.com/llmcomehere/bagaev/issues/17).
 
 Selected-case parity is not universal equivalence or a model/cost result.
 The [roadmap](docs/roadmap.md) covers language expansion, a cohesive CLI,
