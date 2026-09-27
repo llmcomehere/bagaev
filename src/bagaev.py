@@ -1,4 +1,4 @@
-"""One explicit local L2 toolchain. No implicit cache, store or admission."""
+"""One explicit local L2 toolchain, including opt-in local store commands."""
 from __future__ import annotations
 
 import argparse
@@ -13,7 +13,7 @@ from . import bagaev_l2 as L2
 from . import bagaev_l2_backend as backend
 
 SCHEMA = "bagaev-toolchain/1"
-VERSION = "bagaev-toolchain/1 (L2; CPython backend/1)"
+VERSION = "bagaev-toolchain/1 (L2; CPython backend/1; store/1)"
 TEXT_LIMIT = 1048576
 _FILE_ERRORS = {errno.ENOENT, errno.ENOTDIR, errno.EACCES, errno.EPERM,
                 errno.ELOOP, errno.ENAMETOOLONG, errno.EISDIR, errno.ENXIO}
@@ -23,6 +23,7 @@ _MESSAGES = {
     "TOOL_TRANSPORT": "Invalid or oversized JSON transport",
     "TOOL_OUTPUT": "Output must be a new writable regular file",
     "TOOL_ARTIFACT": "Artifact content does not match expected source and generator",
+    "STORE_BOUND": "Store bound exceeded",
     "L2_JSON": "Invalid language JSON text",
     "L2_PROGRAM": "Invalid language program",
     "L2_REFERENCE": "Invalid language reference",
@@ -65,6 +66,31 @@ def _parser():
         elif name in ("patch", "compile"):
             if name == "patch":
                 command.add_argument("patch")
+            command.add_argument("--output", required=True)
+    storage = commands.add_parser("store", help="Explicit durable L2 revisions")
+    actions = storage.add_subparsers(dest="action", required=True, parser_class=_Parser)
+    for name in ("init", "put", "check", "admit", "inspect", "export", "import", "restore"):
+        command = actions.add_parser(name)
+        command.add_argument("directory")
+        if name in ("init", "import", "restore"):
+            command.add_argument("--policy", required=True)
+        if name in ("import", "restore"):
+            command.add_argument("--package", required=True)
+        if name == "restore":
+            command.add_argument("--snapshot", required=True)
+        if name == "put":
+            command.add_argument("kind", choices=("source", "contract", "change", "evidence", "continuation"))
+            command.add_argument("document")
+        if name == "check":
+            command.add_argument("source")
+        if name == "admit":
+            command.add_argument("operation")
+            command.add_argument("continuation")
+        if name == "inspect":
+            selection = command.add_mutually_exclusive_group()
+            selection.add_argument("--operation")
+            selection.add_argument("--object")
+        if name == "export":
             command.add_argument("--output", required=True)
     return parser
 
@@ -234,6 +260,8 @@ def _dependencies(body):
 
 
 def _execute(args):
+    if args.command == "store":
+        return _store_execute(args)
     if args.command == "diff":
         before, after = _load(args.before), _load(args.after)
         a, b = L2.program_value(before), L2.program_value(after)
@@ -286,17 +314,50 @@ def _execute(args):
     return {"source": program.digest, "engine": engine, "value": result}
 
 
+def _store_execute(args):
+    from . import bagaev_store as store
+
+    def document(path):
+        return store.decode(_read(path, store.LIMIT, "STORE_BOUND"))
+
+    if args.action == "init":
+        return {"snapshot": store.create(args.directory, document(args.policy))}
+    if args.action in ("import", "restore"):
+        data = _read(args.package, store.LIMIT, "STORE_BOUND")
+        policy = document(args.policy)
+        snapshot = (store.import_package(args.directory, data, policy) if args.action == "import"
+                    else store.restore(args.directory, data, policy, args.snapshot))
+        return {"snapshot": snapshot}
+    with store.Store(args.directory) as current:
+        if args.action == "put":
+            return {"object": current.put(args.kind, document(args.document))}
+        if args.action == "check":
+            return {"source": args.source, "evidence": current.check(args.source)}
+        if args.action == "admit":
+            return current.admit(args.operation, args.continuation)
+        if args.action == "inspect":
+            return current.get(args.object) if args.object else current.inspect(args.operation)
+        data = current.export()
+        store.backup(args.output, data)
+        return {"snapshot": store.decode(data)["snapshot"], "bytes": len(data)}
+
+
 def main(argv=None):
     command = None
+    store_errors = ()
     try:
         args = _parser().parse_args(argv)
         command = args.command
+        if command == "store":
+            # The original six commands do not require an installed SQLite module.
+            from . import bagaev_store as store
+            store_errors = (store.StoreError,)
         result = _execute(args)
         envelope = {"schema": SCHEMA, "command": command, "ok": True, "result": result}
         status = 0
-    except (ToolError, L2.L2Error, backend.ArtifactError) as error:
+    except (ToolError, L2.L2Error, backend.ArtifactError) + store_errors as error:
         envelope = {"schema": SCHEMA, "command": command, "ok": False,
-                    "error": {"code": error.code, "message": _MESSAGES[error.code],
+                    "error": {"code": error.code, "message": _MESSAGES.get(error.code, str(error)),
                               "location": getattr(error, "location", None)}}
         status = 2
     except Exception:
