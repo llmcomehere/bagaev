@@ -120,7 +120,7 @@ a `code`; application refusals are returned records. The separate
 [L2 CLI and backend](toolchain.md) provides explicit file operations
 and verified generated artifacts. Its execution status belongs to README and
 Issue #16. The [local store](store.md) adds explicit persistence and admission;
-its unexecuted acceptance status belongs to README and Issue #17.
+its execution and acceptance status belongs to README and Issue #17.
 
 ## Handoff
 

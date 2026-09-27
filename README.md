@@ -81,9 +81,11 @@ untrusted code. No model account is needed for this example.
   in [Issue #16](https://github.com/llmcomehere/bagaev/issues/16).
 - **Local revisions:** an explicit [store and continuation contract](docs/store.md)
   and `store` CLI commands for immutable candidates, checked admission, portable
-  export and verified restore. Source and authored failure-boundary tests remain
-  **NOT_RUN** pending independent execution acceptance; persistence is not yet a
-  demonstrated result. See [Issue #17](https://github.com/llmcomehere/bagaev/issues/17).
+  export and verified restore. A bounded local run executed the store but did
+  not meet acceptance: a malformed-package case returned `L2_REFERENCE` instead
+  of the expected `STORE_FORMAT`, with no destination created. All 16 authored
+  test methods remain **NOT_RUN**. Independent execution acceptance is pending;
+  see [Issue #17](https://github.com/llmcomehere/bagaev/issues/17).
 
 Selected-case parity is not universal equivalence or a model/cost result.
 The [roadmap](docs/roadmap.md) covers language expansion, a cohesive CLI,
