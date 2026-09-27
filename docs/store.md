@@ -2,8 +2,8 @@
 
 `bagaev-store/1` is a bounded, single-host Linux/CPython store for the pure
 [L2 language](l2.md). It implements the M4 slice of the [roadmap](roadmap.md).
-Independent execution acceptance is pending; the [README](../README.md#what-exists-today)
-records the bounded-run result and unrun tests.
+The [README](../README.md#what-exists-today) records bounded local execution
+evidence and the remaining unrun tests.
 It changes neither the language nor the frozen catalog/P0 expectations. Review
 the [execution rules](../AGENTS.md) before running candidate code.
 

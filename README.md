@@ -81,11 +81,14 @@ untrusted code. No model account is needed for this example.
   in [Issue #16](https://github.com/llmcomehere/bagaev/issues/16).
 - **Local revisions:** an explicit [store and continuation contract](docs/store.md)
   and `store` CLI commands for immutable candidates, checked admission, portable
-  export and verified restore. A bounded local run executed the store but did
-  not meet acceptance: a malformed-package case returned `L2_REFERENCE` instead
-  of the expected `STORE_FORMAT`, with no destination created. All 16 authored
-  test methods remain **NOT_RUN**. Independent execution acceptance is pending;
-  see [Issue #17](https://github.com/llmcomehere/bagaev/issues/17).
+  export and verified restore. The latest bounded local run passed on CPython
+  3.14.4 (x86_64) and SQLite 3.46.1: 96 primary records matched, with 19 CLI
+  observations nested in one record. It used 17 fresh child processes and rejected
+  seven wrong-observation controls. Selected cases cover process-interruption
+  recovery, stale-base/CAS refusal, receipt replay, and receiver import/restore.
+  All 16 authored test methods and the full suite remain **NOT_RUN**. This is
+  process-interruption evidence, not power-loss or physical-disk durability
+  evidence. See [Issue #17](https://github.com/llmcomehere/bagaev/issues/17).
 
 Selected-case parity is not universal equivalence or a model/cost result.
 The [roadmap](docs/roadmap.md) covers language expansion, a cohesive CLI,
