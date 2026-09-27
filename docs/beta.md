@@ -1,18 +1,19 @@
 # Integrated beta candidate guide
 
 This guide connects the existing language, CLI, local Store and continuation
-contracts in one standalone workflow. The repository remains a research
-preview. Integrated execution and independent beta acceptance are pending;
-see [current status](../README.md#what-exists-today) and
-[Issue #18](https://github.com/llmcomehere/bagaev/issues/18). Commands below
-describe expected observations, not a completed run.
+contracts in one standalone workflow. Bounded integrated execution is recorded
+below. See [current status](../README.md#what-exists-today) and
+[Issue #18](https://github.com/llmcomehere/bagaev/issues/18) for independent
+candidate acceptance and integration status. Commands below
+describe how to reproduce the scenario; the measured run used a separately
+reviewed execution profile.
 
 ## Profile and preparation
 
 The supported implementation profile is local Linux, CPython and CPU, using
-only the Python standard library, including SQLite. Earlier bounded checks
-recorded CPython 3.14.4 on x86_64 and SQLite 3.46.1; they do not establish an
-integrated result or compatibility with every Python, SQLite or OS version.
+only the Python standard library, including SQLite. The integrated run used
+CPython 3.14.4 on Linux x86_64 and SQLite 3.46.1; it does not establish
+compatibility with every Python, SQLite or OS version.
 Windows, macOS, native/GPU, mobile and distributed profiles have no acceptance
 claim here. No package installation, provider account or private workspace is
 needed.
@@ -23,6 +24,38 @@ authorized local execution profile with synthetic data, owned temporary/output
 storage, resource limits and no credentials. These instructions do not supply
 isolation or authorize running an untrusted change. Record the exact checkout,
 interpreter and SQLite versions with any result.
+
+## Recorded integrated result
+
+Runtime source revision `a29b62b45408db28fb81eea2bb83db860a86aa32` passed the
+second complete M6 run: 88 selected, started and successful product methods,
+with zero failures, errors, skips, expected failures or unexpected successes.
+This covers L0, L1, catalog reference, L2, toolchain, Store, model library and
+the beta scenario. The 17 L1-checker and eight candidate-checker methods were
+not selected or run; this is not the full 113-method suite.
+
+Independent comparison matched 792 catalog observations: all 99 frozen cases
+on each of four retained snapshots, through reference and CPython engines.
+The beta scenario recorded two successful fresh processes and 69 CLI calls
+(26 predecessor, 43 successor): 62 successes and seven intentional refusals.
+It retained A1 at generation 2, continued to A3 at generation 4 and restored
+the exact snapshot. Separate Store methods exercised precommit/postcommit
+process interruption. Observer controls rejected 17 malformed frame/test
+reports, ten wrong catalog observations and eight wrong beta receipts; three
+additional checks distinguished JSON scalar types.
+
+The three execution units (probe, product suite and catalog comparison) exited
+0 with complete capture and empty stderr; outer supervision exited 0 and
+confirmed cleanup with no remaining owned handles. The reviewed local profile
+capped memory at 768 MiB with no swap, tasks at 16, CPU at 50% of one core,
+scratch at 128 MiB and individual files at 32 MiB. Deadlines were 480 seconds
+overall, 300 seconds for the suite and 120 seconds for catalog comparison
+(five seconds for the probe). These are bounds, not performance measurements.
+
+The first run exposed a test-observer UTF-8 serialization error before a frozen
+surrogate input reached evaluation. The observer was corrected without changing
+language behavior or frozen expectations, and the complete second run passed.
+No speed, reliability-rate or cost benefit is inferred from these local results.
 
 ## Run the integrated scenario
 
@@ -140,6 +173,11 @@ it does not run the language, product suite, integration scenario or benchmarks.
 A green docs check is not runtime acceptance. Sensitive reports follow
 [SECURITY](../SECURITY.md); if confidential reporting is unavailable, request
 instructions publicly without disclosing details.
+
+A local contribution rehearsal combined two isolated checkout candidates and
+one independently based local clone contribution through serial integration,
+followed by the combined product run above. This exercised a local fork-style
+workflow, not a real external GitHub account, fork or outside-contributor run.
 
 The [roadmap's exit gates](roadmap.md#beta-exit-checklist) also require relevant
 combined checks, contribution rehearsal and independent candidate acceptance.
