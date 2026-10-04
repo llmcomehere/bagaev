@@ -61,8 +61,8 @@ oracle, not from a candidate evaluator. Shared SHA identities and program data
 are preserved. These tests do not directly observe the semantic step counter,
 complete edit traces, tokenizer cost, model behavior, or native/L3 parity.
 
-The module remains experimental. Broader model/representation measurements,
-the edit-frame receiver and full 57-case/16-mutation form acceptance remain open.
+The modules remain experimental. Broader model/representation measurements,
+semantic-step observations and full 57-case/16-mutation form acceptance remain open.
 
 ## Recorded local checks
 
@@ -72,3 +72,34 @@ All 17 existing L2 regression methods also passed. No test was skipped.
 A separate same-maintainer checking pass corrected a root-string double-parse
 problem and added explicit regressions for it, long integers and resource
 bounds. This is self-review, not an independent review or the full form study.
+
+## Pure structural edit receiver
+
+`bagaev_form_edit.draft(original, frame, candidate_map=None)` validates the
+original L2 snapshot first, then all nine outer gates in the frozen order.
+Patch decoding preserves form errors. The existing pre-CAS patch envelope/map
+checks precede frame-base and optional candidate binding; ordinary L2 CAS,
+combined definition validation and target checking then create the candidate.
+Reconstructed patch strings are data and never reparsed as another patch.
+
+The optional candidate map is a caller-owned dictionary from ID to a record
+with `kind: "patch"` and the exact canonical content `pin`. The caller must keep
+it immutable during the call. The receiver checks the selected binding and
+confers no authority. A null candidate ID needs no map. Canonical hashing is
+iterative and includes the entire patch, not selected fields or source spelling.
+
+Success returns exactly schema/status/base/target/program/patch/admission,
+with schema `probe-draft/1`, status `draft`, and admission false. Both program
+and patch are detached. Failure produces an exception with no partial draft;
+original and retained snapshots remain unchanged. There is no write, shared
+transaction, candidate-ID allocation or automatic commit. L2 errors retain their
+code and have no enclosing location; wrapper errors carry the specified frame
+JSON Pointer.
+
+Six edit test methods passed on October 4, 2026, including 51 frozen edit
+trace/form observations: all 15 edit cases in three forms plus both ordered
+after-stages of the CAS case. Extra checks cover candidate binding before CAS,
+original-first validation, syntax/field priority, surrogate escape boundaries,
+root-string non-reinterpretation and detached ownership. These results do not
+complete the mutation protocol, observe semantic step counts or establish model
+performance or cost. Checking used a separate same-maintainer pass.
