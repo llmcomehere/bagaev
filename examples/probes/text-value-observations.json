@@ -1,0 +1,21 @@
+{
+  "schema": "text-value-observations/1",
+  "contract": "bagaev-text-value-probe/1",
+  "fixture_sha256": "6613df4712977c093f06654e70e0a9dd0564a2865b6df478c1b530e0ae6bed24",
+  "source_sha256": {
+    "examples/probes/backend/rust/text_value.rs": "1c83c1ffe5f7e83ee0a13f4b1f55243dc8252b83dc8cf42d9be51b845dc081a5",
+    "tests/probes/backend/text_value_tests.rs": "b0edc0c3761b987f72b36d64e9184c41e478ca9d1aa103f5e1cbb0f6031dbe2c"
+  },
+  "build": "Rust 1.93.0, edition 2021, -D warnings, test harness",
+  "tests": 30,
+  "passed": 30,
+  "failed": 0,
+  "log": "\nrunning 30 tests\ntest c_case ... ok\ntest c_empty ... ok\ntest c_equal ... ok\ntest c_normalization ... ok\ntest c_nul ... ok\ntest c_prefix ... ok\ntest c_reverse ... ok\ntest c_utf16_trap ... ok\ntest t_ascii ... ok\ntest t_bad_continuation ... ok\ntest t_both_limits ... ok\ntest t_byte_over ... ok\ntest t_bytes_before_utf8 ... ok\ntest t_combining ... ok\ntest t_continuation ... ok\ntest t_controls ... ok\ntest t_empty ... ok\ntest t_four_byte ... ok\ntest t_max_scalar ... ok\ntest t_noncharacter ... ok\ntest t_nul ... ok\ntest t_overlong ... ok\ntest t_scalar_limit ... ok\ntest t_scalar_over ... ok\ntest t_surrogate ... ok\ntest t_three_byte ... ok\ntest t_too_high ... ok\ntest t_truncated ... ok\ntest t_two_byte ... ok\ntest t_utf8_before_scalars ... ok\n\ntest result: ok. 30 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s\n\n",
+  "review": "Separate same-maintainer pass; not independent review",
+  "scope": "Borrowed immutable Text value-library checks; current scalar language and native ABI still do not support Text",
+  "limits": [
+    "No source-language integration, semantic work budget or Text native ABI",
+    "No allocation/export or container ownership model",
+    "Thirty finite cases, not exhaustive Unicode or lifetime proof"
+  ]
+}
