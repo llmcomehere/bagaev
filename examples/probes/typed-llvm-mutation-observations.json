@@ -1,0 +1,106 @@
+{
+  "schema": "typed-llvm-mutation-observations/1",
+  "review": "Separate same-maintainer review; not independent review",
+  "scope": "Five specific data-envelope mutants; no native code execution, timeout or crash counted as detection",
+  "freeze": {
+    "base_source_sha256": "0704f7d7781e4f5b8bc4f86821491b309d1b77a48359e9d7e44ee8fea751ecc4",
+    "input_sha256": "b082762ee62cb3b2d4adf668c1e1b11ad4d10f8ea0075467fca729dc40a45949",
+    "expected_wire_sha256": "3375788d7e5de8ad2d5cb9927cb7202d31d9663c7fc189939b641baa33161f12",
+    "recipes": [
+      {
+        "id": "LM-SOURCE-PIN",
+        "old": "canonical::quote(source.identity(),&mut out);",
+        "new": "canonical::quote(lowered.identity(),&mut out);",
+        "mutant_source_sha256": "7509e4cbbce6e1083fcebd85bad9610ec60181eedba1a3ef2ce1b5aac8eed2b4",
+        "witness": "S-LOCAL-INT"
+      },
+      {
+        "id": "LM-LOWERED-PIN",
+        "old": "canonical::quote(lowered.identity(),&mut out);",
+        "new": "canonical::quote(source.identity(),&mut out);",
+        "mutant_source_sha256": "d4a28211bce303438038d2ff2eca689441d0f0ac55dfaa7f7ecfb81c1f2c25df",
+        "witness": "S-LOCAL-INT"
+      },
+      {
+        "id": "LM-TEXT-BYTE",
+        "old": "canonical::quote(text,&mut out);",
+        "new": "canonical::quote(&format!(\"{text} \"),&mut out);",
+        "mutant_source_sha256": "8e3824a30a48c424e91f232b3a240797350b4588d1eb61236b1256d9860db293",
+        "witness": "S-LOCAL-INT"
+      },
+      {
+        "id": "LM-ADMISSION",
+        "old": "\\\"execution_admission\\\":false",
+        "new": "\\\"execution_admission\\\":true",
+        "mutant_source_sha256": "9dc85577c6b99e74a96c89c1ea71822eeb4c67bdfc67eb4dc574de10b2f2468b",
+        "witness": "S-LOCAL-INT"
+      },
+      {
+        "id": "LM-SCHEMA",
+        "old": "bagaev-typed-llvm-module/1",
+        "new": "bagaev-typed-llvm-module/2",
+        "mutant_source_sha256": "df74b266ce8bb56c33351cf65c819cdf3b16c35fc167d6b689e49410cd889b06",
+        "witness": "S-LOCAL-INT"
+      }
+    ],
+    "scope": "Five finite envelope mutations. Complete changed JSON required; no native execution or authority derived from fields."
+  },
+  "observations": [
+    {
+      "id": "LM-SOURCE-PIN",
+      "detected": true,
+      "complete_wrong_wire": true,
+      "expected_sha256": "3375788d7e5de8ad2d5cb9927cb7202d31d9663c7fc189939b641baa33161f12",
+      "actual_sha256": "9c9069cad2c9aa2b7a722d646019a49be681d420a078ebefdd4ef659144566b4",
+      "changed_fields": [
+        "source_pin"
+      ]
+    },
+    {
+      "id": "LM-LOWERED-PIN",
+      "detected": true,
+      "complete_wrong_wire": true,
+      "expected_sha256": "3375788d7e5de8ad2d5cb9927cb7202d31d9663c7fc189939b641baa33161f12",
+      "actual_sha256": "ea31c29256c09989a558c4a60da9c8d7fe82e39218bffcd64be806a43a50e0c0",
+      "changed_fields": [
+        "lowered_pin"
+      ]
+    },
+    {
+      "id": "LM-TEXT-BYTE",
+      "detected": true,
+      "complete_wrong_wire": true,
+      "expected_sha256": "3375788d7e5de8ad2d5cb9927cb7202d31d9663c7fc189939b641baa33161f12",
+      "actual_sha256": "67d231a74e17f51b4ead243bc92a582c128e437ce0038ef638728b946d69de0a",
+      "changed_fields": [
+        "llvm_ir"
+      ]
+    },
+    {
+      "id": "LM-ADMISSION",
+      "detected": true,
+      "complete_wrong_wire": true,
+      "expected_sha256": "3375788d7e5de8ad2d5cb9927cb7202d31d9663c7fc189939b641baa33161f12",
+      "actual_sha256": "869af7dc9d7499779b0456dd76aa82cf00ada4c2d4fe40cae23b2720e7ac9f9c",
+      "changed_fields": [
+        "execution_admission"
+      ]
+    },
+    {
+      "id": "LM-SCHEMA",
+      "detected": true,
+      "complete_wrong_wire": true,
+      "expected_sha256": "3375788d7e5de8ad2d5cb9927cb7202d31d9663c7fc189939b641baa33161f12",
+      "actual_sha256": "a1afeaada7a4c8970822eacfcf5bbbd22f657cab2692ad18cef99f85a3b633aa",
+      "changed_fields": [
+        "schema"
+      ]
+    }
+  ],
+  "limits": [
+    "Five named field/byte corruptions only; no completeness claim",
+    "Expected wire captured before these mutants and checked against frozen module/source identities",
+    "Mutated admission flag remained data, never execution authority",
+    "No generated native program executed"
+  ]
+}

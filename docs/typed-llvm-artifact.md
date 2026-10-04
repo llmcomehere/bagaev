@@ -92,3 +92,17 @@ same binary; Rust 1.93.0 compiled it with warnings denied. See the
 This is a separate same-maintainer checking pass. It does not add independent
 review, a native execution experiment, compiler performance evidence, production
 isolation or coverage of the original file publisher.
+
+## Concrete negative controls
+
+Five separately copied envelope mutants were detected on the fixed
+`S-LOCAL-INT` witness: substituted source pin, substituted lowered pin, an extra
+LLVM-text byte, an incorrect admission flag and a wrong schema. Each produced
+a complete JSON wire different from the pre-mutation reference. Compiler
+failures, timeouts and crashes were not counted as detections. The admission
+flag remained untrusted data and never authorized an action.
+
+The [exact edits and output hashes](../examples/probes/typed-llvm-mutation-observations.json)
+record this finite checking pass. Production source was unchanged; these five
+mutants do not prove complete defect detection, independent semantic correctness
+or native execution conformance.
