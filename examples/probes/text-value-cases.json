@@ -1,0 +1,299 @@
+{
+  "schema": "text-value-cases/1",
+  "status": "FROZEN_BEFORE_VALUE_IMPLEMENTATION",
+  "contract": "bagaev-text-value-probe/1",
+  "construction": [
+    {
+      "id": "T-EMPTY",
+      "hex": "",
+      "expected": {
+        "kind": "text",
+        "byte_len": 0,
+        "scalar_len": 0,
+        "bytes_unchanged": true
+      }
+    },
+    {
+      "id": "T-ASCII",
+      "hex": "4162",
+      "expected": {
+        "kind": "text",
+        "byte_len": 2,
+        "scalar_len": 2,
+        "bytes_unchanged": true
+      }
+    },
+    {
+      "id": "T-TWO-BYTE",
+      "hex": "c3a9",
+      "expected": {
+        "kind": "text",
+        "byte_len": 2,
+        "scalar_len": 1,
+        "bytes_unchanged": true
+      }
+    },
+    {
+      "id": "T-THREE-BYTE",
+      "hex": "e282ac",
+      "expected": {
+        "kind": "text",
+        "byte_len": 3,
+        "scalar_len": 1,
+        "bytes_unchanged": true
+      }
+    },
+    {
+      "id": "T-FOUR-BYTE",
+      "hex": "f0908080",
+      "expected": {
+        "kind": "text",
+        "byte_len": 4,
+        "scalar_len": 1,
+        "bytes_unchanged": true
+      }
+    },
+    {
+      "id": "T-COMBINING",
+      "hex": "65cc81",
+      "expected": {
+        "kind": "text",
+        "byte_len": 3,
+        "scalar_len": 2,
+        "bytes_unchanged": true
+      }
+    },
+    {
+      "id": "T-NUL",
+      "hex": "610062",
+      "expected": {
+        "kind": "text",
+        "byte_len": 3,
+        "scalar_len": 3,
+        "bytes_unchanged": true
+      }
+    },
+    {
+      "id": "T-CONTROLS",
+      "hex": "000a1f7f",
+      "expected": {
+        "kind": "text",
+        "byte_len": 4,
+        "scalar_len": 4,
+        "bytes_unchanged": true
+      }
+    },
+    {
+      "id": "T-MAX-SCALAR",
+      "hex": "f48fbfbf",
+      "expected": {
+        "kind": "text",
+        "byte_len": 4,
+        "scalar_len": 1,
+        "bytes_unchanged": true
+      }
+    },
+    {
+      "id": "T-NONCHARACTER",
+      "hex": "efbfbe",
+      "expected": {
+        "kind": "text",
+        "byte_len": 3,
+        "scalar_len": 1,
+        "bytes_unchanged": true
+      }
+    },
+    {
+      "id": "T-CONTINUATION",
+      "hex": "80",
+      "expected": {
+        "kind": "refusal",
+        "code": "TEXT_UTF8"
+      }
+    },
+    {
+      "id": "T-TRUNCATED",
+      "hex": "e282",
+      "expected": {
+        "kind": "refusal",
+        "code": "TEXT_UTF8"
+      }
+    },
+    {
+      "id": "T-OVERLONG",
+      "hex": "c080",
+      "expected": {
+        "kind": "refusal",
+        "code": "TEXT_UTF8"
+      }
+    },
+    {
+      "id": "T-SURROGATE",
+      "hex": "eda080",
+      "expected": {
+        "kind": "refusal",
+        "code": "TEXT_UTF8"
+      }
+    },
+    {
+      "id": "T-TOO-HIGH",
+      "hex": "f4908080",
+      "expected": {
+        "kind": "refusal",
+        "code": "TEXT_UTF8"
+      }
+    },
+    {
+      "id": "T-BAD-CONTINUATION",
+      "hex": "c341",
+      "expected": {
+        "kind": "refusal",
+        "code": "TEXT_UTF8"
+      }
+    },
+    {
+      "id": "T-SCALAR-LIMIT",
+      "repeat": {
+        "hex": "61",
+        "count": 256
+      },
+      "expected": {
+        "kind": "text",
+        "byte_len": 256,
+        "scalar_len": 256,
+        "bytes_unchanged": true
+      }
+    },
+    {
+      "id": "T-SCALAR-OVER",
+      "repeat": {
+        "hex": "61",
+        "count": 257
+      },
+      "expected": {
+        "kind": "refusal",
+        "code": "TEXT_SCALARS"
+      }
+    },
+    {
+      "id": "T-BOTH-LIMITS",
+      "repeat": {
+        "hex": "f0908080",
+        "count": 256
+      },
+      "expected": {
+        "kind": "text",
+        "byte_len": 1024,
+        "scalar_len": 256,
+        "bytes_unchanged": true
+      }
+    },
+    {
+      "id": "T-BYTE-OVER",
+      "repeat": {
+        "hex": "61",
+        "count": 1025
+      },
+      "expected": {
+        "kind": "refusal",
+        "code": "TEXT_BYTES"
+      }
+    },
+    {
+      "id": "T-BYTES-BEFORE-UTF8",
+      "repeat": {
+        "hex": "ff",
+        "count": 1025
+      },
+      "expected": {
+        "kind": "refusal",
+        "code": "TEXT_BYTES"
+      }
+    },
+    {
+      "id": "T-UTF8-BEFORE-SCALARS",
+      "repeat": {
+        "hex": "ff",
+        "count": 257
+      },
+      "expected": {
+        "kind": "refusal",
+        "code": "TEXT_UTF8"
+      }
+    }
+  ],
+  "comparison": [
+    {
+      "id": "C-EMPTY",
+      "left_hex": "",
+      "right_hex": "",
+      "expected": {
+        "compare": 0,
+        "equal": true
+      }
+    },
+    {
+      "id": "C-EQUAL",
+      "left_hex": "c3a9",
+      "right_hex": "c3a9",
+      "expected": {
+        "compare": 0,
+        "equal": true
+      }
+    },
+    {
+      "id": "C-PREFIX",
+      "left_hex": "61",
+      "right_hex": "6162",
+      "expected": {
+        "compare": -1,
+        "equal": false
+      }
+    },
+    {
+      "id": "C-REVERSE",
+      "left_hex": "6162",
+      "right_hex": "61",
+      "expected": {
+        "compare": 1,
+        "equal": false
+      }
+    },
+    {
+      "id": "C-NUL",
+      "left_hex": "6100",
+      "right_hex": "61",
+      "expected": {
+        "compare": 1,
+        "equal": false
+      }
+    },
+    {
+      "id": "C-NORMALIZATION",
+      "left_hex": "c3a9",
+      "right_hex": "65cc81",
+      "expected": {
+        "compare": 1,
+        "equal": false
+      }
+    },
+    {
+      "id": "C-UTF16-TRAP",
+      "left_hex": "ee8080",
+      "right_hex": "f0908080",
+      "expected": {
+        "compare": -1,
+        "equal": false
+      }
+    },
+    {
+      "id": "C-CASE",
+      "left_hex": "41",
+      "right_hex": "61",
+      "expected": {
+        "compare": -1,
+        "equal": false
+      }
+    }
+  ]
+}
