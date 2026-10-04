@@ -71,3 +71,20 @@ literal values. Combined-invalid cases test gate priority.
 These finite examples are not a proof of all UTF-8 behavior or allocation safety.
 Keep source acceptance, executed library checks and native language conformance
 separate. No candidate code is authorized merely by appearing in this contract.
+
+## Bounded value implementation
+
+The [Rust value module](../examples/probes/backend/rust/text_value.rs) now provides
+private-field, lifetime-bound Text views. Construction checks byte cap, UTF-8 and
+scalar cap in order; observation methods neither allocate nor normalize.
+
+All 30 [literal tests](../tests/probes/backend/text_value_tests.rs), transcribed
+from the pre-frozen fixture, passed under Rust 1.93.0 with warnings denied.
+Successful construction checks exact bytes and the original slice pointer;
+construction tests also verify unchanged input. Comparison cases check both
+directions. See the [recorded observations](../examples/probes/text-value-observations.json).
+
+These are executed library tests and a separate same-maintainer review. Text is
+still unavailable in the scalar source language and scalar native ABI. No new
+compiler, native Text program, semantic work accounting or production acceptance
+is established by this result.
