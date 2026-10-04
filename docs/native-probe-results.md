@@ -64,3 +64,21 @@ This run does not certify the earlier host-specific isolation controls,
 filesystem durability, hostile concurrent writers, or power-loss recovery.
 The JSON summary records bounded counts and source identities; it is a report,
 not execution authority or a replacement for inspecting code and outcomes.
+
+## Concrete frontend and LLVM mutations
+
+A subsequent bounded experiment detected all 14 concrete source edits tied to
+the frozen kernel mutation witnesses. The [recipes and observed differences](../examples/probes/kernel-mutation-observations.json)
+retain two shared-frontend static-refusal bypasses and twelve LLVM backend
+mutations. The eager-branch witness has two stages. Runtime witnesses were run
+at O0/O2/Os with both output prefills, giving 80 observations in total. Inputs
+remained unchanged, and the unmodified witnesses had already matched the frozen
+oracle in the pinned baseline collection. Neither oracle nor materialized
+expectations changed.
+
+The edits challenge overflow handling, laziness, zero loops, work charging and
+boundaries, failure order, static types, unused slots and argument locations.
+Detection means deviation from the exact correct result or bypass of a required
+static refusal. These are negative controls, not production artifacts. They do
+not establish all possible mutation coverage, Cranelift-specific mutation
+coverage, independent review or production acceptance.
