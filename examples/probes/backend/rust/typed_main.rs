@@ -5,6 +5,7 @@ pub mod ir;
 pub mod canonical;
 pub mod sha256;
 pub mod typed_source;
+pub mod llvm;
 
 use std::fs::File;
 use std::io::{self, Read, Write};
@@ -43,8 +44,8 @@ fn frame(path: &Path) -> io::Result<Vec<u8>> {
 
 fn run() -> Result<(), &'static str> {
     let args:Vec<_>=std::env::args_os().skip(1).collect();
-    const USAGE:&str="usage: typed-source check-source --input FILE | project-node --input FILE --lowered-pin PIN --node U16";
-    let projection=if args.len()==3 && args[0]=="check-source" && args[1]=="--input" && !args[2].is_empty() {
+    const USAGE:&str="usage: typed-source check-source|emit-llvm --input FILE | project-node --input FILE --lowered-pin PIN --node U16";
+    let projection=if args.len()==3 && (args[0]=="check-source" || args[0]=="emit-llvm") && args[1]=="--input" && !args[2].is_empty() {
         None
     } else if args.len()==7 && args[0]=="project-node" && args[1]=="--input" && !args[2].is_empty()
         && args[3]=="--lowered-pin" && args[5]=="--node" {
@@ -55,6 +56,7 @@ fn run() -> Result<(), &'static str> {
     } else {return Err(USAGE);};
     let bytes=frame(Path::new(&args[2])).map_err(|_|"unable to read complete input file")?;
     let output=match projection {
+        None if args[0]=="emit-llvm"=>typed_source::emit_llvm_source(&bytes),
         None=>typed_source::process(&bytes),
         Some((pin,node))=>typed_source::project_node(&bytes,pin,node),
     }.map_err(|_|"unable to construct detached typed result")?;
