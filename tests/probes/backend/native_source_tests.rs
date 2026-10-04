@@ -303,6 +303,54 @@ mod tests {
     }
 
     #[test]
+    fn complete_writer_preserves_short_writes_interrupts_and_failure_order() {
+        struct Scripted {
+            bytes: Vec<u8>, calls: usize, flushes: usize,
+            interrupt_first: bool, stop_after: Option<usize>, zero: bool,
+            flush_failure: bool,
+        }
+        impl Write for Scripted {
+            fn write(&mut self, bytes: &[u8]) -> io::Result<usize> {
+                self.calls+=1;
+                if self.interrupt_first && self.calls==1 {
+                    return Err(io::Error::new(io::ErrorKind::Interrupted,"retry"));
+                }
+                if self.stop_after==Some(self.bytes.len()) {
+                    return if self.zero { Ok(0) } else {
+                        Err(io::Error::new(io::ErrorKind::BrokenPipe,"after prefix"))
+                    };
+                }
+                let n=bytes.len().min(2);
+                self.bytes.extend_from_slice(&bytes[..n]); Ok(n)
+            }
+            fn flush(&mut self) -> io::Result<()> {
+                self.flushes+=1;
+                if self.flush_failure { Err(io::Error::new(io::ErrorKind::BrokenPipe,"flush")) }
+                else { Ok(()) }
+            }
+        }
+        let fresh=||Scripted {bytes:Vec::new(),calls:0,flushes:0,interrupt_first:false,
+            stop_after:None,zero:false,flush_failure:false};
+        for interrupt in [false,true] {
+            let mut w=fresh(); w.interrupt_first=interrupt;
+            native_cli::write_complete(&mut w,b"wire\n").unwrap();
+            assert_eq!(w.bytes,b"wire\n"); assert_eq!(w.flushes,1);
+            assert_eq!(w.calls,if interrupt {4} else {3});
+        }
+        for zero in [false,true] {
+            let mut w=fresh(); w.stop_after=Some(2); w.zero=zero;
+            let error=native_cli::write_complete(&mut w,b"wire\n").unwrap_err();
+            assert_eq!(error.kind(),if zero {io::ErrorKind::WriteZero} else {io::ErrorKind::BrokenPipe});
+            assert_eq!(w.bytes,b"wi"); assert_eq!(w.calls,2); assert_eq!(w.flushes,0);
+        }
+        let mut w=fresh(); w.flush_failure=true;
+        assert_eq!(native_cli::write_complete(&mut w,b"wire\n").unwrap_err().kind(),io::ErrorKind::BrokenPipe);
+        assert_eq!(w.bytes,b"wire\n"); assert_eq!(w.flushes,1);
+        let mut w=fresh(); native_cli::write_complete(&mut w,b"").unwrap();
+        assert!(w.bytes.is_empty()); assert_eq!(w.calls,0); assert_eq!(w.flushes,1);
+    }
+
+    #[test]
     fn explicit_frame_reader_keeps_overrun_witness_and_rejects_special_file() {
         // Future test execution owns only this create_new temporary input;
         // no /out witness, native symbol, subprocess or source execution here.
