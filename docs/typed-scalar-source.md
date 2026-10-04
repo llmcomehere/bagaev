@@ -151,3 +151,25 @@ a later insertion. Reusing the transport/kernel checker is not an independent
 second implementation of those components. Review was same-maintainer. No full
 L3, container language, model benefit, runtime speedup or production admission
 is established by these source-check observations.
+
+## Bounded native composition
+
+A subsequent [integration collection](../examples/probes/typed-scalar-native-observations.json)
+formed inferred-source inputs by removing only explicit let/loop type annotations
+from the frozen kernel programs. Before collection, it fixed 25 stages and their
+source, lowered-program, origin-map and input identities. All 25 complete source
+result wires matched those expectations. The lowered programs had to equal the
+original kernels exactly before code generation; drafts did not supply admission.
+
+Fresh LLVM and Cranelift artifacts then matched all 300 complete native ABI
+observations: 25 stages, three modes per backend and both prefills. All 64 input
+bytes were preserved. These native expected bytes came from the pre-existing
+frozen kernel oracle, not the adapter or either backend. The additional source
+inputs were prepared after adapter implementation and are integration cases,
+not a new independent sample.
+
+This checks composition through the existing lowered-kernel ABI. It does not
+implement or verify a new source-runtime diagnostic wire, full L3/container
+semantics, native L2 parity, AP1 effects or a production execution profile. It is
+not a performance comparison. The earlier 43-case check remains source-only;
+its evidence is not retroactively described as native execution.
