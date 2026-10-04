@@ -173,3 +173,7 @@ implement or verify a new source-runtime diagnostic wire, full L3/container
 semantics, native L2 parity, AP1 effects or a production execution profile. It is
 not a performance comparison. The earlier 43-case check remains source-only;
 its evidence is not retroactively described as native execution.
+
+Pinned [source-location lookup](typed-source-locations.md) maps complete expression
+IDs back to the original source without treating an origin record as execution
+evidence or authority.

@@ -474,3 +474,28 @@ pub fn process(bytes:&[u8])->Result<Vec<u8>,&'static str> {
     canonical::quote(source.identity(),&mut out);out.push_str("}\n");
     if out.len()>8*1024*1024 {return Err("typed source output bound");}Ok(out.into_bytes())
 }
+
+fn location_refusal(code:&str)->Vec<u8> {
+    format!("{{\"code\":\"{code}\",\"execution_admission\":false,\"kind\":\"refused\",\"schema\":\"bagaev-typed-source-location/1\"}}\n").into_bytes()
+}
+/// Rechecked expression location lookup, not authentication of a native result.
+/// Source, expected lowered pin, then node bounds are checked in that order.
+pub fn project_node(bytes:&[u8],expected_lowered_pin:&str,node:u16)->Result<Vec<u8>,&'static str> {
+    use std::fmt::Write;
+    let source=match check_source_bytes(bytes) {
+        Ok(source)=>source,
+        Err(FrontendError::Refusal(_))=>return Ok(location_refusal("TS_LOCATION_SOURCE")),
+        Err(FrontendError::Environment(message))=>return Err(message),
+    };
+    let (lowered,pointers)=lower(&source)?;
+    if lowered.identity()!=expected_lowered_pin {return Ok(location_refusal("TS_LOCATION_PIN"));}
+    let index=match node.checked_sub(1).map(usize::from) {
+        Some(index) if index<source.nodes.len()=>index,
+        _=>return Ok(location_refusal("TS_LOCATION_NODE")),
+    };
+    let mut out=String::from("{\"execution_admission\":false,\"kind\":\"mapped\",\"lowered_location\":");
+    canonical::quote(&pointers[index],&mut out);out.push_str(",\"lowered_pin\":");
+    canonical::quote(lowered.identity(),&mut out);write!(&mut out,",\"node\":{node},\"schema\":\"bagaev-typed-source-location/1\",\"source_location\":").map_err(|_|"location formatting")?;
+    canonical::quote(source.nodes[index].pointer(),&mut out);out.push_str(",\"source_pin\":");canonical::quote(source.identity(),&mut out);out.push_str("}\n");
+    if out.len()>8*1024*1024 {return Err("typed location output bound");}Ok(out.into_bytes())
+}

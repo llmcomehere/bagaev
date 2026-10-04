@@ -43,11 +43,21 @@ fn frame(path: &Path) -> io::Result<Vec<u8>> {
 
 fn run() -> Result<(), &'static str> {
     let args:Vec<_>=std::env::args_os().skip(1).collect();
-    if args.len()!=3 || args[0]!="check-source" || args[1]!="--input" || args[2].is_empty() {
-        return Err("usage: typed-source check-source --input FILE");
-    }
+    const USAGE:&str="usage: typed-source check-source --input FILE | project-node --input FILE --lowered-pin PIN --node U16";
+    let projection=if args.len()==3 && args[0]=="check-source" && args[1]=="--input" && !args[2].is_empty() {
+        None
+    } else if args.len()==7 && args[0]=="project-node" && args[1]=="--input" && !args[2].is_empty()
+        && args[3]=="--lowered-pin" && args[5]=="--node" {
+        let pin=args[4].to_str().ok_or(USAGE)?;
+        let text=args[6].to_str().ok_or(USAGE)?;let node=text.parse::<u16>().map_err(|_|USAGE)?;
+        if node.to_string()!=text {return Err(USAGE);}
+        Some((pin,node))
+    } else {return Err(USAGE);};
     let bytes=frame(Path::new(&args[2])).map_err(|_|"unable to read complete input file")?;
-    let output=typed_source::process(&bytes).map_err(|_|"unable to construct detached typed draft")?;
+    let output=match projection {
+        None=>typed_source::process(&bytes),
+        Some((pin,node))=>typed_source::project_node(&bytes,pin,node),
+    }.map_err(|_|"unable to construct detached typed result")?;
     let mut stdout=io::stdout().lock();
     stdout.write_all(&output).map_err(|_|"unable to complete output")?;
     stdout.flush().map_err(|_|"unable to complete output")?;

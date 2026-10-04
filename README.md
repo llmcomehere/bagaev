@@ -73,6 +73,11 @@ untrusted code. No model account is needed for this example.
   [October 4 observations](docs/native-probe-results.md) record 300 matching
   native ABI observations at O0/O2/Os. This is not full native L2/L3 support
   or a measured performance/cost advantage.
+- **Experimental inferred scalar source:** [local and loop-accumulator types](docs/typed-scalar-source.md)
+  are inferred while function boundaries remain explicit. The Rust adapter passed
+  43 frozen source checks and composed with both backends on 25 frozen stages.
+  [Pinned source-location lookup](docs/typed-source-locations.md) also passed its
+  bounded mapping suite. This is a scalar experiment, not full L3 or admission.
 - **Experimental Cranelift comparison:** a [locked AOT object backend](docs/probe-cranelift.md)
   passed 150 fixed native ABI observations using the same kernel oracle.
   [Initial bounded runtime and source-byte observations](docs/probe-measurements.md)
