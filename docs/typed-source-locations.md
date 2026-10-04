@@ -81,3 +81,17 @@ across backends, modes and prefills. Their source/lowered identities and expecte
 origin records were checked; no new native program ran for this mapping test.
 This still does not authenticate arbitrary supplied runtime evidence. Review
 was a separate same-maintainer pass.
+
+## Concrete source and mapping negative controls
+
+Seven separately copied source mutations were detected at fixed witnesses: wrong
+Bool local/loop inference, bypassed pin comparison, reversed pin/node refusal
+priority, a lowered pointer mislabeled as a source pointer, a substituted source
+pin and an incorrect admission flag. The
+[recipes and complete wrong wires](../examples/probes/typed-source-mutation-observations.json)
+retain both expected and observed data. All seven compiled and returned complete
+wires; crashes, timeouts and compilation failures were not counted as detection.
+
+The incorrect admission=true field was treated only as test data, never as
+authority. No lowered program ran, no production source changed, and these seven
+examples do not establish full mutation coverage or independent review.

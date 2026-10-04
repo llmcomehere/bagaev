@@ -1,0 +1,375 @@
+{
+  "schema": "typed-source-mutation-observations/1",
+  "date": "2026-10-04",
+  "status": "PASS",
+  "base_source_sha256": "623f6facaedcfceb769c0208a81149631d53d257559f94bee281c035a772680d",
+  "recipes": [
+    {
+      "id": "SM-LET-BOOL",
+      "kind": "source",
+      "witness": "S-LOCAL-BOOL",
+      "edits": [
+        {
+          "old": "self.functions[f].locals[slot].ty=declared;",
+          "new": "self.functions[f].locals[slot].ty=Type::Int64;"
+        }
+      ],
+      "expected_sha256": "4038922f9dc6fb1d9352bceacd72354667b154b7a21ef95285b96e6e6a2e0de2",
+      "mutant_source_sha256": "21c1eadca6bc4b9788d6a15995e457cfa9a854db5a0295620725ec2dae29784d"
+    },
+    {
+      "id": "SM-LOOP-BOOL",
+      "kind": "source",
+      "witness": "S-LOOP-BOOL",
+      "edits": [
+        {
+          "old": "self.functions[f].locals[accumulator_slot].ty=declared;",
+          "new": "self.functions[f].locals[accumulator_slot].ty=Type::Int64;"
+        }
+      ],
+      "expected_sha256": "259f009fb6049116b6e3f6fd115a62555945f0d0fe9f649517814fbd8107ef22",
+      "mutant_source_sha256": "010ccfa0cf354f134e36a5ee26cd78c8ae5f19ebb78526973086a13cf9ec1386"
+    },
+    {
+      "id": "SM-PIN-BYPASS",
+      "kind": "location",
+      "witness": "L-PIN",
+      "edits": [
+        {
+          "old": "    if lowered.identity()!=expected_lowered_pin {return Ok(location_refusal(\"TS_LOCATION_PIN\"));}\n",
+          "new": "    if false && lowered.identity()!=expected_lowered_pin {return Ok(location_refusal(\"TS_LOCATION_PIN\"));}\n"
+        }
+      ],
+      "expected_sha256": "b6930aa038cb47338e2b3a8e49278d431d435fbab3a378ce7795ad832e2665ec",
+      "mutant_source_sha256": "75a2360510f0587d8fd469ccd6cadfdd6a99c031ab4bbb0de9e5c9e3c90e302c"
+    },
+    {
+      "id": "SM-PIN-ORDER",
+      "kind": "location",
+      "witness": "L-PIN-BEFORE-NODE",
+      "edits": [
+        {
+          "old": "    if lowered.identity()!=expected_lowered_pin {return Ok(location_refusal(\"TS_LOCATION_PIN\"));}\n",
+          "new": ""
+        },
+        {
+          "old": "    let mut out=String::from(\"{\\\"execution_admission\\\":false,\\\"kind\\\":\\\"mapped\\\",\\\"lowered_location\\\":\");",
+          "new": "    if lowered.identity()!=expected_lowered_pin {return Ok(location_refusal(\"TS_LOCATION_PIN\"));}\n    let mut out=String::from(\"{\\\"execution_admission\\\":false,\\\"kind\\\":\\\"mapped\\\",\\\"lowered_location\\\":\");"
+        }
+      ],
+      "expected_sha256": "b6930aa038cb47338e2b3a8e49278d431d435fbab3a378ce7795ad832e2665ec",
+      "mutant_source_sha256": "31efe4135d3a2dfd7fc4fa3df76bf51e35efdbce556fe0c7e15545cdb5e28a9b"
+    },
+    {
+      "id": "SM-LOCATION-SHIFT",
+      "kind": "location",
+      "witness": "S-LOCAL-INT-2",
+      "edits": [
+        {
+          "old": "canonical::quote(source.nodes[index].pointer(),&mut out);",
+          "new": "canonical::quote(&pointers[index],&mut out);"
+        }
+      ],
+      "expected_sha256": "526e4d4400061680797856c3a4992cd902755497ac72b731af7d200205fd8fd9",
+      "mutant_source_sha256": "62577b0bf82e32e2e3b9cefeffd17b799331836a8deb8ee3c997f479002baae4"
+    },
+    {
+      "id": "SM-SOURCE-PIN",
+      "kind": "location",
+      "witness": "S-LOCAL-INT-2",
+      "edits": [
+        {
+          "old": "out.push_str(\",\\\"source_pin\\\":\");canonical::quote(source.identity(),&mut out);",
+          "new": "out.push_str(\",\\\"source_pin\\\":\");canonical::quote(lowered.identity(),&mut out);"
+        }
+      ],
+      "expected_sha256": "526e4d4400061680797856c3a4992cd902755497ac72b731af7d200205fd8fd9",
+      "mutant_source_sha256": "92fd97187adfa2214370c3bba73e3260fc7f376457cd051fcf0c141cdf35aed5"
+    },
+    {
+      "id": "SM-ADMISSION-FLAG",
+      "kind": "location",
+      "witness": "S-LOCAL-INT-1",
+      "edits": [
+        {
+          "old": "    let mut out=String::from(\"{\\\"execution_admission\\\":false,\\\"kind\\\":\\\"mapped\\\",\\\"lowered_location\\\":\");",
+          "new": "    let mut out=String::from(\"{\\\"execution_admission\\\":true,\\\"kind\\\":\\\"mapped\\\",\\\"lowered_location\\\":\");"
+        }
+      ],
+      "expected_sha256": "6ec0184d29b14e4dba5359643743456adb6e1eb3d3b2eccb3fc5571f41a817c1",
+      "mutant_source_sha256": "3223766f67429632c629046563206c3324d5dae69f6a92dc69b16b142cbc190c"
+    }
+  ],
+  "observations": [
+    {
+      "id": "SM-LET-BOOL",
+      "kind": "source",
+      "witness": "S-LOCAL-BOOL",
+      "detected": true,
+      "expected": {
+        "kind": "draft",
+        "lowered": {
+          "schema": "bagaev-probe-ir/1",
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [],
+              "result": "Bool",
+              "body": [
+                "let",
+                "v",
+                "Bool",
+                [
+                  "bool",
+                  true
+                ],
+                [
+                  "not",
+                  [
+                    "use",
+                    "v"
+                  ]
+                ]
+              ]
+            }
+          }
+        },
+        "execution_admission": false,
+        "origins": [
+          {
+            "id": 1,
+            "source": "/functions/main/body",
+            "lowered": "/functions/main/body"
+          },
+          {
+            "id": 2,
+            "source": "/functions/main/body/2",
+            "lowered": "/functions/main/body/3"
+          },
+          {
+            "id": 3,
+            "source": "/functions/main/body/3",
+            "lowered": "/functions/main/body/4"
+          },
+          {
+            "id": 4,
+            "source": "/functions/main/body/3/1",
+            "lowered": "/functions/main/body/4/1"
+          }
+        ],
+        "schema": "bagaev-typed-source-result/1",
+        "source_pin": "sha256:307284ee9d0c3a1414ee9e3a3a8c8c1a0086de290f3609f4ef7d375ca162c87c",
+        "lowered_pin": "sha256:82e7505ad7b2b406f7997879b3046c7d5abb1ed9f7096559b7e3224e0ca405f4"
+      },
+      "actual": {
+        "code": "TS_TYPE",
+        "execution_admission": false,
+        "kind": "refusal",
+        "schema": "bagaev-typed-source-result/1",
+        "source_location": "/functions/main/body/3/1"
+      },
+      "complete_wrong_wire": true
+    },
+    {
+      "id": "SM-LOOP-BOOL",
+      "kind": "source",
+      "witness": "S-LOOP-BOOL",
+      "detected": true,
+      "expected": {
+        "kind": "draft",
+        "lowered": {
+          "schema": "bagaev-probe-ir/1",
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [],
+              "result": "Bool",
+              "body": [
+                "loop",
+                0,
+                "i",
+                "a",
+                "Bool",
+                [
+                  "bool",
+                  false
+                ],
+                [
+                  "not",
+                  [
+                    "use",
+                    "a"
+                  ]
+                ]
+              ]
+            }
+          }
+        },
+        "execution_admission": false,
+        "origins": [
+          {
+            "id": 1,
+            "source": "/functions/main/body",
+            "lowered": "/functions/main/body"
+          },
+          {
+            "id": 2,
+            "source": "/functions/main/body/4",
+            "lowered": "/functions/main/body/5"
+          },
+          {
+            "id": 3,
+            "source": "/functions/main/body/5",
+            "lowered": "/functions/main/body/6"
+          },
+          {
+            "id": 4,
+            "source": "/functions/main/body/5/1",
+            "lowered": "/functions/main/body/6/1"
+          }
+        ],
+        "schema": "bagaev-typed-source-result/1",
+        "source_pin": "sha256:30c6634c7ef68f6d351307e51ed1357afa456040d7f3d47a2901ee8c3475d716",
+        "lowered_pin": "sha256:27fca8596757ee2d59b81db5ae557bfe22446cb63569866a32b58356d56bc5c3"
+      },
+      "actual": {
+        "code": "TS_TYPE",
+        "execution_admission": false,
+        "kind": "refusal",
+        "schema": "bagaev-typed-source-result/1",
+        "source_location": "/functions/main/body/5/1"
+      },
+      "complete_wrong_wire": true
+    },
+    {
+      "id": "SM-PIN-BYPASS",
+      "kind": "location",
+      "witness": "L-PIN",
+      "detected": true,
+      "expected": {
+        "schema": "bagaev-typed-source-location/1",
+        "kind": "refused",
+        "code": "TS_LOCATION_PIN",
+        "execution_admission": false
+      },
+      "actual": {
+        "execution_admission": false,
+        "kind": "mapped",
+        "lowered_location": "/functions/main/body",
+        "lowered_pin": "sha256:e0b12d5c3e0e91b83f0ede9c6050c552af7cc1a5588bdf9d766088d35dac57c3",
+        "node": 1,
+        "schema": "bagaev-typed-source-location/1",
+        "source_location": "/functions/main/body",
+        "source_pin": "sha256:b082762ee62cb3b2d4adf668c1e1b11ad4d10f8ea0075467fca729dc40a45949"
+      },
+      "complete_wrong_wire": true
+    },
+    {
+      "id": "SM-PIN-ORDER",
+      "kind": "location",
+      "witness": "L-PIN-BEFORE-NODE",
+      "detected": true,
+      "expected": {
+        "schema": "bagaev-typed-source-location/1",
+        "kind": "refused",
+        "code": "TS_LOCATION_PIN",
+        "execution_admission": false
+      },
+      "actual": {
+        "code": "TS_LOCATION_NODE",
+        "execution_admission": false,
+        "kind": "refused",
+        "schema": "bagaev-typed-source-location/1"
+      },
+      "complete_wrong_wire": true
+    },
+    {
+      "id": "SM-LOCATION-SHIFT",
+      "kind": "location",
+      "witness": "S-LOCAL-INT-2",
+      "detected": true,
+      "expected": {
+        "schema": "bagaev-typed-source-location/1",
+        "kind": "mapped",
+        "source_pin": "sha256:b082762ee62cb3b2d4adf668c1e1b11ad4d10f8ea0075467fca729dc40a45949",
+        "lowered_pin": "sha256:e0b12d5c3e0e91b83f0ede9c6050c552af7cc1a5588bdf9d766088d35dac57c3",
+        "node": 2,
+        "source_location": "/functions/main/body/2",
+        "lowered_location": "/functions/main/body/3",
+        "execution_admission": false
+      },
+      "actual": {
+        "execution_admission": false,
+        "kind": "mapped",
+        "lowered_location": "/functions/main/body/3",
+        "lowered_pin": "sha256:e0b12d5c3e0e91b83f0ede9c6050c552af7cc1a5588bdf9d766088d35dac57c3",
+        "node": 2,
+        "schema": "bagaev-typed-source-location/1",
+        "source_location": "/functions/main/body/3",
+        "source_pin": "sha256:b082762ee62cb3b2d4adf668c1e1b11ad4d10f8ea0075467fca729dc40a45949"
+      },
+      "complete_wrong_wire": true
+    },
+    {
+      "id": "SM-SOURCE-PIN",
+      "kind": "location",
+      "witness": "S-LOCAL-INT-2",
+      "detected": true,
+      "expected": {
+        "schema": "bagaev-typed-source-location/1",
+        "kind": "mapped",
+        "source_pin": "sha256:b082762ee62cb3b2d4adf668c1e1b11ad4d10f8ea0075467fca729dc40a45949",
+        "lowered_pin": "sha256:e0b12d5c3e0e91b83f0ede9c6050c552af7cc1a5588bdf9d766088d35dac57c3",
+        "node": 2,
+        "source_location": "/functions/main/body/2",
+        "lowered_location": "/functions/main/body/3",
+        "execution_admission": false
+      },
+      "actual": {
+        "execution_admission": false,
+        "kind": "mapped",
+        "lowered_location": "/functions/main/body/3",
+        "lowered_pin": "sha256:e0b12d5c3e0e91b83f0ede9c6050c552af7cc1a5588bdf9d766088d35dac57c3",
+        "node": 2,
+        "schema": "bagaev-typed-source-location/1",
+        "source_location": "/functions/main/body/2",
+        "source_pin": "sha256:e0b12d5c3e0e91b83f0ede9c6050c552af7cc1a5588bdf9d766088d35dac57c3"
+      },
+      "complete_wrong_wire": true
+    },
+    {
+      "id": "SM-ADMISSION-FLAG",
+      "kind": "location",
+      "witness": "S-LOCAL-INT-1",
+      "detected": true,
+      "expected": {
+        "schema": "bagaev-typed-source-location/1",
+        "kind": "mapped",
+        "source_pin": "sha256:b082762ee62cb3b2d4adf668c1e1b11ad4d10f8ea0075467fca729dc40a45949",
+        "lowered_pin": "sha256:e0b12d5c3e0e91b83f0ede9c6050c552af7cc1a5588bdf9d766088d35dac57c3",
+        "node": 1,
+        "source_location": "/functions/main/body",
+        "lowered_location": "/functions/main/body",
+        "execution_admission": false
+      },
+      "actual": {
+        "execution_admission": true,
+        "kind": "mapped",
+        "lowered_location": "/functions/main/body",
+        "lowered_pin": "sha256:e0b12d5c3e0e91b83f0ede9c6050c552af7cc1a5588bdf9d766088d35dac57c3",
+        "node": 1,
+        "schema": "bagaev-typed-source-location/1",
+        "source_location": "/functions/main/body",
+        "source_pin": "sha256:b082762ee62cb3b2d4adf668c1e1b11ad4d10f8ea0075467fca729dc40a45949"
+      },
+      "complete_wrong_wire": true
+    }
+  ],
+  "limits": [
+    "Seven named source/metadata mutants, not full mutation coverage",
+    "All detections were complete wrong wires; no compiler crash or timeout counted",
+    "Mutant admission=true was observed only as incorrect data, never used as authority",
+    "No lowered program executed; baseline source unchanged",
+    "Separate same-maintainer review"
+  ]
+}
