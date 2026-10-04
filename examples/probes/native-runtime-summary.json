@@ -1,0 +1,1412 @@
+{
+  "schema": "bounded-native-runtime-summary/1",
+  "freeze_sha256": "18d1069cda9105a0aa2539e3c0d3be2078ba8009c241a295964b112a1e3a695d",
+  "rows": [
+    {
+      "id": "K-ADD-c11-0",
+      "case": "K-ADD",
+      "backend": "c11",
+      "level": "0",
+      "backend_mode": "O0",
+      "binary_sha256": "0257a0f202811a61d34284f86f4035021450933a14caa1d1d3435338c809254d",
+      "object_sha256": "87b3bff9b9ee9e4ccd15e3b6f8538bee0e99ce9eb61bc67ac71caa838e893fb3",
+      "input_sha256": "f5a5fd42d16a20302798ef6ed309979b43003d2320d9f0e8ea9831a92759fb4b",
+      "expected_sha256": "231823f256ac0731a0796223afdbf94998bea2efb5277ab90bc69cdb5d9cddee",
+      "binary_bytes": 16888,
+      "object_bytes": 2920,
+      "calls_per_batch": 262144,
+      "fresh_process_ns": {
+        "median": 1480039,
+        "min": 1001262,
+        "max": 1673312
+      },
+      "warm_batch_ns": {
+        "median": 36852040,
+        "min": 29399029,
+        "max": 77365476
+      },
+      "warm_ns_per_call": {
+        "median": 140.57937622070312,
+        "min": 112.14839553833008,
+        "max": 295.12586975097656
+      },
+      "resolution_limited": false,
+      "ratios_to_c11": {
+        "warm_median": 1.0,
+        "fresh_median": 1.0,
+        "binary_bytes": 1.0,
+        "object_bytes": 1.0
+      },
+      "warm_ranges_disjoint": false,
+      "bounded_dominance": false
+    },
+    {
+      "id": "K-ADD-llvm-0",
+      "case": "K-ADD",
+      "backend": "llvm",
+      "level": "0",
+      "backend_mode": "O0",
+      "binary_sha256": "c0bfc79eafcb4664657a38a28e41c5962fc080f3467816be1feb6815a1e0cded",
+      "object_sha256": "64f1ea4ae1aa43f961208f28de6f94d867b578f751afac91f60113b0af27986d",
+      "input_sha256": "f5a5fd42d16a20302798ef6ed309979b43003d2320d9f0e8ea9831a92759fb4b",
+      "expected_sha256": "231823f256ac0731a0796223afdbf94998bea2efb5277ab90bc69cdb5d9cddee",
+      "binary_bytes": 16760,
+      "object_bytes": 4024,
+      "calls_per_batch": 262144,
+      "fresh_process_ns": {
+        "median": 1084150,
+        "min": 1054471,
+        "max": 1348875
+      },
+      "warm_batch_ns": {
+        "median": 3001197,
+        "min": 2454360,
+        "max": 12976755
+      },
+      "warm_ns_per_call": {
+        "median": 11.448657989501953,
+        "min": 9.362640380859375,
+        "max": 49.50239181518555
+      },
+      "resolution_limited": false,
+      "ratios_to_c11": {
+        "warm_median": 0.08143910079333465,
+        "fresh_median": 0.732514481037324,
+        "binary_bytes": 0.9924206537186168,
+        "object_bytes": 1.378082191780822
+      },
+      "warm_ranges_disjoint": true,
+      "bounded_dominance": false
+    },
+    {
+      "id": "K-ADD-cranelift-0",
+      "case": "K-ADD",
+      "backend": "cranelift",
+      "level": "0",
+      "backend_mode": "none",
+      "binary_sha256": "ee8a2d6515d491cc62eadec40c617952003b45ff9bac945d6eec51fd8435c491",
+      "object_sha256": "07b0673ec4dd3c2f6ee1dc027a7188eab649487a12c72ef88b9ecf298dfdec1f",
+      "input_sha256": "f5a5fd42d16a20302798ef6ed309979b43003d2320d9f0e8ea9831a92759fb4b",
+      "expected_sha256": "231823f256ac0731a0796223afdbf94998bea2efb5277ab90bc69cdb5d9cddee",
+      "binary_bytes": 16672,
+      "object_bytes": 1744,
+      "calls_per_batch": 262144,
+      "fresh_process_ns": {
+        "median": 1020371,
+        "min": 882330,
+        "max": 2140759
+      },
+      "warm_batch_ns": {
+        "median": 1687219,
+        "min": 1221645,
+        "max": 4396157
+      },
+      "warm_ns_per_call": {
+        "median": 6.436229705810547,
+        "min": 4.660205841064453,
+        "max": 16.770008087158203
+      },
+      "resolution_limited": false,
+      "ratios_to_c11": {
+        "warm_median": 0.045783598411376955,
+        "fresh_median": 0.6894216976714803,
+        "binary_bytes": 0.9872098531501659,
+        "object_bytes": 0.5972602739726027
+      },
+      "warm_ranges_disjoint": true,
+      "bounded_dominance": true
+    },
+    {
+      "id": "K-ADD-c11-2",
+      "case": "K-ADD",
+      "backend": "c11",
+      "level": "2",
+      "backend_mode": "O2",
+      "binary_sha256": "2923324bdba3b3d5b8d7325a4ea726340be242f5c1b36c1703bf5a7dd75203ef",
+      "object_sha256": "c33780413b71f9809f352e74ac52c7ea63684dff418fb7e8a9042bb9856697c9",
+      "input_sha256": "f5a5fd42d16a20302798ef6ed309979b43003d2320d9f0e8ea9831a92759fb4b",
+      "expected_sha256": "231823f256ac0731a0796223afdbf94998bea2efb5277ab90bc69cdb5d9cddee",
+      "binary_bytes": 16584,
+      "object_bytes": 1400,
+      "calls_per_batch": 262144,
+      "fresh_process_ns": {
+        "median": 1058776,
+        "min": 976587,
+        "max": 1160631
+      },
+      "warm_batch_ns": {
+        "median": 1953958,
+        "min": 1823095,
+        "max": 4956837
+      },
+      "warm_ns_per_call": {
+        "median": 7.453758239746094,
+        "min": 6.954555511474609,
+        "max": 18.908832550048828
+      },
+      "resolution_limited": false,
+      "ratios_to_c11": {
+        "warm_median": 1.0,
+        "fresh_median": 1.0,
+        "binary_bytes": 1.0,
+        "object_bytes": 1.0
+      },
+      "warm_ranges_disjoint": false,
+      "bounded_dominance": false
+    },
+    {
+      "id": "K-ADD-llvm-2",
+      "case": "K-ADD",
+      "backend": "llvm",
+      "level": "2",
+      "backend_mode": "O2",
+      "binary_sha256": "550481fc7ed09dc9abfa72497edb77d1f98910a67b592d929eefbed07c2ac5c9",
+      "object_sha256": "3cae27e78983809c9ba84c02a5c17d74b71a42bfc7e0071300bb593cb1c061e0",
+      "input_sha256": "f5a5fd42d16a20302798ef6ed309979b43003d2320d9f0e8ea9831a92759fb4b",
+      "expected_sha256": "231823f256ac0731a0796223afdbf94998bea2efb5277ab90bc69cdb5d9cddee",
+      "binary_bytes": 16720,
+      "object_bytes": 2968,
+      "calls_per_batch": 262144,
+      "fresh_process_ns": {
+        "median": 929961,
+        "min": 894455,
+        "max": 1352734
+      },
+      "warm_batch_ns": {
+        "median": 2123104,
+        "min": 1596744,
+        "max": 5959608
+      },
+      "warm_ns_per_call": {
+        "median": 8.0989990234375,
+        "min": 6.091094970703125,
+        "max": 22.734100341796875
+      },
+      "resolution_limited": false,
+      "ratios_to_c11": {
+        "warm_median": 1.0865658320189073,
+        "fresh_median": 0.8783359275238577,
+        "binary_bytes": 1.0082006753497348,
+        "object_bytes": 2.12
+      },
+      "warm_ranges_disjoint": false,
+      "bounded_dominance": false
+    },
+    {
+      "id": "K-ADD-cranelift-2",
+      "case": "K-ADD",
+      "backend": "cranelift",
+      "level": "2",
+      "backend_mode": "speed",
+      "binary_sha256": "b09366dfc653d601dee2f9ebbf69de93cb442ceb29eca14a10d6e4539a80cec9",
+      "object_sha256": "23a71c5a6fa4f2cb08d3f22d59161beb3fc7ef308ed0e5d748aaab0e2392a3e1",
+      "input_sha256": "f5a5fd42d16a20302798ef6ed309979b43003d2320d9f0e8ea9831a92759fb4b",
+      "expected_sha256": "231823f256ac0731a0796223afdbf94998bea2efb5277ab90bc69cdb5d9cddee",
+      "binary_bytes": 16672,
+      "object_bytes": 1728,
+      "calls_per_batch": 262144,
+      "fresh_process_ns": {
+        "median": 1176129,
+        "min": 954418,
+        "max": 1646473
+      },
+      "warm_batch_ns": {
+        "median": 1291479,
+        "min": 1150489,
+        "max": 3074273
+      },
+      "warm_ns_per_call": {
+        "median": 4.926601409912109,
+        "min": 4.388767242431641,
+        "max": 11.727420806884766
+      },
+      "resolution_limited": false,
+      "ratios_to_c11": {
+        "warm_median": 0.6609553531856878,
+        "fresh_median": 1.1108383642999087,
+        "binary_bytes": 1.005306319343946,
+        "object_bytes": 1.2342857142857142
+      },
+      "warm_ranges_disjoint": false,
+      "bounded_dominance": false
+    },
+    {
+      "id": "K-ADD-c11-s",
+      "case": "K-ADD",
+      "backend": "c11",
+      "level": "s",
+      "backend_mode": "Os",
+      "binary_sha256": "2a7edcc004e0002276d176a7742c8141e5de85288807d676ee34b1b989fdda2f",
+      "object_sha256": "c2ea0a61fe62671ea69c4d7dff8e2fb87540f63f759e5acfd4e7fc660794ade9",
+      "input_sha256": "f5a5fd42d16a20302798ef6ed309979b43003d2320d9f0e8ea9831a92759fb4b",
+      "expected_sha256": "231823f256ac0731a0796223afdbf94998bea2efb5277ab90bc69cdb5d9cddee",
+      "binary_bytes": 16584,
+      "object_bytes": 1944,
+      "calls_per_batch": 262144,
+      "fresh_process_ns": {
+        "median": 1393683,
+        "min": 1004085,
+        "max": 3319420
+      },
+      "warm_batch_ns": {
+        "median": 3941366,
+        "min": 3364506,
+        "max": 9546551
+      },
+      "warm_ns_per_call": {
+        "median": 15.035118103027344,
+        "min": 12.834571838378906,
+        "max": 36.41720199584961
+      },
+      "resolution_limited": false,
+      "ratios_to_c11": {
+        "warm_median": 1.0,
+        "fresh_median": 1.0,
+        "binary_bytes": 1.0,
+        "object_bytes": 1.0
+      },
+      "warm_ranges_disjoint": false,
+      "bounded_dominance": false
+    },
+    {
+      "id": "K-ADD-llvm-s",
+      "case": "K-ADD",
+      "backend": "llvm",
+      "level": "s",
+      "backend_mode": "Os",
+      "binary_sha256": "550481fc7ed09dc9abfa72497edb77d1f98910a67b592d929eefbed07c2ac5c9",
+      "object_sha256": "3cae27e78983809c9ba84c02a5c17d74b71a42bfc7e0071300bb593cb1c061e0",
+      "input_sha256": "f5a5fd42d16a20302798ef6ed309979b43003d2320d9f0e8ea9831a92759fb4b",
+      "expected_sha256": "231823f256ac0731a0796223afdbf94998bea2efb5277ab90bc69cdb5d9cddee",
+      "binary_bytes": 16720,
+      "object_bytes": 2968,
+      "calls_per_batch": 262144,
+      "fresh_process_ns": {
+        "median": 1087645,
+        "min": 961774,
+        "max": 1725004
+      },
+      "warm_batch_ns": {
+        "median": 2208659,
+        "min": 1593119,
+        "max": 7157378
+      },
+      "warm_ns_per_call": {
+        "median": 8.425365447998047,
+        "min": 6.077266693115234,
+        "max": 27.30323028564453
+      },
+      "resolution_limited": false,
+      "ratios_to_c11": {
+        "warm_median": 0.5603790665469789,
+        "fresh_median": 0.7804106098732638,
+        "binary_bytes": 1.0082006753497348,
+        "object_bytes": 1.5267489711934157
+      },
+      "warm_ranges_disjoint": false,
+      "bounded_dominance": false
+    },
+    {
+      "id": "K-ADD-cranelift-s",
+      "case": "K-ADD",
+      "backend": "cranelift",
+      "level": "s",
+      "backend_mode": "speed_and_size",
+      "binary_sha256": "b09366dfc653d601dee2f9ebbf69de93cb442ceb29eca14a10d6e4539a80cec9",
+      "object_sha256": "23a71c5a6fa4f2cb08d3f22d59161beb3fc7ef308ed0e5d748aaab0e2392a3e1",
+      "input_sha256": "f5a5fd42d16a20302798ef6ed309979b43003d2320d9f0e8ea9831a92759fb4b",
+      "expected_sha256": "231823f256ac0731a0796223afdbf94998bea2efb5277ab90bc69cdb5d9cddee",
+      "binary_bytes": 16672,
+      "object_bytes": 1728,
+      "calls_per_batch": 262144,
+      "fresh_process_ns": {
+        "median": 1336410,
+        "min": 960328,
+        "max": 2216677
+      },
+      "warm_batch_ns": {
+        "median": 1395009,
+        "min": 1180825,
+        "max": 2844990
+      },
+      "warm_ns_per_call": {
+        "median": 5.321537017822266,
+        "min": 4.504489898681641,
+        "max": 10.852775573730469
+      },
+      "resolution_limited": false,
+      "ratios_to_c11": {
+        "warm_median": 0.3539404866231657,
+        "fresh_median": 0.9589052890793675,
+        "binary_bytes": 1.005306319343946,
+        "object_bytes": 0.8888888888888888
+      },
+      "warm_ranges_disjoint": true,
+      "bounded_dominance": true
+    },
+    {
+      "id": "K-CALL-c11-0",
+      "case": "K-CALL",
+      "backend": "c11",
+      "level": "0",
+      "backend_mode": "O0",
+      "binary_sha256": "9763498166a79a05465eaa946cdd138b1709598976e2e7ccdda0dc370c6df13f",
+      "object_sha256": "23b6b8d70441f627d2d534370c8c339ae6b80419a17d0c41f700cab7a55a6f1c",
+      "input_sha256": "f5a5fd42d16a20302798ef6ed309979b43003d2320d9f0e8ea9831a92759fb4b",
+      "expected_sha256": "c9b0d084e3fdd1f16b54a28bbd9072c046af2954ec735827dd93a30a73b351bc",
+      "binary_bytes": 16848,
+      "object_bytes": 2672,
+      "calls_per_batch": 65536,
+      "fresh_process_ns": {
+        "median": 1277557,
+        "min": 918767,
+        "max": 1677001
+      },
+      "warm_batch_ns": {
+        "median": 7664017,
+        "min": 6769105,
+        "max": 12962960
+      },
+      "warm_ns_per_call": {
+        "median": 116.94361877441406,
+        "min": 103.28834533691406,
+        "max": 197.799072265625
+      },
+      "resolution_limited": false,
+      "ratios_to_c11": {
+        "warm_median": 1.0,
+        "fresh_median": 1.0,
+        "binary_bytes": 1.0,
+        "object_bytes": 1.0
+      },
+      "warm_ranges_disjoint": false,
+      "bounded_dominance": false
+    },
+    {
+      "id": "K-CALL-llvm-0",
+      "case": "K-CALL",
+      "backend": "llvm",
+      "level": "0",
+      "backend_mode": "O0",
+      "binary_sha256": "6fc94c46a7a509450f726c3e3a0ed514b42c81fd48ab1d3d4d8d65e7b24ee352",
+      "object_sha256": "9745bbca42a6aa6d6474c7af1361b268bcb41cff02f0ef4c5787e615bd80eaba",
+      "input_sha256": "f5a5fd42d16a20302798ef6ed309979b43003d2320d9f0e8ea9831a92759fb4b",
+      "expected_sha256": "c9b0d084e3fdd1f16b54a28bbd9072c046af2954ec735827dd93a30a73b351bc",
+      "binary_bytes": 16792,
+      "object_bytes": 4320,
+      "calls_per_batch": 65536,
+      "fresh_process_ns": {
+        "median": 1163076,
+        "min": 1052968,
+        "max": 1876809
+      },
+      "warm_batch_ns": {
+        "median": 646776,
+        "min": 567663,
+        "max": 1841224
+      },
+      "warm_ns_per_call": {
+        "median": 9.8690185546875,
+        "min": 8.661849975585938,
+        "max": 28.0948486328125
+      },
+      "resolution_limited": true,
+      "ratios_to_c11": {
+        "warm_median": 0.0843912533075018,
+        "fresh_median": 0.9103906909828681,
+        "binary_bytes": 0.99667616334283,
+        "object_bytes": 1.6167664670658684
+      },
+      "warm_ranges_disjoint": true,
+      "bounded_dominance": false
+    },
+    {
+      "id": "K-CALL-cranelift-0",
+      "case": "K-CALL",
+      "backend": "cranelift",
+      "level": "0",
+      "backend_mode": "none",
+      "binary_sha256": "55d6adb86f5ca015974a0e98b1429cfaed4624908a0117bcdc697a0e80e7fba5",
+      "object_sha256": "bcf66be30a478d563fc5c99ed536be20c717f45e9752b4702fc64c4ac348d0ec",
+      "input_sha256": "f5a5fd42d16a20302798ef6ed309979b43003d2320d9f0e8ea9831a92759fb4b",
+      "expected_sha256": "c9b0d084e3fdd1f16b54a28bbd9072c046af2954ec735827dd93a30a73b351bc",
+      "binary_bytes": 16712,
+      "object_bytes": 1888,
+      "calls_per_batch": 65536,
+      "fresh_process_ns": {
+        "median": 1230340,
+        "min": 1062650,
+        "max": 1439404
+      },
+      "warm_batch_ns": {
+        "median": 460235,
+        "min": 356928,
+        "max": 2225181
+      },
+      "warm_ns_per_call": {
+        "median": 7.0226287841796875,
+        "min": 5.4462890625,
+        "max": 33.95356750488281
+      },
+      "resolution_limited": true,
+      "ratios_to_c11": {
+        "warm_median": 0.06005140646217251,
+        "fresh_median": 0.9630411793759496,
+        "binary_bytes": 0.9919278252611586,
+        "object_bytes": 0.7065868263473054
+      },
+      "warm_ranges_disjoint": true,
+      "bounded_dominance": false
+    },
+    {
+      "id": "K-CALL-c11-2",
+      "case": "K-CALL",
+      "backend": "c11",
+      "level": "2",
+      "backend_mode": "O2",
+      "binary_sha256": "33bb3a5bce8654799918c6f4a95952924077fcbca281cbc6a876b22ae7a6adb9",
+      "object_sha256": "835c5097e7c653cc9a210c5a0e87d5eec391b620a19d479add4d4da10a61b722",
+      "input_sha256": "f5a5fd42d16a20302798ef6ed309979b43003d2320d9f0e8ea9831a92759fb4b",
+      "expected_sha256": "c9b0d084e3fdd1f16b54a28bbd9072c046af2954ec735827dd93a30a73b351bc",
+      "binary_bytes": 16584,
+      "object_bytes": 1392,
+      "calls_per_batch": 65536,
+      "fresh_process_ns": {
+        "median": 1156602,
+        "min": 1045668,
+        "max": 1286250
+      },
+      "warm_batch_ns": {
+        "median": 484831,
+        "min": 441416,
+        "max": 3810175
+      },
+      "warm_ns_per_call": {
+        "median": 7.3979339599609375,
+        "min": 6.7354736328125,
+        "max": 58.13865661621094
+      },
+      "resolution_limited": true,
+      "ratios_to_c11": {
+        "warm_median": 1.0,
+        "fresh_median": 1.0,
+        "binary_bytes": 1.0,
+        "object_bytes": 1.0
+      },
+      "warm_ranges_disjoint": false,
+      "bounded_dominance": false
+    },
+    {
+      "id": "K-CALL-llvm-2",
+      "case": "K-CALL",
+      "backend": "llvm",
+      "level": "2",
+      "backend_mode": "O2",
+      "binary_sha256": "2933071704513eb0ce67e2a7611460921d0bafe54bfcbc8e9d6ad751c714bb4b",
+      "object_sha256": "d20421a9e3d4fa9510d4437f9792c839af46c412e2a1709ce7cb7513124405ba",
+      "input_sha256": "f5a5fd42d16a20302798ef6ed309979b43003d2320d9f0e8ea9831a92759fb4b",
+      "expected_sha256": "c9b0d084e3fdd1f16b54a28bbd9072c046af2954ec735827dd93a30a73b351bc",
+      "binary_bytes": 16720,
+      "object_bytes": 3144,
+      "calls_per_batch": 65536,
+      "fresh_process_ns": {
+        "median": 1072645,
+        "min": 1000783,
+        "max": 2594982
+      },
+      "warm_batch_ns": {
+        "median": 418314,
+        "min": 375496,
+        "max": 1755901
+      },
+      "warm_ns_per_call": {
+        "median": 6.382965087890625,
+        "min": 5.7296142578125,
+        "max": 26.792922973632812
+      },
+      "resolution_limited": true,
+      "ratios_to_c11": {
+        "warm_median": 0.8628037398598687,
+        "fresh_median": 0.9274106390962492,
+        "binary_bytes": 1.0082006753497348,
+        "object_bytes": 2.2586206896551726
+      },
+      "warm_ranges_disjoint": false,
+      "bounded_dominance": false
+    },
+    {
+      "id": "K-CALL-cranelift-2",
+      "case": "K-CALL",
+      "backend": "cranelift",
+      "level": "2",
+      "backend_mode": "speed",
+      "binary_sha256": "2ff3b32959f9503076e3d24424cac73eb54f03232ca92807f7b4069b39615776",
+      "object_sha256": "36bf7ebc72533b31b81378fabd9816baa152260fa3445ddf184facaa22380e2f",
+      "input_sha256": "f5a5fd42d16a20302798ef6ed309979b43003d2320d9f0e8ea9831a92759fb4b",
+      "expected_sha256": "c9b0d084e3fdd1f16b54a28bbd9072c046af2954ec735827dd93a30a73b351bc",
+      "binary_bytes": 16712,
+      "object_bytes": 1888,
+      "calls_per_batch": 65536,
+      "fresh_process_ns": {
+        "median": 1383322,
+        "min": 1046276,
+        "max": 2346873
+      },
+      "warm_batch_ns": {
+        "median": 465825,
+        "min": 356999,
+        "max": 3168519
+      },
+      "warm_ns_per_call": {
+        "median": 7.1079254150390625,
+        "min": 5.4473724365234375,
+        "max": 48.34776306152344
+      },
+      "resolution_limited": true,
+      "ratios_to_c11": {
+        "warm_median": 0.9607987113035263,
+        "fresh_median": 1.1960224865597673,
+        "binary_bytes": 1.0077182826821032,
+        "object_bytes": 1.3563218390804597
+      },
+      "warm_ranges_disjoint": false,
+      "bounded_dominance": false
+    },
+    {
+      "id": "K-CALL-c11-s",
+      "case": "K-CALL",
+      "backend": "c11",
+      "level": "s",
+      "backend_mode": "Os",
+      "binary_sha256": "2eab4e8d0e9023f561de539f743baa73151647cf7b261333f0e9e9df0477869e",
+      "object_sha256": "9aac68d763fe5355c6f70e2e0f533a1f22b16197e352a4149f46bcc5c2b54f1b",
+      "input_sha256": "f5a5fd42d16a20302798ef6ed309979b43003d2320d9f0e8ea9831a92759fb4b",
+      "expected_sha256": "c9b0d084e3fdd1f16b54a28bbd9072c046af2954ec735827dd93a30a73b351bc",
+      "binary_bytes": 16584,
+      "object_bytes": 1944,
+      "calls_per_batch": 65536,
+      "fresh_process_ns": {
+        "median": 1317095,
+        "min": 1035231,
+        "max": 1805461
+      },
+      "warm_batch_ns": {
+        "median": 974909,
+        "min": 813241,
+        "max": 3166310
+      },
+      "warm_ns_per_call": {
+        "median": 14.875930786132812,
+        "min": 12.409072875976562,
+        "max": 48.314056396484375
+      },
+      "resolution_limited": true,
+      "ratios_to_c11": {
+        "warm_median": 1.0,
+        "fresh_median": 1.0,
+        "binary_bytes": 1.0,
+        "object_bytes": 1.0
+      },
+      "warm_ranges_disjoint": false,
+      "bounded_dominance": false
+    },
+    {
+      "id": "K-CALL-llvm-s",
+      "case": "K-CALL",
+      "backend": "llvm",
+      "level": "s",
+      "backend_mode": "Os",
+      "binary_sha256": "2933071704513eb0ce67e2a7611460921d0bafe54bfcbc8e9d6ad751c714bb4b",
+      "object_sha256": "d20421a9e3d4fa9510d4437f9792c839af46c412e2a1709ce7cb7513124405ba",
+      "input_sha256": "f5a5fd42d16a20302798ef6ed309979b43003d2320d9f0e8ea9831a92759fb4b",
+      "expected_sha256": "c9b0d084e3fdd1f16b54a28bbd9072c046af2954ec735827dd93a30a73b351bc",
+      "binary_bytes": 16720,
+      "object_bytes": 3144,
+      "calls_per_batch": 65536,
+      "fresh_process_ns": {
+        "median": 1097641,
+        "min": 980429,
+        "max": 1350958
+      },
+      "warm_batch_ns": {
+        "median": 448392,
+        "min": 375463,
+        "max": 2162286
+      },
+      "warm_ns_per_call": {
+        "median": 6.8419189453125,
+        "min": 5.7291107177734375,
+        "max": 32.993865966796875
+      },
+      "resolution_limited": true,
+      "ratios_to_c11": {
+        "warm_median": 0.4599321577706227,
+        "fresh_median": 0.8333802800860985,
+        "binary_bytes": 1.0082006753497348,
+        "object_bytes": 1.617283950617284
+      },
+      "warm_ranges_disjoint": false,
+      "bounded_dominance": false
+    },
+    {
+      "id": "K-CALL-cranelift-s",
+      "case": "K-CALL",
+      "backend": "cranelift",
+      "level": "s",
+      "backend_mode": "speed_and_size",
+      "binary_sha256": "2ff3b32959f9503076e3d24424cac73eb54f03232ca92807f7b4069b39615776",
+      "object_sha256": "36bf7ebc72533b31b81378fabd9816baa152260fa3445ddf184facaa22380e2f",
+      "input_sha256": "f5a5fd42d16a20302798ef6ed309979b43003d2320d9f0e8ea9831a92759fb4b",
+      "expected_sha256": "c9b0d084e3fdd1f16b54a28bbd9072c046af2954ec735827dd93a30a73b351bc",
+      "binary_bytes": 16712,
+      "object_bytes": 1888,
+      "calls_per_batch": 65536,
+      "fresh_process_ns": {
+        "median": 1089698,
+        "min": 1013045,
+        "max": 1812935
+      },
+      "warm_batch_ns": {
+        "median": 591413,
+        "min": 370238,
+        "max": 1800925
+      },
+      "warm_ns_per_call": {
+        "median": 9.024246215820312,
+        "min": 5.649383544921875,
+        "max": 27.479934692382812
+      },
+      "resolution_limited": true,
+      "ratios_to_c11": {
+        "warm_median": 0.6066340550759096,
+        "fresh_median": 0.8273495837430102,
+        "binary_bytes": 1.0077182826821032,
+        "object_bytes": 0.9711934156378601
+      },
+      "warm_ranges_disjoint": false,
+      "bounded_dominance": false
+    },
+    {
+      "id": "K-LOOP-MAX-c11-0",
+      "case": "K-LOOP-MAX",
+      "backend": "c11",
+      "level": "0",
+      "backend_mode": "O0",
+      "binary_sha256": "ca1d67aa9e36044cadda6872f5d4552a80b865ad1929878292c9b7a1b704a045",
+      "object_sha256": "b36d595c8547b525abb3edc21ba9867c0f07c01769ff2ff58d3a31d04f73f844",
+      "input_sha256": "f5a5fd42d16a20302798ef6ed309979b43003d2320d9f0e8ea9831a92759fb4b",
+      "expected_sha256": "191814fe7e10f1c4be8a393bfb07a488ca602790434237e0dc3b25fc77947e56",
+      "binary_bytes": 16888,
+      "object_bytes": 3048,
+      "calls_per_batch": 256,
+      "fresh_process_ns": {
+        "median": 1079996,
+        "min": 966611,
+        "max": 1299492
+      },
+      "warm_batch_ns": {
+        "median": 4001058,
+        "min": 3170128,
+        "max": 9895732
+      },
+      "warm_ns_per_call": {
+        "median": 15629.1328125,
+        "min": 12383.3125,
+        "max": 38655.203125
+      },
+      "resolution_limited": false,
+      "ratios_to_c11": {
+        "warm_median": 1.0,
+        "fresh_median": 1.0,
+        "binary_bytes": 1.0,
+        "object_bytes": 1.0
+      },
+      "warm_ranges_disjoint": false,
+      "bounded_dominance": false
+    },
+    {
+      "id": "K-LOOP-MAX-llvm-0",
+      "case": "K-LOOP-MAX",
+      "backend": "llvm",
+      "level": "0",
+      "backend_mode": "O0",
+      "binary_sha256": "146401742f21e385380c4596b080afb17bca461669ee922b3741c7881bb794cd",
+      "object_sha256": "e1e1f544f6ec884696932ac3d303fe34e318347e4bdb69306179b75e3819f192",
+      "input_sha256": "f5a5fd42d16a20302798ef6ed309979b43003d2320d9f0e8ea9831a92759fb4b",
+      "expected_sha256": "191814fe7e10f1c4be8a393bfb07a488ca602790434237e0dc3b25fc77947e56",
+      "binary_bytes": 16760,
+      "object_bytes": 4544,
+      "calls_per_batch": 256,
+      "fresh_process_ns": {
+        "median": 1156933,
+        "min": 1019893,
+        "max": 1308523
+      },
+      "warm_batch_ns": {
+        "median": 3972053,
+        "min": 3349834,
+        "max": 7358433
+      },
+      "warm_ns_per_call": {
+        "median": 15515.83203125,
+        "min": 13085.2890625,
+        "max": 28743.87890625
+      },
+      "resolution_limited": false,
+      "ratios_to_c11": {
+        "warm_median": 0.9927506674484599,
+        "fresh_median": 1.0712382268082474,
+        "binary_bytes": 0.9924206537186168,
+        "object_bytes": 1.4908136482939633
+      },
+      "warm_ranges_disjoint": false,
+      "bounded_dominance": false
+    },
+    {
+      "id": "K-LOOP-MAX-cranelift-0",
+      "case": "K-LOOP-MAX",
+      "backend": "cranelift",
+      "level": "0",
+      "backend_mode": "none",
+      "binary_sha256": "7801642523423bf270c4a368deece812e8f9bcad94da83a8f57588b55d2adf73",
+      "object_sha256": "c73e6de292427b12b13dda81bec338d976b6972adafe521973230d37b7b6c7a2",
+      "input_sha256": "f5a5fd42d16a20302798ef6ed309979b43003d2320d9f0e8ea9831a92759fb4b",
+      "expected_sha256": "191814fe7e10f1c4be8a393bfb07a488ca602790434237e0dc3b25fc77947e56",
+      "binary_bytes": 16672,
+      "object_bytes": 1920,
+      "calls_per_batch": 256,
+      "fresh_process_ns": {
+        "median": 1202802,
+        "min": 995629,
+        "max": 1550621
+      },
+      "warm_batch_ns": {
+        "median": 1501119,
+        "min": 385582,
+        "max": 5275822
+      },
+      "warm_ns_per_call": {
+        "median": 5863.74609375,
+        "min": 1506.1796875,
+        "max": 20608.6796875
+      },
+      "resolution_limited": true,
+      "ratios_to_c11": {
+        "warm_median": 0.3751805147538476,
+        "fresh_median": 1.1137096804062236,
+        "binary_bytes": 0.9872098531501659,
+        "object_bytes": 0.6299212598425197
+      },
+      "warm_ranges_disjoint": false,
+      "bounded_dominance": false
+    },
+    {
+      "id": "K-LOOP-MAX-c11-2",
+      "case": "K-LOOP-MAX",
+      "backend": "c11",
+      "level": "2",
+      "backend_mode": "O2",
+      "binary_sha256": "602f352e68de6fc04385a04f4cac69f09cedb8adebb4bc855813127dfca641bf",
+      "object_sha256": "b98f0fabdd4efc2060a86b3d37492a4be4588f4302752caa8d19fb85f7c2e322",
+      "input_sha256": "f5a5fd42d16a20302798ef6ed309979b43003d2320d9f0e8ea9831a92759fb4b",
+      "expected_sha256": "191814fe7e10f1c4be8a393bfb07a488ca602790434237e0dc3b25fc77947e56",
+      "binary_bytes": 16584,
+      "object_bytes": 1480,
+      "calls_per_batch": 256,
+      "fresh_process_ns": {
+        "median": 1166813,
+        "min": 1039716,
+        "max": 1376796
+      },
+      "warm_batch_ns": {
+        "median": 1817408,
+        "min": 1545152,
+        "max": 4156589
+      },
+      "warm_ns_per_call": {
+        "median": 7099.25,
+        "min": 6035.75,
+        "max": 16236.67578125
+      },
+      "resolution_limited": false,
+      "ratios_to_c11": {
+        "warm_median": 1.0,
+        "fresh_median": 1.0,
+        "binary_bytes": 1.0,
+        "object_bytes": 1.0
+      },
+      "warm_ranges_disjoint": false,
+      "bounded_dominance": false
+    },
+    {
+      "id": "K-LOOP-MAX-llvm-2",
+      "case": "K-LOOP-MAX",
+      "backend": "llvm",
+      "level": "2",
+      "backend_mode": "O2",
+      "binary_sha256": "7e2ed42b194751d38f6834e1141d3ffa4f35d546c2cf1a453b7d4d5fdc0ab39e",
+      "object_sha256": "2f72f3ef21938c2b57f125606bbc3135a3dd5edd2eb3ab917a114c630cbda0ce",
+      "input_sha256": "f5a5fd42d16a20302798ef6ed309979b43003d2320d9f0e8ea9831a92759fb4b",
+      "expected_sha256": "191814fe7e10f1c4be8a393bfb07a488ca602790434237e0dc3b25fc77947e56",
+      "binary_bytes": 16720,
+      "object_bytes": 3360,
+      "calls_per_batch": 256,
+      "fresh_process_ns": {
+        "median": 1130588,
+        "min": 924965,
+        "max": 3579616
+      },
+      "warm_batch_ns": {
+        "median": 1642293,
+        "min": 1336980,
+        "max": 2699248
+      },
+      "warm_ns_per_call": {
+        "median": 6415.20703125,
+        "min": 5222.578125,
+        "max": 10543.9375
+      },
+      "resolution_limited": false,
+      "ratios_to_c11": {
+        "warm_median": 0.9036457416276367,
+        "fresh_median": 0.9689538940687153,
+        "binary_bytes": 1.0082006753497348,
+        "object_bytes": 2.27027027027027
+      },
+      "warm_ranges_disjoint": false,
+      "bounded_dominance": false
+    },
+    {
+      "id": "K-LOOP-MAX-cranelift-2",
+      "case": "K-LOOP-MAX",
+      "backend": "cranelift",
+      "level": "2",
+      "backend_mode": "speed",
+      "binary_sha256": "2b602dabe31b855e1d82f96b30c986f1c5242b2b3587bda510a1d7b858b9bbfe",
+      "object_sha256": "bff14a488a86b52ec93e3122c4f3b3d2a78534b69ab38bcfc1ed948cab5660d3",
+      "input_sha256": "f5a5fd42d16a20302798ef6ed309979b43003d2320d9f0e8ea9831a92759fb4b",
+      "expected_sha256": "191814fe7e10f1c4be8a393bfb07a488ca602790434237e0dc3b25fc77947e56",
+      "binary_bytes": 16672,
+      "object_bytes": 1904,
+      "calls_per_batch": 256,
+      "fresh_process_ns": {
+        "median": 1138230,
+        "min": 951454,
+        "max": 1764514
+      },
+      "warm_batch_ns": {
+        "median": 659424,
+        "min": 558108,
+        "max": 1771984
+      },
+      "warm_ns_per_call": {
+        "median": 2575.875,
+        "min": 2180.109375,
+        "max": 6921.8125
+      },
+      "resolution_limited": true,
+      "ratios_to_c11": {
+        "warm_median": 0.3628376236926436,
+        "fresh_median": 0.9755033582930598,
+        "binary_bytes": 1.005306319343946,
+        "object_bytes": 1.2864864864864864
+      },
+      "warm_ranges_disjoint": false,
+      "bounded_dominance": false
+    },
+    {
+      "id": "K-LOOP-MAX-c11-s",
+      "case": "K-LOOP-MAX",
+      "backend": "c11",
+      "level": "s",
+      "backend_mode": "Os",
+      "binary_sha256": "ce3e98acc4efc32b9834d4f2b6bcb14fde1ae578b72bc7ee832a406e85eaa46b",
+      "object_sha256": "974ee87d31414ce491dd1a71ad2c6c307a2475555aa113c913bf364314b36a35",
+      "input_sha256": "f5a5fd42d16a20302798ef6ed309979b43003d2320d9f0e8ea9831a92759fb4b",
+      "expected_sha256": "191814fe7e10f1c4be8a393bfb07a488ca602790434237e0dc3b25fc77947e56",
+      "binary_bytes": 16584,
+      "object_bytes": 2072,
+      "calls_per_batch": 256,
+      "fresh_process_ns": {
+        "median": 1393307,
+        "min": 1018550,
+        "max": 1623074
+      },
+      "warm_batch_ns": {
+        "median": 1972398,
+        "min": 1668343,
+        "max": 6646882
+      },
+      "warm_ns_per_call": {
+        "median": 7704.6796875,
+        "min": 6516.96484375,
+        "max": 25964.3828125
+      },
+      "resolution_limited": false,
+      "ratios_to_c11": {
+        "warm_median": 1.0,
+        "fresh_median": 1.0,
+        "binary_bytes": 1.0,
+        "object_bytes": 1.0
+      },
+      "warm_ranges_disjoint": false,
+      "bounded_dominance": false
+    },
+    {
+      "id": "K-LOOP-MAX-llvm-s",
+      "case": "K-LOOP-MAX",
+      "backend": "llvm",
+      "level": "s",
+      "backend_mode": "Os",
+      "binary_sha256": "7e2ed42b194751d38f6834e1141d3ffa4f35d546c2cf1a453b7d4d5fdc0ab39e",
+      "object_sha256": "2f72f3ef21938c2b57f125606bbc3135a3dd5edd2eb3ab917a114c630cbda0ce",
+      "input_sha256": "f5a5fd42d16a20302798ef6ed309979b43003d2320d9f0e8ea9831a92759fb4b",
+      "expected_sha256": "191814fe7e10f1c4be8a393bfb07a488ca602790434237e0dc3b25fc77947e56",
+      "binary_bytes": 16720,
+      "object_bytes": 3360,
+      "calls_per_batch": 256,
+      "fresh_process_ns": {
+        "median": 1143225,
+        "min": 967789,
+        "max": 1954456
+      },
+      "warm_batch_ns": {
+        "median": 1617067,
+        "min": 1351884,
+        "max": 5004161
+      },
+      "warm_ns_per_call": {
+        "median": 6316.66796875,
+        "min": 5280.796875,
+        "max": 19547.50390625
+      },
+      "resolution_limited": false,
+      "ratios_to_c11": {
+        "warm_median": 0.819848225358168,
+        "fresh_median": 0.8205119187659289,
+        "binary_bytes": 1.0082006753497348,
+        "object_bytes": 1.6216216216216217
+      },
+      "warm_ranges_disjoint": false,
+      "bounded_dominance": false
+    },
+    {
+      "id": "K-LOOP-MAX-cranelift-s",
+      "case": "K-LOOP-MAX",
+      "backend": "cranelift",
+      "level": "s",
+      "backend_mode": "speed_and_size",
+      "binary_sha256": "2b602dabe31b855e1d82f96b30c986f1c5242b2b3587bda510a1d7b858b9bbfe",
+      "object_sha256": "bff14a488a86b52ec93e3122c4f3b3d2a78534b69ab38bcfc1ed948cab5660d3",
+      "input_sha256": "f5a5fd42d16a20302798ef6ed309979b43003d2320d9f0e8ea9831a92759fb4b",
+      "expected_sha256": "191814fe7e10f1c4be8a393bfb07a488ca602790434237e0dc3b25fc77947e56",
+      "binary_bytes": 16672,
+      "object_bytes": 1904,
+      "calls_per_batch": 256,
+      "fresh_process_ns": {
+        "median": 1139749,
+        "min": 994143,
+        "max": 1672252
+      },
+      "warm_batch_ns": {
+        "median": 649325,
+        "min": 558019,
+        "max": 4200175
+      },
+      "warm_ns_per_call": {
+        "median": 2536.42578125,
+        "min": 2179.76171875,
+        "max": 16406.93359375
+      },
+      "resolution_limited": true,
+      "ratios_to_c11": {
+        "warm_median": 0.32920587021483494,
+        "fresh_median": 0.8180171347735998,
+        "binary_bytes": 1.005306319343946,
+        "object_bytes": 0.918918918918919
+      },
+      "warm_ranges_disjoint": false,
+      "bounded_dominance": false
+    },
+    {
+      "id": "K-WORK-EXACT-c11-0",
+      "case": "K-WORK-EXACT",
+      "backend": "c11",
+      "level": "0",
+      "backend_mode": "O0",
+      "binary_sha256": "8cc07b8af697b00f194b8241c6258cdcd2fada624f4e3ca0196b3ef19a660081",
+      "object_sha256": "7cb791f1c30cb6e283b19ce499f78944bcb9818d66e09fdf1776383af45addcd",
+      "input_sha256": "f5a5fd42d16a20302798ef6ed309979b43003d2320d9f0e8ea9831a92759fb4b",
+      "expected_sha256": "87d3548e6d16c26dcae5c09fa33047b91f9b25ade6161d818b51694d383c69ce",
+      "binary_bytes": 16824,
+      "object_bytes": 2832,
+      "calls_per_batch": 16,
+      "fresh_process_ns": {
+        "median": 1786928,
+        "min": 1155714,
+        "max": 2226467
+      },
+      "warm_batch_ns": {
+        "median": 4203497,
+        "min": 3599700,
+        "max": 7352014
+      },
+      "warm_ns_per_call": {
+        "median": 262718.5625,
+        "min": 224981.25,
+        "max": 459500.875
+      },
+      "resolution_limited": false,
+      "ratios_to_c11": {
+        "warm_median": 1.0,
+        "fresh_median": 1.0,
+        "binary_bytes": 1.0,
+        "object_bytes": 1.0
+      },
+      "warm_ranges_disjoint": false,
+      "bounded_dominance": false
+    },
+    {
+      "id": "K-WORK-EXACT-llvm-0",
+      "case": "K-WORK-EXACT",
+      "backend": "llvm",
+      "level": "0",
+      "backend_mode": "O0",
+      "binary_sha256": "effd1e327242a2fdef2aed2f50ed75971b56c45676377a79f94aff33a0b45ef6",
+      "object_sha256": "bb49103038fc6f91a833101af54e06cb63dbabafaf19a31a08a557409ecfe6f0",
+      "input_sha256": "f5a5fd42d16a20302798ef6ed309979b43003d2320d9f0e8ea9831a92759fb4b",
+      "expected_sha256": "87d3548e6d16c26dcae5c09fa33047b91f9b25ade6161d818b51694d383c69ce",
+      "binary_bytes": 16760,
+      "object_bytes": 5576,
+      "calls_per_batch": 16,
+      "fresh_process_ns": {
+        "median": 1602559,
+        "min": 1322758,
+        "max": 2208773
+      },
+      "warm_batch_ns": {
+        "median": 4870270,
+        "min": 4204487,
+        "max": 8836095
+      },
+      "warm_ns_per_call": {
+        "median": 304391.875,
+        "min": 262780.4375,
+        "max": 552255.9375
+      },
+      "resolution_limited": false,
+      "ratios_to_c11": {
+        "warm_median": 1.1586234033234708,
+        "fresh_median": 0.8968234870123475,
+        "binary_bytes": 0.9961959106038992,
+        "object_bytes": 1.9689265536723164
+      },
+      "warm_ranges_disjoint": false,
+      "bounded_dominance": false
+    },
+    {
+      "id": "K-WORK-EXACT-cranelift-0",
+      "case": "K-WORK-EXACT",
+      "backend": "cranelift",
+      "level": "0",
+      "backend_mode": "none",
+      "binary_sha256": "598179f89a569d8a60b9fbe91f72daf5045c7eb6830d004bfed52ac52d9a4b1d",
+      "object_sha256": "9b9f61c992bf2e7cd45c59af129362d17b8e7d4e41f38092480ffcaf6f027dd6",
+      "input_sha256": "f5a5fd42d16a20302798ef6ed309979b43003d2320d9f0e8ea9831a92759fb4b",
+      "expected_sha256": "87d3548e6d16c26dcae5c09fa33047b91f9b25ade6161d818b51694d383c69ce",
+      "binary_bytes": 16672,
+      "object_bytes": 2240,
+      "calls_per_batch": 16,
+      "fresh_process_ns": {
+        "median": 1398924,
+        "min": 1282308,
+        "max": 3091276
+      },
+      "warm_batch_ns": {
+        "median": 2989603,
+        "min": 2180576,
+        "max": 13093390
+      },
+      "warm_ns_per_call": {
+        "median": 186850.1875,
+        "min": 136286.0,
+        "max": 818336.875
+      },
+      "resolution_limited": false,
+      "ratios_to_c11": {
+        "warm_median": 0.7112180643878181,
+        "fresh_median": 0.7828653420842921,
+        "binary_bytes": 0.9909652876842606,
+        "object_bytes": 0.7909604519774012
+      },
+      "warm_ranges_disjoint": false,
+      "bounded_dominance": false
+    },
+    {
+      "id": "K-WORK-EXACT-c11-2",
+      "case": "K-WORK-EXACT",
+      "backend": "c11",
+      "level": "2",
+      "backend_mode": "O2",
+      "binary_sha256": "7efd4ac19ac8b31cc63465ca0bf9a2470757cb19d27aa399e93d75a0c1ec24bd",
+      "object_sha256": "d2a5c78b052c8c33788caa3a1e087521fbf519372bc21728a421a016dcf7eb03",
+      "input_sha256": "f5a5fd42d16a20302798ef6ed309979b43003d2320d9f0e8ea9831a92759fb4b",
+      "expected_sha256": "87d3548e6d16c26dcae5c09fa33047b91f9b25ade6161d818b51694d383c69ce",
+      "binary_bytes": 16592,
+      "object_bytes": 1616,
+      "calls_per_batch": 16,
+      "fresh_process_ns": {
+        "median": 1254021,
+        "min": 1032823,
+        "max": 1305562
+      },
+      "warm_batch_ns": {
+        "median": 2541764,
+        "min": 2091647,
+        "max": 7874906
+      },
+      "warm_ns_per_call": {
+        "median": 158860.25,
+        "min": 130727.9375,
+        "max": 492181.625
+      },
+      "resolution_limited": false,
+      "ratios_to_c11": {
+        "warm_median": 1.0,
+        "fresh_median": 1.0,
+        "binary_bytes": 1.0,
+        "object_bytes": 1.0
+      },
+      "warm_ranges_disjoint": false,
+      "bounded_dominance": false
+    },
+    {
+      "id": "K-WORK-EXACT-llvm-2",
+      "case": "K-WORK-EXACT",
+      "backend": "llvm",
+      "level": "2",
+      "backend_mode": "O2",
+      "binary_sha256": "901fc6451b5a9b1b3a64d725606917a2268effebfcdbbe6c690c8f920c1c8ebd",
+      "object_sha256": "d798391fec1924d3dd00929825ae39395d99e7b613d59ce5bdccebbcc2861e84",
+      "input_sha256": "f5a5fd42d16a20302798ef6ed309979b43003d2320d9f0e8ea9831a92759fb4b",
+      "expected_sha256": "87d3548e6d16c26dcae5c09fa33047b91f9b25ade6161d818b51694d383c69ce",
+      "binary_bytes": 16720,
+      "object_bytes": 4280,
+      "calls_per_batch": 16,
+      "fresh_process_ns": {
+        "median": 1283882,
+        "min": 1187221,
+        "max": 1617401
+      },
+      "warm_batch_ns": {
+        "median": 2910999,
+        "min": 2305386,
+        "max": 8868994
+      },
+      "warm_ns_per_call": {
+        "median": 181937.4375,
+        "min": 144086.625,
+        "max": 554312.125
+      },
+      "resolution_limited": false,
+      "ratios_to_c11": {
+        "warm_median": 1.1452672238650008,
+        "fresh_median": 1.023812200912106,
+        "binary_bytes": 1.00771456123433,
+        "object_bytes": 2.6485148514851486
+      },
+      "warm_ranges_disjoint": false,
+      "bounded_dominance": false
+    },
+    {
+      "id": "K-WORK-EXACT-cranelift-2",
+      "case": "K-WORK-EXACT",
+      "backend": "cranelift",
+      "level": "2",
+      "backend_mode": "speed",
+      "binary_sha256": "4cbf214f940384783f3e94b555a8b3cb3f9a5035b79b06b16407867d71be5bb0",
+      "object_sha256": "b8155e8b6fc1d5d206ed14563f15c4288d7d21c3f0e0fa2b5631b7d1a99803d6",
+      "input_sha256": "f5a5fd42d16a20302798ef6ed309979b43003d2320d9f0e8ea9831a92759fb4b",
+      "expected_sha256": "87d3548e6d16c26dcae5c09fa33047b91f9b25ade6161d818b51694d383c69ce",
+      "binary_bytes": 16672,
+      "object_bytes": 2216,
+      "calls_per_batch": 16,
+      "fresh_process_ns": {
+        "median": 1178908,
+        "min": 1091201,
+        "max": 3488040
+      },
+      "warm_batch_ns": {
+        "median": 1517194,
+        "min": 963616,
+        "max": 4940365
+      },
+      "warm_ns_per_call": {
+        "median": 94824.625,
+        "min": 60226.0,
+        "max": 308772.8125
+      },
+      "resolution_limited": true,
+      "ratios_to_c11": {
+        "warm_median": 0.5969059283237941,
+        "fresh_median": 0.9401022789889484,
+        "binary_bytes": 1.004821600771456,
+        "object_bytes": 1.3712871287128714
+      },
+      "warm_ranges_disjoint": false,
+      "bounded_dominance": false
+    },
+    {
+      "id": "K-WORK-EXACT-c11-s",
+      "case": "K-WORK-EXACT",
+      "backend": "c11",
+      "level": "s",
+      "backend_mode": "Os",
+      "binary_sha256": "cbdca8340734b66fa7a1cb3533f6f79a788fe19cd7f6f27311584cc7fea46198",
+      "object_sha256": "5a28baaa71ea34e5a50114142daed8d261655e341d5a805074f41cd28485f7f0",
+      "input_sha256": "f5a5fd42d16a20302798ef6ed309979b43003d2320d9f0e8ea9831a92759fb4b",
+      "expected_sha256": "87d3548e6d16c26dcae5c09fa33047b91f9b25ade6161d818b51694d383c69ce",
+      "binary_bytes": 16592,
+      "object_bytes": 2128,
+      "calls_per_batch": 16,
+      "fresh_process_ns": {
+        "median": 1352728,
+        "min": 1152218,
+        "max": 2030953
+      },
+      "warm_batch_ns": {
+        "median": 2829451,
+        "min": 2236795,
+        "max": 5990660
+      },
+      "warm_ns_per_call": {
+        "median": 176840.6875,
+        "min": 139799.6875,
+        "max": 374416.25
+      },
+      "resolution_limited": false,
+      "ratios_to_c11": {
+        "warm_median": 1.0,
+        "fresh_median": 1.0,
+        "binary_bytes": 1.0,
+        "object_bytes": 1.0
+      },
+      "warm_ranges_disjoint": false,
+      "bounded_dominance": false
+    },
+    {
+      "id": "K-WORK-EXACT-llvm-s",
+      "case": "K-WORK-EXACT",
+      "backend": "llvm",
+      "level": "s",
+      "backend_mode": "Os",
+      "binary_sha256": "901fc6451b5a9b1b3a64d725606917a2268effebfcdbbe6c690c8f920c1c8ebd",
+      "object_sha256": "d798391fec1924d3dd00929825ae39395d99e7b613d59ce5bdccebbcc2861e84",
+      "input_sha256": "f5a5fd42d16a20302798ef6ed309979b43003d2320d9f0e8ea9831a92759fb4b",
+      "expected_sha256": "87d3548e6d16c26dcae5c09fa33047b91f9b25ade6161d818b51694d383c69ce",
+      "binary_bytes": 16720,
+      "object_bytes": 4280,
+      "calls_per_batch": 16,
+      "fresh_process_ns": {
+        "median": 1519255,
+        "min": 1216200,
+        "max": 1778703
+      },
+      "warm_batch_ns": {
+        "median": 2568174,
+        "min": 2284893,
+        "max": 7180388
+      },
+      "warm_ns_per_call": {
+        "median": 160510.875,
+        "min": 142805.8125,
+        "max": 448774.25
+      },
+      "resolution_limited": false,
+      "ratios_to_c11": {
+        "warm_median": 0.9076580580473032,
+        "fresh_median": 1.123104570911521,
+        "binary_bytes": 1.00771456123433,
+        "object_bytes": 2.011278195488722
+      },
+      "warm_ranges_disjoint": false,
+      "bounded_dominance": false
+    },
+    {
+      "id": "K-WORK-EXACT-cranelift-s",
+      "case": "K-WORK-EXACT",
+      "backend": "cranelift",
+      "level": "s",
+      "backend_mode": "speed_and_size",
+      "binary_sha256": "4cbf214f940384783f3e94b555a8b3cb3f9a5035b79b06b16407867d71be5bb0",
+      "object_sha256": "b8155e8b6fc1d5d206ed14563f15c4288d7d21c3f0e0fa2b5631b7d1a99803d6",
+      "input_sha256": "f5a5fd42d16a20302798ef6ed309979b43003d2320d9f0e8ea9831a92759fb4b",
+      "expected_sha256": "87d3548e6d16c26dcae5c09fa33047b91f9b25ade6161d818b51694d383c69ce",
+      "binary_bytes": 16672,
+      "object_bytes": 2216,
+      "calls_per_batch": 16,
+      "fresh_process_ns": {
+        "median": 1365125,
+        "min": 1101316,
+        "max": 2479054
+      },
+      "warm_batch_ns": {
+        "median": 1563035,
+        "min": 1061862,
+        "max": 3535274
+      },
+      "warm_ns_per_call": {
+        "median": 97689.6875,
+        "min": 66366.375,
+        "max": 220954.625
+      },
+      "resolution_limited": false,
+      "ratios_to_c11": {
+        "warm_median": 0.5524163521474661,
+        "fresh_median": 1.0091644439976108,
+        "binary_bytes": 1.004821600771456,
+        "object_bytes": 1.0413533834586466
+      },
+      "warm_ranges_disjoint": false,
+      "bounded_dominance": false
+    }
+  ],
+  "limits": "One preregistered shared-environment run. No performance population inference, production adoption, compiler-latency or memory ranking. Raw wait4 RSS values are diagnostic only. Cranelift optimized-tool builds failed within retained2GiB address-space bound; dev compiler latency was not substituted.",
+  "freeze": {
+    "schema": "bounded-native-runtime-freeze/1",
+    "status": "FROZEN_BEFORE_COLLECTION",
+    "timestamp_utc": "2026-10-04T17:49:35.124588+00:00",
+    "source_commit": "bb30e93cde99c6be56b0c9155127bd3e687215c0",
+    "collector_sha256": "72db22d44bdd7f7e6f13d0321d646207f2bb01896746e0aa64818c3dd3e34cb1",
+    "observer_sha256": "7df67dca7cafdae19edf5895b7153b27663e30538f90db18666ca73dccdcad59",
+    "variants_sha256": "bada54e44084a9380719942265a974e9eed9f844cb7e8c0ef955d1076948f818",
+    "sampling": {
+      "variants": 36,
+      "fresh_process_per_variant": 5,
+      "warm_batches_per_variant": 21,
+      "calls_per_batch": {
+        "K-ADD": 262144,
+        "K-CALL": 65536,
+        "K-LOOP-MAX": 256,
+        "K-WORK-EXACT": 16
+      },
+      "order": "fixed recorded variant order rotated left by 7*round modulo36, same number per variant, serial"
+    },
+    "scope": {
+      "fresh_process": "Launcher spawn through verified result; includes process startup and fixture I/O. OS caches not reset.",
+      "warm": "One preflight call then timed direct-ABI loop, clock and loop overhead retained, pre/post checks outside timer. New process per batch.",
+      "size": "Full linked application and program object bytes, metadata included.",
+      "memory": "Raw wait4 maximum-RSS diagnostic retained but not used for application-memory ranking; launch contamination and aggregate memory not established.",
+      "compiler_latency": "NOT_RUN: optimized Cranelift tool build failed at2GiB address-space bound for16 and256 codegen units. Dev compiler latency not substituted.",
+      "model_cost": "NOT_RUN"
+    },
+    "analysis": "Report medians and full ranges by case/backend/mode. Warm batch below1ms is resolution-limited. Only describe lower median ratio<=0.85 versus corresponding C11 mode if ranges do not overlap and every other declared smaller-is-better metric<=1.10; otherwise indeterminate. No universal winner or cross-case pooling.",
+    "stop": "285s collection deadline,45s command cap or any identity/semantic failure. Keep incomplete results, no favorable resampling.",
+    "controls": "Existing socket-denying runtime wrapper, same process limits, no compilation/network inside collection; all36 executables passed preflight and deliberately-wrong-expected negative controls.",
+    "review": "Separate same-maintainer checking pass; no independent review.",
+    "limitations": "Shared Linuxx86-64 execution environment; no CPU isolation/cache flushing/cgroup measurement. These are narrow illustrative runtime observations, not production adoption."
+  },
+  "date": "2026-10-04",
+  "sample_count": 936,
+  "reported_memory": "NOT_ESTABLISHED; private raw wait4 diagnostics not used in comparison"
+}

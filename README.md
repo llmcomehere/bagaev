@@ -75,7 +75,9 @@ untrusted code. No model account is needed for this example.
   or a measured performance/cost advantage.
 - **Experimental Cranelift comparison:** a [locked AOT object backend](docs/probe-cranelift.md)
   passed 150 fixed native ABI observations using the same kernel oracle.
-  Comparative speed, memory and build-cost measurements have not yet been made.
+  [Initial bounded runtime and source-byte observations](docs/probe-measurements.md)
+  do not select a general backend winner; compiler-latency, memory and model/cost
+  conclusions remain unestablished.
 - **L0:** a pure deterministic dataflow core, four types, ten operations,
   reference interpreter, atomic structural patches, and synthetic examples.
 - **L1:** a bounded CPython backend for L0. Recorded local acceptance matched

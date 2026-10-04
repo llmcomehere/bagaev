@@ -79,6 +79,8 @@ a trusted host dependency; packet validity does not establish admission.
 For the bounded native challenger, read the [Cranelift AOT guide](probe-cranelift.md),
 the [fixed native ABI](probes.md#fixed-native-abi), and its locked crate sources.
 Conformance results and comparative measurements are separate evidence.
+The [initial measurement report](probe-measurements.md) records the frozen scope,
+all raw timing rows, exact source-byte counts and unavailable comparison terms.
 
 1. **Entry, status, or planned beta:** read [README](../README.md) and
    [roadmap](roadmap.md). Use the [integrated guide](beta.md) for a standalone
