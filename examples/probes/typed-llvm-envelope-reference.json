@@ -1,0 +1,418 @@
+{
+  "schema": "typed-llvm-envelope-reference/1",
+  "status": "FROZEN_BEFORE_WRAPPER_IMPLEMENTATION",
+  "source_fixture_sha256": {
+    "typed-scalar-literals.json": "ddce2932ebb57508ea8754bb26c368bb1a6871cb28291742ce61f60bf4461c41",
+    "typed-scalar-boundaries.json": "224010f1c45a1ea442969d6abc1c1697d86c773a96e21a5e0d5b165ab1603960"
+  },
+  "backend_source_sha256": "dceee7665bf83eb646eca41222b7eba5883a2ec2c17e952d1628571afad16c59",
+  "method": "Output identity snapshots of the existing pinned LLVM byte library on prior expected lowered programs, collected before the new envelope wrapper; shared backend, not an independent semantic oracle",
+  "cases": [
+    {
+      "source_case": "S-INT",
+      "source_pin": "sha256:f4dfb112ce6d3fc54f02698667c9687f2fee434d86b6f3f5d4565101f39347b8",
+      "lowered_pin": "sha256:fb0a3a528338c01535de4a16bb52a4375e7c873373d67ffa9b55feb411be05ac",
+      "module_bytes": 9730,
+      "module_pin": "sha256:765bc27055574205757c21c02adb1b7ab5eb8f23752e1fcc25c742f96957009e",
+      "module_record_sha256": "208a4744a0ae0df26b5795dc42c8528b971e7d5abc3a38019f7571f9e33366f1"
+    },
+    {
+      "source_case": "S-BOOL",
+      "source_pin": "sha256:ab2021e0da42b24fe62804f746cc344417143674ecaeb19d5cf451ab0f416253",
+      "lowered_pin": "sha256:c49cba967b77ff601cfacfee9ef57b43098ef604a9e9e7fd39e389adef82e3ea",
+      "module_bytes": 9736,
+      "module_pin": "sha256:0a6a97606adf3e5e6b4cbe9eb3282d069c87363e18155d77d51d320af81cdd66",
+      "module_record_sha256": "cb76409add4d2b2e2142bc5b0823b37dd9de4132829bf7457475683ba684329b"
+    },
+    {
+      "source_case": "S-LOCAL-INT",
+      "source_pin": "sha256:b082762ee62cb3b2d4adf668c1e1b11ad4d10f8ea0075467fca729dc40a45949",
+      "lowered_pin": "sha256:e0b12d5c3e0e91b83f0ede9c6050c552af7cc1a5588bdf9d766088d35dac57c3",
+      "module_bytes": 12880,
+      "module_pin": "sha256:988656aff18db8a4bb497ddeb2a03fe3b1b94e73b27b2f1733da37359bd46c70",
+      "module_record_sha256": "6203643dc6b92eea2f075601f9e0f3a2ec5047a5b01fde1dda6a1dfa01209183"
+    },
+    {
+      "source_case": "S-LOCAL-BOOL",
+      "source_pin": "sha256:307284ee9d0c3a1414ee9e3a3a8c8c1a0086de290f3609f4ef7d375ca162c87c",
+      "lowered_pin": "sha256:82e7505ad7b2b406f7997879b3046c7d5abb1ed9f7096559b7e3224e0ca405f4",
+      "module_bytes": 11928,
+      "module_pin": "sha256:a9ec6f6b949acfe3b7cb4eec94a97e5491df5681d511108e896ec2ce4e4d62ba",
+      "module_record_sha256": "61d0b7bfcd2ee54b521c05a28fdfd652735aed3c1a82970b542b008a9120a5d1"
+    },
+    {
+      "source_case": "S-NESTED",
+      "source_pin": "sha256:8fe6e81e71675780b5b2bd10290b09c8c353baaff5f7a80b227320b9f5ccb343",
+      "lowered_pin": "sha256:d8b6478822611b54a8741c88b908a4901046c7d0061fc5269138ef71b3050a03",
+      "module_bytes": 14504,
+      "module_pin": "sha256:38bf0c754b333e579f17ed27dc9ba0217a6a71291a2d962bfc2792eb656128b6",
+      "module_record_sha256": "948ba25f565e0cee59094ccebb8830e98297fad0c3ae5c7e6a50b342d3716021"
+    },
+    {
+      "source_case": "S-LOOP-INT",
+      "source_pin": "sha256:0abaa2b7c9382eca13c5f1283c122f09c3d59a470eae93359b6c4d364e7a3161",
+      "lowered_pin": "sha256:6d1bfa8e1bc3c9d9cee371754acd5a61e7f1fff02665f9ed69e0fe0d9770952d",
+      "module_bytes": 13429,
+      "module_pin": "sha256:b09246686b78f591819d849ea4c8b6cb4d88d6e8247828b01f338f4ac45e8359",
+      "module_record_sha256": "6d2e8e4e49f23ac2fd53ee5426a43791fac708d5fd8b06937a01969ad41ec026"
+    },
+    {
+      "source_case": "S-LOOP-BOOL",
+      "source_pin": "sha256:30c6634c7ef68f6d351307e51ed1357afa456040d7f3d47a2901ee8c3475d716",
+      "lowered_pin": "sha256:27fca8596757ee2d59b81db5ae557bfe22446cb63569866a32b58356d56bc5c3",
+      "module_bytes": 12431,
+      "module_pin": "sha256:c662132ae6dec8f9f3a76a329000a61f71d1ed26531e7fcb540e9c7a65d5d96b",
+      "module_record_sha256": "7f14cd9c130c106f68fc31b4a85240203ab1307a66c67ca4679ba3cfba9d515e"
+    },
+    {
+      "source_case": "S-PARAM",
+      "source_pin": "sha256:ab61f67c79c5638860d4ec9fb678558d4ea394f3bb829591c273e89eed2cff0d",
+      "lowered_pin": "sha256:d2afe9c16de57b3f6675a647593957822f8dd82ac83bc733a94d0aca34899fa5",
+      "module_bytes": 11420,
+      "module_pin": "sha256:0b3f3460c5287d4a8bbde5ad0b2fa4e51fc62d577a9850612e613e4ad84f5174",
+      "module_record_sha256": "7406f9d7d8f958a610964d1d538de846d3ec312c0aff8f65b9955aa93be8e850"
+    },
+    {
+      "source_case": "S-LAZY-OVERFLOW",
+      "source_pin": "sha256:df0860da44d755be92b874a24f1834acffb3644a51732330c7e2d7cce7741b9c",
+      "lowered_pin": "sha256:74fafe22eec6580ab2522d4ef8cdc47dc5dd702e668f53998fef9ea0c04056a4",
+      "module_bytes": 13500,
+      "module_pin": "sha256:c3a7e21f3388cffd14006dcb01036684b5574c21781ed0a101ceb405b7c7de6e",
+      "module_record_sha256": "f40f9f0ea5ceac49036409156eae85ad95e51dabbe0475faf761fa8a260ee14c"
+    },
+    {
+      "source_case": "F-VERSION",
+      "expected_refusal": {
+        "kind": "refusal",
+        "code": "TS_VERSION",
+        "source_location": "/schema",
+        "execution_admission": false,
+        "schema": "bagaev-typed-source-result/1"
+      }
+    },
+    {
+      "source_case": "F-EXTRA",
+      "expected_refusal": {
+        "kind": "refusal",
+        "code": "TS_SHAPE",
+        "source_location": "",
+        "execution_admission": false,
+        "schema": "bagaev-typed-source-result/1"
+      }
+    },
+    {
+      "source_case": "F-OLD-ANNOTATION",
+      "expected_refusal": {
+        "kind": "refusal",
+        "code": "TS_SHAPE",
+        "source_location": "/functions/main/body",
+        "execution_admission": false,
+        "schema": "bagaev-typed-source-result/1"
+      }
+    },
+    {
+      "source_case": "F-SHADOW",
+      "expected_refusal": {
+        "kind": "refusal",
+        "code": "TS_SHAPE",
+        "source_location": "/functions/main/body/1",
+        "execution_admission": false,
+        "schema": "bagaev-typed-source-result/1"
+      }
+    },
+    {
+      "source_case": "F-LOOP-DUP",
+      "expected_refusal": {
+        "kind": "refusal",
+        "code": "TS_SHAPE",
+        "source_location": "/functions/main/body/3",
+        "execution_admission": false,
+        "schema": "bagaev-typed-source-result/1"
+      }
+    },
+    {
+      "source_case": "F-COUNT",
+      "expected_refusal": {
+        "kind": "refusal",
+        "code": "TS_BOUNDS",
+        "source_location": "/functions/main/body/1",
+        "execution_admission": false,
+        "schema": "bagaev-typed-source-result/1"
+      }
+    },
+    {
+      "source_case": "F-INT-BOUND",
+      "expected_refusal": {
+        "kind": "refusal",
+        "code": "TS_BOUNDS",
+        "source_location": "/functions/main/body/1",
+        "execution_admission": false,
+        "schema": "bagaev-typed-source-result/1"
+      }
+    },
+    {
+      "source_case": "F-SELF-BINDING",
+      "expected_refusal": {
+        "kind": "refusal",
+        "code": "TS_REFERENCE",
+        "source_location": "/functions/main/body/2",
+        "execution_admission": false,
+        "schema": "bagaev-typed-source-result/1"
+      }
+    },
+    {
+      "source_case": "F-ARG-IS-NOT-LOCAL",
+      "expected_refusal": {
+        "kind": "refusal",
+        "code": "TS_REFERENCE",
+        "source_location": "/functions/main/body/3",
+        "execution_admission": false,
+        "schema": "bagaev-typed-source-result/1"
+      }
+    },
+    {
+      "source_case": "F-LOOP-INITIAL-SCOPE",
+      "expected_refusal": {
+        "kind": "refusal",
+        "code": "TS_REFERENCE",
+        "source_location": "/functions/main/body/4",
+        "execution_admission": false,
+        "schema": "bagaev-typed-source-result/1"
+      }
+    },
+    {
+      "source_case": "F-LOOP-BODY-TYPE",
+      "expected_refusal": {
+        "kind": "refusal",
+        "code": "TS_TYPE",
+        "source_location": "/functions/main/body/5",
+        "execution_admission": false,
+        "schema": "bagaev-typed-source-result/1"
+      }
+    },
+    {
+      "source_case": "F-RETURN-TYPE",
+      "expected_refusal": {
+        "kind": "refusal",
+        "code": "TS_TYPE",
+        "source_location": "/functions/main/body",
+        "execution_admission": false,
+        "schema": "bagaev-typed-source-result/1"
+      }
+    },
+    {
+      "source_case": "F-LEFT-TYPE-FIRST",
+      "expected_refusal": {
+        "kind": "refusal",
+        "code": "TS_TYPE",
+        "source_location": "/functions/main/body/1",
+        "execution_admission": false,
+        "schema": "bagaev-typed-source-result/1"
+      }
+    },
+    {
+      "source_case": "F-UNTAKEN-TYPE",
+      "expected_refusal": {
+        "kind": "refusal",
+        "code": "TS_TYPE",
+        "source_location": "/functions/main/body/3",
+        "execution_admission": false,
+        "schema": "bagaev-typed-source-result/1"
+      }
+    },
+    {
+      "source_case": "F-SHAPE-BEFORE-REFERENCE",
+      "expected_refusal": {
+        "kind": "refusal",
+        "code": "TS_SHAPE",
+        "source_location": "/functions/main/body/2",
+        "execution_admission": false,
+        "schema": "bagaev-typed-source-result/1"
+      }
+    },
+    {
+      "source_case": "F-REFERENCE-BEFORE-TYPE",
+      "expected_refusal": {
+        "kind": "refusal",
+        "code": "TS_REFERENCE",
+        "source_location": "/functions/main/body/2",
+        "execution_admission": false,
+        "schema": "bagaev-typed-source-result/1"
+      }
+    },
+    {
+      "source_case": "F-CYCLE",
+      "expected_refusal": {
+        "kind": "refusal",
+        "code": "TS_CYCLE",
+        "source_location": "/functions/main/body",
+        "execution_admission": false,
+        "schema": "bagaev-typed-source-result/1"
+      }
+    },
+    {
+      "source_case": "B-DEPTH-32",
+      "source_pin": "sha256:1744134f9386cab9cf575858b47cc7fadfa70f2a330633bfcb6e63f09cd66fa1",
+      "lowered_pin": "sha256:dec60569393f1a47d609bfbee5ce058c5c1db825ec67235104338de2e6c58061",
+      "module_bytes": 33384,
+      "module_pin": "sha256:5b842b536d4ff28e5658c584b39a69aaea32d9fdcc23ee051e166999aba938db",
+      "module_record_sha256": "4fb3fffb1a5192382a799b7f5a207949e9748b1ef2a2efde00adbe4f569e4420"
+    },
+    {
+      "source_case": "B-DEPTH-33",
+      "expected_refusal": {
+        "kind": "refusal",
+        "code": "TS_BOUNDS",
+        "source_location": "/functions/main/body/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1",
+        "execution_admission": false,
+        "schema": "bagaev-typed-source-result/1"
+      }
+    },
+    {
+      "source_case": "B-NODES-512",
+      "source_pin": "sha256:61074f1e69f2d79d4ea4a5fbebbf3686ee4111789dc2a2105597cf5e9047601e",
+      "lowered_pin": "sha256:b0d43cccb0cd6cc05c675dff3c4bb6a40ca55bbce9e3cfa44f7775e59cae574c",
+      "module_bytes": 377223,
+      "module_pin": "sha256:b75721097281bb54f6b09e7c047e075696da2d0d85a42976449f864872ed487e",
+      "module_record_sha256": "b32e8c0676443a88a82aec2d98d775ec63935e4f8a0adbd27d955c87b950eaa3"
+    },
+    {
+      "source_case": "B-NODES-513",
+      "expected_refusal": {
+        "kind": "refusal",
+        "code": "TS_BOUNDS",
+        "source_location": "/functions/H/body/1/1/2/2/2/2/2",
+        "execution_admission": false,
+        "schema": "bagaev-typed-source-result/1"
+      }
+    },
+    {
+      "source_case": "B-FUNCTIONS-9",
+      "expected_refusal": {
+        "kind": "refusal",
+        "code": "TS_BOUNDS",
+        "source_location": "/functions",
+        "execution_admission": false,
+        "schema": "bagaev-typed-source-result/1"
+      }
+    },
+    {
+      "source_case": "B-PARAMS-9",
+      "expected_refusal": {
+        "kind": "refusal",
+        "code": "TS_BOUNDS",
+        "source_location": "/functions/main/params",
+        "execution_admission": false,
+        "schema": "bagaev-typed-source-result/1"
+      }
+    },
+    {
+      "source_case": "B-JSON-DEPTH",
+      "expected_refusal": {
+        "kind": "refusal",
+        "code": "TS_BOUNDS",
+        "source_location": "/functions/main/body/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0",
+        "execution_admission": false,
+        "schema": "bagaev-typed-source-result/1"
+      }
+    },
+    {
+      "source_case": "B-JSON-VALUES",
+      "expected_refusal": {
+        "kind": "refusal",
+        "code": "TS_BOUNDS",
+        "source_location": "/functions/main/body/8187",
+        "execution_admission": false,
+        "schema": "bagaev-typed-source-result/1"
+      }
+    },
+    {
+      "source_case": "B-CYCLE-FIRST-BACK-EDGE",
+      "expected_refusal": {
+        "kind": "refusal",
+        "code": "TS_CYCLE",
+        "source_location": "/functions/B/body",
+        "execution_admission": false,
+        "schema": "bagaev-typed-source-result/1"
+      }
+    },
+    {
+      "source_case": "B-REFERENCE-BEFORE-CYCLE",
+      "expected_refusal": {
+        "kind": "refusal",
+        "code": "TS_REFERENCE",
+        "source_location": "/functions/A/body/1",
+        "execution_admission": false,
+        "schema": "bagaev-typed-source-result/1"
+      }
+    },
+    {
+      "source_case": "R-UTF8",
+      "expected_refusal": {
+        "kind": "refusal",
+        "code": "TS_JSON",
+        "source_location": "",
+        "execution_admission": false,
+        "schema": "bagaev-typed-source-result/1"
+      }
+    },
+    {
+      "source_case": "R-DUPLICATE",
+      "expected_refusal": {
+        "kind": "refusal",
+        "code": "TS_JSON",
+        "source_location": "",
+        "execution_admission": false,
+        "schema": "bagaev-typed-source-result/1"
+      }
+    },
+    {
+      "source_case": "R-ESCAPED-DUPLICATE",
+      "expected_refusal": {
+        "kind": "refusal",
+        "code": "TS_JSON",
+        "source_location": "",
+        "execution_admission": false,
+        "schema": "bagaev-typed-source-result/1"
+      }
+    },
+    {
+      "source_case": "R-TRAILING",
+      "expected_refusal": {
+        "kind": "refusal",
+        "code": "TS_JSON",
+        "source_location": "",
+        "execution_admission": false,
+        "schema": "bagaev-typed-source-result/1"
+      }
+    },
+    {
+      "source_case": "R-EXPONENT",
+      "expected_refusal": {
+        "kind": "refusal",
+        "code": "TS_SHAPE",
+        "source_location": "/functions/main/body/1",
+        "execution_admission": false,
+        "schema": "bagaev-typed-source-result/1"
+      }
+    },
+    {
+      "source_case": "R-OVERSIZE",
+      "expected_refusal": {
+        "kind": "refusal",
+        "code": "TS_BOUNDS",
+        "source_location": "",
+        "execution_admission": false,
+        "schema": "bagaev-typed-source-result/1"
+      }
+    },
+    {
+      "source_case": "R-BYTE-BOUNDARY",
+      "source_pin": "sha256:ab2021e0da42b24fe62804f746cc344417143674ecaeb19d5cf451ab0f416253",
+      "lowered_pin": "sha256:c49cba967b77ff601cfacfee9ef57b43098ef604a9e9e7fd39e389adef82e3ea",
+      "module_bytes": 9736,
+      "module_pin": "sha256:0a6a97606adf3e5e6b4cbe9eb3282d069c87363e18155d77d51d320af81cdd66",
+      "module_record_sha256": "cb76409add4d2b2e2142bc5b0823b37dd9de4132829bf7457475683ba684329b"
+    }
+  ]
+}
