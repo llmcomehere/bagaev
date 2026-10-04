@@ -198,9 +198,10 @@ object keys visited before argument-shape refusal:
 unused-code mapping, all result statuses and malformed encodings, signed/bool
 decoding, both prefills, input mutation, exact CLI/static priorities, long
 pointer/hex preservation, bounded input reading and synthetic write/flush errors.
-Tests do not link or call a real object, import an oracle, or emit LLVM. The future
+Tests do not link or call a real object, import an oracle, or emit LLVM. The
 frame test creates and removes only a uniquely named temporary regular input;
 it does not create `/out` files or launch processes. The [bounded observations](../../../../docs/native-probe-results.md) record
-10 passing harness tests. The real linked Rust caller, sync failure,
-native memory behavior and process-level result/witness completeness require
-later admitted observations and cannot be supplied by source assertions.
+10 passing harness tests. The actual fixed observation core has since been exercised through a scoped
+linked harness, with 98 exact witnesses recorded in that report. This does not
+cover the original CLI publication path, sync failure, arbitrary native memory
+behavior or hostile filesystem races; those cannot be supplied by source assertions.

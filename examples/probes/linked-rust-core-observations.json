@@ -1,0 +1,2103 @@
+{
+  "schema": "bounded-linked-rust-core-observations/1",
+  "date": "2026-10-04",
+  "status": "PASS",
+  "method": "Original fixed::observe core linked to one checked LLVM object per executable. Copied caller source changes only mod fixed to pub mod fixed for a stdout-witness test harness. Public production caller is unchanged.",
+  "rust": "1.93.0",
+  "llvm_object_mode": "O2",
+  "caller_profile": "opt-level0, no debug info",
+  "source_sha256": {
+    "native_main.rs": "3eb991d44f9cfbdb43126638e51c8c50d6eaf6e6089c449f910bd9be63e9989f",
+    "canonical.rs": "f91a885f247e64ba02495cc0750b46ff78e8753723c9f87e105b235b3f72900d",
+    "llvm.rs": "dceee7665bf83eb646eca41222b7eba5883a2ec2c17e952d1628571afad16c59",
+    "transport.rs": "bc968e3734e5c2bb58d7de69c2af93fd81f43a6ee43fd8784c24af3ad16ca8d2",
+    "native.rs": "1cd006577b852132966d24eb09cb3faadecb480562cdae7b2c8c097c207b5d85",
+    "sha256.rs": "c350e08ec41a4fb29e2871e6a0194b1905538c77adc878d68fd5a8cd6dec4324",
+    "main.rs": "844a7d51edb0130503d5f18eefefb6c8f4a64e0e63611b197bcaae52c628bf54",
+    "llvm_main.rs": "4894f9d6ccd56c3fed5d65fefddcb5313595aeca55491dacfe9db9da497d4afe",
+    "ir.rs": "d58dd8a6d1ee83fdbb037e724d55697fad77a615d03c7c9185f331304c7cf009",
+    "check.rs": "6421f2b9ad290099b747580c6d63f18f216f9dd8ed4043ab8f1e5e41abfeb0dc"
+  },
+  "visibility_only_copy_sha256": "05b7bec923c16b5c2757aff45d4b5e53ebb5a8d84698ad12c68d85221956df60",
+  "object_admissions": [
+    {
+      "binary_sha256": "75ebc6101c92799d11365e26ee1175e8daaf8e44e5bc60e8550bed0ef5f5b8dc",
+      "binding_sha256": "4cc5973b15357bea799c283bde271355efc03c231e7db7d6f7c58c67e25c662a",
+      "binding_bytes": 1541,
+      "aligned_length_symbol": true,
+      "single_entry_symbol": true,
+      "id": "K-MIN",
+      "readonly_elf_load_segments": true
+    },
+    {
+      "binary_sha256": "24e3dbec0b03415735fe51dfe0a706001607282b84a542fa5c573c5125e2e0bc",
+      "binding_sha256": "949b353727a709a3ab79c34728f33e0d99d4f13d91b8ccd1da390c83f83b574b",
+      "binding_bytes": 1540,
+      "aligned_length_symbol": true,
+      "single_entry_symbol": true,
+      "id": "K-MAX",
+      "readonly_elf_load_segments": true
+    },
+    {
+      "binary_sha256": "93d28f3776a361ff5a2faa1ea7501c14cd0e59d096d10529c360c47c97a13645",
+      "binding_sha256": "cc782623b4c71794fcae4e7fb79f4c3ee1406d17739871b60312c4dee91bca6c",
+      "binding_bytes": 1737,
+      "aligned_length_symbol": true,
+      "single_entry_symbol": true,
+      "id": "K-ADD",
+      "readonly_elf_load_segments": true
+    },
+    {
+      "binary_sha256": "5803f253629f29b1fba848b85e41614854fd60805568a7e6c7cff0d3f875b2e7",
+      "binding_sha256": "6faf2a204f0c60000f79913be200d4bfa7edfe1793ae143a6ff6bca4b9eac7ce",
+      "binding_bytes": 1737,
+      "aligned_length_symbol": true,
+      "single_entry_symbol": true,
+      "id": "K-SUB",
+      "readonly_elf_load_segments": true
+    },
+    {
+      "binary_sha256": "32e1cbe9efc34ed371ad662fdaabde8c65827fa6f946b284c18c9b73f33e344c",
+      "binding_sha256": "0d3fe1e07d3fe1e333dcb3301c47acd5eaa8bb2c1796b07a7f458bcf74394ec0",
+      "binding_bytes": 1738,
+      "aligned_length_symbol": true,
+      "single_entry_symbol": true,
+      "id": "K-MUL",
+      "readonly_elf_load_segments": true
+    },
+    {
+      "binary_sha256": "350c49f0f27a95185bc2303f8986203917fc98134b6192db25b9e9f79707f106",
+      "binding_sha256": "ca47d148b87f915dcc37f16955571df01849653796a9ec21d6aa8f70f0dd8c41",
+      "binding_bytes": 1741,
+      "aligned_length_symbol": true,
+      "single_entry_symbol": true,
+      "id": "K-EQ",
+      "readonly_elf_load_segments": true
+    },
+    {
+      "binary_sha256": "5962fefc74333b71426c1668690b4b3a809133bd6268cc1e3929268ad0d04840",
+      "binding_sha256": "175c1f745b1ed1ac993fb4417c262eb57e041ca05e95aa04bae9c3faf258ce03",
+      "binding_bytes": 1769,
+      "aligned_length_symbol": true,
+      "single_entry_symbol": true,
+      "id": "K-LT",
+      "readonly_elf_load_segments": true
+    },
+    {
+      "binary_sha256": "2c22c4486a7c8b2134a615f88aceaee8fa0ded34b0eb39d78d5f721ce616d266",
+      "binding_sha256": "0ff2ad423c212749c9b6dc123ddb32abc121b4466f5917398c81dfb4d685e819",
+      "binding_bytes": 1732,
+      "aligned_length_symbol": true,
+      "single_entry_symbol": true,
+      "id": "K-LE",
+      "readonly_elf_load_segments": true
+    },
+    {
+      "binary_sha256": "d4f809e7ab8579cd06799d4d4443faafad95b2f889ffe12cdd40fe67cd7aa90f",
+      "binding_sha256": "57d889e4b675016ec769a7740f62609e485871616f9d0b9b0a07950430d2c29c",
+      "binding_bytes": 1629,
+      "aligned_length_symbol": true,
+      "single_entry_symbol": true,
+      "id": "K-NOT",
+      "readonly_elf_load_segments": true
+    },
+    {
+      "binary_sha256": "37b291e43beac3e62fa1a71fba8fee44dd9227efd532bff09d84d8dc86d169a0",
+      "binding_sha256": "d5a26eb28ad85e856d2508f8a3938b1ffede84aa74729b7661588fdd0aeadffe",
+      "binding_bytes": 1787,
+      "aligned_length_symbol": true,
+      "single_entry_symbol": true,
+      "id": "K-LET",
+      "readonly_elf_load_segments": true
+    },
+    {
+      "binary_sha256": "78d5c33f8e81679616eb6cb977e40965ddcab9494daca58a583d8eae4fe2503d",
+      "binding_sha256": "9a56017387e769c4b7a15cce9bc29c73b23a2b41f857ea0d9c23527d2bdf5ec4",
+      "binding_bytes": 1920,
+      "aligned_length_symbol": true,
+      "single_entry_symbol": true,
+      "id": "K-CALL",
+      "readonly_elf_load_segments": true
+    },
+    {
+      "binary_sha256": "d2d7b2f9863cd17c54a2cb355a682c507cf75d87f0f7cb11eb108af033203f70",
+      "binding_sha256": "d838c9d51cb19f05f3130fa424563dce4471b7d01565a692b4000b59c7428187",
+      "binding_bytes": 2067,
+      "aligned_length_symbol": true,
+      "single_entry_symbol": true,
+      "id": "K-LOOP-ZERO",
+      "readonly_elf_load_segments": true
+    },
+    {
+      "binary_sha256": "3ebc3be98e23a043617c3a57181ab87aed241239f3a653837ca3849b98085188",
+      "binding_sha256": "320d049b9cfa4d77db7ebdfe5112db37fa887d69a784fda625ef72693df12d32",
+      "binding_bytes": 2056,
+      "aligned_length_symbol": true,
+      "single_entry_symbol": true,
+      "id": "K-LOOP-MAX",
+      "readonly_elf_load_segments": true
+    },
+    {
+      "binary_sha256": "9d8317eaee95d38865dd4489269b97754ed749357fbfe64e7bacd705e9098f20",
+      "binding_sha256": "94a1a44fd9f5996a3fa567199c25ec203e4b27b52c56d6604a00d2db7548362d",
+      "binding_bytes": 2086,
+      "aligned_length_symbol": true,
+      "single_entry_symbol": true,
+      "id": "K-LAZY",
+      "readonly_elf_load_segments": true
+    },
+    {
+      "binary_sha256": "f3f30ab922d7795a4a5ab1af8110d0835fde4e7be5969083ccfceaf52a63492a",
+      "binding_sha256": "a41c55e6aace45864b6bf2526f123c0a0f77d14d86b84cbe05eeb784ed5d0613",
+      "binding_bytes": 2483,
+      "aligned_length_symbol": true,
+      "single_entry_symbol": true,
+      "id": "K-LAZY-1",
+      "readonly_elf_load_segments": true
+    },
+    {
+      "binary_sha256": "b6842dc8849d3ad7662e1df46880ee266695841904a6aba4cb3d3d6a72b4739e",
+      "binding_sha256": "766c86d6481fbcf64cc08f7f18e78053190291ede8ca462c860243952681c3bd",
+      "binding_bytes": 1755,
+      "aligned_length_symbol": true,
+      "single_entry_symbol": true,
+      "id": "K-OVER-ADD",
+      "readonly_elf_load_segments": true
+    },
+    {
+      "binary_sha256": "954558c42aaa44282396a0ab5683bd94acf00cfbd96ed113be2ce76a68523d54",
+      "binding_sha256": "3596a395f823676ef14d777e72447eed718144eeac7af2dcd6ade58df5112fb2",
+      "binding_bytes": 1756,
+      "aligned_length_symbol": true,
+      "single_entry_symbol": true,
+      "id": "K-OVER-SUB",
+      "readonly_elf_load_segments": true
+    },
+    {
+      "binary_sha256": "a94ac7df45a1079baa7218fa15f1a402df483e86074bdd76da7fe5f1153dc628",
+      "binding_sha256": "0363a2b051aaf1f723d52996398abc355dc5f21b18cc09af3669f5031e280e08",
+      "binding_bytes": 1757,
+      "aligned_length_symbol": true,
+      "single_entry_symbol": true,
+      "id": "K-OVER-MUL",
+      "readonly_elf_load_segments": true
+    },
+    {
+      "binary_sha256": "3644b7836539ba87ae8484a0f6e09670b686488461a912ff76a2b5daa42d1d8e",
+      "binding_sha256": "2444f99b8f16b534cf9af9f5b49d1ad811b12750ece773bc5c04e36a2f98bc1e",
+      "binding_bytes": 2212,
+      "aligned_length_symbol": true,
+      "single_entry_symbol": true,
+      "id": "K-LEFT-FAIL",
+      "readonly_elf_load_segments": true
+    },
+    {
+      "binary_sha256": "b86849e81b42ad54f5baf7cef86a1e4e382d81a748164af6e67812b39841cb5f",
+      "binding_sha256": "7eca8a2cfe289951f0e06220a7cbb3ab95eef0b15fe29c8e870220572ac60c89",
+      "binding_bytes": 2072,
+      "aligned_length_symbol": true,
+      "single_entry_symbol": true,
+      "id": "K-LOOP-FAIL",
+      "readonly_elf_load_segments": true
+    },
+    {
+      "binary_sha256": "293f278f99d9335de515594053dadb5795a5b2afe2eab27e3819afcd9723af09",
+      "binding_sha256": "9378913cd198b6597f277c64ed46355c72f1641c85e632ffe8e0764f6759cdf1",
+      "binding_bytes": 2737,
+      "aligned_length_symbol": true,
+      "single_entry_symbol": true,
+      "id": "K-WORK-EXACT",
+      "readonly_elf_load_segments": true
+    },
+    {
+      "binary_sha256": "b546d5ca005b43d9f86b7b48c531ee3ecafa2c4395b74406b9f78ce5e35562e0",
+      "binding_sha256": "f029c97bbb592c37a342f2d92d33e280b195a4ec0a0b99cd2e736afc5113dee0",
+      "binding_bytes": 2737,
+      "aligned_length_symbol": true,
+      "single_entry_symbol": true,
+      "id": "K-WORK-REFUSED",
+      "readonly_elf_load_segments": true
+    },
+    {
+      "binary_sha256": "8944e64e597c1e86debceb8ba3d16f650f105b3b0dee2291d4af022d03f4737f",
+      "binding_sha256": "2232af4b6bd98f6113bb4b19626f36c20b6bf0d2ff82858295b057afb96588b4",
+      "binding_bytes": 1945,
+      "aligned_length_symbol": true,
+      "single_entry_symbol": true,
+      "id": "K-ABI-VALID",
+      "readonly_elf_load_segments": true
+    }
+  ],
+  "observations": [
+    {
+      "case": "K-MIN",
+      "stage": 0,
+      "prefill": "00",
+      "static_refusal": false,
+      "matches": true,
+      "witness": {
+        "binding_pin": "sha256:4cc5973b15357bea799c283bde271355efc03c231e7db7d6f7c58c67e25c662a",
+        "entry_call_count": 1,
+        "input_after_hex": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "input_before_hex": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "output_hex": "0000000001000000000000000000008001000000000000000000000000000000",
+        "prefill": "00",
+        "program_pin": "sha256:567b84ad090054436c01110357dd7cf1c2fd82c64ae1aa0d56237b34955964e3",
+        "result_wire_bytes": 143,
+        "result_wire_hex": "7b226c6f636174696f6e223a6e756c6c2c22726561736f6e223a6e756c6c2c22736368656d61223a226261676165762d70726f62652d726573756c742f31222c22737461747573223a2273756363657373222c2276616c7565223a2d393232333337323033363835343737353830382c2276616c75655f74797065223a22496e743634222c22776f726b223a317d0a",
+        "schema": "bagaev-probe-native-witness/1"
+      }
+    },
+    {
+      "case": "K-MIN",
+      "stage": 0,
+      "prefill": "ff",
+      "static_refusal": false,
+      "matches": true,
+      "witness": {
+        "binding_pin": "sha256:4cc5973b15357bea799c283bde271355efc03c231e7db7d6f7c58c67e25c662a",
+        "entry_call_count": 1,
+        "input_after_hex": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "input_before_hex": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "output_hex": "0000000001000000000000000000008001000000000000000000000000000000",
+        "prefill": "ff",
+        "program_pin": "sha256:567b84ad090054436c01110357dd7cf1c2fd82c64ae1aa0d56237b34955964e3",
+        "result_wire_bytes": 143,
+        "result_wire_hex": "7b226c6f636174696f6e223a6e756c6c2c22726561736f6e223a6e756c6c2c22736368656d61223a226261676165762d70726f62652d726573756c742f31222c22737461747573223a2273756363657373222c2276616c7565223a2d393232333337323033363835343737353830382c2276616c75655f74797065223a22496e743634222c22776f726b223a317d0a",
+        "schema": "bagaev-probe-native-witness/1"
+      }
+    },
+    {
+      "case": "K-MAX",
+      "stage": 0,
+      "prefill": "00",
+      "static_refusal": false,
+      "matches": true,
+      "witness": {
+        "binding_pin": "sha256:949b353727a709a3ab79c34728f33e0d99d4f13d91b8ccd1da390c83f83b574b",
+        "entry_call_count": 1,
+        "input_after_hex": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "input_before_hex": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "output_hex": "0000000001000000ffffffffffffff7f01000000000000000000000000000000",
+        "prefill": "00",
+        "program_pin": "sha256:7d502c5678dd78558f7c49788cbbde830abfc7f7edec23e5a1aa9c1bf12f4b9e",
+        "result_wire_bytes": 142,
+        "result_wire_hex": "7b226c6f636174696f6e223a6e756c6c2c22726561736f6e223a6e756c6c2c22736368656d61223a226261676165762d70726f62652d726573756c742f31222c22737461747573223a2273756363657373222c2276616c7565223a393232333337323033363835343737353830372c2276616c75655f74797065223a22496e743634222c22776f726b223a317d0a",
+        "schema": "bagaev-probe-native-witness/1"
+      }
+    },
+    {
+      "case": "K-MAX",
+      "stage": 0,
+      "prefill": "ff",
+      "static_refusal": false,
+      "matches": true,
+      "witness": {
+        "binding_pin": "sha256:949b353727a709a3ab79c34728f33e0d99d4f13d91b8ccd1da390c83f83b574b",
+        "entry_call_count": 1,
+        "input_after_hex": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "input_before_hex": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "output_hex": "0000000001000000ffffffffffffff7f01000000000000000000000000000000",
+        "prefill": "ff",
+        "program_pin": "sha256:7d502c5678dd78558f7c49788cbbde830abfc7f7edec23e5a1aa9c1bf12f4b9e",
+        "result_wire_bytes": 142,
+        "result_wire_hex": "7b226c6f636174696f6e223a6e756c6c2c22726561736f6e223a6e756c6c2c22736368656d61223a226261676165762d70726f62652d726573756c742f31222c22737461747573223a2273756363657373222c2276616c7565223a393232333337323033363835343737353830372c2276616c75655f74797065223a22496e743634222c22776f726b223a317d0a",
+        "schema": "bagaev-probe-native-witness/1"
+      }
+    },
+    {
+      "case": "K-ADD",
+      "stage": 0,
+      "prefill": "00",
+      "static_refusal": false,
+      "matches": true,
+      "witness": {
+        "binding_pin": "sha256:cc782623b4c71794fcae4e7fb79f4c3ee1406d17739871b60312c4dee91bca6c",
+        "entry_call_count": 1,
+        "input_after_hex": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "input_before_hex": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "output_hex": "0000000001000000050000000000000003000000000000000000000000000000",
+        "prefill": "00",
+        "program_pin": "sha256:f75934c38f32334da20ae2bcda042bb628b152ae13da3eb605800b5690a86ce3",
+        "result_wire_bytes": 124,
+        "result_wire_hex": "7b226c6f636174696f6e223a6e756c6c2c22726561736f6e223a6e756c6c2c22736368656d61223a226261676165762d70726f62652d726573756c742f31222c22737461747573223a2273756363657373222c2276616c7565223a352c2276616c75655f74797065223a22496e743634222c22776f726b223a337d0a",
+        "schema": "bagaev-probe-native-witness/1"
+      }
+    },
+    {
+      "case": "K-ADD",
+      "stage": 0,
+      "prefill": "ff",
+      "static_refusal": false,
+      "matches": true,
+      "witness": {
+        "binding_pin": "sha256:cc782623b4c71794fcae4e7fb79f4c3ee1406d17739871b60312c4dee91bca6c",
+        "entry_call_count": 1,
+        "input_after_hex": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "input_before_hex": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "output_hex": "0000000001000000050000000000000003000000000000000000000000000000",
+        "prefill": "ff",
+        "program_pin": "sha256:f75934c38f32334da20ae2bcda042bb628b152ae13da3eb605800b5690a86ce3",
+        "result_wire_bytes": 124,
+        "result_wire_hex": "7b226c6f636174696f6e223a6e756c6c2c22726561736f6e223a6e756c6c2c22736368656d61223a226261676165762d70726f62652d726573756c742f31222c22737461747573223a2273756363657373222c2276616c7565223a352c2276616c75655f74797065223a22496e743634222c22776f726b223a337d0a",
+        "schema": "bagaev-probe-native-witness/1"
+      }
+    },
+    {
+      "case": "K-SUB",
+      "stage": 0,
+      "prefill": "00",
+      "static_refusal": false,
+      "matches": true,
+      "witness": {
+        "binding_pin": "sha256:6faf2a204f0c60000f79913be200d4bfa7edfe1793ae143a6ff6bca4b9eac7ce",
+        "entry_call_count": 1,
+        "input_after_hex": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "input_before_hex": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "output_hex": "0000000001000000ffffffffffffffff03000000000000000000000000000000",
+        "prefill": "00",
+        "program_pin": "sha256:502a64777d44fc2eaecbec8da924a700e8446bcf1d204965a241787e55f32f1e",
+        "result_wire_bytes": 125,
+        "result_wire_hex": "7b226c6f636174696f6e223a6e756c6c2c22726561736f6e223a6e756c6c2c22736368656d61223a226261676165762d70726f62652d726573756c742f31222c22737461747573223a2273756363657373222c2276616c7565223a2d312c2276616c75655f74797065223a22496e743634222c22776f726b223a337d0a",
+        "schema": "bagaev-probe-native-witness/1"
+      }
+    },
+    {
+      "case": "K-SUB",
+      "stage": 0,
+      "prefill": "ff",
+      "static_refusal": false,
+      "matches": true,
+      "witness": {
+        "binding_pin": "sha256:6faf2a204f0c60000f79913be200d4bfa7edfe1793ae143a6ff6bca4b9eac7ce",
+        "entry_call_count": 1,
+        "input_after_hex": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "input_before_hex": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "output_hex": "0000000001000000ffffffffffffffff03000000000000000000000000000000",
+        "prefill": "ff",
+        "program_pin": "sha256:502a64777d44fc2eaecbec8da924a700e8446bcf1d204965a241787e55f32f1e",
+        "result_wire_bytes": 125,
+        "result_wire_hex": "7b226c6f636174696f6e223a6e756c6c2c22726561736f6e223a6e756c6c2c22736368656d61223a226261676165762d70726f62652d726573756c742f31222c22737461747573223a2273756363657373222c2276616c7565223a2d312c2276616c75655f74797065223a22496e743634222c22776f726b223a337d0a",
+        "schema": "bagaev-probe-native-witness/1"
+      }
+    },
+    {
+      "case": "K-MUL",
+      "stage": 0,
+      "prefill": "00",
+      "static_refusal": false,
+      "matches": true,
+      "witness": {
+        "binding_pin": "sha256:0d3fe1e07d3fe1e333dcb3301c47acd5eaa8bb2c1796b07a7f458bcf74394ec0",
+        "entry_call_count": 1,
+        "input_after_hex": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "input_before_hex": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "output_hex": "0000000001000000f4ffffffffffffff03000000000000000000000000000000",
+        "prefill": "00",
+        "program_pin": "sha256:12b1068d51096aae65bdd86348295a21994c6df5716cc8d6655124437c0836ba",
+        "result_wire_bytes": 126,
+        "result_wire_hex": "7b226c6f636174696f6e223a6e756c6c2c22726561736f6e223a6e756c6c2c22736368656d61223a226261676165762d70726f62652d726573756c742f31222c22737461747573223a2273756363657373222c2276616c7565223a2d31322c2276616c75655f74797065223a22496e743634222c22776f726b223a337d0a",
+        "schema": "bagaev-probe-native-witness/1"
+      }
+    },
+    {
+      "case": "K-MUL",
+      "stage": 0,
+      "prefill": "ff",
+      "static_refusal": false,
+      "matches": true,
+      "witness": {
+        "binding_pin": "sha256:0d3fe1e07d3fe1e333dcb3301c47acd5eaa8bb2c1796b07a7f458bcf74394ec0",
+        "entry_call_count": 1,
+        "input_after_hex": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "input_before_hex": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "output_hex": "0000000001000000f4ffffffffffffff03000000000000000000000000000000",
+        "prefill": "ff",
+        "program_pin": "sha256:12b1068d51096aae65bdd86348295a21994c6df5716cc8d6655124437c0836ba",
+        "result_wire_bytes": 126,
+        "result_wire_hex": "7b226c6f636174696f6e223a6e756c6c2c22726561736f6e223a6e756c6c2c22736368656d61223a226261676165762d70726f62652d726573756c742f31222c22737461747573223a2273756363657373222c2276616c7565223a2d31322c2276616c75655f74797065223a22496e743634222c22776f726b223a337d0a",
+        "schema": "bagaev-probe-native-witness/1"
+      }
+    },
+    {
+      "case": "K-EQ",
+      "stage": 0,
+      "prefill": "00",
+      "static_refusal": false,
+      "matches": true,
+      "witness": {
+        "binding_pin": "sha256:ca47d148b87f915dcc37f16955571df01849653796a9ec21d6aa8f70f0dd8c41",
+        "entry_call_count": 1,
+        "input_after_hex": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "input_before_hex": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "output_hex": "0000000002000000000000000000000003000000000000000000000000000000",
+        "prefill": "00",
+        "program_pin": "sha256:eb6f84fea84f9b93955f9ec2b2a3367ac03d4763124c7a5f02d19a2c5b0fd1b2",
+        "result_wire_bytes": 127,
+        "result_wire_hex": "7b226c6f636174696f6e223a6e756c6c2c22726561736f6e223a6e756c6c2c22736368656d61223a226261676165762d70726f62652d726573756c742f31222c22737461747573223a2273756363657373222c2276616c7565223a66616c73652c2276616c75655f74797065223a22426f6f6c222c22776f726b223a337d0a",
+        "schema": "bagaev-probe-native-witness/1"
+      }
+    },
+    {
+      "case": "K-EQ",
+      "stage": 0,
+      "prefill": "ff",
+      "static_refusal": false,
+      "matches": true,
+      "witness": {
+        "binding_pin": "sha256:ca47d148b87f915dcc37f16955571df01849653796a9ec21d6aa8f70f0dd8c41",
+        "entry_call_count": 1,
+        "input_after_hex": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "input_before_hex": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "output_hex": "0000000002000000000000000000000003000000000000000000000000000000",
+        "prefill": "ff",
+        "program_pin": "sha256:eb6f84fea84f9b93955f9ec2b2a3367ac03d4763124c7a5f02d19a2c5b0fd1b2",
+        "result_wire_bytes": 127,
+        "result_wire_hex": "7b226c6f636174696f6e223a6e756c6c2c22726561736f6e223a6e756c6c2c22736368656d61223a226261676165762d70726f62652d726573756c742f31222c22737461747573223a2273756363657373222c2276616c7565223a66616c73652c2276616c75655f74797065223a22426f6f6c222c22776f726b223a337d0a",
+        "schema": "bagaev-probe-native-witness/1"
+      }
+    },
+    {
+      "case": "K-LT",
+      "stage": 0,
+      "prefill": "00",
+      "static_refusal": false,
+      "matches": true,
+      "witness": {
+        "binding_pin": "sha256:175c1f745b1ed1ac993fb4417c262eb57e041ca05e95aa04bae9c3faf258ce03",
+        "entry_call_count": 1,
+        "input_after_hex": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "input_before_hex": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "output_hex": "0000000002000000010000000000000003000000000000000000000000000000",
+        "prefill": "00",
+        "program_pin": "sha256:c28ad7a9f6a757c1dd659aa86decf582c9d3176a326a3413500f6f4435370892",
+        "result_wire_bytes": 126,
+        "result_wire_hex": "7b226c6f636174696f6e223a6e756c6c2c22726561736f6e223a6e756c6c2c22736368656d61223a226261676165762d70726f62652d726573756c742f31222c22737461747573223a2273756363657373222c2276616c7565223a747275652c2276616c75655f74797065223a22426f6f6c222c22776f726b223a337d0a",
+        "schema": "bagaev-probe-native-witness/1"
+      }
+    },
+    {
+      "case": "K-LT",
+      "stage": 0,
+      "prefill": "ff",
+      "static_refusal": false,
+      "matches": true,
+      "witness": {
+        "binding_pin": "sha256:175c1f745b1ed1ac993fb4417c262eb57e041ca05e95aa04bae9c3faf258ce03",
+        "entry_call_count": 1,
+        "input_after_hex": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "input_before_hex": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "output_hex": "0000000002000000010000000000000003000000000000000000000000000000",
+        "prefill": "ff",
+        "program_pin": "sha256:c28ad7a9f6a757c1dd659aa86decf582c9d3176a326a3413500f6f4435370892",
+        "result_wire_bytes": 126,
+        "result_wire_hex": "7b226c6f636174696f6e223a6e756c6c2c22726561736f6e223a6e756c6c2c22736368656d61223a226261676165762d70726f62652d726573756c742f31222c22737461747573223a2273756363657373222c2276616c7565223a747275652c2276616c75655f74797065223a22426f6f6c222c22776f726b223a337d0a",
+        "schema": "bagaev-probe-native-witness/1"
+      }
+    },
+    {
+      "case": "K-LE",
+      "stage": 0,
+      "prefill": "00",
+      "static_refusal": false,
+      "matches": true,
+      "witness": {
+        "binding_pin": "sha256:0ff2ad423c212749c9b6dc123ddb32abc121b4466f5917398c81dfb4d685e819",
+        "entry_call_count": 1,
+        "input_after_hex": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "input_before_hex": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "output_hex": "0000000002000000010000000000000003000000000000000000000000000000",
+        "prefill": "00",
+        "program_pin": "sha256:7b251a61d25ccdf97b4a7ae85f4979dfbd6953ff76573c4c095a986e6c40a957",
+        "result_wire_bytes": 126,
+        "result_wire_hex": "7b226c6f636174696f6e223a6e756c6c2c22726561736f6e223a6e756c6c2c22736368656d61223a226261676165762d70726f62652d726573756c742f31222c22737461747573223a2273756363657373222c2276616c7565223a747275652c2276616c75655f74797065223a22426f6f6c222c22776f726b223a337d0a",
+        "schema": "bagaev-probe-native-witness/1"
+      }
+    },
+    {
+      "case": "K-LE",
+      "stage": 0,
+      "prefill": "ff",
+      "static_refusal": false,
+      "matches": true,
+      "witness": {
+        "binding_pin": "sha256:0ff2ad423c212749c9b6dc123ddb32abc121b4466f5917398c81dfb4d685e819",
+        "entry_call_count": 1,
+        "input_after_hex": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "input_before_hex": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "output_hex": "0000000002000000010000000000000003000000000000000000000000000000",
+        "prefill": "ff",
+        "program_pin": "sha256:7b251a61d25ccdf97b4a7ae85f4979dfbd6953ff76573c4c095a986e6c40a957",
+        "result_wire_bytes": 126,
+        "result_wire_hex": "7b226c6f636174696f6e223a6e756c6c2c22726561736f6e223a6e756c6c2c22736368656d61223a226261676165762d70726f62652d726573756c742f31222c22737461747573223a2273756363657373222c2276616c7565223a747275652c2276616c75655f74797065223a22426f6f6c222c22776f726b223a337d0a",
+        "schema": "bagaev-probe-native-witness/1"
+      }
+    },
+    {
+      "case": "K-NOT",
+      "stage": 0,
+      "prefill": "00",
+      "static_refusal": false,
+      "matches": true,
+      "witness": {
+        "binding_pin": "sha256:57d889e4b675016ec769a7740f62609e485871616f9d0b9b0a07950430d2c29c",
+        "entry_call_count": 1,
+        "input_after_hex": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "input_before_hex": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "output_hex": "0000000002000000000000000000000002000000000000000000000000000000",
+        "prefill": "00",
+        "program_pin": "sha256:93d88481ce6708039e10ed5c1f05a4bd6e02e6d97f86e84219e3fb6f1b171d1e",
+        "result_wire_bytes": 127,
+        "result_wire_hex": "7b226c6f636174696f6e223a6e756c6c2c22726561736f6e223a6e756c6c2c22736368656d61223a226261676165762d70726f62652d726573756c742f31222c22737461747573223a2273756363657373222c2276616c7565223a66616c73652c2276616c75655f74797065223a22426f6f6c222c22776f726b223a327d0a",
+        "schema": "bagaev-probe-native-witness/1"
+      }
+    },
+    {
+      "case": "K-NOT",
+      "stage": 0,
+      "prefill": "ff",
+      "static_refusal": false,
+      "matches": true,
+      "witness": {
+        "binding_pin": "sha256:57d889e4b675016ec769a7740f62609e485871616f9d0b9b0a07950430d2c29c",
+        "entry_call_count": 1,
+        "input_after_hex": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "input_before_hex": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "output_hex": "0000000002000000000000000000000002000000000000000000000000000000",
+        "prefill": "ff",
+        "program_pin": "sha256:93d88481ce6708039e10ed5c1f05a4bd6e02e6d97f86e84219e3fb6f1b171d1e",
+        "result_wire_bytes": 127,
+        "result_wire_hex": "7b226c6f636174696f6e223a6e756c6c2c22726561736f6e223a6e756c6c2c22736368656d61223a226261676165762d70726f62652d726573756c742f31222c22737461747573223a2273756363657373222c2276616c7565223a66616c73652c2276616c75655f74797065223a22426f6f6c222c22776f726b223a327d0a",
+        "schema": "bagaev-probe-native-witness/1"
+      }
+    },
+    {
+      "case": "K-LET",
+      "stage": 0,
+      "prefill": "00",
+      "static_refusal": false,
+      "matches": true,
+      "witness": {
+        "binding_pin": "sha256:d5a26eb28ad85e856d2508f8a3938b1ffede84aa74729b7661588fdd0aeadffe",
+        "entry_call_count": 1,
+        "input_after_hex": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "input_before_hex": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "output_hex": "0000000001000000070000000000000003000000000000000000000000000000",
+        "prefill": "00",
+        "program_pin": "sha256:db1c9fcb4b52aacd8cef676856215341b47ea0383eeb5737a89e384310e795d5",
+        "result_wire_bytes": 124,
+        "result_wire_hex": "7b226c6f636174696f6e223a6e756c6c2c22726561736f6e223a6e756c6c2c22736368656d61223a226261676165762d70726f62652d726573756c742f31222c22737461747573223a2273756363657373222c2276616c7565223a372c2276616c75655f74797065223a22496e743634222c22776f726b223a337d0a",
+        "schema": "bagaev-probe-native-witness/1"
+      }
+    },
+    {
+      "case": "K-LET",
+      "stage": 0,
+      "prefill": "ff",
+      "static_refusal": false,
+      "matches": true,
+      "witness": {
+        "binding_pin": "sha256:d5a26eb28ad85e856d2508f8a3938b1ffede84aa74729b7661588fdd0aeadffe",
+        "entry_call_count": 1,
+        "input_after_hex": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "input_before_hex": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "output_hex": "0000000001000000070000000000000003000000000000000000000000000000",
+        "prefill": "ff",
+        "program_pin": "sha256:db1c9fcb4b52aacd8cef676856215341b47ea0383eeb5737a89e384310e795d5",
+        "result_wire_bytes": 124,
+        "result_wire_hex": "7b226c6f636174696f6e223a6e756c6c2c22726561736f6e223a6e756c6c2c22736368656d61223a226261676165762d70726f62652d726573756c742f31222c22737461747573223a2273756363657373222c2276616c7565223a372c2276616c75655f74797065223a22496e743634222c22776f726b223a337d0a",
+        "schema": "bagaev-probe-native-witness/1"
+      }
+    },
+    {
+      "case": "K-CALL",
+      "stage": 0,
+      "prefill": "00",
+      "static_refusal": false,
+      "matches": true,
+      "witness": {
+        "binding_pin": "sha256:9a56017387e769c4b7a15cce9bc29c73b23a2b41f857ea0d9c23527d2bdf5ec4",
+        "entry_call_count": 1,
+        "input_after_hex": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "input_before_hex": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "output_hex": "0000000001000000090000000000000003000000000000000000000000000000",
+        "prefill": "00",
+        "program_pin": "sha256:c64d3eff8f79f9be0f52a71673182819b6ba533022f9382480bcdec97ecef2c2",
+        "result_wire_bytes": 124,
+        "result_wire_hex": "7b226c6f636174696f6e223a6e756c6c2c22726561736f6e223a6e756c6c2c22736368656d61223a226261676165762d70726f62652d726573756c742f31222c22737461747573223a2273756363657373222c2276616c7565223a392c2276616c75655f74797065223a22496e743634222c22776f726b223a337d0a",
+        "schema": "bagaev-probe-native-witness/1"
+      }
+    },
+    {
+      "case": "K-CALL",
+      "stage": 0,
+      "prefill": "ff",
+      "static_refusal": false,
+      "matches": true,
+      "witness": {
+        "binding_pin": "sha256:9a56017387e769c4b7a15cce9bc29c73b23a2b41f857ea0d9c23527d2bdf5ec4",
+        "entry_call_count": 1,
+        "input_after_hex": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "input_before_hex": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "output_hex": "0000000001000000090000000000000003000000000000000000000000000000",
+        "prefill": "ff",
+        "program_pin": "sha256:c64d3eff8f79f9be0f52a71673182819b6ba533022f9382480bcdec97ecef2c2",
+        "result_wire_bytes": 124,
+        "result_wire_hex": "7b226c6f636174696f6e223a6e756c6c2c22726561736f6e223a6e756c6c2c22736368656d61223a226261676165762d70726f62652d726573756c742f31222c22737461747573223a2273756363657373222c2276616c7565223a392c2276616c75655f74797065223a22496e743634222c22776f726b223a337d0a",
+        "schema": "bagaev-probe-native-witness/1"
+      }
+    },
+    {
+      "case": "K-LOOP-ZERO",
+      "stage": 0,
+      "prefill": "00",
+      "static_refusal": false,
+      "matches": true,
+      "witness": {
+        "binding_pin": "sha256:d838c9d51cb19f05f3130fa424563dce4471b7d01565a692b4000b59c7428187",
+        "entry_call_count": 1,
+        "input_after_hex": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "input_before_hex": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "output_hex": "0000000001000000080000000000000002000000000000000000000000000000",
+        "prefill": "00",
+        "program_pin": "sha256:5d5fc45bbb4aae56c44a1a02746c23627c59f63ce78d78d91ebd7b061686f109",
+        "result_wire_bytes": 124,
+        "result_wire_hex": "7b226c6f636174696f6e223a6e756c6c2c22726561736f6e223a6e756c6c2c22736368656d61223a226261676165762d70726f62652d726573756c742f31222c22737461747573223a2273756363657373222c2276616c7565223a382c2276616c75655f74797065223a22496e743634222c22776f726b223a327d0a",
+        "schema": "bagaev-probe-native-witness/1"
+      }
+    },
+    {
+      "case": "K-LOOP-ZERO",
+      "stage": 0,
+      "prefill": "ff",
+      "static_refusal": false,
+      "matches": true,
+      "witness": {
+        "binding_pin": "sha256:d838c9d51cb19f05f3130fa424563dce4471b7d01565a692b4000b59c7428187",
+        "entry_call_count": 1,
+        "input_after_hex": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "input_before_hex": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "output_hex": "0000000001000000080000000000000002000000000000000000000000000000",
+        "prefill": "ff",
+        "program_pin": "sha256:5d5fc45bbb4aae56c44a1a02746c23627c59f63ce78d78d91ebd7b061686f109",
+        "result_wire_bytes": 124,
+        "result_wire_hex": "7b226c6f636174696f6e223a6e756c6c2c22726561736f6e223a6e756c6c2c22736368656d61223a226261676165762d70726f62652d726573756c742f31222c22737461747573223a2273756363657373222c2276616c7565223a382c2276616c75655f74797065223a22496e743634222c22776f726b223a327d0a",
+        "schema": "bagaev-probe-native-witness/1"
+      }
+    },
+    {
+      "case": "K-LOOP-MAX",
+      "stage": 0,
+      "prefill": "00",
+      "static_refusal": false,
+      "matches": true,
+      "witness": {
+        "binding_pin": "sha256:320d049b9cfa4d77db7ebdfe5112db37fa887d69a784fda625ef72693df12d32",
+        "entry_call_count": 1,
+        "input_after_hex": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "input_before_hex": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "output_hex": "000000000100000000fe070000000000020c0000000000000000000000000000",
+        "prefill": "00",
+        "program_pin": "sha256:f41c5e0ce340baf535fe4a3f1dcbae7707857b95be5aba3cba03db6e3a4a28ab",
+        "result_wire_bytes": 132,
+        "result_wire_hex": "7b226c6f636174696f6e223a6e756c6c2c22726561736f6e223a6e756c6c2c22736368656d61223a226261676165762d70726f62652d726573756c742f31222c22737461747573223a2273756363657373222c2276616c7565223a3532333737362c2276616c75655f74797065223a22496e743634222c22776f726b223a333037347d0a",
+        "schema": "bagaev-probe-native-witness/1"
+      }
+    },
+    {
+      "case": "K-LOOP-MAX",
+      "stage": 0,
+      "prefill": "ff",
+      "static_refusal": false,
+      "matches": true,
+      "witness": {
+        "binding_pin": "sha256:320d049b9cfa4d77db7ebdfe5112db37fa887d69a784fda625ef72693df12d32",
+        "entry_call_count": 1,
+        "input_after_hex": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "input_before_hex": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "output_hex": "000000000100000000fe070000000000020c0000000000000000000000000000",
+        "prefill": "ff",
+        "program_pin": "sha256:f41c5e0ce340baf535fe4a3f1dcbae7707857b95be5aba3cba03db6e3a4a28ab",
+        "result_wire_bytes": 132,
+        "result_wire_hex": "7b226c6f636174696f6e223a6e756c6c2c22726561736f6e223a6e756c6c2c22736368656d61223a226261676165762d70726f62652d726573756c742f31222c22737461747573223a2273756363657373222c2276616c7565223a3532333737362c2276616c75655f74797065223a22496e743634222c22776f726b223a333037347d0a",
+        "schema": "bagaev-probe-native-witness/1"
+      }
+    },
+    {
+      "case": "K-LAZY",
+      "stage": 0,
+      "prefill": "00",
+      "static_refusal": false,
+      "matches": true,
+      "witness": {
+        "binding_pin": "sha256:94a1a44fd9f5996a3fa567199c25ec203e4b27b52c56d6604a00d2db7548362d",
+        "entry_call_count": 1,
+        "input_after_hex": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "input_before_hex": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "output_hex": "0000000001000000040000000000000003000000000000000000000000000000",
+        "prefill": "00",
+        "program_pin": "sha256:e31f85090d4645f6e0ee23570443c192354cbd5f4f6970e64883b062923033da",
+        "result_wire_bytes": 124,
+        "result_wire_hex": "7b226c6f636174696f6e223a6e756c6c2c22726561736f6e223a6e756c6c2c22736368656d61223a226261676165762d70726f62652d726573756c742f31222c22737461747573223a2273756363657373222c2276616c7565223a342c2276616c75655f74797065223a22496e743634222c22776f726b223a337d0a",
+        "schema": "bagaev-probe-native-witness/1"
+      }
+    },
+    {
+      "case": "K-LAZY",
+      "stage": 0,
+      "prefill": "ff",
+      "static_refusal": false,
+      "matches": true,
+      "witness": {
+        "binding_pin": "sha256:94a1a44fd9f5996a3fa567199c25ec203e4b27b52c56d6604a00d2db7548362d",
+        "entry_call_count": 1,
+        "input_after_hex": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "input_before_hex": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "output_hex": "0000000001000000040000000000000003000000000000000000000000000000",
+        "prefill": "ff",
+        "program_pin": "sha256:e31f85090d4645f6e0ee23570443c192354cbd5f4f6970e64883b062923033da",
+        "result_wire_bytes": 124,
+        "result_wire_hex": "7b226c6f636174696f6e223a6e756c6c2c22726561736f6e223a6e756c6c2c22736368656d61223a226261676165762d70726f62652d726573756c742f31222c22737461747573223a2273756363657373222c2276616c7565223a342c2276616c75655f74797065223a22496e743634222c22776f726b223a337d0a",
+        "schema": "bagaev-probe-native-witness/1"
+      }
+    },
+    {
+      "case": "K-LAZY",
+      "stage": 1,
+      "prefill": "00",
+      "static_refusal": false,
+      "matches": true,
+      "witness": {
+        "binding_pin": "sha256:a41c55e6aace45864b6bf2526f123c0a0f77d14d86b84cbe05eeb784ed5d0613",
+        "entry_call_count": 1,
+        "input_after_hex": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "input_before_hex": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "output_hex": "0000000001000000000000000000000003000000000000000000000000000000",
+        "prefill": "00",
+        "program_pin": "sha256:00298a016e6021417a65bb3c08e9dcdff05bfd8c613c66a8982490be209d3518",
+        "result_wire_bytes": 124,
+        "result_wire_hex": "7b226c6f636174696f6e223a6e756c6c2c22726561736f6e223a6e756c6c2c22736368656d61223a226261676165762d70726f62652d726573756c742f31222c22737461747573223a2273756363657373222c2276616c7565223a302c2276616c75655f74797065223a22496e743634222c22776f726b223a337d0a",
+        "schema": "bagaev-probe-native-witness/1"
+      }
+    },
+    {
+      "case": "K-LAZY",
+      "stage": 1,
+      "prefill": "ff",
+      "static_refusal": false,
+      "matches": true,
+      "witness": {
+        "binding_pin": "sha256:a41c55e6aace45864b6bf2526f123c0a0f77d14d86b84cbe05eeb784ed5d0613",
+        "entry_call_count": 1,
+        "input_after_hex": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "input_before_hex": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "output_hex": "0000000001000000000000000000000003000000000000000000000000000000",
+        "prefill": "ff",
+        "program_pin": "sha256:00298a016e6021417a65bb3c08e9dcdff05bfd8c613c66a8982490be209d3518",
+        "result_wire_bytes": 124,
+        "result_wire_hex": "7b226c6f636174696f6e223a6e756c6c2c22726561736f6e223a6e756c6c2c22736368656d61223a226261676165762d70726f62652d726573756c742f31222c22737461747573223a2273756363657373222c2276616c7565223a302c2276616c75655f74797065223a22496e743634222c22776f726b223a337d0a",
+        "schema": "bagaev-probe-native-witness/1"
+      }
+    },
+    {
+      "case": "K-OVER-ADD",
+      "stage": 0,
+      "prefill": "00",
+      "static_refusal": false,
+      "matches": true,
+      "witness": {
+        "binding_pin": "sha256:766c86d6481fbcf64cc08f7f18e78053190291ede8ca462c860243952681c3bd",
+        "entry_call_count": 1,
+        "input_after_hex": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "input_before_hex": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "output_hex": "0100000000000000000000000000000003000000000000000900000001000000",
+        "prefill": "00",
+        "program_pin": "sha256:b2c4263f61572996b502936b13d423d1df3b9abea2f4d49c2135ff81e2cc7e4a",
+        "result_wire_bytes": 168,
+        "result_wire_hex": "7b226c6f636174696f6e223a222f70726f6772616d2f66756e6374696f6e732f6d61696e2f626f6479222c22726561736f6e223a2249525f4f564552464c4f57222c22736368656d61223a226261676165762d70726f62652d726573756c742f31222c22737461747573223a22696e74656765722d6f766572666c6f77222c2276616c7565223a6e756c6c2c2276616c75655f74797065223a6e756c6c2c22776f726b223a337d0a",
+        "schema": "bagaev-probe-native-witness/1"
+      }
+    },
+    {
+      "case": "K-OVER-ADD",
+      "stage": 0,
+      "prefill": "ff",
+      "static_refusal": false,
+      "matches": true,
+      "witness": {
+        "binding_pin": "sha256:766c86d6481fbcf64cc08f7f18e78053190291ede8ca462c860243952681c3bd",
+        "entry_call_count": 1,
+        "input_after_hex": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "input_before_hex": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "output_hex": "0100000000000000000000000000000003000000000000000900000001000000",
+        "prefill": "ff",
+        "program_pin": "sha256:b2c4263f61572996b502936b13d423d1df3b9abea2f4d49c2135ff81e2cc7e4a",
+        "result_wire_bytes": 168,
+        "result_wire_hex": "7b226c6f636174696f6e223a222f70726f6772616d2f66756e6374696f6e732f6d61696e2f626f6479222c22726561736f6e223a2249525f4f564552464c4f57222c22736368656d61223a226261676165762d70726f62652d726573756c742f31222c22737461747573223a22696e74656765722d6f766572666c6f77222c2276616c7565223a6e756c6c2c2276616c75655f74797065223a6e756c6c2c22776f726b223a337d0a",
+        "schema": "bagaev-probe-native-witness/1"
+      }
+    },
+    {
+      "case": "K-OVER-SUB",
+      "stage": 0,
+      "prefill": "00",
+      "static_refusal": false,
+      "matches": true,
+      "witness": {
+        "binding_pin": "sha256:3596a395f823676ef14d777e72447eed718144eeac7af2dcd6ade58df5112fb2",
+        "entry_call_count": 1,
+        "input_after_hex": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "input_before_hex": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "output_hex": "0100000000000000000000000000000003000000000000000900000001000000",
+        "prefill": "00",
+        "program_pin": "sha256:389eb0b3438f4a6826e1c4ed19011f99b7c1260752865df43b226efddbcca2ef",
+        "result_wire_bytes": 168,
+        "result_wire_hex": "7b226c6f636174696f6e223a222f70726f6772616d2f66756e6374696f6e732f6d61696e2f626f6479222c22726561736f6e223a2249525f4f564552464c4f57222c22736368656d61223a226261676165762d70726f62652d726573756c742f31222c22737461747573223a22696e74656765722d6f766572666c6f77222c2276616c7565223a6e756c6c2c2276616c75655f74797065223a6e756c6c2c22776f726b223a337d0a",
+        "schema": "bagaev-probe-native-witness/1"
+      }
+    },
+    {
+      "case": "K-OVER-SUB",
+      "stage": 0,
+      "prefill": "ff",
+      "static_refusal": false,
+      "matches": true,
+      "witness": {
+        "binding_pin": "sha256:3596a395f823676ef14d777e72447eed718144eeac7af2dcd6ade58df5112fb2",
+        "entry_call_count": 1,
+        "input_after_hex": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "input_before_hex": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "output_hex": "0100000000000000000000000000000003000000000000000900000001000000",
+        "prefill": "ff",
+        "program_pin": "sha256:389eb0b3438f4a6826e1c4ed19011f99b7c1260752865df43b226efddbcca2ef",
+        "result_wire_bytes": 168,
+        "result_wire_hex": "7b226c6f636174696f6e223a222f70726f6772616d2f66756e6374696f6e732f6d61696e2f626f6479222c22726561736f6e223a2249525f4f564552464c4f57222c22736368656d61223a226261676165762d70726f62652d726573756c742f31222c22737461747573223a22696e74656765722d6f766572666c6f77222c2276616c7565223a6e756c6c2c2276616c75655f74797065223a6e756c6c2c22776f726b223a337d0a",
+        "schema": "bagaev-probe-native-witness/1"
+      }
+    },
+    {
+      "case": "K-OVER-MUL",
+      "stage": 0,
+      "prefill": "00",
+      "static_refusal": false,
+      "matches": true,
+      "witness": {
+        "binding_pin": "sha256:0363a2b051aaf1f723d52996398abc355dc5f21b18cc09af3669f5031e280e08",
+        "entry_call_count": 1,
+        "input_after_hex": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "input_before_hex": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "output_hex": "0100000000000000000000000000000003000000000000000900000001000000",
+        "prefill": "00",
+        "program_pin": "sha256:05a6b237db62d9ad57c9b3adb95cef4bb86c4e0c1faac9151016023212450ed7",
+        "result_wire_bytes": 168,
+        "result_wire_hex": "7b226c6f636174696f6e223a222f70726f6772616d2f66756e6374696f6e732f6d61696e2f626f6479222c22726561736f6e223a2249525f4f564552464c4f57222c22736368656d61223a226261676165762d70726f62652d726573756c742f31222c22737461747573223a22696e74656765722d6f766572666c6f77222c2276616c7565223a6e756c6c2c2276616c75655f74797065223a6e756c6c2c22776f726b223a337d0a",
+        "schema": "bagaev-probe-native-witness/1"
+      }
+    },
+    {
+      "case": "K-OVER-MUL",
+      "stage": 0,
+      "prefill": "ff",
+      "static_refusal": false,
+      "matches": true,
+      "witness": {
+        "binding_pin": "sha256:0363a2b051aaf1f723d52996398abc355dc5f21b18cc09af3669f5031e280e08",
+        "entry_call_count": 1,
+        "input_after_hex": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "input_before_hex": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "output_hex": "0100000000000000000000000000000003000000000000000900000001000000",
+        "prefill": "ff",
+        "program_pin": "sha256:05a6b237db62d9ad57c9b3adb95cef4bb86c4e0c1faac9151016023212450ed7",
+        "result_wire_bytes": 168,
+        "result_wire_hex": "7b226c6f636174696f6e223a222f70726f6772616d2f66756e6374696f6e732f6d61696e2f626f6479222c22726561736f6e223a2249525f4f564552464c4f57222c22736368656d61223a226261676165762d70726f62652d726573756c742f31222c22737461747573223a22696e74656765722d6f766572666c6f77222c2276616c7565223a6e756c6c2c2276616c75655f74797065223a6e756c6c2c22776f726b223a337d0a",
+        "schema": "bagaev-probe-native-witness/1"
+      }
+    },
+    {
+      "case": "K-LEFT-FAIL",
+      "stage": 0,
+      "prefill": "00",
+      "static_refusal": false,
+      "matches": true,
+      "witness": {
+        "binding_pin": "sha256:2444f99b8f16b534cf9af9f5b49d1ad811b12750ece773bc5c04e36a2f98bc1e",
+        "entry_call_count": 1,
+        "input_after_hex": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "input_before_hex": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "output_hex": "0100000000000000000000000000000004000000000000000900000002000000",
+        "prefill": "00",
+        "program_pin": "sha256:6cc10c9960ff56e1d14393bd32b4b5a514cec5311328b7547298dc96c2f09302",
+        "result_wire_bytes": 170,
+        "result_wire_hex": "7b226c6f636174696f6e223a222f70726f6772616d2f66756e6374696f6e732f6d61696e2f626f64792f31222c22726561736f6e223a2249525f4f564552464c4f57222c22736368656d61223a226261676165762d70726f62652d726573756c742f31222c22737461747573223a22696e74656765722d6f766572666c6f77222c2276616c7565223a6e756c6c2c2276616c75655f74797065223a6e756c6c2c22776f726b223a347d0a",
+        "schema": "bagaev-probe-native-witness/1"
+      }
+    },
+    {
+      "case": "K-LEFT-FAIL",
+      "stage": 0,
+      "prefill": "ff",
+      "static_refusal": false,
+      "matches": true,
+      "witness": {
+        "binding_pin": "sha256:2444f99b8f16b534cf9af9f5b49d1ad811b12750ece773bc5c04e36a2f98bc1e",
+        "entry_call_count": 1,
+        "input_after_hex": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "input_before_hex": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "output_hex": "0100000000000000000000000000000004000000000000000900000002000000",
+        "prefill": "ff",
+        "program_pin": "sha256:6cc10c9960ff56e1d14393bd32b4b5a514cec5311328b7547298dc96c2f09302",
+        "result_wire_bytes": 170,
+        "result_wire_hex": "7b226c6f636174696f6e223a222f70726f6772616d2f66756e6374696f6e732f6d61696e2f626f64792f31222c22726561736f6e223a2249525f4f564552464c4f57222c22736368656d61223a226261676165762d70726f62652d726573756c742f31222c22737461747573223a22696e74656765722d6f766572666c6f77222c2276616c7565223a6e756c6c2c2276616c75655f74797065223a6e756c6c2c22776f726b223a347d0a",
+        "schema": "bagaev-probe-native-witness/1"
+      }
+    },
+    {
+      "case": "K-LOOP-FAIL",
+      "stage": 0,
+      "prefill": "00",
+      "static_refusal": false,
+      "matches": true,
+      "witness": {
+        "binding_pin": "sha256:7eca8a2cfe289951f0e06220a7cbb3ab95eef0b15fe29c8e870220572ac60c89",
+        "entry_call_count": 1,
+        "input_after_hex": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "input_before_hex": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "output_hex": "0100000000000000000000000000000005000000000000000900000003000000",
+        "prefill": "00",
+        "program_pin": "sha256:0f3eba84ab11e3745d6154cff33b19dee78cc1851d22c4f839dd468dbd32684f",
+        "result_wire_bytes": 170,
+        "result_wire_hex": "7b226c6f636174696f6e223a222f70726f6772616d2f66756e6374696f6e732f6d61696e2f626f64792f36222c22726561736f6e223a2249525f4f564552464c4f57222c22736368656d61223a226261676165762d70726f62652d726573756c742f31222c22737461747573223a22696e74656765722d6f766572666c6f77222c2276616c7565223a6e756c6c2c2276616c75655f74797065223a6e756c6c2c22776f726b223a357d0a",
+        "schema": "bagaev-probe-native-witness/1"
+      }
+    },
+    {
+      "case": "K-LOOP-FAIL",
+      "stage": 0,
+      "prefill": "ff",
+      "static_refusal": false,
+      "matches": true,
+      "witness": {
+        "binding_pin": "sha256:7eca8a2cfe289951f0e06220a7cbb3ab95eef0b15fe29c8e870220572ac60c89",
+        "entry_call_count": 1,
+        "input_after_hex": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "input_before_hex": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "output_hex": "0100000000000000000000000000000005000000000000000900000003000000",
+        "prefill": "ff",
+        "program_pin": "sha256:0f3eba84ab11e3745d6154cff33b19dee78cc1851d22c4f839dd468dbd32684f",
+        "result_wire_bytes": 170,
+        "result_wire_hex": "7b226c6f636174696f6e223a222f70726f6772616d2f66756e6374696f6e732f6d61696e2f626f64792f36222c22726561736f6e223a2249525f4f564552464c4f57222c22736368656d61223a226261676165762d70726f62652d726573756c742f31222c22737461747573223a22696e74656765722d6f766572666c6f77222c2276616c7565223a6e756c6c2c2276616c75655f74797065223a6e756c6c2c22776f726b223a357d0a",
+        "schema": "bagaev-probe-native-witness/1"
+      }
+    },
+    {
+      "case": "K-WORK-EXACT",
+      "stage": 0,
+      "prefill": "00",
+      "static_refusal": false,
+      "matches": true,
+      "witness": {
+        "binding_pin": "sha256:9378913cd198b6597f277c64ed46355c72f1641c85e632ffe8e0764f6759cdf1",
+        "entry_call_count": 1,
+        "input_after_hex": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "input_before_hex": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "output_hex": "0000000001000000000000000000000000000100000000000000000000000000",
+        "prefill": "00",
+        "program_pin": "sha256:6cfef24ded495e5a1dcb6e172e067bf2ad42b9798ec4977869e6cb12a8a7a4d2",
+        "result_wire_bytes": 128,
+        "result_wire_hex": "7b226c6f636174696f6e223a6e756c6c2c22726561736f6e223a6e756c6c2c22736368656d61223a226261676165762d70726f62652d726573756c742f31222c22737461747573223a2273756363657373222c2276616c7565223a302c2276616c75655f74797065223a22496e743634222c22776f726b223a36353533367d0a",
+        "schema": "bagaev-probe-native-witness/1"
+      }
+    },
+    {
+      "case": "K-WORK-EXACT",
+      "stage": 0,
+      "prefill": "ff",
+      "static_refusal": false,
+      "matches": true,
+      "witness": {
+        "binding_pin": "sha256:9378913cd198b6597f277c64ed46355c72f1641c85e632ffe8e0764f6759cdf1",
+        "entry_call_count": 1,
+        "input_after_hex": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "input_before_hex": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "output_hex": "0000000001000000000000000000000000000100000000000000000000000000",
+        "prefill": "ff",
+        "program_pin": "sha256:6cfef24ded495e5a1dcb6e172e067bf2ad42b9798ec4977869e6cb12a8a7a4d2",
+        "result_wire_bytes": 128,
+        "result_wire_hex": "7b226c6f636174696f6e223a6e756c6c2c22726561736f6e223a6e756c6c2c22736368656d61223a226261676165762d70726f62652d726573756c742f31222c22737461747573223a2273756363657373222c2276616c7565223a302c2276616c75655f74797065223a22496e743634222c22776f726b223a36353533367d0a",
+        "schema": "bagaev-probe-native-witness/1"
+      }
+    },
+    {
+      "case": "K-WORK-REFUSED",
+      "stage": 0,
+      "prefill": "00",
+      "static_refusal": false,
+      "matches": true,
+      "witness": {
+        "binding_pin": "sha256:f029c97bbb592c37a342f2d92d33e280b195a4ec0a0b99cd2e736afc5113dee0",
+        "entry_call_count": 1,
+        "input_after_hex": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "input_before_hex": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "output_hex": "0200000000000000000000000000000000000100000000000a00000009000000",
+        "prefill": "00",
+        "program_pin": "sha256:dd6481f674762c0f6eff38505dc1f396271ffd2460f84f95a1dd6d636b2db4ad",
+        "result_wire_bytes": 166,
+        "result_wire_hex": "7b226c6f636174696f6e223a222f70726f6772616d2f66756e6374696f6e732f6d61696e2f626f64792f342f36222c22726561736f6e223a2249525f574f524b222c22736368656d61223a226261676165762d70726f62652d726573756c742f31222c22737461747573223a22776f726b2d6c696d6974222c2276616c7565223a6e756c6c2c2276616c75655f74797065223a6e756c6c2c22776f726b223a36353533367d0a",
+        "schema": "bagaev-probe-native-witness/1"
+      }
+    },
+    {
+      "case": "K-WORK-REFUSED",
+      "stage": 0,
+      "prefill": "ff",
+      "static_refusal": false,
+      "matches": true,
+      "witness": {
+        "binding_pin": "sha256:f029c97bbb592c37a342f2d92d33e280b195a4ec0a0b99cd2e736afc5113dee0",
+        "entry_call_count": 1,
+        "input_after_hex": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "input_before_hex": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "output_hex": "0200000000000000000000000000000000000100000000000a00000009000000",
+        "prefill": "ff",
+        "program_pin": "sha256:dd6481f674762c0f6eff38505dc1f396271ffd2460f84f95a1dd6d636b2db4ad",
+        "result_wire_bytes": 166,
+        "result_wire_hex": "7b226c6f636174696f6e223a222f70726f6772616d2f66756e6374696f6e732f6d61696e2f626f64792f342f36222c22726561736f6e223a2249525f574f524b222c22736368656d61223a226261676165762d70726f62652d726573756c742f31222c22737461747573223a22776f726b2d6c696d6974222c2276616c7565223a6e756c6c2c2276616c75655f74797065223a6e756c6c2c22776f726b223a36353533367d0a",
+        "schema": "bagaev-probe-native-witness/1"
+      }
+    },
+    {
+      "case": "K-UNREACHABLE",
+      "stage": 0,
+      "prefill": "00",
+      "static_refusal": true,
+      "matches": true,
+      "witness": {
+        "binding_pin": null,
+        "entry_call_count": 0,
+        "input_after_hex": null,
+        "input_before_hex": null,
+        "output_hex": null,
+        "prefill": "00",
+        "program_pin": null,
+        "result_wire_bytes": 156,
+        "result_wire_hex": "7b226c6f636174696f6e223a222f70726f6772616d2f66756e6374696f6e732f7a2f626f6479222c22726561736f6e223a2249525f5348415045222c22736368656d61223a226261676165762d70726f62652d726573756c742f31222c22737461747573223a22696e76616c69642d6972222c2276616c7565223a6e756c6c2c2276616c75655f74797065223a6e756c6c2c22776f726b223a307d0a",
+        "schema": "bagaev-probe-native-witness/1"
+      }
+    },
+    {
+      "case": "K-UNREACHABLE",
+      "stage": 0,
+      "prefill": "ff",
+      "static_refusal": true,
+      "matches": true,
+      "witness": {
+        "binding_pin": null,
+        "entry_call_count": 0,
+        "input_after_hex": null,
+        "input_before_hex": null,
+        "output_hex": null,
+        "prefill": "ff",
+        "program_pin": null,
+        "result_wire_bytes": 156,
+        "result_wire_hex": "7b226c6f636174696f6e223a222f70726f6772616d2f66756e6374696f6e732f7a2f626f6479222c22726561736f6e223a2249525f5348415045222c22736368656d61223a226261676165762d70726f62652d726573756c742f31222c22737461747573223a22696e76616c69642d6972222c2276616c7565223a6e756c6c2c2276616c75655f74797065223a6e756c6c2c22776f726b223a307d0a",
+        "schema": "bagaev-probe-native-witness/1"
+      }
+    },
+    {
+      "case": "K-BOOL-NOT-INT",
+      "stage": 0,
+      "prefill": "00",
+      "static_refusal": true,
+      "matches": true,
+      "witness": {
+        "binding_pin": null,
+        "entry_call_count": 0,
+        "input_after_hex": null,
+        "input_before_hex": null,
+        "output_hex": null,
+        "prefill": "00",
+        "program_pin": null,
+        "result_wire_bytes": 161,
+        "result_wire_hex": "7b226c6f636174696f6e223a222f70726f6772616d2f66756e6374696f6e732f6d61696e2f626f64792f31222c22726561736f6e223a2249525f5348415045222c22736368656d61223a226261676165762d70726f62652d726573756c742f31222c22737461747573223a22696e76616c69642d6972222c2276616c7565223a6e756c6c2c2276616c75655f74797065223a6e756c6c2c22776f726b223a307d0a",
+        "schema": "bagaev-probe-native-witness/1"
+      }
+    },
+    {
+      "case": "K-BOOL-NOT-INT",
+      "stage": 0,
+      "prefill": "ff",
+      "static_refusal": true,
+      "matches": true,
+      "witness": {
+        "binding_pin": null,
+        "entry_call_count": 0,
+        "input_after_hex": null,
+        "input_before_hex": null,
+        "output_hex": null,
+        "prefill": "ff",
+        "program_pin": null,
+        "result_wire_bytes": 161,
+        "result_wire_hex": "7b226c6f636174696f6e223a222f70726f6772616d2f66756e6374696f6e732f6d61696e2f626f64792f31222c22726561736f6e223a2249525f5348415045222c22736368656d61223a226261676165762d70726f62652d726573756c742f31222c22737461747573223a22696e76616c69642d6972222c2276616c7565223a6e756c6c2c2276616c75655f74797065223a6e756c6c2c22776f726b223a307d0a",
+        "schema": "bagaev-probe-native-witness/1"
+      }
+    },
+    {
+      "case": "K-UNBOUND",
+      "stage": 0,
+      "prefill": "00",
+      "static_refusal": true,
+      "matches": true,
+      "witness": {
+        "binding_pin": null,
+        "entry_call_count": 0,
+        "input_after_hex": null,
+        "input_before_hex": null,
+        "output_hex": null,
+        "prefill": "00",
+        "program_pin": null,
+        "result_wire_bytes": 165,
+        "result_wire_hex": "7b226c6f636174696f6e223a222f70726f6772616d2f66756e6374696f6e732f6d61696e2f626f64792f34222c22726561736f6e223a2249525f5245464552454e4345222c22736368656d61223a226261676165762d70726f62652d726573756c742f31222c22737461747573223a22696e76616c69642d6972222c2276616c7565223a6e756c6c2c2276616c75655f74797065223a6e756c6c2c22776f726b223a307d0a",
+        "schema": "bagaev-probe-native-witness/1"
+      }
+    },
+    {
+      "case": "K-UNBOUND",
+      "stage": 0,
+      "prefill": "ff",
+      "static_refusal": true,
+      "matches": true,
+      "witness": {
+        "binding_pin": null,
+        "entry_call_count": 0,
+        "input_after_hex": null,
+        "input_before_hex": null,
+        "output_hex": null,
+        "prefill": "ff",
+        "program_pin": null,
+        "result_wire_bytes": 165,
+        "result_wire_hex": "7b226c6f636174696f6e223a222f70726f6772616d2f66756e6374696f6e732f6d61696e2f626f64792f34222c22726561736f6e223a2249525f5245464552454e4345222c22736368656d61223a226261676165762d70726f62652d726573756c742f31222c22737461747573223a22696e76616c69642d6972222c2276616c7565223a6e756c6c2c2276616c75655f74797065223a6e756c6c2c22776f726b223a307d0a",
+        "schema": "bagaev-probe-native-witness/1"
+      }
+    },
+    {
+      "case": "K-CYCLE",
+      "stage": 0,
+      "prefill": "00",
+      "static_refusal": true,
+      "matches": true,
+      "witness": {
+        "binding_pin": null,
+        "entry_call_count": 0,
+        "input_after_hex": null,
+        "input_before_hex": null,
+        "output_hex": null,
+        "prefill": "00",
+        "program_pin": null,
+        "result_wire_bytes": 159,
+        "result_wire_hex": "7b226c6f636174696f6e223a222f70726f6772616d2f66756e6374696f6e732f6d61696e2f626f6479222c22726561736f6e223a2249525f4359434c45222c22736368656d61223a226261676165762d70726f62652d726573756c742f31222c22737461747573223a22696e76616c69642d6972222c2276616c7565223a6e756c6c2c2276616c75655f74797065223a6e756c6c2c22776f726b223a307d0a",
+        "schema": "bagaev-probe-native-witness/1"
+      }
+    },
+    {
+      "case": "K-CYCLE",
+      "stage": 0,
+      "prefill": "ff",
+      "static_refusal": true,
+      "matches": true,
+      "witness": {
+        "binding_pin": null,
+        "entry_call_count": 0,
+        "input_after_hex": null,
+        "input_before_hex": null,
+        "output_hex": null,
+        "prefill": "ff",
+        "program_pin": null,
+        "result_wire_bytes": 159,
+        "result_wire_hex": "7b226c6f636174696f6e223a222f70726f6772616d2f66756e6374696f6e732f6d61696e2f626f6479222c22726561736f6e223a2249525f4359434c45222c22736368656d61223a226261676165762d70726f62652d726573756c742f31222c22737461747573223a22696e76616c69642d6972222c2276616c7565223a6e756c6c2c2276616c75655f74797065223a6e756c6c2c22776f726b223a307d0a",
+        "schema": "bagaev-probe-native-witness/1"
+      }
+    },
+    {
+      "case": "K-TYPE-LAZY",
+      "stage": 0,
+      "prefill": "00",
+      "static_refusal": true,
+      "matches": true,
+      "witness": {
+        "binding_pin": null,
+        "entry_call_count": 0,
+        "input_after_hex": null,
+        "input_before_hex": null,
+        "output_hex": null,
+        "prefill": "00",
+        "program_pin": null,
+        "result_wire_bytes": 160,
+        "result_wire_hex": "7b226c6f636174696f6e223a222f70726f6772616d2f66756e6374696f6e732f6d61696e2f626f64792f33222c22726561736f6e223a2249525f54595045222c22736368656d61223a226261676165762d70726f62652d726573756c742f31222c22737461747573223a22696e76616c69642d6972222c2276616c7565223a6e756c6c2c2276616c75655f74797065223a6e756c6c2c22776f726b223a307d0a",
+        "schema": "bagaev-probe-native-witness/1"
+      }
+    },
+    {
+      "case": "K-TYPE-LAZY",
+      "stage": 0,
+      "prefill": "ff",
+      "static_refusal": true,
+      "matches": true,
+      "witness": {
+        "binding_pin": null,
+        "entry_call_count": 0,
+        "input_after_hex": null,
+        "input_before_hex": null,
+        "output_hex": null,
+        "prefill": "ff",
+        "program_pin": null,
+        "result_wire_bytes": 160,
+        "result_wire_hex": "7b226c6f636174696f6e223a222f70726f6772616d2f66756e6374696f6e732f6d61696e2f626f64792f33222c22726561736f6e223a2249525f54595045222c22736368656d61223a226261676165762d70726f62652d726573756c742f31222c22737461747573223a22696e76616c69642d6972222c2276616c7565223a6e756c6c2c2276616c75655f74797065223a6e756c6c2c22776f726b223a307d0a",
+        "schema": "bagaev-probe-native-witness/1"
+      }
+    },
+    {
+      "case": "K-CALL-ARITY",
+      "stage": 0,
+      "prefill": "00",
+      "static_refusal": true,
+      "matches": true,
+      "witness": {
+        "binding_pin": null,
+        "entry_call_count": 0,
+        "input_after_hex": null,
+        "input_before_hex": null,
+        "output_hex": null,
+        "prefill": "00",
+        "program_pin": null,
+        "result_wire_bytes": 163,
+        "result_wire_hex": "7b226c6f636174696f6e223a222f70726f6772616d2f66756e6374696f6e732f6d61696e2f626f6479222c22726561736f6e223a2249525f5245464552454e4345222c22736368656d61223a226261676165762d70726f62652d726573756c742f31222c22737461747573223a22696e76616c69642d6972222c2276616c7565223a6e756c6c2c2276616c75655f74797065223a6e756c6c2c22776f726b223a307d0a",
+        "schema": "bagaev-probe-native-witness/1"
+      }
+    },
+    {
+      "case": "K-CALL-ARITY",
+      "stage": 0,
+      "prefill": "ff",
+      "static_refusal": true,
+      "matches": true,
+      "witness": {
+        "binding_pin": null,
+        "entry_call_count": 0,
+        "input_after_hex": null,
+        "input_before_hex": null,
+        "output_hex": null,
+        "prefill": "ff",
+        "program_pin": null,
+        "result_wire_bytes": 163,
+        "result_wire_hex": "7b226c6f636174696f6e223a222f70726f6772616d2f66756e6374696f6e732f6d61696e2f626f6479222c22726561736f6e223a2249525f5245464552454e4345222c22736368656d61223a226261676165762d70726f62652d726573756c742f31222c22737461747573223a22696e76616c69642d6972222c2276616c7565223a6e756c6c2c2276616c75655f74797065223a6e756c6c2c22776f726b223a307d0a",
+        "schema": "bagaev-probe-native-witness/1"
+      }
+    },
+    {
+      "case": "K-DUP-PARAM",
+      "stage": 0,
+      "prefill": "00",
+      "static_refusal": true,
+      "matches": true,
+      "witness": {
+        "binding_pin": null,
+        "entry_call_count": 0,
+        "input_after_hex": null,
+        "input_before_hex": null,
+        "output_hex": null,
+        "prefill": "00",
+        "program_pin": null,
+        "result_wire_bytes": 165,
+        "result_wire_hex": "7b226c6f636174696f6e223a222f70726f6772616d2f66756e6374696f6e732f6d61696e2f706172616d732f312f30222c22726561736f6e223a2249525f5348415045222c22736368656d61223a226261676165762d70726f62652d726573756c742f31222c22737461747573223a22696e76616c69642d6972222c2276616c7565223a6e756c6c2c2276616c75655f74797065223a6e756c6c2c22776f726b223a307d0a",
+        "schema": "bagaev-probe-native-witness/1"
+      }
+    },
+    {
+      "case": "K-DUP-PARAM",
+      "stage": 0,
+      "prefill": "ff",
+      "static_refusal": true,
+      "matches": true,
+      "witness": {
+        "binding_pin": null,
+        "entry_call_count": 0,
+        "input_after_hex": null,
+        "input_before_hex": null,
+        "output_hex": null,
+        "prefill": "ff",
+        "program_pin": null,
+        "result_wire_bytes": 165,
+        "result_wire_hex": "7b226c6f636174696f6e223a222f70726f6772616d2f66756e6374696f6e732f6d61696e2f706172616d732f312f30222c22726561736f6e223a2249525f5348415045222c22736368656d61223a226261676165762d70726f62652d726573756c742f31222c22737461747573223a22696e76616c69642d6972222c2276616c7565223a6e756c6c2c2276616c75655f74797065223a6e756c6c2c22776f726b223a307d0a",
+        "schema": "bagaev-probe-native-witness/1"
+      }
+    },
+    {
+      "case": "K-VERSION",
+      "stage": 0,
+      "prefill": "00",
+      "static_refusal": true,
+      "matches": true,
+      "witness": {
+        "binding_pin": null,
+        "entry_call_count": 0,
+        "input_after_hex": null,
+        "input_before_hex": null,
+        "output_hex": null,
+        "prefill": "00",
+        "program_pin": null,
+        "result_wire_bytes": 148,
+        "result_wire_hex": "7b226c6f636174696f6e223a222f70726f6772616d2f736368656d61222c22726561736f6e223a2249525f56455253494f4e222c22736368656d61223a226261676165762d70726f62652d726573756c742f31222c22737461747573223a22696e76616c69642d6972222c2276616c7565223a6e756c6c2c2276616c75655f74797065223a6e756c6c2c22776f726b223a307d0a",
+        "schema": "bagaev-probe-native-witness/1"
+      }
+    },
+    {
+      "case": "K-VERSION",
+      "stage": 0,
+      "prefill": "ff",
+      "static_refusal": true,
+      "matches": true,
+      "witness": {
+        "binding_pin": null,
+        "entry_call_count": 0,
+        "input_after_hex": null,
+        "input_before_hex": null,
+        "output_hex": null,
+        "prefill": "ff",
+        "program_pin": null,
+        "result_wire_bytes": 148,
+        "result_wire_hex": "7b226c6f636174696f6e223a222f70726f6772616d2f736368656d61222c22726561736f6e223a2249525f56455253494f4e222c22736368656d61223a226261676165762d70726f62652d726573756c742f31222c22737461747573223a22696e76616c69642d6972222c2276616c7565223a6e756c6c2c2276616c75655f74797065223a6e756c6c2c22776f726b223a307d0a",
+        "schema": "bagaev-probe-native-witness/1"
+      }
+    },
+    {
+      "case": "K-JSON",
+      "stage": 0,
+      "prefill": "00",
+      "static_refusal": true,
+      "matches": true,
+      "witness": {
+        "binding_pin": null,
+        "entry_call_count": 0,
+        "input_after_hex": null,
+        "input_before_hex": null,
+        "output_hex": null,
+        "prefill": "00",
+        "program_pin": null,
+        "result_wire_bytes": 130,
+        "result_wire_hex": "7b226c6f636174696f6e223a22222c22726561736f6e223a2249525f4a534f4e222c22736368656d61223a226261676165762d70726f62652d726573756c742f31222c22737461747573223a22696e76616c69642d6972222c2276616c7565223a6e756c6c2c2276616c75655f74797065223a6e756c6c2c22776f726b223a307d0a",
+        "schema": "bagaev-probe-native-witness/1"
+      }
+    },
+    {
+      "case": "K-JSON",
+      "stage": 0,
+      "prefill": "ff",
+      "static_refusal": true,
+      "matches": true,
+      "witness": {
+        "binding_pin": null,
+        "entry_call_count": 0,
+        "input_after_hex": null,
+        "input_before_hex": null,
+        "output_hex": null,
+        "prefill": "ff",
+        "program_pin": null,
+        "result_wire_bytes": 130,
+        "result_wire_hex": "7b226c6f636174696f6e223a22222c22726561736f6e223a2249525f4a534f4e222c22736368656d61223a226261676165762d70726f62652d726573756c742f31222c22737461747573223a22696e76616c69642d6972222c2276616c7565223a6e756c6c2c2276616c75655f74797065223a6e756c6c2c22776f726b223a307d0a",
+        "schema": "bagaev-probe-native-witness/1"
+      }
+    },
+    {
+      "case": "K-BYTES",
+      "stage": 0,
+      "prefill": "00",
+      "static_refusal": true,
+      "matches": true,
+      "witness": {
+        "binding_pin": null,
+        "entry_call_count": 0,
+        "input_after_hex": null,
+        "input_before_hex": null,
+        "output_hex": null,
+        "prefill": "00",
+        "program_pin": null,
+        "result_wire_bytes": 132,
+        "result_wire_hex": "7b226c6f636174696f6e223a22222c22726561736f6e223a2249525f424f554e4453222c22736368656d61223a226261676165762d70726f62652d726573756c742f31222c22737461747573223a22696e76616c69642d6972222c2276616c7565223a6e756c6c2c2276616c75655f74797065223a6e756c6c2c22776f726b223a307d0a",
+        "schema": "bagaev-probe-native-witness/1"
+      }
+    },
+    {
+      "case": "K-BYTES",
+      "stage": 0,
+      "prefill": "ff",
+      "static_refusal": true,
+      "matches": true,
+      "witness": {
+        "binding_pin": null,
+        "entry_call_count": 0,
+        "input_after_hex": null,
+        "input_before_hex": null,
+        "output_hex": null,
+        "prefill": "ff",
+        "program_pin": null,
+        "result_wire_bytes": 132,
+        "result_wire_hex": "7b226c6f636174696f6e223a22222c22726561736f6e223a2249525f424f554e4453222c22736368656d61223a226261676165762d70726f62652d726573756c742f31222c22737461747573223a22696e76616c69642d6972222c2276616c7565223a6e756c6c2c2276616c75655f74797065223a6e756c6c2c22776f726b223a307d0a",
+        "schema": "bagaev-probe-native-witness/1"
+      }
+    },
+    {
+      "case": "K-JSON-DEPTH",
+      "stage": 0,
+      "prefill": "00",
+      "static_refusal": true,
+      "matches": true,
+      "witness": {
+        "binding_pin": null,
+        "entry_call_count": 0,
+        "input_after_hex": null,
+        "input_before_hex": null,
+        "output_hex": null,
+        "prefill": "00",
+        "program_pin": null,
+        "result_wire_bytes": 410,
+        "result_wire_hex": "7b226c6f636174696f6e223a222f70726f6772616d2f66756e6374696f6e732f6d61696e2f626f64792f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f30222c22726561736f6e223a2249525f424f554e4453222c22736368656d61223a226261676165762d70726f62652d726573756c742f31222c22737461747573223a22696e76616c69642d6972222c2276616c7565223a6e756c6c2c2276616c75655f74797065223a6e756c6c2c22776f726b223a307d0a",
+        "schema": "bagaev-probe-native-witness/1"
+      }
+    },
+    {
+      "case": "K-JSON-DEPTH",
+      "stage": 0,
+      "prefill": "ff",
+      "static_refusal": true,
+      "matches": true,
+      "witness": {
+        "binding_pin": null,
+        "entry_call_count": 0,
+        "input_after_hex": null,
+        "input_before_hex": null,
+        "output_hex": null,
+        "prefill": "ff",
+        "program_pin": null,
+        "result_wire_bytes": 410,
+        "result_wire_hex": "7b226c6f636174696f6e223a222f70726f6772616d2f66756e6374696f6e732f6d61696e2f626f64792f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f30222c22726561736f6e223a2249525f424f554e4453222c22736368656d61223a226261676165762d70726f62652d726573756c742f31222c22737461747573223a22696e76616c69642d6972222c2276616c7565223a6e756c6c2c2276616c75655f74797065223a6e756c6c2c22776f726b223a307d0a",
+        "schema": "bagaev-probe-native-witness/1"
+      }
+    },
+    {
+      "case": "K-OCCURRENCES",
+      "stage": 0,
+      "prefill": "00",
+      "static_refusal": true,
+      "matches": true,
+      "witness": {
+        "binding_pin": null,
+        "entry_call_count": 0,
+        "input_after_hex": null,
+        "input_before_hex": null,
+        "output_hex": null,
+        "prefill": "00",
+        "program_pin": null,
+        "result_wire_bytes": 165,
+        "result_wire_hex": "7b226c6f636174696f6e223a222f70726f6772616d2f66756e6374696f6e732f6d61696e2f626f64792f38313837222c22726561736f6e223a2249525f424f554e4453222c22736368656d61223a226261676165762d70726f62652d726573756c742f31222c22737461747573223a22696e76616c69642d6972222c2276616c7565223a6e756c6c2c2276616c75655f74797065223a6e756c6c2c22776f726b223a307d0a",
+        "schema": "bagaev-probe-native-witness/1"
+      }
+    },
+    {
+      "case": "K-OCCURRENCES",
+      "stage": 0,
+      "prefill": "ff",
+      "static_refusal": true,
+      "matches": true,
+      "witness": {
+        "binding_pin": null,
+        "entry_call_count": 0,
+        "input_after_hex": null,
+        "input_before_hex": null,
+        "output_hex": null,
+        "prefill": "ff",
+        "program_pin": null,
+        "result_wire_bytes": 165,
+        "result_wire_hex": "7b226c6f636174696f6e223a222f70726f6772616d2f66756e6374696f6e732f6d61696e2f626f64792f38313837222c22726561736f6e223a2249525f424f554e4453222c22736368656d61223a226261676165762d70726f62652d726573756c742f31222c22737461747573223a22696e76616c69642d6972222c2276616c7565223a6e756c6c2c2276616c75655f74797065223a6e756c6c2c22776f726b223a307d0a",
+        "schema": "bagaev-probe-native-witness/1"
+      }
+    },
+    {
+      "case": "K-NODES",
+      "stage": 0,
+      "prefill": "00",
+      "static_refusal": true,
+      "matches": true,
+      "witness": {
+        "binding_pin": null,
+        "entry_call_count": 0,
+        "input_after_hex": null,
+        "input_before_hex": null,
+        "output_hex": null,
+        "prefill": "00",
+        "program_pin": null,
+        "result_wire_bytes": 162,
+        "result_wire_hex": "7b226c6f636174696f6e223a222f70726f6772616d2f66756e6374696f6e732f6d61696e2f626f64792f34222c22726561736f6e223a2249525f424f554e4453222c22736368656d61223a226261676165762d70726f62652d726573756c742f31222c22737461747573223a22696e76616c69642d6972222c2276616c7565223a6e756c6c2c2276616c75655f74797065223a6e756c6c2c22776f726b223a307d0a",
+        "schema": "bagaev-probe-native-witness/1"
+      }
+    },
+    {
+      "case": "K-NODES",
+      "stage": 0,
+      "prefill": "ff",
+      "static_refusal": true,
+      "matches": true,
+      "witness": {
+        "binding_pin": null,
+        "entry_call_count": 0,
+        "input_after_hex": null,
+        "input_before_hex": null,
+        "output_hex": null,
+        "prefill": "ff",
+        "program_pin": null,
+        "result_wire_bytes": 162,
+        "result_wire_hex": "7b226c6f636174696f6e223a222f70726f6772616d2f66756e6374696f6e732f6d61696e2f626f64792f34222c22726561736f6e223a2249525f424f554e4453222c22736368656d61223a226261676165762d70726f62652d726573756c742f31222c22737461747573223a22696e76616c69642d6972222c2276616c7565223a6e756c6c2c2276616c75655f74797065223a6e756c6c2c22776f726b223a307d0a",
+        "schema": "bagaev-probe-native-witness/1"
+      }
+    },
+    {
+      "case": "K-EXPR-DEPTH",
+      "stage": 0,
+      "prefill": "00",
+      "static_refusal": true,
+      "matches": true,
+      "witness": {
+        "binding_pin": null,
+        "entry_call_count": 0,
+        "input_after_hex": null,
+        "input_before_hex": null,
+        "output_hex": null,
+        "prefill": "00",
+        "program_pin": null,
+        "result_wire_bytes": 224,
+        "result_wire_hex": "7b226c6f636174696f6e223a222f70726f6772616d2f66756e6374696f6e732f6d61696e2f626f64792f312f312f312f312f312f312f312f312f312f312f312f312f312f312f312f312f312f312f312f312f312f312f312f312f312f312f312f312f312f312f312f31222c22726561736f6e223a2249525f424f554e4453222c22736368656d61223a226261676165762d70726f62652d726573756c742f31222c22737461747573223a22696e76616c69642d6972222c2276616c7565223a6e756c6c2c2276616c75655f74797065223a6e756c6c2c22776f726b223a307d0a",
+        "schema": "bagaev-probe-native-witness/1"
+      }
+    },
+    {
+      "case": "K-EXPR-DEPTH",
+      "stage": 0,
+      "prefill": "ff",
+      "static_refusal": true,
+      "matches": true,
+      "witness": {
+        "binding_pin": null,
+        "entry_call_count": 0,
+        "input_after_hex": null,
+        "input_before_hex": null,
+        "output_hex": null,
+        "prefill": "ff",
+        "program_pin": null,
+        "result_wire_bytes": 224,
+        "result_wire_hex": "7b226c6f636174696f6e223a222f70726f6772616d2f66756e6374696f6e732f6d61696e2f626f64792f312f312f312f312f312f312f312f312f312f312f312f312f312f312f312f312f312f312f312f312f312f312f312f312f312f312f312f312f312f312f312f31222c22726561736f6e223a2249525f424f554e4453222c22736368656d61223a226261676165762d70726f62652d726573756c742f31222c22737461747573223a22696e76616c69642d6972222c2276616c7565223a6e756c6c2c2276616c75655f74797065223a6e756c6c2c22776f726b223a307d0a",
+        "schema": "bagaev-probe-native-witness/1"
+      }
+    },
+    {
+      "case": "K-PARAM-LIMIT",
+      "stage": 0,
+      "prefill": "00",
+      "static_refusal": true,
+      "matches": true,
+      "witness": {
+        "binding_pin": null,
+        "entry_call_count": 0,
+        "input_after_hex": null,
+        "input_before_hex": null,
+        "output_hex": null,
+        "prefill": "00",
+        "program_pin": null,
+        "result_wire_bytes": 162,
+        "result_wire_hex": "7b226c6f636174696f6e223a222f70726f6772616d2f66756e6374696f6e732f6d61696e2f706172616d73222c22726561736f6e223a2249525f424f554e4453222c22736368656d61223a226261676165762d70726f62652d726573756c742f31222c22737461747573223a22696e76616c69642d6972222c2276616c7565223a6e756c6c2c2276616c75655f74797065223a6e756c6c2c22776f726b223a307d0a",
+        "schema": "bagaev-probe-native-witness/1"
+      }
+    },
+    {
+      "case": "K-PARAM-LIMIT",
+      "stage": 0,
+      "prefill": "ff",
+      "static_refusal": true,
+      "matches": true,
+      "witness": {
+        "binding_pin": null,
+        "entry_call_count": 0,
+        "input_after_hex": null,
+        "input_before_hex": null,
+        "output_hex": null,
+        "prefill": "ff",
+        "program_pin": null,
+        "result_wire_bytes": 162,
+        "result_wire_hex": "7b226c6f636174696f6e223a222f70726f6772616d2f66756e6374696f6e732f6d61696e2f706172616d73222c22726561736f6e223a2249525f424f554e4453222c22736368656d61223a226261676165762d70726f62652d726573756c742f31222c22737461747573223a22696e76616c69642d6972222c2276616c7565223a6e756c6c2c2276616c75655f74797065223a6e756c6c2c22776f726b223a307d0a",
+        "schema": "bagaev-probe-native-witness/1"
+      }
+    },
+    {
+      "case": "K-FUNCTION-LIMIT",
+      "stage": 0,
+      "prefill": "00",
+      "static_refusal": true,
+      "matches": true,
+      "witness": {
+        "binding_pin": null,
+        "entry_call_count": 0,
+        "input_after_hex": null,
+        "input_before_hex": null,
+        "output_hex": null,
+        "prefill": "00",
+        "program_pin": null,
+        "result_wire_bytes": 150,
+        "result_wire_hex": "7b226c6f636174696f6e223a222f70726f6772616d2f66756e6374696f6e73222c22726561736f6e223a2249525f424f554e4453222c22736368656d61223a226261676165762d70726f62652d726573756c742f31222c22737461747573223a22696e76616c69642d6972222c2276616c7565223a6e756c6c2c2276616c75655f74797065223a6e756c6c2c22776f726b223a307d0a",
+        "schema": "bagaev-probe-native-witness/1"
+      }
+    },
+    {
+      "case": "K-FUNCTION-LIMIT",
+      "stage": 0,
+      "prefill": "ff",
+      "static_refusal": true,
+      "matches": true,
+      "witness": {
+        "binding_pin": null,
+        "entry_call_count": 0,
+        "input_after_hex": null,
+        "input_before_hex": null,
+        "output_hex": null,
+        "prefill": "ff",
+        "program_pin": null,
+        "result_wire_bytes": 150,
+        "result_wire_hex": "7b226c6f636174696f6e223a222f70726f6772616d2f66756e6374696f6e73222c22726561736f6e223a2249525f424f554e4453222c22736368656d61223a226261676165762d70726f62652d726573756c742f31222c22737461747573223a22696e76616c69642d6972222c2276616c7565223a6e756c6c2c2276616c75655f74797065223a6e756c6c2c22776f726b223a307d0a",
+        "schema": "bagaev-probe-native-witness/1"
+      }
+    },
+    {
+      "case": "K-ARG-COUNT",
+      "stage": 0,
+      "prefill": "00",
+      "static_refusal": true,
+      "matches": true,
+      "witness": {
+        "binding_pin": null,
+        "entry_call_count": 0,
+        "input_after_hex": null,
+        "input_before_hex": null,
+        "output_hex": null,
+        "prefill": "00",
+        "program_pin": null,
+        "result_wire_bytes": 144,
+        "result_wire_hex": "7b226c6f636174696f6e223a222f617267756d656e7473222c22726561736f6e223a2249525f415247554d454e54222c22736368656d61223a226261676165762d70726f62652d726573756c742f31222c22737461747573223a22696e76616c69642d6972222c2276616c7565223a6e756c6c2c2276616c75655f74797065223a6e756c6c2c22776f726b223a307d0a",
+        "schema": "bagaev-probe-native-witness/1"
+      }
+    },
+    {
+      "case": "K-ARG-COUNT",
+      "stage": 0,
+      "prefill": "ff",
+      "static_refusal": true,
+      "matches": true,
+      "witness": {
+        "binding_pin": null,
+        "entry_call_count": 0,
+        "input_after_hex": null,
+        "input_before_hex": null,
+        "output_hex": null,
+        "prefill": "ff",
+        "program_pin": null,
+        "result_wire_bytes": 144,
+        "result_wire_hex": "7b226c6f636174696f6e223a222f617267756d656e7473222c22726561736f6e223a2249525f415247554d454e54222c22736368656d61223a226261676165762d70726f62652d726573756c742f31222c22737461747573223a22696e76616c69642d6972222c2276616c7565223a6e756c6c2c2276616c75655f74797065223a6e756c6c2c22776f726b223a307d0a",
+        "schema": "bagaev-probe-native-witness/1"
+      }
+    },
+    {
+      "case": "K-ARG-BOOL",
+      "stage": 0,
+      "prefill": "00",
+      "static_refusal": true,
+      "matches": true,
+      "witness": {
+        "binding_pin": null,
+        "entry_call_count": 0,
+        "input_after_hex": null,
+        "input_before_hex": null,
+        "output_hex": null,
+        "prefill": "00",
+        "program_pin": null,
+        "result_wire_bytes": 146,
+        "result_wire_hex": "7b226c6f636174696f6e223a222f617267756d656e74732f30222c22726561736f6e223a2249525f415247554d454e54222c22736368656d61223a226261676165762d70726f62652d726573756c742f31222c22737461747573223a22696e76616c69642d6972222c2276616c7565223a6e756c6c2c2276616c75655f74797065223a6e756c6c2c22776f726b223a307d0a",
+        "schema": "bagaev-probe-native-witness/1"
+      }
+    },
+    {
+      "case": "K-ARG-BOOL",
+      "stage": 0,
+      "prefill": "ff",
+      "static_refusal": true,
+      "matches": true,
+      "witness": {
+        "binding_pin": null,
+        "entry_call_count": 0,
+        "input_after_hex": null,
+        "input_before_hex": null,
+        "output_hex": null,
+        "prefill": "ff",
+        "program_pin": null,
+        "result_wire_bytes": 146,
+        "result_wire_hex": "7b226c6f636174696f6e223a222f617267756d656e74732f30222c22726561736f6e223a2249525f415247554d454e54222c22736368656d61223a226261676165762d70726f62652d726573756c742f31222c22737461747573223a22696e76616c69642d6972222c2276616c7565223a6e756c6c2c2276616c75655f74797065223a6e756c6c2c22776f726b223a307d0a",
+        "schema": "bagaev-probe-native-witness/1"
+      }
+    },
+    {
+      "case": "K-INV-SHAPE",
+      "stage": 0,
+      "prefill": "00",
+      "static_refusal": true,
+      "matches": true,
+      "witness": {
+        "binding_pin": null,
+        "entry_call_count": 0,
+        "input_after_hex": null,
+        "input_before_hex": null,
+        "output_hex": null,
+        "prefill": "00",
+        "program_pin": null,
+        "result_wire_bytes": 131,
+        "result_wire_hex": "7b226c6f636174696f6e223a22222c22726561736f6e223a2249525f5348415045222c22736368656d61223a226261676165762d70726f62652d726573756c742f31222c22737461747573223a22696e76616c69642d6972222c2276616c7565223a6e756c6c2c2276616c75655f74797065223a6e756c6c2c22776f726b223a307d0a",
+        "schema": "bagaev-probe-native-witness/1"
+      }
+    },
+    {
+      "case": "K-INV-SHAPE",
+      "stage": 0,
+      "prefill": "ff",
+      "static_refusal": true,
+      "matches": true,
+      "witness": {
+        "binding_pin": null,
+        "entry_call_count": 0,
+        "input_after_hex": null,
+        "input_before_hex": null,
+        "output_hex": null,
+        "prefill": "ff",
+        "program_pin": null,
+        "result_wire_bytes": 131,
+        "result_wire_hex": "7b226c6f636174696f6e223a22222c22726561736f6e223a2249525f5348415045222c22736368656d61223a226261676165762d70726f62652d726573756c742f31222c22737461747573223a22696e76616c69642d6972222c2276616c7565223a6e756c6c2c2276616c75655f74797065223a6e756c6c2c22776f726b223a307d0a",
+        "schema": "bagaev-probe-native-witness/1"
+      }
+    },
+    {
+      "case": "K-INV-SHAPE",
+      "stage": 1,
+      "prefill": "00",
+      "static_refusal": true,
+      "matches": true,
+      "witness": {
+        "binding_pin": null,
+        "entry_call_count": 0,
+        "input_after_hex": null,
+        "input_before_hex": null,
+        "output_hex": null,
+        "prefill": "00",
+        "program_pin": null,
+        "result_wire_bytes": 404,
+        "result_wire_hex": "7b226c6f636174696f6e223a222f617267756d656e74732f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f30222c22726561736f6e223a2249525f424f554e4453222c22736368656d61223a226261676165762d70726f62652d726573756c742f31222c22737461747573223a22696e76616c69642d6972222c2276616c7565223a6e756c6c2c2276616c75655f74797065223a6e756c6c2c22776f726b223a307d0a",
+        "schema": "bagaev-probe-native-witness/1"
+      }
+    },
+    {
+      "case": "K-INV-SHAPE",
+      "stage": 1,
+      "prefill": "ff",
+      "static_refusal": true,
+      "matches": true,
+      "witness": {
+        "binding_pin": null,
+        "entry_call_count": 0,
+        "input_after_hex": null,
+        "input_before_hex": null,
+        "output_hex": null,
+        "prefill": "ff",
+        "program_pin": null,
+        "result_wire_bytes": 404,
+        "result_wire_hex": "7b226c6f636174696f6e223a222f617267756d656e74732f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f302f30222c22726561736f6e223a2249525f424f554e4453222c22736368656d61223a226261676165762d70726f62652d726573756c742f31222c22737461747573223a22696e76616c69642d6972222c2276616c7565223a6e756c6c2c2276616c75655f74797065223a6e756c6c2c22776f726b223a307d0a",
+        "schema": "bagaev-probe-native-witness/1"
+      }
+    },
+    {
+      "case": "K-INV-SHAPE",
+      "stage": 2,
+      "prefill": "00",
+      "static_refusal": true,
+      "matches": true,
+      "witness": {
+        "binding_pin": null,
+        "entry_call_count": 0,
+        "input_after_hex": null,
+        "input_before_hex": null,
+        "output_hex": null,
+        "prefill": "00",
+        "program_pin": null,
+        "result_wire_bytes": 148,
+        "result_wire_hex": "7b226c6f636174696f6e223a222f617267756d656e74732f3136333832222c22726561736f6e223a2249525f424f554e4453222c22736368656d61223a226261676165762d70726f62652d726573756c742f31222c22737461747573223a22696e76616c69642d6972222c2276616c7565223a6e756c6c2c2276616c75655f74797065223a6e756c6c2c22776f726b223a307d0a",
+        "schema": "bagaev-probe-native-witness/1"
+      }
+    },
+    {
+      "case": "K-INV-SHAPE",
+      "stage": 2,
+      "prefill": "ff",
+      "static_refusal": true,
+      "matches": true,
+      "witness": {
+        "binding_pin": null,
+        "entry_call_count": 0,
+        "input_after_hex": null,
+        "input_before_hex": null,
+        "output_hex": null,
+        "prefill": "ff",
+        "program_pin": null,
+        "result_wire_bytes": 148,
+        "result_wire_hex": "7b226c6f636174696f6e223a222f617267756d656e74732f3136333832222c22726561736f6e223a2249525f424f554e4453222c22736368656d61223a226261676165762d70726f62652d726573756c742f31222c22737461747573223a22696e76616c69642d6972222c2276616c7565223a6e756c6c2c2276616c75655f74797065223a6e756c6c2c22776f726b223a307d0a",
+        "schema": "bagaev-probe-native-witness/1"
+      }
+    },
+    {
+      "case": "K-TYPE-ORDER",
+      "stage": 0,
+      "prefill": "00",
+      "static_refusal": true,
+      "matches": true,
+      "witness": {
+        "binding_pin": null,
+        "entry_call_count": 0,
+        "input_after_hex": null,
+        "input_before_hex": null,
+        "output_hex": null,
+        "prefill": "00",
+        "program_pin": null,
+        "result_wire_bytes": 160,
+        "result_wire_hex": "7b226c6f636174696f6e223a222f70726f6772616d2f66756e6374696f6e732f6d61696e2f626f64792f31222c22726561736f6e223a2249525f54595045222c22736368656d61223a226261676165762d70726f62652d726573756c742f31222c22737461747573223a22696e76616c69642d6972222c2276616c7565223a6e756c6c2c2276616c75655f74797065223a6e756c6c2c22776f726b223a307d0a",
+        "schema": "bagaev-probe-native-witness/1"
+      }
+    },
+    {
+      "case": "K-TYPE-ORDER",
+      "stage": 0,
+      "prefill": "ff",
+      "static_refusal": true,
+      "matches": true,
+      "witness": {
+        "binding_pin": null,
+        "entry_call_count": 0,
+        "input_after_hex": null,
+        "input_before_hex": null,
+        "output_hex": null,
+        "prefill": "ff",
+        "program_pin": null,
+        "result_wire_bytes": 160,
+        "result_wire_hex": "7b226c6f636174696f6e223a222f70726f6772616d2f66756e6374696f6e732f6d61696e2f626f64792f31222c22726561736f6e223a2249525f54595045222c22736368656d61223a226261676165762d70726f62652d726573756c742f31222c22737461747573223a22696e76616c69642d6972222c2276616c7565223a6e756c6c2c2276616c75655f74797065223a6e756c6c2c22776f726b223a307d0a",
+        "schema": "bagaev-probe-native-witness/1"
+      }
+    },
+    {
+      "case": "K-COUNT-OVER",
+      "stage": 0,
+      "prefill": "00",
+      "static_refusal": true,
+      "matches": true,
+      "witness": {
+        "binding_pin": null,
+        "entry_call_count": 0,
+        "input_after_hex": null,
+        "input_before_hex": null,
+        "output_hex": null,
+        "prefill": "00",
+        "program_pin": null,
+        "result_wire_bytes": 162,
+        "result_wire_hex": "7b226c6f636174696f6e223a222f70726f6772616d2f66756e6374696f6e732f6d61696e2f626f64792f31222c22726561736f6e223a2249525f424f554e4453222c22736368656d61223a226261676165762d70726f62652d726573756c742f31222c22737461747573223a22696e76616c69642d6972222c2276616c7565223a6e756c6c2c2276616c75655f74797065223a6e756c6c2c22776f726b223a307d0a",
+        "schema": "bagaev-probe-native-witness/1"
+      }
+    },
+    {
+      "case": "K-COUNT-OVER",
+      "stage": 0,
+      "prefill": "ff",
+      "static_refusal": true,
+      "matches": true,
+      "witness": {
+        "binding_pin": null,
+        "entry_call_count": 0,
+        "input_after_hex": null,
+        "input_before_hex": null,
+        "output_hex": null,
+        "prefill": "ff",
+        "program_pin": null,
+        "result_wire_bytes": 162,
+        "result_wire_hex": "7b226c6f636174696f6e223a222f70726f6772616d2f66756e6374696f6e732f6d61696e2f626f64792f31222c22726561736f6e223a2249525f424f554e4453222c22736368656d61223a226261676165762d70726f62652d726573756c742f31222c22737461747573223a22696e76616c69642d6972222c2276616c7565223a6e756c6c2c2276616c75655f74797065223a6e756c6c2c22776f726b223a307d0a",
+        "schema": "bagaev-probe-native-witness/1"
+      }
+    },
+    {
+      "case": "K-LITERAL-OVER",
+      "stage": 0,
+      "prefill": "00",
+      "static_refusal": true,
+      "matches": true,
+      "witness": {
+        "binding_pin": null,
+        "entry_call_count": 0,
+        "input_after_hex": null,
+        "input_before_hex": null,
+        "output_hex": null,
+        "prefill": "00",
+        "program_pin": null,
+        "result_wire_bytes": 162,
+        "result_wire_hex": "7b226c6f636174696f6e223a222f70726f6772616d2f66756e6374696f6e732f6d61696e2f626f64792f31222c22726561736f6e223a2249525f424f554e4453222c22736368656d61223a226261676165762d70726f62652d726573756c742f31222c22737461747573223a22696e76616c69642d6972222c2276616c7565223a6e756c6c2c2276616c75655f74797065223a6e756c6c2c22776f726b223a307d0a",
+        "schema": "bagaev-probe-native-witness/1"
+      }
+    },
+    {
+      "case": "K-LITERAL-OVER",
+      "stage": 0,
+      "prefill": "ff",
+      "static_refusal": true,
+      "matches": true,
+      "witness": {
+        "binding_pin": null,
+        "entry_call_count": 0,
+        "input_after_hex": null,
+        "input_before_hex": null,
+        "output_hex": null,
+        "prefill": "ff",
+        "program_pin": null,
+        "result_wire_bytes": 162,
+        "result_wire_hex": "7b226c6f636174696f6e223a222f70726f6772616d2f66756e6374696f6e732f6d61696e2f626f64792f31222c22726561736f6e223a2249525f424f554e4453222c22736368656d61223a226261676165762d70726f62652d726573756c742f31222c22737461747573223a22696e76616c69642d6972222c2276616c7565223a6e756c6c2c2276616c75655f74797065223a6e756c6c2c22776f726b223a307d0a",
+        "schema": "bagaev-probe-native-witness/1"
+      }
+    },
+    {
+      "case": "K-UNKNOWN",
+      "stage": 0,
+      "prefill": "00",
+      "static_refusal": true,
+      "matches": true,
+      "witness": {
+        "binding_pin": null,
+        "entry_call_count": 0,
+        "input_after_hex": null,
+        "input_before_hex": null,
+        "output_hex": null,
+        "prefill": "00",
+        "program_pin": null,
+        "result_wire_bytes": 159,
+        "result_wire_hex": "7b226c6f636174696f6e223a222f70726f6772616d2f66756e6374696f6e732f6d61696e2f626f6479222c22726561736f6e223a2249525f5348415045222c22736368656d61223a226261676165762d70726f62652d726573756c742f31222c22737461747573223a22696e76616c69642d6972222c2276616c7565223a6e756c6c2c2276616c75655f74797065223a6e756c6c2c22776f726b223a307d0a",
+        "schema": "bagaev-probe-native-witness/1"
+      }
+    },
+    {
+      "case": "K-UNKNOWN",
+      "stage": 0,
+      "prefill": "ff",
+      "static_refusal": true,
+      "matches": true,
+      "witness": {
+        "binding_pin": null,
+        "entry_call_count": 0,
+        "input_after_hex": null,
+        "input_before_hex": null,
+        "output_hex": null,
+        "prefill": "ff",
+        "program_pin": null,
+        "result_wire_bytes": 159,
+        "result_wire_hex": "7b226c6f636174696f6e223a222f70726f6772616d2f66756e6374696f6e732f6d61696e2f626f6479222c22726561736f6e223a2249525f5348415045222c22736368656d61223a226261676165762d70726f62652d726573756c742f31222c22737461747573223a22696e76616c69642d6972222c2276616c7565223a6e756c6c2c2276616c75655f74797065223a6e756c6c2c22776f726b223a307d0a",
+        "schema": "bagaev-probe-native-witness/1"
+      }
+    },
+    {
+      "case": "K-UNUSED-CYCLE",
+      "stage": 0,
+      "prefill": "00",
+      "static_refusal": true,
+      "matches": true,
+      "witness": {
+        "binding_pin": null,
+        "entry_call_count": 0,
+        "input_after_hex": null,
+        "input_before_hex": null,
+        "output_hex": null,
+        "prefill": "00",
+        "program_pin": null,
+        "result_wire_bytes": 156,
+        "result_wire_hex": "7b226c6f636174696f6e223a222f70726f6772616d2f66756e6374696f6e732f7a2f626f6479222c22726561736f6e223a2249525f4359434c45222c22736368656d61223a226261676165762d70726f62652d726573756c742f31222c22737461747573223a22696e76616c69642d6972222c2276616c7565223a6e756c6c2c2276616c75655f74797065223a6e756c6c2c22776f726b223a307d0a",
+        "schema": "bagaev-probe-native-witness/1"
+      }
+    },
+    {
+      "case": "K-UNUSED-CYCLE",
+      "stage": 0,
+      "prefill": "ff",
+      "static_refusal": true,
+      "matches": true,
+      "witness": {
+        "binding_pin": null,
+        "entry_call_count": 0,
+        "input_after_hex": null,
+        "input_before_hex": null,
+        "output_hex": null,
+        "prefill": "ff",
+        "program_pin": null,
+        "result_wire_bytes": 156,
+        "result_wire_hex": "7b226c6f636174696f6e223a222f70726f6772616d2f66756e6374696f6e732f7a2f626f6479222c22726561736f6e223a2249525f4359434c45222c22736368656d61223a226261676165762d70726f62652d726573756c742f31222c22737461747573223a22696e76616c69642d6972222c2276616c7565223a6e756c6c2c2276616c75655f74797065223a6e756c6c2c22776f726b223a307d0a",
+        "schema": "bagaev-probe-native-witness/1"
+      }
+    },
+    {
+      "case": "K-ABI-VALID",
+      "stage": 0,
+      "prefill": "00",
+      "static_refusal": false,
+      "matches": true,
+      "witness": {
+        "binding_pin": "sha256:2232af4b6bd98f6113bb4b19626f36c20b6bf0d2ff82858295b057afb96588b4",
+        "entry_call_count": 1,
+        "input_after_hex": "00000000000000800100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "input_before_hex": "00000000000000800100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "output_hex": "0000000001000000000000000000008003000000000000000000000000000000",
+        "prefill": "00",
+        "program_pin": "sha256:647d8a948da1874145ace68f5733c3000a390e103ef061a05820a4e95ca59258",
+        "result_wire_bytes": 143,
+        "result_wire_hex": "7b226c6f636174696f6e223a6e756c6c2c22726561736f6e223a6e756c6c2c22736368656d61223a226261676165762d70726f62652d726573756c742f31222c22737461747573223a2273756363657373222c2276616c7565223a2d393232333337323033363835343737353830382c2276616c75655f74797065223a22496e743634222c22776f726b223a337d0a",
+        "schema": "bagaev-probe-native-witness/1"
+      }
+    },
+    {
+      "case": "K-ABI-VALID",
+      "stage": 0,
+      "prefill": "ff",
+      "static_refusal": false,
+      "matches": true,
+      "witness": {
+        "binding_pin": "sha256:2232af4b6bd98f6113bb4b19626f36c20b6bf0d2ff82858295b057afb96588b4",
+        "entry_call_count": 1,
+        "input_after_hex": "00000000000000800100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "input_before_hex": "00000000000000800100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "output_hex": "0000000001000000000000000000008003000000000000000000000000000000",
+        "prefill": "ff",
+        "program_pin": "sha256:647d8a948da1874145ace68f5733c3000a390e103ef061a05820a4e95ca59258",
+        "result_wire_bytes": 143,
+        "result_wire_hex": "7b226c6f636174696f6e223a6e756c6c2c22726561736f6e223a6e756c6c2c22736368656d61223a226261676165762d70726f62652d726573756c742f31222c22737461747573223a2273756363657373222c2276616c7565223a2d393232333337323033363835343737353830382c2276616c75655f74797065223a22496e743634222c22776f726b223a337d0a",
+        "schema": "bagaev-probe-native-witness/1"
+      }
+    }
+  ],
+  "different_program_refused": true,
+  "counts": {
+    "complete_witnesses": 98,
+    "static_refusal_witnesses": 52,
+    "native_observation_witnesses": 46,
+    "linked_programs": 23
+  },
+  "limits": "Original CLI /out witness publication, sync/stdout failure paths, hostile-host filesystem stability, arbitrary native memory safety and Cranelift native-caller support are not established. Witness call counts describe the source path and were not checked by an independent external call counter. Separate same-maintainer review, not independent review."
+}
