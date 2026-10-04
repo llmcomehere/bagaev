@@ -82,3 +82,28 @@ Detection means deviation from the exact correct result or bypass of a required
 static refusal. These are negative controls, not production artifacts. They do
 not establish all possible mutation coverage, Cranelift-specific mutation
 coverage, independent review or production acceptance.
+
+## Actual linked Rust observation core
+
+The [linked-core observations](../examples/probes/linked-rust-core-observations.json)
+exercise the actual `native_main::fixed::observe` path with Rust 1.93.0 and one
+O2 LLVM object per executable. A scoped harness exposes the otherwise private
+module in a copied source and writes the returned witness to stdout. The only
+caller-source change is module visibility; the public production caller and its
+publication guard are unchanged. This does not exercise the original CLI's
+`/out` file-publication path.
+
+There are 98 exact witnesses over 49 JSON invocation stages and both prefills:
+52 static refusals and 46 native observations, using 23 linked programs. Every
+result wire matched the frozen literal expectation. Native captures matched all
+32 expected ABI bytes and retained all 64 input bytes. A valid different program
+was refused with no witness when linked to the fixed object.
+
+Before execution, linked ELF headers, single required symbols, readonly load
+regions, binding extent and length alignment were checked, and the embedded
+program was compared with the input program. These artifact checks supplement
+source review; matching bytes or numeric bounds alone do not establish arbitrary
+foreign-memory safety. Witness call counts describe the source path, without an
+independent external call counter. Original CLI publication/flush/sync failure
+paths, hostile filesystem stability and Cranelift binding support remain open.
+Review was a separate same-maintainer pass.
