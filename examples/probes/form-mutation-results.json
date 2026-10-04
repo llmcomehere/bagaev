@@ -1,0 +1,502 @@
+{
+  "schema": "bounded-form-mutation-observations/1",
+  "source_sha256": {
+    "bagaev_l2": "98ca63c9fdb7a0f60060372d138eb922b348b46aaac6c9b140e8a49635f04a21",
+    "bagaev_forms": "997edfba01c5f56bf64ec1c8a6d41025aea9537247fa06902c09ab9e0edae826",
+    "bagaev_form_edit": "2eedd966356ac6fd6dd82c67eec424a63f06007745a2c3be3d770a68bc963c57"
+  },
+  "rows": [
+    {
+      "id": "FM-EAGER-IF",
+      "witness": "F-IF",
+      "detected_by_frozen_witness": true,
+      "failed_assertions": [
+        "test_frozen_non_edit_programs_all_three_forms (mutation_witnesses.FormTests.test_frozen_non_edit_programs_all_three_forms)"
+      ],
+      "errors": [
+        "test_frozen_non_edit_programs_all_three_forms (mutation_witnesses.FormTests.test_frozen_non_edit_programs_all_three_forms) (case='F-IF', form='json')",
+        "test_frozen_non_edit_programs_all_three_forms (mutation_witnesses.FormTests.test_frozen_non_edit_programs_all_three_forms) (case='F-IF', form='sexpr')",
+        "test_frozen_non_edit_programs_all_three_forms (mutation_witnesses.FormTests.test_frozen_non_edit_programs_all_three_forms) (case='F-IF', form='familiar')"
+      ],
+      "semantic_errors": [
+        {
+          "case": "test_frozen_non_edit_programs_all_three_forms (mutation_witnesses.FormTests.test_frozen_non_edit_programs_all_three_forms) (case='F-IF', form='json')",
+          "code": "L2_TYPE"
+        },
+        {
+          "case": "test_frozen_non_edit_programs_all_three_forms (mutation_witnesses.FormTests.test_frozen_non_edit_programs_all_three_forms) (case='F-IF', form='sexpr')",
+          "code": "L2_TYPE"
+        },
+        {
+          "case": "test_frozen_non_edit_programs_all_three_forms (mutation_witnesses.FormTests.test_frozen_non_edit_programs_all_three_forms) (case='F-IF', form='familiar')",
+          "code": "L2_TYPE"
+        }
+      ],
+      "module": "bagaev_l2",
+      "mutant_sha256": "38c1da32222b1d152267f7d63489ff8f6d9363e7a8edb8be086a2cd9ff89bed9"
+    },
+    {
+      "id": "FM-EAGER-BOOLEAN",
+      "witness": "F-AND",
+      "detected_by_frozen_witness": true,
+      "failed_assertions": [
+        "test_frozen_non_edit_programs_all_three_forms (mutation_witnesses.FormTests.test_frozen_non_edit_programs_all_three_forms)"
+      ],
+      "errors": [
+        "test_frozen_non_edit_programs_all_three_forms (mutation_witnesses.FormTests.test_frozen_non_edit_programs_all_three_forms) (case='F-AND', form='json')",
+        "test_frozen_non_edit_programs_all_three_forms (mutation_witnesses.FormTests.test_frozen_non_edit_programs_all_three_forms) (case='F-AND', form='sexpr')",
+        "test_frozen_non_edit_programs_all_three_forms (mutation_witnesses.FormTests.test_frozen_non_edit_programs_all_three_forms) (case='F-AND', form='familiar')",
+        "test_frozen_non_edit_programs_all_three_forms (mutation_witnesses.FormTests.test_frozen_non_edit_programs_all_three_forms) (case='F-OR', form='json')",
+        "test_frozen_non_edit_programs_all_three_forms (mutation_witnesses.FormTests.test_frozen_non_edit_programs_all_three_forms) (case='F-OR', form='sexpr')",
+        "test_frozen_non_edit_programs_all_three_forms (mutation_witnesses.FormTests.test_frozen_non_edit_programs_all_three_forms) (case='F-OR', form='familiar')"
+      ],
+      "semantic_errors": [
+        {
+          "case": "test_frozen_non_edit_programs_all_three_forms (mutation_witnesses.FormTests.test_frozen_non_edit_programs_all_three_forms) (case='F-AND', form='json')",
+          "code": "L2_TYPE"
+        },
+        {
+          "case": "test_frozen_non_edit_programs_all_three_forms (mutation_witnesses.FormTests.test_frozen_non_edit_programs_all_three_forms) (case='F-AND', form='sexpr')",
+          "code": "L2_TYPE"
+        },
+        {
+          "case": "test_frozen_non_edit_programs_all_three_forms (mutation_witnesses.FormTests.test_frozen_non_edit_programs_all_three_forms) (case='F-AND', form='familiar')",
+          "code": "L2_TYPE"
+        },
+        {
+          "case": "test_frozen_non_edit_programs_all_three_forms (mutation_witnesses.FormTests.test_frozen_non_edit_programs_all_three_forms) (case='F-OR', form='json')",
+          "code": "L2_TYPE"
+        },
+        {
+          "case": "test_frozen_non_edit_programs_all_three_forms (mutation_witnesses.FormTests.test_frozen_non_edit_programs_all_three_forms) (case='F-OR', form='sexpr')",
+          "code": "L2_TYPE"
+        },
+        {
+          "case": "test_frozen_non_edit_programs_all_three_forms (mutation_witnesses.FormTests.test_frozen_non_edit_programs_all_three_forms) (case='F-OR', form='familiar')",
+          "code": "L2_TYPE"
+        }
+      ],
+      "module": "bagaev_l2",
+      "mutant_sha256": "474d6aeb0978bfa116e8e8b9fb0c937d5b5c6a3a7cdf10d4f3e354cf7170dd54"
+    },
+    {
+      "id": "FM-EAGER-ITERATION",
+      "witness": "F-ANY",
+      "detected_by_frozen_witness": true,
+      "failed_assertions": [
+        "test_frozen_non_edit_programs_all_three_forms (mutation_witnesses.FormTests.test_frozen_non_edit_programs_all_three_forms)"
+      ],
+      "errors": [
+        "test_frozen_non_edit_programs_all_three_forms (mutation_witnesses.FormTests.test_frozen_non_edit_programs_all_three_forms) (case='F-ALL', form='json')",
+        "test_frozen_non_edit_programs_all_three_forms (mutation_witnesses.FormTests.test_frozen_non_edit_programs_all_three_forms) (case='F-ALL', form='sexpr')",
+        "test_frozen_non_edit_programs_all_three_forms (mutation_witnesses.FormTests.test_frozen_non_edit_programs_all_three_forms) (case='F-ALL', form='familiar')",
+        "test_frozen_non_edit_programs_all_three_forms (mutation_witnesses.FormTests.test_frozen_non_edit_programs_all_three_forms) (case='F-ANY', form='json')",
+        "test_frozen_non_edit_programs_all_three_forms (mutation_witnesses.FormTests.test_frozen_non_edit_programs_all_three_forms) (case='F-ANY', form='sexpr')",
+        "test_frozen_non_edit_programs_all_three_forms (mutation_witnesses.FormTests.test_frozen_non_edit_programs_all_three_forms) (case='F-ANY', form='familiar')"
+      ],
+      "semantic_errors": [
+        {
+          "case": "test_frozen_non_edit_programs_all_three_forms (mutation_witnesses.FormTests.test_frozen_non_edit_programs_all_three_forms) (case='F-ALL', form='json')",
+          "code": "L2_TYPE"
+        },
+        {
+          "case": "test_frozen_non_edit_programs_all_three_forms (mutation_witnesses.FormTests.test_frozen_non_edit_programs_all_three_forms) (case='F-ALL', form='sexpr')",
+          "code": "L2_TYPE"
+        },
+        {
+          "case": "test_frozen_non_edit_programs_all_three_forms (mutation_witnesses.FormTests.test_frozen_non_edit_programs_all_three_forms) (case='F-ALL', form='familiar')",
+          "code": "L2_TYPE"
+        },
+        {
+          "case": "test_frozen_non_edit_programs_all_three_forms (mutation_witnesses.FormTests.test_frozen_non_edit_programs_all_three_forms) (case='F-ANY', form='json')",
+          "code": "L2_TYPE"
+        },
+        {
+          "case": "test_frozen_non_edit_programs_all_three_forms (mutation_witnesses.FormTests.test_frozen_non_edit_programs_all_three_forms) (case='F-ANY', form='sexpr')",
+          "code": "L2_TYPE"
+        },
+        {
+          "case": "test_frozen_non_edit_programs_all_three_forms (mutation_witnesses.FormTests.test_frozen_non_edit_programs_all_three_forms) (case='F-ANY', form='familiar')",
+          "code": "L2_TYPE"
+        }
+      ],
+      "module": "bagaev_l2",
+      "mutant_sha256": "0741636d2f54a8fa1384fd549b1c761f818637487f0382f5c90d540f271aa000"
+    },
+    {
+      "id": "FM-DEEP-INGRESS",
+      "witness": "F-SHALLOW-DEEP",
+      "detected_by_frozen_witness": true,
+      "failed_assertions": [
+        "test_frozen_non_edit_programs_all_three_forms (mutation_witnesses.FormTests.test_frozen_non_edit_programs_all_three_forms) (case='F-UNICODE-PRIORITY', form='json')",
+        "test_frozen_non_edit_programs_all_three_forms (mutation_witnesses.FormTests.test_frozen_non_edit_programs_all_three_forms) (case='F-UNICODE-PRIORITY', form='sexpr')",
+        "test_frozen_non_edit_programs_all_three_forms (mutation_witnesses.FormTests.test_frozen_non_edit_programs_all_three_forms) (case='F-UNICODE-PRIORITY', form='familiar')",
+        "test_frozen_non_edit_programs_all_three_forms (mutation_witnesses.FormTests.test_frozen_non_edit_programs_all_three_forms)"
+      ],
+      "errors": [
+        "test_frozen_non_edit_programs_all_three_forms (mutation_witnesses.FormTests.test_frozen_non_edit_programs_all_three_forms) (case='F-EQ', form='json')",
+        "test_frozen_non_edit_programs_all_three_forms (mutation_witnesses.FormTests.test_frozen_non_edit_programs_all_three_forms) (case='F-EQ', form='sexpr')",
+        "test_frozen_non_edit_programs_all_three_forms (mutation_witnesses.FormTests.test_frozen_non_edit_programs_all_three_forms) (case='F-EQ', form='familiar')",
+        "test_frozen_non_edit_programs_all_three_forms (mutation_witnesses.FormTests.test_frozen_non_edit_programs_all_three_forms) (case='F-SHALLOW-DEEP', form='json')",
+        "test_frozen_non_edit_programs_all_three_forms (mutation_witnesses.FormTests.test_frozen_non_edit_programs_all_three_forms) (case='F-SHALLOW-DEEP', form='sexpr')",
+        "test_frozen_non_edit_programs_all_three_forms (mutation_witnesses.FormTests.test_frozen_non_edit_programs_all_three_forms) (case='F-SHALLOW-DEEP', form='familiar')",
+        "test_frozen_non_edit_programs_all_three_forms (mutation_witnesses.FormTests.test_frozen_non_edit_programs_all_three_forms) (case='F-SHALLOW-LARGE', form='json')",
+        "test_frozen_non_edit_programs_all_three_forms (mutation_witnesses.FormTests.test_frozen_non_edit_programs_all_three_forms) (case='F-SHALLOW-LARGE', form='sexpr')",
+        "test_frozen_non_edit_programs_all_three_forms (mutation_witnesses.FormTests.test_frozen_non_edit_programs_all_three_forms) (case='F-SHALLOW-LARGE', form='familiar')"
+      ],
+      "semantic_errors": [
+        {
+          "case": "test_frozen_non_edit_programs_all_three_forms (mutation_witnesses.FormTests.test_frozen_non_edit_programs_all_three_forms) (case='F-EQ', form='json')",
+          "code": "L2_TYPE"
+        },
+        {
+          "case": "test_frozen_non_edit_programs_all_three_forms (mutation_witnesses.FormTests.test_frozen_non_edit_programs_all_three_forms) (case='F-EQ', form='sexpr')",
+          "code": "L2_TYPE"
+        },
+        {
+          "case": "test_frozen_non_edit_programs_all_three_forms (mutation_witnesses.FormTests.test_frozen_non_edit_programs_all_three_forms) (case='F-EQ', form='familiar')",
+          "code": "L2_TYPE"
+        },
+        {
+          "case": "test_frozen_non_edit_programs_all_three_forms (mutation_witnesses.FormTests.test_frozen_non_edit_programs_all_three_forms) (case='F-SHALLOW-DEEP', form='json')",
+          "code": "L2_BOUNDS"
+        },
+        {
+          "case": "test_frozen_non_edit_programs_all_three_forms (mutation_witnesses.FormTests.test_frozen_non_edit_programs_all_three_forms) (case='F-SHALLOW-DEEP', form='sexpr')",
+          "code": "L2_BOUNDS"
+        },
+        {
+          "case": "test_frozen_non_edit_programs_all_three_forms (mutation_witnesses.FormTests.test_frozen_non_edit_programs_all_three_forms) (case='F-SHALLOW-DEEP', form='familiar')",
+          "code": "L2_BOUNDS"
+        },
+        {
+          "case": "test_frozen_non_edit_programs_all_three_forms (mutation_witnesses.FormTests.test_frozen_non_edit_programs_all_three_forms) (case='F-SHALLOW-LARGE', form='json')",
+          "code": "L2_BOUNDS"
+        },
+        {
+          "case": "test_frozen_non_edit_programs_all_three_forms (mutation_witnesses.FormTests.test_frozen_non_edit_programs_all_three_forms) (case='F-SHALLOW-LARGE', form='sexpr')",
+          "code": "L2_BOUNDS"
+        },
+        {
+          "case": "test_frozen_non_edit_programs_all_three_forms (mutation_witnesses.FormTests.test_frozen_non_edit_programs_all_three_forms) (case='F-SHALLOW-LARGE', form='familiar')",
+          "code": "L2_BOUNDS"
+        }
+      ],
+      "module": "bagaev_l2",
+      "mutant_sha256": "bc90cafcf5ce034627322ce7605e32f688b428fb0ebb6eff4111da6d68e14556"
+    },
+    {
+      "id": "FM-NUMERIC-TAG",
+      "witness": "F-RANGE",
+      "detected_by_frozen_witness": true,
+      "failed_assertions": [
+        "test_frozen_non_edit_programs_all_three_forms (mutation_witnesses.FormTests.test_frozen_non_edit_programs_all_three_forms) (case='F-RANGE', form='json')",
+        "test_frozen_non_edit_programs_all_three_forms (mutation_witnesses.FormTests.test_frozen_non_edit_programs_all_three_forms) (case='F-RANGE', form='sexpr')",
+        "test_frozen_non_edit_programs_all_three_forms (mutation_witnesses.FormTests.test_frozen_non_edit_programs_all_three_forms) (case='F-RANGE', form='familiar')",
+        "test_frozen_non_edit_programs_all_three_forms (mutation_witnesses.FormTests.test_frozen_non_edit_programs_all_three_forms)"
+      ],
+      "errors": [],
+      "semantic_errors": [],
+      "module": "bagaev_l2",
+      "mutant_sha256": "d6bf271a47df0a58de98b89680b188b5868ae679bf95eb6480a3e76113ed6a56"
+    },
+    {
+      "id": "FM-NORMALIZE",
+      "witness": "F-SORT",
+      "detected_by_frozen_witness": true,
+      "failed_assertions": [
+        "test_frozen_non_edit_programs_all_three_forms (mutation_witnesses.FormTests.test_frozen_non_edit_programs_all_three_forms) (case='F-SORT', form='json')",
+        "test_frozen_non_edit_programs_all_three_forms (mutation_witnesses.FormTests.test_frozen_non_edit_programs_all_three_forms) (case='F-SORT', form='sexpr')",
+        "test_frozen_non_edit_programs_all_three_forms (mutation_witnesses.FormTests.test_frozen_non_edit_programs_all_three_forms) (case='F-SORT', form='familiar')",
+        "test_frozen_non_edit_programs_all_three_forms (mutation_witnesses.FormTests.test_frozen_non_edit_programs_all_three_forms)"
+      ],
+      "errors": [],
+      "semantic_errors": [],
+      "module": "bagaev_l2",
+      "mutant_sha256": "ae6ca640b61fd8b4f731e9da141616848173f341307f22a1fa9b59bd072f9493"
+    },
+    {
+      "id": "FM-FIRSTSORT",
+      "witness": "F-UNIQUE",
+      "detected_by_frozen_witness": true,
+      "failed_assertions": [
+        "test_frozen_non_edit_programs_all_three_forms (mutation_witnesses.FormTests.test_frozen_non_edit_programs_all_three_forms) (case='F-UNIQUE', form='json')",
+        "test_frozen_non_edit_programs_all_three_forms (mutation_witnesses.FormTests.test_frozen_non_edit_programs_all_three_forms) (case='F-UNIQUE', form='sexpr')",
+        "test_frozen_non_edit_programs_all_three_forms (mutation_witnesses.FormTests.test_frozen_non_edit_programs_all_three_forms) (case='F-UNIQUE', form='familiar')",
+        "test_frozen_non_edit_programs_all_three_forms (mutation_witnesses.FormTests.test_frozen_non_edit_programs_all_three_forms)"
+      ],
+      "errors": [],
+      "semantic_errors": [],
+      "module": "bagaev_l2",
+      "mutant_sha256": "0fe1e3acaf992c5241e6168b333a3ae9910f90a20d991e558bb51dfbb2711908"
+    },
+    {
+      "id": "FM-WORK",
+      "witness": "F-QUADRATIC",
+      "detected_by_frozen_witness": true,
+      "failed_assertions": [
+        "test_frozen_non_edit_programs_all_three_forms (mutation_witnesses.FormTests.test_frozen_non_edit_programs_all_three_forms) (case='F-QUADRATIC', form='json')",
+        "test_frozen_non_edit_programs_all_three_forms (mutation_witnesses.FormTests.test_frozen_non_edit_programs_all_three_forms) (case='F-QUADRATIC', form='sexpr')",
+        "test_frozen_non_edit_programs_all_three_forms (mutation_witnesses.FormTests.test_frozen_non_edit_programs_all_three_forms) (case='F-QUADRATIC', form='familiar')",
+        "test_frozen_non_edit_programs_all_three_forms (mutation_witnesses.FormTests.test_frozen_non_edit_programs_all_three_forms)"
+      ],
+      "errors": [],
+      "semantic_errors": [],
+      "module": "bagaev_l2",
+      "mutant_sha256": "612ee5e4d18d5a978621c10f5aafddecde1c9f42baaf2e22a37778146a1ff715"
+    },
+    {
+      "id": "FM-UNBOUNDED",
+      "witness": "F-WORK-OVER",
+      "detected_by_frozen_witness": true,
+      "failed_assertions": [
+        "test_frozen_non_edit_programs_all_three_forms (mutation_witnesses.FormTests.test_frozen_non_edit_programs_all_three_forms) (case='F-WORK-OVER', form='json')",
+        "test_frozen_non_edit_programs_all_three_forms (mutation_witnesses.FormTests.test_frozen_non_edit_programs_all_three_forms) (case='F-WORK-OVER', form='sexpr')",
+        "test_frozen_non_edit_programs_all_three_forms (mutation_witnesses.FormTests.test_frozen_non_edit_programs_all_three_forms) (case='F-WORK-OVER', form='familiar')",
+        "test_frozen_non_edit_programs_all_three_forms (mutation_witnesses.FormTests.test_frozen_non_edit_programs_all_three_forms) (case='F-QUADRATIC', form='json')",
+        "test_frozen_non_edit_programs_all_three_forms (mutation_witnesses.FormTests.test_frozen_non_edit_programs_all_three_forms) (case='F-QUADRATIC', form='sexpr')",
+        "test_frozen_non_edit_programs_all_three_forms (mutation_witnesses.FormTests.test_frozen_non_edit_programs_all_three_forms) (case='F-QUADRATIC', form='familiar')",
+        "test_frozen_non_edit_programs_all_three_forms (mutation_witnesses.FormTests.test_frozen_non_edit_programs_all_three_forms)"
+      ],
+      "errors": [],
+      "semantic_errors": [],
+      "module": "bagaev_l2",
+      "mutant_sha256": "54ebd3eaf218a35623805cd49a7208c3a150a27b308a43e223a8450a471df499"
+    },
+    {
+      "id": "FM-UNICODE",
+      "witness": "F-UNICODE-PRIORITY",
+      "detected_by_frozen_witness": true,
+      "failed_assertions": [
+        "test_frozen_non_edit_programs_all_three_forms (mutation_witnesses.FormTests.test_frozen_non_edit_programs_all_three_forms) (case='F-UNICODE-PRIORITY', form='json')",
+        "test_frozen_non_edit_programs_all_three_forms (mutation_witnesses.FormTests.test_frozen_non_edit_programs_all_three_forms) (case='F-UNICODE-PRIORITY', form='sexpr')",
+        "test_frozen_non_edit_programs_all_three_forms (mutation_witnesses.FormTests.test_frozen_non_edit_programs_all_three_forms) (case='F-UNICODE-PRIORITY', form='familiar')",
+        "test_frozen_non_edit_programs_all_three_forms (mutation_witnesses.FormTests.test_frozen_non_edit_programs_all_three_forms)"
+      ],
+      "errors": [],
+      "semantic_errors": [],
+      "module": "bagaev_l2",
+      "mutant_sha256": "94080e579af07737efb7d042c8cf334e24eca31168eae5ea4375b457a84d9e38"
+    },
+    {
+      "id": "FM-ROOTREPAIR",
+      "witness": "F-GENERIC-SCHEMA",
+      "detected_by_frozen_witness": true,
+      "failed_assertions": [
+        "test_frozen_non_edit_programs_all_three_forms (mutation_witnesses.FormTests.test_frozen_non_edit_programs_all_three_forms) (case='F-GENERIC-SCHEMA', form='json')",
+        "test_frozen_non_edit_programs_all_three_forms (mutation_witnesses.FormTests.test_frozen_non_edit_programs_all_three_forms) (case='F-GENERIC-SCHEMA', form='sexpr')",
+        "test_frozen_non_edit_programs_all_three_forms (mutation_witnesses.FormTests.test_frozen_non_edit_programs_all_three_forms) (case='F-GENERIC-SCHEMA', form='familiar')",
+        "test_frozen_non_edit_programs_all_three_forms (mutation_witnesses.FormTests.test_frozen_non_edit_programs_all_three_forms)"
+      ],
+      "errors": [],
+      "semantic_errors": [],
+      "module": "bagaev_forms",
+      "mutant_sha256": "b8f89e8123cb3b408fe43e8d0b2fbb093a144cd055f99f1e6b2e5dd59897eda6"
+    },
+    {
+      "id": "FM-REPIN",
+      "witness": "F-PIN",
+      "detected_by_frozen_witness": true,
+      "failed_assertions": [
+        "test_frozen_non_edit_programs_all_three_forms (mutation_witnesses.FormTests.test_frozen_non_edit_programs_all_three_forms) (case='F-PIN', form='json')",
+        "test_frozen_non_edit_programs_all_three_forms (mutation_witnesses.FormTests.test_frozen_non_edit_programs_all_three_forms) (case='F-PIN', form='sexpr')",
+        "test_frozen_non_edit_programs_all_three_forms (mutation_witnesses.FormTests.test_frozen_non_edit_programs_all_three_forms) (case='F-PIN', form='familiar')",
+        "test_frozen_non_edit_programs_all_three_forms (mutation_witnesses.FormTests.test_frozen_non_edit_programs_all_three_forms)"
+      ],
+      "errors": [],
+      "semantic_errors": [],
+      "module": "bagaev_forms",
+      "mutant_sha256": "ee0513ea432183b21a5497fb14d9f022b5c10aa50026993930365f1dfe3121a5"
+    },
+    {
+      "id": "FM-OUTERORDER",
+      "witness": "F-EDIT-G4",
+      "detected_by_frozen_witness": true,
+      "failed_assertions": [
+        "test_complete_frozen_edit_traces_in_all_forms (mutation_witnesses.EditTests.test_complete_frozen_edit_traces_in_all_forms) (case='F-EDIT-G4', stage=0, form='json')",
+        "test_complete_frozen_edit_traces_in_all_forms (mutation_witnesses.EditTests.test_complete_frozen_edit_traces_in_all_forms) (case='F-EDIT-G4', stage=0, form='sexpr')",
+        "test_complete_frozen_edit_traces_in_all_forms (mutation_witnesses.EditTests.test_complete_frozen_edit_traces_in_all_forms) (case='F-EDIT-G4', stage=0, form='familiar')",
+        "test_complete_frozen_edit_traces_in_all_forms (mutation_witnesses.EditTests.test_complete_frozen_edit_traces_in_all_forms)"
+      ],
+      "errors": [],
+      "semantic_errors": [],
+      "module": "bagaev_form_edit",
+      "mutant_sha256": "284f181b7edb3b58b9b8873b3b70379400de044b70a532cf850529b531880144"
+    },
+    {
+      "id": "FM-EARLYBASE",
+      "witness": "F-EDIT-PREFIX",
+      "detected_by_frozen_witness": true,
+      "failed_assertions": [
+        "test_complete_frozen_edit_traces_in_all_forms (mutation_witnesses.EditTests.test_complete_frozen_edit_traces_in_all_forms) (case='F-EDIT-PREFIX', stage=0, form='json')",
+        "test_complete_frozen_edit_traces_in_all_forms (mutation_witnesses.EditTests.test_complete_frozen_edit_traces_in_all_forms) (case='F-EDIT-PREFIX', stage=0, form='sexpr')",
+        "test_complete_frozen_edit_traces_in_all_forms (mutation_witnesses.EditTests.test_complete_frozen_edit_traces_in_all_forms) (case='F-EDIT-PREFIX', stage=0, form='familiar')",
+        "test_complete_frozen_edit_traces_in_all_forms (mutation_witnesses.EditTests.test_complete_frozen_edit_traces_in_all_forms) (case='F-EDIT-CANDIDATE', stage=0, form='json')",
+        "test_complete_frozen_edit_traces_in_all_forms (mutation_witnesses.EditTests.test_complete_frozen_edit_traces_in_all_forms) (case='F-EDIT-CANDIDATE', stage=0, form='sexpr')",
+        "test_complete_frozen_edit_traces_in_all_forms (mutation_witnesses.EditTests.test_complete_frozen_edit_traces_in_all_forms) (case='F-EDIT-CANDIDATE', stage=0, form='familiar')",
+        "test_complete_frozen_edit_traces_in_all_forms (mutation_witnesses.EditTests.test_complete_frozen_edit_traces_in_all_forms) (case='F-EDIT-CAS', stage=0, form='json')",
+        "test_complete_frozen_edit_traces_in_all_forms (mutation_witnesses.EditTests.test_complete_frozen_edit_traces_in_all_forms) (case='F-EDIT-CAS', stage=0, form='sexpr')",
+        "test_complete_frozen_edit_traces_in_all_forms (mutation_witnesses.EditTests.test_complete_frozen_edit_traces_in_all_forms) (case='F-EDIT-CAS', stage=0, form='familiar')",
+        "test_complete_frozen_edit_traces_in_all_forms (mutation_witnesses.EditTests.test_complete_frozen_edit_traces_in_all_forms)"
+      ],
+      "errors": [],
+      "semantic_errors": [],
+      "module": "bagaev_form_edit",
+      "mutant_sha256": "ae82305812d404534ba21080d264c594e8997b3f055312398ade7304643c9822"
+    },
+    {
+      "id": "FM-PARTIAL",
+      "witness": "F-EDIT-ATOMIC",
+      "detected_by_frozen_witness": true,
+      "failed_assertions": [
+        "test_complete_frozen_edit_traces_in_all_forms (mutation_witnesses.EditTests.test_complete_frozen_edit_traces_in_all_forms) (case='F-EDIT-SUCCESS', stage=0, form='json')",
+        "test_complete_frozen_edit_traces_in_all_forms (mutation_witnesses.EditTests.test_complete_frozen_edit_traces_in_all_forms) (case='F-EDIT-SUCCESS', stage=0, form='sexpr')",
+        "test_complete_frozen_edit_traces_in_all_forms (mutation_witnesses.EditTests.test_complete_frozen_edit_traces_in_all_forms) (case='F-EDIT-SUCCESS', stage=0, form='familiar')",
+        "test_complete_frozen_edit_traces_in_all_forms (mutation_witnesses.EditTests.test_complete_frozen_edit_traces_in_all_forms) (case='F-EDIT-CAS', stage=1, form='json')",
+        "test_complete_frozen_edit_traces_in_all_forms (mutation_witnesses.EditTests.test_complete_frozen_edit_traces_in_all_forms) (case='F-EDIT-CAS', stage=1, form='sexpr')",
+        "test_complete_frozen_edit_traces_in_all_forms (mutation_witnesses.EditTests.test_complete_frozen_edit_traces_in_all_forms) (case='F-EDIT-CAS', stage=1, form='familiar')",
+        "test_complete_frozen_edit_traces_in_all_forms (mutation_witnesses.EditTests.test_complete_frozen_edit_traces_in_all_forms) (case='F-EDIT-ATOMIC', stage=0, form='json')",
+        "test_complete_frozen_edit_traces_in_all_forms (mutation_witnesses.EditTests.test_complete_frozen_edit_traces_in_all_forms) (case='F-EDIT-ATOMIC', stage=0, form='sexpr')",
+        "test_complete_frozen_edit_traces_in_all_forms (mutation_witnesses.EditTests.test_complete_frozen_edit_traces_in_all_forms) (case='F-EDIT-ATOMIC', stage=0, form='familiar')",
+        "test_complete_frozen_edit_traces_in_all_forms (mutation_witnesses.EditTests.test_complete_frozen_edit_traces_in_all_forms)"
+      ],
+      "errors": [],
+      "semantic_errors": [],
+      "module": "bagaev_form_edit",
+      "mutant_sha256": "0c22714c96230d572faa8a566faa254ba952f0b0396407e4086eae214cec137a"
+    },
+    {
+      "id": "FM-ADMIT",
+      "witness": "F-EDIT-SUCCESS",
+      "detected_by_frozen_witness": true,
+      "failed_assertions": [
+        "test_complete_frozen_edit_traces_in_all_forms (mutation_witnesses.EditTests.test_complete_frozen_edit_traces_in_all_forms) (case='F-EDIT-SUCCESS', stage=0, form='json')",
+        "test_complete_frozen_edit_traces_in_all_forms (mutation_witnesses.EditTests.test_complete_frozen_edit_traces_in_all_forms) (case='F-EDIT-SUCCESS', stage=0, form='sexpr')",
+        "test_complete_frozen_edit_traces_in_all_forms (mutation_witnesses.EditTests.test_complete_frozen_edit_traces_in_all_forms) (case='F-EDIT-SUCCESS', stage=0, form='familiar')",
+        "test_complete_frozen_edit_traces_in_all_forms (mutation_witnesses.EditTests.test_complete_frozen_edit_traces_in_all_forms)"
+      ],
+      "errors": [],
+      "semantic_errors": [],
+      "module": "bagaev_form_edit",
+      "mutant_sha256": "34943aa81cd19b18171deca6d7f2ca9661c5373a583dfd826156ff575ae9f8a4"
+    }
+  ],
+  "limits": "Sixteen concrete source edits; Only assertion failures or the declared wrong semantic error on the exact frozen witness count; unrelated interpreter exceptions do not count. These are bounded mutation observations, not all possible bug classes or comparative performance.",
+  "date": "2026-10-04",
+  "review": "separate same-maintainer pass, not independent review",
+  "recipes": [
+    {
+      "id": "FM-EAGER-IF",
+      "module": "bagaev_l2",
+      "old": "schedule([expr[2] if condition else expr[3]], env, depth)",
+      "new": "schedule(expr[2:], env, depth)",
+      "replacements": 1
+    },
+    {
+      "id": "FM-EAGER-BOOLEAN",
+      "module": "bagaev_l2",
+      "old": "if result is (expr[0] == \"or\") or index == len(expr) - 1:",
+      "new": "if index == len(expr) - 1:",
+      "replacements": 1
+    },
+    {
+      "id": "FM-EAGER-ITERATION",
+      "module": "bagaev_l2",
+      "old": "if result is (op == \"any\"):",
+      "new": "if False:",
+      "replacements": 1
+    },
+    {
+      "id": "FM-DEEP-INGRESS",
+      "module": "bagaev_l2",
+      "old": "definitions = program[\"definitions\"]\n    main =",
+      "new": "_export(argument)\n    definitions = program[\"definitions\"]\n    main =",
+      "replacements": 1
+    },
+    {
+      "id": "FM-NUMERIC-TAG",
+      "module": "bagaev_l2",
+      "old": "result = type(args[0]) is int and expr[2] <= args[0] <= expr[3]",
+      "new": "result = isinstance(args[0],int) and expr[2] <= args[0] <= expr[3]",
+      "replacements": 1
+    },
+    {
+      "id": "FM-NORMALIZE",
+      "module": "bagaev_l2",
+      "old": "result = sorted(args[0])",
+      "new": "result = sorted(set(args[0]))",
+      "replacements": 1
+    },
+    {
+      "id": "FM-FIRSTSORT",
+      "module": "bagaev_l2",
+      "old": "result = list(dict.fromkeys(args[0]))",
+      "new": "result = sorted(set(args[0]))",
+      "replacements": 1
+    },
+    {
+      "id": "FM-WORK",
+      "module": "bagaev_l2",
+      "old": "charge(len(args[0]) ** 2)",
+      "new": "charge(0)",
+      "replacements": 1
+    },
+    {
+      "id": "FM-UNBOUNDED",
+      "module": "bagaev_l2",
+      "old": "_need(steps <= 100000, \"L2_BOUNDS\")",
+      "new": "_need(steps <= 1000000000, \"L2_BOUNDS\")",
+      "replacements": 1
+    },
+    {
+      "id": "FM-UNICODE",
+      "module": "bagaev_l2",
+      "old": "for value in values:\n        _unicode(value)\n    for value in values:\n        _need(len(value.encode(\"utf-8\")) <= 4096, \"L2_BOUNDS\")",
+      "new": "for value in values:\n        _need(len(value.encode(\"utf-8\")) <= 4096, \"L2_BOUNDS\")\n    for value in values:\n        _unicode(value)",
+      "replacements": 1
+    },
+    {
+      "id": "FM-ROOTREPAIR",
+      "module": "bagaev_forms",
+      "old": "return l2.check_program(value)",
+      "new": "if value.get('schema') != l2.PROGRAM_SCHEMA:raise l2.L2Error('L2_REFERENCE')\n    return l2.check_program(value)",
+      "replacements": 1
+    },
+    {
+      "id": "FM-REPIN",
+      "module": "bagaev_forms",
+      "old": "return l2.check_program(value)",
+      "new": "return l2._check(value,repin=True)[0]",
+      "replacements": 1
+    },
+    {
+      "id": "FM-OUTERORDER",
+      "module": "bagaev_form_edit",
+      "old": "if type(value) is not dict or set(value) != {'schema','form','base','candidate_id','patch'}:",
+      "new": "if type(value) is dict and 'schema' in value:_scalar_string(value['schema'],'/schema')\n    if type(value) is not dict or set(value) != {'schema','form','base','candidate_id','patch'}:",
+      "replacements": 1
+    },
+    {
+      "id": "FM-EARLYBASE",
+      "module": "bagaev_form_edit",
+      "old": "_patch_envelope(patch)\n    if value['base'] != patch['base']:\n        _fail('FORM_BASE', '/base')",
+      "new": "if value['base'] != before.digest:\n        _fail('FORM_BASE', '/base')\n    _patch_envelope(patch)\n    if value['base'] != patch['base']:\n        _fail('FORM_BASE', '/base')",
+      "replacements": 1
+    },
+    {
+      "id": "FM-PARTIAL",
+      "module": "bagaev_form_edit",
+      "old": "after = l2.apply_patch(before, patch)",
+      "new": "if type(original) is dict:original['definitions'].update(patch['replace'])\n    after = l2.apply_patch(before, patch)",
+      "replacements": 1
+    },
+    {
+      "id": "FM-ADMIT",
+      "module": "bagaev_form_edit",
+      "old": "'patch':copy.deepcopy(patch), 'admission':False}",
+      "new": "'patch':copy.deepcopy(patch), 'admission':True}",
+      "replacements": 1
+    }
+  ],
+  "recorder_correction": "Initial recorder distinguished assertion failures but did not count declared wrong L2 errors. The corrected recorder accepts the declared semantic error on the exact witness; unrelated exceptions do not qualify. The early-base recipe was corrected to compare the outer frame base before patch validation, rather than dereference a missing patch field."
+}

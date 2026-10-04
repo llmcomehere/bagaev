@@ -188,6 +188,49 @@ class FormTests(unittest.TestCase):
                 for form,wire in extra['raw_by_form'].items():
                     with self.assertRaises(l2.L2Error if form=='json' else f.FormError):f.decode(wire,form)
         self.assertEqual(count,126)
+
+    def test_observed_semantic_charges_match_frozen_literals(self):
+        """Observe the existing counter, without changing evaluator semantics.
+
+        This process-local trace reads only numeric charge totals from the exact
+        nested charge code object. It is not a timing/performance measurement.
+        """
+        raw=ORACLE.read_bytes()
+        self.assertEqual(hashlib.sha256(raw).hexdigest(),'fcbec0d9d06d4185bd823442163b5ae3a3f05eef4fa77a32a64d948d9b35c18d')
+        oracle=json.loads(raw)
+        charges=[v for v in l2.evaluate.__code__.co_consts if hasattr(v,'co_name') and v.co_name=='charge']
+        self.assertEqual(len(charges),1)
+        charge_code=charges[0]
+        observed=0
+        for case in oracle['cases']:
+            expected=case['expected']
+            target=next((expected[k] for k in ('steps','first_forbidden_step','attempted_work') if k in expected),None)
+            if target is None:continue
+            spec=case['input'];definitions=copy.deepcopy(spec.get('definitions',{}))
+            definitions['main']={'params':['x'],'body':copy.deepcopy(spec['body'])}
+            program={'schema':'bagaev-l2/1','entry':'main','definitions':definitions,
+                     'pins':copy.deepcopy(oracle['identities'][case['id']]['pins'])}
+            for form in f.FORMS:
+                with self.subTest(case=case['id'],form=form):
+                    checked=f.check(f.encode(program,form),form)
+                    last=[0]
+                    def local(frame,event,arg):
+                        if event in ('return','exception'):last[0]=frame.f_locals['steps']
+                        return local
+                    def trace(frame,event,arg):
+                        return local if frame.f_code is charge_code else None
+                    previous=sys.gettrace()
+                    argument=self.fixture_argument(spec)
+                    try:
+                        sys.settrace(trace)
+                        if 'error' in expected:
+                            with self.assertRaises(l2.L2Error) as error:l2.evaluate(checked,argument)
+                            self.assertEqual(error.exception.code,expected['error'])
+                        else:self.assertEqual(l2.evaluate(checked,argument),expected['value'])
+                    finally:sys.settrace(previous)
+                    self.assertEqual(last[0],target)
+                    observed+=1
+        self.assertEqual(observed,99)
         self.assertEqual(ORACLE.read_bytes(),raw)
 
 if __name__=='__main__':unittest.main()
