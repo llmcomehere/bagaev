@@ -1,0 +1,71 @@
+{
+  "schema": "bagaev-native-probe-observations/1",
+  "date": "2026-10-04",
+  "status": "BOUNDED_MATCH",
+  "unit_test_invocations": {
+    "frontend": 18,
+    "llvm_emitter": 12,
+    "native_library": 10,
+    "fixture_preparation": 13
+  },
+  "frontend_json_stages": 49,
+  "exact_static_refusals": 26,
+  "valid_checked_schema_observations": 23,
+  "native_abi_observations": 300,
+  "native_variants": 25,
+  "backends": [
+    "handwritten-c11",
+    "llvm21"
+  ],
+  "optimization_modes": [
+    "O0",
+    "O2",
+    "Os"
+  ],
+  "prefills": [
+    "00",
+    "ff"
+  ],
+  "runtime_profile": {
+    "target": "x86_64-unknown-linux-gnu",
+    "cpu": "x86-64",
+    "rust": "1.93.0",
+    "clang": "21.1.8"
+  },
+  "review": "same-maintainer separate pass, not independent",
+  "claims_not_established": [
+    "full L2/L3 parity",
+    "forms/context/AP1 conformance",
+    "real-object Rust caller",
+    "complete mutation protocol",
+    "performance or cost advantage"
+  ],
+  "source_sha256": {
+    "examples/probes/backend/rust/native_main.rs": "3eb991d44f9cfbdb43126638e51c8c50d6eaf6e6089c449f910bd9be63e9989f",
+    "examples/probes/backend/rust/canonical.rs": "f91a885f247e64ba02495cc0750b46ff78e8753723c9f87e105b235b3f72900d",
+    "examples/probes/backend/rust/llvm.rs": "dceee7665bf83eb646eca41222b7eba5883a2ec2c17e952d1628571afad16c59",
+    "examples/probes/backend/rust/transport.rs": "bc968e3734e5c2bb58d7de69c2af93fd81f43a6ee43fd8784c24af3ad16ca8d2",
+    "examples/probes/backend/rust/native.rs": "1cd006577b852132966d24eb09cb3faadecb480562cdae7b2c8c097c207b5d85",
+    "examples/probes/backend/rust/sha256.rs": "c350e08ec41a4fb29e2871e6a0194b1905538c77adc878d68fd5a8cd6dec4324",
+    "examples/probes/backend/rust/main.rs": "844a7d51edb0130503d5f18eefefb6c8f4a64e0e63611b197bcaae52c628bf54",
+    "examples/probes/backend/rust/llvm_main.rs": "4894f9d6ccd56c3fed5d65fefddcb5313595aeca55491dacfe9db9da497d4afe",
+    "examples/probes/backend/rust/ir.rs": "d58dd8a6d1ee83fdbb037e724d55697fad77a615d03c7c9185f331304c7cf009",
+    "examples/probes/backend/rust/check.rs": "6421f2b9ad290099b747580c6d63f18f216f9dd8ed4043ab8f1e5e41abfeb0dc",
+    "tests/probes/backend/llvm_source_tests.rs": "5fbdd80ce6770dd7271e5e2a66f365cfa03470c5908ea199194fe93895ef694a",
+    "tests/probes/backend/native_source_tests.rs": "450a3b98cce99eec3bdbd37057b39556395e878ae7f7a3c1aad5ae36b55e2fbe",
+    "tests/probes/backend/frontend_source_tests.rs": "c040cced252ecdc36bb4b0d6ed0fca7f14e7f2d55f72f436cfe6c0aa08d42803",
+    "examples/comparison/pure/native/checked.h": "d2bbcca226a904660065ac20ae1fe7f6b0ab42059f78e2e6771b7b949be543ec",
+    "examples/comparison/pure/native/abi.h": "dca505e54d14596452956e165cecb7d57995e157dc57eaab68c7b9375f136429",
+    "examples/comparison/pure/native/work_boundary.c": "db6bf6436ae595278361c5af72ab953d2740f0d2ad9177c6ab3af3d71680af5f",
+    "examples/comparison/pure/native/baseline.c": "e5a4fbe94ead9730f0ee4c9f925054cef11ea66dd378e67c4f6475894295b43d",
+    "examples/comparison/pure/native/observe.c": "3da7b6982d6ff3c07a68b08a27cc4b115879444efb7a7cedc866a1ed2b1543c1",
+    "examples/probes/kernel-contract.json": "fb1fb36c5a98e953d21a57c3d80555a484382bfa700ccaf4c1fa1cbdee532b55",
+    "examples/probes/form-contract.json": "97c0005ccfcda4ae3c5deb8346c6cebcd4cf7238b0e623b4bcd3772fd031b0da",
+    "examples/probes/context-contract.json": "551097cda8a70147e8062bd1b2959f7b1950301290e1c5429ae031a51a132fe8",
+    "examples/probes/kernel-oracle.json": "af1988624bcc84f6314a3e87d39536252fc43722c1782fbc3a886d5eec2e1edc",
+    "examples/probes/form-oracle.json": "fcbec0d9d06d4185bd823442163b5ae3a3f05eef4fa77a32a64d948d9b35c18d",
+    "examples/probes/context-oracle.json": "090d64ba08ca17d9f61f4a8bf7b91dda0a827ee6c6fb71b49764d49cdc5c1661",
+    "examples/probes/oracle-recipes.json": "083b7c582990296ec40eaf9547634fbb138b3838bec28130abe8b073a2445b61"
+  },
+  "successful_run_observation_mismatches": 0
+}

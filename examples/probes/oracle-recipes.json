@@ -1,0 +1,38 @@
+{
+"schema":"probe-oracle-recipes/1","status":"Finite declarative source data; unmaterialized; no evaluator or generator supplied.",
+"effects":{"execution":false,"network":false,"models":false,"writes":false,"admission":false},
+"shared":{"H":"sha256 of canonical JSON bytes; metadata only","repeat":"Exactly count independent value occurrences; no shared mutable aliases","changes":"Literal path edits to detached fixture data only, never normalization","forms":"Canonical JSON/sexpr/familiar encode same complete JSON, including invalid shapes"},
+"recipes":[
+{"id":"K-INV-DEPTH-133","construction":"Normal invocation/program main int0; arguments is one-element array whose element is130 singleton arrays around0. Invocation root1, arguments2, first nested array3, innermost array132, leaf133. No argument-type checking is reached.","first_excess_path_zero_segments":131},
+{"id":"K-INV-VALUES-16385","construction":"Normal invocation/program main int0; arguments is16400 integer zeros. Invocation preorder sorted keys: root1, arguments array2, index0 value3; index16382 value16385 exceeds16384 before program/argument-count validation.","first_excess_index":16382},
+{"id":"K-WORK-65536","construction":"main params [], result Int64, body exactly the literal body below; normal invocation with arguments [].","body":["let","v","Int64",["loop",1024,"i","a","Int64",["int",0],["loop",61,"j","b","Int64",["int",0],["int",0]]],["loop",1019,"k","c","Int64",["int",0],["use","c"]]],"work_derivation":"outer loop 2+1024*(2+61)=64514; second loop 2+1019=1021; let1+64514+1021=65536","node_preorder":["let","outer-loop","initial-int","inner-loop","initial-int","inner-body-int","second-loop","initial-int","use-c"]},
+{"id":"K-WORK-65537","construction":"K-WORK-65536 with second loop count exactly1020, nothing else changed.","work_derivation":"required65537; final use-c entry would consume tick65537; refused with work65536; node9 location /program/functions/main/body/4/6"},
+{"id":"K-INPUT-BYTES-OVER","construction":"Exactly1048577 ASCII space bytes as invocation input; no valid prefix.","bytes":1048577},
+{"id":"K-JSON-DEPTH-129","construction":"Valid kernel envelope main params [] result Int64; body is125 singleton arrays around integer0. Normal invocation envelope. Program body root depth4, innermost array depth128, leaf depth129. Full JSON syntax parses before structural depth refusal.","program_depth":129,"program_leaf_path_segments":125,"invocation_depth":130},
+{"id":"K-JSON-OCCURRENCES-8193","construction":"Valid kernel envelope main params [] result Int64; body is array containing string x followed by8192 integer0 elements. Sorted program traversal: program1,entry2,functions3,main4,body5,op6; body index8187 is value8193, so program occurrence check precedes unknown-op structure.","first_excess_body_index":8187},
+{"id":"K-NODE-513","construction":"main params [] result Int64; body is let v Int64 T [add,[int,0],[int,0]]. T is the full binary add tree with256 int0 leaves (8 add levels;511 expressions). Let is node1, T nodes2..512; final add at /body/4 would be node513; structural bound precedes later references/types.","first_excess_node":513,"first_excess_path":"/program/functions/main/body/4"},
+{"id":"K-EXPR-DEPTH-33","construction":"main params [] result Bool; body is32 nested not expressions around bool false. The leaf bool expression is depth33, with32 path segments /1; program JSON depth remains within128.","expression_depth":33},
+{"id":"K-PARAM9","construction":"main params [[p0,Int64],...,[p8,Int64]], result Int64, body [int,0]; normal invocation arguments [] (never reached).","parameter_count":9},
+{"id":"K-FUNCTION9","construction":"functions exactly d0..d8, each params [] result Int64 body [int,0]; entry d0; arguments [].","function_count":9},
+{"id":"F-DEEP-D","construction":"Argument object exactly {d:D}; D is254 singleton arrays around null. Object root1, first array2, leaf256. Pass borrowed value without serialize/hash/copy at invocation.","decoded_depth":256,"singleton_arrays":254},
+{"id":"F-LARGE-INGRESS","construction":"Argument object exactly n=1208925819614629174706176, s=4097 ASCII a characters, a=257 nulls. Pass borrowed; do not prevalidate/export those fields.","descriptor_tags":["object","int","string","array","null"]},
+{"id":"F-STRING-PRIORITY","construction":"Argument object a=4097 ASCII a characters, b=isolated surrogate U+D800 (descriptor string codepoints [55296]). Unicode validation of both operands precedes byte bounds."},
+{"id":"F-NULL45","construction":"Argument array exactly45 nulls."},
+{"id":"F-NULL46","construction":"Argument array exactly46 nulls."},
+{"id":"F-STRINGS256","construction":"Argument array exactly strings s000,s001,...,s255 in that order, all distinct ASCII length4. unique n256 charge65536 succeeds; sort n256 charge65536 fails; length/outer sort/inner unique/var are4 expression ticks; next charge would total131076."},
+{"id":"F-FRAME-BYTES","construction":"Exactly2097153 ASCII space bytes as outer edit frame, valid original S0.","bytes":2097153},
+{"id":"F-FRAME-DEPTH","construction":"Outer JSON frame exactly8 singleton arrays around null: parsed root depth1, leaf9; syntax valid, exact-shape inspection not reached.","depth":9},
+{"id":"F-PATCH-BYTES","construction":"Use E0, replace its decoded patch source by1048577 ASCII spaces; encode outer frame canonically. Outer bytes remain below2097152; gate9 refuses before patch parse.","decoded_patch_bytes":1048577},
+{"id":"C-BYTES-OVER","construction":"Exactly4194305 ASCII spaces as context transport; independent expectation remains supplied.","bytes":4194305}
+],
+"metadata_payloads":{
+"form_definition_pin":"For each explicitly supplied valid definition, H({schema:bagaev-l2-definition/1,definition:literal definition,dependencies:explicit literal direct-dependency pin map}); no semantic checking or discovery.",
+"form_source_identity":"H(the explicit complete four-field program with the independently frozen pin map).",
+"context_set":"H({schema:probe-candidate-set/1,candidates:[{id,kind,state,pin} from the literal ordered map]})",
+"context_obligation":"H(the literal obligation record with only its pin field omitted)",
+"context_changed_set":"C-REMAPPED set payload differs only choice state= draft, externally expected set unchanged.",
+"context_requests":"For trace requests, response.request is H(the full literal changed request); context/snapshot/map remain exact baseline pins.",
+"accounting":"All canonical source/frame byte counts and raw fixture hashes are metadata; actual raw attempts, observed tokenizer counts, storage/ABI and runtime results remain absent."
+},
+"required_observations":{"kernel":"Exact C(result)+LF/exit0 for complete language observations; six ABI fields/all32bytes when callable; environment nonzero no valid result.","forms":"Every case same JSON/program/pins/results allthree forms; canonical transport byte counts separately; code-only L2 errors; nonmutation and detached success including retained snapshots.","context":"Exact current sources/obligations/map and applicable evidence or explicit absence; ordered events with unresolved unknowns/effects; zero model calls/admissionfalse."}
+}

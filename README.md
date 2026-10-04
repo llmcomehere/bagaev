@@ -59,6 +59,11 @@ untrusted code. No model account is needed for this example.
 
 ## What exists today
 
+- **Experimental typed native kernel:** a separate bounded Int64/Bool core,
+  Rust frontend, LLVM lowering and handwritten C11 comparison. The
+  [October 4 observations](docs/native-probe-results.md) record 300 matching
+  native ABI observations at O0/O2/Os. This is not full native L2/L3 support
+  or a measured performance/cost advantage.
 - **L0:** a pure deterministic dataflow core, four types, ten operations,
   reference interpreter, atomic structural patches, and synthetic examples.
 - **L1:** a bounded CPython backend for L0. Recorded local acceptance matched

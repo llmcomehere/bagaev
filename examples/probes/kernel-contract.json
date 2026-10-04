@@ -1,0 +1,100 @@
+{
+  "schema": "probe-kernel-manifest/1",
+  "semantic": "bagaev-probe-ir/1",
+  "specification": "../../docs/probes.md",
+  "types": ["Int64", "Bool"],
+  "symbol_pattern": "[A-Za-z][A-Za-z0-9._-]{0,63}",
+  "program_fields": ["schema", "entry", "functions"],
+  "definition_fields": ["params", "result", "body"],
+  "limits": {
+    "source_bytes": 1048576,
+    "json_depth": 128,
+    "json_occurrences": 8192,
+    "functions_min": 1,
+    "functions_max": 8,
+    "parameters_max": 8,
+    "expression_nodes_max": 512,
+    "expression_depth_max": 32,
+    "loop_count_max": 1024,
+    "evaluated_work_max": 65536,
+    "int_min": -9223372036854775808,
+    "int_max": 9223372036854775807
+  },
+  "expression_forms": {
+    "int": ["Int64-literal"],
+    "bool": ["Bool-literal"],
+    "arg": ["parameter-ID"],
+    "use": ["lexical-ID"],
+    "add": ["Int64-expression", "Int64-expression"],
+    "sub": ["Int64-expression", "Int64-expression"],
+    "mul": ["Int64-expression", "Int64-expression"],
+    "eq": ["scalar-expression", "same-type-expression"],
+    "lt": ["Int64-expression", "Int64-expression"],
+    "le": ["Int64-expression", "Int64-expression"],
+    "not": ["Bool-expression"],
+    "let": ["fresh-ID", "Type", "value-expression", "body-expression"],
+    "if": ["Bool-expression", "yes-expression", "same-type-no-expression"],
+    "call": ["function-ID", "0..8-argument-expressions"],
+    "loop": ["literal-count", "fresh-index-ID", "fresh-accumulator-ID", "Type", "initial-expression", "body-expression"]
+  },
+  "static_phases": ["transport", "shape-version-bounds-syntax", "reference", "cycle", "type"],
+  "work": {
+    "initial": 0,
+    "tick": "before every evaluated expression; refuse next at maximum without increment",
+    "order": "left-to-right",
+    "implicit_ticks": 0,
+    "loop": "tick once, initial once, body count times",
+    "conditional": "condition then selected arm only",
+    "failure": "first observed; no partial value"
+  },
+  "invocation": {
+    "schema": "bagaev-probe-invocation/1",
+    "fields": ["schema", "program", "arguments"],
+    "source_bytes": 1048576,
+    "json_depth": 132,
+    "json_occurrences": 16384
+  },
+  "result": {
+    "schema": "bagaev-probe-result/1",
+    "fields": ["schema", "status", "reason", "location", "value_type", "value", "work"],
+    "statuses": ["success", "integer-overflow", "work-limit", "invalid-ir"],
+    "locations": "JSON Pointer; root empty; success null",
+    "stdout": "canonical JSON plus LF",
+    "complete_observation_exit": 0
+  },
+  "abi": {
+    "target": "x86_64-linux",
+    "cpu": "baseline-x86-64",
+    "byte_order": "little-endian",
+    "calling_convention": "system-C",
+    "symbol": "bagaev_probe_entry",
+    "signature": "void bagaev_probe_entry(const int64_t arguments[8], void *output)",
+    "argument_bytes": 64,
+    "output_bytes": 32,
+    "alignment": 8,
+    "regions_disjoint": true,
+    "bool_slots": [0, 1],
+    "unused_slot": 0,
+    "pointer_retention": false,
+    "fields": [
+      {"name": "status", "offset": 0, "width": 4, "type": "uint32"},
+      {"name": "value_type", "offset": 4, "width": 4, "type": "uint32"},
+      {"name": "value", "offset": 8, "width": 8, "type": "int64"},
+      {"name": "work", "offset": 16, "width": 8, "type": "uint64"},
+      {"name": "reason", "offset": 24, "width": 4, "type": "uint32"},
+      {"name": "location", "offset": 28, "width": 4, "type": "uint32"}
+    ],
+    "status_codes": {"success": 0, "integer-overflow": 1, "work-limit": 2, "invalid-ir": 3},
+    "type_codes": {"absent": 0, "Int64": 1, "Bool": 2},
+    "reason_codes": {"success": 0, "IR_JSON": 1, "IR_VERSION": 2, "IR_SHAPE": 3, "IR_BOUNDS": 4, "IR_REFERENCE": 5, "IR_CYCLE": 6, "IR_TYPE": 7, "IR_ARGUMENT": 8, "IR_OVERFLOW": 9, "IR_WORK": 10},
+    "argument_location_base": 2147483649,
+    "node_numbering": "1-based complete body preorder, functions sorted by ID"
+  },
+  "modes": {
+    "llvm_clang": ["O0", "O2", "Os"],
+    "cranelift": ["none", "speed", "speed_and_size"],
+    "ordinary_c11": ["O0", "O2", "Os"]
+  },
+  "excluded": ["recursion", "heap-values", "float", "string", "pointer", "division", "imports", "effects", "callbacks", "jit", "dynamic-library", "host-specific-cpu"],
+  "expected_values": "independent oracle; not supplied by this manifest"
+}
