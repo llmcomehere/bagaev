@@ -1,0 +1,1156 @@
+{
+  "schema": "bounded-form-byte-observations/1",
+  "summary": {
+    "json": {
+      "all_program_bytes": 8552,
+      "value_case_bytes": 6792,
+      "refusal_case_bytes": 1760,
+      "edit_frame_bytes": 3151204
+    },
+    "sexpr": {
+      "all_program_bytes": 9892,
+      "value_case_bytes": 7833,
+      "refusal_case_bytes": 2059,
+      "edit_frame_bytes": 3151637
+    },
+    "familiar": {
+      "all_program_bytes": 8176,
+      "value_case_bytes": 6500,
+      "refusal_case_bytes": 1676,
+      "edit_frame_bytes": 3151309
+    }
+  },
+  "programs": [
+    {
+      "case": "F-LITERAL",
+      "form": "json",
+      "source_bytes": 215,
+      "expected_kind": "value"
+    },
+    {
+      "case": "F-LITERAL",
+      "form": "sexpr",
+      "source_bytes": 247,
+      "expected_kind": "value"
+    },
+    {
+      "case": "F-LITERAL",
+      "form": "familiar",
+      "source_bytes": 203,
+      "expected_kind": "value"
+    },
+    {
+      "case": "F-VAR",
+      "form": "json",
+      "source_bytes": 188,
+      "expected_kind": "value"
+    },
+    {
+      "case": "F-VAR",
+      "form": "sexpr",
+      "source_bytes": 222,
+      "expected_kind": "value"
+    },
+    {
+      "case": "F-VAR",
+      "form": "familiar",
+      "source_bytes": 176,
+      "expected_kind": "value"
+    },
+    {
+      "case": "F-LET",
+      "form": "json",
+      "source_bytes": 224,
+      "expected_kind": "value"
+    },
+    {
+      "case": "F-LET",
+      "form": "sexpr",
+      "source_bytes": 266,
+      "expected_kind": "value"
+    },
+    {
+      "case": "F-LET",
+      "form": "familiar",
+      "source_bytes": 216,
+      "expected_kind": "value"
+    },
+    {
+      "case": "F-CALL",
+      "form": "json",
+      "source_bytes": 343,
+      "expected_kind": "value"
+    },
+    {
+      "case": "F-CALL",
+      "form": "sexpr",
+      "source_bytes": 387,
+      "expected_kind": "value"
+    },
+    {
+      "case": "F-CALL",
+      "form": "familiar",
+      "source_bytes": 340,
+      "expected_kind": "value"
+    },
+    {
+      "case": "F-IF",
+      "form": "json",
+      "source_bytes": 224,
+      "expected_kind": "value"
+    },
+    {
+      "case": "F-IF",
+      "form": "sexpr",
+      "source_bytes": 254,
+      "expected_kind": "value"
+    },
+    {
+      "case": "F-IF",
+      "form": "familiar",
+      "source_bytes": 215,
+      "expected_kind": "value"
+    },
+    {
+      "case": "F-AND",
+      "form": "json",
+      "source_bytes": 219,
+      "expected_kind": "value"
+    },
+    {
+      "case": "F-AND",
+      "form": "sexpr",
+      "source_bytes": 249,
+      "expected_kind": "value"
+    },
+    {
+      "case": "F-AND",
+      "form": "familiar",
+      "source_bytes": 209,
+      "expected_kind": "value"
+    },
+    {
+      "case": "F-OR",
+      "form": "json",
+      "source_bytes": 217,
+      "expected_kind": "value"
+    },
+    {
+      "case": "F-OR",
+      "form": "sexpr",
+      "source_bytes": 247,
+      "expected_kind": "value"
+    },
+    {
+      "case": "F-OR",
+      "form": "familiar",
+      "source_bytes": 207,
+      "expected_kind": "value"
+    },
+    {
+      "case": "F-NOT",
+      "form": "json",
+      "source_bytes": 190,
+      "expected_kind": "value"
+    },
+    {
+      "case": "F-NOT",
+      "form": "sexpr",
+      "source_bytes": 224,
+      "expected_kind": "value"
+    },
+    {
+      "case": "F-NOT",
+      "form": "familiar",
+      "source_bytes": 178,
+      "expected_kind": "value"
+    },
+    {
+      "case": "F-OBJECT",
+      "form": "json",
+      "source_bytes": 201,
+      "expected_kind": "value"
+    },
+    {
+      "case": "F-OBJECT",
+      "form": "sexpr",
+      "source_bytes": 243,
+      "expected_kind": "value"
+    },
+    {
+      "case": "F-OBJECT",
+      "form": "familiar",
+      "source_bytes": 192,
+      "expected_kind": "value"
+    },
+    {
+      "case": "F-SET",
+      "form": "json",
+      "source_bytes": 204,
+      "expected_kind": "value"
+    },
+    {
+      "case": "F-SET",
+      "form": "sexpr",
+      "source_bytes": 242,
+      "expected_kind": "value"
+    },
+    {
+      "case": "F-SET",
+      "form": "familiar",
+      "source_bytes": 194,
+      "expected_kind": "value"
+    },
+    {
+      "case": "F-ARRAY",
+      "form": "json",
+      "source_bytes": 198,
+      "expected_kind": "value"
+    },
+    {
+      "case": "F-ARRAY",
+      "form": "sexpr",
+      "source_bytes": 232,
+      "expected_kind": "value"
+    },
+    {
+      "case": "F-ARRAY",
+      "form": "familiar",
+      "source_bytes": 188,
+      "expected_kind": "value"
+    },
+    {
+      "case": "F-GET",
+      "form": "json",
+      "source_bytes": 200,
+      "expected_kind": "value"
+    },
+    {
+      "case": "F-GET",
+      "form": "sexpr",
+      "source_bytes": 232,
+      "expected_kind": "value"
+    },
+    {
+      "case": "F-GET",
+      "form": "familiar",
+      "source_bytes": 189,
+      "expected_kind": "value"
+    },
+    {
+      "case": "F-HAS",
+      "form": "json",
+      "source_bytes": 200,
+      "expected_kind": "value"
+    },
+    {
+      "case": "F-HAS",
+      "form": "sexpr",
+      "source_bytes": 232,
+      "expected_kind": "value"
+    },
+    {
+      "case": "F-HAS",
+      "form": "familiar",
+      "source_bytes": 189,
+      "expected_kind": "value"
+    },
+    {
+      "case": "F-NULL",
+      "form": "json",
+      "source_bytes": 197,
+      "expected_kind": "value"
+    },
+    {
+      "case": "F-NULL",
+      "form": "sexpr",
+      "source_bytes": 229,
+      "expected_kind": "value"
+    },
+    {
+      "case": "F-NULL",
+      "form": "familiar",
+      "source_bytes": 185,
+      "expected_kind": "value"
+    },
+    {
+      "case": "F-SHAPE",
+      "form": "json",
+      "source_bytes": 210,
+      "expected_kind": "value"
+    },
+    {
+      "case": "F-SHAPE",
+      "form": "sexpr",
+      "source_bytes": 250,
+      "expected_kind": "value"
+    },
+    {
+      "case": "F-SHAPE",
+      "form": "familiar",
+      "source_bytes": 200,
+      "expected_kind": "value"
+    },
+    {
+      "case": "F-RANGE",
+      "form": "json",
+      "source_bytes": 206,
+      "expected_kind": "value"
+    },
+    {
+      "case": "F-RANGE",
+      "form": "sexpr",
+      "source_bytes": 238,
+      "expected_kind": "value"
+    },
+    {
+      "case": "F-RANGE",
+      "form": "familiar",
+      "source_bytes": 196,
+      "expected_kind": "value"
+    },
+    {
+      "case": "F-TEXT",
+      "form": "json",
+      "source_bytes": 239,
+      "expected_kind": "value"
+    },
+    {
+      "case": "F-TEXT",
+      "form": "sexpr",
+      "source_bytes": 295,
+      "expected_kind": "value"
+    },
+    {
+      "case": "F-TEXT",
+      "form": "familiar",
+      "source_bytes": 237,
+      "expected_kind": "value"
+    },
+    {
+      "case": "F-ARRAY-BOUND",
+      "form": "json",
+      "source_bytes": 206,
+      "expected_kind": "value"
+    },
+    {
+      "case": "F-ARRAY-BOUND",
+      "form": "sexpr",
+      "source_bytes": 238,
+      "expected_kind": "value"
+    },
+    {
+      "case": "F-ARRAY-BOUND",
+      "form": "familiar",
+      "source_bytes": 195,
+      "expected_kind": "value"
+    },
+    {
+      "case": "F-EQ",
+      "form": "json",
+      "source_bytes": 197,
+      "expected_kind": "value"
+    },
+    {
+      "case": "F-EQ",
+      "form": "sexpr",
+      "source_bytes": 229,
+      "expected_kind": "value"
+    },
+    {
+      "case": "F-EQ",
+      "form": "familiar",
+      "source_bytes": 186,
+      "expected_kind": "value"
+    },
+    {
+      "case": "F-LT",
+      "form": "json",
+      "source_bytes": 215,
+      "expected_kind": "value"
+    },
+    {
+      "case": "F-LT",
+      "form": "sexpr",
+      "source_bytes": 247,
+      "expected_kind": "value"
+    },
+    {
+      "case": "F-LT",
+      "form": "familiar",
+      "source_bytes": 204,
+      "expected_kind": "value"
+    },
+    {
+      "case": "F-LENGTH",
+      "form": "json",
+      "source_bytes": 199,
+      "expected_kind": "value"
+    },
+    {
+      "case": "F-LENGTH",
+      "form": "sexpr",
+      "source_bytes": 231,
+      "expected_kind": "value"
+    },
+    {
+      "case": "F-LENGTH",
+      "form": "familiar",
+      "source_bytes": 187,
+      "expected_kind": "value"
+    },
+    {
+      "case": "F-MAP",
+      "form": "json",
+      "source_bytes": 220,
+      "expected_kind": "value"
+    },
+    {
+      "case": "F-MAP",
+      "form": "sexpr",
+      "source_bytes": 248,
+      "expected_kind": "value"
+    },
+    {
+      "case": "F-MAP",
+      "form": "familiar",
+      "source_bytes": 210,
+      "expected_kind": "value"
+    },
+    {
+      "case": "F-ALL",
+      "form": "json",
+      "source_bytes": 221,
+      "expected_kind": "value"
+    },
+    {
+      "case": "F-ALL",
+      "form": "sexpr",
+      "source_bytes": 249,
+      "expected_kind": "value"
+    },
+    {
+      "case": "F-ALL",
+      "form": "familiar",
+      "source_bytes": 212,
+      "expected_kind": "value"
+    },
+    {
+      "case": "F-ANY",
+      "form": "json",
+      "source_bytes": 221,
+      "expected_kind": "value"
+    },
+    {
+      "case": "F-ANY",
+      "form": "sexpr",
+      "source_bytes": 249,
+      "expected_kind": "value"
+    },
+    {
+      "case": "F-ANY",
+      "form": "familiar",
+      "source_bytes": 212,
+      "expected_kind": "value"
+    },
+    {
+      "case": "F-UNIQUE",
+      "form": "json",
+      "source_bytes": 199,
+      "expected_kind": "value"
+    },
+    {
+      "case": "F-UNIQUE",
+      "form": "sexpr",
+      "source_bytes": 231,
+      "expected_kind": "value"
+    },
+    {
+      "case": "F-UNIQUE",
+      "form": "familiar",
+      "source_bytes": 187,
+      "expected_kind": "value"
+    },
+    {
+      "case": "F-SORT",
+      "form": "json",
+      "source_bytes": 197,
+      "expected_kind": "value"
+    },
+    {
+      "case": "F-SORT",
+      "form": "sexpr",
+      "source_bytes": 229,
+      "expected_kind": "value"
+    },
+    {
+      "case": "F-SORT",
+      "form": "familiar",
+      "source_bytes": 185,
+      "expected_kind": "value"
+    },
+    {
+      "case": "F-INCREASING",
+      "form": "json",
+      "source_bytes": 203,
+      "expected_kind": "value"
+    },
+    {
+      "case": "F-INCREASING",
+      "form": "sexpr",
+      "source_bytes": 235,
+      "expected_kind": "value"
+    },
+    {
+      "case": "F-INCREASING",
+      "form": "familiar",
+      "source_bytes": 191,
+      "expected_kind": "value"
+    },
+    {
+      "case": "F-SORT-BY",
+      "form": "json",
+      "source_bytes": 216,
+      "expected_kind": "value"
+    },
+    {
+      "case": "F-SORT-BY",
+      "form": "sexpr",
+      "source_bytes": 246,
+      "expected_kind": "value"
+    },
+    {
+      "case": "F-SORT-BY",
+      "form": "familiar",
+      "source_bytes": 206,
+      "expected_kind": "value"
+    },
+    {
+      "case": "F-SHALLOW-DEEP",
+      "form": "json",
+      "source_bytes": 207,
+      "expected_kind": "value"
+    },
+    {
+      "case": "F-SHALLOW-DEEP",
+      "form": "sexpr",
+      "source_bytes": 246,
+      "expected_kind": "value"
+    },
+    {
+      "case": "F-SHALLOW-DEEP",
+      "form": "familiar",
+      "source_bytes": 197,
+      "expected_kind": "value"
+    },
+    {
+      "case": "F-SHALLOW-LARGE",
+      "form": "json",
+      "source_bytes": 363,
+      "expected_kind": "value"
+    },
+    {
+      "case": "F-SHALLOW-LARGE",
+      "form": "sexpr",
+      "source_bytes": 389,
+      "expected_kind": "value"
+    },
+    {
+      "case": "F-SHALLOW-LARGE",
+      "form": "familiar",
+      "source_bytes": 367,
+      "expected_kind": "value"
+    },
+    {
+      "case": "F-UNICODE-PRIORITY",
+      "form": "json",
+      "source_bytes": 231,
+      "expected_kind": "refusal"
+    },
+    {
+      "case": "F-UNICODE-PRIORITY",
+      "form": "sexpr",
+      "source_bytes": 257,
+      "expected_kind": "refusal"
+    },
+    {
+      "case": "F-UNICODE-PRIORITY",
+      "form": "familiar",
+      "source_bytes": 222,
+      "expected_kind": "refusal"
+    },
+    {
+      "case": "F-WORK-UNDER",
+      "form": "json",
+      "source_bytes": 253,
+      "expected_kind": "value"
+    },
+    {
+      "case": "F-WORK-UNDER",
+      "form": "sexpr",
+      "source_bytes": 277,
+      "expected_kind": "value"
+    },
+    {
+      "case": "F-WORK-UNDER",
+      "form": "familiar",
+      "source_bytes": 247,
+      "expected_kind": "value"
+    },
+    {
+      "case": "F-WORK-OVER",
+      "form": "json",
+      "source_bytes": 253,
+      "expected_kind": "refusal"
+    },
+    {
+      "case": "F-WORK-OVER",
+      "form": "sexpr",
+      "source_bytes": 277,
+      "expected_kind": "refusal"
+    },
+    {
+      "case": "F-WORK-OVER",
+      "form": "familiar",
+      "source_bytes": 247,
+      "expected_kind": "refusal"
+    },
+    {
+      "case": "F-QUADRATIC",
+      "form": "json",
+      "source_bytes": 219,
+      "expected_kind": "refusal"
+    },
+    {
+      "case": "F-QUADRATIC",
+      "form": "sexpr",
+      "source_bytes": 247,
+      "expected_kind": "refusal"
+    },
+    {
+      "case": "F-QUADRATIC",
+      "form": "familiar",
+      "source_bytes": 207,
+      "expected_kind": "refusal"
+    },
+    {
+      "case": "F-FIELD-ORDER",
+      "form": "json",
+      "source_bytes": 237,
+      "expected_kind": "refusal"
+    },
+    {
+      "case": "F-FIELD-ORDER",
+      "form": "sexpr",
+      "source_bytes": 273,
+      "expected_kind": "refusal"
+    },
+    {
+      "case": "F-FIELD-ORDER",
+      "form": "familiar",
+      "source_bytes": 229,
+      "expected_kind": "refusal"
+    },
+    {
+      "case": "F-GENERIC-ROOT",
+      "form": "json",
+      "source_bytes": 2,
+      "expected_kind": "refusal"
+    },
+    {
+      "case": "F-GENERIC-ROOT",
+      "form": "sexpr",
+      "source_bytes": 5,
+      "expected_kind": "refusal"
+    },
+    {
+      "case": "F-GENERIC-ROOT",
+      "form": "familiar",
+      "source_bytes": 2,
+      "expected_kind": "refusal"
+    },
+    {
+      "case": "F-GENERIC-SCHEMA",
+      "form": "json",
+      "source_bytes": 65,
+      "expected_kind": "refusal"
+    },
+    {
+      "case": "F-GENERIC-SCHEMA",
+      "form": "sexpr",
+      "source_bytes": 83,
+      "expected_kind": "refusal"
+    },
+    {
+      "case": "F-GENERIC-SCHEMA",
+      "form": "familiar",
+      "source_bytes": 72,
+      "expected_kind": "refusal"
+    },
+    {
+      "case": "F-GENERIC-DEF",
+      "form": "json",
+      "source_bytes": 74,
+      "expected_kind": "refusal"
+    },
+    {
+      "case": "F-GENERIC-DEF",
+      "form": "sexpr",
+      "source_bytes": 95,
+      "expected_kind": "refusal"
+    },
+    {
+      "case": "F-GENERIC-DEF",
+      "form": "familiar",
+      "source_bytes": 58,
+      "expected_kind": "refusal"
+    },
+    {
+      "case": "F-PIN",
+      "form": "json",
+      "source_bytes": 318,
+      "expected_kind": "refusal"
+    },
+    {
+      "case": "F-PIN",
+      "form": "sexpr",
+      "source_bytes": 366,
+      "expected_kind": "refusal"
+    },
+    {
+      "case": "F-PIN",
+      "form": "familiar",
+      "source_bytes": 314,
+      "expected_kind": "refusal"
+    },
+    {
+      "case": "F-STATIC-LAZY",
+      "form": "json",
+      "source_bytes": 124,
+      "expected_kind": "refusal"
+    },
+    {
+      "case": "F-STATIC-LAZY",
+      "form": "sexpr",
+      "source_bytes": 159,
+      "expected_kind": "refusal"
+    },
+    {
+      "case": "F-STATIC-LAZY",
+      "form": "familiar",
+      "source_bytes": 113,
+      "expected_kind": "refusal"
+    },
+    {
+      "case": "F-REFERENCE",
+      "form": "json",
+      "source_bytes": 113,
+      "expected_kind": "refusal"
+    },
+    {
+      "case": "F-REFERENCE",
+      "form": "sexpr",
+      "source_bytes": 144,
+      "expected_kind": "refusal"
+    },
+    {
+      "case": "F-REFERENCE",
+      "form": "familiar",
+      "source_bytes": 100,
+      "expected_kind": "refusal"
+    },
+    {
+      "case": "F-CYCLE",
+      "form": "json",
+      "source_bytes": 124,
+      "expected_kind": "refusal"
+    },
+    {
+      "case": "F-CYCLE",
+      "form": "sexpr",
+      "source_bytes": 153,
+      "expected_kind": "refusal"
+    },
+    {
+      "case": "F-CYCLE",
+      "form": "familiar",
+      "source_bytes": 112,
+      "expected_kind": "refusal"
+    }
+  ],
+  "edits": [
+    {
+      "case": "F-EDIT-G1",
+      "stage": 0,
+      "form": "json",
+      "frame_bytes": 2097153,
+      "patch_text_bytes": null
+    },
+    {
+      "case": "F-EDIT-G1",
+      "stage": 0,
+      "form": "sexpr",
+      "frame_bytes": 2097153,
+      "patch_text_bytes": null
+    },
+    {
+      "case": "F-EDIT-G1",
+      "stage": 0,
+      "form": "familiar",
+      "frame_bytes": 2097153,
+      "patch_text_bytes": null
+    },
+    {
+      "case": "F-EDIT-G2",
+      "stage": 0,
+      "form": "json",
+      "frame_bytes": 23,
+      "patch_text_bytes": null
+    },
+    {
+      "case": "F-EDIT-G2",
+      "stage": 0,
+      "form": "sexpr",
+      "frame_bytes": 23,
+      "patch_text_bytes": null
+    },
+    {
+      "case": "F-EDIT-G2",
+      "stage": 0,
+      "form": "familiar",
+      "frame_bytes": 23,
+      "patch_text_bytes": null
+    },
+    {
+      "case": "F-EDIT-G3",
+      "stage": 0,
+      "form": "json",
+      "frame_bytes": 20,
+      "patch_text_bytes": null
+    },
+    {
+      "case": "F-EDIT-G3",
+      "stage": 0,
+      "form": "sexpr",
+      "frame_bytes": 20,
+      "patch_text_bytes": null
+    },
+    {
+      "case": "F-EDIT-G3",
+      "stage": 0,
+      "form": "familiar",
+      "frame_bytes": 20,
+      "patch_text_bytes": null
+    },
+    {
+      "case": "F-EDIT-G4",
+      "stage": 0,
+      "form": "json",
+      "frame_bytes": 13,
+      "patch_text_bytes": null
+    },
+    {
+      "case": "F-EDIT-G4",
+      "stage": 0,
+      "form": "sexpr",
+      "frame_bytes": 13,
+      "patch_text_bytes": null
+    },
+    {
+      "case": "F-EDIT-G4",
+      "stage": 0,
+      "form": "familiar",
+      "frame_bytes": 13,
+      "patch_text_bytes": null
+    },
+    {
+      "case": "F-EDIT-G5",
+      "stage": 0,
+      "form": "json",
+      "frame_bytes": 505,
+      "patch_text_bytes": 310
+    },
+    {
+      "case": "F-EDIT-G5",
+      "stage": 0,
+      "form": "sexpr",
+      "frame_bytes": 547,
+      "patch_text_bytes": 356
+    },
+    {
+      "case": "F-EDIT-G5",
+      "stage": 0,
+      "form": "familiar",
+      "frame_bytes": 511,
+      "patch_text_bytes": 328
+    },
+    {
+      "case": "F-EDIT-G6",
+      "stage": 0,
+      "form": "json",
+      "frame_bytes": 436,
+      "patch_text_bytes": 310
+    },
+    {
+      "case": "F-EDIT-G6",
+      "stage": 0,
+      "form": "sexpr",
+      "frame_bytes": 478,
+      "patch_text_bytes": 356
+    },
+    {
+      "case": "F-EDIT-G6",
+      "stage": 0,
+      "form": "familiar",
+      "frame_bytes": 442,
+      "patch_text_bytes": 328
+    },
+    {
+      "case": "F-EDIT-G7",
+      "stage": 0,
+      "form": "json",
+      "frame_bytes": 446,
+      "patch_text_bytes": 310
+    },
+    {
+      "case": "F-EDIT-G7",
+      "stage": 0,
+      "form": "sexpr",
+      "frame_bytes": 489,
+      "patch_text_bytes": 356
+    },
+    {
+      "case": "F-EDIT-G7",
+      "stage": 0,
+      "form": "familiar",
+      "frame_bytes": 456,
+      "patch_text_bytes": 328
+    },
+    {
+      "case": "F-EDIT-G8",
+      "stage": 0,
+      "form": "json",
+      "frame_bytes": 161,
+      "patch_text_bytes": null
+    },
+    {
+      "case": "F-EDIT-G8",
+      "stage": 0,
+      "form": "sexpr",
+      "frame_bytes": 162,
+      "patch_text_bytes": null
+    },
+    {
+      "case": "F-EDIT-G8",
+      "stage": 0,
+      "form": "familiar",
+      "frame_bytes": 165,
+      "patch_text_bytes": null
+    },
+    {
+      "case": "F-EDIT-G9",
+      "stage": 0,
+      "form": "json",
+      "frame_bytes": 1048733,
+      "patch_text_bytes": 1048577
+    },
+    {
+      "case": "F-EDIT-G9",
+      "stage": 0,
+      "form": "sexpr",
+      "frame_bytes": 1048734,
+      "patch_text_bytes": 1048577
+    },
+    {
+      "case": "F-EDIT-G9",
+      "stage": 0,
+      "form": "familiar",
+      "frame_bytes": 1048737,
+      "patch_text_bytes": 1048577
+    },
+    {
+      "case": "F-EDIT-SUCCESS",
+      "stage": 0,
+      "form": "json",
+      "frame_bytes": 506,
+      "patch_text_bytes": 310
+    },
+    {
+      "case": "F-EDIT-SUCCESS",
+      "stage": 0,
+      "form": "sexpr",
+      "frame_bytes": 549,
+      "patch_text_bytes": 356
+    },
+    {
+      "case": "F-EDIT-SUCCESS",
+      "stage": 0,
+      "form": "familiar",
+      "frame_bytes": 516,
+      "patch_text_bytes": 328
+    },
+    {
+      "case": "F-EDIT-PREFIX",
+      "stage": 0,
+      "form": "json",
+      "frame_bytes": 163,
+      "patch_text_bytes": 2
+    },
+    {
+      "case": "F-EDIT-PREFIX",
+      "stage": 0,
+      "form": "sexpr",
+      "frame_bytes": 167,
+      "patch_text_bytes": 5
+    },
+    {
+      "case": "F-EDIT-PREFIX",
+      "stage": 0,
+      "form": "familiar",
+      "frame_bytes": 167,
+      "patch_text_bytes": 2
+    },
+    {
+      "case": "F-EDIT-BASE",
+      "stage": 0,
+      "form": "json",
+      "frame_bytes": 511,
+      "patch_text_bytes": 310
+    },
+    {
+      "case": "F-EDIT-BASE",
+      "stage": 0,
+      "form": "sexpr",
+      "frame_bytes": 554,
+      "patch_text_bytes": 356
+    },
+    {
+      "case": "F-EDIT-BASE",
+      "stage": 0,
+      "form": "familiar",
+      "frame_bytes": 521,
+      "patch_text_bytes": 328
+    },
+    {
+      "case": "F-EDIT-CANDIDATE",
+      "stage": 0,
+      "form": "json",
+      "frame_bytes": 511,
+      "patch_text_bytes": 310
+    },
+    {
+      "case": "F-EDIT-CANDIDATE",
+      "stage": 0,
+      "form": "sexpr",
+      "frame_bytes": 554,
+      "patch_text_bytes": 356
+    },
+    {
+      "case": "F-EDIT-CANDIDATE",
+      "stage": 0,
+      "form": "familiar",
+      "frame_bytes": 521,
+      "patch_text_bytes": 328
+    },
+    {
+      "case": "F-EDIT-CAS",
+      "stage": 0,
+      "form": "json",
+      "frame_bytes": 506,
+      "patch_text_bytes": 310
+    },
+    {
+      "case": "F-EDIT-CAS",
+      "stage": 0,
+      "form": "sexpr",
+      "frame_bytes": 549,
+      "patch_text_bytes": 356
+    },
+    {
+      "case": "F-EDIT-CAS",
+      "stage": 0,
+      "form": "familiar",
+      "frame_bytes": 516,
+      "patch_text_bytes": 328
+    },
+    {
+      "case": "F-EDIT-CAS",
+      "stage": 1,
+      "form": "json",
+      "frame_bytes": 506,
+      "patch_text_bytes": 310
+    },
+    {
+      "case": "F-EDIT-CAS",
+      "stage": 1,
+      "form": "sexpr",
+      "frame_bytes": 549,
+      "patch_text_bytes": 356
+    },
+    {
+      "case": "F-EDIT-CAS",
+      "stage": 1,
+      "form": "familiar",
+      "frame_bytes": 516,
+      "patch_text_bytes": 328
+    },
+    {
+      "case": "F-EDIT-CAS",
+      "stage": 2,
+      "form": "json",
+      "frame_bytes": 471,
+      "patch_text_bytes": 283
+    },
+    {
+      "case": "F-EDIT-CAS",
+      "stage": 2,
+      "form": "sexpr",
+      "frame_bytes": 521,
+      "patch_text_bytes": 332
+    },
+    {
+      "case": "F-EDIT-CAS",
+      "stage": 2,
+      "form": "familiar",
+      "frame_bytes": 485,
+      "patch_text_bytes": 301
+    },
+    {
+      "case": "F-EDIT-ATOMIC",
+      "stage": 0,
+      "form": "json",
+      "frame_bytes": 540,
+      "patch_text_bytes": 336
+    },
+    {
+      "case": "F-EDIT-ATOMIC",
+      "stage": 0,
+      "form": "sexpr",
+      "frame_bytes": 575,
+      "patch_text_bytes": 378
+    },
+    {
+      "case": "F-EDIT-ATOMIC",
+      "stage": 0,
+      "form": "familiar",
+      "frame_bytes": 547,
+      "patch_text_bytes": 355
+    }
+  ],
+  "limits": "Unweighted frozen-fixture source/frame bytes only. Borrowed arguments, parser/runtime time, context transfer, tokenizer counts, model calls and total development cost are not measured. Invalid and oversized edit frames count exactly as transported; shared oversize witnesses dominate frame totals.",
+  "freeze": {
+    "status": "FROZEN_BEFORE_COLLECTION",
+    "timestamp": "2026-10-04T17:44:50.542510+00:00",
+    "scope": "All42 non-edit cases x3 forms and17 edit stages x3 forms, no case selection. Sum each category unweighted and retain raw rows. No model/token/time claim.",
+    "script_sha256": "19869b747830c48c21b575b7544caaa500ee0634bc8b51f11710045ffaa5bdea",
+    "sources": {
+      "src/bagaev_forms.py": "997edfba01c5f56bf64ec1c8a6d41025aea9537247fa06902c09ab9e0edae826",
+      "src/bagaev_form_edit.py": "2eedd966356ac6fd6dd82c67eec424a63f06007745a2c3be3d770a68bc963c57",
+      "src/bagaev_l2.py": "98ca63c9fdb7a0f60060372d138eb922b348b46aaac6c9b140e8a49635f04a21",
+      "tests/test_forms.py": "c520ca4e21ddc19153e4b8ac5d18d8bd41352eccc274b6774c6fc21e0ab5c5d4",
+      "tests/test_form_edit.py": "90c26b6877167b1945e2c11940b2cccb6dac57b0de3da9054ab959b56f8549ac",
+      "examples/probes/form-oracle.json": "fcbec0d9d06d4185bd823442163b5ae3a3f05eef4fa77a32a64d948d9b35c18d"
+    },
+    "review": "Separate same-maintainer source pass: frozen literal construction, no evaluation/discovery/provider calls, only raw lengths and roundtrip checks."
+  }
+}

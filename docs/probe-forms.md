@@ -134,3 +134,7 @@ the documented CPython profile. They are not a proof against arbitrary mutations
 an independently reviewed release, a model/tokenizer study or native L2 parity.
 The experiment's initial recorder handling and early-base recipe correction are
 retained in the result metadata; frozen inputs and expectations did not change.
+
+The subsequent [source-byte report](probe-measurements.md#exact-source-bytes)
+counts every non-edit fixture and specified edit stage without inferring tokens,
+model performance or total development cost from bytes.
