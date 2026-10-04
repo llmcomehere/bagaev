@@ -478,6 +478,30 @@ pub fn process(bytes:&[u8])->Result<Vec<u8>,&'static str> {
 fn location_refusal(code:&str)->Vec<u8> {
     format!("{{\"code\":\"{code}\",\"execution_admission\":false,\"kind\":\"refused\",\"schema\":\"bagaev-typed-source-location/1\"}}\n").into_bytes()
 }
+
+/// Detached LLVM text and its complete binding record. No compiler invocation,
+/// file publication, code loading or execution authority is supplied here.
+pub fn emit_llvm_source(bytes:&[u8])->Result<Vec<u8>,&'static str> {
+    let source=match check_source_bytes(bytes) {
+        Ok(source)=>source,
+        // Preserve the existing exact source-refusal wire and its bound.
+        Err(FrontendError::Refusal(_))=>return process(bytes),
+        Err(FrontendError::Environment(message))=>return Err(message),
+    };
+    let (lowered,_)=lower(&source)?;
+    let module=crate::llvm::emit_program(&lowered).map_err(|_|"LLVM emission failed")?;
+    let text=std::str::from_utf8(module.bytes()).map_err(|_|"LLVM UTF-8")?;
+    let record=std::str::from_utf8(module.binding_bytes()).map_err(|_|"LLVM record UTF-8")?;
+    let record=record.strip_suffix('\n').ok_or("LLVM record terminator")?;
+    let mut out=String::from("{\"execution_admission\":false,\"kind\":\"module\",\"llvm_ir\":");
+    canonical::quote(text,&mut out);
+    out.push_str(",\"lowered_pin\":");canonical::quote(lowered.identity(),&mut out);
+    out.push_str(",\"module_record\":");out.push_str(record);
+    out.push_str(",\"schema\":\"bagaev-typed-llvm-module/1\",\"source_pin\":");
+    canonical::quote(source.identity(),&mut out);out.push_str("}\n");
+    if out.len()>64*1024*1024 {return Err("typed LLVM output bound");}
+    Ok(out.into_bytes())
+}
 /// Rechecked expression location lookup, not authentication of a native result.
 /// Source, expected lowered pin, then node bounds are checked in that order.
 pub fn project_node(bytes:&[u8],expected_lowered_pin:&str,node:u16)->Result<Vec<u8>,&'static str> {

@@ -1,0 +1,785 @@
+{
+  "schema": "typed-llvm-observations/1",
+  "scope": "Pure LLVM data envelope; no generated native program execution or compiler performance measurement",
+  "review": "Separate same-maintainer pass, not independent review",
+  "source_sha256": {
+    "examples/probes/backend/rust/typed_source.rs": "0704f7d7781e4f5b8bc4f86821491b309d1b77a48359e9d7e44ee8fea751ecc4",
+    "examples/probes/backend/rust/typed_main.rs": "b269e66de71d951ccca1ff072658318b4dd6e619911d2c836dc8f97b27d8eb6b",
+    "tests/probes/typed_llvm_contract.py": "35802cbe16b693223f70d875a715f8ee7c86b9e2dda3dfe70fbad35303e7c66c"
+  },
+  "build": "Rust 1.93.0, edition 2021, -D warnings",
+  "checks": {
+    "envelope": {
+      "status": "PASS",
+      "cases": 43,
+      "binary_sha256": "25fa0a9bef2b110686058837f014e601c9b8112de784da56426e951f02387840"
+    },
+    "source_regression": {
+      "status": "PASS",
+      "cases": 43,
+      "binary_sha256": "25fa0a9bef2b110686058837f014e601c9b8112de784da56426e951f02387840"
+    },
+    "location_regression": {
+      "status": "PASS",
+      "cases": 589,
+      "binary_sha256": "25fa0a9bef2b110686058837f014e601c9b8112de784da56426e951f02387840"
+    }
+  },
+  "envelope_observations": [
+    {
+      "id": "S-INT",
+      "exit": 0,
+      "exact_wire_match": true,
+      "input_sha256": "f4dfb112ce6d3fc54f02698667c9687f2fee434d86b6f3f5d4565101f39347b8",
+      "reference": {
+        "source_case": "S-INT",
+        "source_pin": "sha256:f4dfb112ce6d3fc54f02698667c9687f2fee434d86b6f3f5d4565101f39347b8",
+        "lowered_pin": "sha256:fb0a3a528338c01535de4a16bb52a4375e7c873373d67ffa9b55feb411be05ac",
+        "module_bytes": 9730,
+        "module_pin": "sha256:765bc27055574205757c21c02adb1b7ab5eb8f23752e1fcc25c742f96957009e",
+        "module_record_sha256": "208a4744a0ae0df26b5795dc42c8528b971e7d5abc3a38019f7571f9e33366f1"
+      },
+      "actual_sha256": "5563108b5cedb7e4e2d151f424614986597ab2ec7b556977a8a6314a8448a3ea",
+      "stderr": ""
+    },
+    {
+      "id": "S-BOOL",
+      "exit": 0,
+      "exact_wire_match": true,
+      "input_sha256": "ab2021e0da42b24fe62804f746cc344417143674ecaeb19d5cf451ab0f416253",
+      "reference": {
+        "source_case": "S-BOOL",
+        "source_pin": "sha256:ab2021e0da42b24fe62804f746cc344417143674ecaeb19d5cf451ab0f416253",
+        "lowered_pin": "sha256:c49cba967b77ff601cfacfee9ef57b43098ef604a9e9e7fd39e389adef82e3ea",
+        "module_bytes": 9736,
+        "module_pin": "sha256:0a6a97606adf3e5e6b4cbe9eb3282d069c87363e18155d77d51d320af81cdd66",
+        "module_record_sha256": "cb76409add4d2b2e2142bc5b0823b37dd9de4132829bf7457475683ba684329b"
+      },
+      "actual_sha256": "3e71f797c7857a250a96ad6d161e86b66b9fd65e427b4ec7c08b46ca5216aa97",
+      "stderr": ""
+    },
+    {
+      "id": "S-LOCAL-INT",
+      "exit": 0,
+      "exact_wire_match": true,
+      "input_sha256": "b082762ee62cb3b2d4adf668c1e1b11ad4d10f8ea0075467fca729dc40a45949",
+      "reference": {
+        "source_case": "S-LOCAL-INT",
+        "source_pin": "sha256:b082762ee62cb3b2d4adf668c1e1b11ad4d10f8ea0075467fca729dc40a45949",
+        "lowered_pin": "sha256:e0b12d5c3e0e91b83f0ede9c6050c552af7cc1a5588bdf9d766088d35dac57c3",
+        "module_bytes": 12880,
+        "module_pin": "sha256:988656aff18db8a4bb497ddeb2a03fe3b1b94e73b27b2f1733da37359bd46c70",
+        "module_record_sha256": "6203643dc6b92eea2f075601f9e0f3a2ec5047a5b01fde1dda6a1dfa01209183"
+      },
+      "actual_sha256": "3375788d7e5de8ad2d5cb9927cb7202d31d9663c7fc189939b641baa33161f12",
+      "stderr": ""
+    },
+    {
+      "id": "S-LOCAL-BOOL",
+      "exit": 0,
+      "exact_wire_match": true,
+      "input_sha256": "307284ee9d0c3a1414ee9e3a3a8c8c1a0086de290f3609f4ef7d375ca162c87c",
+      "reference": {
+        "source_case": "S-LOCAL-BOOL",
+        "source_pin": "sha256:307284ee9d0c3a1414ee9e3a3a8c8c1a0086de290f3609f4ef7d375ca162c87c",
+        "lowered_pin": "sha256:82e7505ad7b2b406f7997879b3046c7d5abb1ed9f7096559b7e3224e0ca405f4",
+        "module_bytes": 11928,
+        "module_pin": "sha256:a9ec6f6b949acfe3b7cb4eec94a97e5491df5681d511108e896ec2ce4e4d62ba",
+        "module_record_sha256": "61d0b7bfcd2ee54b521c05a28fdfd652735aed3c1a82970b542b008a9120a5d1"
+      },
+      "actual_sha256": "bb830f977ae284f45eef212face014213177ec73ff1e14e3a65dae6442ea3455",
+      "stderr": ""
+    },
+    {
+      "id": "S-NESTED",
+      "exit": 0,
+      "exact_wire_match": true,
+      "input_sha256": "8fe6e81e71675780b5b2bd10290b09c8c353baaff5f7a80b227320b9f5ccb343",
+      "reference": {
+        "source_case": "S-NESTED",
+        "source_pin": "sha256:8fe6e81e71675780b5b2bd10290b09c8c353baaff5f7a80b227320b9f5ccb343",
+        "lowered_pin": "sha256:d8b6478822611b54a8741c88b908a4901046c7d0061fc5269138ef71b3050a03",
+        "module_bytes": 14504,
+        "module_pin": "sha256:38bf0c754b333e579f17ed27dc9ba0217a6a71291a2d962bfc2792eb656128b6",
+        "module_record_sha256": "948ba25f565e0cee59094ccebb8830e98297fad0c3ae5c7e6a50b342d3716021"
+      },
+      "actual_sha256": "783bdf6551bd29644536021aeff0527adcd0244acf1b964a601973b55b3cd69e",
+      "stderr": ""
+    },
+    {
+      "id": "S-LOOP-INT",
+      "exit": 0,
+      "exact_wire_match": true,
+      "input_sha256": "0abaa2b7c9382eca13c5f1283c122f09c3d59a470eae93359b6c4d364e7a3161",
+      "reference": {
+        "source_case": "S-LOOP-INT",
+        "source_pin": "sha256:0abaa2b7c9382eca13c5f1283c122f09c3d59a470eae93359b6c4d364e7a3161",
+        "lowered_pin": "sha256:6d1bfa8e1bc3c9d9cee371754acd5a61e7f1fff02665f9ed69e0fe0d9770952d",
+        "module_bytes": 13429,
+        "module_pin": "sha256:b09246686b78f591819d849ea4c8b6cb4d88d6e8247828b01f338f4ac45e8359",
+        "module_record_sha256": "6d2e8e4e49f23ac2fd53ee5426a43791fac708d5fd8b06937a01969ad41ec026"
+      },
+      "actual_sha256": "34637c822ea4d6ed6ef5e2a8f3a46929301adb63b4b4e71b27ddc5b8b62cf48a",
+      "stderr": ""
+    },
+    {
+      "id": "S-LOOP-BOOL",
+      "exit": 0,
+      "exact_wire_match": true,
+      "input_sha256": "30c6634c7ef68f6d351307e51ed1357afa456040d7f3d47a2901ee8c3475d716",
+      "reference": {
+        "source_case": "S-LOOP-BOOL",
+        "source_pin": "sha256:30c6634c7ef68f6d351307e51ed1357afa456040d7f3d47a2901ee8c3475d716",
+        "lowered_pin": "sha256:27fca8596757ee2d59b81db5ae557bfe22446cb63569866a32b58356d56bc5c3",
+        "module_bytes": 12431,
+        "module_pin": "sha256:c662132ae6dec8f9f3a76a329000a61f71d1ed26531e7fcb540e9c7a65d5d96b",
+        "module_record_sha256": "7f14cd9c130c106f68fc31b4a85240203ab1307a66c67ca4679ba3cfba9d515e"
+      },
+      "actual_sha256": "5911c8308ba213cc0906865e7538752f34dc966a686d6880a266dd4343eae37c",
+      "stderr": ""
+    },
+    {
+      "id": "S-PARAM",
+      "exit": 0,
+      "exact_wire_match": true,
+      "input_sha256": "ab61f67c79c5638860d4ec9fb678558d4ea394f3bb829591c273e89eed2cff0d",
+      "reference": {
+        "source_case": "S-PARAM",
+        "source_pin": "sha256:ab61f67c79c5638860d4ec9fb678558d4ea394f3bb829591c273e89eed2cff0d",
+        "lowered_pin": "sha256:d2afe9c16de57b3f6675a647593957822f8dd82ac83bc733a94d0aca34899fa5",
+        "module_bytes": 11420,
+        "module_pin": "sha256:0b3f3460c5287d4a8bbde5ad0b2fa4e51fc62d577a9850612e613e4ad84f5174",
+        "module_record_sha256": "7406f9d7d8f958a610964d1d538de846d3ec312c0aff8f65b9955aa93be8e850"
+      },
+      "actual_sha256": "b20017c49fb06a771a5bffd5df7bfb853bf06878871f3674f48178f347193648",
+      "stderr": ""
+    },
+    {
+      "id": "S-LAZY-OVERFLOW",
+      "exit": 0,
+      "exact_wire_match": true,
+      "input_sha256": "df0860da44d755be92b874a24f1834acffb3644a51732330c7e2d7cce7741b9c",
+      "reference": {
+        "source_case": "S-LAZY-OVERFLOW",
+        "source_pin": "sha256:df0860da44d755be92b874a24f1834acffb3644a51732330c7e2d7cce7741b9c",
+        "lowered_pin": "sha256:74fafe22eec6580ab2522d4ef8cdc47dc5dd702e668f53998fef9ea0c04056a4",
+        "module_bytes": 13500,
+        "module_pin": "sha256:c3a7e21f3388cffd14006dcb01036684b5574c21781ed0a101ceb405b7c7de6e",
+        "module_record_sha256": "f40f9f0ea5ceac49036409156eae85ad95e51dabbe0475faf761fa8a260ee14c"
+      },
+      "actual_sha256": "2b6f53bc392d74944f9e5821408e89f4fef2d2a496ebce217c5db257c13af59e",
+      "stderr": ""
+    },
+    {
+      "id": "F-VERSION",
+      "exit": 0,
+      "exact_wire_match": true,
+      "input_sha256": "5a889dd6fb854cedf59962578af308f2ddae2271c94a899e5fe7c8b9f49e9d40",
+      "reference": {
+        "source_case": "F-VERSION",
+        "expected_refusal": {
+          "kind": "refusal",
+          "code": "TS_VERSION",
+          "source_location": "/schema",
+          "execution_admission": false,
+          "schema": "bagaev-typed-source-result/1"
+        }
+      },
+      "actual_sha256": "364cc137b4f5f15d738e01f7c2006dbcb1e7fde1e10b828ad70822b5da7aa799",
+      "stderr": ""
+    },
+    {
+      "id": "F-EXTRA",
+      "exit": 0,
+      "exact_wire_match": true,
+      "input_sha256": "0437fa8ed58ba416d0858da8467c65fd782323ad6a673a17141c54b3222e5e7f",
+      "reference": {
+        "source_case": "F-EXTRA",
+        "expected_refusal": {
+          "kind": "refusal",
+          "code": "TS_SHAPE",
+          "source_location": "",
+          "execution_admission": false,
+          "schema": "bagaev-typed-source-result/1"
+        }
+      },
+      "actual_sha256": "1ff562b3e78134f5cccf0a936bf2255ac2761733d04417509d2a0a5347e81eb6",
+      "stderr": ""
+    },
+    {
+      "id": "F-OLD-ANNOTATION",
+      "exit": 0,
+      "exact_wire_match": true,
+      "input_sha256": "868ae0e5573bf41ad13f471d826816c87e233af4b98ff17f1a1696929442d09f",
+      "reference": {
+        "source_case": "F-OLD-ANNOTATION",
+        "expected_refusal": {
+          "kind": "refusal",
+          "code": "TS_SHAPE",
+          "source_location": "/functions/main/body",
+          "execution_admission": false,
+          "schema": "bagaev-typed-source-result/1"
+        }
+      },
+      "actual_sha256": "043b1554e8ad9ef4ca77d8bccac997b9b0da68614ca3e87af7031d60ebc2d956",
+      "stderr": ""
+    },
+    {
+      "id": "F-SHADOW",
+      "exit": 0,
+      "exact_wire_match": true,
+      "input_sha256": "adbf92156a442dbaf584b61325d2e9a40272f2b4e1ceb2f8bd5f048bc01adcbf",
+      "reference": {
+        "source_case": "F-SHADOW",
+        "expected_refusal": {
+          "kind": "refusal",
+          "code": "TS_SHAPE",
+          "source_location": "/functions/main/body/1",
+          "execution_admission": false,
+          "schema": "bagaev-typed-source-result/1"
+        }
+      },
+      "actual_sha256": "5006b0c1371324bbb2983ba8181b1221f2fe5a5aa73c4c27794307ea23386b15",
+      "stderr": ""
+    },
+    {
+      "id": "F-LOOP-DUP",
+      "exit": 0,
+      "exact_wire_match": true,
+      "input_sha256": "8ca5398d59c7f54b0dd313d5e0edc790e658116f18155b97e0c28bca9d78aafc",
+      "reference": {
+        "source_case": "F-LOOP-DUP",
+        "expected_refusal": {
+          "kind": "refusal",
+          "code": "TS_SHAPE",
+          "source_location": "/functions/main/body/3",
+          "execution_admission": false,
+          "schema": "bagaev-typed-source-result/1"
+        }
+      },
+      "actual_sha256": "2ebffa2d31907b2cb7cdf38124c9a4475714a380622e494f126658dc3e0954f7",
+      "stderr": ""
+    },
+    {
+      "id": "F-COUNT",
+      "exit": 0,
+      "exact_wire_match": true,
+      "input_sha256": "25e6525e5b98f964ee3a557d457127db28bfa0e870dbaad32b284ff0af185bba",
+      "reference": {
+        "source_case": "F-COUNT",
+        "expected_refusal": {
+          "kind": "refusal",
+          "code": "TS_BOUNDS",
+          "source_location": "/functions/main/body/1",
+          "execution_admission": false,
+          "schema": "bagaev-typed-source-result/1"
+        }
+      },
+      "actual_sha256": "4fd1c5530c061d4c70c421bc7d80e37905ea9f90c98aa8f6503c105b3f3b6814",
+      "stderr": ""
+    },
+    {
+      "id": "F-INT-BOUND",
+      "exit": 0,
+      "exact_wire_match": true,
+      "input_sha256": "fd0e780c0f08d36f9bc4d79bfabffe5e2d45e91fa2e48c3b4e29517da33e7318",
+      "reference": {
+        "source_case": "F-INT-BOUND",
+        "expected_refusal": {
+          "kind": "refusal",
+          "code": "TS_BOUNDS",
+          "source_location": "/functions/main/body/1",
+          "execution_admission": false,
+          "schema": "bagaev-typed-source-result/1"
+        }
+      },
+      "actual_sha256": "4fd1c5530c061d4c70c421bc7d80e37905ea9f90c98aa8f6503c105b3f3b6814",
+      "stderr": ""
+    },
+    {
+      "id": "F-SELF-BINDING",
+      "exit": 0,
+      "exact_wire_match": true,
+      "input_sha256": "12bd2a4a0e51b4a446137a368ff12e02cd5c7d8a0e4dd9ebab643e586839104f",
+      "reference": {
+        "source_case": "F-SELF-BINDING",
+        "expected_refusal": {
+          "kind": "refusal",
+          "code": "TS_REFERENCE",
+          "source_location": "/functions/main/body/2",
+          "execution_admission": false,
+          "schema": "bagaev-typed-source-result/1"
+        }
+      },
+      "actual_sha256": "ea021f15dab12e93fe179c4f95b802750074335a39fedae34907ecfd43fb7be6",
+      "stderr": ""
+    },
+    {
+      "id": "F-ARG-IS-NOT-LOCAL",
+      "exit": 0,
+      "exact_wire_match": true,
+      "input_sha256": "342d00e0acb9553817b86e8a8837ce7c881af6cdc7291aaa147746848549c0c0",
+      "reference": {
+        "source_case": "F-ARG-IS-NOT-LOCAL",
+        "expected_refusal": {
+          "kind": "refusal",
+          "code": "TS_REFERENCE",
+          "source_location": "/functions/main/body/3",
+          "execution_admission": false,
+          "schema": "bagaev-typed-source-result/1"
+        }
+      },
+      "actual_sha256": "d1b8e14b6dba53272dd043bb729aba27322b784b87ebce180d59ccac6c8d6cad",
+      "stderr": ""
+    },
+    {
+      "id": "F-LOOP-INITIAL-SCOPE",
+      "exit": 0,
+      "exact_wire_match": true,
+      "input_sha256": "2ddaab52b1473d9a71b0464d207b879e980dffa38cfcc54a96019fc9afa94d41",
+      "reference": {
+        "source_case": "F-LOOP-INITIAL-SCOPE",
+        "expected_refusal": {
+          "kind": "refusal",
+          "code": "TS_REFERENCE",
+          "source_location": "/functions/main/body/4",
+          "execution_admission": false,
+          "schema": "bagaev-typed-source-result/1"
+        }
+      },
+      "actual_sha256": "dd3f9ad065082da9362d283e1213889eb06355402bc432ca51afbe8048b7a193",
+      "stderr": ""
+    },
+    {
+      "id": "F-LOOP-BODY-TYPE",
+      "exit": 0,
+      "exact_wire_match": true,
+      "input_sha256": "eed6accbefe1094ea2da7da8c8f22e236053465aa02b6f18e9b5befd60d14325",
+      "reference": {
+        "source_case": "F-LOOP-BODY-TYPE",
+        "expected_refusal": {
+          "kind": "refusal",
+          "code": "TS_TYPE",
+          "source_location": "/functions/main/body/5",
+          "execution_admission": false,
+          "schema": "bagaev-typed-source-result/1"
+        }
+      },
+      "actual_sha256": "71567b21b7b7882a8979a19daf8d405a69e0976d35591ecdd109837dada42902",
+      "stderr": ""
+    },
+    {
+      "id": "F-RETURN-TYPE",
+      "exit": 0,
+      "exact_wire_match": true,
+      "input_sha256": "695475b7b0e3434a5b6f775c9477647baf9d1573dd6605ae77942c617182d4a4",
+      "reference": {
+        "source_case": "F-RETURN-TYPE",
+        "expected_refusal": {
+          "kind": "refusal",
+          "code": "TS_TYPE",
+          "source_location": "/functions/main/body",
+          "execution_admission": false,
+          "schema": "bagaev-typed-source-result/1"
+        }
+      },
+      "actual_sha256": "7d1e938dc09e9d16824d2c5992131688df41d61a4510a0704d1f5e891b09d401",
+      "stderr": ""
+    },
+    {
+      "id": "F-LEFT-TYPE-FIRST",
+      "exit": 0,
+      "exact_wire_match": true,
+      "input_sha256": "066e2342401aa9fd8ab0d2e321f9f7f4e0400b0a18b4084f9dc9212651bc3b66",
+      "reference": {
+        "source_case": "F-LEFT-TYPE-FIRST",
+        "expected_refusal": {
+          "kind": "refusal",
+          "code": "TS_TYPE",
+          "source_location": "/functions/main/body/1",
+          "execution_admission": false,
+          "schema": "bagaev-typed-source-result/1"
+        }
+      },
+      "actual_sha256": "d934dd48a5f26463070f54c8fc68371a63c21de174285f3a100196f74ffea7ea",
+      "stderr": ""
+    },
+    {
+      "id": "F-UNTAKEN-TYPE",
+      "exit": 0,
+      "exact_wire_match": true,
+      "input_sha256": "cf3bd96976b69f0d8cb59804cbd31b0551ee6e9567c816210dc53dbffcd3a9d8",
+      "reference": {
+        "source_case": "F-UNTAKEN-TYPE",
+        "expected_refusal": {
+          "kind": "refusal",
+          "code": "TS_TYPE",
+          "source_location": "/functions/main/body/3",
+          "execution_admission": false,
+          "schema": "bagaev-typed-source-result/1"
+        }
+      },
+      "actual_sha256": "0a8551cd16d40c9441a81bc9c8bb98565795575e51fbe500bf1fb5a4723a2a56",
+      "stderr": ""
+    },
+    {
+      "id": "F-SHAPE-BEFORE-REFERENCE",
+      "exit": 0,
+      "exact_wire_match": true,
+      "input_sha256": "9878a22437600b0cd47a53daedb7a31ff271f7eb48a143917c3c74ac87177524",
+      "reference": {
+        "source_case": "F-SHAPE-BEFORE-REFERENCE",
+        "expected_refusal": {
+          "kind": "refusal",
+          "code": "TS_SHAPE",
+          "source_location": "/functions/main/body/2",
+          "execution_admission": false,
+          "schema": "bagaev-typed-source-result/1"
+        }
+      },
+      "actual_sha256": "620f914009fd9411d839658b2a02ef3d779dddc9f94091dd70be51edf906a1dc",
+      "stderr": ""
+    },
+    {
+      "id": "F-REFERENCE-BEFORE-TYPE",
+      "exit": 0,
+      "exact_wire_match": true,
+      "input_sha256": "0772f657c137d4d1214fd2c8a544148d70cd12fd71fee23e011feda171297649",
+      "reference": {
+        "source_case": "F-REFERENCE-BEFORE-TYPE",
+        "expected_refusal": {
+          "kind": "refusal",
+          "code": "TS_REFERENCE",
+          "source_location": "/functions/main/body/2",
+          "execution_admission": false,
+          "schema": "bagaev-typed-source-result/1"
+        }
+      },
+      "actual_sha256": "ea021f15dab12e93fe179c4f95b802750074335a39fedae34907ecfd43fb7be6",
+      "stderr": ""
+    },
+    {
+      "id": "F-CYCLE",
+      "exit": 0,
+      "exact_wire_match": true,
+      "input_sha256": "0ea207535f0b886032d184bf671f808bf8ff482b1d91ed2f83628fc8a40b389d",
+      "reference": {
+        "source_case": "F-CYCLE",
+        "expected_refusal": {
+          "kind": "refusal",
+          "code": "TS_CYCLE",
+          "source_location": "/functions/main/body",
+          "execution_admission": false,
+          "schema": "bagaev-typed-source-result/1"
+        }
+      },
+      "actual_sha256": "8d7dced82a0f5d0f27f75c94fef892a3b70722b5b4351556b7ce88d3506c7b36",
+      "stderr": ""
+    },
+    {
+      "id": "B-DEPTH-32",
+      "exit": 0,
+      "exact_wire_match": true,
+      "input_sha256": "1744134f9386cab9cf575858b47cc7fadfa70f2a330633bfcb6e63f09cd66fa1",
+      "reference": {
+        "source_case": "B-DEPTH-32",
+        "source_pin": "sha256:1744134f9386cab9cf575858b47cc7fadfa70f2a330633bfcb6e63f09cd66fa1",
+        "lowered_pin": "sha256:dec60569393f1a47d609bfbee5ce058c5c1db825ec67235104338de2e6c58061",
+        "module_bytes": 33384,
+        "module_pin": "sha256:5b842b536d4ff28e5658c584b39a69aaea32d9fdcc23ee051e166999aba938db",
+        "module_record_sha256": "4fb3fffb1a5192382a799b7f5a207949e9748b1ef2a2efde00adbe4f569e4420"
+      },
+      "actual_sha256": "41732410c2f8142f376f8e4c6db3149d0c13d392c92652ac2ee4f03205e6c723",
+      "stderr": ""
+    },
+    {
+      "id": "B-DEPTH-33",
+      "exit": 0,
+      "exact_wire_match": true,
+      "input_sha256": "f735fafce0d3e124634eee02cf4aab3d2ed799ce4adb081ceafc60210245cc5c",
+      "reference": {
+        "source_case": "B-DEPTH-33",
+        "expected_refusal": {
+          "kind": "refusal",
+          "code": "TS_BOUNDS",
+          "source_location": "/functions/main/body/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1",
+          "execution_admission": false,
+          "schema": "bagaev-typed-source-result/1"
+        }
+      },
+      "actual_sha256": "61ae865923532cda9399bb969c60cf6832ff89e71003ea9431ee6879b525725e",
+      "stderr": ""
+    },
+    {
+      "id": "B-NODES-512",
+      "exit": 0,
+      "exact_wire_match": true,
+      "input_sha256": "61074f1e69f2d79d4ea4a5fbebbf3686ee4111789dc2a2105597cf5e9047601e",
+      "reference": {
+        "source_case": "B-NODES-512",
+        "source_pin": "sha256:61074f1e69f2d79d4ea4a5fbebbf3686ee4111789dc2a2105597cf5e9047601e",
+        "lowered_pin": "sha256:b0d43cccb0cd6cc05c675dff3c4bb6a40ca55bbce9e3cfa44f7775e59cae574c",
+        "module_bytes": 377223,
+        "module_pin": "sha256:b75721097281bb54f6b09e7c047e075696da2d0d85a42976449f864872ed487e",
+        "module_record_sha256": "b32e8c0676443a88a82aec2d98d775ec63935e4f8a0adbd27d955c87b950eaa3"
+      },
+      "actual_sha256": "42bd2a5cb3509c5c9c5409ca38a5118371393f4ad9517d383c43c336ea2d556f",
+      "stderr": ""
+    },
+    {
+      "id": "B-NODES-513",
+      "exit": 0,
+      "exact_wire_match": true,
+      "input_sha256": "fe60c2008b4a5dd98a4b1ff1b81fd179f19be0965207183052485b6f44bc9fee",
+      "reference": {
+        "source_case": "B-NODES-513",
+        "expected_refusal": {
+          "kind": "refusal",
+          "code": "TS_BOUNDS",
+          "source_location": "/functions/H/body/1/1/2/2/2/2/2",
+          "execution_admission": false,
+          "schema": "bagaev-typed-source-result/1"
+        }
+      },
+      "actual_sha256": "d772a263f55182446c60dd803845b7de05433188415244e771e2561c946204be",
+      "stderr": ""
+    },
+    {
+      "id": "B-FUNCTIONS-9",
+      "exit": 0,
+      "exact_wire_match": true,
+      "input_sha256": "dd0d11dc0308e09beac64f79d505f0d108f0d5d924cad9be5a2797e89690efb9",
+      "reference": {
+        "source_case": "B-FUNCTIONS-9",
+        "expected_refusal": {
+          "kind": "refusal",
+          "code": "TS_BOUNDS",
+          "source_location": "/functions",
+          "execution_admission": false,
+          "schema": "bagaev-typed-source-result/1"
+        }
+      },
+      "actual_sha256": "6695450ad1a487e5a5a5a43ae8fbb270e2665571e545b415d29d5e7814c10fd6",
+      "stderr": ""
+    },
+    {
+      "id": "B-PARAMS-9",
+      "exit": 0,
+      "exact_wire_match": true,
+      "input_sha256": "fe4e1885ab14adb229fe6bf3ef4e173f90eb9854e408a42500b8e46007f7c94b",
+      "reference": {
+        "source_case": "B-PARAMS-9",
+        "expected_refusal": {
+          "kind": "refusal",
+          "code": "TS_BOUNDS",
+          "source_location": "/functions/main/params",
+          "execution_admission": false,
+          "schema": "bagaev-typed-source-result/1"
+        }
+      },
+      "actual_sha256": "2085fcd30b72fca4335e1f20e2d77c7afda46372001b24c27b9c7179712d8eae",
+      "stderr": ""
+    },
+    {
+      "id": "B-JSON-DEPTH",
+      "exit": 0,
+      "exact_wire_match": true,
+      "input_sha256": "8dfad25383545f5e0665218d8d3a852fc5f531770b9dd68dc1ec06894fcf32d7",
+      "reference": {
+        "source_case": "B-JSON-DEPTH",
+        "expected_refusal": {
+          "kind": "refusal",
+          "code": "TS_BOUNDS",
+          "source_location": "/functions/main/body/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0",
+          "execution_admission": false,
+          "schema": "bagaev-typed-source-result/1"
+        }
+      },
+      "actual_sha256": "18dbf2a4a010b3ecbcfdffa6508f2555fc0fa3a6344bb715fc52537ccd7974c5",
+      "stderr": ""
+    },
+    {
+      "id": "B-JSON-VALUES",
+      "exit": 0,
+      "exact_wire_match": true,
+      "input_sha256": "e909717bf752c577c7f76fec7ad7ec769cc7ffc00d6c0c21ffc444390879ffbf",
+      "reference": {
+        "source_case": "B-JSON-VALUES",
+        "expected_refusal": {
+          "kind": "refusal",
+          "code": "TS_BOUNDS",
+          "source_location": "/functions/main/body/8187",
+          "execution_admission": false,
+          "schema": "bagaev-typed-source-result/1"
+        }
+      },
+      "actual_sha256": "ca06bedec2b9692ce6fd09ba9b6a75c43af6bb1e813757970c26a2d58c0fd4bc",
+      "stderr": ""
+    },
+    {
+      "id": "B-CYCLE-FIRST-BACK-EDGE",
+      "exit": 0,
+      "exact_wire_match": true,
+      "input_sha256": "d2288377122d003d66f9a8cf5ab0cf9df56a7697b967a2f6854e19b002c8bff2",
+      "reference": {
+        "source_case": "B-CYCLE-FIRST-BACK-EDGE",
+        "expected_refusal": {
+          "kind": "refusal",
+          "code": "TS_CYCLE",
+          "source_location": "/functions/B/body",
+          "execution_admission": false,
+          "schema": "bagaev-typed-source-result/1"
+        }
+      },
+      "actual_sha256": "4010273ef357973634ecf4b6a74368a56d18faccf23dcd84bd47e9e3af23a980",
+      "stderr": ""
+    },
+    {
+      "id": "B-REFERENCE-BEFORE-CYCLE",
+      "exit": 0,
+      "exact_wire_match": true,
+      "input_sha256": "87b4cec4d94a29c1335fe997d16762ce31093670d5be005b2ab9c7a19ff65393",
+      "reference": {
+        "source_case": "B-REFERENCE-BEFORE-CYCLE",
+        "expected_refusal": {
+          "kind": "refusal",
+          "code": "TS_REFERENCE",
+          "source_location": "/functions/A/body/1",
+          "execution_admission": false,
+          "schema": "bagaev-typed-source-result/1"
+        }
+      },
+      "actual_sha256": "6710c9ad20a43ca8c6020bfff41d0385d8db63c1a4bb491d2852658dc415c6b9",
+      "stderr": ""
+    },
+    {
+      "id": "R-UTF8",
+      "exit": 0,
+      "exact_wire_match": true,
+      "input_sha256": "a8100ae6aa1940d0b663bb31cd466142ebbdbd5187131b92d93818987832eb89",
+      "reference": {
+        "source_case": "R-UTF8",
+        "expected_refusal": {
+          "kind": "refusal",
+          "code": "TS_JSON",
+          "source_location": "",
+          "execution_admission": false,
+          "schema": "bagaev-typed-source-result/1"
+        }
+      },
+      "actual_sha256": "b9de666619043a1a294b649ec66b15f3c501465d1b1180b62d9a49dbac4fec5b",
+      "stderr": ""
+    },
+    {
+      "id": "R-DUPLICATE",
+      "exit": 0,
+      "exact_wire_match": true,
+      "input_sha256": "004cc51f2eda71cb607da116809f2587fb65edb296711ac0f879c2b23b9f5625",
+      "reference": {
+        "source_case": "R-DUPLICATE",
+        "expected_refusal": {
+          "kind": "refusal",
+          "code": "TS_JSON",
+          "source_location": "",
+          "execution_admission": false,
+          "schema": "bagaev-typed-source-result/1"
+        }
+      },
+      "actual_sha256": "b9de666619043a1a294b649ec66b15f3c501465d1b1180b62d9a49dbac4fec5b",
+      "stderr": ""
+    },
+    {
+      "id": "R-ESCAPED-DUPLICATE",
+      "exit": 0,
+      "exact_wire_match": true,
+      "input_sha256": "e908d423524d90d0607efd09110b4cc49e53c4378b4e0f9bd509335d7b312489",
+      "reference": {
+        "source_case": "R-ESCAPED-DUPLICATE",
+        "expected_refusal": {
+          "kind": "refusal",
+          "code": "TS_JSON",
+          "source_location": "",
+          "execution_admission": false,
+          "schema": "bagaev-typed-source-result/1"
+        }
+      },
+      "actual_sha256": "b9de666619043a1a294b649ec66b15f3c501465d1b1180b62d9a49dbac4fec5b",
+      "stderr": ""
+    },
+    {
+      "id": "R-TRAILING",
+      "exit": 0,
+      "exact_wire_match": true,
+      "input_sha256": "b51f08b698d88d8027a935d9db649774949f5fb41a0c559bfee6a9a13225c72d",
+      "reference": {
+        "source_case": "R-TRAILING",
+        "expected_refusal": {
+          "kind": "refusal",
+          "code": "TS_JSON",
+          "source_location": "",
+          "execution_admission": false,
+          "schema": "bagaev-typed-source-result/1"
+        }
+      },
+      "actual_sha256": "b9de666619043a1a294b649ec66b15f3c501465d1b1180b62d9a49dbac4fec5b",
+      "stderr": ""
+    },
+    {
+      "id": "R-EXPONENT",
+      "exit": 0,
+      "exact_wire_match": true,
+      "input_sha256": "4ee5dba91f88ce62a75e9ffd58fa35685f0d827158b89f12d0a66c5607111133",
+      "reference": {
+        "source_case": "R-EXPONENT",
+        "expected_refusal": {
+          "kind": "refusal",
+          "code": "TS_SHAPE",
+          "source_location": "/functions/main/body/1",
+          "execution_admission": false,
+          "schema": "bagaev-typed-source-result/1"
+        }
+      },
+      "actual_sha256": "5006b0c1371324bbb2983ba8181b1221f2fe5a5aa73c4c27794307ea23386b15",
+      "stderr": ""
+    },
+    {
+      "id": "R-OVERSIZE",
+      "exit": 0,
+      "exact_wire_match": true,
+      "input_sha256": "9d78de4e5b12fc166bed811cd230621ea1e1e353553fe31b92a73bfbf45d68ee",
+      "reference": {
+        "source_case": "R-OVERSIZE",
+        "expected_refusal": {
+          "kind": "refusal",
+          "code": "TS_BOUNDS",
+          "source_location": "",
+          "execution_admission": false,
+          "schema": "bagaev-typed-source-result/1"
+        }
+      },
+      "actual_sha256": "39da7dd50cf8526cb32e77fb2ef51b0ad2fff48f05bd3dd8e1710318e511cc82",
+      "stderr": ""
+    },
+    {
+      "id": "R-BYTE-BOUNDARY",
+      "exit": 0,
+      "exact_wire_match": true,
+      "input_sha256": "649ab0f3c0a1cd8b54d550dffdee02c97d8bd7129014766ce4591ea70b7ae94f",
+      "reference": {
+        "source_case": "R-BYTE-BOUNDARY",
+        "source_pin": "sha256:ab2021e0da42b24fe62804f746cc344417143674ecaeb19d5cf451ab0f416253",
+        "lowered_pin": "sha256:c49cba967b77ff601cfacfee9ef57b43098ef604a9e9e7fd39e389adef82e3ea",
+        "module_bytes": 9736,
+        "module_pin": "sha256:0a6a97606adf3e5e6b4cbe9eb3282d069c87363e18155d77d51d320af81cdd66",
+        "module_record_sha256": "cb76409add4d2b2e2142bc5b0823b37dd9de4132829bf7457475683ba684329b"
+      },
+      "actual_sha256": "3e71f797c7857a250a96ad6d161e86b66b9fd65e427b4ec7c08b46ca5216aa97",
+      "stderr": ""
+    }
+  ],
+  "limits": [
+    "References share the existing backend; not an independent semantic oracle",
+    "Original file publisher, filesystem faults and aggregate isolation not exercised",
+    "No new native conformance or performance claim"
+  ]
+}

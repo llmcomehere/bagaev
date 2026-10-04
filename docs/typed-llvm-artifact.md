@@ -75,3 +75,20 @@ Tests must check exact envelope keys, canonical wire bytes, source/lowered pins,
 module byte count/hash and complete record hash. The complete descriptor must
 still bind the expected lowered program. Compilation and native conformance are
 separate evidence; emitting a matching string does not replace those checks.
+
+## Bounded wrapper implementation
+
+The Rust typed-source CLI now exposes `emit-llvm --input FILE`. It uses the same
+bounded input reader and returns only the canonical envelope on stdout. The
+source library provides `emit_llvm_source`; the old kernel and LLVM backend are
+unchanged. Source refusals reuse the existing exact result serializer.
+
+The [explicit fixture runner](../tests/probes/typed_llvm_contract.py) matched all
+43 pre-frozen references: 12 complete module identities and 31 exact refusals.
+The earlier 43 source wires and 589 source-location wires also passed with the
+same binary; Rust 1.93.0 compiled it with warnings denied. See the
+[observations](../examples/probes/typed-llvm-observations.json).
+
+This is a separate same-maintainer checking pass. It does not add independent
+review, a native execution experiment, compiler performance evidence, production
+isolation or coverage of the original file publisher.
