@@ -73,6 +73,9 @@ untrusted code. No model account is needed for this example.
   [October 4 observations](docs/native-probe-results.md) record 300 matching
   native ABI observations at O0/O2/Os. This is not full native L2/L3 support
   or a measured performance/cost advantage.
+- **Experimental Cranelift comparison:** a [locked AOT object backend](docs/probe-cranelift.md)
+  passed 150 fixed native ABI observations using the same kernel oracle.
+  Comparative speed, memory and build-cost measurements have not yet been made.
 - **L0:** a pure deterministic dataflow core, four types, ten operations,
   reference interpreter, atomic structural patches, and synthetic examples.
 - **L1:** a bounded CPython backend for L0. Recorded local acceptance matched

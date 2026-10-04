@@ -76,6 +76,10 @@ the [normative probe contract](probes.md#portable-context-and-finite-choices),
 and the [context tests](../tests/test_probe_context.py). The kernel callback is
 a trusted host dependency; packet validity does not establish admission.
 
+For the bounded native challenger, read the [Cranelift AOT guide](probe-cranelift.md),
+the [fixed native ABI](probes.md#fixed-native-abi), and its locked crate sources.
+Conformance results and comparative measurements are separate evidence.
+
 1. **Entry, status, or planned beta:** read [README](../README.md) and
    [roadmap](roadmap.md). Use the [integrated guide](beta.md) for a standalone
    CLI/Store continuation walkthrough. Read [CONTRIBUTING](../CONTRIBUTING.md)
