@@ -61,7 +61,8 @@ untrusted code. No model account is needed for this example.
 
 - **Experimental exact forms:** [JSON, S-expression and familiar-code codecs](docs/probe-forms.md)
   reconstruct unchanged L2 programs. The initial slice passed 126 frozen
-  non-edit form observations; edit-frame handling and model/cost studies remain open.
+  non-edit form observations. A pure edit receiver also passed 51 frozen
+  trace/form observations; full form acceptance and model/cost studies remain open.
 - **Experimental typed native kernel:** a separate bounded Int64/Bool core,
   Rust frontend, LLVM lowering and handwritten C11 comparison. The
   [October 4 observations](docs/native-probe-results.md) record 300 matching

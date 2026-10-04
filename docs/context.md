@@ -66,7 +66,8 @@ link or finding a helper here never authorizes running it.
 The [probe form codec guide](probe-forms.md) describes JSON, S-expression and
 restricted familiar constructors for the unchanged L2 semantics. The pure
 [codec module](../src/bagaev_forms.py) and [tests](../tests/test_forms.py) are
-an implementation slice, not an edit-frame receiver or completed form/model study.
+an implementation slice. The [pure edit receiver](../src/bagaev_form_edit.py)
+returns detached, unadmitted drafts; this is not a completed form/model study.
 
 ## Routes
 
