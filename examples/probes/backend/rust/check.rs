@@ -1,0 +1,409 @@
+//! Ordered transport, envelope, structure, reference, cycle, type and argument gates.
+use std::collections::BTreeMap;
+use crate::canonical;
+use crate::ir::{BinaryOp, Function, Local, Node, NodeId, NodeKind, Parameter, Scalar, Type};
+use crate::sha256;
+use crate::transport::{self, Document, JsonString, TransportError, Value, ValueId};
+
+#[derive(Clone, Copy, Debug, Eq, PartialEq)]
+pub enum Reason { Json, Version, Shape, Bounds, Reference, Cycle, Type, Argument }
+impl Reason {
+    pub fn name(self) -> &'static str {
+        match self {
+            Self::Json=>"IR_JSON",Self::Version=>"IR_VERSION",Self::Shape=>"IR_SHAPE",
+            Self::Bounds=>"IR_BOUNDS",Self::Reference=>"IR_REFERENCE",Self::Cycle=>"IR_CYCLE",
+            Self::Type=>"IR_TYPE",Self::Argument=>"IR_ARGUMENT",
+        }
+    }
+}
+#[derive(Clone, Debug, Eq, PartialEq)]
+pub struct Refusal { reason: Reason, location: String }
+impl Refusal {
+    pub fn reason(&self) -> Reason { self.reason }
+    pub fn location(&self) -> &str { &self.location }
+    fn new(reason: Reason, path: &str) -> Self { Self { reason, location: path.to_owned() } }
+    fn prefix(mut self, prefix: &str) -> Self { self.location = format!("{prefix}{}",self.location); self }
+}
+#[derive(Debug)]
+pub enum FrontendError { Refusal(Refusal), Environment(&'static str) }
+impl From<Refusal> for FrontendError { fn from(e: Refusal) -> Self { Self::Refusal(e) } }
+type CheckResult<T> = Result<T, Refusal>;
+
+/// Fields and construction stay private in this module. No deserialize/unchecked API.
+#[derive(Debug)]
+pub struct CheckedProgram {
+    functions: Vec<Function>, nodes: Vec<Node>, entry: usize,
+    canonical: Vec<u8>, identity: String,
+}
+impl CheckedProgram {
+    pub fn functions(&self) -> &[Function] { &self.functions }
+    pub fn nodes(&self) -> &[Node] { &self.nodes }
+    pub fn node(&self, id: NodeId) -> Option<&Node> { self.nodes.get(usize::from(id).checked_sub(1)?) }
+    pub fn entry(&self) -> usize { self.entry }
+    pub fn canonical_bytes(&self) -> &[u8] { &self.canonical }
+    pub fn identity(&self) -> &str { &self.identity }
+}
+#[derive(Debug)]
+pub struct CheckedInvocation { program: CheckedProgram, arguments: Vec<Scalar> }
+impl CheckedInvocation {
+    pub fn program(&self) -> &CheckedProgram { &self.program }
+    pub fn arguments(&self) -> &[Scalar] { &self.arguments }
+}
+
+fn child(path: &str, key: &str) -> String {
+    format!("{path}/{}",key.replace('~',"~0").replace('/',"~1"))
+}
+fn index(path: &str, n: usize) -> String { format!("{path}/{n}") }
+fn fail<T>(reason: Reason, path: &str) -> CheckResult<T> { Err(Refusal::new(reason,path)) }
+fn object<'a>(doc: &'a Document, id: ValueId, path: &str) -> CheckResult<&'a BTreeMap<JsonString,ValueId>> {
+    match &doc.values[id] { Value::Object(map)=>Ok(map), _=>fail(Reason::Shape,path) }
+}
+fn exact<'a>(doc: &'a Document, id: ValueId, keys: &[&str], path: &str) -> CheckResult<&'a BTreeMap<JsonString,ValueId>> {
+    let map = object(doc,id,path)?;
+    if map.len()!=keys.len() || !keys.iter().all(|key|map.contains_key(&JsonString::from_str(key))) {
+        return fail(Reason::Shape,path);
+    }
+    Ok(map)
+}
+fn field(map: &BTreeMap<JsonString,ValueId>, name: &str) -> ValueId {
+    *map.get(&JsonString::from_str(name)).expect("field after exact envelope check")
+}
+fn array<'a>(doc: &'a Document, id: ValueId, path: &str) -> CheckResult<&'a [ValueId]> {
+    match &doc.values[id] { Value::Array(items)=>Ok(items), _=>fail(Reason::Shape,path) }
+}
+fn string(doc: &Document, id: ValueId, path: &str) -> CheckResult<String> {
+    match &doc.values[id] {
+        Value::String(text)=>text.scalar_string().ok_or_else(||Refusal::new(Reason::Shape,path)),
+        _=>fail(Reason::Shape,path),
+    }
+}
+fn identifier(doc: &Document, id: ValueId, path: &str) -> CheckResult<String> {
+    let name=string(doc,id,path)?;
+    if valid_id(&name) { Ok(name) } else { fail(Reason::Shape,path) }
+}
+fn valid_id(name: &str) -> bool {
+    let bytes=name.as_bytes();
+    (1..=64).contains(&bytes.len()) && bytes[0].is_ascii_alphabetic()
+        && bytes[1..].iter().all(|b|b.is_ascii_alphanumeric() || matches!(*b,b'.'|b'_'|b'-'))
+}
+fn ty(doc: &Document, id: ValueId, path: &str) -> CheckResult<Type> {
+    match string(doc,id,path)?.as_str() {
+        "Int64"=>Ok(Type::Int64),"Bool"=>Ok(Type::Bool),_=>fail(Reason::Shape,path),
+    }
+}
+fn integer(doc: &Document, id: ValueId, path: &str) -> CheckResult<i64> {
+    match &doc.values[id] {
+        Value::Integer(token)=>token.parse().map_err(|_|Refusal::new(Reason::Bounds,path)),
+        _=>fail(Reason::Shape,path),
+    }
+}
+fn schema(doc: &Document, map: &BTreeMap<JsonString,ValueId>, expected: &str, path: &str) -> CheckResult<()> {
+    let path=child(path,"schema");
+    if string(doc,field(map,"schema"),&path)? != expected { return fail(Reason::Version,&path); }
+    Ok(())
+}
+
+/// Bounds walk is iterative and does not inspect semantic shapes or tags.
+fn json_bounds(doc: &Document, root: ValueId, max_depth: usize, max_values: usize, prefix: &str) -> CheckResult<()> {
+    let mut stack=vec![(root,1usize,prefix.to_owned())];
+    let mut count=0;
+    while let Some((id,depth,path))=stack.pop() {
+        count+=1;
+        if depth>max_depth || count>max_values { return fail(Reason::Bounds,&path); }
+        match &doc.values[id] {
+            Value::Array(items)=>for (i,&value) in items.iter().enumerate().rev() {
+                stack.push((value,depth+1,index(&path,i)));
+            },
+            Value::Object(items)=>for (key,&value) in items.iter().rev() {
+                // A non-scalar key has only a containing-object semantic location.
+                // It is still traversed here, never prematurely refused as shape.
+                let next=key.scalar_string().map(|key|child(&path,&key)).unwrap_or_else(||path.clone());
+                stack.push((value,depth+1,next));
+            },
+            _=>{},
+        }
+    }
+    Ok(())
+}
+
+#[derive(Clone, Copy)]
+struct Binding { slot: usize, ty: Type, parameter: bool }
+type Scope = BTreeMap<String,Binding>;
+enum RawKind {
+    Ready(NodeKind),
+    Arg(Option<Binding>), Use(Option<Binding>),
+    Call { name: String, arguments: Vec<NodeId> },
+}
+struct RawNode { function: usize, pointer: String, ty: Option<Type>, kind: RawKind }
+struct Builder { functions: Vec<Function>, nodes: Vec<RawNode> }
+
+impl Builder {
+    fn local(&mut self, function: usize, name: String, ty: Type) -> Binding {
+        let slot=self.functions[function].locals.len();
+        self.functions[function].locals.push(Local {name,ty});
+        Binding {slot,ty,parameter:false}
+    }
+    fn fresh(doc: &Document, value: ValueId, path: &str, scope: &Scope) -> CheckResult<String> {
+        let name=identifier(doc,value,path)?;
+        if scope.contains_key(&name) { return fail(Reason::Shape,path); }
+        Ok(name)
+    }
+    /// Recursion can reach at most 33 calls: check before descent, limit 32.
+    /// Parser nesting is unrelated and never consumes this call stack.
+    fn expression(&mut self, doc: &Document, value: ValueId, path: String,
+                  depth: usize, function: usize, scope: &Scope) -> CheckResult<NodeId> {
+        if depth>32 || self.nodes.len()==512 { return fail(Reason::Bounds,&path); }
+        let items=array(doc,value,&path)?;
+        if items.is_empty() { return fail(Reason::Shape,&path); }
+        // Non-string op is an expression-shape failure. A surrogate string is
+        // the offending scalar, not malformed JSON or an invented op spelling.
+        let op=match &doc.values[items[0]] {
+            Value::String(s)=>s.scalar_string().ok_or_else(||Refusal::new(Reason::Shape,&index(&path,0)))?,
+            _=>return fail(Reason::Shape,&path),
+        };
+        let arity=match op.as_str() {
+            "int"|"bool"|"arg"|"use"|"not"=>Some(2),
+            "add"|"sub"|"mul"|"eq"|"lt"|"le"=>Some(3),
+            "if"=>Some(4),"let"=>Some(5),"loop"=>Some(7),
+            "call" if items.len()>=2=>None,
+            _=>return fail(Reason::Shape,&path),
+        };
+        if arity.is_some_and(|n|items.len()!=n) { return fail(Reason::Shape,&path); }
+        let id=(self.nodes.len()+1) as NodeId;
+        self.nodes.push(RawNode {function,pointer:path.clone(),ty:None,kind:RawKind::Ready(NodeKind::Int(0))});
+        let mut result_type=None;
+        let kind=match op.as_str() {
+            "int"=>{
+                let n=integer(doc,items[1],&index(&path,1))?;
+                result_type=Some(Type::Int64); RawKind::Ready(NodeKind::Int(n))
+            }
+            "bool"=>{
+                let b=match &doc.values[items[1]] { Value::Bool(b)=>*b,_=>return fail(Reason::Shape,&index(&path,1)) };
+                result_type=Some(Type::Bool); RawKind::Ready(NodeKind::Bool(b))
+            }
+            "arg"|"use"=>{
+                let name=identifier(doc,items[1],&index(&path,1))?;
+                let binding=scope.get(&name).copied().filter(|b|b.parameter==(op=="arg"));
+                if op=="arg" { RawKind::Arg(binding) } else { RawKind::Use(binding) }
+            }
+            "add"|"sub"|"mul"|"eq"|"lt"|"le"=>{
+                let left=self.expression(doc,items[1],index(&path,1),depth+1,function,scope)?;
+                let right=self.expression(doc,items[2],index(&path,2),depth+1,function,scope)?;
+                let op=match op.as_str() {"add"=>BinaryOp::Add,"sub"=>BinaryOp::Sub,"mul"=>BinaryOp::Mul,
+                    "eq"=>BinaryOp::Eq,"lt"=>BinaryOp::Lt,_=>BinaryOp::Le};
+                RawKind::Ready(NodeKind::Binary{op,left,right})
+            }
+            "not"=>{
+                let operand=self.expression(doc,items[1],index(&path,1),depth+1,function,scope)?;
+                RawKind::Ready(NodeKind::Not{operand})
+            }
+            "if"=>{
+                let condition=self.expression(doc,items[1],index(&path,1),depth+1,function,scope)?;
+                let yes=self.expression(doc,items[2],index(&path,2),depth+1,function,scope)?;
+                let no=self.expression(doc,items[3],index(&path,3),depth+1,function,scope)?;
+                RawKind::Ready(NodeKind::If{condition,yes,no})
+            }
+            "let"=>{
+                let name=Self::fresh(doc,items[1],&index(&path,1),scope)?;
+                let declared=ty(doc,items[2],&index(&path,2))?;
+                let binding=self.local(function,name.clone(),declared);
+                let initial=self.expression(doc,items[3],index(&path,3),depth+1,function,scope)?;
+                let mut body_scope=scope.clone(); body_scope.insert(name,binding);
+                let body=self.expression(doc,items[4],index(&path,4),depth+1,function,&body_scope)?;
+                RawKind::Ready(NodeKind::Let{slot:binding.slot,declared,value:initial,body})
+            }
+            "call"=>{
+                let name=identifier(doc,items[1],&index(&path,1))?;
+                let mut arguments=Vec::new();
+                for (i,&argument) in items.iter().enumerate().skip(2) {
+                    arguments.push(self.expression(doc,argument,index(&path,i),depth+1,function,scope)?);
+                }
+                RawKind::Call{name,arguments}
+            }
+            "loop"=>{
+                let count=integer(doc,items[1],&index(&path,1))?;
+                if !(0..=1024).contains(&count) { return fail(Reason::Bounds,&index(&path,1)); }
+                let index_name=Self::fresh(doc,items[2],&index(&path,2),scope)?;
+                let accumulator_name=Self::fresh(doc,items[3],&index(&path,3),scope)?;
+                if index_name==accumulator_name { return fail(Reason::Shape,&index(&path,3)); }
+                let declared=ty(doc,items[4],&index(&path,4))?;
+                let index_binding=self.local(function,index_name.clone(),Type::Int64);
+                let accumulator=self.local(function,accumulator_name.clone(),declared);
+                let initial=self.expression(doc,items[5],index(&path,5),depth+1,function,scope)?;
+                let mut body_scope=scope.clone(); body_scope.insert(index_name,index_binding);
+                body_scope.insert(accumulator_name,accumulator);
+                let body=self.expression(doc,items[6],index(&path,6),depth+1,function,&body_scope)?;
+                RawKind::Ready(NodeKind::Loop{count:count as u16,index_slot:index_binding.slot,
+                    accumulator_slot:accumulator.slot,declared,initial,body})
+            }
+            _=>unreachable!("operation checked before metadata"),
+        };
+        let node=&mut self.nodes[usize::from(id)-1]; node.kind=kind; node.ty=result_type;
+        Ok(id)
+    }
+
+    fn references(&mut self, entry_name: &str) -> CheckResult<usize> {
+        let names:BTreeMap<String,usize>=self.functions.iter().enumerate().map(|(i,f)|(f.name.clone(),i)).collect();
+        let entry=*names.get(entry_name).ok_or_else(||Refusal::new(Reason::Reference,"/entry"))?;
+        for node in &mut self.nodes {
+            let replacement=match &node.kind {
+                RawKind::Arg(binding)=>{
+                    let b=binding.ok_or_else(||Refusal::new(Reason::Reference,&node.pointer))?;
+                    node.ty=Some(b.ty); Some(NodeKind::Arg{parameter:b.slot})
+                }
+                RawKind::Use(binding)=>{
+                    let b=binding.ok_or_else(||Refusal::new(Reason::Reference,&node.pointer))?;
+                    node.ty=Some(b.ty); Some(NodeKind::Use{slot:b.slot})
+                }
+                RawKind::Call{name,arguments}=>{
+                    let function=*names.get(name).ok_or_else(||Refusal::new(Reason::Reference,&node.pointer))?;
+                    if arguments.len()!=self.functions[function].parameters.len() { return fail(Reason::Reference,&node.pointer); }
+                    Some(NodeKind::Call{function,arguments:arguments.clone()})
+                }
+                _=>None,
+            };
+            if let Some(kind)=replacement { node.kind=RawKind::Ready(kind); }
+        }
+        Ok(entry)
+    }
+
+    fn cycles(&mut self) -> CheckResult<()> {
+        // First occurrence per direct edge, then sorted callee indices/ASCII IDs.
+        let mut edges=vec![BTreeMap::<usize,usize>::new();self.functions.len()];
+        for (i,node) in self.nodes.iter().enumerate() {
+            if let RawKind::Ready(NodeKind::Call{function,..})=&node.kind {
+                edges[node.function].entry(*function).or_insert(i);
+            }
+        }
+        fn visit(function:usize,edges:&[BTreeMap<usize,usize>],colours:&mut [u8],nodes:&[RawNode]) -> CheckResult<()> {
+            colours[function]=1;
+            for (&callee,&occurrence) in &edges[function] {
+                if colours[callee]==1 { return fail(Reason::Cycle,&nodes[occurrence].pointer); }
+                if colours[callee]==0 { visit(callee,edges,colours,nodes)?; }
+            }
+            colours[function]=2; Ok(())
+        }
+        let mut colours=vec![0;self.functions.len()];
+        for i in 0..self.functions.len() { if colours[i]==0 { visit(i,&edges,&mut colours,&self.nodes)?; } }
+        for (function,edge) in self.functions.iter_mut().zip(edges) { function.callees=edge.into_keys().collect(); }
+        Ok(())
+    }
+
+    fn require(&mut self, id: NodeId, expected: Type) -> CheckResult<()> {
+        if self.infer(id)? != expected { return fail(Reason::Type,&self.nodes[usize::from(id)-1].pointer); }
+        Ok(())
+    }
+    fn infer(&mut self, id: NodeId) -> CheckResult<Type> {
+        let n=usize::from(id)-1;
+        if let Some(ty)=self.nodes[n].ty { return Ok(ty); }
+        let kind=match &self.nodes[n].kind { RawKind::Ready(kind)=>kind.clone(),_=>unreachable!("references precede types") };
+        let ty=match kind {
+            NodeKind::Binary{op,left,right}=>match op {
+                BinaryOp::Eq=>{ let left_type=self.infer(left)?; self.require(right,left_type)?; Type::Bool }
+                BinaryOp::Add|BinaryOp::Sub|BinaryOp::Mul=>{ self.require(left,Type::Int64)?;self.require(right,Type::Int64)?;Type::Int64 }
+                BinaryOp::Lt|BinaryOp::Le=>{ self.require(left,Type::Int64)?;self.require(right,Type::Int64)?;Type::Bool }
+            },
+            NodeKind::Not{operand}=>{self.require(operand,Type::Bool)?;Type::Bool}
+            NodeKind::Let{declared,value,body,..}=>{self.require(value,declared)?;self.infer(body)?}
+            NodeKind::If{condition,yes,no}=>{self.require(condition,Type::Bool)?;let yes_type=self.infer(yes)?;self.require(no,yes_type)?;yes_type}
+            NodeKind::Call{function,arguments}=>{
+                for (i,argument) in arguments.into_iter().enumerate() {
+                    let expected=self.functions[function].parameters[i].ty;
+                    self.require(argument,expected)?;
+                }
+                self.functions[function].result
+            }
+            NodeKind::Loop{declared,initial,body,..}=>{self.require(initial,declared)?;self.require(body,declared)?;declared}
+            _=>unreachable!("leaf types set during structure/reference checking"),
+        };
+        self.nodes[n].ty=Some(ty); Ok(ty)
+    }
+    fn types(&mut self) -> CheckResult<()> {
+        for i in 0..self.functions.len() {
+            let body=self.functions[i].body; let result=self.functions[i].result;
+            self.require(body,result)?;
+        }
+        Ok(())
+    }
+}
+
+fn program(doc: &Document, root: ValueId) -> Result<CheckedProgram,FrontendError> {
+    let envelope=exact(doc,root,&["schema","entry","functions"],"")?;
+    schema(doc,envelope,"bagaev-probe-ir/1","")?;
+    json_bounds(doc,root,128,8192,"")?;
+    let entry_name=identifier(doc,field(envelope,"entry"),"/entry")?;
+    let definitions=object(doc,field(envelope,"functions"),"/functions")?;
+    if !(1..=8).contains(&definitions.len()) { return Err(Refusal::new(Reason::Bounds,"/functions").into()); }
+    let mut names=Vec::new();
+    for key in definitions.keys() {
+        let name=key.scalar_string().ok_or_else(||Refusal::new(Reason::Shape,"/functions"))?;
+        if !valid_id(&name) { return Err(Refusal::new(Reason::Shape,"/functions").into()); }
+        names.push(name);
+    }
+    let mut builder=Builder{functions:Vec::new(),nodes:Vec::new()};
+    for (function,((_,&definition),name)) in definitions.iter().zip(names).enumerate() {
+        let path=child("/functions",&name);
+        let definition=exact(doc,definition,&["params","result","body"],&path)?;
+        let params_path=child(&path,"params");
+        let params=array(doc,field(definition,"params"),&params_path)?;
+        if params.len()>8 { return Err(Refusal::new(Reason::Bounds,&params_path).into()); }
+        let mut scope=Scope::new(); let mut parameters=Vec::new();
+        for (i,&parameter) in params.iter().enumerate() {
+            let pointer=index(&params_path,i); let pair=array(doc,parameter,&pointer)?;
+            if pair.len()!=2 { return Err(Refusal::new(Reason::Shape,&pointer).into()); }
+            let name=identifier(doc,pair[0],&index(&pointer,0))?;
+            if scope.contains_key(&name) { return Err(Refusal::new(Reason::Shape,&index(&pointer,0)).into()); }
+            let ty=ty(doc,pair[1],&index(&pointer,1))?;
+            scope.insert(name.clone(),Binding{slot:i,ty,parameter:true});
+            parameters.push(Parameter{name,ty});
+        }
+        let result=ty(doc,field(definition,"result"),&child(&path,"result"))?;
+        builder.functions.push(Function{name,parameters,result,body:0,locals:Vec::new(),callees:Vec::new()});
+        let body=builder.expression(doc,field(definition,"body"),child(&path,"body"),1,function,&scope)?;
+        builder.functions[function].body=body;
+    }
+    let entry=builder.references(&entry_name)?;
+    builder.cycles()?;
+    builder.types()?;
+    let canonical=canonical::program_bytes(doc,root).map_err(FrontendError::Environment)?;
+    let identity=sha256::digest(&canonical);
+    let nodes=builder.nodes.into_iter().enumerate().map(|(i,node)|{
+        let kind=match node.kind {RawKind::Ready(kind)=>kind,_=>unreachable!("complete reference phase")};
+        Node{id:(i+1) as NodeId,function:node.function,pointer:node.pointer,
+             ty:node.ty.expect("complete type phase visits every expression"),kind}
+    }).collect();
+    Ok(CheckedProgram{functions:builder.functions,nodes,entry,canonical,identity})
+}
+
+fn parsed(bytes: &[u8]) -> Result<Document,FrontendError> {
+    transport::parse(bytes).map_err(|e|Refusal::new(match e {TransportError::Bounds=>Reason::Bounds,TransportError::Json=>Reason::Json},"").into())
+}
+
+pub fn check_program_bytes(bytes: &[u8]) -> Result<CheckedProgram,FrontendError> {
+    let doc=parsed(bytes)?; program(&doc,doc.root)
+}
+
+pub fn check_invocation_bytes(bytes: &[u8]) -> Result<CheckedInvocation,FrontendError> {
+    let doc=parsed(bytes)?;
+    let envelope=exact(&doc,doc.root,&["schema","program","arguments"],"")?;
+    schema(&doc,envelope,"bagaev-probe-invocation/1","")?;
+    json_bounds(&doc,doc.root,132,16384,"")?;
+    let program=program(&doc,field(envelope,"program")).map_err(|e|match e {
+        FrontendError::Refusal(error)=>FrontendError::Refusal(error.prefix("/program")), other=>other,
+    })?;
+    let arguments=match &doc.values[field(envelope,"arguments")] {
+        Value::Array(items)=>items,
+        _=>return Err(Refusal::new(Reason::Argument,"/arguments").into()),
+    };
+    let params=program.functions[program.entry].parameters.as_slice();
+    if arguments.len()!=params.len() { return Err(Refusal::new(Reason::Argument,"/arguments").into()); }
+    let mut checked_arguments=Vec::new();
+    for (i,(&argument,parameter)) in arguments.iter().zip(params).enumerate() {
+        let scalar=match (parameter.ty,&doc.values[argument]) {
+            (Type::Int64,Value::Integer(n))=>n.parse::<i64>().ok().map(Scalar::Int64),
+            (Type::Bool,Value::Bool(b))=>Some(Scalar::Bool(*b)), _=>None,
+        }.ok_or_else(||Refusal::new(Reason::Argument,&index("/arguments",i)))?;
+        checked_arguments.push(scalar);
+    }
+    Ok(CheckedInvocation{program,arguments:checked_arguments})
+}

@@ -1,0 +1,99 @@
+{
+  "schema": "probe-context-manifest/1",
+  "contract": "probe-context/1",
+  "specification": "../../docs/probes.md",
+  "context_fields": ["schema", "axes", "snapshot", "sources", "obligations", "unknowns", "open_effects", "candidates", "candidate_set", "metadata"],
+  "axes": {
+    "semantic_ir_pairs": [["bagaev-l2/1", "bagaev-l2/1"], ["bagaev-probe-ir/1", "bagaev-probe-ir/1"]],
+    "form": "probe-forms/1",
+    "envelope": "probe-context/1",
+    "evidence": "probe-evidence/1"
+  },
+  "metadata_fields": ["representation", "model_profile", "codec"],
+  "representation": "canonical-json/1",
+  "model_and_codec_claims": "opaque; not attestation, mandatory compatibility or authority",
+  "record_fields": {
+    "source": ["id", "pin", "text"],
+    "obligation": ["id", "text", "refs", "pin"],
+    "unknown": ["id", "text", "refs"],
+    "open_effect": ["id", "text", "refs"],
+    "reference": ["source", "pin", "start", "end"],
+    "candidate": ["id", "kind", "state", "content", "pin"]
+  },
+  "limits": {
+    "context_bytes": 4194304,
+    "context_depth": 136,
+    "context_occurrences": 65536,
+    "sources_min": 1,
+    "sources_max": 16,
+    "source_text_bytes": 131072,
+    "source_text_aggregate_bytes": 1048576,
+    "obligations_min": 1,
+    "obligations_max": 32,
+    "unknowns_max": 32,
+    "open_effects_max": 16,
+    "references_max": 8,
+    "candidates_max": 16,
+    "candidate_content_bytes": 1048576,
+    "candidate_content_aggregate_bytes": 2097152,
+    "other_text_bytes": 4096
+  },
+  "pin_rules": {
+    "source": "B(UTF-8(text))",
+    "obligation": "H(record with pin omitted)",
+    "candidate": "H(content)",
+    "candidate_set": "H({schema:probe-candidate-set/1,candidates:[{id,kind,state,pin},...]})",
+    "snapshot": "H(complete checked semantic program)"
+  },
+  "candidate_kinds": ["program", "patch"],
+  "candidate_states": ["choice", "draft"],
+  "kernel_candidate_kinds": ["program"],
+  "candidate_mapping": "immutable sorted finite mapping; changed content/kind/state requires new context/set; refinement uses new ID",
+  "validation_phases": ["transport", "shape-version-bounds", "caller-expectations-baseline", "source-pins-required-sources-references", "obligation-pins-required-obligations", "candidate-pins-set-expected-map-semantics", "evidence-decision-response"],
+  "refusal_codes": ["CTX_BOUNDS", "CTX_JSON", "CTX_SHAPE", "CTX_VERSION", "CTX_MISSING", "CTX_STALE", "CTX_PIN", "CTX_REMAPPED", "CTX_UNSUPPORTED", "CTX_DRAFT", "CTX_ROLE", "CTX_NO_CHOICE"],
+  "expectation": {
+    "schema": "probe-expectation/1",
+    "fields": ["schema", "axes", "snapshot", "candidate_set", "sources", "obligations", "baseline"],
+    "record_fields": ["id", "pin"],
+    "sources_min": 1,
+    "sources_max": 16,
+    "obligations_min": 1,
+    "obligations_max": 32,
+    "bytes": 2097152,
+    "depth": 136,
+    "occurrences": 32768,
+    "execution_authority": false
+  },
+  "evidence": {
+    "schema": "probe-evidence/1",
+    "fields": ["schema", "context", "snapshot", "records"],
+    "record_fields": ["id", "subject", "obligations", "result", "source"],
+    "results": ["supported", "negative", "indeterminate", "not-run"],
+    "records_max": 32,
+    "bytes": 262144,
+    "depth": 16,
+    "occurrences": 4096
+  },
+  "decision": {
+    "schema": "probe-decision/1",
+    "fields": ["schema", "context", "snapshot", "candidate_set", "role", "target", "intent"],
+    "supported_roles": ["generate", "refine", "select"],
+    "unsupported_roles": ["rank", "solve"],
+    "bytes": 65536,
+    "depth": 8,
+    "occurrences": 64
+  },
+  "response": {
+    "schema": "probe-response/1",
+    "fields": ["schema", "request", "context", "snapshot", "candidate_set", "role", "outcome", "candidate_id", "content", "content_pin", "code"],
+    "outcomes": ["draft", "choice", "abstain", "no-choice", "refused"],
+    "bytes": 2097152,
+    "depth": 136,
+    "occurrences": 32768,
+    "content_bytes": 1048576,
+    "admission": false
+  },
+  "effects": {"model_calls": false, "network": false, "credentials": false, "provider_endpoint": false, "budget_allocation": false, "automatic_admission": false, "external_effect_replay": false},
+  "accounting": ["raw-and-canonical-source-bytes", "candidate-map-bytes", "context-bytes", "request-bytes", "response-bytes", "evidence-bytes", "edit-bytes", "all-repeated-and-failed-frames"],
+  "expected_values": "independent oracle; not supplied by this manifest"
+}
