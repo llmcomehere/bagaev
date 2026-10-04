@@ -57,4 +57,27 @@ The raw invalid-UTF-8 case is retained as bytes.
 
 This initial 589-case scope covers nested index shifts and the 512-node boundary.
 It does not define a full source-runtime result API or argument-slot translation.
-No implementation or native execution is claimed by this contract publication.
+The original contract publication made no implementation or native execution claim.
+
+## Implementation and bounded observations
+
+The [Rust source module](../examples/probes/backend/rust/typed_source.rs) now
+provides `project_node(source_bytes, expected_lowered_pin, node_u16)`. The
+[explicit-file CLI](../examples/probes/backend/rust/typed_main.rs) accepts
+`project-node --input FILE --lowered-pin PIN --node U16`. CLI node spelling is
+canonical unsigned decimal; negative, signed-plus, leading-zero and >65535
+arguments fail the CLI boundary. Do not narrow an argument-slot tag into a node ID.
+
+All 589 frozen wires matched, and all 43 earlier source-check wires still matched
+with the extended binary. Four CLI numeric-domain controls refused with nonzero
+exit and no stdout. Compilation with Rust 1.93.0 and `-D warnings` passed. The
+[pinned fixture runner](../tests/probes/typed_source_location_contract.py) requires
+an explicit binary and new output directory inside an authorized bounded profile.
+
+The [observations](../examples/probes/typed-source-location-observations.json)
+also include 72 mappings of already captured overflow/work-limit ABI failures
+from the earlier native composition run. Those repeat six failing kernel stages
+across backends, modes and prefills. Their source/lowered identities and expected
+origin records were checked; no new native program ran for this mapping test.
+This still does not authenticate arbitrary supplied runtime evidence. Review
+was a separate same-maintainer pass.
