@@ -59,3 +59,14 @@ methods in separate bounded processes. Review was a separate same-maintainer
 pass, not independent review. Full mutation acceptance, direct semantic-step
 accounting, model observations and comparative cost/performance measurements
 remain open. These checks do not close PB0 or establish production readiness.
+
+## Concrete mutation observations
+
+A subsequent bounded experiment detected ten concrete source edits matching
+the ten named context mutation obligations. The [result and exact edits](../examples/probes/context-mutation-results.json)
+record each unmodified witness match and changed observation. The same
+native-checked single baseline was used. Exact later-refusal differences count
+as detections; a mutation need not reach a successful wrong choice to be caught.
+The unsupported-role edit omits its refusal gate but never calls a real model.
+This is evidence about these ten edits, not all possible mutations, a generic
+host adapter or a model/provider capability.

@@ -58,11 +58,12 @@ forms: 126 value/error/pin observations, including shallow borrowed inputs,
 short circuit, L2 work limits, quadratic charges, field order, stale pins,
 references and cycles. Expectations and identity pins come from the existing
 oracle, not from a candidate evaluator. Shared SHA identities and program data
-are preserved. These tests do not directly observe the semantic step counter,
-complete edit traces, tokenizer cost, model behavior, or native/L3 parity.
+are preserved. The original codec tests did not directly observe the semantic step counter.
+The additional step observations below do not measure tokenizer cost, model
+behavior or native/L3 parity.
 
-The modules remain experimental. Broader model/representation measurements,
-semantic-step observations and full 57-case/16-mutation form acceptance remain open.
+The modules remain experimental. Broader model/representation measurements
+and acceptance outside the bounded observations below remain open.
 
 ## Recorded local checks
 
@@ -101,5 +102,35 @@ trace/form observations: all 15 edit cases in three forms plus both ordered
 after-stages of the CAS case. Extra checks cover candidate binding before CAS,
 original-first validation, syntax/field priority, surrogate escape boundaries,
 root-string non-reinterpretation and detached ownership. These results do not
-complete the mutation protocol, observe semantic step counts or establish model
-performance or cost. Checking used a separate same-maintainer pass.
+complete the mutation protocol or establish model performance or cost. Checking used a separate same-maintainer pass.
+
+## Direct semantic-charge observations
+
+An additional test on October 4, 2026 observed the existing evaluator's nested
+charge counter without changing its source or semantics. All 99 observations
+matched frozen literals: 33 cases across the three source forms. This includes
+the successful 95,267-step case, the first forbidden step at 100,001, and the
+quadratic-charge refusal at attempted work 131,076. Values and errors were also
+checked against the frozen oracle. The codec suite now has 13 passing methods.
+
+The process-local Python trace is restricted to the exact nested charge code
+object and reads only its numeric step total. It restores the previous trace
+after each evaluation. Tracing adds overhead: these are semantic work-counter
+observations, not wall-clock timings or comparative performance measurements.
+These observations do not establish model benefit or comparative cost.
+
+## Concrete mutation observations
+
+The [recorded source edits and observations](../examples/probes/form-mutation-results.json)
+cover all 16 named frozen form mutation obligations. Each declared witness
+detected its concrete source edit in all three forms. Both unmodified witness
+suites passed first. Only an assertion mismatch on the declared witness or its
+declared wrong L2 semantic error counted; unrelated interpreter exceptions did
+not qualify. The JSON records exact old/new source edits and source identities.
+
+These results cover the 57 frozen form cases, their specified ordered edit
+after-stages, the 99 counter observations above and 16 concrete source edits in
+the documented CPython profile. They are not a proof against arbitrary mutations,
+an independently reviewed release, a model/tokenizer study or native L2 parity.
+The experiment's initial recorder handling and early-base recipe correction are
+retained in the result metadata; frozen inputs and expectations did not change.

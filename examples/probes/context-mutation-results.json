@@ -1,0 +1,375 @@
+{
+  "schema": "bounded-context-mutation-observations/1",
+  "source_sha256": "2c045ee96a23c957f8bb6d585d4e2913b85d40f6c81d38a58c9b23bc6f037a12",
+  "oracle_sha256": "090d64ba08ca17d9f61f4a8bf7b91dda0a827ee6c6fb71b49764d49cdc5c1661",
+  "rows": [
+    {
+      "id": "CM-AXIS",
+      "witness": "C-UNKNOWN-AXIS",
+      "baseline_matches": true,
+      "detected": true,
+      "mutant_sha256": "b1784246a8c4fca52c961d4fa66d8b62f310490c6a4e7e613ff846ac57fefd87",
+      "observed": {
+        "code": "CTX_STALE",
+        "location": "/axes/evidence",
+        "choice": null
+      }
+    },
+    {
+      "id": "CM-LATEST",
+      "witness": "C-STALE-SNAPSHOT",
+      "baseline_matches": true,
+      "detected": true,
+      "mutant_sha256": "722194ebdeef2340e682e2c999b8edf3bf0ea824a22d4f86796f51320d97a069",
+      "observed": {
+        "code": "CTX_STALE",
+        "location": "/context",
+        "choice": null
+      }
+    },
+    {
+      "id": "CM-FETCH",
+      "witness": "C-MISSING-SOURCE",
+      "baseline_matches": true,
+      "detected": true,
+      "mutant_sha256": "6e5682c0bd46e4d9a8b9bb0835dccf08bc94f04a04c86744648ac3b9a4129cb3",
+      "observed": {
+        "events": [
+          {
+            "phase": "context",
+            "status": "valid",
+            "snapshot": "sha256:fb0a3a528338c01535de4a16bb52a4375e7c873373d67ffa9b55feb411be05ac",
+            "candidate_set": "sha256:40d30074faf75105f7279c479c944b7cfb0aa892fa25e293bb5c6f6334810761"
+          },
+          {
+            "phase": "evidence",
+            "status": "applicable",
+            "records": [
+              {
+                "id": "ev",
+                "result": "supported",
+                "subject": "sha256:fb0a3a528338c01535de4a16bb52a4375e7c873373d67ffa9b55feb411be05ac",
+                "obligations": [
+                  "o"
+                ]
+              }
+            ]
+          },
+          {
+            "phase": "response",
+            "outcome": "choice",
+            "candidate_id": "choice",
+            "admission": false,
+            "content_pin": "sha256:fb0a3a528338c01535de4a16bb52a4375e7c873373d67ffa9b55feb411be05ac"
+          }
+        ],
+        "unknowns": [
+          "u"
+        ],
+        "open_effects": [
+          "e"
+        ]
+      }
+    },
+    {
+      "id": "CM-SUMMARY",
+      "witness": "C-MISSING-OBLIGATION",
+      "baseline_matches": true,
+      "detected": true,
+      "mutant_sha256": "e267239cdf721b2cad65a87efe37d9092cbb1080ebe00637cbf2aaa643da65a7",
+      "observed": {
+        "events": [
+          {
+            "phase": "context",
+            "status": "valid",
+            "snapshot": "sha256:fb0a3a528338c01535de4a16bb52a4375e7c873373d67ffa9b55feb411be05ac",
+            "candidate_set": "sha256:40d30074faf75105f7279c479c944b7cfb0aa892fa25e293bb5c6f6334810761"
+          },
+          {
+            "phase": "evidence",
+            "status": "applicable",
+            "records": [
+              {
+                "id": "ev",
+                "result": "supported",
+                "subject": "sha256:fb0a3a528338c01535de4a16bb52a4375e7c873373d67ffa9b55feb411be05ac",
+                "obligations": [
+                  "o"
+                ]
+              }
+            ]
+          },
+          {
+            "phase": "response",
+            "outcome": "choice",
+            "candidate_id": "choice",
+            "admission": false,
+            "content_pin": "sha256:fb0a3a528338c01535de4a16bb52a4375e7c873373d67ffa9b55feb411be05ac"
+          }
+        ],
+        "unknowns": [
+          "u"
+        ],
+        "open_effects": [
+          "e"
+        ]
+      }
+    },
+    {
+      "id": "CM-MAP",
+      "witness": "C-REMAPPED",
+      "baseline_matches": true,
+      "detected": true,
+      "mutant_sha256": "532f01c7e5fb32141d3a849856d4fa162f853f2d6c174ada1e9644103626a493",
+      "observed": {
+        "code": "CTX_STALE",
+        "location": "/context",
+        "choice": null
+      }
+    },
+    {
+      "id": "CM-EVIDENCE",
+      "witness": "C-EVIDENCE-STALE",
+      "baseline_matches": true,
+      "detected": true,
+      "mutant_sha256": "e572626f5740ddd7404b4e06a6b6878d34251da63e6152dc9c46f6f16281808e",
+      "observed": {
+        "events": [
+          {
+            "phase": "context",
+            "status": "valid",
+            "snapshot": "sha256:fb0a3a528338c01535de4a16bb52a4375e7c873373d67ffa9b55feb411be05ac",
+            "candidate_set": "sha256:40d30074faf75105f7279c479c944b7cfb0aa892fa25e293bb5c6f6334810761"
+          },
+          {
+            "phase": "evidence",
+            "status": "applicable",
+            "records": [
+              {
+                "id": "ev",
+                "result": "supported",
+                "subject": "sha256:fb0a3a528338c01535de4a16bb52a4375e7c873373d67ffa9b55feb411be05ac",
+                "obligations": [
+                  "o"
+                ]
+              }
+            ]
+          },
+          {
+            "phase": "response",
+            "outcome": "choice",
+            "candidate_id": "choice",
+            "admission": false,
+            "content_pin": "sha256:fb0a3a528338c01535de4a16bb52a4375e7c873373d67ffa9b55feb411be05ac"
+          }
+        ],
+        "unknowns": [
+          "u"
+        ],
+        "open_effects": [
+          "e"
+        ]
+      }
+    },
+    {
+      "id": "CM-ABSENT",
+      "witness": "C-NO-EVIDENCE",
+      "baseline_matches": true,
+      "detected": true,
+      "mutant_sha256": "a6a8047cd88adfd1eb5e3c4b2eab7e6f49c0d16a5d0940f66bbbf665343f6cea",
+      "observed": {
+        "events": [
+          {
+            "phase": "context",
+            "status": "valid",
+            "snapshot": "sha256:fb0a3a528338c01535de4a16bb52a4375e7c873373d67ffa9b55feb411be05ac",
+            "candidate_set": "sha256:40d30074faf75105f7279c479c944b7cfb0aa892fa25e293bb5c6f6334810761"
+          },
+          {
+            "phase": "evidence",
+            "status": "supported",
+            "records": []
+          },
+          {
+            "phase": "response",
+            "outcome": "choice",
+            "candidate_id": "choice",
+            "admission": false,
+            "content_pin": "sha256:fb0a3a528338c01535de4a16bb52a4375e7c873373d67ffa9b55feb411be05ac"
+          }
+        ],
+        "unknowns": [
+          "u"
+        ],
+        "open_effects": [
+          "e"
+        ]
+      }
+    },
+    {
+      "id": "CM-AUTOMODEL",
+      "witness": "C-RANK",
+      "baseline_matches": true,
+      "detected": true,
+      "mutant_sha256": "bd73d12d7f69c613ad20496121317b8f10d38843082679be12e322c2b5003a0c",
+      "observed": {
+        "code": "CTX_STALE",
+        "location": "/request",
+        "choice": null
+      }
+    },
+    {
+      "id": "CM-DRAFT-ADMIT",
+      "witness": "C-DRAFTS",
+      "baseline_matches": true,
+      "detected": true,
+      "mutant_sha256": "b08067229a6818d627f0866fbc124660ad6f3214722e088472f4b05f5d912903",
+      "observed": {
+        "events": [
+          {
+            "outcome": "draft",
+            "candidate_id": null,
+            "admission": true,
+            "content": {},
+            "content_pin": "sha256:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+          },
+          {
+            "outcome": "draft",
+            "candidate_id": null,
+            "admission": true,
+            "content": {
+              "note": "new draft"
+            },
+            "content_pin": "sha256:1c102a6c38a383920b904bfb72966b1670966e1c47e88e412e23f06e87b90635"
+          }
+        ],
+        "old_map": "sha256:40d30074faf75105f7279c479c944b7cfb0aa892fa25e293bb5c6f6334810761",
+        "unknowns": [
+          "u"
+        ],
+        "open_effects": [
+          "e"
+        ]
+      }
+    },
+    {
+      "id": "CM-DRAFT-CHOICE",
+      "witness": "C-SELECT-DRAFT",
+      "baseline_matches": true,
+      "detected": true,
+      "mutant_sha256": "8758d0a91cae5331259d914f814cb72478c93490bf11107f080d84cafb27edae",
+      "observed": {
+        "events": [
+          {
+            "phase": "context",
+            "status": "valid",
+            "snapshot": "sha256:fb0a3a528338c01535de4a16bb52a4375e7c873373d67ffa9b55feb411be05ac",
+            "candidate_set": "sha256:40d30074faf75105f7279c479c944b7cfb0aa892fa25e293bb5c6f6334810761"
+          },
+          {
+            "phase": "evidence",
+            "status": "applicable",
+            "records": [
+              {
+                "id": "ev",
+                "result": "supported",
+                "subject": "sha256:fb0a3a528338c01535de4a16bb52a4375e7c873373d67ffa9b55feb411be05ac",
+                "obligations": [
+                  "o"
+                ]
+              }
+            ]
+          },
+          {
+            "phase": "response",
+            "outcome": "choice",
+            "candidate_id": "draft",
+            "admission": false,
+            "content_pin": "sha256:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+          }
+        ],
+        "unknowns": [
+          "u"
+        ],
+        "open_effects": [
+          "e"
+        ]
+      }
+    }
+  ],
+  "limitations": "Ten concrete source edits detected by exact witness comparison. No real model fallback executed. Later refusal differences count as detections; not a proof of all possible mutations, host adapters, production isolation or model benefit.",
+  "date": "2026-10-04",
+  "review": "separate same-maintainer pass, not independent review",
+  "recipes": [
+    {
+      "id": "CM-AXIS",
+      "module": "bagaev_probe_context",
+      "old": "_need(value[key]==name,'CTX_VERSION',path+'/'+key)",
+      "new": "pass # deliberately ignore mandatory axis version",
+      "replacements": 1
+    },
+    {
+      "id": "CM-LATEST",
+      "module": "bagaev_probe_context",
+      "old": "_need(expected['snapshot']==snapshot and context['snapshot']==snapshot,'CTX_STALE','/snapshot')",
+      "new": "pass # deliberately omit snapshot binding",
+      "replacements": 1
+    },
+    {
+      "id": "CM-FETCH",
+      "module": "bagaev_probe_context",
+      "old": "for row in expected['sources']:",
+      "new": "for row in [r for r in expected['sources'] if r['id'] in sources]:",
+      "replacements": 1
+    },
+    {
+      "id": "CM-SUMMARY",
+      "module": "bagaev_probe_context",
+      "old": "for row in expected['obligations']:",
+      "new": "for row in [r for r in expected['obligations'] if r['id'] in obligations]:",
+      "replacements": 1
+    },
+    {
+      "id": "CM-MAP",
+      "module": "bagaev_probe_context",
+      "old": "_need(expected['candidate_set']==context['candidate_set'],'CTX_REMAPPED','/candidate_set')",
+      "new": "pass # deliberately trust packet mapping",
+      "replacements": 1
+    },
+    {
+      "id": "CM-EVIDENCE",
+      "module": "bagaev_probe_context",
+      "old": "_need(value['context']==_hash(context),'CTX_STALE','/context')",
+      "new": "pass # deliberately ignore evidence context binding",
+      "replacements": 1
+    },
+    {
+      "id": "CM-ABSENT",
+      "module": "bagaev_probe_context",
+      "old": "if source is None:return {'phase':'evidence','status':'absent','records':[]}",
+      "new": "if source is None:return {'phase':'evidence','status':'supported','records':[]}",
+      "replacements": 1
+    },
+    {
+      "id": "CM-AUTOMODEL",
+      "module": "bagaev_probe_context",
+      "old": "_need(value['role'] not in ('rank','solve'),'CTX_UNSUPPORTED','/role')",
+      "new": "pass # deliberately treat unsupported role as supported; no real model call",
+      "replacements": 1
+    },
+    {
+      "id": "CM-DRAFT-ADMIT",
+      "module": "bagaev_probe_context",
+      "old": "event.update({'content':copy.deepcopy(value['content']),'content_pin':value['content_pin']})",
+      "new": "event.update({'content':copy.deepcopy(value['content']),'content_pin':value['content_pin'],'admission':True})",
+      "replacements": 1
+    },
+    {
+      "id": "CM-DRAFT-CHOICE",
+      "module": "bagaev_probe_context",
+      "old": "_need(selected['state']=='choice','CTX_DRAFT','/candidate_id')",
+      "new": "pass # deliberately select a draft",
+      "replacements": 1
+    }
+  ]
+}
