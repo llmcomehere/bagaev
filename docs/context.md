@@ -61,6 +61,13 @@ execution authority. Operational evidence stays outside the repository; a
 contributor needs no private evidence path to navigate the sources. Reading a
 link or finding a helper here never authorizes running it.
 
+## Experimental exact source forms
+
+The [probe form codec guide](probe-forms.md) describes JSON, S-expression and
+restricted familiar constructors for the unchanged L2 semantics. The pure
+[codec module](../src/bagaev_forms.py) and [tests](../tests/test_forms.py) are
+an implementation slice, not an edit-frame receiver or completed form/model study.
+
 ## Routes
 
 1. **Entry, status, or planned beta:** read [README](../README.md) and
