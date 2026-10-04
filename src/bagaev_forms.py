@@ -58,10 +58,10 @@ def _integer(token):
 def _number(token):
     return float(token) if any(c in token for c in '.eE') else _integer(token)
 
-def _json_exact(source):
+def _json_exact(source, *, text_limit=True):
     # First retain the existing JSON transport/error-priority gate. Its integer
     # representatives are sufficient for L2 checking but not a lossless codec.
-    value = l2._parse(source)
+    value = l2._parse(source, text_limit=text_limit)
     text = source.decode('utf-8') if type(source) is bytes else source
     if re.search(r'[0-9]{21}', text) is None:
         return value
@@ -257,11 +257,11 @@ def decode(source, form='json', *, mode='program'):
         return _json_exact(source)
     return _Reader(_text(source), form, mode).read()
 
-def _quote(value):
+def _quote(value, *, integer_byte_limit=BYTE_LIMIT):
     # Valid Unicode scalars use canonical JSON; isolated surrogate code units
     # stay escaped for the unchanged L2 semantic checker to reject in context.
     if type(value) is int:
-        _need(value.bit_length() <= BYTE_LIMIT * 4, 'FORM_BOUNDS')
+        _need(value.bit_length() <= integer_byte_limit * 4, 'FORM_BOUNDS')
         def decimal(n):
             if n.bit_length() <= 3300:
                 return str(n)

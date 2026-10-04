@@ -59,6 +59,11 @@ untrusted code. No model account is needed for this example.
 
 ## What exists today
 
+- **Experimental portable context:** the [bounded context receiver](docs/probe-context.md)
+  checks pinned sources, obligations, choices and separate exchange frames.
+  It preserves unknowns and never grants admission; kernel checking remains an
+  explicit trusted host dependency. The 23 frozen cases passed within the
+  documented single-baseline integration, not full context/model acceptance.
 - **Experimental exact forms:** [JSON, S-expression and familiar-code codecs](docs/probe-forms.md)
   reconstruct unchanged L2 programs. The initial slice passed 126 frozen
   non-edit form observations. A pure edit receiver also passed 51 frozen
