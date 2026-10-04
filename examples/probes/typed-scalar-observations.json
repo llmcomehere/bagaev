@@ -1,0 +1,451 @@
+{
+  "schema": "typed-scalar-source-observations/1",
+  "date": "2026-10-04",
+  "status": "PASS",
+  "rust": "1.93.0",
+  "fixture_sha256": {
+    "typed-scalar-literals.json": "ddce2932ebb57508ea8754bb26c368bb1a6871cb28291742ce61f60bf4461c41",
+    "typed-scalar-boundaries.json": "224010f1c45a1ea442969d6abc1c1697d86c773a96e21a5e0d5b165ab1603960"
+  },
+  "source_sha256": {
+    "typed_source.rs": "87033351422c090aded54c40ddac63c1007a37be29503a481ce4b7873098f141",
+    "typed_main.rs": "3bcaefaa12dc0e16c5e424e6ce6846e2c07da039b745c9e018fd14f7b7fd0cb2",
+    "check.rs": "6421f2b9ad290099b747580c6d63f18f216f9dd8ed4043ab8f1e5e41abfeb0dc",
+    "transport.rs": "bc968e3734e5c2bb58d7de69c2af93fd81f43a6ee43fd8784c24af3ad16ca8d2",
+    "canonical.rs": "f91a885f247e64ba02495cc0750b46ff78e8753723c9f87e105b235b3f72900d",
+    "ir.rs": "d58dd8a6d1ee83fdbb037e724d55697fad77a615d03c7c9185f331304c7cf009",
+    "sha256.rs": "c350e08ec41a4fb29e2871e6a0194b1905538c77adc878d68fd5a8cd6dec4324"
+  },
+  "binary_sha256": "f4beeb14f0a7868374f5504bdbd448465269f6c03b7f8c9237d29cd49c29f9aa",
+  "observations": [
+    {
+      "id": "S-INT",
+      "exit": 0,
+      "exact_wire_match": true,
+      "input_sha256": "f4dfb112ce6d3fc54f02698667c9687f2fee434d86b6f3f5d4565101f39347b8",
+      "expected_sha256": "acd050de9ae982123370fc1ebb87c52ddc0afe8f3a8ee03e04ffc6b2ce1edc91",
+      "actual_sha256": "acd050de9ae982123370fc1ebb87c52ddc0afe8f3a8ee03e04ffc6b2ce1edc91",
+      "stderr": ""
+    },
+    {
+      "id": "S-BOOL",
+      "exit": 0,
+      "exact_wire_match": true,
+      "input_sha256": "ab2021e0da42b24fe62804f746cc344417143674ecaeb19d5cf451ab0f416253",
+      "expected_sha256": "82c8fd89303e3a3b025204a2ca1b67f5e213601f7aaa01e6cff3651c57948101",
+      "actual_sha256": "82c8fd89303e3a3b025204a2ca1b67f5e213601f7aaa01e6cff3651c57948101",
+      "stderr": ""
+    },
+    {
+      "id": "S-LOCAL-INT",
+      "exit": 0,
+      "exact_wire_match": true,
+      "input_sha256": "b082762ee62cb3b2d4adf668c1e1b11ad4d10f8ea0075467fca729dc40a45949",
+      "expected_sha256": "55367d9758e778a7f2ac64c9216ddfff2b78a80adf61e793d4f93ff314bc97a6",
+      "actual_sha256": "55367d9758e778a7f2ac64c9216ddfff2b78a80adf61e793d4f93ff314bc97a6",
+      "stderr": ""
+    },
+    {
+      "id": "S-LOCAL-BOOL",
+      "exit": 0,
+      "exact_wire_match": true,
+      "input_sha256": "307284ee9d0c3a1414ee9e3a3a8c8c1a0086de290f3609f4ef7d375ca162c87c",
+      "expected_sha256": "4038922f9dc6fb1d9352bceacd72354667b154b7a21ef95285b96e6e6a2e0de2",
+      "actual_sha256": "4038922f9dc6fb1d9352bceacd72354667b154b7a21ef95285b96e6e6a2e0de2",
+      "stderr": ""
+    },
+    {
+      "id": "S-NESTED",
+      "exit": 0,
+      "exact_wire_match": true,
+      "input_sha256": "8fe6e81e71675780b5b2bd10290b09c8c353baaff5f7a80b227320b9f5ccb343",
+      "expected_sha256": "4250cb69b4516e49baaf9eb8e0b1a43208f72cd446dedac2d7ed2cf64a22e8bc",
+      "actual_sha256": "4250cb69b4516e49baaf9eb8e0b1a43208f72cd446dedac2d7ed2cf64a22e8bc",
+      "stderr": ""
+    },
+    {
+      "id": "S-LOOP-INT",
+      "exit": 0,
+      "exact_wire_match": true,
+      "input_sha256": "0abaa2b7c9382eca13c5f1283c122f09c3d59a470eae93359b6c4d364e7a3161",
+      "expected_sha256": "621c63f406ce3af62382e9a9dd10628d924e38b22a98003cae7b0a7703ea9900",
+      "actual_sha256": "621c63f406ce3af62382e9a9dd10628d924e38b22a98003cae7b0a7703ea9900",
+      "stderr": ""
+    },
+    {
+      "id": "S-LOOP-BOOL",
+      "exit": 0,
+      "exact_wire_match": true,
+      "input_sha256": "30c6634c7ef68f6d351307e51ed1357afa456040d7f3d47a2901ee8c3475d716",
+      "expected_sha256": "259f009fb6049116b6e3f6fd115a62555945f0d0fe9f649517814fbd8107ef22",
+      "actual_sha256": "259f009fb6049116b6e3f6fd115a62555945f0d0fe9f649517814fbd8107ef22",
+      "stderr": ""
+    },
+    {
+      "id": "S-PARAM",
+      "exit": 0,
+      "exact_wire_match": true,
+      "input_sha256": "ab61f67c79c5638860d4ec9fb678558d4ea394f3bb829591c273e89eed2cff0d",
+      "expected_sha256": "9643aa32076cc02dc666b360a2f6fdc05fb7f63f07ac42b71cefad10766268cd",
+      "actual_sha256": "9643aa32076cc02dc666b360a2f6fdc05fb7f63f07ac42b71cefad10766268cd",
+      "stderr": ""
+    },
+    {
+      "id": "S-LAZY-OVERFLOW",
+      "exit": 0,
+      "exact_wire_match": true,
+      "input_sha256": "df0860da44d755be92b874a24f1834acffb3644a51732330c7e2d7cce7741b9c",
+      "expected_sha256": "ec38f722d1ffb9b9320f16a278220f3fe4e04b487908354f3cbabd78231c281f",
+      "actual_sha256": "ec38f722d1ffb9b9320f16a278220f3fe4e04b487908354f3cbabd78231c281f",
+      "stderr": ""
+    },
+    {
+      "id": "F-VERSION",
+      "exit": 0,
+      "exact_wire_match": true,
+      "input_sha256": "5a889dd6fb854cedf59962578af308f2ddae2271c94a899e5fe7c8b9f49e9d40",
+      "expected_sha256": "364cc137b4f5f15d738e01f7c2006dbcb1e7fde1e10b828ad70822b5da7aa799",
+      "actual_sha256": "364cc137b4f5f15d738e01f7c2006dbcb1e7fde1e10b828ad70822b5da7aa799",
+      "stderr": ""
+    },
+    {
+      "id": "F-EXTRA",
+      "exit": 0,
+      "exact_wire_match": true,
+      "input_sha256": "0437fa8ed58ba416d0858da8467c65fd782323ad6a673a17141c54b3222e5e7f",
+      "expected_sha256": "1ff562b3e78134f5cccf0a936bf2255ac2761733d04417509d2a0a5347e81eb6",
+      "actual_sha256": "1ff562b3e78134f5cccf0a936bf2255ac2761733d04417509d2a0a5347e81eb6",
+      "stderr": ""
+    },
+    {
+      "id": "F-OLD-ANNOTATION",
+      "exit": 0,
+      "exact_wire_match": true,
+      "input_sha256": "868ae0e5573bf41ad13f471d826816c87e233af4b98ff17f1a1696929442d09f",
+      "expected_sha256": "043b1554e8ad9ef4ca77d8bccac997b9b0da68614ca3e87af7031d60ebc2d956",
+      "actual_sha256": "043b1554e8ad9ef4ca77d8bccac997b9b0da68614ca3e87af7031d60ebc2d956",
+      "stderr": ""
+    },
+    {
+      "id": "F-SHADOW",
+      "exit": 0,
+      "exact_wire_match": true,
+      "input_sha256": "adbf92156a442dbaf584b61325d2e9a40272f2b4e1ceb2f8bd5f048bc01adcbf",
+      "expected_sha256": "5006b0c1371324bbb2983ba8181b1221f2fe5a5aa73c4c27794307ea23386b15",
+      "actual_sha256": "5006b0c1371324bbb2983ba8181b1221f2fe5a5aa73c4c27794307ea23386b15",
+      "stderr": ""
+    },
+    {
+      "id": "F-LOOP-DUP",
+      "exit": 0,
+      "exact_wire_match": true,
+      "input_sha256": "8ca5398d59c7f54b0dd313d5e0edc790e658116f18155b97e0c28bca9d78aafc",
+      "expected_sha256": "2ebffa2d31907b2cb7cdf38124c9a4475714a380622e494f126658dc3e0954f7",
+      "actual_sha256": "2ebffa2d31907b2cb7cdf38124c9a4475714a380622e494f126658dc3e0954f7",
+      "stderr": ""
+    },
+    {
+      "id": "F-COUNT",
+      "exit": 0,
+      "exact_wire_match": true,
+      "input_sha256": "25e6525e5b98f964ee3a557d457127db28bfa0e870dbaad32b284ff0af185bba",
+      "expected_sha256": "4fd1c5530c061d4c70c421bc7d80e37905ea9f90c98aa8f6503c105b3f3b6814",
+      "actual_sha256": "4fd1c5530c061d4c70c421bc7d80e37905ea9f90c98aa8f6503c105b3f3b6814",
+      "stderr": ""
+    },
+    {
+      "id": "F-INT-BOUND",
+      "exit": 0,
+      "exact_wire_match": true,
+      "input_sha256": "fd0e780c0f08d36f9bc4d79bfabffe5e2d45e91fa2e48c3b4e29517da33e7318",
+      "expected_sha256": "4fd1c5530c061d4c70c421bc7d80e37905ea9f90c98aa8f6503c105b3f3b6814",
+      "actual_sha256": "4fd1c5530c061d4c70c421bc7d80e37905ea9f90c98aa8f6503c105b3f3b6814",
+      "stderr": ""
+    },
+    {
+      "id": "F-SELF-BINDING",
+      "exit": 0,
+      "exact_wire_match": true,
+      "input_sha256": "12bd2a4a0e51b4a446137a368ff12e02cd5c7d8a0e4dd9ebab643e586839104f",
+      "expected_sha256": "ea021f15dab12e93fe179c4f95b802750074335a39fedae34907ecfd43fb7be6",
+      "actual_sha256": "ea021f15dab12e93fe179c4f95b802750074335a39fedae34907ecfd43fb7be6",
+      "stderr": ""
+    },
+    {
+      "id": "F-ARG-IS-NOT-LOCAL",
+      "exit": 0,
+      "exact_wire_match": true,
+      "input_sha256": "342d00e0acb9553817b86e8a8837ce7c881af6cdc7291aaa147746848549c0c0",
+      "expected_sha256": "d1b8e14b6dba53272dd043bb729aba27322b784b87ebce180d59ccac6c8d6cad",
+      "actual_sha256": "d1b8e14b6dba53272dd043bb729aba27322b784b87ebce180d59ccac6c8d6cad",
+      "stderr": ""
+    },
+    {
+      "id": "F-LOOP-INITIAL-SCOPE",
+      "exit": 0,
+      "exact_wire_match": true,
+      "input_sha256": "2ddaab52b1473d9a71b0464d207b879e980dffa38cfcc54a96019fc9afa94d41",
+      "expected_sha256": "dd3f9ad065082da9362d283e1213889eb06355402bc432ca51afbe8048b7a193",
+      "actual_sha256": "dd3f9ad065082da9362d283e1213889eb06355402bc432ca51afbe8048b7a193",
+      "stderr": ""
+    },
+    {
+      "id": "F-LOOP-BODY-TYPE",
+      "exit": 0,
+      "exact_wire_match": true,
+      "input_sha256": "eed6accbefe1094ea2da7da8c8f22e236053465aa02b6f18e9b5befd60d14325",
+      "expected_sha256": "71567b21b7b7882a8979a19daf8d405a69e0976d35591ecdd109837dada42902",
+      "actual_sha256": "71567b21b7b7882a8979a19daf8d405a69e0976d35591ecdd109837dada42902",
+      "stderr": ""
+    },
+    {
+      "id": "F-RETURN-TYPE",
+      "exit": 0,
+      "exact_wire_match": true,
+      "input_sha256": "695475b7b0e3434a5b6f775c9477647baf9d1573dd6605ae77942c617182d4a4",
+      "expected_sha256": "7d1e938dc09e9d16824d2c5992131688df41d61a4510a0704d1f5e891b09d401",
+      "actual_sha256": "7d1e938dc09e9d16824d2c5992131688df41d61a4510a0704d1f5e891b09d401",
+      "stderr": ""
+    },
+    {
+      "id": "F-LEFT-TYPE-FIRST",
+      "exit": 0,
+      "exact_wire_match": true,
+      "input_sha256": "066e2342401aa9fd8ab0d2e321f9f7f4e0400b0a18b4084f9dc9212651bc3b66",
+      "expected_sha256": "d934dd48a5f26463070f54c8fc68371a63c21de174285f3a100196f74ffea7ea",
+      "actual_sha256": "d934dd48a5f26463070f54c8fc68371a63c21de174285f3a100196f74ffea7ea",
+      "stderr": ""
+    },
+    {
+      "id": "F-UNTAKEN-TYPE",
+      "exit": 0,
+      "exact_wire_match": true,
+      "input_sha256": "cf3bd96976b69f0d8cb59804cbd31b0551ee6e9567c816210dc53dbffcd3a9d8",
+      "expected_sha256": "0a8551cd16d40c9441a81bc9c8bb98565795575e51fbe500bf1fb5a4723a2a56",
+      "actual_sha256": "0a8551cd16d40c9441a81bc9c8bb98565795575e51fbe500bf1fb5a4723a2a56",
+      "stderr": ""
+    },
+    {
+      "id": "F-SHAPE-BEFORE-REFERENCE",
+      "exit": 0,
+      "exact_wire_match": true,
+      "input_sha256": "9878a22437600b0cd47a53daedb7a31ff271f7eb48a143917c3c74ac87177524",
+      "expected_sha256": "620f914009fd9411d839658b2a02ef3d779dddc9f94091dd70be51edf906a1dc",
+      "actual_sha256": "620f914009fd9411d839658b2a02ef3d779dddc9f94091dd70be51edf906a1dc",
+      "stderr": ""
+    },
+    {
+      "id": "F-REFERENCE-BEFORE-TYPE",
+      "exit": 0,
+      "exact_wire_match": true,
+      "input_sha256": "0772f657c137d4d1214fd2c8a544148d70cd12fd71fee23e011feda171297649",
+      "expected_sha256": "ea021f15dab12e93fe179c4f95b802750074335a39fedae34907ecfd43fb7be6",
+      "actual_sha256": "ea021f15dab12e93fe179c4f95b802750074335a39fedae34907ecfd43fb7be6",
+      "stderr": ""
+    },
+    {
+      "id": "F-CYCLE",
+      "exit": 0,
+      "exact_wire_match": true,
+      "input_sha256": "0ea207535f0b886032d184bf671f808bf8ff482b1d91ed2f83628fc8a40b389d",
+      "expected_sha256": "8d7dced82a0f5d0f27f75c94fef892a3b70722b5b4351556b7ce88d3506c7b36",
+      "actual_sha256": "8d7dced82a0f5d0f27f75c94fef892a3b70722b5b4351556b7ce88d3506c7b36",
+      "stderr": ""
+    },
+    {
+      "id": "B-DEPTH-32",
+      "exit": 0,
+      "exact_wire_match": true,
+      "input_sha256": "1744134f9386cab9cf575858b47cc7fadfa70f2a330633bfcb6e63f09cd66fa1",
+      "expected_sha256": "e0377ac7d1eee4c1fcd23902048fa3d8ac2fb7ecb1df22ce4ad140e35ab2a6f7",
+      "actual_sha256": "e0377ac7d1eee4c1fcd23902048fa3d8ac2fb7ecb1df22ce4ad140e35ab2a6f7",
+      "stderr": ""
+    },
+    {
+      "id": "B-DEPTH-33",
+      "exit": 0,
+      "exact_wire_match": true,
+      "input_sha256": "f735fafce0d3e124634eee02cf4aab3d2ed799ce4adb081ceafc60210245cc5c",
+      "expected_sha256": "61ae865923532cda9399bb969c60cf6832ff89e71003ea9431ee6879b525725e",
+      "actual_sha256": "61ae865923532cda9399bb969c60cf6832ff89e71003ea9431ee6879b525725e",
+      "stderr": ""
+    },
+    {
+      "id": "B-NODES-512",
+      "exit": 0,
+      "exact_wire_match": true,
+      "input_sha256": "61074f1e69f2d79d4ea4a5fbebbf3686ee4111789dc2a2105597cf5e9047601e",
+      "expected_sha256": "73ade8036643af819e705e6cefa6f04caabad7a5803e98ef01914f41e2d3513c",
+      "actual_sha256": "73ade8036643af819e705e6cefa6f04caabad7a5803e98ef01914f41e2d3513c",
+      "stderr": ""
+    },
+    {
+      "id": "B-NODES-513",
+      "exit": 0,
+      "exact_wire_match": true,
+      "input_sha256": "fe60c2008b4a5dd98a4b1ff1b81fd179f19be0965207183052485b6f44bc9fee",
+      "expected_sha256": "d772a263f55182446c60dd803845b7de05433188415244e771e2561c946204be",
+      "actual_sha256": "d772a263f55182446c60dd803845b7de05433188415244e771e2561c946204be",
+      "stderr": ""
+    },
+    {
+      "id": "B-FUNCTIONS-9",
+      "exit": 0,
+      "exact_wire_match": true,
+      "input_sha256": "dd0d11dc0308e09beac64f79d505f0d108f0d5d924cad9be5a2797e89690efb9",
+      "expected_sha256": "6695450ad1a487e5a5a5a43ae8fbb270e2665571e545b415d29d5e7814c10fd6",
+      "actual_sha256": "6695450ad1a487e5a5a5a43ae8fbb270e2665571e545b415d29d5e7814c10fd6",
+      "stderr": ""
+    },
+    {
+      "id": "B-PARAMS-9",
+      "exit": 0,
+      "exact_wire_match": true,
+      "input_sha256": "fe4e1885ab14adb229fe6bf3ef4e173f90eb9854e408a42500b8e46007f7c94b",
+      "expected_sha256": "2085fcd30b72fca4335e1f20e2d77c7afda46372001b24c27b9c7179712d8eae",
+      "actual_sha256": "2085fcd30b72fca4335e1f20e2d77c7afda46372001b24c27b9c7179712d8eae",
+      "stderr": ""
+    },
+    {
+      "id": "B-JSON-DEPTH",
+      "exit": 0,
+      "exact_wire_match": true,
+      "input_sha256": "8dfad25383545f5e0665218d8d3a852fc5f531770b9dd68dc1ec06894fcf32d7",
+      "expected_sha256": "18dbf2a4a010b3ecbcfdffa6508f2555fc0fa3a6344bb715fc52537ccd7974c5",
+      "actual_sha256": "18dbf2a4a010b3ecbcfdffa6508f2555fc0fa3a6344bb715fc52537ccd7974c5",
+      "stderr": ""
+    },
+    {
+      "id": "B-JSON-VALUES",
+      "exit": 0,
+      "exact_wire_match": true,
+      "input_sha256": "e909717bf752c577c7f76fec7ad7ec769cc7ffc00d6c0c21ffc444390879ffbf",
+      "expected_sha256": "ca06bedec2b9692ce6fd09ba9b6a75c43af6bb1e813757970c26a2d58c0fd4bc",
+      "actual_sha256": "ca06bedec2b9692ce6fd09ba9b6a75c43af6bb1e813757970c26a2d58c0fd4bc",
+      "stderr": ""
+    },
+    {
+      "id": "B-CYCLE-FIRST-BACK-EDGE",
+      "exit": 0,
+      "exact_wire_match": true,
+      "input_sha256": "d2288377122d003d66f9a8cf5ab0cf9df56a7697b967a2f6854e19b002c8bff2",
+      "expected_sha256": "4010273ef357973634ecf4b6a74368a56d18faccf23dcd84bd47e9e3af23a980",
+      "actual_sha256": "4010273ef357973634ecf4b6a74368a56d18faccf23dcd84bd47e9e3af23a980",
+      "stderr": ""
+    },
+    {
+      "id": "B-REFERENCE-BEFORE-CYCLE",
+      "exit": 0,
+      "exact_wire_match": true,
+      "input_sha256": "87b4cec4d94a29c1335fe997d16762ce31093670d5be005b2ab9c7a19ff65393",
+      "expected_sha256": "6710c9ad20a43ca8c6020bfff41d0385d8db63c1a4bb491d2852658dc415c6b9",
+      "actual_sha256": "6710c9ad20a43ca8c6020bfff41d0385d8db63c1a4bb491d2852658dc415c6b9",
+      "stderr": ""
+    },
+    {
+      "id": "R-UTF8",
+      "exit": 0,
+      "exact_wire_match": true,
+      "input_sha256": "a8100ae6aa1940d0b663bb31cd466142ebbdbd5187131b92d93818987832eb89",
+      "expected_sha256": "b9de666619043a1a294b649ec66b15f3c501465d1b1180b62d9a49dbac4fec5b",
+      "actual_sha256": "b9de666619043a1a294b649ec66b15f3c501465d1b1180b62d9a49dbac4fec5b",
+      "stderr": ""
+    },
+    {
+      "id": "R-DUPLICATE",
+      "exit": 0,
+      "exact_wire_match": true,
+      "input_sha256": "004cc51f2eda71cb607da116809f2587fb65edb296711ac0f879c2b23b9f5625",
+      "expected_sha256": "b9de666619043a1a294b649ec66b15f3c501465d1b1180b62d9a49dbac4fec5b",
+      "actual_sha256": "b9de666619043a1a294b649ec66b15f3c501465d1b1180b62d9a49dbac4fec5b",
+      "stderr": ""
+    },
+    {
+      "id": "R-ESCAPED-DUPLICATE",
+      "exit": 0,
+      "exact_wire_match": true,
+      "input_sha256": "e908d423524d90d0607efd09110b4cc49e53c4378b4e0f9bd509335d7b312489",
+      "expected_sha256": "b9de666619043a1a294b649ec66b15f3c501465d1b1180b62d9a49dbac4fec5b",
+      "actual_sha256": "b9de666619043a1a294b649ec66b15f3c501465d1b1180b62d9a49dbac4fec5b",
+      "stderr": ""
+    },
+    {
+      "id": "R-TRAILING",
+      "exit": 0,
+      "exact_wire_match": true,
+      "input_sha256": "b51f08b698d88d8027a935d9db649774949f5fb41a0c559bfee6a9a13225c72d",
+      "expected_sha256": "b9de666619043a1a294b649ec66b15f3c501465d1b1180b62d9a49dbac4fec5b",
+      "actual_sha256": "b9de666619043a1a294b649ec66b15f3c501465d1b1180b62d9a49dbac4fec5b",
+      "stderr": ""
+    },
+    {
+      "id": "R-EXPONENT",
+      "exit": 0,
+      "exact_wire_match": true,
+      "input_sha256": "4ee5dba91f88ce62a75e9ffd58fa35685f0d827158b89f12d0a66c5607111133",
+      "expected_sha256": "5006b0c1371324bbb2983ba8181b1221f2fe5a5aa73c4c27794307ea23386b15",
+      "actual_sha256": "5006b0c1371324bbb2983ba8181b1221f2fe5a5aa73c4c27794307ea23386b15",
+      "stderr": ""
+    },
+    {
+      "id": "R-OVERSIZE",
+      "exit": 0,
+      "exact_wire_match": true,
+      "input_sha256": "9d78de4e5b12fc166bed811cd230621ea1e1e353553fe31b92a73bfbf45d68ee",
+      "expected_sha256": "39da7dd50cf8526cb32e77fb2ef51b0ad2fff48f05bd3dd8e1710318e511cc82",
+      "actual_sha256": "39da7dd50cf8526cb32e77fb2ef51b0ad2fff48f05bd3dd8e1710318e511cc82",
+      "stderr": ""
+    },
+    {
+      "id": "R-BYTE-BOUNDARY",
+      "exit": 0,
+      "exact_wire_match": true,
+      "input_sha256": "649ab0f3c0a1cd8b54d550dffdee02c97d8bd7129014766ce4591ea70b7ae94f",
+      "expected_sha256": "82c8fd89303e3a3b025204a2ca1b67f5e213601f7aaa01e6cff3651c57948101",
+      "actual_sha256": "82c8fd89303e3a3b025204a2ca1b67f5e213601f7aaa01e6cff3651c57948101",
+      "stderr": ""
+    }
+  ],
+  "cli_controls": {
+    "status": "PASS",
+    "controls": [
+      {
+        "id": "missing-arguments",
+        "exit": 1,
+        "stdout_bytes": 0
+      },
+      {
+        "id": "wrong-operation",
+        "exit": 1,
+        "stdout_bytes": 0
+      },
+      {
+        "id": "empty-path",
+        "exit": 1,
+        "stdout_bytes": 0
+      },
+      {
+        "id": "special-input",
+        "exit": 1,
+        "stdout_bytes": 0
+      },
+      {
+        "id": "symlink-input",
+        "exit": 1,
+        "stdout_bytes": 0
+      },
+      {
+        "id": "closed-output-pipe",
+        "exit": 1,
+        "result": "nonzero environmental failure"
+      }
+    ],
+    "limits": "No filesystem races, allocation failures or disk durability tested"
+  },
+  "limits": [
+    "Source checking and detached lowering only; no lowered program execution",
+    "43 fixed cases, not complete correctness or full L3",
+    "Same-maintainer review, not independent review",
+    "Input/ancestor stability is an external prerequisite; no hostile filesystem or allocation-failure proof"
+  ]
+}

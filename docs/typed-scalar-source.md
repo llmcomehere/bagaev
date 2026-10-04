@@ -1,7 +1,7 @@
 # Experimental scalar source with inferred locals
 
 Contract proposal: `bagaev-typed-scalar/1`, frozen for the bounded experiment
-below. No adapter implementation or execution is claimed by this specification.
+below. A bounded Rust adapter was subsequently checked as recorded below.
 This is not full L3, native L2 equivalence or a production profile. The unchanged
 [scalar kernel contract](probes.md#typed-kernel-grammar) supplies the target
 semantics. Text, arrays, records, imports, effects and storage are unsupported.
@@ -123,3 +123,31 @@ Freeze their identities before implementation; report a contract defect rather
 than silently changing expected results to match a candidate. This experiment
 adds no production backend choice, full container language, model-cost claim or
 runtime behavior beyond the frozen scalar kernel.
+
+## Bounded implementation observations
+
+The std-only Rust 1.93.0 [adapter](../examples/probes/backend/rust/typed_source.rs)
+and [explicit-file CLI](../examples/probes/backend/rust/typed_main.rs) matched
+all 43 frozen expected result wires, including source/lowered pins, origin maps,
+refusal locations and execution_admission=false. The
+[observations](../examples/probes/typed-scalar-observations.json) also record six
+CLI controls: missing/wrong arguments, empty path, special input, symlink input
+and a closed output pipe. These are environment failures, not language results.
+
+The [fixture runner](../tests/probes/typed_scalar_contract.py) requires an explicit
+built binary and a new output directory. It checks fixture hashes before running.
+Run it only inside an independently authorized bounded profile; it does not
+compile a candidate or execute a lowered program. The source CLI accepts
+`check-source --input FILE`, reads at most the frame bound plus one byte, rejects
+nonregular/symlink inputs, and emits a detached wire or nonzero environment failure.
+It does not protect against hostile concurrent path replacement.
+
+The adapter has a separate ordered checker using the shared frozen transport
+and IR data shapes. Structural placeholder local types remain private until the
+inference pass assigns each binder and checks all uses. The complete lowered
+program is then checked by the unchanged kernel checker. All origin value IDs
+are resolved before metadata insertion, so nested index shifts cannot redirect
+a later insertion. Reusing the transport/kernel checker is not an independent
+second implementation of those components. Review was same-maintainer. No full
+L3, container language, model benefit, runtime speedup or production admission
+is established by these source-check observations.
