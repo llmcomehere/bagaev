@@ -1,0 +1,234 @@
+{
+  "schema": "bounded-cranelift-mutation-observations/1",
+  "date": "2026-10-04",
+  "status": "PASS",
+  "source_sha256": "25bd3eae452df1b0d86e6ecea623145bdb47c133e3bce8a08a9a695eeb0aa1ee",
+  "baseline_compiler_sha256": "5375490ea9771e9439e4a8eea5da7425a8d3deb0739161ef71d24b80d47fc4ad",
+  "oracle_sha256": "af1988624bcc84f6314a3e87d39536252fc43722c1782fbc3a886d5eec2e1edc",
+  "recipes": [
+    {
+      "id": "KM-WRAP",
+      "witness": "K-OVER-ADD",
+      "old": "self.guard(overflow,1,9,id as i64);v",
+      "new": "let _=overflow;v"
+    },
+    {
+      "id": "KM-OFFBYONE",
+      "witness": "K-WORK-EXACT",
+      "old": "IntCC::UnsignedGreaterThanOrEqual,work,65536",
+      "new": "IntCC::UnsignedGreaterThanOrEqual,work,65535"
+    },
+    {
+      "id": "KM-RIGHTFIRST",
+      "witness": "K-LEFT-FAIL",
+      "old": "let a=self.expr(left)?;let z=self.expr(right)?;",
+      "new": "let z=self.expr(right)?;let a=self.expr(left)?;"
+    }
+  ],
+  "observations": [
+    {
+      "id": "KM-WRAP",
+      "witness": "K-OVER-ADD",
+      "mode": "none",
+      "prefill": "00",
+      "expected_abi_hex": "0100000000000000000000000000000003000000000000000900000001000000",
+      "actual_abi_hex": "0000000001000000000000000000008003000000000000000000000000000000",
+      "detected": true,
+      "input_preserved": true,
+      "compiler_sha256": "645f9ddb13e293bd43efc12f11a2f7eeb8221a0b346fd9a01374cbc4e16aef9b"
+    },
+    {
+      "id": "KM-WRAP",
+      "witness": "K-OVER-ADD",
+      "mode": "none",
+      "prefill": "ff",
+      "expected_abi_hex": "0100000000000000000000000000000003000000000000000900000001000000",
+      "actual_abi_hex": "0000000001000000000000000000008003000000000000000000000000000000",
+      "detected": true,
+      "input_preserved": true,
+      "compiler_sha256": "645f9ddb13e293bd43efc12f11a2f7eeb8221a0b346fd9a01374cbc4e16aef9b"
+    },
+    {
+      "id": "KM-WRAP",
+      "witness": "K-OVER-ADD",
+      "mode": "speed",
+      "prefill": "00",
+      "expected_abi_hex": "0100000000000000000000000000000003000000000000000900000001000000",
+      "actual_abi_hex": "0000000001000000000000000000008003000000000000000000000000000000",
+      "detected": true,
+      "input_preserved": true,
+      "compiler_sha256": "645f9ddb13e293bd43efc12f11a2f7eeb8221a0b346fd9a01374cbc4e16aef9b"
+    },
+    {
+      "id": "KM-WRAP",
+      "witness": "K-OVER-ADD",
+      "mode": "speed",
+      "prefill": "ff",
+      "expected_abi_hex": "0100000000000000000000000000000003000000000000000900000001000000",
+      "actual_abi_hex": "0000000001000000000000000000008003000000000000000000000000000000",
+      "detected": true,
+      "input_preserved": true,
+      "compiler_sha256": "645f9ddb13e293bd43efc12f11a2f7eeb8221a0b346fd9a01374cbc4e16aef9b"
+    },
+    {
+      "id": "KM-WRAP",
+      "witness": "K-OVER-ADD",
+      "mode": "speed_and_size",
+      "prefill": "00",
+      "expected_abi_hex": "0100000000000000000000000000000003000000000000000900000001000000",
+      "actual_abi_hex": "0000000001000000000000000000008003000000000000000000000000000000",
+      "detected": true,
+      "input_preserved": true,
+      "compiler_sha256": "645f9ddb13e293bd43efc12f11a2f7eeb8221a0b346fd9a01374cbc4e16aef9b"
+    },
+    {
+      "id": "KM-WRAP",
+      "witness": "K-OVER-ADD",
+      "mode": "speed_and_size",
+      "prefill": "ff",
+      "expected_abi_hex": "0100000000000000000000000000000003000000000000000900000001000000",
+      "actual_abi_hex": "0000000001000000000000000000008003000000000000000000000000000000",
+      "detected": true,
+      "input_preserved": true,
+      "compiler_sha256": "645f9ddb13e293bd43efc12f11a2f7eeb8221a0b346fd9a01374cbc4e16aef9b"
+    },
+    {
+      "id": "KM-OFFBYONE",
+      "witness": "K-WORK-EXACT",
+      "mode": "none",
+      "prefill": "00",
+      "expected_abi_hex": "0000000001000000000000000000000000000100000000000000000000000000",
+      "actual_abi_hex": "02000000000000000000000000000000ffff0000000000000a00000009000000",
+      "detected": true,
+      "input_preserved": true,
+      "compiler_sha256": "7087e5add8db7067b4bfdc5bec38ce0471170bf89206b7d69bcae6c8314becc8"
+    },
+    {
+      "id": "KM-OFFBYONE",
+      "witness": "K-WORK-EXACT",
+      "mode": "none",
+      "prefill": "ff",
+      "expected_abi_hex": "0000000001000000000000000000000000000100000000000000000000000000",
+      "actual_abi_hex": "02000000000000000000000000000000ffff0000000000000a00000009000000",
+      "detected": true,
+      "input_preserved": true,
+      "compiler_sha256": "7087e5add8db7067b4bfdc5bec38ce0471170bf89206b7d69bcae6c8314becc8"
+    },
+    {
+      "id": "KM-OFFBYONE",
+      "witness": "K-WORK-EXACT",
+      "mode": "speed",
+      "prefill": "00",
+      "expected_abi_hex": "0000000001000000000000000000000000000100000000000000000000000000",
+      "actual_abi_hex": "02000000000000000000000000000000ffff0000000000000a00000009000000",
+      "detected": true,
+      "input_preserved": true,
+      "compiler_sha256": "7087e5add8db7067b4bfdc5bec38ce0471170bf89206b7d69bcae6c8314becc8"
+    },
+    {
+      "id": "KM-OFFBYONE",
+      "witness": "K-WORK-EXACT",
+      "mode": "speed",
+      "prefill": "ff",
+      "expected_abi_hex": "0000000001000000000000000000000000000100000000000000000000000000",
+      "actual_abi_hex": "02000000000000000000000000000000ffff0000000000000a00000009000000",
+      "detected": true,
+      "input_preserved": true,
+      "compiler_sha256": "7087e5add8db7067b4bfdc5bec38ce0471170bf89206b7d69bcae6c8314becc8"
+    },
+    {
+      "id": "KM-OFFBYONE",
+      "witness": "K-WORK-EXACT",
+      "mode": "speed_and_size",
+      "prefill": "00",
+      "expected_abi_hex": "0000000001000000000000000000000000000100000000000000000000000000",
+      "actual_abi_hex": "02000000000000000000000000000000ffff0000000000000a00000009000000",
+      "detected": true,
+      "input_preserved": true,
+      "compiler_sha256": "7087e5add8db7067b4bfdc5bec38ce0471170bf89206b7d69bcae6c8314becc8"
+    },
+    {
+      "id": "KM-OFFBYONE",
+      "witness": "K-WORK-EXACT",
+      "mode": "speed_and_size",
+      "prefill": "ff",
+      "expected_abi_hex": "0000000001000000000000000000000000000100000000000000000000000000",
+      "actual_abi_hex": "02000000000000000000000000000000ffff0000000000000a00000009000000",
+      "detected": true,
+      "input_preserved": true,
+      "compiler_sha256": "7087e5add8db7067b4bfdc5bec38ce0471170bf89206b7d69bcae6c8314becc8"
+    },
+    {
+      "id": "KM-RIGHTFIRST",
+      "witness": "K-LEFT-FAIL",
+      "mode": "none",
+      "prefill": "00",
+      "expected_abi_hex": "0100000000000000000000000000000004000000000000000900000002000000",
+      "actual_abi_hex": "0100000000000000000000000000000004000000000000000900000005000000",
+      "detected": true,
+      "input_preserved": true,
+      "compiler_sha256": "66da58a1feb290b75592ea37f3ebde7d32fb6583b73fc7f1efe5417ea424479d"
+    },
+    {
+      "id": "KM-RIGHTFIRST",
+      "witness": "K-LEFT-FAIL",
+      "mode": "none",
+      "prefill": "ff",
+      "expected_abi_hex": "0100000000000000000000000000000004000000000000000900000002000000",
+      "actual_abi_hex": "0100000000000000000000000000000004000000000000000900000005000000",
+      "detected": true,
+      "input_preserved": true,
+      "compiler_sha256": "66da58a1feb290b75592ea37f3ebde7d32fb6583b73fc7f1efe5417ea424479d"
+    },
+    {
+      "id": "KM-RIGHTFIRST",
+      "witness": "K-LEFT-FAIL",
+      "mode": "speed",
+      "prefill": "00",
+      "expected_abi_hex": "0100000000000000000000000000000004000000000000000900000002000000",
+      "actual_abi_hex": "0100000000000000000000000000000004000000000000000900000005000000",
+      "detected": true,
+      "input_preserved": true,
+      "compiler_sha256": "66da58a1feb290b75592ea37f3ebde7d32fb6583b73fc7f1efe5417ea424479d"
+    },
+    {
+      "id": "KM-RIGHTFIRST",
+      "witness": "K-LEFT-FAIL",
+      "mode": "speed",
+      "prefill": "ff",
+      "expected_abi_hex": "0100000000000000000000000000000004000000000000000900000002000000",
+      "actual_abi_hex": "0100000000000000000000000000000004000000000000000900000005000000",
+      "detected": true,
+      "input_preserved": true,
+      "compiler_sha256": "66da58a1feb290b75592ea37f3ebde7d32fb6583b73fc7f1efe5417ea424479d"
+    },
+    {
+      "id": "KM-RIGHTFIRST",
+      "witness": "K-LEFT-FAIL",
+      "mode": "speed_and_size",
+      "prefill": "00",
+      "expected_abi_hex": "0100000000000000000000000000000004000000000000000900000002000000",
+      "actual_abi_hex": "0100000000000000000000000000000004000000000000000900000005000000",
+      "detected": true,
+      "input_preserved": true,
+      "compiler_sha256": "66da58a1feb290b75592ea37f3ebde7d32fb6583b73fc7f1efe5417ea424479d"
+    },
+    {
+      "id": "KM-RIGHTFIRST",
+      "witness": "K-LEFT-FAIL",
+      "mode": "speed_and_size",
+      "prefill": "ff",
+      "expected_abi_hex": "0100000000000000000000000000000004000000000000000900000002000000",
+      "actual_abi_hex": "0100000000000000000000000000000004000000000000000900000005000000",
+      "detected": true,
+      "input_preserved": true,
+      "compiler_sha256": "66da58a1feb290b75592ea37f3ebde7d32fb6583b73fc7f1efe5417ea424479d"
+    }
+  ],
+  "method": "Three concrete lower.rs mutations, each checked at one frozen witness in all three modes and both prefills; prior baseline conformance matched the same witnesses. Baseline source and compiler hashes remained unchanged.",
+  "limits": [
+    "Three named mutations only, not all possible bugs or full mutation coverage",
+    "Correctness means detection of exact ABI deviation at declared witness, not a candidate crash",
+    "Same-maintainer review, not independent review"
+  ]
+}

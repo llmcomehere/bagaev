@@ -65,3 +65,19 @@ compiler-performance benchmark. No claim about speed, memory, dependency-size
 advantage or total model/development cost follows. Full native-language parity,
 the original linked Rust caller and production acceptance remain separate.
 Review used a separate same-maintainer pass, not independent review.
+
+## Concrete negative controls
+
+On October 4, 2026, three separately copied `lower.rs` mutations were checked
+against the frozen kernel oracle: omitted overflow guard (`K-OVER-ADD`), an
+early work-limit boundary (`K-WORK-EXACT`), and reversed operand evaluation
+(`K-LEFT-FAIL`). Each was detected in all three modes and both output prefills,
+giving 18 complete ABI deviations. All 64 input bytes remained unchanged.
+The [recipes and observations](../examples/probes/cranelift-mutation-observations.json)
+include the correct literal bytes and actual mutant bytes. Prior unmodified
+conformance receipts matched the same witnesses; the baseline source and
+compiler identities were unchanged after this experiment.
+
+These are three specific negative controls, not full mutation coverage or proof
+against arbitrary bugs. Mutants were temporary experiment inputs, not changes
+to the production candidate. Review was a separate same-maintainer pass.
