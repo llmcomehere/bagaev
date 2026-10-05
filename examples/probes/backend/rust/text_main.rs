@@ -7,6 +7,8 @@ pub mod sha256;
 pub mod text_ir;
 pub mod text_value;
 pub mod typed_text;
+pub mod text_llvm;
+pub mod text_emit;
 use std::fs::File;
 use std::io::{self, Read, Write};
 use std::path::Path;
@@ -45,9 +47,9 @@ fn frame(path: &Path) -> io::Result<Vec<u8>> {
 fn main(){
     let args:Vec<_>=std::env::args_os().skip(1).collect();
     let result=(||->Result<(),&'static str>{
-        if args.len()!=3 || args[0]!="run" || args[1]!="--input" || args[2].is_empty(){return Err("usage: typed-text run --input FILE");}
+        if args.len()!=3 || (args[0]!="run" && args[0]!="emit-llvm") || args[1]!="--input" || args[2].is_empty(){return Err("usage: typed-text (run|emit-llvm) --input FILE");}
         let bytes=frame(Path::new(&args[2])).map_err(|_|"unable to read complete input")?;
-        let out=typed_text::process(&bytes)?;let mut stdout=io::stdout().lock();stdout.write_all(&out).map_err(|_|"output write")?;stdout.flush().map_err(|_|"output flush")?;Ok(())
+        let out=if args[0]=="run"{typed_text::process(&bytes)?}else{text_emit::process(&bytes)?};let mut stdout=io::stdout().lock();stdout.write_all(&out).map_err(|_|"output write")?;stdout.flush().map_err(|_|"output flush")?;Ok(())
     })();
     if let Err(e)=result{let _=writeln!(io::stderr().lock(),"{e}");std::process::exit(1);}
 }

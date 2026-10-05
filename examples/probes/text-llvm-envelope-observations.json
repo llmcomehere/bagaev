@@ -1,0 +1,267 @@
+{
+  "status": "PASS",
+  "fixture_sha256": "3abb7620cdc102d34401a330126eb0b9bdb5a114c0590305d00b8f4f72b5fdb2",
+  "observations": [
+    {
+      "id": "TX-ASCII-BYTES",
+      "matched": true,
+      "wire_sha256": "c94244d8f699f532b7bf026aad109c866998a68d6f80b26923e900d2291412b8"
+    },
+    {
+      "id": "TX-EMPTY",
+      "matched": true,
+      "wire_sha256": "3eeaf0983b727c84a4efdab493f78ba4e1e8384949459674d26c90a7d431f8e9"
+    },
+    {
+      "id": "TX-SUPPLEMENTARY",
+      "matched": true,
+      "wire_sha256": "de3d2d1c27e275df852fc2015ae2bf7ed383b82a11061e8bee26249e3985971d"
+    },
+    {
+      "id": "TX-SUPPLEMENTARY-BYTES",
+      "matched": true,
+      "wire_sha256": "a8553e61e1c285945437e3a7fa2e246203a97c3eb760b81469c289f47c88d2f0"
+    },
+    {
+      "id": "TX-NUL",
+      "matched": true,
+      "wire_sha256": "acf56ff2035834f8d6026429dcfbb3e33a5e8e37a92ddacb58561ba283140152"
+    },
+    {
+      "id": "TX-PARAM-EQ",
+      "matched": true,
+      "wire_sha256": "c3db1a9713504f7aa8d0e6b5e9452cdff77c9d8bd91d195cb710fb7ba7861ea3"
+    },
+    {
+      "id": "TX-PARAM-EQ-SAME-LENGTH",
+      "matched": true,
+      "wire_sha256": "c3db1a9713504f7aa8d0e6b5e9452cdff77c9d8bd91d195cb710fb7ba7861ea3"
+    },
+    {
+      "id": "TX-PARAM-EQ-EQUAL",
+      "matched": true,
+      "wire_sha256": "c3db1a9713504f7aa8d0e6b5e9452cdff77c9d8bd91d195cb710fb7ba7861ea3"
+    },
+    {
+      "id": "TX-SCALAR-ORDER",
+      "matched": true,
+      "wire_sha256": "cefa0a62b7acf1c72ff3a8d1000baeefb060c47da265fc9c9231a4618f7ea19e"
+    },
+    {
+      "id": "TX-TEXT-LOOP",
+      "matched": true,
+      "wire_sha256": "fe9317d55da7f47a0b4a298ecc9ecec8662fe3b1e11532441a843c17b62f91b2"
+    },
+    {
+      "id": "TX-ZERO-TEXT-LOOP",
+      "matched": true,
+      "wire_sha256": "9199efc48c184c2269d998f3479791bed145720e9c15b04bbd07ea5ca40646ce"
+    },
+    {
+      "id": "TX-TEXT-HELPER",
+      "matched": true,
+      "wire_sha256": "56aa79203e2ce6bcd54d59466a16ce3366a471db38d42c28457b0431a558e370"
+    },
+    {
+      "id": "TX-LAZY",
+      "matched": true,
+      "wire_sha256": "f8ac2272abf94ce50dd53e34b6ddaa9553f9dc0aa98490a03604e06a27a4a199"
+    },
+    {
+      "id": "TX-WORK-EXACT",
+      "matched": true,
+      "wire_sha256": "ddc9fb9b48ab4d9ba16d9aff309ce469f69cf90d2a7fcfd66e8ab781d0758755"
+    },
+    {
+      "id": "TX-WORK-EXTRA-REFUSAL",
+      "matched": true,
+      "wire_sha256": "7b3e2f0ddc162d10e2ca4ac7ea4c7d624be48127835d5e70efe65424f5107847"
+    },
+    {
+      "id": "TX-ENTRY-TEXT",
+      "matched": true,
+      "wire_sha256": "b257a7edaa67e62903b7fc05a39ed4f7e00492d91603908389f0457728038ebb"
+    },
+    {
+      "id": "TX-ARG-TAG",
+      "matched": true,
+      "wire_sha256": "01b1d18eb92da832ae44791ee1398a4e237a08f0acbb6056b9205e36fdaea27f"
+    },
+    {
+      "id": "TX-ARG-SURROGATE",
+      "matched": true,
+      "wire_sha256": "01b1d18eb92da832ae44791ee1398a4e237a08f0acbb6056b9205e36fdaea27f"
+    },
+    {
+      "id": "TX-ARG-SCALAR-BOUND",
+      "matched": true,
+      "wire_sha256": "01b1d18eb92da832ae44791ee1398a4e237a08f0acbb6056b9205e36fdaea27f"
+    },
+    {
+      "id": "TX-LITERAL-BOUND",
+      "matched": true,
+      "wire_sha256": "aa3f367e9a92c68311362c8ff789b33683327e967d9ffde96968c825e181b480"
+    },
+    {
+      "id": "TX-LITERAL-SURROGATE",
+      "matched": true,
+      "wire_sha256": "8e2078b5823a88e76337c9937342a7724f26632277dde4e313405442ccd10d6e"
+    },
+    {
+      "id": "TX-UNTAKEN-TYPE",
+      "matched": true,
+      "wire_sha256": "c151688597f71e6c6598d09bc40d7ea2991d78ba4eff112ca152fe780bd54fe1"
+    },
+    {
+      "id": "TX-SCALAR-PARITY",
+      "matched": true,
+      "wire_sha256": "a5bd106421b6c9e44ae22b63019d18163c23a198cde6e2b28d42d2d095abe260"
+    },
+    {
+      "id": "TX-LEFT-OVERFLOW",
+      "matched": true,
+      "wire_sha256": "af387466133ac36d66592e02898b4db714116b5eb59403644920b32215d8ca5d"
+    },
+    {
+      "id": "TX-COMPARE-WORK-EXACT",
+      "matched": true,
+      "wire_sha256": "25132bc8bf817b244f505bd96d6b930a45c86b3db788b86d20f1aa36aa8f0166"
+    },
+    {
+      "id": "TX-COMPARE-WORK-REFUSAL",
+      "matched": true,
+      "wire_sha256": "f18fc9484e42fb513325ed83ec3196a14d8ad095f340e10e948083362fb27ba2"
+    },
+    {
+      "id": "TX2-IF-YES",
+      "matched": true,
+      "wire_sha256": "df17fdd71b7a858021c8c256f3793859677a79c84852a4aa6f144dcdce417e6d"
+    },
+    {
+      "id": "TX2-IF-NO",
+      "matched": true,
+      "wire_sha256": "49c566249773982c415eb77defee3723759c1c7ae49ef11d65d0f6510bd255e6"
+    },
+    {
+      "id": "TX2-LET-TEXT-PHI",
+      "matched": true,
+      "wire_sha256": "e831f09cbfc8721dcbdec2dfeda94eb62f2e4d86563c84366861074c52a69566"
+    },
+    {
+      "id": "TX2-LOOP-TEXT-PHI",
+      "matched": true,
+      "wire_sha256": "c48ce46f51a810d60fea35e3344f06b48f1e002f1f7f730c33c02f8c95ecf18a"
+    },
+    {
+      "id": "TX2-CALL-TEXT-YES",
+      "matched": true,
+      "wire_sha256": "5582405b5e04796c0dbbf3526b13dfca32155dfb90be49195791dcb4b49b6b42"
+    },
+    {
+      "id": "TX2-CALL-TEXT-NO",
+      "matched": true,
+      "wire_sha256": "0d8c1b001aa9a5947ce9c6df4310f334c35a0e131c87a3783d5bfe038f96b3ab"
+    },
+    {
+      "id": "TX2-CALL-ARG-OVERFLOW",
+      "matched": true,
+      "wire_sha256": "3163349fce6438f4f15a441b6f766b44ca871b3590c1edb92ff575ae80b387d1"
+    },
+    {
+      "id": "TX2-TEXT-FUNCTION-OVERFLOW",
+      "matched": true,
+      "wire_sha256": "4cdb8d34e6195346c9bbc3ec2c495ed5b0574b5e8e4f85e3eb7ea88ded872224"
+    },
+    {
+      "id": "TX2-PREFIX",
+      "matched": true,
+      "wire_sha256": "f9213eaedf8fcd7a339cc4634c2ab5b4a1a4ce150749a4b377f75d67d73eceb9"
+    },
+    {
+      "id": "TX2-REVERSE-PREFIX",
+      "matched": true,
+      "wire_sha256": "7111450aae42218dd15d96032f106267dc79384214d612b2604329016eefcd58"
+    },
+    {
+      "id": "TX2-EQUAL",
+      "matched": true,
+      "wire_sha256": "4fe24ee03c17d73b57c763e2b9776cb729dfcab8e923c55ed21c0bec633c329a"
+    },
+    {
+      "id": "TX2-EMPTY",
+      "matched": true,
+      "wire_sha256": "bc708ffcfa91103e26a9acbc696f91d7b3d2be64da78d7937cfcef66e33ee0d1"
+    },
+    {
+      "id": "TX2-ASCII-UNICODE",
+      "matched": true,
+      "wire_sha256": "d7c393cce03bc05955c3948ac7f5662210e21bffc9683ebf62f693c15ec2d811"
+    },
+    {
+      "id": "TX2-UNICODE-ASCII",
+      "matched": true,
+      "wire_sha256": "9cd66957f4aefd315ceb792e9ee12bd831a72cd033192bc9f87e560146444339"
+    },
+    {
+      "id": "TX2-NUL",
+      "matched": true,
+      "wire_sha256": "a6460ca69a64c392d5eec7ca04ad572edca3cda20ad98512b05c044e4fb6b3df"
+    },
+    {
+      "id": "RAW-BROKEN",
+      "matched": true,
+      "wire_sha256": "8485d629da89aed6996835a3ac21822ca6353568ce9a8e4ab0b86c1c128f70da"
+    },
+    {
+      "id": "RAW-DUPLICATE",
+      "matched": true,
+      "wire_sha256": "8485d629da89aed6996835a3ac21822ca6353568ce9a8e4ab0b86c1c128f70da"
+    },
+    {
+      "id": "RAW-BOM",
+      "matched": true,
+      "wire_sha256": "8485d629da89aed6996835a3ac21822ca6353568ce9a8e4ab0b86c1c128f70da"
+    }
+  ],
+  "scope": "Shared-library envelope integration, not new native execution or independent semantic proof",
+  "run_regressions": 26,
+  "cli_environment_controls": [
+    {
+      "id": "missing-args",
+      "exit": 1,
+      "empty_stdout": true,
+      "stderr_present": true
+    },
+    {
+      "id": "unknown-command",
+      "exit": 1,
+      "empty_stdout": true,
+      "stderr_present": true
+    },
+    {
+      "id": "missing-file",
+      "exit": 1,
+      "empty_stdout": true,
+      "stderr_present": true
+    },
+    {
+      "id": "directory",
+      "exit": 1,
+      "empty_stdout": true,
+      "stderr_present": true
+    },
+    {
+      "id": "symlink",
+      "exit": 1,
+      "empty_stdout": true,
+      "stderr_present": true
+    },
+    {
+      "id": "extra-argument",
+      "exit": 1,
+      "empty_stdout": true,
+      "stderr_present": true
+    }
+  ],
+  "review": "Separate same-maintainer pass; source refusals stay distinct from environment errors; exact checked source and library record; false admission; bounded read-only CLI; no compile/link/load path."
+}
