@@ -1,0 +1,496 @@
+{
+  "schema": "bagaev-text-callframe-cases/1",
+  "frame_size": 8272,
+  "cases": [
+    {
+      "id": "EMPTY",
+      "signature": [],
+      "slots": [],
+      "edits": [],
+      "size": null,
+      "expected": {
+        "values": []
+      }
+    },
+    {
+      "id": "INT-EXTREMES",
+      "signature": [
+        "Int64",
+        "Int64"
+      ],
+      "slots": [
+        {
+          "tag": 1,
+          "hex": "0000000000000080"
+        },
+        {
+          "tag": 1,
+          "hex": "ffffffffffffff7f"
+        }
+      ],
+      "edits": [],
+      "size": null,
+      "expected": {
+        "values": [
+          {
+            "Int64": -9223372036854775808
+          },
+          {
+            "Int64": 9223372036854775807
+          }
+        ]
+      }
+    },
+    {
+      "id": "BOOLS",
+      "signature": [
+        "Bool",
+        "Bool"
+      ],
+      "slots": [
+        {
+          "tag": 2,
+          "hex": "00"
+        },
+        {
+          "tag": 2,
+          "hex": "01"
+        }
+      ],
+      "edits": [],
+      "size": null,
+      "expected": {
+        "values": [
+          {
+            "Bool": false
+          },
+          {
+            "Bool": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "TEXT-EMPTY",
+      "signature": [
+        "Text"
+      ],
+      "slots": [
+        {
+          "tag": 3,
+          "hex": ""
+        }
+      ],
+      "edits": [],
+      "size": null,
+      "expected": {
+        "values": [
+          {
+            "Text": {
+              "hex": "",
+              "scalars": 0
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "TEXT-NUL",
+      "signature": [
+        "Text"
+      ],
+      "slots": [
+        {
+          "tag": 3,
+          "hex": "610062"
+        }
+      ],
+      "edits": [],
+      "size": null,
+      "expected": {
+        "values": [
+          {
+            "Text": {
+              "hex": "610062",
+              "scalars": 3
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "TEXT-MAX",
+      "signature": [
+        "Text"
+      ],
+      "slots": [
+        {
+          "tag": 3,
+          "hex": "f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880"
+        }
+      ],
+      "edits": [],
+      "size": null,
+      "expected": {
+        "values": [
+          {
+            "Text": {
+              "hex": "f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880f09f9880",
+              "scalars": 256
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "FRAME-SHORT",
+      "signature": [],
+      "slots": [],
+      "edits": [],
+      "size": 8271,
+      "expected": {
+        "reason": "FRAME_SIZE",
+        "offset": 0
+      }
+    },
+    {
+      "id": "FRAME-LONG",
+      "signature": [],
+      "slots": [],
+      "edits": [],
+      "size": 8273,
+      "expected": {
+        "reason": "FRAME_SIZE",
+        "offset": 0
+      }
+    },
+    {
+      "id": "MAGIC",
+      "signature": [],
+      "slots": [],
+      "edits": [
+        [
+          2,
+          "00"
+        ]
+      ],
+      "size": null,
+      "expected": {
+        "reason": "FRAME_MAGIC",
+        "offset": 2
+      }
+    },
+    {
+      "id": "SIGNATURE",
+      "signature": [
+        "Bool",
+        "Bool",
+        "Bool",
+        "Bool",
+        "Bool",
+        "Bool",
+        "Bool",
+        "Bool",
+        "Bool"
+      ],
+      "slots": [],
+      "edits": [],
+      "size": null,
+      "expected": {
+        "reason": "SIGNATURE",
+        "offset": 8
+      }
+    },
+    {
+      "id": "COUNT",
+      "signature": [],
+      "slots": [],
+      "edits": [
+        [
+          8,
+          "09000000"
+        ]
+      ],
+      "size": null,
+      "expected": {
+        "reason": "ARG_COUNT",
+        "offset": 8
+      }
+    },
+    {
+      "id": "COUNT-MISMATCH",
+      "signature": [
+        "Bool"
+      ],
+      "slots": [],
+      "edits": [],
+      "size": null,
+      "expected": {
+        "reason": "ARG_COUNT",
+        "offset": 8
+      }
+    },
+    {
+      "id": "RESERVED",
+      "signature": [],
+      "slots": [],
+      "edits": [
+        [
+          14,
+          "01"
+        ]
+      ],
+      "size": null,
+      "expected": {
+        "reason": "RESERVED",
+        "offset": 14
+      }
+    },
+    {
+      "id": "TAG",
+      "signature": [
+        "Bool"
+      ],
+      "slots": [
+        {
+          "tag": 1,
+          "hex": "00"
+        }
+      ],
+      "edits": [],
+      "size": null,
+      "expected": {
+        "reason": "ARG_TAG",
+        "offset": 16
+      }
+    },
+    {
+      "id": "LENGTH",
+      "signature": [
+        "Bool"
+      ],
+      "slots": [
+        {
+          "tag": 2,
+          "hex": "0000"
+        }
+      ],
+      "edits": [],
+      "size": null,
+      "expected": {
+        "reason": "ARG_LENGTH",
+        "offset": 20
+      }
+    },
+    {
+      "id": "BOOL-BAD",
+      "signature": [
+        "Bool"
+      ],
+      "slots": [
+        {
+          "tag": 2,
+          "hex": "02"
+        }
+      ],
+      "edits": [],
+      "size": null,
+      "expected": {
+        "reason": "BOOL_VALUE",
+        "offset": 24
+      }
+    },
+    {
+      "id": "TEXT-UTF8",
+      "signature": [
+        "Text"
+      ],
+      "slots": [
+        {
+          "tag": 3,
+          "hex": "c080"
+        }
+      ],
+      "edits": [],
+      "size": null,
+      "expected": {
+        "reason": "TEXT_VALUE",
+        "offset": 24
+      }
+    },
+    {
+      "id": "TEXT-SCALARS",
+      "signature": [
+        "Text"
+      ],
+      "slots": [
+        {
+          "tag": 3,
+          "hex": "6161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161"
+        }
+      ],
+      "edits": [],
+      "size": null,
+      "expected": {
+        "reason": "TEXT_VALUE",
+        "offset": 24
+      }
+    },
+    {
+      "id": "TEXT-BYTES",
+      "signature": [
+        "Text"
+      ],
+      "slots": [
+        {
+          "tag": 3,
+          "hex": ""
+        }
+      ],
+      "edits": [
+        [
+          20,
+          "01040000"
+        ]
+      ],
+      "size": null,
+      "expected": {
+        "reason": "ARG_LENGTH",
+        "offset": 20
+      }
+    },
+    {
+      "id": "PADDING",
+      "signature": [
+        "Text"
+      ],
+      "slots": [
+        {
+          "tag": 3,
+          "hex": "61"
+        }
+      ],
+      "edits": [
+        [
+          25,
+          "01"
+        ]
+      ],
+      "size": null,
+      "expected": {
+        "reason": "PADDING",
+        "offset": 25
+      }
+    },
+    {
+      "id": "UNUSED",
+      "signature": [],
+      "slots": [],
+      "edits": [
+        [
+          1048,
+          "01"
+        ]
+      ],
+      "size": null,
+      "expected": {
+        "reason": "UNUSED",
+        "offset": 1048
+      }
+    },
+    {
+      "id": "PAYLOAD-BEFORE-PADDING",
+      "signature": [
+        "Bool"
+      ],
+      "slots": [
+        {
+          "tag": 2,
+          "hex": "02"
+        }
+      ],
+      "edits": [
+        [
+          25,
+          "01"
+        ]
+      ],
+      "size": null,
+      "expected": {
+        "reason": "BOOL_VALUE",
+        "offset": 24
+      }
+    },
+    {
+      "id": "TAG-BEFORE-LENGTH",
+      "signature": [
+        "Bool"
+      ],
+      "slots": [
+        {
+          "tag": 1,
+          "hex": ""
+        }
+      ],
+      "edits": [
+        [
+          20,
+          "ffffffff"
+        ]
+      ],
+      "size": null,
+      "expected": {
+        "reason": "ARG_TAG",
+        "offset": 16
+      }
+    },
+    {
+      "id": "COUNT-BEFORE-RESERVED",
+      "signature": [],
+      "slots": [],
+      "edits": [
+        [
+          8,
+          "01000000"
+        ],
+        [
+          12,
+          "01"
+        ]
+      ],
+      "size": null,
+      "expected": {
+        "reason": "ARG_COUNT",
+        "offset": 8
+      }
+    },
+    {
+      "id": "SLOT-ORDER",
+      "signature": [
+        "Bool",
+        "Bool"
+      ],
+      "slots": [
+        {
+          "tag": 2,
+          "hex": "00"
+        },
+        {
+          "tag": 2,
+          "hex": "02"
+        }
+      ],
+      "edits": [
+        [
+          25,
+          "01"
+        ]
+      ],
+      "size": null,
+      "expected": {
+        "reason": "PADDING",
+        "offset": 25
+      }
+    }
+  ]
+}
