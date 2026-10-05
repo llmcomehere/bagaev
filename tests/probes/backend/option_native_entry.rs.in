@@ -1,0 +1,22 @@
+#[path="@TEXT_VALUE_MODULE@"] pub mod text_value;
+#[path="@OPTION_VALUE_MODULE@"] pub mod option_int;
+#[path="@TEXT_CALLFRAME_MODULE@"] pub mod option_callframe;
+#[path="@TEXT_ADAPTER_MODULE@"] pub mod option_native_adapter;
+use option_callframe::Type;
+const SIGNATURE:&[Type]=&[@CHECKED_SIGNATURE@];
+use option_native_adapter::{NativeValue,Output};
+unsafe extern "C" { fn bagaev_option_kernel(input:*const NativeValue,output:*mut Output); }
+/// Exact signature and kernel are fixed at build time, never chosen by frame data.
+/// Caller must uphold the documented fixed-buffer, alignment and disjointness contract.
+#[no_mangle]
+pub unsafe extern "C" fn bagaev_option_probe_entry(input:*const u8,output:*mut Output){
+    unsafe{option_native_adapter::entry(input,output,SIGNATURE,bagaev_option_kernel);}
+}
+fn main(){
+    let args:Vec<_>=std::env::args().collect();assert_eq!(args.len(),3);
+    let input=std::fs::read(&args[1]).unwrap();assert_eq!(input.len(),8272);let before=input.clone();
+    let b:u8=args[2].parse().unwrap();let mut out=Output{status:u32::from_le_bytes([b;4]),value_type:u32::from_le_bytes([b;4]),value:i64::from_le_bytes([b;8]),work:u64::from_le_bytes([b;8]),reason:u32::from_le_bytes([b;4]),location:u32::from_le_bytes([b;4])};
+    // Valid owned disjoint regions, exact build-time admitted kernel signature.
+    unsafe{bagaev_option_probe_entry(input.as_ptr(),&mut out);}
+    assert_eq!(input,before);use std::io::Write;std::io::stdout().write_all(&out.bytes()).unwrap();
+}

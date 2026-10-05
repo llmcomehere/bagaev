@@ -1,0 +1,461 @@
+{
+  "schema": "bagaev-option-callframe-cases/1",
+  "cases": [
+    {
+      "id": "FRAME-NONE",
+      "signature": [
+        "OptionInt64"
+      ],
+      "slots": [
+        {
+          "tag": 4,
+          "hex": "00000000000000000000000000000000"
+        }
+      ],
+      "edits": [],
+      "expected": {
+        "values": [
+          {
+            "OptionInt64": {
+              "present": false,
+              "value": null
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "FRAME-SOME-ZERO",
+      "signature": [
+        "OptionInt64"
+      ],
+      "slots": [
+        {
+          "tag": 4,
+          "hex": "01000000000000000000000000000000"
+        }
+      ],
+      "edits": [],
+      "expected": {
+        "values": [
+          {
+            "OptionInt64": {
+              "present": true,
+              "value": 0
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "FRAME-SOME-ONE",
+      "signature": [
+        "OptionInt64"
+      ],
+      "slots": [
+        {
+          "tag": 4,
+          "hex": "01000000000000000100000000000000"
+        }
+      ],
+      "edits": [],
+      "expected": {
+        "values": [
+          {
+            "OptionInt64": {
+              "present": true,
+              "value": 1
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "FRAME-SOME-MIN",
+      "signature": [
+        "OptionInt64"
+      ],
+      "slots": [
+        {
+          "tag": 4,
+          "hex": "01000000000000000000000000000080"
+        }
+      ],
+      "edits": [],
+      "expected": {
+        "values": [
+          {
+            "OptionInt64": {
+              "present": true,
+              "value": -9223372036854775808
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "FRAME-SOME-MAX",
+      "signature": [
+        "OptionInt64"
+      ],
+      "slots": [
+        {
+          "tag": 4,
+          "hex": "0100000000000000ffffffffffffff7f"
+        }
+      ],
+      "edits": [],
+      "expected": {
+        "values": [
+          {
+            "OptionInt64": {
+              "present": true,
+              "value": 9223372036854775807
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "FRAME-EMPTY",
+      "signature": [
+        "OptionInt64"
+      ],
+      "slots": [
+        {
+          "tag": 4,
+          "hex": ""
+        }
+      ],
+      "edits": [],
+      "expected": {
+        "reason": "ARG_LENGTH",
+        "offset": 20
+      }
+    },
+    {
+      "id": "FRAME-SHORT",
+      "signature": [
+        "OptionInt64"
+      ],
+      "slots": [
+        {
+          "tag": 4,
+          "hex": "000000000000000000000000000000"
+        }
+      ],
+      "edits": [],
+      "expected": {
+        "reason": "ARG_LENGTH",
+        "offset": 20
+      }
+    },
+    {
+      "id": "FRAME-LONG",
+      "signature": [
+        "OptionInt64"
+      ],
+      "slots": [
+        {
+          "tag": 4,
+          "hex": "0000000000000000000000000000000000"
+        }
+      ],
+      "edits": [],
+      "expected": {
+        "reason": "ARG_LENGTH",
+        "offset": 20
+      }
+    },
+    {
+      "id": "FRAME-FLAG-TWO",
+      "signature": [
+        "OptionInt64"
+      ],
+      "slots": [
+        {
+          "tag": 4,
+          "hex": "02000000000000000000000000000000"
+        }
+      ],
+      "edits": [],
+      "expected": {
+        "reason": "OPTION_VALUE",
+        "offset": 24
+      }
+    },
+    {
+      "id": "FRAME-FLAG-FF",
+      "signature": [
+        "OptionInt64"
+      ],
+      "slots": [
+        {
+          "tag": 4,
+          "hex": "ff000000000000000000000000000000"
+        }
+      ],
+      "edits": [],
+      "expected": {
+        "reason": "OPTION_VALUE",
+        "offset": 24
+      }
+    },
+    {
+      "id": "FRAME-PADDING-FIRST",
+      "signature": [
+        "OptionInt64"
+      ],
+      "slots": [
+        {
+          "tag": 4,
+          "hex": "00010000000000000000000000000000"
+        }
+      ],
+      "edits": [],
+      "expected": {
+        "reason": "OPTION_VALUE",
+        "offset": 25
+      }
+    },
+    {
+      "id": "FRAME-PADDING-LAST",
+      "signature": [
+        "OptionInt64"
+      ],
+      "slots": [
+        {
+          "tag": 4,
+          "hex": "00000000000000010000000000000000"
+        }
+      ],
+      "edits": [],
+      "expected": {
+        "reason": "OPTION_VALUE",
+        "offset": 31
+      }
+    },
+    {
+      "id": "FRAME-NONE-ONE",
+      "signature": [
+        "OptionInt64"
+      ],
+      "slots": [
+        {
+          "tag": 4,
+          "hex": "00000000000000000100000000000000"
+        }
+      ],
+      "edits": [],
+      "expected": {
+        "reason": "OPTION_VALUE",
+        "offset": 32
+      }
+    },
+    {
+      "id": "FRAME-NONE-NEGATIVE",
+      "signature": [
+        "OptionInt64"
+      ],
+      "slots": [
+        {
+          "tag": 4,
+          "hex": "0000000000000000ffffffffffffffff"
+        }
+      ],
+      "edits": [],
+      "expected": {
+        "reason": "OPTION_VALUE",
+        "offset": 32
+      }
+    },
+    {
+      "id": "FRAME-FLAG-BEFORE-PADDING",
+      "signature": [
+        "OptionInt64"
+      ],
+      "slots": [
+        {
+          "tag": 4,
+          "hex": "02010000000000000000000000000000"
+        }
+      ],
+      "edits": [],
+      "expected": {
+        "reason": "OPTION_VALUE",
+        "offset": 24
+      }
+    },
+    {
+      "id": "FRAME-PADDING-BEFORE-PAYLOAD",
+      "signature": [
+        "OptionInt64"
+      ],
+      "slots": [
+        {
+          "tag": 4,
+          "hex": "00010000000000000100000000000000"
+        }
+      ],
+      "edits": [],
+      "expected": {
+        "reason": "OPTION_VALUE",
+        "offset": 25
+      }
+    },
+    {
+      "id": "FRAME-SIZE-BEFORE-FLAG",
+      "signature": [
+        "OptionInt64"
+      ],
+      "slots": [
+        {
+          "tag": 4,
+          "hex": "020000000000000000000000000000"
+        }
+      ],
+      "edits": [],
+      "expected": {
+        "reason": "ARG_LENGTH",
+        "offset": 20
+      }
+    },
+    {
+      "id": "FRAME-OLD-MAGIC",
+      "signature": [],
+      "slots": [],
+      "edits": [
+        [
+          6,
+          "31"
+        ]
+      ],
+      "expected": {
+        "reason": "FRAME_MAGIC",
+        "offset": 6
+      }
+    },
+    {
+      "id": "FRAME-EIGHT",
+      "signature": [
+        "OptionInt64",
+        "OptionInt64",
+        "OptionInt64",
+        "OptionInt64",
+        "OptionInt64",
+        "OptionInt64",
+        "OptionInt64",
+        "OptionInt64"
+      ],
+      "slots": [
+        {
+          "tag": 4,
+          "hex": "01000000000000000000000000000000"
+        },
+        {
+          "tag": 4,
+          "hex": "01000000000000000100000000000000"
+        },
+        {
+          "tag": 4,
+          "hex": "01000000000000000200000000000000"
+        },
+        {
+          "tag": 4,
+          "hex": "01000000000000000300000000000000"
+        },
+        {
+          "tag": 4,
+          "hex": "01000000000000000400000000000000"
+        },
+        {
+          "tag": 4,
+          "hex": "01000000000000000500000000000000"
+        },
+        {
+          "tag": 4,
+          "hex": "01000000000000000600000000000000"
+        },
+        {
+          "tag": 4,
+          "hex": "01000000000000000700000000000000"
+        }
+      ],
+      "edits": [],
+      "expected": {
+        "values": [
+          {
+            "OptionInt64": {
+              "present": true,
+              "value": 0
+            }
+          },
+          {
+            "OptionInt64": {
+              "present": true,
+              "value": 1
+            }
+          },
+          {
+            "OptionInt64": {
+              "present": true,
+              "value": 2
+            }
+          },
+          {
+            "OptionInt64": {
+              "present": true,
+              "value": 3
+            }
+          },
+          {
+            "OptionInt64": {
+              "present": true,
+              "value": 4
+            }
+          },
+          {
+            "OptionInt64": {
+              "present": true,
+              "value": 5
+            }
+          },
+          {
+            "OptionInt64": {
+              "present": true,
+              "value": 6
+            }
+          },
+          {
+            "OptionInt64": {
+              "present": true,
+              "value": 7
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "FRAME-OPTION-BEFORE-TAIL",
+      "signature": [
+        "OptionInt64"
+      ],
+      "slots": [
+        {
+          "tag": 4,
+          "hex": "02000000000000000000000000000000"
+        }
+      ],
+      "edits": [
+        [
+          40,
+          "01"
+        ]
+      ],
+      "expected": {
+        "reason": "OPTION_VALUE",
+        "offset": 24
+      }
+    }
+  ]
+}

@@ -1,0 +1,1849 @@
+{
+  "cases": [
+    {
+      "id": "TX-ASCII-BYTES",
+      "invocation": {
+        "schema": "bagaev-typed-option-int-invocation/1",
+        "program": {
+          "schema": "bagaev-typed-option-int/1",
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [],
+              "result": "Int64",
+              "body": [
+                "text.bytes",
+                [
+                  "text",
+                  "abc"
+                ]
+              ]
+            }
+          }
+        },
+        "arguments": []
+      },
+      "expected": {
+        "schema": "bagaev-typed-option-int-result/1",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Int64",
+        "value": 3,
+        "work": 5
+      },
+      "expected_native_hex": "0000000001000000030000000000000005000000000000000000000000000000",
+      "node_locations": {
+        "/program/functions/main/body": 1,
+        "/program/functions/main/body/1": 2
+      }
+    },
+    {
+      "id": "TX-EMPTY",
+      "invocation": {
+        "schema": "bagaev-typed-option-int-invocation/1",
+        "program": {
+          "schema": "bagaev-typed-option-int/1",
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [],
+              "result": "Int64",
+              "body": [
+                "text.scalars",
+                [
+                  "text",
+                  ""
+                ]
+              ]
+            }
+          }
+        },
+        "arguments": []
+      },
+      "expected": {
+        "schema": "bagaev-typed-option-int-result/1",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Int64",
+        "value": 0,
+        "work": 2
+      },
+      "expected_native_hex": "0000000001000000000000000000000002000000000000000000000000000000",
+      "node_locations": {
+        "/program/functions/main/body": 1,
+        "/program/functions/main/body/1": 2
+      }
+    },
+    {
+      "id": "TX-SUPPLEMENTARY",
+      "invocation": {
+        "schema": "bagaev-typed-option-int-invocation/1",
+        "program": {
+          "schema": "bagaev-typed-option-int/1",
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [],
+              "result": "Int64",
+              "body": [
+                "text.scalars",
+                [
+                  "text",
+                  "\ud800\udc00"
+                ]
+              ]
+            }
+          }
+        },
+        "arguments": []
+      },
+      "expected": {
+        "schema": "bagaev-typed-option-int-result/1",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Int64",
+        "value": 1,
+        "work": 6
+      },
+      "expected_native_hex": "0000000001000000010000000000000006000000000000000000000000000000",
+      "node_locations": {
+        "/program/functions/main/body": 1,
+        "/program/functions/main/body/1": 2
+      }
+    },
+    {
+      "id": "TX-SUPPLEMENTARY-BYTES",
+      "invocation": {
+        "schema": "bagaev-typed-option-int-invocation/1",
+        "program": {
+          "schema": "bagaev-typed-option-int/1",
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [],
+              "result": "Int64",
+              "body": [
+                "text.bytes",
+                [
+                  "text",
+                  "\ud800\udc00"
+                ]
+              ]
+            }
+          }
+        },
+        "arguments": []
+      },
+      "expected": {
+        "schema": "bagaev-typed-option-int-result/1",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Int64",
+        "value": 4,
+        "work": 6
+      },
+      "expected_native_hex": "0000000001000000040000000000000006000000000000000000000000000000",
+      "node_locations": {
+        "/program/functions/main/body": 1,
+        "/program/functions/main/body/1": 2
+      }
+    },
+    {
+      "id": "TX-NUL",
+      "invocation": {
+        "schema": "bagaev-typed-option-int-invocation/1",
+        "program": {
+          "schema": "bagaev-typed-option-int/1",
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [],
+              "result": "Int64",
+              "body": [
+                "text.scalars",
+                [
+                  "text",
+                  "a\u0000b"
+                ]
+              ]
+            }
+          }
+        },
+        "arguments": []
+      },
+      "expected": {
+        "schema": "bagaev-typed-option-int-result/1",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Int64",
+        "value": 3,
+        "work": 5
+      },
+      "expected_native_hex": "0000000001000000030000000000000005000000000000000000000000000000",
+      "node_locations": {
+        "/program/functions/main/body": 1,
+        "/program/functions/main/body/1": 2
+      }
+    },
+    {
+      "id": "TX-PARAM-EQ",
+      "invocation": {
+        "schema": "bagaev-typed-option-int-invocation/1",
+        "program": {
+          "schema": "bagaev-typed-option-int/1",
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [
+                [
+                  "x",
+                  "Text"
+                ],
+                [
+                  "y",
+                  "Text"
+                ]
+              ],
+              "result": "Bool",
+              "body": [
+                "text.eq",
+                [
+                  "arg",
+                  "x"
+                ],
+                [
+                  "arg",
+                  "y"
+                ]
+              ]
+            }
+          }
+        },
+        "arguments": [
+          "\u00e9",
+          "e\u0301"
+        ]
+      },
+      "expected": {
+        "schema": "bagaev-typed-option-int-result/1",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Bool",
+        "value": false,
+        "work": 8
+      },
+      "expected_native_hex": "0000000002000000000000000000000008000000000000000000000000000000",
+      "node_locations": {
+        "/program/functions/main/body": 1,
+        "/program/functions/main/body/1": 2,
+        "/program/functions/main/body/2": 3
+      }
+    },
+    {
+      "id": "TX-PARAM-EQ-SAME-LENGTH",
+      "invocation": {
+        "schema": "bagaev-typed-option-int-invocation/1",
+        "program": {
+          "schema": "bagaev-typed-option-int/1",
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [
+                [
+                  "x",
+                  "Text"
+                ],
+                [
+                  "y",
+                  "Text"
+                ]
+              ],
+              "result": "Bool",
+              "body": [
+                "text.eq",
+                [
+                  "arg",
+                  "x"
+                ],
+                [
+                  "arg",
+                  "y"
+                ]
+              ]
+            }
+          }
+        },
+        "arguments": [
+          "ab",
+          "ac"
+        ]
+      },
+      "expected": {
+        "schema": "bagaev-typed-option-int-result/1",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Bool",
+        "value": false,
+        "work": 7
+      },
+      "expected_native_hex": "0000000002000000000000000000000007000000000000000000000000000000",
+      "node_locations": {
+        "/program/functions/main/body": 1,
+        "/program/functions/main/body/1": 2,
+        "/program/functions/main/body/2": 3
+      }
+    },
+    {
+      "id": "TX-PARAM-EQ-EQUAL",
+      "invocation": {
+        "schema": "bagaev-typed-option-int-invocation/1",
+        "program": {
+          "schema": "bagaev-typed-option-int/1",
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [
+                [
+                  "x",
+                  "Text"
+                ],
+                [
+                  "y",
+                  "Text"
+                ]
+              ],
+              "result": "Bool",
+              "body": [
+                "text.eq",
+                [
+                  "arg",
+                  "x"
+                ],
+                [
+                  "arg",
+                  "y"
+                ]
+              ]
+            }
+          }
+        },
+        "arguments": [
+          "ab",
+          "ab"
+        ]
+      },
+      "expected": {
+        "schema": "bagaev-typed-option-int-result/1",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Bool",
+        "value": true,
+        "work": 7
+      },
+      "expected_native_hex": "0000000002000000010000000000000007000000000000000000000000000000",
+      "node_locations": {
+        "/program/functions/main/body": 1,
+        "/program/functions/main/body/1": 2,
+        "/program/functions/main/body/2": 3
+      }
+    },
+    {
+      "id": "TX-SCALAR-ORDER",
+      "invocation": {
+        "schema": "bagaev-typed-option-int-invocation/1",
+        "program": {
+          "schema": "bagaev-typed-option-int/1",
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [],
+              "result": "Bool",
+              "body": [
+                "text.lt",
+                [
+                  "text",
+                  "\ue000"
+                ],
+                [
+                  "text",
+                  "\ud800\udc00"
+                ]
+              ]
+            }
+          }
+        },
+        "arguments": []
+      },
+      "expected": {
+        "schema": "bagaev-typed-option-int-result/1",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Bool",
+        "value": true,
+        "work": 17
+      },
+      "expected_native_hex": "0000000002000000010000000000000011000000000000000000000000000000",
+      "node_locations": {
+        "/program/functions/main/body": 1,
+        "/program/functions/main/body/1": 2,
+        "/program/functions/main/body/2": 3
+      }
+    },
+    {
+      "id": "TX-TEXT-LOOP",
+      "invocation": {
+        "schema": "bagaev-typed-option-int-invocation/1",
+        "program": {
+          "schema": "bagaev-typed-option-int/1",
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [],
+              "result": "Int64",
+              "body": [
+                "text.bytes",
+                [
+                  "loop",
+                  2,
+                  "i",
+                  "a",
+                  [
+                    "text",
+                    "a"
+                  ],
+                  [
+                    "use",
+                    "a"
+                  ]
+                ]
+              ]
+            }
+          }
+        },
+        "arguments": []
+      },
+      "expected": {
+        "schema": "bagaev-typed-option-int-result/1",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Int64",
+        "value": 1,
+        "work": 6
+      },
+      "expected_native_hex": "0000000001000000010000000000000006000000000000000000000000000000",
+      "node_locations": {
+        "/program/functions/main/body": 1,
+        "/program/functions/main/body/1": 2,
+        "/program/functions/main/body/1/4": 3,
+        "/program/functions/main/body/1/5": 4
+      }
+    },
+    {
+      "id": "TX-ZERO-TEXT-LOOP",
+      "invocation": {
+        "schema": "bagaev-typed-option-int-invocation/1",
+        "program": {
+          "schema": "bagaev-typed-option-int/1",
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [],
+              "result": "Int64",
+              "body": [
+                "text.bytes",
+                [
+                  "loop",
+                  0,
+                  "i",
+                  "a",
+                  [
+                    "text",
+                    "a"
+                  ],
+                  [
+                    "use",
+                    "a"
+                  ]
+                ]
+              ]
+            }
+          }
+        },
+        "arguments": []
+      },
+      "expected": {
+        "schema": "bagaev-typed-option-int-result/1",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Int64",
+        "value": 1,
+        "work": 4
+      },
+      "expected_native_hex": "0000000001000000010000000000000004000000000000000000000000000000",
+      "node_locations": {
+        "/program/functions/main/body": 1,
+        "/program/functions/main/body/1": 2,
+        "/program/functions/main/body/1/4": 3,
+        "/program/functions/main/body/1/5": 4
+      }
+    },
+    {
+      "id": "TX-TEXT-HELPER",
+      "invocation": {
+        "schema": "bagaev-typed-option-int-invocation/1",
+        "program": {
+          "schema": "bagaev-typed-option-int/1",
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [],
+              "result": "Int64",
+              "body": [
+                "text.bytes",
+                [
+                  "call",
+                  "echo",
+                  [
+                    "text",
+                    "a"
+                  ]
+                ]
+              ]
+            },
+            "echo": {
+              "params": [
+                [
+                  "x",
+                  "Text"
+                ]
+              ],
+              "result": "Text",
+              "body": [
+                "arg",
+                "x"
+              ]
+            }
+          }
+        },
+        "arguments": []
+      },
+      "expected": {
+        "schema": "bagaev-typed-option-int-result/1",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Int64",
+        "value": 1,
+        "work": 5
+      },
+      "expected_native_hex": "0000000001000000010000000000000005000000000000000000000000000000",
+      "node_locations": {
+        "/program/functions/echo/body": 1,
+        "/program/functions/main/body": 2,
+        "/program/functions/main/body/1": 3,
+        "/program/functions/main/body/1/2": 4
+      }
+    },
+    {
+      "id": "TX-LAZY",
+      "invocation": {
+        "schema": "bagaev-typed-option-int-invocation/1",
+        "program": {
+          "schema": "bagaev-typed-option-int/1",
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [],
+              "result": "Int64",
+              "body": [
+                "if",
+                [
+                  "bool",
+                  true
+                ],
+                [
+                  "int",
+                  7
+                ],
+                [
+                  "text.bytes",
+                  [
+                    "text",
+                    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                  ]
+                ]
+              ]
+            }
+          }
+        },
+        "arguments": []
+      },
+      "expected": {
+        "schema": "bagaev-typed-option-int-result/1",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Int64",
+        "value": 7,
+        "work": 3
+      },
+      "expected_native_hex": "0000000001000000070000000000000003000000000000000000000000000000",
+      "node_locations": {
+        "/program/functions/main/body": 1,
+        "/program/functions/main/body/1": 2,
+        "/program/functions/main/body/2": 3,
+        "/program/functions/main/body/3": 4,
+        "/program/functions/main/body/3/1": 5
+      }
+    },
+    {
+      "id": "TX-WORK-EXACT",
+      "invocation": {
+        "schema": "bagaev-typed-option-int-invocation/1",
+        "program": {
+          "schema": "bagaev-typed-option-int/1",
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [],
+              "result": "Int64",
+              "body": [
+                "let",
+                "unused",
+                [
+                  "loop",
+                  1023,
+                  "i",
+                  "a",
+                  [
+                    "int",
+                    0
+                  ],
+                  [
+                    "text.bytes",
+                    [
+                      "text",
+                      "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                    ]
+                  ]
+                ],
+                [
+                  "text.bytes",
+                  [
+                    "text",
+                    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                  ]
+                ]
+              ]
+            }
+          }
+        },
+        "arguments": []
+      },
+      "expected": {
+        "schema": "bagaev-typed-option-int-result/1",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Int64",
+        "value": 59,
+        "work": 65536
+      },
+      "expected_native_hex": "00000000010000003b0000000000000000000100000000000000000000000000",
+      "node_locations": {
+        "/program/functions/main/body": 1,
+        "/program/functions/main/body/2": 2,
+        "/program/functions/main/body/2/4": 3,
+        "/program/functions/main/body/2/5": 4,
+        "/program/functions/main/body/2/5/1": 5,
+        "/program/functions/main/body/3": 6,
+        "/program/functions/main/body/3/1": 7
+      }
+    },
+    {
+      "id": "TX-WORK-EXTRA-REFUSAL",
+      "invocation": {
+        "schema": "bagaev-typed-option-int-invocation/1",
+        "program": {
+          "schema": "bagaev-typed-option-int/1",
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [],
+              "result": "Int64",
+              "body": [
+                "let",
+                "unused",
+                [
+                  "loop",
+                  1023,
+                  "i",
+                  "a",
+                  [
+                    "int",
+                    0
+                  ],
+                  [
+                    "text.bytes",
+                    [
+                      "text",
+                      "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                    ]
+                  ]
+                ],
+                [
+                  "text.bytes",
+                  [
+                    "text",
+                    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                  ]
+                ]
+              ]
+            }
+          }
+        },
+        "arguments": []
+      },
+      "expected": {
+        "schema": "bagaev-typed-option-int-result/1",
+        "status": "work-limit",
+        "reason": "OI_WORK",
+        "location": "/program/functions/main/body/3/1",
+        "value_type": null,
+        "value": null,
+        "work": 65477
+      },
+      "expected_native_hex": "02000000000000000000000000000000c5ff0000000000000a00000007000000",
+      "node_locations": {
+        "/program/functions/main/body": 1,
+        "/program/functions/main/body/2": 2,
+        "/program/functions/main/body/2/4": 3,
+        "/program/functions/main/body/2/5": 4,
+        "/program/functions/main/body/2/5/1": 5,
+        "/program/functions/main/body/3": 6,
+        "/program/functions/main/body/3/1": 7
+      }
+    },
+    {
+      "id": "TX-SCALAR-PARITY",
+      "invocation": {
+        "schema": "bagaev-typed-option-int-invocation/1",
+        "program": {
+          "schema": "bagaev-typed-option-int/1",
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [],
+              "result": "Int64",
+              "body": [
+                "add",
+                [
+                  "int",
+                  1
+                ],
+                [
+                  "int",
+                  2
+                ]
+              ]
+            }
+          }
+        },
+        "arguments": []
+      },
+      "expected": {
+        "schema": "bagaev-typed-option-int-result/1",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Int64",
+        "value": 3,
+        "work": 3
+      },
+      "expected_native_hex": "0000000001000000030000000000000003000000000000000000000000000000",
+      "node_locations": {
+        "/program/functions/main/body": 1,
+        "/program/functions/main/body/1": 2,
+        "/program/functions/main/body/2": 3
+      }
+    },
+    {
+      "id": "TX-LEFT-OVERFLOW",
+      "invocation": {
+        "schema": "bagaev-typed-option-int-invocation/1",
+        "program": {
+          "schema": "bagaev-typed-option-int/1",
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [],
+              "result": "Int64",
+              "body": [
+                "add",
+                [
+                  "add",
+                  [
+                    "int",
+                    9223372036854775807
+                  ],
+                  [
+                    "int",
+                    1
+                  ]
+                ],
+                [
+                  "text.bytes",
+                  [
+                    "text",
+                    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                  ]
+                ]
+              ]
+            }
+          }
+        },
+        "arguments": []
+      },
+      "expected": {
+        "schema": "bagaev-typed-option-int-result/1",
+        "status": "integer-overflow",
+        "reason": "OI_OVERFLOW",
+        "location": "/program/functions/main/body/1",
+        "value_type": null,
+        "value": null,
+        "work": 4
+      },
+      "expected_native_hex": "0100000000000000000000000000000004000000000000000900000002000000",
+      "node_locations": {
+        "/program/functions/main/body": 1,
+        "/program/functions/main/body/1": 2,
+        "/program/functions/main/body/1/1": 3,
+        "/program/functions/main/body/1/2": 4,
+        "/program/functions/main/body/2": 5,
+        "/program/functions/main/body/2/1": 6
+      }
+    },
+    {
+      "id": "TX-COMPARE-WORK-EXACT",
+      "invocation": {
+        "schema": "bagaev-typed-option-int-invocation/1",
+        "program": {
+          "schema": "bagaev-typed-option-int/1",
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [],
+              "result": "Bool",
+              "body": [
+                "let",
+                "unused",
+                [
+                  "loop",
+                  1023,
+                  "i",
+                  "a",
+                  [
+                    "int",
+                    0
+                  ],
+                  [
+                    "text.bytes",
+                    [
+                      "text",
+                      "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                    ]
+                  ]
+                ],
+                [
+                  "text.eq",
+                  [
+                    "text",
+                    "aaaaaaaaaaaaaa"
+                  ],
+                  [
+                    "text",
+                    "aaaaaaaaaaaaaaa"
+                  ]
+                ]
+              ]
+            }
+          }
+        },
+        "arguments": []
+      },
+      "expected": {
+        "schema": "bagaev-typed-option-int-result/1",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Bool",
+        "value": false,
+        "work": 65536
+      },
+      "expected_native_hex": "0000000002000000000000000000000000000100000000000000000000000000",
+      "node_locations": {
+        "/program/functions/main/body": 1,
+        "/program/functions/main/body/2": 2,
+        "/program/functions/main/body/2/4": 3,
+        "/program/functions/main/body/2/5": 4,
+        "/program/functions/main/body/2/5/1": 5,
+        "/program/functions/main/body/3": 6,
+        "/program/functions/main/body/3/1": 7,
+        "/program/functions/main/body/3/2": 8
+      }
+    },
+    {
+      "id": "TX-COMPARE-WORK-REFUSAL",
+      "invocation": {
+        "schema": "bagaev-typed-option-int-invocation/1",
+        "program": {
+          "schema": "bagaev-typed-option-int/1",
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [],
+              "result": "Bool",
+              "body": [
+                "let",
+                "unused",
+                [
+                  "loop",
+                  1023,
+                  "i",
+                  "a",
+                  [
+                    "int",
+                    0
+                  ],
+                  [
+                    "text.bytes",
+                    [
+                      "text",
+                      "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                    ]
+                  ]
+                ],
+                [
+                  "text.eq",
+                  [
+                    "text",
+                    "aaaaaaaaaaaaaaa"
+                  ],
+                  [
+                    "text",
+                    "aaaaaaaaaaaaaaa"
+                  ]
+                ]
+              ]
+            }
+          }
+        },
+        "arguments": []
+      },
+      "expected": {
+        "schema": "bagaev-typed-option-int-result/1",
+        "status": "work-limit",
+        "reason": "OI_WORK",
+        "location": "/program/functions/main/body/3",
+        "value_type": null,
+        "value": null,
+        "work": 65508
+      },
+      "expected_native_hex": "02000000000000000000000000000000e4ff0000000000000a00000006000000",
+      "node_locations": {
+        "/program/functions/main/body": 1,
+        "/program/functions/main/body/2": 2,
+        "/program/functions/main/body/2/4": 3,
+        "/program/functions/main/body/2/5": 4,
+        "/program/functions/main/body/2/5/1": 5,
+        "/program/functions/main/body/3": 6,
+        "/program/functions/main/body/3/1": 7,
+        "/program/functions/main/body/3/2": 8
+      }
+    },
+    {
+      "id": "TX2-IF-YES",
+      "invocation": {
+        "schema": "bagaev-typed-option-int-invocation/1",
+        "program": {
+          "schema": "bagaev-typed-option-int/1",
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [],
+              "result": "Int64",
+              "body": [
+                "text.bytes",
+                [
+                  "if",
+                  [
+                    "bool",
+                    true
+                  ],
+                  [
+                    "text",
+                    "a"
+                  ],
+                  [
+                    "text",
+                    "\ud83d\ude00"
+                  ]
+                ]
+              ]
+            }
+          }
+        },
+        "arguments": []
+      },
+      "expected": {
+        "schema": "bagaev-typed-option-int-result/1",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Int64",
+        "value": 1,
+        "work": 5
+      },
+      "expected_native_hex": "0000000001000000010000000000000005000000000000000000000000000000",
+      "node_locations": {
+        "/program/functions/main/body": 1,
+        "/program/functions/main/body/1": 2,
+        "/program/functions/main/body/1/1": 3,
+        "/program/functions/main/body/1/2": 4,
+        "/program/functions/main/body/1/3": 5
+      }
+    },
+    {
+      "id": "TX2-IF-NO",
+      "invocation": {
+        "schema": "bagaev-typed-option-int-invocation/1",
+        "program": {
+          "schema": "bagaev-typed-option-int/1",
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [],
+              "result": "Int64",
+              "body": [
+                "text.bytes",
+                [
+                  "if",
+                  [
+                    "bool",
+                    false
+                  ],
+                  [
+                    "text",
+                    "a"
+                  ],
+                  [
+                    "text",
+                    "\ud83d\ude00"
+                  ]
+                ]
+              ]
+            }
+          }
+        },
+        "arguments": []
+      },
+      "expected": {
+        "schema": "bagaev-typed-option-int-result/1",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Int64",
+        "value": 4,
+        "work": 8
+      },
+      "expected_native_hex": "0000000001000000040000000000000008000000000000000000000000000000",
+      "node_locations": {
+        "/program/functions/main/body": 1,
+        "/program/functions/main/body/1": 2,
+        "/program/functions/main/body/1/1": 3,
+        "/program/functions/main/body/1/2": 4,
+        "/program/functions/main/body/1/3": 5
+      }
+    },
+    {
+      "id": "TX2-LET-TEXT-PHI",
+      "invocation": {
+        "schema": "bagaev-typed-option-int-invocation/1",
+        "program": {
+          "schema": "bagaev-typed-option-int/1",
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [],
+              "result": "Int64",
+              "body": [
+                "let",
+                "x",
+                [
+                  "if",
+                  [
+                    "bool",
+                    true
+                  ],
+                  [
+                    "text",
+                    "\ud83d\ude00"
+                  ],
+                  [
+                    "text",
+                    "a"
+                  ]
+                ],
+                [
+                  "text.scalars",
+                  [
+                    "use",
+                    "x"
+                  ]
+                ]
+              ]
+            }
+          }
+        },
+        "arguments": []
+      },
+      "expected": {
+        "schema": "bagaev-typed-option-int-result/1",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Int64",
+        "value": 1,
+        "work": 10
+      },
+      "expected_native_hex": "000000000100000001000000000000000a000000000000000000000000000000",
+      "node_locations": {
+        "/program/functions/main/body": 1,
+        "/program/functions/main/body/2": 2,
+        "/program/functions/main/body/2/1": 3,
+        "/program/functions/main/body/2/2": 4,
+        "/program/functions/main/body/2/3": 5,
+        "/program/functions/main/body/3": 6,
+        "/program/functions/main/body/3/1": 7
+      }
+    },
+    {
+      "id": "TX2-LOOP-TEXT-PHI",
+      "invocation": {
+        "schema": "bagaev-typed-option-int-invocation/1",
+        "program": {
+          "schema": "bagaev-typed-option-int/1",
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [],
+              "result": "Int64",
+              "body": [
+                "text.bytes",
+                [
+                  "loop",
+                  3,
+                  "i",
+                  "a",
+                  [
+                    "text",
+                    ""
+                  ],
+                  [
+                    "if",
+                    [
+                      "eq",
+                      [
+                        "use",
+                        "i"
+                      ],
+                      [
+                        "int",
+                        1
+                      ]
+                    ],
+                    [
+                      "text",
+                      "\ud83d\ude00"
+                    ],
+                    [
+                      "use",
+                      "a"
+                    ]
+                  ]
+                ]
+              ]
+            }
+          }
+        },
+        "arguments": []
+      },
+      "expected": {
+        "schema": "bagaev-typed-option-int-result/1",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Int64",
+        "value": 4,
+        "work": 22
+      },
+      "expected_native_hex": "0000000001000000040000000000000016000000000000000000000000000000",
+      "node_locations": {
+        "/program/functions/main/body": 1,
+        "/program/functions/main/body/1": 2,
+        "/program/functions/main/body/1/4": 3,
+        "/program/functions/main/body/1/5": 4,
+        "/program/functions/main/body/1/5/1": 5,
+        "/program/functions/main/body/1/5/1/1": 6,
+        "/program/functions/main/body/1/5/1/2": 7,
+        "/program/functions/main/body/1/5/2": 8,
+        "/program/functions/main/body/1/5/3": 9
+      }
+    },
+    {
+      "id": "TX2-CALL-TEXT-YES",
+      "invocation": {
+        "schema": "bagaev-typed-option-int-invocation/1",
+        "program": {
+          "schema": "bagaev-typed-option-int/1",
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [],
+              "result": "Int64",
+              "body": [
+                "text.bytes",
+                [
+                  "call",
+                  "choose",
+                  [
+                    "bool",
+                    true
+                  ],
+                  [
+                    "text",
+                    "a"
+                  ],
+                  [
+                    "text",
+                    "\ud83d\ude00"
+                  ]
+                ]
+              ]
+            },
+            "choose": {
+              "params": [
+                [
+                  "b",
+                  "Bool"
+                ],
+                [
+                  "x",
+                  "Text"
+                ],
+                [
+                  "y",
+                  "Text"
+                ]
+              ],
+              "result": "Text",
+              "body": [
+                "if",
+                [
+                  "arg",
+                  "b"
+                ],
+                [
+                  "arg",
+                  "x"
+                ],
+                [
+                  "arg",
+                  "y"
+                ]
+              ]
+            }
+          }
+        },
+        "arguments": []
+      },
+      "expected": {
+        "schema": "bagaev-typed-option-int-result/1",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Int64",
+        "value": 1,
+        "work": 13
+      },
+      "expected_native_hex": "000000000100000001000000000000000d000000000000000000000000000000",
+      "node_locations": {
+        "/program/functions/choose/body": 1,
+        "/program/functions/choose/body/1": 2,
+        "/program/functions/choose/body/2": 3,
+        "/program/functions/choose/body/3": 4,
+        "/program/functions/main/body": 5,
+        "/program/functions/main/body/1": 6,
+        "/program/functions/main/body/1/2": 7,
+        "/program/functions/main/body/1/3": 8,
+        "/program/functions/main/body/1/4": 9
+      }
+    },
+    {
+      "id": "TX2-CALL-TEXT-NO",
+      "invocation": {
+        "schema": "bagaev-typed-option-int-invocation/1",
+        "program": {
+          "schema": "bagaev-typed-option-int/1",
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [],
+              "result": "Int64",
+              "body": [
+                "text.bytes",
+                [
+                  "call",
+                  "choose",
+                  [
+                    "bool",
+                    false
+                  ],
+                  [
+                    "text",
+                    "a"
+                  ],
+                  [
+                    "text",
+                    "\ud83d\ude00"
+                  ]
+                ]
+              ]
+            },
+            "choose": {
+              "params": [
+                [
+                  "b",
+                  "Bool"
+                ],
+                [
+                  "x",
+                  "Text"
+                ],
+                [
+                  "y",
+                  "Text"
+                ]
+              ],
+              "result": "Text",
+              "body": [
+                "if",
+                [
+                  "arg",
+                  "b"
+                ],
+                [
+                  "arg",
+                  "x"
+                ],
+                [
+                  "arg",
+                  "y"
+                ]
+              ]
+            }
+          }
+        },
+        "arguments": []
+      },
+      "expected": {
+        "schema": "bagaev-typed-option-int-result/1",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Int64",
+        "value": 4,
+        "work": 13
+      },
+      "expected_native_hex": "000000000100000004000000000000000d000000000000000000000000000000",
+      "node_locations": {
+        "/program/functions/choose/body": 1,
+        "/program/functions/choose/body/1": 2,
+        "/program/functions/choose/body/2": 3,
+        "/program/functions/choose/body/3": 4,
+        "/program/functions/main/body": 5,
+        "/program/functions/main/body/1": 6,
+        "/program/functions/main/body/1/2": 7,
+        "/program/functions/main/body/1/3": 8,
+        "/program/functions/main/body/1/4": 9
+      }
+    },
+    {
+      "id": "TX2-CALL-ARG-OVERFLOW",
+      "invocation": {
+        "schema": "bagaev-typed-option-int-invocation/1",
+        "program": {
+          "schema": "bagaev-typed-option-int/1",
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [],
+              "result": "Int64",
+              "body": [
+                "text.bytes",
+                [
+                  "call",
+                  "pick",
+                  [
+                    "text",
+                    "a"
+                  ],
+                  [
+                    "add",
+                    [
+                      "int",
+                      9223372036854775807
+                    ],
+                    [
+                      "int",
+                      1
+                    ]
+                  ]
+                ]
+              ]
+            },
+            "pick": {
+              "params": [
+                [
+                  "x",
+                  "Text"
+                ],
+                [
+                  "n",
+                  "Int64"
+                ]
+              ],
+              "result": "Text",
+              "body": [
+                "arg",
+                "x"
+              ]
+            }
+          }
+        },
+        "arguments": []
+      },
+      "expected": {
+        "schema": "bagaev-typed-option-int-result/1",
+        "status": "integer-overflow",
+        "reason": "OI_OVERFLOW",
+        "location": "/program/functions/main/body/1/3",
+        "value_type": null,
+        "value": null,
+        "work": 7
+      },
+      "expected_native_hex": "0100000000000000000000000000000007000000000000000900000004000000",
+      "node_locations": {
+        "/program/functions/main/body": 1,
+        "/program/functions/main/body/1": 2,
+        "/program/functions/main/body/1/2": 3,
+        "/program/functions/main/body/1/3": 4,
+        "/program/functions/main/body/1/3/1": 5,
+        "/program/functions/main/body/1/3/2": 6,
+        "/program/functions/pick/body": 7
+      }
+    },
+    {
+      "id": "TX2-TEXT-FUNCTION-OVERFLOW",
+      "invocation": {
+        "schema": "bagaev-typed-option-int-invocation/1",
+        "program": {
+          "schema": "bagaev-typed-option-int/1",
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [],
+              "result": "Int64",
+              "body": [
+                "text.bytes",
+                [
+                  "call",
+                  "bad"
+                ]
+              ]
+            },
+            "bad": {
+              "params": [],
+              "result": "Text",
+              "body": [
+                "if",
+                [
+                  "eq",
+                  [
+                    "add",
+                    [
+                      "int",
+                      9223372036854775807
+                    ],
+                    [
+                      "int",
+                      1
+                    ]
+                  ],
+                  [
+                    "int",
+                    0
+                  ]
+                ],
+                [
+                  "text",
+                  "a"
+                ],
+                [
+                  "text",
+                  "b"
+                ]
+              ]
+            }
+          }
+        },
+        "arguments": []
+      },
+      "expected": {
+        "schema": "bagaev-typed-option-int-result/1",
+        "status": "integer-overflow",
+        "reason": "OI_OVERFLOW",
+        "location": "/program/functions/bad/body/1/1",
+        "value_type": null,
+        "value": null,
+        "work": 7
+      },
+      "expected_native_hex": "0100000000000000000000000000000007000000000000000900000003000000",
+      "node_locations": {
+        "/program/functions/bad/body": 1,
+        "/program/functions/bad/body/1": 2,
+        "/program/functions/bad/body/1/1": 3,
+        "/program/functions/bad/body/1/1/1": 4,
+        "/program/functions/bad/body/1/1/2": 5,
+        "/program/functions/bad/body/1/2": 6,
+        "/program/functions/bad/body/2": 7,
+        "/program/functions/bad/body/3": 8,
+        "/program/functions/main/body": 9,
+        "/program/functions/main/body/1": 10
+      }
+    },
+    {
+      "id": "TX2-PREFIX",
+      "invocation": {
+        "schema": "bagaev-typed-option-int-invocation/1",
+        "program": {
+          "schema": "bagaev-typed-option-int/1",
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [],
+              "result": "Bool",
+              "body": [
+                "text.lt",
+                [
+                  "text",
+                  "a"
+                ],
+                [
+                  "text",
+                  "ab"
+                ]
+              ]
+            }
+          }
+        },
+        "arguments": []
+      },
+      "expected": {
+        "schema": "bagaev-typed-option-int-result/1",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Bool",
+        "value": true,
+        "work": 9
+      },
+      "expected_native_hex": "0000000002000000010000000000000009000000000000000000000000000000",
+      "node_locations": {
+        "/program/functions/main/body": 1,
+        "/program/functions/main/body/1": 2,
+        "/program/functions/main/body/2": 3
+      }
+    },
+    {
+      "id": "TX2-REVERSE-PREFIX",
+      "invocation": {
+        "schema": "bagaev-typed-option-int-invocation/1",
+        "program": {
+          "schema": "bagaev-typed-option-int/1",
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [],
+              "result": "Bool",
+              "body": [
+                "text.lt",
+                [
+                  "text",
+                  "ab"
+                ],
+                [
+                  "text",
+                  "a"
+                ]
+              ]
+            }
+          }
+        },
+        "arguments": []
+      },
+      "expected": {
+        "schema": "bagaev-typed-option-int-result/1",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Bool",
+        "value": false,
+        "work": 9
+      },
+      "expected_native_hex": "0000000002000000000000000000000009000000000000000000000000000000",
+      "node_locations": {
+        "/program/functions/main/body": 1,
+        "/program/functions/main/body/1": 2,
+        "/program/functions/main/body/2": 3
+      }
+    },
+    {
+      "id": "TX2-EQUAL",
+      "invocation": {
+        "schema": "bagaev-typed-option-int-invocation/1",
+        "program": {
+          "schema": "bagaev-typed-option-int/1",
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [],
+              "result": "Bool",
+              "body": [
+                "text.lt",
+                [
+                  "text",
+                  "a"
+                ],
+                [
+                  "text",
+                  "a"
+                ]
+              ]
+            }
+          }
+        },
+        "arguments": []
+      },
+      "expected": {
+        "schema": "bagaev-typed-option-int-result/1",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Bool",
+        "value": false,
+        "work": 7
+      },
+      "expected_native_hex": "0000000002000000000000000000000007000000000000000000000000000000",
+      "node_locations": {
+        "/program/functions/main/body": 1,
+        "/program/functions/main/body/1": 2,
+        "/program/functions/main/body/2": 3
+      }
+    },
+    {
+      "id": "TX2-EMPTY",
+      "invocation": {
+        "schema": "bagaev-typed-option-int-invocation/1",
+        "program": {
+          "schema": "bagaev-typed-option-int/1",
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [],
+              "result": "Bool",
+              "body": [
+                "text.lt",
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  "a"
+                ]
+              ]
+            }
+          }
+        },
+        "arguments": []
+      },
+      "expected": {
+        "schema": "bagaev-typed-option-int-result/1",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Bool",
+        "value": true,
+        "work": 5
+      },
+      "expected_native_hex": "0000000002000000010000000000000005000000000000000000000000000000",
+      "node_locations": {
+        "/program/functions/main/body": 1,
+        "/program/functions/main/body/1": 2,
+        "/program/functions/main/body/2": 3
+      }
+    },
+    {
+      "id": "TX2-ASCII-UNICODE",
+      "invocation": {
+        "schema": "bagaev-typed-option-int-invocation/1",
+        "program": {
+          "schema": "bagaev-typed-option-int/1",
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [],
+              "result": "Bool",
+              "body": [
+                "text.lt",
+                [
+                  "text",
+                  "z"
+                ],
+                [
+                  "text",
+                  "\u00e9"
+                ]
+              ]
+            }
+          }
+        },
+        "arguments": []
+      },
+      "expected": {
+        "schema": "bagaev-typed-option-int-result/1",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Bool",
+        "value": true,
+        "work": 9
+      },
+      "expected_native_hex": "0000000002000000010000000000000009000000000000000000000000000000",
+      "node_locations": {
+        "/program/functions/main/body": 1,
+        "/program/functions/main/body/1": 2,
+        "/program/functions/main/body/2": 3
+      }
+    },
+    {
+      "id": "TX2-UNICODE-ASCII",
+      "invocation": {
+        "schema": "bagaev-typed-option-int-invocation/1",
+        "program": {
+          "schema": "bagaev-typed-option-int/1",
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [],
+              "result": "Bool",
+              "body": [
+                "text.lt",
+                [
+                  "text",
+                  "\u00e9"
+                ],
+                [
+                  "text",
+                  "z"
+                ]
+              ]
+            }
+          }
+        },
+        "arguments": []
+      },
+      "expected": {
+        "schema": "bagaev-typed-option-int-result/1",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Bool",
+        "value": false,
+        "work": 9
+      },
+      "expected_native_hex": "0000000002000000000000000000000009000000000000000000000000000000",
+      "node_locations": {
+        "/program/functions/main/body": 1,
+        "/program/functions/main/body/1": 2,
+        "/program/functions/main/body/2": 3
+      }
+    },
+    {
+      "id": "TX2-NUL",
+      "invocation": {
+        "schema": "bagaev-typed-option-int-invocation/1",
+        "program": {
+          "schema": "bagaev-typed-option-int/1",
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [],
+              "result": "Bool",
+              "body": [
+                "text.lt",
+                [
+                  "text",
+                  "a\u0000"
+                ],
+                [
+                  "text",
+                  "a\u0001"
+                ]
+              ]
+            }
+          }
+        },
+        "arguments": []
+      },
+      "expected": {
+        "schema": "bagaev-typed-option-int-result/1",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Bool",
+        "value": true,
+        "work": 11
+      },
+      "expected_native_hex": "000000000200000001000000000000000b000000000000000000000000000000",
+      "node_locations": {
+        "/program/functions/main/body": 1,
+        "/program/functions/main/body/1": 2,
+        "/program/functions/main/body/2": 3
+      }
+    }
+  ],
+  "adaptation": "34 existing Text native cases; explicit new profile schema/prefix only; native expected bytes unchanged"
+}

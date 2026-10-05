@@ -1,0 +1,1664 @@
+{
+  "status": "PASS",
+  "observations": [
+    {
+      "id": "OI-NONE-FALLBACK",
+      "optimization": "O0",
+      "prefill": 0,
+      "matched": true,
+      "output_hex": "0000000001000000070000000000000003000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "OI-NONE-FALLBACK",
+      "optimization": "O0",
+      "prefill": 165,
+      "matched": true,
+      "output_hex": "0000000001000000070000000000000003000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "OI-NONE-FALLBACK",
+      "optimization": "O2",
+      "prefill": 0,
+      "matched": true,
+      "output_hex": "0000000001000000070000000000000003000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "OI-NONE-FALLBACK",
+      "optimization": "O2",
+      "prefill": 165,
+      "matched": true,
+      "output_hex": "0000000001000000070000000000000003000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "OI-SOME-ZERO-LAZY",
+      "optimization": "O0",
+      "prefill": 0,
+      "matched": true,
+      "output_hex": "0000000001000000000000000000000003000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "OI-SOME-ZERO-LAZY",
+      "optimization": "O0",
+      "prefill": 165,
+      "matched": true,
+      "output_hex": "0000000001000000000000000000000003000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "OI-SOME-ZERO-LAZY",
+      "optimization": "O2",
+      "prefill": 0,
+      "matched": true,
+      "output_hex": "0000000001000000000000000000000003000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "OI-SOME-ZERO-LAZY",
+      "optimization": "O2",
+      "prefill": 165,
+      "matched": true,
+      "output_hex": "0000000001000000000000000000000003000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "OI-SOME-MIN",
+      "optimization": "O0",
+      "prefill": 0,
+      "matched": true,
+      "output_hex": "0000000001000000000000000000008003000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "OI-SOME-MIN",
+      "optimization": "O0",
+      "prefill": 165,
+      "matched": true,
+      "output_hex": "0000000001000000000000000000008003000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "OI-SOME-MIN",
+      "optimization": "O2",
+      "prefill": 0,
+      "matched": true,
+      "output_hex": "0000000001000000000000000000008003000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "OI-SOME-MIN",
+      "optimization": "O2",
+      "prefill": 165,
+      "matched": true,
+      "output_hex": "0000000001000000000000000000008003000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "OI-HAS-NONE",
+      "optimization": "O0",
+      "prefill": 0,
+      "matched": true,
+      "output_hex": "0000000002000000000000000000000002000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "OI-HAS-NONE",
+      "optimization": "O0",
+      "prefill": 165,
+      "matched": true,
+      "output_hex": "0000000002000000000000000000000002000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "OI-HAS-NONE",
+      "optimization": "O2",
+      "prefill": 0,
+      "matched": true,
+      "output_hex": "0000000002000000000000000000000002000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "OI-HAS-NONE",
+      "optimization": "O2",
+      "prefill": 165,
+      "matched": true,
+      "output_hex": "0000000002000000000000000000000002000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "OI-HAS-ZERO",
+      "optimization": "O0",
+      "prefill": 0,
+      "matched": true,
+      "output_hex": "0000000002000000010000000000000003000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "OI-HAS-ZERO",
+      "optimization": "O0",
+      "prefill": 165,
+      "matched": true,
+      "output_hex": "0000000002000000010000000000000003000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "OI-HAS-ZERO",
+      "optimization": "O2",
+      "prefill": 0,
+      "matched": true,
+      "output_hex": "0000000002000000010000000000000003000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "OI-HAS-ZERO",
+      "optimization": "O2",
+      "prefill": 165,
+      "matched": true,
+      "output_hex": "0000000002000000010000000000000003000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "OI-LET-NONE",
+      "optimization": "O0",
+      "prefill": 0,
+      "matched": true,
+      "output_hex": "0000000001000000070000000000000005000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "OI-LET-NONE",
+      "optimization": "O0",
+      "prefill": 165,
+      "matched": true,
+      "output_hex": "0000000001000000070000000000000005000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "OI-LET-NONE",
+      "optimization": "O2",
+      "prefill": 0,
+      "matched": true,
+      "output_hex": "0000000001000000070000000000000005000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "OI-LET-NONE",
+      "optimization": "O2",
+      "prefill": 165,
+      "matched": true,
+      "output_hex": "0000000001000000070000000000000005000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "OI-IF-SOME",
+      "optimization": "O0",
+      "prefill": 0,
+      "matched": true,
+      "output_hex": "0000000001000000030000000000000005000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "OI-IF-SOME",
+      "optimization": "O0",
+      "prefill": 165,
+      "matched": true,
+      "output_hex": "0000000001000000030000000000000005000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "OI-IF-SOME",
+      "optimization": "O2",
+      "prefill": 0,
+      "matched": true,
+      "output_hex": "0000000001000000030000000000000005000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "OI-IF-SOME",
+      "optimization": "O2",
+      "prefill": 165,
+      "matched": true,
+      "output_hex": "0000000001000000030000000000000005000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "OI-ARG-NONE",
+      "optimization": "O0",
+      "prefill": 0,
+      "matched": true,
+      "output_hex": "0000000001000000090000000000000003000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "OI-ARG-NONE",
+      "optimization": "O0",
+      "prefill": 165,
+      "matched": true,
+      "output_hex": "0000000001000000090000000000000003000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "OI-ARG-NONE",
+      "optimization": "O2",
+      "prefill": 0,
+      "matched": true,
+      "output_hex": "0000000001000000090000000000000003000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "OI-ARG-NONE",
+      "optimization": "O2",
+      "prefill": 165,
+      "matched": true,
+      "output_hex": "0000000001000000090000000000000003000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "OI-ARG-ZERO",
+      "optimization": "O0",
+      "prefill": 0,
+      "matched": true,
+      "output_hex": "0000000001000000000000000000000002000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "OI-ARG-ZERO",
+      "optimization": "O0",
+      "prefill": 165,
+      "matched": true,
+      "output_hex": "0000000001000000000000000000000002000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "OI-ARG-ZERO",
+      "optimization": "O2",
+      "prefill": 0,
+      "matched": true,
+      "output_hex": "0000000001000000000000000000000002000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "OI-ARG-ZERO",
+      "optimization": "O2",
+      "prefill": 165,
+      "matched": true,
+      "output_hex": "0000000001000000000000000000000002000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "OI-ARG-MAX",
+      "optimization": "O0",
+      "prefill": 0,
+      "matched": true,
+      "output_hex": "0000000001000000ffffffffffffff7f02000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "OI-ARG-MAX",
+      "optimization": "O0",
+      "prefill": 165,
+      "matched": true,
+      "output_hex": "0000000001000000ffffffffffffff7f02000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "OI-ARG-MAX",
+      "optimization": "O2",
+      "prefill": 0,
+      "matched": true,
+      "output_hex": "0000000001000000ffffffffffffff7f02000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "OI-ARG-MAX",
+      "optimization": "O2",
+      "prefill": 165,
+      "matched": true,
+      "output_hex": "0000000001000000ffffffffffffff7f02000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "OI-CALL-NONE",
+      "optimization": "O0",
+      "prefill": 0,
+      "matched": true,
+      "output_hex": "0000000001000000090000000000000005000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "OI-CALL-NONE",
+      "optimization": "O0",
+      "prefill": 165,
+      "matched": true,
+      "output_hex": "0000000001000000090000000000000005000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "OI-CALL-NONE",
+      "optimization": "O2",
+      "prefill": 0,
+      "matched": true,
+      "output_hex": "0000000001000000090000000000000005000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "OI-CALL-NONE",
+      "optimization": "O2",
+      "prefill": 165,
+      "matched": true,
+      "output_hex": "0000000001000000090000000000000005000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "OI-CALL-SOME",
+      "optimization": "O0",
+      "prefill": 0,
+      "matched": true,
+      "output_hex": "0000000001000000000000000000000005000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "OI-CALL-SOME",
+      "optimization": "O0",
+      "prefill": 165,
+      "matched": true,
+      "output_hex": "0000000001000000000000000000000005000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "OI-CALL-SOME",
+      "optimization": "O2",
+      "prefill": 0,
+      "matched": true,
+      "output_hex": "0000000001000000000000000000000005000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "OI-CALL-SOME",
+      "optimization": "O2",
+      "prefill": 165,
+      "matched": true,
+      "output_hex": "0000000001000000000000000000000005000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "OI-LOOP",
+      "optimization": "O0",
+      "prefill": 0,
+      "matched": true,
+      "output_hex": "0000000001000000010000000000000013000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "OI-LOOP",
+      "optimization": "O0",
+      "prefill": 165,
+      "matched": true,
+      "output_hex": "0000000001000000010000000000000013000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "OI-LOOP",
+      "optimization": "O2",
+      "prefill": 0,
+      "matched": true,
+      "output_hex": "0000000001000000010000000000000013000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "OI-LOOP",
+      "optimization": "O2",
+      "prefill": 165,
+      "matched": true,
+      "output_hex": "0000000001000000010000000000000013000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "OI-ZERO-LOOP",
+      "optimization": "O0",
+      "prefill": 0,
+      "matched": true,
+      "output_hex": "0000000001000000090000000000000004000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "OI-ZERO-LOOP",
+      "optimization": "O0",
+      "prefill": 165,
+      "matched": true,
+      "output_hex": "0000000001000000090000000000000004000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "OI-ZERO-LOOP",
+      "optimization": "O2",
+      "prefill": 0,
+      "matched": true,
+      "output_hex": "0000000001000000090000000000000004000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "OI-ZERO-LOOP",
+      "optimization": "O2",
+      "prefill": 165,
+      "matched": true,
+      "output_hex": "0000000001000000090000000000000004000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "OI-FALLBACK-OVERFLOW",
+      "optimization": "O0",
+      "prefill": 0,
+      "matched": true,
+      "output_hex": "0100000000000000000000000000000005000000000000000900000003000000",
+      "input_preserved": true
+    },
+    {
+      "id": "OI-FALLBACK-OVERFLOW",
+      "optimization": "O0",
+      "prefill": 165,
+      "matched": true,
+      "output_hex": "0100000000000000000000000000000005000000000000000900000003000000",
+      "input_preserved": true
+    },
+    {
+      "id": "OI-FALLBACK-OVERFLOW",
+      "optimization": "O2",
+      "prefill": 0,
+      "matched": true,
+      "output_hex": "0100000000000000000000000000000005000000000000000900000003000000",
+      "input_preserved": true
+    },
+    {
+      "id": "OI-FALLBACK-OVERFLOW",
+      "optimization": "O2",
+      "prefill": 165,
+      "matched": true,
+      "output_hex": "0100000000000000000000000000000005000000000000000900000003000000",
+      "input_preserved": true
+    },
+    {
+      "id": "OI-SOME-OVERFLOW",
+      "optimization": "O0",
+      "prefill": 0,
+      "matched": true,
+      "output_hex": "0100000000000000000000000000000005000000000000000900000003000000",
+      "input_preserved": true
+    },
+    {
+      "id": "OI-SOME-OVERFLOW",
+      "optimization": "O0",
+      "prefill": 165,
+      "matched": true,
+      "output_hex": "0100000000000000000000000000000005000000000000000900000003000000",
+      "input_preserved": true
+    },
+    {
+      "id": "OI-SOME-OVERFLOW",
+      "optimization": "O2",
+      "prefill": 0,
+      "matched": true,
+      "output_hex": "0100000000000000000000000000000005000000000000000900000003000000",
+      "input_preserved": true
+    },
+    {
+      "id": "OI-SOME-OVERFLOW",
+      "optimization": "O2",
+      "prefill": 165,
+      "matched": true,
+      "output_hex": "0100000000000000000000000000000005000000000000000900000003000000",
+      "input_preserved": true
+    },
+    {
+      "id": "OI-TEXT-PARITY",
+      "optimization": "O0",
+      "prefill": 0,
+      "matched": true,
+      "output_hex": "0000000001000000030000000000000005000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "OI-TEXT-PARITY",
+      "optimization": "O0",
+      "prefill": 165,
+      "matched": true,
+      "output_hex": "0000000001000000030000000000000005000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "OI-TEXT-PARITY",
+      "optimization": "O2",
+      "prefill": 0,
+      "matched": true,
+      "output_hex": "0000000001000000030000000000000005000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "OI-TEXT-PARITY",
+      "optimization": "O2",
+      "prefill": 165,
+      "matched": true,
+      "output_hex": "0000000001000000030000000000000005000000000000000000000000000000",
+      "input_preserved": true
+    }
+  ],
+  "scope": "Optional Int64 native boundary on 17 pre-frozen valid invocations; no performance or general pointer-safety claim",
+  "adapted_text_regressions": {
+    "status": "PASS",
+    "observations": [
+      {
+        "id": "TX-ASCII-BYTES",
+        "optimization": "O0",
+        "prefill": 0,
+        "matched": true,
+        "output_hex": "0000000001000000030000000000000005000000000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX-ASCII-BYTES",
+        "optimization": "O0",
+        "prefill": 165,
+        "matched": true,
+        "output_hex": "0000000001000000030000000000000005000000000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX-ASCII-BYTES",
+        "optimization": "O2",
+        "prefill": 0,
+        "matched": true,
+        "output_hex": "0000000001000000030000000000000005000000000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX-ASCII-BYTES",
+        "optimization": "O2",
+        "prefill": 165,
+        "matched": true,
+        "output_hex": "0000000001000000030000000000000005000000000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX-EMPTY",
+        "optimization": "O0",
+        "prefill": 0,
+        "matched": true,
+        "output_hex": "0000000001000000000000000000000002000000000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX-EMPTY",
+        "optimization": "O0",
+        "prefill": 165,
+        "matched": true,
+        "output_hex": "0000000001000000000000000000000002000000000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX-EMPTY",
+        "optimization": "O2",
+        "prefill": 0,
+        "matched": true,
+        "output_hex": "0000000001000000000000000000000002000000000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX-EMPTY",
+        "optimization": "O2",
+        "prefill": 165,
+        "matched": true,
+        "output_hex": "0000000001000000000000000000000002000000000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX-SUPPLEMENTARY",
+        "optimization": "O0",
+        "prefill": 0,
+        "matched": true,
+        "output_hex": "0000000001000000010000000000000006000000000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX-SUPPLEMENTARY",
+        "optimization": "O0",
+        "prefill": 165,
+        "matched": true,
+        "output_hex": "0000000001000000010000000000000006000000000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX-SUPPLEMENTARY",
+        "optimization": "O2",
+        "prefill": 0,
+        "matched": true,
+        "output_hex": "0000000001000000010000000000000006000000000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX-SUPPLEMENTARY",
+        "optimization": "O2",
+        "prefill": 165,
+        "matched": true,
+        "output_hex": "0000000001000000010000000000000006000000000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX-SUPPLEMENTARY-BYTES",
+        "optimization": "O0",
+        "prefill": 0,
+        "matched": true,
+        "output_hex": "0000000001000000040000000000000006000000000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX-SUPPLEMENTARY-BYTES",
+        "optimization": "O0",
+        "prefill": 165,
+        "matched": true,
+        "output_hex": "0000000001000000040000000000000006000000000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX-SUPPLEMENTARY-BYTES",
+        "optimization": "O2",
+        "prefill": 0,
+        "matched": true,
+        "output_hex": "0000000001000000040000000000000006000000000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX-SUPPLEMENTARY-BYTES",
+        "optimization": "O2",
+        "prefill": 165,
+        "matched": true,
+        "output_hex": "0000000001000000040000000000000006000000000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX-NUL",
+        "optimization": "O0",
+        "prefill": 0,
+        "matched": true,
+        "output_hex": "0000000001000000030000000000000005000000000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX-NUL",
+        "optimization": "O0",
+        "prefill": 165,
+        "matched": true,
+        "output_hex": "0000000001000000030000000000000005000000000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX-NUL",
+        "optimization": "O2",
+        "prefill": 0,
+        "matched": true,
+        "output_hex": "0000000001000000030000000000000005000000000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX-NUL",
+        "optimization": "O2",
+        "prefill": 165,
+        "matched": true,
+        "output_hex": "0000000001000000030000000000000005000000000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX-PARAM-EQ",
+        "optimization": "O0",
+        "prefill": 0,
+        "matched": true,
+        "output_hex": "0000000002000000000000000000000008000000000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX-PARAM-EQ",
+        "optimization": "O0",
+        "prefill": 165,
+        "matched": true,
+        "output_hex": "0000000002000000000000000000000008000000000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX-PARAM-EQ",
+        "optimization": "O2",
+        "prefill": 0,
+        "matched": true,
+        "output_hex": "0000000002000000000000000000000008000000000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX-PARAM-EQ",
+        "optimization": "O2",
+        "prefill": 165,
+        "matched": true,
+        "output_hex": "0000000002000000000000000000000008000000000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX-PARAM-EQ-SAME-LENGTH",
+        "optimization": "O0",
+        "prefill": 0,
+        "matched": true,
+        "output_hex": "0000000002000000000000000000000007000000000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX-PARAM-EQ-SAME-LENGTH",
+        "optimization": "O0",
+        "prefill": 165,
+        "matched": true,
+        "output_hex": "0000000002000000000000000000000007000000000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX-PARAM-EQ-SAME-LENGTH",
+        "optimization": "O2",
+        "prefill": 0,
+        "matched": true,
+        "output_hex": "0000000002000000000000000000000007000000000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX-PARAM-EQ-SAME-LENGTH",
+        "optimization": "O2",
+        "prefill": 165,
+        "matched": true,
+        "output_hex": "0000000002000000000000000000000007000000000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX-PARAM-EQ-EQUAL",
+        "optimization": "O0",
+        "prefill": 0,
+        "matched": true,
+        "output_hex": "0000000002000000010000000000000007000000000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX-PARAM-EQ-EQUAL",
+        "optimization": "O0",
+        "prefill": 165,
+        "matched": true,
+        "output_hex": "0000000002000000010000000000000007000000000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX-PARAM-EQ-EQUAL",
+        "optimization": "O2",
+        "prefill": 0,
+        "matched": true,
+        "output_hex": "0000000002000000010000000000000007000000000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX-PARAM-EQ-EQUAL",
+        "optimization": "O2",
+        "prefill": 165,
+        "matched": true,
+        "output_hex": "0000000002000000010000000000000007000000000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX-SCALAR-ORDER",
+        "optimization": "O0",
+        "prefill": 0,
+        "matched": true,
+        "output_hex": "0000000002000000010000000000000011000000000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX-SCALAR-ORDER",
+        "optimization": "O0",
+        "prefill": 165,
+        "matched": true,
+        "output_hex": "0000000002000000010000000000000011000000000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX-SCALAR-ORDER",
+        "optimization": "O2",
+        "prefill": 0,
+        "matched": true,
+        "output_hex": "0000000002000000010000000000000011000000000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX-SCALAR-ORDER",
+        "optimization": "O2",
+        "prefill": 165,
+        "matched": true,
+        "output_hex": "0000000002000000010000000000000011000000000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX-TEXT-LOOP",
+        "optimization": "O0",
+        "prefill": 0,
+        "matched": true,
+        "output_hex": "0000000001000000010000000000000006000000000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX-TEXT-LOOP",
+        "optimization": "O0",
+        "prefill": 165,
+        "matched": true,
+        "output_hex": "0000000001000000010000000000000006000000000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX-TEXT-LOOP",
+        "optimization": "O2",
+        "prefill": 0,
+        "matched": true,
+        "output_hex": "0000000001000000010000000000000006000000000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX-TEXT-LOOP",
+        "optimization": "O2",
+        "prefill": 165,
+        "matched": true,
+        "output_hex": "0000000001000000010000000000000006000000000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX-ZERO-TEXT-LOOP",
+        "optimization": "O0",
+        "prefill": 0,
+        "matched": true,
+        "output_hex": "0000000001000000010000000000000004000000000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX-ZERO-TEXT-LOOP",
+        "optimization": "O0",
+        "prefill": 165,
+        "matched": true,
+        "output_hex": "0000000001000000010000000000000004000000000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX-ZERO-TEXT-LOOP",
+        "optimization": "O2",
+        "prefill": 0,
+        "matched": true,
+        "output_hex": "0000000001000000010000000000000004000000000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX-ZERO-TEXT-LOOP",
+        "optimization": "O2",
+        "prefill": 165,
+        "matched": true,
+        "output_hex": "0000000001000000010000000000000004000000000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX-TEXT-HELPER",
+        "optimization": "O0",
+        "prefill": 0,
+        "matched": true,
+        "output_hex": "0000000001000000010000000000000005000000000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX-TEXT-HELPER",
+        "optimization": "O0",
+        "prefill": 165,
+        "matched": true,
+        "output_hex": "0000000001000000010000000000000005000000000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX-TEXT-HELPER",
+        "optimization": "O2",
+        "prefill": 0,
+        "matched": true,
+        "output_hex": "0000000001000000010000000000000005000000000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX-TEXT-HELPER",
+        "optimization": "O2",
+        "prefill": 165,
+        "matched": true,
+        "output_hex": "0000000001000000010000000000000005000000000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX-LAZY",
+        "optimization": "O0",
+        "prefill": 0,
+        "matched": true,
+        "output_hex": "0000000001000000070000000000000003000000000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX-LAZY",
+        "optimization": "O0",
+        "prefill": 165,
+        "matched": true,
+        "output_hex": "0000000001000000070000000000000003000000000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX-LAZY",
+        "optimization": "O2",
+        "prefill": 0,
+        "matched": true,
+        "output_hex": "0000000001000000070000000000000003000000000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX-LAZY",
+        "optimization": "O2",
+        "prefill": 165,
+        "matched": true,
+        "output_hex": "0000000001000000070000000000000003000000000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX-WORK-EXACT",
+        "optimization": "O0",
+        "prefill": 0,
+        "matched": true,
+        "output_hex": "00000000010000003b0000000000000000000100000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX-WORK-EXACT",
+        "optimization": "O0",
+        "prefill": 165,
+        "matched": true,
+        "output_hex": "00000000010000003b0000000000000000000100000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX-WORK-EXACT",
+        "optimization": "O2",
+        "prefill": 0,
+        "matched": true,
+        "output_hex": "00000000010000003b0000000000000000000100000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX-WORK-EXACT",
+        "optimization": "O2",
+        "prefill": 165,
+        "matched": true,
+        "output_hex": "00000000010000003b0000000000000000000100000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX-WORK-EXTRA-REFUSAL",
+        "optimization": "O0",
+        "prefill": 0,
+        "matched": true,
+        "output_hex": "02000000000000000000000000000000c5ff0000000000000a00000007000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX-WORK-EXTRA-REFUSAL",
+        "optimization": "O0",
+        "prefill": 165,
+        "matched": true,
+        "output_hex": "02000000000000000000000000000000c5ff0000000000000a00000007000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX-WORK-EXTRA-REFUSAL",
+        "optimization": "O2",
+        "prefill": 0,
+        "matched": true,
+        "output_hex": "02000000000000000000000000000000c5ff0000000000000a00000007000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX-WORK-EXTRA-REFUSAL",
+        "optimization": "O2",
+        "prefill": 165,
+        "matched": true,
+        "output_hex": "02000000000000000000000000000000c5ff0000000000000a00000007000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX-SCALAR-PARITY",
+        "optimization": "O0",
+        "prefill": 0,
+        "matched": true,
+        "output_hex": "0000000001000000030000000000000003000000000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX-SCALAR-PARITY",
+        "optimization": "O0",
+        "prefill": 165,
+        "matched": true,
+        "output_hex": "0000000001000000030000000000000003000000000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX-SCALAR-PARITY",
+        "optimization": "O2",
+        "prefill": 0,
+        "matched": true,
+        "output_hex": "0000000001000000030000000000000003000000000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX-SCALAR-PARITY",
+        "optimization": "O2",
+        "prefill": 165,
+        "matched": true,
+        "output_hex": "0000000001000000030000000000000003000000000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX-LEFT-OVERFLOW",
+        "optimization": "O0",
+        "prefill": 0,
+        "matched": true,
+        "output_hex": "0100000000000000000000000000000004000000000000000900000002000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX-LEFT-OVERFLOW",
+        "optimization": "O0",
+        "prefill": 165,
+        "matched": true,
+        "output_hex": "0100000000000000000000000000000004000000000000000900000002000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX-LEFT-OVERFLOW",
+        "optimization": "O2",
+        "prefill": 0,
+        "matched": true,
+        "output_hex": "0100000000000000000000000000000004000000000000000900000002000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX-LEFT-OVERFLOW",
+        "optimization": "O2",
+        "prefill": 165,
+        "matched": true,
+        "output_hex": "0100000000000000000000000000000004000000000000000900000002000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX-COMPARE-WORK-EXACT",
+        "optimization": "O0",
+        "prefill": 0,
+        "matched": true,
+        "output_hex": "0000000002000000000000000000000000000100000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX-COMPARE-WORK-EXACT",
+        "optimization": "O0",
+        "prefill": 165,
+        "matched": true,
+        "output_hex": "0000000002000000000000000000000000000100000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX-COMPARE-WORK-EXACT",
+        "optimization": "O2",
+        "prefill": 0,
+        "matched": true,
+        "output_hex": "0000000002000000000000000000000000000100000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX-COMPARE-WORK-EXACT",
+        "optimization": "O2",
+        "prefill": 165,
+        "matched": true,
+        "output_hex": "0000000002000000000000000000000000000100000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX-COMPARE-WORK-REFUSAL",
+        "optimization": "O0",
+        "prefill": 0,
+        "matched": true,
+        "output_hex": "02000000000000000000000000000000e4ff0000000000000a00000006000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX-COMPARE-WORK-REFUSAL",
+        "optimization": "O0",
+        "prefill": 165,
+        "matched": true,
+        "output_hex": "02000000000000000000000000000000e4ff0000000000000a00000006000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX-COMPARE-WORK-REFUSAL",
+        "optimization": "O2",
+        "prefill": 0,
+        "matched": true,
+        "output_hex": "02000000000000000000000000000000e4ff0000000000000a00000006000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX-COMPARE-WORK-REFUSAL",
+        "optimization": "O2",
+        "prefill": 165,
+        "matched": true,
+        "output_hex": "02000000000000000000000000000000e4ff0000000000000a00000006000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX2-IF-YES",
+        "optimization": "O0",
+        "prefill": 0,
+        "matched": true,
+        "output_hex": "0000000001000000010000000000000005000000000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX2-IF-YES",
+        "optimization": "O0",
+        "prefill": 165,
+        "matched": true,
+        "output_hex": "0000000001000000010000000000000005000000000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX2-IF-YES",
+        "optimization": "O2",
+        "prefill": 0,
+        "matched": true,
+        "output_hex": "0000000001000000010000000000000005000000000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX2-IF-YES",
+        "optimization": "O2",
+        "prefill": 165,
+        "matched": true,
+        "output_hex": "0000000001000000010000000000000005000000000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX2-IF-NO",
+        "optimization": "O0",
+        "prefill": 0,
+        "matched": true,
+        "output_hex": "0000000001000000040000000000000008000000000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX2-IF-NO",
+        "optimization": "O0",
+        "prefill": 165,
+        "matched": true,
+        "output_hex": "0000000001000000040000000000000008000000000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX2-IF-NO",
+        "optimization": "O2",
+        "prefill": 0,
+        "matched": true,
+        "output_hex": "0000000001000000040000000000000008000000000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX2-IF-NO",
+        "optimization": "O2",
+        "prefill": 165,
+        "matched": true,
+        "output_hex": "0000000001000000040000000000000008000000000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX2-LET-TEXT-PHI",
+        "optimization": "O0",
+        "prefill": 0,
+        "matched": true,
+        "output_hex": "000000000100000001000000000000000a000000000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX2-LET-TEXT-PHI",
+        "optimization": "O0",
+        "prefill": 165,
+        "matched": true,
+        "output_hex": "000000000100000001000000000000000a000000000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX2-LET-TEXT-PHI",
+        "optimization": "O2",
+        "prefill": 0,
+        "matched": true,
+        "output_hex": "000000000100000001000000000000000a000000000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX2-LET-TEXT-PHI",
+        "optimization": "O2",
+        "prefill": 165,
+        "matched": true,
+        "output_hex": "000000000100000001000000000000000a000000000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX2-LOOP-TEXT-PHI",
+        "optimization": "O0",
+        "prefill": 0,
+        "matched": true,
+        "output_hex": "0000000001000000040000000000000016000000000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX2-LOOP-TEXT-PHI",
+        "optimization": "O0",
+        "prefill": 165,
+        "matched": true,
+        "output_hex": "0000000001000000040000000000000016000000000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX2-LOOP-TEXT-PHI",
+        "optimization": "O2",
+        "prefill": 0,
+        "matched": true,
+        "output_hex": "0000000001000000040000000000000016000000000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX2-LOOP-TEXT-PHI",
+        "optimization": "O2",
+        "prefill": 165,
+        "matched": true,
+        "output_hex": "0000000001000000040000000000000016000000000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX2-CALL-TEXT-YES",
+        "optimization": "O0",
+        "prefill": 0,
+        "matched": true,
+        "output_hex": "000000000100000001000000000000000d000000000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX2-CALL-TEXT-YES",
+        "optimization": "O0",
+        "prefill": 165,
+        "matched": true,
+        "output_hex": "000000000100000001000000000000000d000000000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX2-CALL-TEXT-YES",
+        "optimization": "O2",
+        "prefill": 0,
+        "matched": true,
+        "output_hex": "000000000100000001000000000000000d000000000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX2-CALL-TEXT-YES",
+        "optimization": "O2",
+        "prefill": 165,
+        "matched": true,
+        "output_hex": "000000000100000001000000000000000d000000000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX2-CALL-TEXT-NO",
+        "optimization": "O0",
+        "prefill": 0,
+        "matched": true,
+        "output_hex": "000000000100000004000000000000000d000000000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX2-CALL-TEXT-NO",
+        "optimization": "O0",
+        "prefill": 165,
+        "matched": true,
+        "output_hex": "000000000100000004000000000000000d000000000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX2-CALL-TEXT-NO",
+        "optimization": "O2",
+        "prefill": 0,
+        "matched": true,
+        "output_hex": "000000000100000004000000000000000d000000000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX2-CALL-TEXT-NO",
+        "optimization": "O2",
+        "prefill": 165,
+        "matched": true,
+        "output_hex": "000000000100000004000000000000000d000000000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX2-CALL-ARG-OVERFLOW",
+        "optimization": "O0",
+        "prefill": 0,
+        "matched": true,
+        "output_hex": "0100000000000000000000000000000007000000000000000900000004000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX2-CALL-ARG-OVERFLOW",
+        "optimization": "O0",
+        "prefill": 165,
+        "matched": true,
+        "output_hex": "0100000000000000000000000000000007000000000000000900000004000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX2-CALL-ARG-OVERFLOW",
+        "optimization": "O2",
+        "prefill": 0,
+        "matched": true,
+        "output_hex": "0100000000000000000000000000000007000000000000000900000004000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX2-CALL-ARG-OVERFLOW",
+        "optimization": "O2",
+        "prefill": 165,
+        "matched": true,
+        "output_hex": "0100000000000000000000000000000007000000000000000900000004000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX2-TEXT-FUNCTION-OVERFLOW",
+        "optimization": "O0",
+        "prefill": 0,
+        "matched": true,
+        "output_hex": "0100000000000000000000000000000007000000000000000900000003000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX2-TEXT-FUNCTION-OVERFLOW",
+        "optimization": "O0",
+        "prefill": 165,
+        "matched": true,
+        "output_hex": "0100000000000000000000000000000007000000000000000900000003000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX2-TEXT-FUNCTION-OVERFLOW",
+        "optimization": "O2",
+        "prefill": 0,
+        "matched": true,
+        "output_hex": "0100000000000000000000000000000007000000000000000900000003000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX2-TEXT-FUNCTION-OVERFLOW",
+        "optimization": "O2",
+        "prefill": 165,
+        "matched": true,
+        "output_hex": "0100000000000000000000000000000007000000000000000900000003000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX2-PREFIX",
+        "optimization": "O0",
+        "prefill": 0,
+        "matched": true,
+        "output_hex": "0000000002000000010000000000000009000000000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX2-PREFIX",
+        "optimization": "O0",
+        "prefill": 165,
+        "matched": true,
+        "output_hex": "0000000002000000010000000000000009000000000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX2-PREFIX",
+        "optimization": "O2",
+        "prefill": 0,
+        "matched": true,
+        "output_hex": "0000000002000000010000000000000009000000000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX2-PREFIX",
+        "optimization": "O2",
+        "prefill": 165,
+        "matched": true,
+        "output_hex": "0000000002000000010000000000000009000000000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX2-REVERSE-PREFIX",
+        "optimization": "O0",
+        "prefill": 0,
+        "matched": true,
+        "output_hex": "0000000002000000000000000000000009000000000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX2-REVERSE-PREFIX",
+        "optimization": "O0",
+        "prefill": 165,
+        "matched": true,
+        "output_hex": "0000000002000000000000000000000009000000000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX2-REVERSE-PREFIX",
+        "optimization": "O2",
+        "prefill": 0,
+        "matched": true,
+        "output_hex": "0000000002000000000000000000000009000000000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX2-REVERSE-PREFIX",
+        "optimization": "O2",
+        "prefill": 165,
+        "matched": true,
+        "output_hex": "0000000002000000000000000000000009000000000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX2-EQUAL",
+        "optimization": "O0",
+        "prefill": 0,
+        "matched": true,
+        "output_hex": "0000000002000000000000000000000007000000000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX2-EQUAL",
+        "optimization": "O0",
+        "prefill": 165,
+        "matched": true,
+        "output_hex": "0000000002000000000000000000000007000000000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX2-EQUAL",
+        "optimization": "O2",
+        "prefill": 0,
+        "matched": true,
+        "output_hex": "0000000002000000000000000000000007000000000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX2-EQUAL",
+        "optimization": "O2",
+        "prefill": 165,
+        "matched": true,
+        "output_hex": "0000000002000000000000000000000007000000000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX2-EMPTY",
+        "optimization": "O0",
+        "prefill": 0,
+        "matched": true,
+        "output_hex": "0000000002000000010000000000000005000000000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX2-EMPTY",
+        "optimization": "O0",
+        "prefill": 165,
+        "matched": true,
+        "output_hex": "0000000002000000010000000000000005000000000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX2-EMPTY",
+        "optimization": "O2",
+        "prefill": 0,
+        "matched": true,
+        "output_hex": "0000000002000000010000000000000005000000000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX2-EMPTY",
+        "optimization": "O2",
+        "prefill": 165,
+        "matched": true,
+        "output_hex": "0000000002000000010000000000000005000000000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX2-ASCII-UNICODE",
+        "optimization": "O0",
+        "prefill": 0,
+        "matched": true,
+        "output_hex": "0000000002000000010000000000000009000000000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX2-ASCII-UNICODE",
+        "optimization": "O0",
+        "prefill": 165,
+        "matched": true,
+        "output_hex": "0000000002000000010000000000000009000000000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX2-ASCII-UNICODE",
+        "optimization": "O2",
+        "prefill": 0,
+        "matched": true,
+        "output_hex": "0000000002000000010000000000000009000000000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX2-ASCII-UNICODE",
+        "optimization": "O2",
+        "prefill": 165,
+        "matched": true,
+        "output_hex": "0000000002000000010000000000000009000000000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX2-UNICODE-ASCII",
+        "optimization": "O0",
+        "prefill": 0,
+        "matched": true,
+        "output_hex": "0000000002000000000000000000000009000000000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX2-UNICODE-ASCII",
+        "optimization": "O0",
+        "prefill": 165,
+        "matched": true,
+        "output_hex": "0000000002000000000000000000000009000000000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX2-UNICODE-ASCII",
+        "optimization": "O2",
+        "prefill": 0,
+        "matched": true,
+        "output_hex": "0000000002000000000000000000000009000000000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX2-UNICODE-ASCII",
+        "optimization": "O2",
+        "prefill": 165,
+        "matched": true,
+        "output_hex": "0000000002000000000000000000000009000000000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX2-NUL",
+        "optimization": "O0",
+        "prefill": 0,
+        "matched": true,
+        "output_hex": "000000000200000001000000000000000b000000000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX2-NUL",
+        "optimization": "O0",
+        "prefill": 165,
+        "matched": true,
+        "output_hex": "000000000200000001000000000000000b000000000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX2-NUL",
+        "optimization": "O2",
+        "prefill": 0,
+        "matched": true,
+        "output_hex": "000000000200000001000000000000000b000000000000000000000000000000",
+        "input_preserved": true
+      },
+      {
+        "id": "TX2-NUL",
+        "optimization": "O2",
+        "prefill": 165,
+        "matched": true,
+        "output_hex": "000000000200000001000000000000000b000000000000000000000000000000",
+        "input_preserved": true
+      }
+    ],
+    "scope": "Optional Int64 native boundary on 17 pre-frozen valid invocations; no performance or general pointer-safety claim"
+  },
+  "frame_checks": {
+    "new_frozen": 20,
+    "adapted_text": 25,
+    "decoder_test_functions": 45,
+    "admission_test_functions": 1,
+    "admission_cases": 45,
+    "refused_kernel_calls": 0,
+    "successful_kernel_calls": 1
+  },
+  "preparation_correction": "Two generated frame-test function names collided across the new and adapted case sets. Added stable numeric prefixes before successful compilation. No frame expectations or candidate semantics changed.",
+  "review": "Separate same-maintainer pass; no independent reproduction",
+  "limits": [
+    "Valid disjoint aligned caller buffers and admitted exact-signature kernels remain preconditions",
+    "No arbitrary-pointer safety, full conformance, performance or application acceptance"
+  ],
+  "source_sha256": {
+    "option_llvm.rs": "979a519b1efb94c0c692d6b412398f60e4753dac1039820126aa974ba775f9a8",
+    "option_callframe.rs": "b3bcda9551b494cd50c80da0cd679d8640250be28e60ac3701c51106e20a5079",
+    "option_native_adapter.rs": "0057409ff170d56bbce555601498bc8fb103843dc1edebe74dd415ea1421d360"
+  }
+}
