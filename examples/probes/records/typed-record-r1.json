@@ -1,0 +1,712 @@
+{
+  "cases": [
+    {
+      "id": "FIELD",
+      "invocation": {
+        "schema": "bagaev-typed-record-invocation/1",
+        "program": {
+          "schema": "bagaev-typed-record/1",
+          "records": {
+            "Pair": {
+              "flag": "Bool",
+              "n": "Int64"
+            }
+          },
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [],
+              "result": "Int64",
+              "body": [
+                "field",
+                [
+                  "record",
+                  "Pair",
+                  [
+                    "bool",
+                    true
+                  ],
+                  [
+                    "int",
+                    7
+                  ]
+                ],
+                "n"
+              ]
+            }
+          }
+        },
+        "arguments": []
+      },
+      "expected": {
+        "schema": "bagaev-typed-record-result/1",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Int64",
+        "value": 7,
+        "work": 4
+      }
+    },
+    {
+      "id": "EMPTY",
+      "invocation": {
+        "schema": "bagaev-typed-record-invocation/1",
+        "program": {
+          "schema": "bagaev-typed-record/1",
+          "records": {
+            "Empty": {}
+          },
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [],
+              "result": "Int64",
+              "body": [
+                "let",
+                "x",
+                [
+                  "record",
+                  "Empty"
+                ],
+                [
+                  "int",
+                  3
+                ]
+              ]
+            }
+          }
+        },
+        "arguments": []
+      },
+      "expected": {
+        "schema": "bagaev-typed-record-result/1",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Int64",
+        "value": 3,
+        "work": 3
+      }
+    },
+    {
+      "id": "TEXT",
+      "invocation": {
+        "schema": "bagaev-typed-record-invocation/1",
+        "program": {
+          "schema": "bagaev-typed-record/1",
+          "records": {
+            "T": {
+              "s": "Text"
+            }
+          },
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [],
+              "result": "Int64",
+              "body": [
+                "text.bytes",
+                [
+                  "field",
+                  [
+                    "record",
+                    "T",
+                    [
+                      "text",
+                      "é"
+                    ]
+                  ],
+                  "s"
+                ]
+              ]
+            }
+          }
+        },
+        "arguments": []
+      },
+      "expected": {
+        "schema": "bagaev-typed-record-result/1",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Int64",
+        "value": 2,
+        "work": 6
+      }
+    },
+    {
+      "id": "NONE",
+      "invocation": {
+        "schema": "bagaev-typed-record-invocation/1",
+        "program": {
+          "schema": "bagaev-typed-record/1",
+          "records": {
+            "O": {
+              "x": "OptionInt64"
+            }
+          },
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [],
+              "result": "Int64",
+              "body": [
+                "option.or",
+                [
+                  "field",
+                  [
+                    "record",
+                    "O",
+                    [
+                      "none.int"
+                    ]
+                  ],
+                  "x"
+                ],
+                [
+                  "int",
+                  9
+                ]
+              ]
+            }
+          }
+        },
+        "arguments": []
+      },
+      "expected": {
+        "schema": "bagaev-typed-record-result/1",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Int64",
+        "value": 9,
+        "work": 5
+      }
+    },
+    {
+      "id": "ZERO-LAZY",
+      "invocation": {
+        "schema": "bagaev-typed-record-invocation/1",
+        "program": {
+          "schema": "bagaev-typed-record/1",
+          "records": {
+            "O": {
+              "x": "OptionInt64"
+            }
+          },
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [],
+              "result": "Int64",
+              "body": [
+                "option.or",
+                [
+                  "field",
+                  [
+                    "record",
+                    "O",
+                    [
+                      "some.int",
+                      [
+                        "int",
+                        0
+                      ]
+                    ]
+                  ],
+                  "x"
+                ],
+                [
+                  "add",
+                  [
+                    "int",
+                    9223372036854775807
+                  ],
+                  [
+                    "int",
+                    1
+                  ]
+                ]
+              ]
+            }
+          }
+        },
+        "arguments": []
+      },
+      "expected": {
+        "schema": "bagaev-typed-record-result/1",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Int64",
+        "value": 0,
+        "work": 5
+      }
+    },
+    {
+      "id": "BRANCH",
+      "invocation": {
+        "schema": "bagaev-typed-record-invocation/1",
+        "program": {
+          "schema": "bagaev-typed-record/1",
+          "records": {
+            "A": {
+              "n": "Int64"
+            }
+          },
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [],
+              "result": "Int64",
+              "body": [
+                "field",
+                [
+                  "if",
+                  [
+                    "bool",
+                    false
+                  ],
+                  [
+                    "record",
+                    "A",
+                    [
+                      "int",
+                      1
+                    ]
+                  ],
+                  [
+                    "record",
+                    "A",
+                    [
+                      "int",
+                      2
+                    ]
+                  ]
+                ],
+                "n"
+              ]
+            }
+          }
+        },
+        "arguments": []
+      },
+      "expected": {
+        "schema": "bagaev-typed-record-result/1",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Int64",
+        "value": 2,
+        "work": 5
+      }
+    },
+    {
+      "id": "LOOP",
+      "invocation": {
+        "schema": "bagaev-typed-record-invocation/1",
+        "program": {
+          "schema": "bagaev-typed-record/1",
+          "records": {
+            "A": {
+              "n": "Int64"
+            }
+          },
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [],
+              "result": "Int64",
+              "body": [
+                "field",
+                [
+                  "loop",
+                  2,
+                  "i",
+                  "a",
+                  [
+                    "record",
+                    "A",
+                    [
+                      "int",
+                      0
+                    ]
+                  ],
+                  [
+                    "record",
+                    "A",
+                    [
+                      "add",
+                      [
+                        "field",
+                        [
+                          "use",
+                          "a"
+                        ],
+                        "n"
+                      ],
+                      [
+                        "int",
+                        1
+                      ]
+                    ]
+                  ]
+                ],
+                "n"
+              ]
+            }
+          }
+        },
+        "arguments": []
+      },
+      "expected": {
+        "schema": "bagaev-typed-record-result/1",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Int64",
+        "value": 2,
+        "work": 14
+      }
+    },
+    {
+      "id": "HELPER",
+      "invocation": {
+        "schema": "bagaev-typed-record-invocation/1",
+        "program": {
+          "schema": "bagaev-typed-record/1",
+          "records": {
+            "A": {
+              "n": "Int64"
+            }
+          },
+          "entry": "main",
+          "functions": {
+            "helper": {
+              "params": [
+                [
+                  "x",
+                  "A"
+                ]
+              ],
+              "result": "Int64",
+              "body": [
+                "field",
+                [
+                  "arg",
+                  "x"
+                ],
+                "n"
+              ]
+            },
+            "main": {
+              "params": [],
+              "result": "Int64",
+              "body": [
+                "call",
+                "helper",
+                [
+                  "record",
+                  "A",
+                  [
+                    "int",
+                    4
+                  ]
+                ]
+              ]
+            }
+          }
+        },
+        "arguments": []
+      },
+      "expected": {
+        "schema": "bagaev-typed-record-result/1",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Int64",
+        "value": 4,
+        "work": 5
+      }
+    },
+    {
+      "id": "UNKNOWN-FIELD",
+      "invocation": {
+        "schema": "bagaev-typed-record-invocation/1",
+        "program": {
+          "schema": "bagaev-typed-record/1",
+          "records": {
+            "A": {
+              "n": "Int64"
+            }
+          },
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [],
+              "result": "Int64",
+              "body": [
+                "field",
+                [
+                  "record",
+                  "A",
+                  [
+                    "int",
+                    1
+                  ]
+                ],
+                "bad"
+              ]
+            }
+          }
+        },
+        "arguments": []
+      },
+      "expected": {
+        "schema": "bagaev-typed-record-result/1",
+        "status": "invalid-ir",
+        "reason": "RR_REFERENCE",
+        "location": "/program/functions/main/body/2",
+        "value_type": null,
+        "value": null,
+        "work": 0
+      }
+    },
+    {
+      "id": "WRONG-OPERAND",
+      "invocation": {
+        "schema": "bagaev-typed-record-invocation/1",
+        "program": {
+          "schema": "bagaev-typed-record/1",
+          "records": {
+            "A": {
+              "n": "Int64"
+            }
+          },
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [],
+              "result": "Int64",
+              "body": [
+                "field",
+                [
+                  "int",
+                  1
+                ],
+                "n"
+              ]
+            }
+          }
+        },
+        "arguments": []
+      },
+      "expected": {
+        "schema": "bagaev-typed-record-result/1",
+        "status": "invalid-ir",
+        "reason": "RR_TYPE",
+        "location": "/program/functions/main/body/1",
+        "value_type": null,
+        "value": null,
+        "work": 0
+      }
+    },
+    {
+      "id": "WRONG-FIELD-TYPE",
+      "invocation": {
+        "schema": "bagaev-typed-record-invocation/1",
+        "program": {
+          "schema": "bagaev-typed-record/1",
+          "records": {
+            "A": {
+              "n": "Int64"
+            }
+          },
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [],
+              "result": "Int64",
+              "body": [
+                "field",
+                [
+                  "record",
+                  "A",
+                  [
+                    "bool",
+                    true
+                  ]
+                ],
+                "n"
+              ]
+            }
+          }
+        },
+        "arguments": []
+      },
+      "expected": {
+        "schema": "bagaev-typed-record-result/1",
+        "status": "invalid-ir",
+        "reason": "RR_TYPE",
+        "location": "/program/functions/main/body/1/2",
+        "value_type": null,
+        "value": null,
+        "work": 0
+      }
+    },
+    {
+      "id": "UNKNOWN-RECORD",
+      "invocation": {
+        "schema": "bagaev-typed-record-invocation/1",
+        "program": {
+          "schema": "bagaev-typed-record/1",
+          "records": {
+            "A": {
+              "n": "Int64"
+            }
+          },
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [],
+              "result": "Int64",
+              "body": [
+                "record",
+                "B",
+                [
+                  "int",
+                  1
+                ]
+              ]
+            }
+          }
+        },
+        "arguments": []
+      },
+      "expected": {
+        "schema": "bagaev-typed-record-result/1",
+        "status": "invalid-ir",
+        "reason": "RR_REFERENCE",
+        "location": "/program/functions/main/body/1",
+        "value_type": null,
+        "value": null,
+        "work": 0
+      }
+    },
+    {
+      "id": "ARITY",
+      "invocation": {
+        "schema": "bagaev-typed-record-invocation/1",
+        "program": {
+          "schema": "bagaev-typed-record/1",
+          "records": {
+            "A": {
+              "n": "Int64"
+            }
+          },
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [],
+              "result": "Int64",
+              "body": [
+                "record",
+                "A"
+              ]
+            }
+          }
+        },
+        "arguments": []
+      },
+      "expected": {
+        "schema": "bagaev-typed-record-result/1",
+        "status": "invalid-ir",
+        "reason": "RR_SHAPE",
+        "location": "/program/functions/main/body",
+        "value_type": null,
+        "value": null,
+        "work": 0
+      }
+    },
+    {
+      "id": "ENTRY-RECORD",
+      "invocation": {
+        "schema": "bagaev-typed-record-invocation/1",
+        "program": {
+          "schema": "bagaev-typed-record/1",
+          "records": {
+            "A": {
+              "n": "Int64"
+            }
+          },
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [],
+              "result": "A",
+              "body": [
+                "record",
+                "A",
+                [
+                  "int",
+                  1
+                ]
+              ]
+            }
+          }
+        },
+        "arguments": []
+      },
+      "expected": {
+        "schema": "bagaev-typed-record-result/1",
+        "status": "invalid-ir",
+        "reason": "RR_TYPE",
+        "location": "/program/functions/main/result",
+        "value_type": null,
+        "value": null,
+        "work": 0
+      }
+    },
+    {
+      "id": "ENTRY-ARG",
+      "invocation": {
+        "schema": "bagaev-typed-record-invocation/1",
+        "program": {
+          "schema": "bagaev-typed-record/1",
+          "records": {
+            "A": {
+              "n": "Int64"
+            }
+          },
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [
+                [
+                  "x",
+                  "A"
+                ]
+              ],
+              "result": "Int64",
+              "body": [
+                "int",
+                1
+              ]
+            }
+          }
+        },
+        "arguments": []
+      },
+      "expected": {
+        "schema": "bagaev-typed-record-result/1",
+        "status": "invalid-ir",
+        "reason": "RR_TYPE",
+        "location": "/program/functions/main/params/0/1",
+        "value_type": null,
+        "value": null,
+        "work": 0
+      }
+    }
+  ]
+}

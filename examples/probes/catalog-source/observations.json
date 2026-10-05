@@ -1,0 +1,25 @@
+{
+  "source_profiles": {
+    "v1": 15,
+    "v2": 11,
+    "v3": 10,
+    "v4": 14,
+    "v5": 14,
+    "v6": 19,
+    "v7": 13,
+    "composition_boundaries": 8
+  },
+  "portable_template_replays": 104,
+  "catalog_existing_cases": 99,
+  "actual_chain_steps": 4,
+  "application_mutants": 17,
+  "max_observed_catalog_logical_work": 10190,
+  "review": "separate same-maintainer pass",
+  "limits": [
+    "Finite reference-interpreter observations, not all-input-domain catalog acceptance",
+    "Logical work is not elapsed time, token cost or memory measurement",
+    "No native record/JSON execution is established by this source slice",
+    "No independent reproduction or performance advantage claimed"
+  ],
+  "source_program_sha256": "79f7c6f4e57a86f9cd0a199a2e68a830a0602fd916256f58004d67386c83aff9"
+}
