@@ -138,3 +138,17 @@ Rust 1.93.0 compiled the reference with warnings denied. This is executed
 reference-interpreter evidence and a separate same-maintainer review, not a
 generated native Text backend, independent review, complete conformance,
 performance result or production admission.
+
+## Reference-evaluator negative controls
+
+Six concrete mutations were compiled separately and detected against unchanged
+pre-frozen invocation expectations: free Text literals, free comparisons, byte
+counts substituted for scalar counts, length-only equality, partial failed work
+reservation, and rejecting an exactly exhausted work budget. Each witness exited
+normally with a complete but wrong result wire; crashes and build failures did
+not count as detections. See the [literal observations](../examples/probes/typed-text-mutation-observations.json)
+for exact edits, source identities, expected and observed results.
+
+The unmodified evaluator source and frozen fixture were unchanged. This is a
+separate same-maintainer finite negative-control pass, not proof of arbitrary
+defect detection, independent review, native Text execution or performance.

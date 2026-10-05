@@ -1,0 +1,181 @@
+{
+  "status": "PASS",
+  "fixture_sha256": "3511b6199d17019139fc1e90d53b9aeb5762aa10c441e6adbfa963dca64e2368",
+  "source_sha256": "a114ded285b77a3f16b57f97e8a40832dae63463442b15be35a5de700388b15f",
+  "observations": [
+    {
+      "mutation": "literal-free",
+      "replace": {
+        "old": "self.charge(x.len() as u64,id)?;",
+        "new": "self.charge(0,id)?;"
+      },
+      "witness": "TX-ASCII-BYTES",
+      "exit": 0,
+      "expected": {
+        "schema": "bagaev-typed-text-result/1",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Int64",
+        "value": 3,
+        "work": 5
+      },
+      "actual": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-text-result/1",
+        "status": "success",
+        "value": 3,
+        "value_type": "Int64",
+        "work": 2
+      },
+      "source_sha256": "42e80f277c4bc5624a7ef205578c31f8cdf357bb3fda7988c4df7d94c1fc83ae"
+    },
+    {
+      "mutation": "comparison-free",
+      "replace": {
+        "old": "self.charge((a.byte_len()+b.byte_len()) as u64,id)?;",
+        "new": "self.charge(0,id)?;"
+      },
+      "witness": "TX-PARAM-EQ",
+      "exit": 0,
+      "expected": {
+        "schema": "bagaev-typed-text-result/1",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Bool",
+        "value": false,
+        "work": 8
+      },
+      "actual": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-text-result/1",
+        "status": "success",
+        "value": false,
+        "value_type": "Bool",
+        "work": 3
+      },
+      "source_sha256": "f493a523208a4729a3fa62af3aa7719148695f2f860252a31a5c247801da364d"
+    },
+    {
+      "mutation": "scalar-is-byte",
+      "replace": {
+        "old": "if *scalars{value.scalar_len()}else{value.byte_len()}",
+        "new": "if *scalars{value.byte_len()}else{value.byte_len()}"
+      },
+      "witness": "TX-SUPPLEMENTARY",
+      "exit": 0,
+      "expected": {
+        "schema": "bagaev-typed-text-result/1",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Int64",
+        "value": 1,
+        "work": 6
+      },
+      "actual": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-text-result/1",
+        "status": "success",
+        "value": 4,
+        "value_type": "Int64",
+        "work": 6
+      },
+      "source_sha256": "fdf011a43e5fba1ab3e27452a3ba72aac5c6c90c9735932db5751ad3eb437485"
+    },
+    {
+      "mutation": "equality-length",
+      "replace": {
+        "old": "if *equal{a.equal(b)}else{a.compare(b)<0}",
+        "new": "if *equal{a.byte_len()==b.byte_len()}else{a.compare(b)<0}"
+      },
+      "witness": "TX-PARAM-EQ-SAME-LENGTH",
+      "exit": 0,
+      "expected": {
+        "schema": "bagaev-typed-text-result/1",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Bool",
+        "value": false,
+        "work": 7
+      },
+      "actual": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-text-result/1",
+        "status": "success",
+        "value": true,
+        "value_type": "Bool",
+        "work": 7
+      },
+      "source_sha256": "e0db1927a0a485246becf78968a7280eb8ba80ee8d5b312675171f316ca11973"
+    },
+    {
+      "mutation": "partial-reservation",
+      "replace": {
+        "old": "if n>65536-self.work{return Err(EvalError::Work(id));}",
+        "new": "if n>65536-self.work{self.work=65536;return Err(EvalError::Work(id));}"
+      },
+      "witness": "TX-COMPARE-WORK-REFUSAL",
+      "exit": 0,
+      "expected": {
+        "schema": "bagaev-typed-text-result/1",
+        "status": "work-limit",
+        "reason": "TX_WORK",
+        "location": "/program/functions/main/body/3",
+        "value_type": null,
+        "value": null,
+        "work": 65508
+      },
+      "actual": {
+        "location": "/program/functions/main/body/3",
+        "reason": "TX_WORK",
+        "schema": "bagaev-typed-text-result/1",
+        "status": "work-limit",
+        "value": null,
+        "value_type": null,
+        "work": 65536
+      },
+      "source_sha256": "62b4486e2811c09d5ad5e9e67124fbdf26c19e3be0cc4cf8930ae929b3e7914d"
+    },
+    {
+      "mutation": "strict-limit",
+      "replace": {
+        "old": "if n>65536-self.work{",
+        "new": "if n>=65536-self.work{"
+      },
+      "witness": "TX-WORK-EXACT",
+      "exit": 0,
+      "expected": {
+        "schema": "bagaev-typed-text-result/1",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Int64",
+        "value": 59,
+        "work": 65536
+      },
+      "actual": {
+        "location": "/program/functions/main/body/3/1",
+        "reason": "TX_WORK",
+        "schema": "bagaev-typed-text-result/1",
+        "status": "work-limit",
+        "value": null,
+        "value_type": null,
+        "work": 65477
+      },
+      "source_sha256": "ea767f37b98ec137300905d3931d837dc03906d17d73f19b170859801466084a"
+    }
+  ],
+  "limits": [
+    "Six concrete same-maintainer mutations, not arbitrary defect proof",
+    "No native Text execution or performance measurement"
+  ],
+  "review": "Separate same-maintainer review; no independent reproduction",
+  "profile": "Rust 1.93.0, edition 2021, warnings denied; sequential bounded compilation and network-denied runtime; synthetic frozen inputs."
+}
