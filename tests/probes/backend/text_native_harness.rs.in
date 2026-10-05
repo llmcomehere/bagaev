@@ -1,0 +1,13 @@
+#[path="@TEXT_VALUE_MODULE@"] pub mod text_value;
+#[path="@TEXT_CALLFRAME_MODULE@"] pub mod text_callframe;
+use text_callframe::{Type,Value};
+#[repr(C)] #[derive(Clone,Copy)] struct NativeValue{scalar:i64,bytes:*const u8,len:u64,scalars:u64}
+#[repr(C)] struct Output{status:u32,ty:u32,value:i64,work:u64,reason:u32,location:u32}
+unsafe extern "C"{fn bagaev_text_kernel(input:*const NativeValue,output:*mut Output);}
+fn main(){let args:Vec<_>=std::env::args().collect();assert_eq!(args.len(),3);let input=std::fs::read(&args[1]).unwrap();assert_eq!(input.len(),8272);let before=input.clone();let signature:&[Type]=&[@CHECKED_SIGNATURE@];let decoded=text_callframe::decode(&input,signature).unwrap();
+assert_eq!(std::mem::size_of::<NativeValue>(),32);assert_eq!(std::mem::align_of::<NativeValue>(),8);assert_eq!(std::mem::size_of::<Output>(),32);
+let mut values=[NativeValue{scalar:0,bytes:std::ptr::null(),len:0,scalars:0};8];for i in 0..decoded.len(){values[i]=match decoded.get(i).unwrap(){Value::Int64(v)=>NativeValue{scalar:v,..values[i]},Value::Bool(v)=>NativeValue{scalar:i64::from(v),..values[i]},Value::Text(v)=>NativeValue{scalar:0,bytes:v.bytes().as_ptr(),len:v.byte_len() as u64,scalars:v.scalar_len() as u64}};}
+let b:u8=args[2].parse().unwrap();let mut output=Output{status:u32::from_le_bytes([b;4]),ty:u32::from_le_bytes([b;4]),value:i64::from_le_bytes([b;8]),work:u64::from_le_bytes([b;8]),reason:u32::from_le_bytes([b;4]),location:u32::from_le_bytes([b;4])};
+// Admitted immutable input descriptors remain alive; output is valid, aligned and disjoint.
+unsafe{bagaev_text_kernel(values.as_ptr(),&mut output)};assert_eq!(input,before);
+let mut raw=Vec::new();raw.extend(output.status.to_le_bytes());raw.extend(output.ty.to_le_bytes());raw.extend(output.value.to_le_bytes());raw.extend(output.work.to_le_bytes());raw.extend(output.reason.to_le_bytes());raw.extend(output.location.to_le_bytes());use std::io::Write;std::io::stdout().write_all(&raw).unwrap();}

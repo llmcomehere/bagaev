@@ -36,6 +36,9 @@ pub struct CheckedSource {
     canonical: Vec<u8>, identity: String,
 }
 impl CheckedSource {
+    pub fn functions(&self)->&[Function]{&self.functions}
+    pub fn nodes(&self)->&[Node]{&self.nodes}
+    pub fn entry(&self)->usize{self.entry}
     pub fn node(&self, id: NodeId) -> Option<&Node> { self.nodes.get(usize::from(id).checked_sub(1)?) }
     pub fn canonical_bytes(&self) -> &[u8] { &self.canonical }
     pub fn identity(&self) -> &str { &self.identity }
@@ -514,3 +517,5 @@ pub fn process(bytes:&[u8])->Result<Vec<u8>,&'static str>{
         Err(error)=>{let (id,status,reason)=match error{EvalError::Work(id)=>(id,"work-limit","TX_WORK"),EvalError::Overflow(id)=>(id,"integer-overflow","TX_OVERFLOW"),EvalError::Environment(_)=>unreachable!()};let loc=format!("/program{}",program.node(id).ok_or("runtime node")?.pointer());result_wire(status,Some(reason),Some(&loc),None,runtime.work)}
     }
 }
+
+pub fn checked_program(bytes:&[u8])->Result<CheckedSource,String>{let doc=parsed(bytes).map_err(|e|format!("{e:?}"))?;program(&doc,doc.root).map_err(|e|format!("{e:?}"))}
