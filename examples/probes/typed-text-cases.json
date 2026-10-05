@@ -1,0 +1,1105 @@
+{
+  "schema": "typed-text-profile-cases/1",
+  "status": "FROZEN_BEFORE_IMPLEMENTATION",
+  "method": "Complete expected results manually derived from the contract before implementation; no candidate evaluator supplied outputs",
+  "cases": [
+    {
+      "id": "TX-ASCII-BYTES",
+      "invocation": {
+        "schema": "bagaev-typed-text-invocation/1",
+        "program": {
+          "schema": "bagaev-typed-text/1",
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [],
+              "result": "Int64",
+              "body": [
+                "text.bytes",
+                [
+                  "text",
+                  "abc"
+                ]
+              ]
+            }
+          }
+        },
+        "arguments": []
+      },
+      "expected": {
+        "schema": "bagaev-typed-text-result/1",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Int64",
+        "value": 3,
+        "work": 5
+      }
+    },
+    {
+      "id": "TX-EMPTY",
+      "invocation": {
+        "schema": "bagaev-typed-text-invocation/1",
+        "program": {
+          "schema": "bagaev-typed-text/1",
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [],
+              "result": "Int64",
+              "body": [
+                "text.scalars",
+                [
+                  "text",
+                  ""
+                ]
+              ]
+            }
+          }
+        },
+        "arguments": []
+      },
+      "expected": {
+        "schema": "bagaev-typed-text-result/1",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Int64",
+        "value": 0,
+        "work": 2
+      }
+    },
+    {
+      "id": "TX-SUPPLEMENTARY",
+      "invocation": {
+        "schema": "bagaev-typed-text-invocation/1",
+        "program": {
+          "schema": "bagaev-typed-text/1",
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [],
+              "result": "Int64",
+              "body": [
+                "text.scalars",
+                [
+                  "text",
+                  "\ud800\udc00"
+                ]
+              ]
+            }
+          }
+        },
+        "arguments": []
+      },
+      "expected": {
+        "schema": "bagaev-typed-text-result/1",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Int64",
+        "value": 1,
+        "work": 6
+      }
+    },
+    {
+      "id": "TX-SUPPLEMENTARY-BYTES",
+      "invocation": {
+        "schema": "bagaev-typed-text-invocation/1",
+        "program": {
+          "schema": "bagaev-typed-text/1",
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [],
+              "result": "Int64",
+              "body": [
+                "text.bytes",
+                [
+                  "text",
+                  "\ud800\udc00"
+                ]
+              ]
+            }
+          }
+        },
+        "arguments": []
+      },
+      "expected": {
+        "schema": "bagaev-typed-text-result/1",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Int64",
+        "value": 4,
+        "work": 6
+      }
+    },
+    {
+      "id": "TX-NUL",
+      "invocation": {
+        "schema": "bagaev-typed-text-invocation/1",
+        "program": {
+          "schema": "bagaev-typed-text/1",
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [],
+              "result": "Int64",
+              "body": [
+                "text.scalars",
+                [
+                  "text",
+                  "a\u0000b"
+                ]
+              ]
+            }
+          }
+        },
+        "arguments": []
+      },
+      "expected": {
+        "schema": "bagaev-typed-text-result/1",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Int64",
+        "value": 3,
+        "work": 5
+      }
+    },
+    {
+      "id": "TX-PARAM-EQ",
+      "invocation": {
+        "schema": "bagaev-typed-text-invocation/1",
+        "program": {
+          "schema": "bagaev-typed-text/1",
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [
+                [
+                  "x",
+                  "Text"
+                ],
+                [
+                  "y",
+                  "Text"
+                ]
+              ],
+              "result": "Bool",
+              "body": [
+                "text.eq",
+                [
+                  "arg",
+                  "x"
+                ],
+                [
+                  "arg",
+                  "y"
+                ]
+              ]
+            }
+          }
+        },
+        "arguments": [
+          "\u00e9",
+          "e\u0301"
+        ]
+      },
+      "expected": {
+        "schema": "bagaev-typed-text-result/1",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Bool",
+        "value": false,
+        "work": 8
+      }
+    },
+    {
+      "id": "TX-PARAM-EQ-SAME-LENGTH",
+      "invocation": {
+        "schema": "bagaev-typed-text-invocation/1",
+        "program": {
+          "schema": "bagaev-typed-text/1",
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [
+                [
+                  "x",
+                  "Text"
+                ],
+                [
+                  "y",
+                  "Text"
+                ]
+              ],
+              "result": "Bool",
+              "body": [
+                "text.eq",
+                [
+                  "arg",
+                  "x"
+                ],
+                [
+                  "arg",
+                  "y"
+                ]
+              ]
+            }
+          }
+        },
+        "arguments": [
+          "ab",
+          "ac"
+        ]
+      },
+      "expected": {
+        "schema": "bagaev-typed-text-result/1",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Bool",
+        "value": false,
+        "work": 7
+      }
+    },
+    {
+      "id": "TX-PARAM-EQ-EQUAL",
+      "invocation": {
+        "schema": "bagaev-typed-text-invocation/1",
+        "program": {
+          "schema": "bagaev-typed-text/1",
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [
+                [
+                  "x",
+                  "Text"
+                ],
+                [
+                  "y",
+                  "Text"
+                ]
+              ],
+              "result": "Bool",
+              "body": [
+                "text.eq",
+                [
+                  "arg",
+                  "x"
+                ],
+                [
+                  "arg",
+                  "y"
+                ]
+              ]
+            }
+          }
+        },
+        "arguments": [
+          "ab",
+          "ab"
+        ]
+      },
+      "expected": {
+        "schema": "bagaev-typed-text-result/1",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Bool",
+        "value": true,
+        "work": 7
+      }
+    },
+    {
+      "id": "TX-SCALAR-ORDER",
+      "invocation": {
+        "schema": "bagaev-typed-text-invocation/1",
+        "program": {
+          "schema": "bagaev-typed-text/1",
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [],
+              "result": "Bool",
+              "body": [
+                "text.lt",
+                [
+                  "text",
+                  "\ue000"
+                ],
+                [
+                  "text",
+                  "\ud800\udc00"
+                ]
+              ]
+            }
+          }
+        },
+        "arguments": []
+      },
+      "expected": {
+        "schema": "bagaev-typed-text-result/1",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Bool",
+        "value": true,
+        "work": 17
+      }
+    },
+    {
+      "id": "TX-TEXT-LOOP",
+      "invocation": {
+        "schema": "bagaev-typed-text-invocation/1",
+        "program": {
+          "schema": "bagaev-typed-text/1",
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [],
+              "result": "Int64",
+              "body": [
+                "text.bytes",
+                [
+                  "loop",
+                  2,
+                  "i",
+                  "a",
+                  [
+                    "text",
+                    "a"
+                  ],
+                  [
+                    "use",
+                    "a"
+                  ]
+                ]
+              ]
+            }
+          }
+        },
+        "arguments": []
+      },
+      "expected": {
+        "schema": "bagaev-typed-text-result/1",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Int64",
+        "value": 1,
+        "work": 6
+      }
+    },
+    {
+      "id": "TX-ZERO-TEXT-LOOP",
+      "invocation": {
+        "schema": "bagaev-typed-text-invocation/1",
+        "program": {
+          "schema": "bagaev-typed-text/1",
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [],
+              "result": "Int64",
+              "body": [
+                "text.bytes",
+                [
+                  "loop",
+                  0,
+                  "i",
+                  "a",
+                  [
+                    "text",
+                    "a"
+                  ],
+                  [
+                    "use",
+                    "a"
+                  ]
+                ]
+              ]
+            }
+          }
+        },
+        "arguments": []
+      },
+      "expected": {
+        "schema": "bagaev-typed-text-result/1",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Int64",
+        "value": 1,
+        "work": 4
+      }
+    },
+    {
+      "id": "TX-TEXT-HELPER",
+      "invocation": {
+        "schema": "bagaev-typed-text-invocation/1",
+        "program": {
+          "schema": "bagaev-typed-text/1",
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [],
+              "result": "Int64",
+              "body": [
+                "text.bytes",
+                [
+                  "call",
+                  "echo",
+                  [
+                    "text",
+                    "a"
+                  ]
+                ]
+              ]
+            },
+            "echo": {
+              "params": [
+                [
+                  "x",
+                  "Text"
+                ]
+              ],
+              "result": "Text",
+              "body": [
+                "arg",
+                "x"
+              ]
+            }
+          }
+        },
+        "arguments": []
+      },
+      "expected": {
+        "schema": "bagaev-typed-text-result/1",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Int64",
+        "value": 1,
+        "work": 5
+      }
+    },
+    {
+      "id": "TX-LAZY",
+      "invocation": {
+        "schema": "bagaev-typed-text-invocation/1",
+        "program": {
+          "schema": "bagaev-typed-text/1",
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [],
+              "result": "Int64",
+              "body": [
+                "if",
+                [
+                  "bool",
+                  true
+                ],
+                [
+                  "int",
+                  7
+                ],
+                [
+                  "text.bytes",
+                  [
+                    "text",
+                    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                  ]
+                ]
+              ]
+            }
+          }
+        },
+        "arguments": []
+      },
+      "expected": {
+        "schema": "bagaev-typed-text-result/1",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Int64",
+        "value": 7,
+        "work": 3
+      }
+    },
+    {
+      "id": "TX-WORK-EXACT",
+      "invocation": {
+        "schema": "bagaev-typed-text-invocation/1",
+        "program": {
+          "schema": "bagaev-typed-text/1",
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [],
+              "result": "Int64",
+              "body": [
+                "let",
+                "unused",
+                [
+                  "loop",
+                  1023,
+                  "i",
+                  "a",
+                  [
+                    "int",
+                    0
+                  ],
+                  [
+                    "text.bytes",
+                    [
+                      "text",
+                      "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                    ]
+                  ]
+                ],
+                [
+                  "text.bytes",
+                  [
+                    "text",
+                    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                  ]
+                ]
+              ]
+            }
+          }
+        },
+        "arguments": []
+      },
+      "expected": {
+        "schema": "bagaev-typed-text-result/1",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Int64",
+        "value": 59,
+        "work": 65536
+      }
+    },
+    {
+      "id": "TX-WORK-EXTRA-REFUSAL",
+      "invocation": {
+        "schema": "bagaev-typed-text-invocation/1",
+        "program": {
+          "schema": "bagaev-typed-text/1",
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [],
+              "result": "Int64",
+              "body": [
+                "let",
+                "unused",
+                [
+                  "loop",
+                  1023,
+                  "i",
+                  "a",
+                  [
+                    "int",
+                    0
+                  ],
+                  [
+                    "text.bytes",
+                    [
+                      "text",
+                      "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                    ]
+                  ]
+                ],
+                [
+                  "text.bytes",
+                  [
+                    "text",
+                    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                  ]
+                ]
+              ]
+            }
+          }
+        },
+        "arguments": []
+      },
+      "expected": {
+        "schema": "bagaev-typed-text-result/1",
+        "status": "work-limit",
+        "reason": "TX_WORK",
+        "location": "/program/functions/main/body/3/1",
+        "value_type": null,
+        "value": null,
+        "work": 65477
+      }
+    },
+    {
+      "id": "TX-ENTRY-TEXT",
+      "invocation": {
+        "schema": "bagaev-typed-text-invocation/1",
+        "program": {
+          "schema": "bagaev-typed-text/1",
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [],
+              "result": "Text",
+              "body": [
+                "text",
+                "x"
+              ]
+            }
+          }
+        },
+        "arguments": []
+      },
+      "expected": {
+        "schema": "bagaev-typed-text-result/1",
+        "status": "invalid-ir",
+        "reason": "TX_TYPE",
+        "location": "/program/functions/main/result",
+        "value_type": null,
+        "value": null,
+        "work": 0
+      }
+    },
+    {
+      "id": "TX-ARG-TAG",
+      "invocation": {
+        "schema": "bagaev-typed-text-invocation/1",
+        "program": {
+          "schema": "bagaev-typed-text/1",
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [
+                [
+                  "x",
+                  "Text"
+                ]
+              ],
+              "result": "Int64",
+              "body": [
+                "text.bytes",
+                [
+                  "arg",
+                  "x"
+                ]
+              ]
+            }
+          }
+        },
+        "arguments": [
+          true
+        ]
+      },
+      "expected": {
+        "schema": "bagaev-typed-text-result/1",
+        "status": "invalid-ir",
+        "reason": "TX_ARGUMENT",
+        "location": "/arguments/0",
+        "value_type": null,
+        "value": null,
+        "work": 0
+      }
+    },
+    {
+      "id": "TX-ARG-SURROGATE",
+      "invocation": {
+        "schema": "bagaev-typed-text-invocation/1",
+        "program": {
+          "schema": "bagaev-typed-text/1",
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [
+                [
+                  "x",
+                  "Text"
+                ]
+              ],
+              "result": "Int64",
+              "body": [
+                "text.bytes",
+                [
+                  "arg",
+                  "x"
+                ]
+              ]
+            }
+          }
+        },
+        "arguments": [
+          "\ud800"
+        ]
+      },
+      "expected": {
+        "schema": "bagaev-typed-text-result/1",
+        "status": "invalid-ir",
+        "reason": "TX_ARGUMENT",
+        "location": "/arguments/0",
+        "value_type": null,
+        "value": null,
+        "work": 0
+      }
+    },
+    {
+      "id": "TX-ARG-SCALAR-BOUND",
+      "invocation": {
+        "schema": "bagaev-typed-text-invocation/1",
+        "program": {
+          "schema": "bagaev-typed-text/1",
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [
+                [
+                  "x",
+                  "Text"
+                ]
+              ],
+              "result": "Int64",
+              "body": [
+                "text.bytes",
+                [
+                  "arg",
+                  "x"
+                ]
+              ]
+            }
+          }
+        },
+        "arguments": [
+          "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        ]
+      },
+      "expected": {
+        "schema": "bagaev-typed-text-result/1",
+        "status": "invalid-ir",
+        "reason": "TX_ARGUMENT",
+        "location": "/arguments/0",
+        "value_type": null,
+        "value": null,
+        "work": 0
+      }
+    },
+    {
+      "id": "TX-LITERAL-BOUND",
+      "invocation": {
+        "schema": "bagaev-typed-text-invocation/1",
+        "program": {
+          "schema": "bagaev-typed-text/1",
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [],
+              "result": "Int64",
+              "body": [
+                "text.bytes",
+                [
+                  "text",
+                  "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                ]
+              ]
+            }
+          }
+        },
+        "arguments": []
+      },
+      "expected": {
+        "schema": "bagaev-typed-text-result/1",
+        "status": "invalid-ir",
+        "reason": "TX_BOUNDS",
+        "location": "/program/functions/main/body/1/1",
+        "value_type": null,
+        "value": null,
+        "work": 0
+      }
+    },
+    {
+      "id": "TX-LITERAL-SURROGATE",
+      "invocation": {
+        "schema": "bagaev-typed-text-invocation/1",
+        "program": {
+          "schema": "bagaev-typed-text/1",
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [],
+              "result": "Int64",
+              "body": [
+                "text.bytes",
+                [
+                  "text",
+                  "\ud800"
+                ]
+              ]
+            }
+          }
+        },
+        "arguments": []
+      },
+      "expected": {
+        "schema": "bagaev-typed-text-result/1",
+        "status": "invalid-ir",
+        "reason": "TX_SHAPE",
+        "location": "/program/functions/main/body/1/1",
+        "value_type": null,
+        "value": null,
+        "work": 0
+      }
+    },
+    {
+      "id": "TX-UNTAKEN-TYPE",
+      "invocation": {
+        "schema": "bagaev-typed-text-invocation/1",
+        "program": {
+          "schema": "bagaev-typed-text/1",
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [],
+              "result": "Int64",
+              "body": [
+                "if",
+                [
+                  "bool",
+                  true
+                ],
+                [
+                  "int",
+                  1
+                ],
+                [
+                  "text.bytes",
+                  [
+                    "int",
+                    2
+                  ]
+                ]
+              ]
+            }
+          }
+        },
+        "arguments": []
+      },
+      "expected": {
+        "schema": "bagaev-typed-text-result/1",
+        "status": "invalid-ir",
+        "reason": "TX_TYPE",
+        "location": "/program/functions/main/body/3/1",
+        "value_type": null,
+        "value": null,
+        "work": 0
+      }
+    },
+    {
+      "id": "TX-SCALAR-PARITY",
+      "invocation": {
+        "schema": "bagaev-typed-text-invocation/1",
+        "program": {
+          "schema": "bagaev-typed-text/1",
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [],
+              "result": "Int64",
+              "body": [
+                "add",
+                [
+                  "int",
+                  1
+                ],
+                [
+                  "int",
+                  2
+                ]
+              ]
+            }
+          }
+        },
+        "arguments": []
+      },
+      "expected": {
+        "schema": "bagaev-typed-text-result/1",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Int64",
+        "value": 3,
+        "work": 3
+      }
+    },
+    {
+      "id": "TX-LEFT-OVERFLOW",
+      "invocation": {
+        "schema": "bagaev-typed-text-invocation/1",
+        "program": {
+          "schema": "bagaev-typed-text/1",
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [],
+              "result": "Int64",
+              "body": [
+                "add",
+                [
+                  "add",
+                  [
+                    "int",
+                    9223372036854775807
+                  ],
+                  [
+                    "int",
+                    1
+                  ]
+                ],
+                [
+                  "text.bytes",
+                  [
+                    "text",
+                    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                  ]
+                ]
+              ]
+            }
+          }
+        },
+        "arguments": []
+      },
+      "expected": {
+        "schema": "bagaev-typed-text-result/1",
+        "status": "integer-overflow",
+        "reason": "TX_OVERFLOW",
+        "location": "/program/functions/main/body/1",
+        "value_type": null,
+        "value": null,
+        "work": 4
+      }
+    },
+    {
+      "id": "TX-COMPARE-WORK-EXACT",
+      "invocation": {
+        "schema": "bagaev-typed-text-invocation/1",
+        "program": {
+          "schema": "bagaev-typed-text/1",
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [],
+              "result": "Bool",
+              "body": [
+                "let",
+                "unused",
+                [
+                  "loop",
+                  1023,
+                  "i",
+                  "a",
+                  [
+                    "int",
+                    0
+                  ],
+                  [
+                    "text.bytes",
+                    [
+                      "text",
+                      "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                    ]
+                  ]
+                ],
+                [
+                  "text.eq",
+                  [
+                    "text",
+                    "aaaaaaaaaaaaaa"
+                  ],
+                  [
+                    "text",
+                    "aaaaaaaaaaaaaaa"
+                  ]
+                ]
+              ]
+            }
+          }
+        },
+        "arguments": []
+      },
+      "expected": {
+        "schema": "bagaev-typed-text-result/1",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Bool",
+        "value": false,
+        "work": 65536
+      }
+    },
+    {
+      "id": "TX-COMPARE-WORK-REFUSAL",
+      "invocation": {
+        "schema": "bagaev-typed-text-invocation/1",
+        "program": {
+          "schema": "bagaev-typed-text/1",
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [],
+              "result": "Bool",
+              "body": [
+                "let",
+                "unused",
+                [
+                  "loop",
+                  1023,
+                  "i",
+                  "a",
+                  [
+                    "int",
+                    0
+                  ],
+                  [
+                    "text.bytes",
+                    [
+                      "text",
+                      "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                    ]
+                  ]
+                ],
+                [
+                  "text.eq",
+                  [
+                    "text",
+                    "aaaaaaaaaaaaaaa"
+                  ],
+                  [
+                    "text",
+                    "aaaaaaaaaaaaaaa"
+                  ]
+                ]
+              ]
+            }
+          }
+        },
+        "arguments": []
+      },
+      "expected": {
+        "schema": "bagaev-typed-text-result/1",
+        "status": "work-limit",
+        "reason": "TX_WORK",
+        "location": "/program/functions/main/body/3",
+        "value_type": null,
+        "value": null,
+        "work": 65508
+      }
+    }
+  ],
+  "contract": "bagaev-typed-text/1"
+}
