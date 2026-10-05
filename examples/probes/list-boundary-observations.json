@@ -1,0 +1,14 @@
+{
+  "schema": "bagaev-list-boundary-observations/1",
+  "frame_preimplementation_cases": 20,
+  "supplemental_cases": 8,
+  "frame_unit_mutants": 4,
+  "adapter_stub_cases": 4,
+  "frame_fixture_sha256": "7efccb5ae19445932406649b92e7d2978addcd34a97850092c4f1faa912300f1",
+  "limits": [
+    "Data decoder and explicit test-kernel adapter only",
+    "No LLVM list kernel conformance",
+    "Separate same-maintainer review, not independent review",
+    "No performance benefit inferred"
+  ]
+}

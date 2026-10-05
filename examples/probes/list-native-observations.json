@@ -1,0 +1,22 @@
+{
+  "schema": "bagaev-list-native-observations/1",
+  "source_cases": 26,
+  "native_observations": 104,
+  "inherited_cases": 51,
+  "inherited_native_observations": 204,
+  "native_mutations": 6,
+  "wrong_output_observations": 24,
+  "canonical_bindings_checked": 26,
+  "review": "Separate same-maintainer pass, not independent review",
+  "limits": [
+    "Bounded synthetic profile only",
+    "No complete application or performance benefit",
+    "Caller lifetime, pointer and admitted-kernel assumptions remain explicit"
+  ],
+  "preparation_corrections": [
+    "First free-unique mutant was rejected by Rust unused-variable warning. Test mutation adjusted to retain variable use; final six mutants compiled and produced normal-exit wrong complete outputs. Candidate and frozen oracle unchanged."
+  ],
+  "supplemental_arena_cases": 2,
+  "supplemental_native_observations": 8,
+  "supplemental_scope": "Manual postimplementation stress expectations fixed before checks: 64,512 descriptors admitted and work exhaustion refused before allocation."
+}
