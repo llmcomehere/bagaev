@@ -78,6 +78,14 @@ untrusted code. No model account is needed for this example.
   43 frozen source checks and composed with both backends on 25 frozen stages.
   [Pinned source-location lookup](docs/typed-source-locations.md) also passed its
   bounded mapping suite. This is a scalar experiment, not full L3 or admission.
+- **Experimental typed Text:** a [separate source profile](docs/probe-typed-text.md)
+  supports bounded UTF-8 literals/arguments, locals, branches, helpers and loops.
+  Its [LLVM kernel and admission adapter](docs/probe-text-native.md) passed bounded
+  complete-output checks; the canonical-binding correction was followed by 136
+  native matches across 34 cases, O0/O2 and two output prefills. This is not full
+  native L2/L3, arbitrary-pointer safety, independent reproduction or a performance
+  advantage. The [Text CLI example](docs/typed-text-llvm-artifact.md#small-cli-example)
+  evaluates an invocation or emits pinned LLVM data without compiling it.
 - **Experimental Cranelift comparison:** a [locked AOT object backend](docs/probe-cranelift.md)
   passed 150 fixed native ABI observations using the same kernel oracle.
   [Initial bounded runtime and source-byte observations](docs/probe-measurements.md)

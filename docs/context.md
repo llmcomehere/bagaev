@@ -153,6 +153,16 @@ and L2 named edits, explicit public continuation and accounting. Its standalone
 example needs no provider or private workspace. Model calls and candidate execution
 still require the applicable trusted profile; transport metadata is not authority.
 
+## Typed Text probe entry
+
+Read [typed Text semantics](probe-typed-text.md) for source, invocation, work and
+refusal rules. [Text values](probe-text-values.md) own UTF-8/scalar bounds;
+[call-frame data](probe-text-callframe.md) owns binary value admission;
+[native Text](probe-text-native.md) owns the experimental kernel/adapter ABI,
+observations and unsafe caller obligations. [LLVM envelope and CLI](typed-text-llvm-artifact.md)
+provides a small standalone example and distinguishes returned code data from
+native execution. The old scalar probe and L2 contracts are unchanged.
+
 ## Handoff
 
 Keep a handoff small and checkable: task and scope; base and candidate snapshot;
