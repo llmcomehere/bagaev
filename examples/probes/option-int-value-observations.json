@@ -1,0 +1,60 @@
+{
+  "wire_fixture_sha256": "df1549f7a1f56c8677ce9caabae8e346cc72138ef9bbb4717b3d76bfb41a4ebb",
+  "wire_cases": 17,
+  "api_tests": 3,
+  "tests_passed": 20,
+  "toolchain": "Rust 1.93.0, edition2021, warnings denied",
+  "mutations": [
+    {
+      "mutation": "zero-is-missing",
+      "old": "self.value.is_some()",
+      "new": "self.value.unwrap_or(0)!=0",
+      "witness": "some_zero",
+      "test_exit": 101,
+      "source_sha256": "98381fc302db6ffa518b2e10cf9d1d5762327fa444e1828418ccdf7586c5c54b",
+      "detected": true
+    },
+    {
+      "mutation": "noncanonical-none",
+      "old": "if value!=0{return Err(Refusal{reason:\"OPT_PAYLOAD\",offset:8});}",
+      "new": "if value==i64::MIN{return Err(Refusal{reason:\"OPT_PAYLOAD\",offset:8});}",
+      "witness": "none_one",
+      "test_exit": 101,
+      "source_sha256": "c89ea230be2e282c99608b6b48c094d5d82c0ff882ee0bca43307584168202ea",
+      "detected": true
+    },
+    {
+      "mutation": "wrong-endian",
+      "old": "i64::from_le_bytes",
+      "new": "i64::from_be_bytes",
+      "witness": "some_one",
+      "test_exit": 101,
+      "source_sha256": "d99ec69c39bd668323c0ca2c5fab27aca047db3be38c756ce899d27e737d13dc",
+      "detected": true
+    },
+    {
+      "mutation": "eager-fallback",
+      "old": "match self.value{Some(v)=>v,None=>fallback()}",
+      "new": "{let other=fallback();match self.value{Some(v)=>v,None=>other}}",
+      "witness": "present_zero_never_calls_fallback",
+      "test_exit": 101,
+      "source_sha256": "3b806dfbf6c20d671d7d430009062406b0142d65a081eb85cfebebbb87650825",
+      "detected": true
+    },
+    {
+      "mutation": "ignored-padding",
+      "old": "if *b!=0{",
+      "new": "if *b!=0 && i==99{",
+      "witness": "padding_first",
+      "test_exit": 101,
+      "source_sha256": "308d8d4f532b24f087cfae6beaa2fe573a7043b0626b7ae6ba0bf89096c83858",
+      "detected": true
+    }
+  ],
+  "review": "Separate same-maintainer pass: whole-frame validation, flag/padding/payload priority, explicit presence, signed endian conversion, private checked fields, canonical encoding and lazy FnOnce fallback. No independent review.",
+  "limits": [
+    "Value library only, no source grammar integration",
+    "No native ABI or application acceptance",
+    "Five concrete unit defects, not arbitrary-defect proof"
+  ]
+}

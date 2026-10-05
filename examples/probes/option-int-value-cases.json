@@ -1,0 +1,141 @@
+{
+  "schema": "bagaev-option-int64-value-cases/1",
+  "cases": [
+    {
+      "id": "NONE",
+      "hex": "00000000000000000000000000000000",
+      "expected": {
+        "present": false,
+        "value": null
+      }
+    },
+    {
+      "id": "SOME-ZERO",
+      "hex": "01000000000000000000000000000000",
+      "expected": {
+        "present": true,
+        "value": 0
+      }
+    },
+    {
+      "id": "SOME-ONE",
+      "hex": "01000000000000000100000000000000",
+      "expected": {
+        "present": true,
+        "value": 1
+      }
+    },
+    {
+      "id": "SOME-MIN",
+      "hex": "01000000000000000000000000000080",
+      "expected": {
+        "present": true,
+        "value": -9223372036854775808
+      }
+    },
+    {
+      "id": "SOME-MAX",
+      "hex": "0100000000000000ffffffffffffff7f",
+      "expected": {
+        "present": true,
+        "value": 9223372036854775807
+      }
+    },
+    {
+      "id": "EMPTY",
+      "hex": "",
+      "expected": {
+        "reason": "OPT_SIZE",
+        "offset": 0
+      }
+    },
+    {
+      "id": "SHORT",
+      "hex": "000000000000000000000000000000",
+      "expected": {
+        "reason": "OPT_SIZE",
+        "offset": 0
+      }
+    },
+    {
+      "id": "LONG",
+      "hex": "0000000000000000000000000000000000",
+      "expected": {
+        "reason": "OPT_SIZE",
+        "offset": 0
+      }
+    },
+    {
+      "id": "FLAG-TWO",
+      "hex": "02000000000000000000000000000000",
+      "expected": {
+        "reason": "OPT_FLAG",
+        "offset": 0
+      }
+    },
+    {
+      "id": "FLAG-FF",
+      "hex": "ff000000000000000000000000000000",
+      "expected": {
+        "reason": "OPT_FLAG",
+        "offset": 0
+      }
+    },
+    {
+      "id": "PADDING-FIRST",
+      "hex": "00010000000000000000000000000000",
+      "expected": {
+        "reason": "OPT_PADDING",
+        "offset": 1
+      }
+    },
+    {
+      "id": "PADDING-LAST",
+      "hex": "00000000000000010000000000000000",
+      "expected": {
+        "reason": "OPT_PADDING",
+        "offset": 7
+      }
+    },
+    {
+      "id": "NONE-ONE",
+      "hex": "00000000000000000100000000000000",
+      "expected": {
+        "reason": "OPT_PAYLOAD",
+        "offset": 8
+      }
+    },
+    {
+      "id": "NONE-NEGATIVE",
+      "hex": "0000000000000000ffffffffffffffff",
+      "expected": {
+        "reason": "OPT_PAYLOAD",
+        "offset": 8
+      }
+    },
+    {
+      "id": "FLAG-BEFORE-PADDING",
+      "hex": "02010000000000000000000000000000",
+      "expected": {
+        "reason": "OPT_FLAG",
+        "offset": 0
+      }
+    },
+    {
+      "id": "PADDING-BEFORE-PAYLOAD",
+      "hex": "00010000000000000100000000000000",
+      "expected": {
+        "reason": "OPT_PADDING",
+        "offset": 1
+      }
+    },
+    {
+      "id": "SIZE-BEFORE-FLAG",
+      "hex": "020000000000000000000000000000",
+      "expected": {
+        "reason": "OPT_SIZE",
+        "offset": 0
+      }
+    }
+  ]
+}
