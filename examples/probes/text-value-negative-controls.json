@@ -1,0 +1,128 @@
+{
+  "schema": "text-value-negative-controls/1",
+  "review": "Separate same-maintainer review",
+  "mutations": {
+    "freeze": {
+      "source_sha256": "1c83c1ffe5f7e83ee0a13f4b1f55243dc8252b83dc8cf42d9be51b845dc081a5",
+      "test_source_sha256": "b0edc0c3761b987f72b36d64e9184c41e478ca9d1aa103f5e1cbb0f6031dbe2c",
+      "recipes": [
+        {
+          "id": "TM-BYTE-PRIORITY",
+          "witness": "t_bytes_before_utf8",
+          "old": "if bytes.len()>BYTE_LIMIT",
+          "new": "if false && bytes.len()>BYTE_LIMIT",
+          "mutant_source_sha256": "ae248bb43c882bbd8373ceb4a0b1e47be43865613b5e573838221b146a3fb3e0"
+        },
+        {
+          "id": "TM-SCALAR-BOUND",
+          "witness": "t_scalar_limit",
+          "old": "if scalars>SCALAR_LIMIT",
+          "new": "if scalars>=SCALAR_LIMIT",
+          "mutant_source_sha256": "dc59cd2c3abf4f60eb8c6ffceced247d325936cc0876c4ece6f77561c4b44445"
+        },
+        {
+          "id": "TM-SCALAR-LENGTH",
+          "witness": "t_four_byte",
+          "old": "pub fn scalar_len(self) -> usize { self.scalars }",
+          "new": "pub fn scalar_len(self) -> usize { self.value.len() }",
+          "mutant_source_sha256": "78b7849b4775d396d0cc032f6e4d0279325db4aed9a94b9a5c521e6cccae0d22"
+        },
+        {
+          "id": "TM-UTF16-ORDER",
+          "witness": "c_utf16_trap",
+          "old": "self.value.as_bytes().cmp(other.value.as_bytes())",
+          "new": "self.value.encode_utf16().collect::<Vec<_>>().cmp(&other.value.encode_utf16().collect::<Vec<_>>())",
+          "mutant_source_sha256": "958cd542d16c0a0d92a260b9d1d80c0e7f743c62f5dfa6280cf0f634f662d87b"
+        },
+        {
+          "id": "TM-NUL-EQUALITY",
+          "witness": "c_nul",
+          "old": "self.value==other.value",
+          "new": "self.value.split('\\0').next()==other.value.split('\\0').next()",
+          "mutant_source_sha256": "9f9904ea8f56d0dd2cf32f6656ed3bf47246af88d47dd782576d18d240632b8f"
+        }
+      ],
+      "criterion": "Named frozen test must fail by value assertion or the exact unexpected Scalars refusal at the accepted boundary; timeout/crash/compile error not detection"
+    },
+    "observations": [
+      {
+        "id": "TM-BYTE-PRIORITY",
+        "witness": "t_bytes_before_utf8",
+        "detected": true,
+        "exit": 101
+      },
+      {
+        "id": "TM-SCALAR-BOUND",
+        "witness": "t_scalar_limit",
+        "detected": true,
+        "exit": 101
+      },
+      {
+        "id": "TM-SCALAR-LENGTH",
+        "witness": "t_four_byte",
+        "detected": true,
+        "exit": 101
+      },
+      {
+        "id": "TM-UTF16-ORDER",
+        "witness": "c_utf16_trap",
+        "detected": true,
+        "exit": 101
+      },
+      {
+        "id": "TM-NUL-EQUALITY",
+        "witness": "c_nul",
+        "detected": true,
+        "exit": 101
+      }
+    ]
+  },
+  "borrow_controls": {
+    "freeze": {
+      "cases": [
+        {
+          "id": "BC-LIFETIME",
+          "expected_error": "E0597",
+          "body": "let text; { let bytes=vec![65u8]; text=Text::from_bytes(&bytes).unwrap(); } println!(\"{}\",text.byte_len());"
+        },
+        {
+          "id": "BC-MUTATE",
+          "expected_error": "E0502",
+          "body": "let mut bytes=vec![65u8];let text=Text::from_bytes(&bytes).unwrap();bytes[0]=66;println!(\"{}\",text.byte_len());"
+        },
+        {
+          "id": "BC-PRIVATE",
+          "expected_error": "E0451",
+          "body": "let text=Text{value:\"x\",scalars:99};println!(\"{}\",text.scalar_len());"
+        }
+      ],
+      "scope": "Safe Rust compile-time rejection controls; no candidate binary execution"
+    },
+    "observations": [
+      {
+        "id": "BC-LIFETIME",
+        "expected_error": "E0597",
+        "exit": 1,
+        "matched": true
+      },
+      {
+        "id": "BC-MUTATE",
+        "expected_error": "E0502",
+        "exit": 1,
+        "matched": true
+      },
+      {
+        "id": "BC-PRIVATE",
+        "expected_error": "E0451",
+        "exit": 1,
+        "matched": true
+      }
+    ]
+  },
+  "collection_correction": "First collection stopped after one detection because its controller expected only equality assertions. The scalar-bound mutant returned the exact wrong Err(Scalars) at a valid limit and the frozen test unwrap reported it. R2 explicitly permits only this named typed refusal as well as equality assertions. Fixture expectations and production source unchanged. Arbitrary panic/timeout/compile failure still not detection.",
+  "limits": [
+    "Five concrete defects and three safe-Rust compiler diagnostics only",
+    "No arbitrary crash, timeout or failed build counted as mutation detection",
+    "No Text source-language/native ABI integration or complete lifetime proof"
+  ]
+}

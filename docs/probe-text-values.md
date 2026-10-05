@@ -88,3 +88,21 @@ These are executed library tests and a separate same-maintainer review. Text is
 still unavailable in the scalar source language and scalar native ABI. No new
 compiler, native Text program, semantic work accounting or production acceptance
 is established by this result.
+
+## Negative and borrow-boundary controls
+
+Five copied library mutants were detected by their fixed tests: byte-gate
+priority, inclusive scalar-bound error, byte count substituted for scalar count,
+UTF-16 ordering and NUL-terminated equality. Each compiled before its named test
+reported a wrong value or the exact unexpected scalar-bound refusal. The first
+collector was too narrow about test assertion formatting; the recorded correction
+retains that failed collection and does not alter fixture expectations.
+
+Three separate safe-Rust snippets failed to compile with their expected diagnostic:
+E0597 for a view outliving its input, E0502 for mutation while a view is still
+used, and E0451 for constructing private fields. These finite compiler controls
+are not a proof for unsafe code, FFI or all lifetime behavior.
+
+[Recipes and outcomes](../examples/probes/text-value-negative-controls.json)
+record the separate same-maintainer pass. Baseline source stayed unchanged; no
+Text source-language program or generated native Text artifact was executed.
