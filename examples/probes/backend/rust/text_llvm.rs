@@ -49,9 +49,12 @@ fn type_code(ty: Type) -> u32 { match ty { Type::Int64 => 1, Type::Bool => 2, Ty
 fn llvm_ty(ty:Type)->&'static str{if ty==Type::Text{"%Text"}else{"i64"}}
 fn zero(ty:Type)->&'static str{if ty==Type::Text{"zeroinitializer"}else{"0"}}
 fn descriptor(program:&CheckedProgram,limit:usize)->Result<String>{
- let mut out=Text::new(limit);out.write_str("{\"schema\":\"bagaev-text-llvm-binding/1\",\"source_pin\":")?;out.quote(program.identity())?;
- out.write_str(",\"source\":")?;out.quote(std::str::from_utf8(program.canonical_bytes()).map_err(|_|EmitError::Interface)?)?;
- out.write_str(",\"execution_admission\":false,\"signature\":")?;out.quote(SIGNATURE)?;out.write_char('}')?;Ok(out.value)
+ let mut out=Text::new(limit);
+ out.write_str("{\"execution_admission\":false,\"schema\":\"bagaev-text-llvm-binding/1\",\"signature\":")?;
+ out.quote(SIGNATURE)?;out.write_str(",\"source\":")?;
+ out.quote(std::str::from_utf8(program.canonical_bytes()).map_err(|_|EmitError::Interface)?)?;
+ out.write_str(",\"source_pin\":")?;out.quote(program.identity())?;
+ out.write_char('}')?;Ok(out.value)
 }
 
 struct FunctionEmitter<'a, 'b> {

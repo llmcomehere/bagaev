@@ -1,0 +1,330 @@
+{
+  "status": "PASS",
+  "cases": [
+    {
+      "id": "TX-ASCII-BYTES",
+      "canonical": true,
+      "artifact_pin": "sha256:9290d72f25283741ef4c83f99c92a0b57b556008f09b441c99319664e07429eb",
+      "binding_pin": "sha256:6da57d1e89b7abb449c7cb8f77b749b32dfecbaed23431cdffd04b6038d7c3eb",
+      "source_pin": "sha256:60848d6daff9c16bc918ef5ef2a0e57eb1d7927e732dcf720a5c9fbdddd642d3",
+      "module_bytes": 5583,
+      "record_sha256": "6daf8a573f464f484bdc86681101c285e8df318fb2edb5d8465bf07af058cc64"
+    },
+    {
+      "id": "TX-COMPARE-WORK-EXACT",
+      "canonical": true,
+      "artifact_pin": "sha256:24dbb0a3c55fbafce35eeb20b355210c5d5579b6bb44b20c489c9a30bec2a393",
+      "binding_pin": "sha256:07587fd05a6480de9b886a7f1a272a4af66441f5ecb914f6827b8c6ab0e052b6",
+      "source_pin": "sha256:512b69b0c748cbf5b474e1586e1f7f2c7bf35cb3750186c63aa61a3cda82bb24",
+      "module_bytes": 10720,
+      "record_sha256": "7d8910f4b9a8f5293a6a386a693416921031e0edc5b501e906a133d709f6a155"
+    },
+    {
+      "id": "TX-COMPARE-WORK-REFUSAL",
+      "canonical": true,
+      "artifact_pin": "sha256:43d0b8ab797247d5c741c281b245db9ae3b6f9710d4ed4968d6ed23903d77817",
+      "binding_pin": "sha256:2abf8ecbe5f965870e25cb8043c63f2318c0763dba6bb3a1708440de33294dac",
+      "source_pin": "sha256:015ec90e3af73738a1d16f77fd4a9edca6d821548c52a7d81d993379a1eb9e49",
+      "module_bytes": 10726,
+      "record_sha256": "c792a927e292099ba2162ab7fd3f7e0a3d0d17ec0bea8c6a3a5a5a46243bb8f1"
+    },
+    {
+      "id": "TX-EMPTY",
+      "canonical": true,
+      "artifact_pin": "sha256:e9efa0c915c97624ba34c20452855be9255227bdf7ea575974c388ddccf9c4c9",
+      "binding_pin": "sha256:0bd963312443392d226b8730046132f45903861ed661409851ccf17ef316dee0",
+      "source_pin": "sha256:0708a671f9f3bb98f610139f8e045561e89006cf0b41c24a164cc93be1bfcdfb",
+      "module_bytes": 5571,
+      "record_sha256": "6871a1ce362c1cc042ab459dcd47b6aa3bf1bf2332ccc5fa493aa69f891d2e48"
+    },
+    {
+      "id": "TX-LAZY",
+      "canonical": true,
+      "artifact_pin": "sha256:5fab92a9906141b6931934e4544ac3a68bca660dfa6bc16096d02de857934414",
+      "binding_pin": "sha256:31d8efd436d52305066aa59661d233d910c236c7dd7b18c9c721b4b8ea9ba56e",
+      "source_pin": "sha256:aa0e40a828f7fb08a083bd7f86904ed6e8363715d569824e39f6bd24f6779292",
+      "module_bytes": 8415,
+      "record_sha256": "6a5173f62e753ab94dd9c9eca48bcdc12452c348563b04c5bfbc4af1d8c50e7e"
+    },
+    {
+      "id": "TX-LEFT-OVERFLOW",
+      "canonical": true,
+      "artifact_pin": "sha256:3a26d0caf0ff49a641c03e3a27e646940505675acd9110b5c510a5e3d222bf5a",
+      "binding_pin": "sha256:35d9ba97356a9135d569163a98f92670a3b7a01dec5f25a095b962c90d1f3a38",
+      "source_pin": "sha256:36b9f3a7343adf9873526c5129cdff5c2f43093786616f36d99d17241269b500",
+      "module_bytes": 9327,
+      "record_sha256": "a2b8ca269a3f56192709843705fdc9a3a182e80b006b09150b9064b4cb2f9fff"
+    },
+    {
+      "id": "TX-NUL",
+      "canonical": true,
+      "artifact_pin": "sha256:a00de2070bf552d6736ecaff2e47ee26c77814e4c5b24580bdc23b3bdc27fa97",
+      "binding_pin": "sha256:8d4f6cc6728fd4861680b01d0fc3d1a4a78277f28219b719fe8ee6feab4c94b6",
+      "source_pin": "sha256:52ab24fb044be1fde617059ebd30e4b2214344513bc611aa4b361b24a793637f",
+      "module_bytes": 5607,
+      "record_sha256": "2cac8786a60ee46601fe3a068cb687a46eae0d684309df49746cfe0541971935"
+    },
+    {
+      "id": "TX-PARAM-EQ",
+      "canonical": true,
+      "artifact_pin": "sha256:dd1e53f750f670d20f467d70e812fc0902cea071c9059c39e4e4974df346e74f",
+      "binding_pin": "sha256:6299e3bef6a33cd261d0f0160791f4488638bcd6d7581cec6b3502662c91f109",
+      "source_pin": "sha256:6908708388fd15c3254b153d997edb9183555e45767d12319033a57d91a408a3",
+      "module_bytes": 6359,
+      "record_sha256": "38451888820a83bd1ae2e819a4e6eb7d9268e6452caf321b17b5e3b8645c4102"
+    },
+    {
+      "id": "TX-PARAM-EQ-EQUAL",
+      "canonical": true,
+      "artifact_pin": "sha256:dd1e53f750f670d20f467d70e812fc0902cea071c9059c39e4e4974df346e74f",
+      "binding_pin": "sha256:6299e3bef6a33cd261d0f0160791f4488638bcd6d7581cec6b3502662c91f109",
+      "source_pin": "sha256:6908708388fd15c3254b153d997edb9183555e45767d12319033a57d91a408a3",
+      "module_bytes": 6359,
+      "record_sha256": "38451888820a83bd1ae2e819a4e6eb7d9268e6452caf321b17b5e3b8645c4102"
+    },
+    {
+      "id": "TX-PARAM-EQ-SAME-LENGTH",
+      "canonical": true,
+      "artifact_pin": "sha256:dd1e53f750f670d20f467d70e812fc0902cea071c9059c39e4e4974df346e74f",
+      "binding_pin": "sha256:6299e3bef6a33cd261d0f0160791f4488638bcd6d7581cec6b3502662c91f109",
+      "source_pin": "sha256:6908708388fd15c3254b153d997edb9183555e45767d12319033a57d91a408a3",
+      "module_bytes": 6359,
+      "record_sha256": "38451888820a83bd1ae2e819a4e6eb7d9268e6452caf321b17b5e3b8645c4102"
+    },
+    {
+      "id": "TX-SCALAR-ORDER",
+      "canonical": true,
+      "artifact_pin": "sha256:00bb6e4d2f0d9d79751d28d01b1fb1e1a9237e525e65a75b36a8680413d48a05",
+      "binding_pin": "sha256:12da0d52d797079e99f6f4ec1cf9025e9d8a945b2e797eb3c80866a3aa97a5b7",
+      "source_pin": "sha256:16d2bd00707c022d8dd55341b41e633b93d2059ad45d12911bdf526a255a6126",
+      "module_bytes": 7122,
+      "record_sha256": "2943fd9ba5f0a2b18d3a924bd275f5f65187049e479928ffbc2a44786a2e0bc4"
+    },
+    {
+      "id": "TX-SCALAR-PARITY",
+      "canonical": true,
+      "artifact_pin": "sha256:442c51aeb98280ea9b81b5222930334d1fe0641d09089f68a7ff9d980a19b4d8",
+      "binding_pin": "sha256:12052a0150898841023dacaabfbd747d18b556a63d4692b3cd389c1e4a525a8f",
+      "source_pin": "sha256:7f22333d01edca7df5a4852d085b7a6ef1368e2820773c435b3b7fc671d6d911",
+      "module_bytes": 5664,
+      "record_sha256": "9120a895a54d64a4630c29b69ac781a96cfb51da9b3fc968c2ad48dd71e95ec3"
+    },
+    {
+      "id": "TX-SUPPLEMENTARY",
+      "canonical": true,
+      "artifact_pin": "sha256:51b1c8ef93b55ac4a9533e3423b8fe3f705bdd1f9662d11569b7a08c9d84fd66",
+      "binding_pin": "sha256:0c16be5ac15d165c62270f7743f3cd47efa84c26ceb517e29fd7b491b217d587",
+      "source_pin": "sha256:d5b6aa00168191cdf1f8e14d9a6524247921a0d5d90d4e218efc32b44ecb539e",
+      "module_bytes": 5595,
+      "record_sha256": "6b3a139e45440d68ed521d1ba3e5695fd9465363ad804d9d7e9f7d84c2f2f490"
+    },
+    {
+      "id": "TX-SUPPLEMENTARY-BYTES",
+      "canonical": true,
+      "artifact_pin": "sha256:e088b33973d07d5372fcbc68072194f3cbd9dae77d6ec0fbdfcce01bd6cae71c",
+      "binding_pin": "sha256:caad321fc686cd97a9944610ff0dc886f537524ee669e15f8404357c313bff49",
+      "source_pin": "sha256:273b11c50a13c9adfc56280034c56995c322dc7ca74f72b7a24ee8843f4ec1bf",
+      "module_bytes": 5589,
+      "record_sha256": "32e836edc8e0c37b7f21bcc04e5a78427b534c0b609f2f823dd57bef1de6c7e4"
+    },
+    {
+      "id": "TX-TEXT-HELPER",
+      "canonical": true,
+      "artifact_pin": "sha256:857eae4ba4e8da1ccf763294e1ac43c060b5036fc7082a1ca88da9bf0c26ce78",
+      "binding_pin": "sha256:5b1abfee287f67e01f76497546d1791ddbb1c1e5b13af270567ae9d58ef5471a",
+      "source_pin": "sha256:d3c8cbd8d42b91f07f434f7f2ff1fdce0773eeca98dd179128924b38f38b1631",
+      "module_bytes": 6927,
+      "record_sha256": "1b6ab8d5094a815ffdec0bcdb2649493c030f3c280cf5ac10caca29b7eb6e672"
+    },
+    {
+      "id": "TX-TEXT-LOOP",
+      "canonical": true,
+      "artifact_pin": "sha256:3f2b650aadbd728ad28ea6420930f0373ca4c920535110268b62283490c57e19",
+      "binding_pin": "sha256:d93db6223c6db0c4c21c442fc922fdb0cc4196fd3af869838c8067bb328845fb",
+      "source_pin": "sha256:0add24d89ae798d02eec79bff3796e39a095867c3f87b930e61f9f7268c1c0b5",
+      "module_bytes": 6872,
+      "record_sha256": "d65b13491b0556621fdb9d129fdc7f606b08f70f85e99e539ce0d80c0f8e1b06"
+    },
+    {
+      "id": "TX-WORK-EXACT",
+      "canonical": true,
+      "artifact_pin": "sha256:2b5718b88a237ac7e5ad83d599886d9b9a8448ec25172313c52bd2387ebdc5a4",
+      "binding_pin": "sha256:364511e13615d29b63c705c69e0b815674b65a46982120fb139ab52ec0d86d4b",
+      "source_pin": "sha256:33689850a1b1c90b222a37b1b5a8b1cae76898b9b71302dc6d8b824a32abb381",
+      "module_bytes": 9381,
+      "record_sha256": "7abec71d6e48f33d54a42df73971b488a072cc516a6ff346fb058ed6d8e35bf4"
+    },
+    {
+      "id": "TX-WORK-EXTRA-REFUSAL",
+      "canonical": true,
+      "artifact_pin": "sha256:3870378048aba83bf92ec6c49ec3d4d96476048041c25ca3e400a8d0f02c4879",
+      "binding_pin": "sha256:adeda20b79c1162aae31bc07d124f156b9cf7a668a2bde7c9e5f9a4307a17f4f",
+      "source_pin": "sha256:cac32c5029d6e9e64c8d811bb8982ba0212ca9705737a0d7665739dbd308044a",
+      "module_bytes": 9387,
+      "record_sha256": "d6eba1b8dc0d0658da765bc1e3cb4263505e4b4ebf641b4496cd43baee41ebee"
+    },
+    {
+      "id": "TX-ZERO-TEXT-LOOP",
+      "canonical": true,
+      "artifact_pin": "sha256:39fe8deb6726d95f8bab8a1e1cc381c8ba5d9ccd38300f032d53e173132860d8",
+      "binding_pin": "sha256:7530581f5df3c9540e887d24b68d443584f26ac07ccbbe4a6bda16f55d6295f3",
+      "source_pin": "sha256:5335b7ca265a81697a76ebffaf20dbf191095d1abdd00b602841b9a1707db641",
+      "module_bytes": 6872,
+      "record_sha256": "5bb347c376b9b5a83711f76824e2808529641fb92190a17cab23314db8be37f7"
+    },
+    {
+      "id": "TX2-ASCII-UNICODE",
+      "canonical": true,
+      "artifact_pin": "sha256:d9a3efb825c809cd04b9adcd578a1f069878490a48b196e0f1b86540d5cd4a20",
+      "binding_pin": "sha256:7fcbcd33b1ba9af2e943a586c1c37337cbad6200e280d0f39aa3bc45bd4f5844",
+      "source_pin": "sha256:1d880ed0e1d47bc663edabacd8c1553f549b211280f38e119976579e4771ee40",
+      "module_bytes": 7098,
+      "record_sha256": "1f8ab03d8ec3198435bd246b3cfed2cc150eadd04319918e2c1c88923f18976e"
+    },
+    {
+      "id": "TX2-CALL-ARG-OVERFLOW",
+      "canonical": true,
+      "artifact_pin": "sha256:0fa75d82a1a7dffcc7d9e4d07a11fea23a5820528c85b4e711a1de0566a6e179",
+      "binding_pin": "sha256:bb9bb1f8d7c119e0edc161c22e308d559c2cc0949f8bce5ff7d2f3bb6b722ac0",
+      "source_pin": "sha256:1dc80ca79e2d1eb2cf7d9ed2f847cf211435cd8f6f9b054dd3062bb037f268f7",
+      "module_bytes": 8525,
+      "record_sha256": "dfc18ed4b767726736424fa653c2aec5838b4fe0477b6fe59dd5a2eec0a56384"
+    },
+    {
+      "id": "TX2-CALL-TEXT-NO",
+      "canonical": true,
+      "artifact_pin": "sha256:d65cedbdaabeff006ebea407b131dd776cba31936d46ce5cb0cda503b8481715",
+      "binding_pin": "sha256:54dca6a75a0b3c4aa56a4c60947c0594011a542de72d96b7548ca5bd531e476b",
+      "source_pin": "sha256:739ad03fd4d335c7e6e119330ead03e744f39142e8a746369e116bb2ad237dc9",
+      "module_bytes": 9741,
+      "record_sha256": "77c0df993ddbbb1f46604a725d331bf305cfd2d0861e56f7aef0d95b58d1238f"
+    },
+    {
+      "id": "TX2-CALL-TEXT-YES",
+      "canonical": true,
+      "artifact_pin": "sha256:6351561daea0bf640efcdccc6bff71329edcd7b9687a8ccb22f0700817839c73",
+      "binding_pin": "sha256:66387116aa788bb5254055c0f4a6626eead81432a550aefc9c555a4c2272760d",
+      "source_pin": "sha256:536c3902bbb7d124e1b470b73a3aa85c9361bc111496b9413f81cc84db402088",
+      "module_bytes": 9738,
+      "record_sha256": "24428468c61d19b6f07e57f78b21ebcbeeca92f974d3f651e9d3dd502c84ebe6"
+    },
+    {
+      "id": "TX2-EMPTY",
+      "canonical": true,
+      "artifact_pin": "sha256:0c76a2102ec48604eeb9597ae3f5ddbc2b0652f72172b115730871f22c96ae25",
+      "binding_pin": "sha256:34a831428c1f69c640f6a188f561a39a40aec179d0ebb7129e3174675cc62538",
+      "source_pin": "sha256:fc775e87985d81664d2a653811792148d7757b5b08caf18338c0d2467c558b6e",
+      "module_bytes": 7086,
+      "record_sha256": "d81634f21b8211286d56e208b429c16ddb3cf286ecbc1c67cad5ec9ee6ab8e28"
+    },
+    {
+      "id": "TX2-EQUAL",
+      "canonical": true,
+      "artifact_pin": "sha256:44c952d1540df2ab0399549e0cc6228868f7d619498599a87de313dcfae45ea6",
+      "binding_pin": "sha256:6bda8cd66242bccec2b347c3117d0004baa53ae94d15a41e1ba26d27990889a6",
+      "source_pin": "sha256:fba9385a3ea5e4e3a9ec764c8e60f7dda6ff404e4795e30350824cfc896858a1",
+      "module_bytes": 7092,
+      "record_sha256": "12abefd966f8eb99994c563064639fdc96bd43f0476d232b5d175ac15f6ccdec"
+    },
+    {
+      "id": "TX2-IF-NO",
+      "canonical": true,
+      "artifact_pin": "sha256:0ac718e7b0962ef7c2a9c111f2757fa3e654ac89198328e054896037c5d7cf30",
+      "binding_pin": "sha256:8e072718ef2c8e48ad574841b35f06c6ae16cd6583e51f4fe10bc9faaf346f32",
+      "source_pin": "sha256:bc918168c1c3f1554ab90e8e1c566507c719170a474b214b975b5a77c366b540",
+      "module_bytes": 7444,
+      "record_sha256": "0bc74d02d990d4a2a74722428bbf63c2fe17d03f2a416299c5d9e51a24c67c5c"
+    },
+    {
+      "id": "TX2-IF-YES",
+      "canonical": true,
+      "artifact_pin": "sha256:605366c0ef3563337a3c5e80f9a4c874bdce5aebdaa290b2b4caa0e3ed189e0f",
+      "binding_pin": "sha256:fd8427366193b4f530b686349f200ac54ed73f2f3fd63b0ed535af081c47c3bd",
+      "source_pin": "sha256:451ca24df962ec1395ba7b64236df6567c169ef38b264cf973942cfa13a947fb",
+      "module_bytes": 7441,
+      "record_sha256": "400e8b0481d67ce3b5353d248e60d8d926e30255db747d23b8045a364cd06b31"
+    },
+    {
+      "id": "TX2-LET-TEXT-PHI",
+      "canonical": true,
+      "artifact_pin": "sha256:fa7d4a21f889b489b44cde6474b88e2859dcf0220116682c56463e79dd3a4b57",
+      "binding_pin": "sha256:cb0fb4a972a52ca2705587c5268ac5c89815e85a402b7b0a05b6b3e1c488c0dd",
+      "source_pin": "sha256:22294bcacae5e357af5a141665a518d90791b6ef1742f5abb030aeba7d183913",
+      "module_bytes": 8352,
+      "record_sha256": "39e6bbc7fded9a7d99073efa7fe4bf0bff4a318f0c7a5df7e1c0945d834607ef"
+    },
+    {
+      "id": "TX2-LOOP-TEXT-PHI",
+      "canonical": true,
+      "artifact_pin": "sha256:70320a9600895d827108e155f0c10d910898617534bbde3f57643659fb97f390",
+      "binding_pin": "sha256:fccf986535ed05596ed469fc57ce46afb441728c498bda2c2af3e3f9b4938c01",
+      "source_pin": "sha256:8054a349c4af6968f7bb9be0cb2cff5105910f78cd300fdc17ac833ba21bb4f3",
+      "module_bytes": 9592,
+      "record_sha256": "baa4760e9ce089d4e28c75c0c40e4b51d490bf6ee254fd9dfd55a9d42891437d"
+    },
+    {
+      "id": "TX2-NUL",
+      "canonical": true,
+      "artifact_pin": "sha256:3a75f8b22c14835d268509cec50f9de56f71ffc890c8a6ad9490db78e24f76f2",
+      "binding_pin": "sha256:5d8549698d707537329a410b8168dfd9dfb3717d1605228c496711cfc81a60aa",
+      "source_pin": "sha256:77fd56dcf7186752bdc8d2128e58518d96d316148fb57a51a76e3aa95af73713",
+      "module_bytes": 7140,
+      "record_sha256": "ad26c56c1b931a252eac2a4ab29a6f713f9bf3bb39fdf325eb1e47a2b7ea8815"
+    },
+    {
+      "id": "TX2-PREFIX",
+      "canonical": true,
+      "artifact_pin": "sha256:58fb4b1fe4ad756e4c15ed7bc4c99c25b77355ead1ac4b87d9412cbb55cf0337",
+      "binding_pin": "sha256:7f48944af031625035a1f5e4203d5c9f0788f9378dc977e07bceeaa050a472aa",
+      "source_pin": "sha256:c98284741f1307f5082fbbda6242559fb27bd9a1d618230ee799cdb6738c35eb",
+      "module_bytes": 7098,
+      "record_sha256": "48180b2804b7397711fd513eddb908de7f74ec9e0ee892455d96836430766502"
+    },
+    {
+      "id": "TX2-REVERSE-PREFIX",
+      "canonical": true,
+      "artifact_pin": "sha256:873dba1c114c67fcbd179767354934c3b82df89f760cb88345545dd09debac28",
+      "binding_pin": "sha256:b1c55236b274c7b4519f46e97b0655bac133e5b892d55d7be1c0253b2d723548",
+      "source_pin": "sha256:f8f91b7fa47e32337e9213a025d02d29ee31cf5b833b068ad3e7f416ab856343",
+      "module_bytes": 7098,
+      "record_sha256": "893d8b66e6708d5a9ff3ac8d63e66dc5bf93c12ae80c939475f4861fe876973a"
+    },
+    {
+      "id": "TX2-TEXT-FUNCTION-OVERFLOW",
+      "canonical": true,
+      "artifact_pin": "sha256:4fc529d0d22448b5bd82ad776cc077c6c6049f53289af7b8e956a0a69cf86a02",
+      "binding_pin": "sha256:1460c21613cdaca164f67c982205cb7703ceea0403b4d699fd854d99d479a016",
+      "source_pin": "sha256:889010bb40b04b364d7f5477d20a6bc0a6e5232d00012e5ca13c23d16ccfda38",
+      "module_bytes": 10243,
+      "record_sha256": "f13d3c47b79bf497ec7c231ac899c899a20457552cd0fbc3cf049438362963af"
+    },
+    {
+      "id": "TX2-UNICODE-ASCII",
+      "canonical": true,
+      "artifact_pin": "sha256:cfa422c4719314796df5834a7c849163d6952062ec2f0d102b551289f48de04a",
+      "binding_pin": "sha256:611430e0fd88ac9f984b2bde86050968e896a43fb74473f11e8c622f97de1022",
+      "source_pin": "sha256:802e26ca3486f785758e93ec3a9e560caa2a6b926d4d24b46086ecc0c110613b",
+      "module_bytes": 7098,
+      "record_sha256": "2d416db6b7ceeac084f591c1dc8d420ec68e87caec4435bd54d035fbd073ef30"
+    }
+  ],
+  "scope": "34 canonical binding/source/module integrity checks after descriptor field-order correction",
+  "correction": "The previous descriptor emitted schema/source fields before execution_admission, violating its canonical-record promise. Fields are now in canonical key order. This changes module/binding bytes and pins, not source semantics. Earlier observations retain their original identities.",
+  "native_regression": {
+    "programs": 34,
+    "complete_output_matches": 136,
+    "optimization": [
+      "O0",
+      "O2"
+    ],
+    "prefills": [
+      0,
+      165
+    ],
+    "input_preserved": true
+  },
+  "unit_tests": 3,
+  "checker_correction": "Initial hash checker omitted the documented sha256: prefix; corrected checker uses the full identifier format. No emitter or expected semantic result was changed for that checker correction.",
+  "source_sha256": "b38bd11b00dae004982fdf3c16d80f45fa9e15375d19a54ac63612536096624a",
+  "review": "Separate same-maintainer review; no independent reproduction or performance claim"
+}
