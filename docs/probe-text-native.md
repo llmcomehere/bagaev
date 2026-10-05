@@ -1,7 +1,7 @@
 # Native typed Text execution proposal
 
 The generated LLVM kernel is implemented and bounded observations are recorded.
-The outer exported adapter remains a proposal. It does not change
+The experimental outer adapter is implemented for valid caller-owned buffers. It does not change
 old scalar ABI or grant execution admission. The existing typed Text source and
 invocation contract remains authoritative for types, evaluation order, work,
 first-error semantics and source locations.
@@ -100,6 +100,23 @@ denied, linking that exact object. Supply the literal call frame and prefill
 byte as its two arguments. Compare all stdout bytes to the frozen native hex.
 The template and source paths convey no permission to run compilers or artifacts.
 
-The evidence is a same-maintainer bounded probe. Full source conformance, outer
-FFI adapter, adversarial pointer validation, negative native controls and
-production isolation remain open.
+The evidence is a same-maintainer bounded probe. Full source conformance, adversarial pointer validation, negative native
+controls and production isolation remain open.
+
+## Experimental outer adapter
+
+The [adapter](../examples/probes/backend/rust/text_native_adapter.rs) validates
+call frames before dispatch and constructs initialized internal value slots. Its
+unsafe interface requires an already admitted, exact-signature kernel. The
+[outer entry template](../tests/probes/backend/text_native_entry.rs.in) fixes the
+signature and kernel at build time, exports `bagaev_text_probe_entry`, and writes
+the complete output record. The caller must still supply valid disjoint buffers;
+no test attempts arbitrary invalid addresses or establishes general FFI safety.
+
+The outer entry passed the same 76 valid-frame native output comparisons with
+input preservation, reusing the exact already compiled LLVM objects. A separate
+single-test [admission harness](../tests/probes/backend/text_native_adapter_tests.rs)
+covers all 25 frozen call-frame cases with a counting witness kernel: rejected
+frames produced the exact refusal record with zero calls, and admitted frames
+called once. This checks dispatch refusal, not 25 additional program semantics.
+See [adapter observations](../examples/probes/text-native-adapter-observations.json).
