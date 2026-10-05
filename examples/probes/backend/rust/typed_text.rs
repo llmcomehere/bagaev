@@ -519,3 +519,13 @@ pub fn process(bytes:&[u8])->Result<Vec<u8>,&'static str>{
 }
 
 pub fn checked_program(bytes:&[u8])->Result<CheckedSource,String>{let doc=parsed(bytes).map_err(|e|format!("{e:?}"))?;program(&doc,doc.root).map_err(|e|format!("{e:?}"))}
+
+/// Checked source or stable source refusal data; neither variant admits execution.
+pub enum SourceCheck { Checked(CheckedSource), Refused { reason: &'static str, location: String } }
+pub fn check_source(bytes:&[u8])->Result<SourceCheck,&'static str>{
+    match parsed(bytes).and_then(|doc|program(&doc,doc.root)) {
+        Ok(p)=>Ok(SourceCheck::Checked(p)),
+        Err(FrontendError::Refusal(r))=>Ok(SourceCheck::Refused{reason:r.reason().name(),location:r.location}),
+        Err(FrontendError::Environment(e))=>Err(e),
+    }
+}
