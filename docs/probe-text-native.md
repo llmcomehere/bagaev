@@ -147,3 +147,19 @@ two prefills) matched; input frames were unchanged. [Recorded observations](../e
 retain exact outputs and limits. This extends finite conformance without changing
 implementation or the earlier frozen fixture, and does not establish full
 coverage, independent reproduction or a performance advantage.
+
+## Canonical binding correction
+
+The initial Text descriptor emitted its object fields in noncanonical order,
+contradicting the binding API's canonical-record promise. The emitter now writes
+`execution_admission`, `schema`, `signature`, `source`, `source_pin` in sorted
+order. Module/binding bytes and pins therefore change; source identity and
+semantics do not. Earlier observations retain their actual historical pins.
+
+All 34 program records passed canonical-wire, source/binding/module hash and
+module-length checks. Recompiled objects passed all 136 complete native outputs
+(O0/O2, two prefills) with input preservation. Three Rust tests passed, including
+canonical binding/pins, bounds and the SHA-256 known-answer test. See the
+[correction observations](../examples/probes/text-binding-canonical-observations.json).
+An initial checker omitted the specified `sha256:` prefix; correcting that
+checker changed neither emitter behavior nor semantic expectations.
