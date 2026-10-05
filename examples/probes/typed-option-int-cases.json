@@ -1,0 +1,1049 @@
+{
+  "schema": "bagaev-typed-option-int-cases/1",
+  "cases": [
+    {
+      "id": "OI-NONE-FALLBACK",
+      "invocation": {
+        "schema": "bagaev-typed-option-int-invocation/1",
+        "program": {
+          "schema": "bagaev-typed-option-int/1",
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [],
+              "result": "Int64",
+              "body": [
+                "option.or",
+                [
+                  "none.int"
+                ],
+                [
+                  "int",
+                  7
+                ]
+              ]
+            }
+          }
+        },
+        "arguments": []
+      },
+      "expected": {
+        "schema": "bagaev-typed-option-int-result/1",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Int64",
+        "value": 7,
+        "work": 3
+      }
+    },
+    {
+      "id": "OI-SOME-ZERO-LAZY",
+      "invocation": {
+        "schema": "bagaev-typed-option-int-invocation/1",
+        "program": {
+          "schema": "bagaev-typed-option-int/1",
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [],
+              "result": "Int64",
+              "body": [
+                "option.or",
+                [
+                  "some.int",
+                  [
+                    "int",
+                    0
+                  ]
+                ],
+                [
+                  "add",
+                  [
+                    "int",
+                    9223372036854775807
+                  ],
+                  [
+                    "int",
+                    1
+                  ]
+                ]
+              ]
+            }
+          }
+        },
+        "arguments": []
+      },
+      "expected": {
+        "schema": "bagaev-typed-option-int-result/1",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Int64",
+        "value": 0,
+        "work": 3
+      }
+    },
+    {
+      "id": "OI-SOME-MIN",
+      "invocation": {
+        "schema": "bagaev-typed-option-int-invocation/1",
+        "program": {
+          "schema": "bagaev-typed-option-int/1",
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [],
+              "result": "Int64",
+              "body": [
+                "option.or",
+                [
+                  "some.int",
+                  [
+                    "int",
+                    -9223372036854775808
+                  ]
+                ],
+                [
+                  "int",
+                  7
+                ]
+              ]
+            }
+          }
+        },
+        "arguments": []
+      },
+      "expected": {
+        "schema": "bagaev-typed-option-int-result/1",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Int64",
+        "value": -9223372036854775808,
+        "work": 3
+      }
+    },
+    {
+      "id": "OI-HAS-NONE",
+      "invocation": {
+        "schema": "bagaev-typed-option-int-invocation/1",
+        "program": {
+          "schema": "bagaev-typed-option-int/1",
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [],
+              "result": "Bool",
+              "body": [
+                "option.is_some",
+                [
+                  "none.int"
+                ]
+              ]
+            }
+          }
+        },
+        "arguments": []
+      },
+      "expected": {
+        "schema": "bagaev-typed-option-int-result/1",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Bool",
+        "value": false,
+        "work": 2
+      }
+    },
+    {
+      "id": "OI-HAS-ZERO",
+      "invocation": {
+        "schema": "bagaev-typed-option-int-invocation/1",
+        "program": {
+          "schema": "bagaev-typed-option-int/1",
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [],
+              "result": "Bool",
+              "body": [
+                "option.is_some",
+                [
+                  "some.int",
+                  [
+                    "int",
+                    0
+                  ]
+                ]
+              ]
+            }
+          }
+        },
+        "arguments": []
+      },
+      "expected": {
+        "schema": "bagaev-typed-option-int-result/1",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Bool",
+        "value": true,
+        "work": 3
+      }
+    },
+    {
+      "id": "OI-LET-NONE",
+      "invocation": {
+        "schema": "bagaev-typed-option-int-invocation/1",
+        "program": {
+          "schema": "bagaev-typed-option-int/1",
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [],
+              "result": "Int64",
+              "body": [
+                "let",
+                "x",
+                [
+                  "none.int"
+                ],
+                [
+                  "option.or",
+                  [
+                    "use",
+                    "x"
+                  ],
+                  [
+                    "int",
+                    7
+                  ]
+                ]
+              ]
+            }
+          }
+        },
+        "arguments": []
+      },
+      "expected": {
+        "schema": "bagaev-typed-option-int-result/1",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Int64",
+        "value": 7,
+        "work": 5
+      }
+    },
+    {
+      "id": "OI-IF-SOME",
+      "invocation": {
+        "schema": "bagaev-typed-option-int-invocation/1",
+        "program": {
+          "schema": "bagaev-typed-option-int/1",
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [],
+              "result": "Int64",
+              "body": [
+                "option.or",
+                [
+                  "if",
+                  [
+                    "bool",
+                    true
+                  ],
+                  [
+                    "some.int",
+                    [
+                      "int",
+                      3
+                    ]
+                  ],
+                  [
+                    "none.int"
+                  ]
+                ],
+                [
+                  "int",
+                  9
+                ]
+              ]
+            }
+          }
+        },
+        "arguments": []
+      },
+      "expected": {
+        "schema": "bagaev-typed-option-int-result/1",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Int64",
+        "value": 3,
+        "work": 5
+      }
+    },
+    {
+      "id": "OI-ARG-NONE",
+      "invocation": {
+        "schema": "bagaev-typed-option-int-invocation/1",
+        "program": {
+          "schema": "bagaev-typed-option-int/1",
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [
+                [
+                  "x",
+                  "OptionInt64"
+                ]
+              ],
+              "result": "Int64",
+              "body": [
+                "option.or",
+                [
+                  "arg",
+                  "x"
+                ],
+                [
+                  "int",
+                  9
+                ]
+              ]
+            }
+          }
+        },
+        "arguments": [
+          null
+        ]
+      },
+      "expected": {
+        "schema": "bagaev-typed-option-int-result/1",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Int64",
+        "value": 9,
+        "work": 3
+      }
+    },
+    {
+      "id": "OI-ARG-ZERO",
+      "invocation": {
+        "schema": "bagaev-typed-option-int-invocation/1",
+        "program": {
+          "schema": "bagaev-typed-option-int/1",
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [
+                [
+                  "x",
+                  "OptionInt64"
+                ]
+              ],
+              "result": "Int64",
+              "body": [
+                "option.or",
+                [
+                  "arg",
+                  "x"
+                ],
+                [
+                  "int",
+                  9
+                ]
+              ]
+            }
+          }
+        },
+        "arguments": [
+          0
+        ]
+      },
+      "expected": {
+        "schema": "bagaev-typed-option-int-result/1",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Int64",
+        "value": 0,
+        "work": 2
+      }
+    },
+    {
+      "id": "OI-ARG-MAX",
+      "invocation": {
+        "schema": "bagaev-typed-option-int-invocation/1",
+        "program": {
+          "schema": "bagaev-typed-option-int/1",
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [
+                [
+                  "x",
+                  "OptionInt64"
+                ]
+              ],
+              "result": "Int64",
+              "body": [
+                "option.or",
+                [
+                  "arg",
+                  "x"
+                ],
+                [
+                  "int",
+                  9
+                ]
+              ]
+            }
+          }
+        },
+        "arguments": [
+          9223372036854775807
+        ]
+      },
+      "expected": {
+        "schema": "bagaev-typed-option-int-result/1",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Int64",
+        "value": 9223372036854775807,
+        "work": 2
+      }
+    },
+    {
+      "id": "OI-CALL-NONE",
+      "invocation": {
+        "schema": "bagaev-typed-option-int-invocation/1",
+        "program": {
+          "schema": "bagaev-typed-option-int/1",
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [],
+              "result": "Int64",
+              "body": [
+                "option.or",
+                [
+                  "call",
+                  "id",
+                  [
+                    "none.int"
+                  ]
+                ],
+                [
+                  "int",
+                  9
+                ]
+              ]
+            },
+            "id": {
+              "params": [
+                [
+                  "x",
+                  "OptionInt64"
+                ]
+              ],
+              "result": "OptionInt64",
+              "body": [
+                "arg",
+                "x"
+              ]
+            }
+          }
+        },
+        "arguments": []
+      },
+      "expected": {
+        "schema": "bagaev-typed-option-int-result/1",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Int64",
+        "value": 9,
+        "work": 5
+      }
+    },
+    {
+      "id": "OI-CALL-SOME",
+      "invocation": {
+        "schema": "bagaev-typed-option-int-invocation/1",
+        "program": {
+          "schema": "bagaev-typed-option-int/1",
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [],
+              "result": "Int64",
+              "body": [
+                "option.or",
+                [
+                  "call",
+                  "id",
+                  [
+                    "some.int",
+                    [
+                      "int",
+                      0
+                    ]
+                  ]
+                ],
+                [
+                  "add",
+                  [
+                    "int",
+                    9223372036854775807
+                  ],
+                  [
+                    "int",
+                    1
+                  ]
+                ]
+              ]
+            },
+            "id": {
+              "params": [
+                [
+                  "x",
+                  "OptionInt64"
+                ]
+              ],
+              "result": "OptionInt64",
+              "body": [
+                "arg",
+                "x"
+              ]
+            }
+          }
+        },
+        "arguments": []
+      },
+      "expected": {
+        "schema": "bagaev-typed-option-int-result/1",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Int64",
+        "value": 0,
+        "work": 5
+      }
+    },
+    {
+      "id": "OI-LOOP",
+      "invocation": {
+        "schema": "bagaev-typed-option-int-invocation/1",
+        "program": {
+          "schema": "bagaev-typed-option-int/1",
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [],
+              "result": "Int64",
+              "body": [
+                "option.or",
+                [
+                  "loop",
+                  3,
+                  "i",
+                  "a",
+                  [
+                    "none.int"
+                  ],
+                  [
+                    "if",
+                    [
+                      "eq",
+                      [
+                        "use",
+                        "i"
+                      ],
+                      [
+                        "int",
+                        1
+                      ]
+                    ],
+                    [
+                      "some.int",
+                      [
+                        "use",
+                        "i"
+                      ]
+                    ],
+                    [
+                      "use",
+                      "a"
+                    ]
+                  ]
+                ],
+                [
+                  "int",
+                  9
+                ]
+              ]
+            }
+          }
+        },
+        "arguments": []
+      },
+      "expected": {
+        "schema": "bagaev-typed-option-int-result/1",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Int64",
+        "value": 1,
+        "work": 19
+      }
+    },
+    {
+      "id": "OI-ZERO-LOOP",
+      "invocation": {
+        "schema": "bagaev-typed-option-int-invocation/1",
+        "program": {
+          "schema": "bagaev-typed-option-int/1",
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [],
+              "result": "Int64",
+              "body": [
+                "option.or",
+                [
+                  "loop",
+                  0,
+                  "i",
+                  "a",
+                  [
+                    "none.int"
+                  ],
+                  [
+                    "some.int",
+                    [
+                      "use",
+                      "i"
+                    ]
+                  ]
+                ],
+                [
+                  "int",
+                  9
+                ]
+              ]
+            }
+          }
+        },
+        "arguments": []
+      },
+      "expected": {
+        "schema": "bagaev-typed-option-int-result/1",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Int64",
+        "value": 9,
+        "work": 4
+      }
+    },
+    {
+      "id": "OI-FALLBACK-OVERFLOW",
+      "invocation": {
+        "schema": "bagaev-typed-option-int-invocation/1",
+        "program": {
+          "schema": "bagaev-typed-option-int/1",
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [],
+              "result": "Int64",
+              "body": [
+                "option.or",
+                [
+                  "none.int"
+                ],
+                [
+                  "add",
+                  [
+                    "int",
+                    9223372036854775807
+                  ],
+                  [
+                    "int",
+                    1
+                  ]
+                ]
+              ]
+            }
+          }
+        },
+        "arguments": []
+      },
+      "expected": {
+        "schema": "bagaev-typed-option-int-result/1",
+        "status": "integer-overflow",
+        "reason": "OI_OVERFLOW",
+        "location": "/program/functions/main/body/2",
+        "value_type": null,
+        "value": null,
+        "work": 5
+      }
+    },
+    {
+      "id": "OI-SOME-OVERFLOW",
+      "invocation": {
+        "schema": "bagaev-typed-option-int-invocation/1",
+        "program": {
+          "schema": "bagaev-typed-option-int/1",
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [],
+              "result": "Int64",
+              "body": [
+                "option.or",
+                [
+                  "some.int",
+                  [
+                    "add",
+                    [
+                      "int",
+                      9223372036854775807
+                    ],
+                    [
+                      "int",
+                      1
+                    ]
+                  ]
+                ],
+                [
+                  "int",
+                  9
+                ]
+              ]
+            }
+          }
+        },
+        "arguments": []
+      },
+      "expected": {
+        "schema": "bagaev-typed-option-int-result/1",
+        "status": "integer-overflow",
+        "reason": "OI_OVERFLOW",
+        "location": "/program/functions/main/body/1/1",
+        "value_type": null,
+        "value": null,
+        "work": 5
+      }
+    },
+    {
+      "id": "OI-ARG-BOOL",
+      "invocation": {
+        "schema": "bagaev-typed-option-int-invocation/1",
+        "program": {
+          "schema": "bagaev-typed-option-int/1",
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [
+                [
+                  "x",
+                  "OptionInt64"
+                ]
+              ],
+              "result": "Int64",
+              "body": [
+                "option.or",
+                [
+                  "arg",
+                  "x"
+                ],
+                [
+                  "int",
+                  9
+                ]
+              ]
+            }
+          }
+        },
+        "arguments": [
+          true
+        ]
+      },
+      "expected": {
+        "schema": "bagaev-typed-option-int-result/1",
+        "status": "invalid-ir",
+        "reason": "OI_ARGUMENT",
+        "location": "/arguments/0",
+        "value_type": null,
+        "value": null,
+        "work": 0
+      }
+    },
+    {
+      "id": "OI-ARG-TEXT",
+      "invocation": {
+        "schema": "bagaev-typed-option-int-invocation/1",
+        "program": {
+          "schema": "bagaev-typed-option-int/1",
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [
+                [
+                  "x",
+                  "OptionInt64"
+                ]
+              ],
+              "result": "Int64",
+              "body": [
+                "option.or",
+                [
+                  "arg",
+                  "x"
+                ],
+                [
+                  "int",
+                  9
+                ]
+              ]
+            }
+          }
+        },
+        "arguments": [
+          "0"
+        ]
+      },
+      "expected": {
+        "schema": "bagaev-typed-option-int-result/1",
+        "status": "invalid-ir",
+        "reason": "OI_ARGUMENT",
+        "location": "/arguments/0",
+        "value_type": null,
+        "value": null,
+        "work": 0
+      }
+    },
+    {
+      "id": "OI-ARG-BIG",
+      "invocation": {
+        "schema": "bagaev-typed-option-int-invocation/1",
+        "program": {
+          "schema": "bagaev-typed-option-int/1",
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [
+                [
+                  "x",
+                  "OptionInt64"
+                ]
+              ],
+              "result": "Int64",
+              "body": [
+                "option.or",
+                [
+                  "arg",
+                  "x"
+                ],
+                [
+                  "int",
+                  9
+                ]
+              ]
+            }
+          }
+        },
+        "arguments": [
+          9223372036854775808
+        ]
+      },
+      "expected": {
+        "schema": "bagaev-typed-option-int-result/1",
+        "status": "invalid-ir",
+        "reason": "OI_ARGUMENT",
+        "location": "/arguments/0",
+        "value_type": null,
+        "value": null,
+        "work": 0
+      }
+    },
+    {
+      "id": "OI-SOME-TYPE",
+      "invocation": {
+        "schema": "bagaev-typed-option-int-invocation/1",
+        "program": {
+          "schema": "bagaev-typed-option-int/1",
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [],
+              "result": "Int64",
+              "body": [
+                "some.int",
+                [
+                  "bool",
+                  true
+                ]
+              ]
+            }
+          }
+        },
+        "arguments": []
+      },
+      "expected": {
+        "schema": "bagaev-typed-option-int-result/1",
+        "status": "invalid-ir",
+        "reason": "OI_TYPE",
+        "location": "/program/functions/main/body",
+        "value_type": null,
+        "value": null,
+        "work": 0
+      }
+    },
+    {
+      "id": "OI-OR-TYPE",
+      "invocation": {
+        "schema": "bagaev-typed-option-int-invocation/1",
+        "program": {
+          "schema": "bagaev-typed-option-int/1",
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [],
+              "result": "Int64",
+              "body": [
+                "option.or",
+                [
+                  "int",
+                  1
+                ],
+                [
+                  "int",
+                  2
+                ]
+              ]
+            }
+          }
+        },
+        "arguments": []
+      },
+      "expected": {
+        "schema": "bagaev-typed-option-int-result/1",
+        "status": "invalid-ir",
+        "reason": "OI_TYPE",
+        "location": "/program/functions/main/body",
+        "value_type": null,
+        "value": null,
+        "work": 0
+      }
+    },
+    {
+      "id": "OI-UNTAKEN-TYPE",
+      "invocation": {
+        "schema": "bagaev-typed-option-int-invocation/1",
+        "program": {
+          "schema": "bagaev-typed-option-int/1",
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [],
+              "result": "Int64",
+              "body": [
+                "option.or",
+                [
+                  "some.int",
+                  [
+                    "int",
+                    0
+                  ]
+                ],
+                [
+                  "bool",
+                  false
+                ]
+              ]
+            }
+          }
+        },
+        "arguments": []
+      },
+      "expected": {
+        "schema": "bagaev-typed-option-int-result/1",
+        "status": "invalid-ir",
+        "reason": "OI_TYPE",
+        "location": "/program/functions/main/body",
+        "value_type": null,
+        "value": null,
+        "work": 0
+      }
+    },
+    {
+      "id": "OI-ENTRY-OPTION",
+      "invocation": {
+        "schema": "bagaev-typed-option-int-invocation/1",
+        "program": {
+          "schema": "bagaev-typed-option-int/1",
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [],
+              "result": "OptionInt64",
+              "body": [
+                "none.int"
+              ]
+            }
+          }
+        },
+        "arguments": []
+      },
+      "expected": {
+        "schema": "bagaev-typed-option-int-result/1",
+        "status": "invalid-ir",
+        "reason": "OI_TYPE",
+        "location": "/program/functions/main/result",
+        "value_type": null,
+        "value": null,
+        "work": 0
+      }
+    },
+    {
+      "id": "OI-TEXT-PARITY",
+      "invocation": {
+        "schema": "bagaev-typed-option-int-invocation/1",
+        "program": {
+          "schema": "bagaev-typed-option-int/1",
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [],
+              "result": "Int64",
+              "body": [
+                "text.bytes",
+                [
+                  "text",
+                  "abc"
+                ]
+              ]
+            }
+          }
+        },
+        "arguments": []
+      },
+      "expected": {
+        "schema": "bagaev-typed-option-int-result/1",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Int64",
+        "value": 3,
+        "work": 5
+      }
+    }
+  ]
+}

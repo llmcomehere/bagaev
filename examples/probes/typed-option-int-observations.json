@@ -1,0 +1,932 @@
+{
+  "status": "PASS",
+  "fixture_sha256": "1028d5c8786e413cd3a9aabb4257a03ddbed4d7bc2a77ef52013260cf57bd88a",
+  "binary_sha256": "b453226ba4f35ec541d34a10f82dfa47af0612d8cba4c75fa0f6a09a8b75a6e7",
+  "observations": [
+    {
+      "id": "OI-NONE-FALLBACK",
+      "exit": 0,
+      "exact_wire_match": true,
+      "expected": {
+        "schema": "bagaev-typed-option-int-result/1",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Int64",
+        "value": 7,
+        "work": 3
+      },
+      "actual_sha256": "82468d5d28ee684d1dde889c6b88db2fd6f5ebb890dfc662e55f5ac80735fac2",
+      "stderr": ""
+    },
+    {
+      "id": "OI-SOME-ZERO-LAZY",
+      "exit": 0,
+      "exact_wire_match": true,
+      "expected": {
+        "schema": "bagaev-typed-option-int-result/1",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Int64",
+        "value": 0,
+        "work": 3
+      },
+      "actual_sha256": "c6dc258bf90fda55903e495fee9ab4e245fa942c62aa4e45f3e2ad58f4a6be1f",
+      "stderr": ""
+    },
+    {
+      "id": "OI-SOME-MIN",
+      "exit": 0,
+      "exact_wire_match": true,
+      "expected": {
+        "schema": "bagaev-typed-option-int-result/1",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Int64",
+        "value": -9223372036854775808,
+        "work": 3
+      },
+      "actual_sha256": "bf26c7881441d92b77328ff138a6024cb4c0bfa9a8589aac75d3aba8e645fca3",
+      "stderr": ""
+    },
+    {
+      "id": "OI-HAS-NONE",
+      "exit": 0,
+      "exact_wire_match": true,
+      "expected": {
+        "schema": "bagaev-typed-option-int-result/1",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Bool",
+        "value": false,
+        "work": 2
+      },
+      "actual_sha256": "9515734144caf823cbccfdc718184a886eae13fe7fc1eeba864946beef2e79d0",
+      "stderr": ""
+    },
+    {
+      "id": "OI-HAS-ZERO",
+      "exit": 0,
+      "exact_wire_match": true,
+      "expected": {
+        "schema": "bagaev-typed-option-int-result/1",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Bool",
+        "value": true,
+        "work": 3
+      },
+      "actual_sha256": "3902b84ddf24191d92a19bfeb0c8e5908c70e11023038bcfcaea8b5f460e4f21",
+      "stderr": ""
+    },
+    {
+      "id": "OI-LET-NONE",
+      "exit": 0,
+      "exact_wire_match": true,
+      "expected": {
+        "schema": "bagaev-typed-option-int-result/1",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Int64",
+        "value": 7,
+        "work": 5
+      },
+      "actual_sha256": "53f7560b6050b8f1b67a21f4b85e92f3726e4fa5044fc9dd7a5c587f3e583670",
+      "stderr": ""
+    },
+    {
+      "id": "OI-IF-SOME",
+      "exit": 0,
+      "exact_wire_match": true,
+      "expected": {
+        "schema": "bagaev-typed-option-int-result/1",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Int64",
+        "value": 3,
+        "work": 5
+      },
+      "actual_sha256": "01b3a61befd6ee2ed486cd1c9d116641328ce4bc32f00fee80ef972c4528a2ac",
+      "stderr": ""
+    },
+    {
+      "id": "OI-ARG-NONE",
+      "exit": 0,
+      "exact_wire_match": true,
+      "expected": {
+        "schema": "bagaev-typed-option-int-result/1",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Int64",
+        "value": 9,
+        "work": 3
+      },
+      "actual_sha256": "3156b408ed8ea7ba25677c9a1bbab591a146598785d18d8565b9ada1b5f1ce3c",
+      "stderr": ""
+    },
+    {
+      "id": "OI-ARG-ZERO",
+      "exit": 0,
+      "exact_wire_match": true,
+      "expected": {
+        "schema": "bagaev-typed-option-int-result/1",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Int64",
+        "value": 0,
+        "work": 2
+      },
+      "actual_sha256": "cb94b28cd64ce3344e67a6aa2bfe7f1b3d9ec905ecb0b11e7f0cc9b21405ced9",
+      "stderr": ""
+    },
+    {
+      "id": "OI-ARG-MAX",
+      "exit": 0,
+      "exact_wire_match": true,
+      "expected": {
+        "schema": "bagaev-typed-option-int-result/1",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Int64",
+        "value": 9223372036854775807,
+        "work": 2
+      },
+      "actual_sha256": "8a8db39c1e587a9d5ffed0b42bc311fcc941d0608d9b7678ae5454e6343e09d3",
+      "stderr": ""
+    },
+    {
+      "id": "OI-CALL-NONE",
+      "exit": 0,
+      "exact_wire_match": true,
+      "expected": {
+        "schema": "bagaev-typed-option-int-result/1",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Int64",
+        "value": 9,
+        "work": 5
+      },
+      "actual_sha256": "429d197446a36808401fa38ee17b99c570afb337f982e3dfd062ca967eeb9957",
+      "stderr": ""
+    },
+    {
+      "id": "OI-CALL-SOME",
+      "exit": 0,
+      "exact_wire_match": true,
+      "expected": {
+        "schema": "bagaev-typed-option-int-result/1",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Int64",
+        "value": 0,
+        "work": 5
+      },
+      "actual_sha256": "bb7b57b5d27a108603a03b7d9244742854b6f8cec2673897f5f6d106e27c28ae",
+      "stderr": ""
+    },
+    {
+      "id": "OI-LOOP",
+      "exit": 0,
+      "exact_wire_match": true,
+      "expected": {
+        "schema": "bagaev-typed-option-int-result/1",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Int64",
+        "value": 1,
+        "work": 19
+      },
+      "actual_sha256": "bc1baeed459aa11132f12cb2d137ccca180ee7cff637057419ff71d700b3d0d2",
+      "stderr": ""
+    },
+    {
+      "id": "OI-ZERO-LOOP",
+      "exit": 0,
+      "exact_wire_match": true,
+      "expected": {
+        "schema": "bagaev-typed-option-int-result/1",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Int64",
+        "value": 9,
+        "work": 4
+      },
+      "actual_sha256": "624181f67e2cb270294b396b9c12834af63b63b4c5ec5fedd0d727dd36cf3434",
+      "stderr": ""
+    },
+    {
+      "id": "OI-FALLBACK-OVERFLOW",
+      "exit": 0,
+      "exact_wire_match": true,
+      "expected": {
+        "schema": "bagaev-typed-option-int-result/1",
+        "status": "integer-overflow",
+        "reason": "OI_OVERFLOW",
+        "location": "/program/functions/main/body/2",
+        "value_type": null,
+        "value": null,
+        "work": 5
+      },
+      "actual_sha256": "41a04d43f907bc035eda8d1a8bb15e36837d7a3bb05dda0037fbef048c85a7ab",
+      "stderr": ""
+    },
+    {
+      "id": "OI-SOME-OVERFLOW",
+      "exit": 0,
+      "exact_wire_match": true,
+      "expected": {
+        "schema": "bagaev-typed-option-int-result/1",
+        "status": "integer-overflow",
+        "reason": "OI_OVERFLOW",
+        "location": "/program/functions/main/body/1/1",
+        "value_type": null,
+        "value": null,
+        "work": 5
+      },
+      "actual_sha256": "6cdcf5df8a0ed01d034c56c75fc86f4c26dbaa9d08ae8f288137502801e11380",
+      "stderr": ""
+    },
+    {
+      "id": "OI-ARG-BOOL",
+      "exit": 0,
+      "exact_wire_match": true,
+      "expected": {
+        "schema": "bagaev-typed-option-int-result/1",
+        "status": "invalid-ir",
+        "reason": "OI_ARGUMENT",
+        "location": "/arguments/0",
+        "value_type": null,
+        "value": null,
+        "work": 0
+      },
+      "actual_sha256": "73750b366877eee946013e7ee9666d9b63a5ab039e1788d01521e67f61c23da6",
+      "stderr": ""
+    },
+    {
+      "id": "OI-ARG-TEXT",
+      "exit": 0,
+      "exact_wire_match": true,
+      "expected": {
+        "schema": "bagaev-typed-option-int-result/1",
+        "status": "invalid-ir",
+        "reason": "OI_ARGUMENT",
+        "location": "/arguments/0",
+        "value_type": null,
+        "value": null,
+        "work": 0
+      },
+      "actual_sha256": "73750b366877eee946013e7ee9666d9b63a5ab039e1788d01521e67f61c23da6",
+      "stderr": ""
+    },
+    {
+      "id": "OI-ARG-BIG",
+      "exit": 0,
+      "exact_wire_match": true,
+      "expected": {
+        "schema": "bagaev-typed-option-int-result/1",
+        "status": "invalid-ir",
+        "reason": "OI_ARGUMENT",
+        "location": "/arguments/0",
+        "value_type": null,
+        "value": null,
+        "work": 0
+      },
+      "actual_sha256": "73750b366877eee946013e7ee9666d9b63a5ab039e1788d01521e67f61c23da6",
+      "stderr": ""
+    },
+    {
+      "id": "OI-SOME-TYPE",
+      "exit": 0,
+      "exact_wire_match": true,
+      "expected": {
+        "schema": "bagaev-typed-option-int-result/1",
+        "status": "invalid-ir",
+        "reason": "OI_TYPE",
+        "location": "/program/functions/main/body",
+        "value_type": null,
+        "value": null,
+        "work": 0
+      },
+      "actual_sha256": "4c9d2060554720abf09c77dce4ba0bf0ad3e454deabbd19c0858b8460b75e80d",
+      "stderr": ""
+    },
+    {
+      "id": "OI-OR-TYPE",
+      "exit": 0,
+      "exact_wire_match": true,
+      "expected": {
+        "schema": "bagaev-typed-option-int-result/1",
+        "status": "invalid-ir",
+        "reason": "OI_TYPE",
+        "location": "/program/functions/main/body",
+        "value_type": null,
+        "value": null,
+        "work": 0
+      },
+      "actual_sha256": "4c9d2060554720abf09c77dce4ba0bf0ad3e454deabbd19c0858b8460b75e80d",
+      "stderr": ""
+    },
+    {
+      "id": "OI-UNTAKEN-TYPE",
+      "exit": 0,
+      "exact_wire_match": true,
+      "expected": {
+        "schema": "bagaev-typed-option-int-result/1",
+        "status": "invalid-ir",
+        "reason": "OI_TYPE",
+        "location": "/program/functions/main/body",
+        "value_type": null,
+        "value": null,
+        "work": 0
+      },
+      "actual_sha256": "4c9d2060554720abf09c77dce4ba0bf0ad3e454deabbd19c0858b8460b75e80d",
+      "stderr": ""
+    },
+    {
+      "id": "OI-ENTRY-OPTION",
+      "exit": 0,
+      "exact_wire_match": true,
+      "expected": {
+        "schema": "bagaev-typed-option-int-result/1",
+        "status": "invalid-ir",
+        "reason": "OI_TYPE",
+        "location": "/program/functions/main/result",
+        "value_type": null,
+        "value": null,
+        "work": 0
+      },
+      "actual_sha256": "4db8053952dc3aeadb28838df38b503b5955a51fe0d94667224dc34ac2fce0bc",
+      "stderr": ""
+    },
+    {
+      "id": "OI-TEXT-PARITY",
+      "exit": 0,
+      "exact_wire_match": true,
+      "expected": {
+        "schema": "bagaev-typed-option-int-result/1",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Int64",
+        "value": 3,
+        "work": 5
+      },
+      "actual_sha256": "01b3a61befd6ee2ed486cd1c9d116641328ce4bc32f00fee80ef972c4528a2ac",
+      "stderr": ""
+    }
+  ],
+  "scope": "Typed optional-Int64 reference evaluator only; not generated native optional code or performance evidence",
+  "adapted_text_regressions": {
+    "status": "PASS",
+    "observations": [
+      {
+        "id": "TX-ASCII-BYTES",
+        "matched": true,
+        "expected": {
+          "schema": "bagaev-typed-option-int-result/1",
+          "status": "success",
+          "reason": null,
+          "location": null,
+          "value_type": "Int64",
+          "value": 3,
+          "work": 5
+        }
+      },
+      {
+        "id": "TX-EMPTY",
+        "matched": true,
+        "expected": {
+          "schema": "bagaev-typed-option-int-result/1",
+          "status": "success",
+          "reason": null,
+          "location": null,
+          "value_type": "Int64",
+          "value": 0,
+          "work": 2
+        }
+      },
+      {
+        "id": "TX-SUPPLEMENTARY",
+        "matched": true,
+        "expected": {
+          "schema": "bagaev-typed-option-int-result/1",
+          "status": "success",
+          "reason": null,
+          "location": null,
+          "value_type": "Int64",
+          "value": 1,
+          "work": 6
+        }
+      },
+      {
+        "id": "TX-SUPPLEMENTARY-BYTES",
+        "matched": true,
+        "expected": {
+          "schema": "bagaev-typed-option-int-result/1",
+          "status": "success",
+          "reason": null,
+          "location": null,
+          "value_type": "Int64",
+          "value": 4,
+          "work": 6
+        }
+      },
+      {
+        "id": "TX-NUL",
+        "matched": true,
+        "expected": {
+          "schema": "bagaev-typed-option-int-result/1",
+          "status": "success",
+          "reason": null,
+          "location": null,
+          "value_type": "Int64",
+          "value": 3,
+          "work": 5
+        }
+      },
+      {
+        "id": "TX-PARAM-EQ",
+        "matched": true,
+        "expected": {
+          "schema": "bagaev-typed-option-int-result/1",
+          "status": "success",
+          "reason": null,
+          "location": null,
+          "value_type": "Bool",
+          "value": false,
+          "work": 8
+        }
+      },
+      {
+        "id": "TX-PARAM-EQ-SAME-LENGTH",
+        "matched": true,
+        "expected": {
+          "schema": "bagaev-typed-option-int-result/1",
+          "status": "success",
+          "reason": null,
+          "location": null,
+          "value_type": "Bool",
+          "value": false,
+          "work": 7
+        }
+      },
+      {
+        "id": "TX-PARAM-EQ-EQUAL",
+        "matched": true,
+        "expected": {
+          "schema": "bagaev-typed-option-int-result/1",
+          "status": "success",
+          "reason": null,
+          "location": null,
+          "value_type": "Bool",
+          "value": true,
+          "work": 7
+        }
+      },
+      {
+        "id": "TX-SCALAR-ORDER",
+        "matched": true,
+        "expected": {
+          "schema": "bagaev-typed-option-int-result/1",
+          "status": "success",
+          "reason": null,
+          "location": null,
+          "value_type": "Bool",
+          "value": true,
+          "work": 17
+        }
+      },
+      {
+        "id": "TX-TEXT-LOOP",
+        "matched": true,
+        "expected": {
+          "schema": "bagaev-typed-option-int-result/1",
+          "status": "success",
+          "reason": null,
+          "location": null,
+          "value_type": "Int64",
+          "value": 1,
+          "work": 6
+        }
+      },
+      {
+        "id": "TX-ZERO-TEXT-LOOP",
+        "matched": true,
+        "expected": {
+          "schema": "bagaev-typed-option-int-result/1",
+          "status": "success",
+          "reason": null,
+          "location": null,
+          "value_type": "Int64",
+          "value": 1,
+          "work": 4
+        }
+      },
+      {
+        "id": "TX-TEXT-HELPER",
+        "matched": true,
+        "expected": {
+          "schema": "bagaev-typed-option-int-result/1",
+          "status": "success",
+          "reason": null,
+          "location": null,
+          "value_type": "Int64",
+          "value": 1,
+          "work": 5
+        }
+      },
+      {
+        "id": "TX-LAZY",
+        "matched": true,
+        "expected": {
+          "schema": "bagaev-typed-option-int-result/1",
+          "status": "success",
+          "reason": null,
+          "location": null,
+          "value_type": "Int64",
+          "value": 7,
+          "work": 3
+        }
+      },
+      {
+        "id": "TX-WORK-EXACT",
+        "matched": true,
+        "expected": {
+          "schema": "bagaev-typed-option-int-result/1",
+          "status": "success",
+          "reason": null,
+          "location": null,
+          "value_type": "Int64",
+          "value": 59,
+          "work": 65536
+        }
+      },
+      {
+        "id": "TX-WORK-EXTRA-REFUSAL",
+        "matched": true,
+        "expected": {
+          "schema": "bagaev-typed-option-int-result/1",
+          "status": "work-limit",
+          "reason": "OI_WORK",
+          "location": "/program/functions/main/body/3/1",
+          "value_type": null,
+          "value": null,
+          "work": 65477
+        }
+      },
+      {
+        "id": "TX-ENTRY-TEXT",
+        "matched": true,
+        "expected": {
+          "schema": "bagaev-typed-option-int-result/1",
+          "status": "invalid-ir",
+          "reason": "OI_TYPE",
+          "location": "/program/functions/main/result",
+          "value_type": null,
+          "value": null,
+          "work": 0
+        }
+      },
+      {
+        "id": "TX-ARG-TAG",
+        "matched": true,
+        "expected": {
+          "schema": "bagaev-typed-option-int-result/1",
+          "status": "invalid-ir",
+          "reason": "OI_ARGUMENT",
+          "location": "/arguments/0",
+          "value_type": null,
+          "value": null,
+          "work": 0
+        }
+      },
+      {
+        "id": "TX-ARG-SURROGATE",
+        "matched": true,
+        "expected": {
+          "schema": "bagaev-typed-option-int-result/1",
+          "status": "invalid-ir",
+          "reason": "OI_ARGUMENT",
+          "location": "/arguments/0",
+          "value_type": null,
+          "value": null,
+          "work": 0
+        }
+      },
+      {
+        "id": "TX-ARG-SCALAR-BOUND",
+        "matched": true,
+        "expected": {
+          "schema": "bagaev-typed-option-int-result/1",
+          "status": "invalid-ir",
+          "reason": "OI_ARGUMENT",
+          "location": "/arguments/0",
+          "value_type": null,
+          "value": null,
+          "work": 0
+        }
+      },
+      {
+        "id": "TX-LITERAL-BOUND",
+        "matched": true,
+        "expected": {
+          "schema": "bagaev-typed-option-int-result/1",
+          "status": "invalid-ir",
+          "reason": "OI_BOUNDS",
+          "location": "/program/functions/main/body/1/1",
+          "value_type": null,
+          "value": null,
+          "work": 0
+        }
+      },
+      {
+        "id": "TX-LITERAL-SURROGATE",
+        "matched": true,
+        "expected": {
+          "schema": "bagaev-typed-option-int-result/1",
+          "status": "invalid-ir",
+          "reason": "OI_SHAPE",
+          "location": "/program/functions/main/body/1/1",
+          "value_type": null,
+          "value": null,
+          "work": 0
+        }
+      },
+      {
+        "id": "TX-UNTAKEN-TYPE",
+        "matched": true,
+        "expected": {
+          "schema": "bagaev-typed-option-int-result/1",
+          "status": "invalid-ir",
+          "reason": "OI_TYPE",
+          "location": "/program/functions/main/body/3/1",
+          "value_type": null,
+          "value": null,
+          "work": 0
+        }
+      },
+      {
+        "id": "TX-SCALAR-PARITY",
+        "matched": true,
+        "expected": {
+          "schema": "bagaev-typed-option-int-result/1",
+          "status": "success",
+          "reason": null,
+          "location": null,
+          "value_type": "Int64",
+          "value": 3,
+          "work": 3
+        }
+      },
+      {
+        "id": "TX-LEFT-OVERFLOW",
+        "matched": true,
+        "expected": {
+          "schema": "bagaev-typed-option-int-result/1",
+          "status": "integer-overflow",
+          "reason": "OI_OVERFLOW",
+          "location": "/program/functions/main/body/1",
+          "value_type": null,
+          "value": null,
+          "work": 4
+        }
+      },
+      {
+        "id": "TX-COMPARE-WORK-EXACT",
+        "matched": true,
+        "expected": {
+          "schema": "bagaev-typed-option-int-result/1",
+          "status": "success",
+          "reason": null,
+          "location": null,
+          "value_type": "Bool",
+          "value": false,
+          "work": 65536
+        }
+      },
+      {
+        "id": "TX-COMPARE-WORK-REFUSAL",
+        "matched": true,
+        "expected": {
+          "schema": "bagaev-typed-option-int-result/1",
+          "status": "work-limit",
+          "reason": "OI_WORK",
+          "location": "/program/functions/main/body/3",
+          "value_type": null,
+          "value": null,
+          "work": 65508
+        }
+      },
+      {
+        "id": "TX2-IF-YES",
+        "matched": true,
+        "expected": {
+          "schema": "bagaev-typed-option-int-result/1",
+          "status": "success",
+          "reason": null,
+          "location": null,
+          "value_type": "Int64",
+          "value": 1,
+          "work": 5
+        }
+      },
+      {
+        "id": "TX2-IF-NO",
+        "matched": true,
+        "expected": {
+          "schema": "bagaev-typed-option-int-result/1",
+          "status": "success",
+          "reason": null,
+          "location": null,
+          "value_type": "Int64",
+          "value": 4,
+          "work": 8
+        }
+      },
+      {
+        "id": "TX2-LET-TEXT-PHI",
+        "matched": true,
+        "expected": {
+          "schema": "bagaev-typed-option-int-result/1",
+          "status": "success",
+          "reason": null,
+          "location": null,
+          "value_type": "Int64",
+          "value": 1,
+          "work": 10
+        }
+      },
+      {
+        "id": "TX2-LOOP-TEXT-PHI",
+        "matched": true,
+        "expected": {
+          "schema": "bagaev-typed-option-int-result/1",
+          "status": "success",
+          "reason": null,
+          "location": null,
+          "value_type": "Int64",
+          "value": 4,
+          "work": 22
+        }
+      },
+      {
+        "id": "TX2-CALL-TEXT-YES",
+        "matched": true,
+        "expected": {
+          "schema": "bagaev-typed-option-int-result/1",
+          "status": "success",
+          "reason": null,
+          "location": null,
+          "value_type": "Int64",
+          "value": 1,
+          "work": 13
+        }
+      },
+      {
+        "id": "TX2-CALL-TEXT-NO",
+        "matched": true,
+        "expected": {
+          "schema": "bagaev-typed-option-int-result/1",
+          "status": "success",
+          "reason": null,
+          "location": null,
+          "value_type": "Int64",
+          "value": 4,
+          "work": 13
+        }
+      },
+      {
+        "id": "TX2-CALL-ARG-OVERFLOW",
+        "matched": true,
+        "expected": {
+          "schema": "bagaev-typed-option-int-result/1",
+          "status": "integer-overflow",
+          "reason": "OI_OVERFLOW",
+          "location": "/program/functions/main/body/1/3",
+          "value_type": null,
+          "value": null,
+          "work": 7
+        }
+      },
+      {
+        "id": "TX2-TEXT-FUNCTION-OVERFLOW",
+        "matched": true,
+        "expected": {
+          "schema": "bagaev-typed-option-int-result/1",
+          "status": "integer-overflow",
+          "reason": "OI_OVERFLOW",
+          "location": "/program/functions/bad/body/1/1",
+          "value_type": null,
+          "value": null,
+          "work": 7
+        }
+      },
+      {
+        "id": "TX2-PREFIX",
+        "matched": true,
+        "expected": {
+          "schema": "bagaev-typed-option-int-result/1",
+          "status": "success",
+          "reason": null,
+          "location": null,
+          "value_type": "Bool",
+          "value": true,
+          "work": 9
+        }
+      },
+      {
+        "id": "TX2-REVERSE-PREFIX",
+        "matched": true,
+        "expected": {
+          "schema": "bagaev-typed-option-int-result/1",
+          "status": "success",
+          "reason": null,
+          "location": null,
+          "value_type": "Bool",
+          "value": false,
+          "work": 9
+        }
+      },
+      {
+        "id": "TX2-EQUAL",
+        "matched": true,
+        "expected": {
+          "schema": "bagaev-typed-option-int-result/1",
+          "status": "success",
+          "reason": null,
+          "location": null,
+          "value_type": "Bool",
+          "value": false,
+          "work": 7
+        }
+      },
+      {
+        "id": "TX2-EMPTY",
+        "matched": true,
+        "expected": {
+          "schema": "bagaev-typed-option-int-result/1",
+          "status": "success",
+          "reason": null,
+          "location": null,
+          "value_type": "Bool",
+          "value": true,
+          "work": 5
+        }
+      },
+      {
+        "id": "TX2-ASCII-UNICODE",
+        "matched": true,
+        "expected": {
+          "schema": "bagaev-typed-option-int-result/1",
+          "status": "success",
+          "reason": null,
+          "location": null,
+          "value_type": "Bool",
+          "value": true,
+          "work": 9
+        }
+      },
+      {
+        "id": "TX2-UNICODE-ASCII",
+        "matched": true,
+        "expected": {
+          "schema": "bagaev-typed-option-int-result/1",
+          "status": "success",
+          "reason": null,
+          "location": null,
+          "value_type": "Bool",
+          "value": false,
+          "work": 9
+        }
+      },
+      {
+        "id": "TX2-NUL",
+        "matched": true,
+        "expected": {
+          "schema": "bagaev-typed-option-int-result/1",
+          "status": "success",
+          "reason": null,
+          "location": null,
+          "value_type": "Bool",
+          "value": true,
+          "work": 11
+        }
+      }
+    ],
+    "adaptation": "Existing Text cases, only declared source/invocation/result schemas and reason prefix adapted; original fixtures untouched"
+  },
+  "review": "Separate same-maintainer pass: separate versioned IR/checker, closed factories, explicit optional type, static fallback checking, lazy runtime fallback, unit-entry work, argument tag distinction, no optional entry export; prior Text implementation unchanged."
+}
