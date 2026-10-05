@@ -1,0 +1,24 @@
+// Data-only test template: replace {{BACKEND}} with the reviewed backend path. Execution requires separate admission.
+#[path="{{BACKEND}}/text_value.rs"] pub mod text_value;
+#[path="{{BACKEND}}/option_int.rs"] pub mod option_int;
+#[path="{{BACKEND}}/list_callframe.rs"] pub mod list_callframe;
+#[path="{{BACKEND}}/list_native_adapter.rs"] pub mod list_native_adapter;
+use list_native_adapter::{NativeValue,NativeText,Arena,Output};
+use std::sync::atomic::{AtomicUsize,Ordering};
+static CALLS:AtomicUsize=AtomicUsize::new(0);
+// SAFETY: only called by the reviewed adapter using the fixed test signature.
+unsafe extern "C" fn marker(values:*const NativeValue,arena:*mut Arena,out:*mut Output){
+ CALLS.fetch_add(1,Ordering::SeqCst);
+ unsafe{
+ let v=&*values;let a=&*arena;let o=&*values.add(1);
+ let mut ok=v.scalar==0&&v.len==3&&v.scalars==5&&a.capacity==65536&&a.used==0&&!a.base.is_null()&&o.scalar==0&&o.bytes.is_null()&&o.len==1&&o.scalars==0;
+ if v.len==3&&!v.bytes.is_null(){let t=std::slice::from_raw_parts(v.bytes.cast::<NativeText>(),3);let expected:&[&[u8]]=&[&[195,169],&[0],&[195,169]];for i in 0..3{ok&=t[i].len==expected[i].len() as u64&&t[i].scalars==1;if t[i].len<=2&&!t[i].bytes.is_null(){ok&=std::slice::from_raw_parts(t[i].bytes,t[i].len as usize)==expected[i];}else{ok=false;}}}else{ok=false;}
+ out.write(Output{status:99,value:if ok{5}else{-1},..Output::zero()});
+ }
+}
+fn frame()->Vec<u8>{let mut b=vec![0u8;37008];b[..8].copy_from_slice(b"BTXTIN3\0");b[8]=2;b[16]=5;b[20..24].copy_from_slice(&4616u32.to_le_bytes());b[24]=3;let offsets=[0u32,2,3];let lengths=[2u32,1,2];for i in 0..3{let p=32+i*8;b[p..p+4].copy_from_slice(&offsets[i].to_le_bytes());b[p+4..p+8].copy_from_slice(&lengths[i].to_le_bytes());}b[544..549].copy_from_slice(&[195,169,0,195,169]);b[4640]=4;b[4644]=16;b[4648]=1;b}
+fn run(frame:&[u8],capacity:usize)->Output{let mut scratch=vec![NativeText::zero();capacity];unsafe{list_native_adapter::evaluate(frame,&[list_callframe::Type::TextList,list_callframe::Type::OptionInt64],&mut scratch,marker)}}
+#[test] fn mapping(){CALLS.store(0,Ordering::SeqCst);let b=frame();let before=b.clone();let out=run(&b,65536);assert_eq!(out,Output{status:99,value:5,..Output::zero()});assert_eq!(CALLS.load(Ordering::SeqCst),1);assert_eq!(b,before);}
+#[test] fn bad_frame(){CALLS.store(0,Ordering::SeqCst);let mut b=frame();b[0]=0;assert_eq!(run(&b,65536),Output{status:3,reason:8,location:0x80000000,..Output::zero()});assert_eq!(CALLS.load(Ordering::SeqCst),0);}
+#[test] fn short_scratch(){CALLS.store(0,Ordering::SeqCst);assert_eq!(run(&frame(),65535),Output{status:3,reason:8,location:0x90000000,..Output::zero()});assert_eq!(CALLS.load(Ordering::SeqCst),0);}
+#[test] fn frame_before_scratch(){CALLS.store(0,Ordering::SeqCst);let mut b=frame();b[0]=0;assert_eq!(run(&b,65535),Output{status:3,reason:8,location:0x80000000,..Output::zero()});assert_eq!(CALLS.load(Ordering::SeqCst),0);}
