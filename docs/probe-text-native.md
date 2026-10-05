@@ -132,3 +132,18 @@ Failed builds, crashes and timeouts did not count. Exact edits and expected/actu
 bytes are retained in [mutation observations](../examples/probes/text-native-mutation-observations.json).
 The original emitter/helper and frozen expectations were unchanged. This finite
 same-maintainer pass does not prove detection of arbitrary defects.
+
+## Supplemental Text conformance
+
+Fifteen additional [literal cases](../examples/probes/text-native-conformance-cases.json)
+cover Text-valued branch merges, local/loop storage, Text-returning calls, early
+overflow across calls, prefixes, empty strings, NUL and ASCII/non-ASCII order.
+Expected values, work and error pointers were fixed before these checks, after
+implementation. Manual review corrected one draft work count from 6 to 7 before
+any execution (outer length, call, helper if, eq, add, two integer ticks).
+
+All 15 complete reference results and 60 native outer-entry results (O0/O2 and
+two prefills) matched; input frames were unchanged. [Recorded observations](../examples/probes/text-native-conformance-observations.json)
+retain exact outputs and limits. This extends finite conformance without changing
+implementation or the earlier frozen fixture, and does not establish full
+coverage, independent reproduction or a performance advantage.

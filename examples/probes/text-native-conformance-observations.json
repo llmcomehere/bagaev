@@ -1,0 +1,821 @@
+{
+  "status": "PASS",
+  "observations": [
+    {
+      "id": "TX2-IF-YES",
+      "optimization": "O0",
+      "prefill": 0,
+      "matched": true,
+      "output_hex": "0000000001000000010000000000000005000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "TX2-IF-YES",
+      "optimization": "O0",
+      "prefill": 165,
+      "matched": true,
+      "output_hex": "0000000001000000010000000000000005000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "TX2-IF-YES",
+      "optimization": "O2",
+      "prefill": 0,
+      "matched": true,
+      "output_hex": "0000000001000000010000000000000005000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "TX2-IF-YES",
+      "optimization": "O2",
+      "prefill": 165,
+      "matched": true,
+      "output_hex": "0000000001000000010000000000000005000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "TX2-IF-NO",
+      "optimization": "O0",
+      "prefill": 0,
+      "matched": true,
+      "output_hex": "0000000001000000040000000000000008000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "TX2-IF-NO",
+      "optimization": "O0",
+      "prefill": 165,
+      "matched": true,
+      "output_hex": "0000000001000000040000000000000008000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "TX2-IF-NO",
+      "optimization": "O2",
+      "prefill": 0,
+      "matched": true,
+      "output_hex": "0000000001000000040000000000000008000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "TX2-IF-NO",
+      "optimization": "O2",
+      "prefill": 165,
+      "matched": true,
+      "output_hex": "0000000001000000040000000000000008000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "TX2-LET-TEXT-PHI",
+      "optimization": "O0",
+      "prefill": 0,
+      "matched": true,
+      "output_hex": "000000000100000001000000000000000a000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "TX2-LET-TEXT-PHI",
+      "optimization": "O0",
+      "prefill": 165,
+      "matched": true,
+      "output_hex": "000000000100000001000000000000000a000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "TX2-LET-TEXT-PHI",
+      "optimization": "O2",
+      "prefill": 0,
+      "matched": true,
+      "output_hex": "000000000100000001000000000000000a000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "TX2-LET-TEXT-PHI",
+      "optimization": "O2",
+      "prefill": 165,
+      "matched": true,
+      "output_hex": "000000000100000001000000000000000a000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "TX2-LOOP-TEXT-PHI",
+      "optimization": "O0",
+      "prefill": 0,
+      "matched": true,
+      "output_hex": "0000000001000000040000000000000016000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "TX2-LOOP-TEXT-PHI",
+      "optimization": "O0",
+      "prefill": 165,
+      "matched": true,
+      "output_hex": "0000000001000000040000000000000016000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "TX2-LOOP-TEXT-PHI",
+      "optimization": "O2",
+      "prefill": 0,
+      "matched": true,
+      "output_hex": "0000000001000000040000000000000016000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "TX2-LOOP-TEXT-PHI",
+      "optimization": "O2",
+      "prefill": 165,
+      "matched": true,
+      "output_hex": "0000000001000000040000000000000016000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "TX2-CALL-TEXT-YES",
+      "optimization": "O0",
+      "prefill": 0,
+      "matched": true,
+      "output_hex": "000000000100000001000000000000000d000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "TX2-CALL-TEXT-YES",
+      "optimization": "O0",
+      "prefill": 165,
+      "matched": true,
+      "output_hex": "000000000100000001000000000000000d000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "TX2-CALL-TEXT-YES",
+      "optimization": "O2",
+      "prefill": 0,
+      "matched": true,
+      "output_hex": "000000000100000001000000000000000d000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "TX2-CALL-TEXT-YES",
+      "optimization": "O2",
+      "prefill": 165,
+      "matched": true,
+      "output_hex": "000000000100000001000000000000000d000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "TX2-CALL-TEXT-NO",
+      "optimization": "O0",
+      "prefill": 0,
+      "matched": true,
+      "output_hex": "000000000100000004000000000000000d000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "TX2-CALL-TEXT-NO",
+      "optimization": "O0",
+      "prefill": 165,
+      "matched": true,
+      "output_hex": "000000000100000004000000000000000d000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "TX2-CALL-TEXT-NO",
+      "optimization": "O2",
+      "prefill": 0,
+      "matched": true,
+      "output_hex": "000000000100000004000000000000000d000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "TX2-CALL-TEXT-NO",
+      "optimization": "O2",
+      "prefill": 165,
+      "matched": true,
+      "output_hex": "000000000100000004000000000000000d000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "TX2-CALL-ARG-OVERFLOW",
+      "optimization": "O0",
+      "prefill": 0,
+      "matched": true,
+      "output_hex": "0100000000000000000000000000000007000000000000000900000004000000",
+      "input_preserved": true
+    },
+    {
+      "id": "TX2-CALL-ARG-OVERFLOW",
+      "optimization": "O0",
+      "prefill": 165,
+      "matched": true,
+      "output_hex": "0100000000000000000000000000000007000000000000000900000004000000",
+      "input_preserved": true
+    },
+    {
+      "id": "TX2-CALL-ARG-OVERFLOW",
+      "optimization": "O2",
+      "prefill": 0,
+      "matched": true,
+      "output_hex": "0100000000000000000000000000000007000000000000000900000004000000",
+      "input_preserved": true
+    },
+    {
+      "id": "TX2-CALL-ARG-OVERFLOW",
+      "optimization": "O2",
+      "prefill": 165,
+      "matched": true,
+      "output_hex": "0100000000000000000000000000000007000000000000000900000004000000",
+      "input_preserved": true
+    },
+    {
+      "id": "TX2-TEXT-FUNCTION-OVERFLOW",
+      "optimization": "O0",
+      "prefill": 0,
+      "matched": true,
+      "output_hex": "0100000000000000000000000000000007000000000000000900000003000000",
+      "input_preserved": true
+    },
+    {
+      "id": "TX2-TEXT-FUNCTION-OVERFLOW",
+      "optimization": "O0",
+      "prefill": 165,
+      "matched": true,
+      "output_hex": "0100000000000000000000000000000007000000000000000900000003000000",
+      "input_preserved": true
+    },
+    {
+      "id": "TX2-TEXT-FUNCTION-OVERFLOW",
+      "optimization": "O2",
+      "prefill": 0,
+      "matched": true,
+      "output_hex": "0100000000000000000000000000000007000000000000000900000003000000",
+      "input_preserved": true
+    },
+    {
+      "id": "TX2-TEXT-FUNCTION-OVERFLOW",
+      "optimization": "O2",
+      "prefill": 165,
+      "matched": true,
+      "output_hex": "0100000000000000000000000000000007000000000000000900000003000000",
+      "input_preserved": true
+    },
+    {
+      "id": "TX2-PREFIX",
+      "optimization": "O0",
+      "prefill": 0,
+      "matched": true,
+      "output_hex": "0000000002000000010000000000000009000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "TX2-PREFIX",
+      "optimization": "O0",
+      "prefill": 165,
+      "matched": true,
+      "output_hex": "0000000002000000010000000000000009000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "TX2-PREFIX",
+      "optimization": "O2",
+      "prefill": 0,
+      "matched": true,
+      "output_hex": "0000000002000000010000000000000009000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "TX2-PREFIX",
+      "optimization": "O2",
+      "prefill": 165,
+      "matched": true,
+      "output_hex": "0000000002000000010000000000000009000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "TX2-REVERSE-PREFIX",
+      "optimization": "O0",
+      "prefill": 0,
+      "matched": true,
+      "output_hex": "0000000002000000000000000000000009000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "TX2-REVERSE-PREFIX",
+      "optimization": "O0",
+      "prefill": 165,
+      "matched": true,
+      "output_hex": "0000000002000000000000000000000009000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "TX2-REVERSE-PREFIX",
+      "optimization": "O2",
+      "prefill": 0,
+      "matched": true,
+      "output_hex": "0000000002000000000000000000000009000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "TX2-REVERSE-PREFIX",
+      "optimization": "O2",
+      "prefill": 165,
+      "matched": true,
+      "output_hex": "0000000002000000000000000000000009000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "TX2-EQUAL",
+      "optimization": "O0",
+      "prefill": 0,
+      "matched": true,
+      "output_hex": "0000000002000000000000000000000007000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "TX2-EQUAL",
+      "optimization": "O0",
+      "prefill": 165,
+      "matched": true,
+      "output_hex": "0000000002000000000000000000000007000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "TX2-EQUAL",
+      "optimization": "O2",
+      "prefill": 0,
+      "matched": true,
+      "output_hex": "0000000002000000000000000000000007000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "TX2-EQUAL",
+      "optimization": "O2",
+      "prefill": 165,
+      "matched": true,
+      "output_hex": "0000000002000000000000000000000007000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "TX2-EMPTY",
+      "optimization": "O0",
+      "prefill": 0,
+      "matched": true,
+      "output_hex": "0000000002000000010000000000000005000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "TX2-EMPTY",
+      "optimization": "O0",
+      "prefill": 165,
+      "matched": true,
+      "output_hex": "0000000002000000010000000000000005000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "TX2-EMPTY",
+      "optimization": "O2",
+      "prefill": 0,
+      "matched": true,
+      "output_hex": "0000000002000000010000000000000005000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "TX2-EMPTY",
+      "optimization": "O2",
+      "prefill": 165,
+      "matched": true,
+      "output_hex": "0000000002000000010000000000000005000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "TX2-ASCII-UNICODE",
+      "optimization": "O0",
+      "prefill": 0,
+      "matched": true,
+      "output_hex": "0000000002000000010000000000000009000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "TX2-ASCII-UNICODE",
+      "optimization": "O0",
+      "prefill": 165,
+      "matched": true,
+      "output_hex": "0000000002000000010000000000000009000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "TX2-ASCII-UNICODE",
+      "optimization": "O2",
+      "prefill": 0,
+      "matched": true,
+      "output_hex": "0000000002000000010000000000000009000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "TX2-ASCII-UNICODE",
+      "optimization": "O2",
+      "prefill": 165,
+      "matched": true,
+      "output_hex": "0000000002000000010000000000000009000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "TX2-UNICODE-ASCII",
+      "optimization": "O0",
+      "prefill": 0,
+      "matched": true,
+      "output_hex": "0000000002000000000000000000000009000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "TX2-UNICODE-ASCII",
+      "optimization": "O0",
+      "prefill": 165,
+      "matched": true,
+      "output_hex": "0000000002000000000000000000000009000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "TX2-UNICODE-ASCII",
+      "optimization": "O2",
+      "prefill": 0,
+      "matched": true,
+      "output_hex": "0000000002000000000000000000000009000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "TX2-UNICODE-ASCII",
+      "optimization": "O2",
+      "prefill": 165,
+      "matched": true,
+      "output_hex": "0000000002000000000000000000000009000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "TX2-NUL",
+      "optimization": "O0",
+      "prefill": 0,
+      "matched": true,
+      "output_hex": "000000000200000001000000000000000b000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "TX2-NUL",
+      "optimization": "O0",
+      "prefill": 165,
+      "matched": true,
+      "output_hex": "000000000200000001000000000000000b000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "TX2-NUL",
+      "optimization": "O2",
+      "prefill": 0,
+      "matched": true,
+      "output_hex": "000000000200000001000000000000000b000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "id": "TX2-NUL",
+      "optimization": "O2",
+      "prefill": 165,
+      "matched": true,
+      "output_hex": "000000000200000001000000000000000b000000000000000000000000000000",
+      "input_preserved": true
+    }
+  ],
+  "scope": "Supplemental Text branch/local/call/loop and ordering conformance through the outer entry; not pre-implementation oracle or performance evidence",
+  "reference_observations": [
+    {
+      "id": "TX2-IF-YES",
+      "match": true,
+      "actual": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-text-result/1",
+        "status": "success",
+        "value": 1,
+        "value_type": "Int64",
+        "work": 5
+      },
+      "expected": {
+        "schema": "bagaev-typed-text-result/1",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Int64",
+        "value": 1,
+        "work": 5
+      }
+    },
+    {
+      "id": "TX2-IF-NO",
+      "match": true,
+      "actual": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-text-result/1",
+        "status": "success",
+        "value": 4,
+        "value_type": "Int64",
+        "work": 8
+      },
+      "expected": {
+        "schema": "bagaev-typed-text-result/1",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Int64",
+        "value": 4,
+        "work": 8
+      }
+    },
+    {
+      "id": "TX2-LET-TEXT-PHI",
+      "match": true,
+      "actual": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-text-result/1",
+        "status": "success",
+        "value": 1,
+        "value_type": "Int64",
+        "work": 10
+      },
+      "expected": {
+        "schema": "bagaev-typed-text-result/1",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Int64",
+        "value": 1,
+        "work": 10
+      }
+    },
+    {
+      "id": "TX2-LOOP-TEXT-PHI",
+      "match": true,
+      "actual": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-text-result/1",
+        "status": "success",
+        "value": 4,
+        "value_type": "Int64",
+        "work": 22
+      },
+      "expected": {
+        "schema": "bagaev-typed-text-result/1",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Int64",
+        "value": 4,
+        "work": 22
+      }
+    },
+    {
+      "id": "TX2-CALL-TEXT-YES",
+      "match": true,
+      "actual": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-text-result/1",
+        "status": "success",
+        "value": 1,
+        "value_type": "Int64",
+        "work": 13
+      },
+      "expected": {
+        "schema": "bagaev-typed-text-result/1",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Int64",
+        "value": 1,
+        "work": 13
+      }
+    },
+    {
+      "id": "TX2-CALL-TEXT-NO",
+      "match": true,
+      "actual": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-text-result/1",
+        "status": "success",
+        "value": 4,
+        "value_type": "Int64",
+        "work": 13
+      },
+      "expected": {
+        "schema": "bagaev-typed-text-result/1",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Int64",
+        "value": 4,
+        "work": 13
+      }
+    },
+    {
+      "id": "TX2-CALL-ARG-OVERFLOW",
+      "match": true,
+      "actual": {
+        "location": "/program/functions/main/body/1/3",
+        "reason": "TX_OVERFLOW",
+        "schema": "bagaev-typed-text-result/1",
+        "status": "integer-overflow",
+        "value": null,
+        "value_type": null,
+        "work": 7
+      },
+      "expected": {
+        "schema": "bagaev-typed-text-result/1",
+        "status": "integer-overflow",
+        "reason": "TX_OVERFLOW",
+        "location": "/program/functions/main/body/1/3",
+        "value_type": null,
+        "value": null,
+        "work": 7
+      }
+    },
+    {
+      "id": "TX2-TEXT-FUNCTION-OVERFLOW",
+      "match": true,
+      "actual": {
+        "location": "/program/functions/bad/body/1/1",
+        "reason": "TX_OVERFLOW",
+        "schema": "bagaev-typed-text-result/1",
+        "status": "integer-overflow",
+        "value": null,
+        "value_type": null,
+        "work": 7
+      },
+      "expected": {
+        "schema": "bagaev-typed-text-result/1",
+        "status": "integer-overflow",
+        "reason": "TX_OVERFLOW",
+        "location": "/program/functions/bad/body/1/1",
+        "value_type": null,
+        "value": null,
+        "work": 7
+      }
+    },
+    {
+      "id": "TX2-PREFIX",
+      "match": true,
+      "actual": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-text-result/1",
+        "status": "success",
+        "value": true,
+        "value_type": "Bool",
+        "work": 9
+      },
+      "expected": {
+        "schema": "bagaev-typed-text-result/1",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Bool",
+        "value": true,
+        "work": 9
+      }
+    },
+    {
+      "id": "TX2-REVERSE-PREFIX",
+      "match": true,
+      "actual": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-text-result/1",
+        "status": "success",
+        "value": false,
+        "value_type": "Bool",
+        "work": 9
+      },
+      "expected": {
+        "schema": "bagaev-typed-text-result/1",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Bool",
+        "value": false,
+        "work": 9
+      }
+    },
+    {
+      "id": "TX2-EQUAL",
+      "match": true,
+      "actual": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-text-result/1",
+        "status": "success",
+        "value": false,
+        "value_type": "Bool",
+        "work": 7
+      },
+      "expected": {
+        "schema": "bagaev-typed-text-result/1",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Bool",
+        "value": false,
+        "work": 7
+      }
+    },
+    {
+      "id": "TX2-EMPTY",
+      "match": true,
+      "actual": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-text-result/1",
+        "status": "success",
+        "value": true,
+        "value_type": "Bool",
+        "work": 5
+      },
+      "expected": {
+        "schema": "bagaev-typed-text-result/1",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Bool",
+        "value": true,
+        "work": 5
+      }
+    },
+    {
+      "id": "TX2-ASCII-UNICODE",
+      "match": true,
+      "actual": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-text-result/1",
+        "status": "success",
+        "value": true,
+        "value_type": "Bool",
+        "work": 9
+      },
+      "expected": {
+        "schema": "bagaev-typed-text-result/1",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Bool",
+        "value": true,
+        "work": 9
+      }
+    },
+    {
+      "id": "TX2-UNICODE-ASCII",
+      "match": true,
+      "actual": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-text-result/1",
+        "status": "success",
+        "value": false,
+        "value_type": "Bool",
+        "work": 9
+      },
+      "expected": {
+        "schema": "bagaev-typed-text-result/1",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Bool",
+        "value": false,
+        "work": 9
+      }
+    },
+    {
+      "id": "TX2-NUL",
+      "match": true,
+      "actual": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-text-result/1",
+        "status": "success",
+        "value": true,
+        "value_type": "Bool",
+        "work": 11
+      },
+      "expected": {
+        "schema": "bagaev-typed-text-result/1",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Bool",
+        "value": true,
+        "work": 11
+      }
+    }
+  ],
+  "fixture_sha256": "f85d1423fcd62c8dfec40e9dbf8b402235edbb78a7c7b183cf91ddcafcc56e98",
+  "expectation_review": "Before execution, manual review corrected one draft work count from 6 to 7: outer length, call, helper if, eq, add, two integer nodes. No runtime was consulted; original draft retained privately. Expected results are supplemental post-implementation conformance, not a pre-implementation oracle.",
+  "review": "Separate same-maintainer pass; no independent reproduction"
+}
