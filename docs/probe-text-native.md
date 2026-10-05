@@ -120,3 +120,15 @@ covers all 25 frozen call-frame cases with a counting witness kernel: rejected
 frames produced the exact refusal record with zero calls, and admitted frames
 called once. This checks dispatch refusal, not 25 additional program semantics.
 See [adapter observations](../examples/probes/text-native-adapter-observations.json).
+
+## Native negative controls
+
+Six concrete emitter/helper mutations were detected in 24 native observations
+(O0/O2, both output prefills): free literals, XOR instead of sum for comparison
+charge, byte length substituted for scalar length, reversed byte order, an
+over-strict work limit, and partial failed reservation. All generated witnesses
+exited normally with complete wrong output records and preserved input frames.
+Failed builds, crashes and timeouts did not count. Exact edits and expected/actual
+bytes are retained in [mutation observations](../examples/probes/text-native-mutation-observations.json).
+The original emitter/helper and frozen expectations were unchanged. This finite
+same-maintainer pass does not prove detection of arbitrary defects.

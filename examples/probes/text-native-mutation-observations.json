@@ -1,0 +1,399 @@
+{
+  "status": "PASS",
+  "mutations": 6,
+  "observations": [
+    {
+      "mutation": "literal-free",
+      "file": "text_llvm.rs",
+      "edit": {
+        "old": "self.charge(&text.len().to_string(),id)?;",
+        "new": "self.charge(\"0\",id)?;"
+      },
+      "source_sha256": "b49f6798bbcbd0121bd46cb384f0eef16b85d2b2274f334ff4c5b24d9a98c759",
+      "witness": "TX-ASCII-BYTES",
+      "optimization": "O0",
+      "prefill": 0,
+      "exit": 0,
+      "expected_hex": "0000000001000000030000000000000005000000000000000000000000000000",
+      "actual_hex": "0000000001000000030000000000000002000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "mutation": "literal-free",
+      "file": "text_llvm.rs",
+      "edit": {
+        "old": "self.charge(&text.len().to_string(),id)?;",
+        "new": "self.charge(\"0\",id)?;"
+      },
+      "source_sha256": "b49f6798bbcbd0121bd46cb384f0eef16b85d2b2274f334ff4c5b24d9a98c759",
+      "witness": "TX-ASCII-BYTES",
+      "optimization": "O0",
+      "prefill": 165,
+      "exit": 0,
+      "expected_hex": "0000000001000000030000000000000005000000000000000000000000000000",
+      "actual_hex": "0000000001000000030000000000000002000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "mutation": "literal-free",
+      "file": "text_llvm.rs",
+      "edit": {
+        "old": "self.charge(&text.len().to_string(),id)?;",
+        "new": "self.charge(\"0\",id)?;"
+      },
+      "source_sha256": "b49f6798bbcbd0121bd46cb384f0eef16b85d2b2274f334ff4c5b24d9a98c759",
+      "witness": "TX-ASCII-BYTES",
+      "optimization": "O2",
+      "prefill": 0,
+      "exit": 0,
+      "expected_hex": "0000000001000000030000000000000005000000000000000000000000000000",
+      "actual_hex": "0000000001000000030000000000000002000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "mutation": "literal-free",
+      "file": "text_llvm.rs",
+      "edit": {
+        "old": "self.charge(&text.len().to_string(),id)?;",
+        "new": "self.charge(\"0\",id)?;"
+      },
+      "source_sha256": "b49f6798bbcbd0121bd46cb384f0eef16b85d2b2274f334ff4c5b24d9a98c759",
+      "witness": "TX-ASCII-BYTES",
+      "optimization": "O2",
+      "prefill": 165,
+      "exit": 0,
+      "expected_hex": "0000000001000000030000000000000005000000000000000000000000000000",
+      "actual_hex": "0000000001000000030000000000000002000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "mutation": "comparison-xor-charge",
+      "file": "text_llvm.rs",
+      "edit": {
+        "old": "add i64 {al}, {bl}",
+        "new": "xor i64 {al}, {bl}"
+      },
+      "source_sha256": "d6948dabb09faccf3e7de6906c173e48d2fe3732e1e83078d0e4266cb1afe7ec",
+      "witness": "TX-PARAM-EQ",
+      "optimization": "O0",
+      "prefill": 0,
+      "exit": 0,
+      "expected_hex": "0000000002000000000000000000000008000000000000000000000000000000",
+      "actual_hex": "0000000002000000000000000000000004000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "mutation": "comparison-xor-charge",
+      "file": "text_llvm.rs",
+      "edit": {
+        "old": "add i64 {al}, {bl}",
+        "new": "xor i64 {al}, {bl}"
+      },
+      "source_sha256": "d6948dabb09faccf3e7de6906c173e48d2fe3732e1e83078d0e4266cb1afe7ec",
+      "witness": "TX-PARAM-EQ",
+      "optimization": "O0",
+      "prefill": 165,
+      "exit": 0,
+      "expected_hex": "0000000002000000000000000000000008000000000000000000000000000000",
+      "actual_hex": "0000000002000000000000000000000004000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "mutation": "comparison-xor-charge",
+      "file": "text_llvm.rs",
+      "edit": {
+        "old": "add i64 {al}, {bl}",
+        "new": "xor i64 {al}, {bl}"
+      },
+      "source_sha256": "d6948dabb09faccf3e7de6906c173e48d2fe3732e1e83078d0e4266cb1afe7ec",
+      "witness": "TX-PARAM-EQ",
+      "optimization": "O2",
+      "prefill": 0,
+      "exit": 0,
+      "expected_hex": "0000000002000000000000000000000008000000000000000000000000000000",
+      "actual_hex": "0000000002000000000000000000000004000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "mutation": "comparison-xor-charge",
+      "file": "text_llvm.rs",
+      "edit": {
+        "old": "add i64 {al}, {bl}",
+        "new": "xor i64 {al}, {bl}"
+      },
+      "source_sha256": "d6948dabb09faccf3e7de6906c173e48d2fe3732e1e83078d0e4266cb1afe7ec",
+      "witness": "TX-PARAM-EQ",
+      "optimization": "O2",
+      "prefill": 165,
+      "exit": 0,
+      "expected_hex": "0000000002000000000000000000000008000000000000000000000000000000",
+      "actual_hex": "0000000002000000000000000000000004000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "mutation": "scalar-is-byte",
+      "file": "text_llvm.rs",
+      "edit": {
+        "old": "if scalars{2}else{1}",
+        "new": "if scalars{1}else{1}"
+      },
+      "source_sha256": "a820b720656f20ed97ace8fce7b2094dde628c7e556acf3ceaf6c630b3c32802",
+      "witness": "TX-SUPPLEMENTARY",
+      "optimization": "O0",
+      "prefill": 0,
+      "exit": 0,
+      "expected_hex": "0000000001000000010000000000000006000000000000000000000000000000",
+      "actual_hex": "0000000001000000040000000000000006000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "mutation": "scalar-is-byte",
+      "file": "text_llvm.rs",
+      "edit": {
+        "old": "if scalars{2}else{1}",
+        "new": "if scalars{1}else{1}"
+      },
+      "source_sha256": "a820b720656f20ed97ace8fce7b2094dde628c7e556acf3ceaf6c630b3c32802",
+      "witness": "TX-SUPPLEMENTARY",
+      "optimization": "O0",
+      "prefill": 165,
+      "exit": 0,
+      "expected_hex": "0000000001000000010000000000000006000000000000000000000000000000",
+      "actual_hex": "0000000001000000040000000000000006000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "mutation": "scalar-is-byte",
+      "file": "text_llvm.rs",
+      "edit": {
+        "old": "if scalars{2}else{1}",
+        "new": "if scalars{1}else{1}"
+      },
+      "source_sha256": "a820b720656f20ed97ace8fce7b2094dde628c7e556acf3ceaf6c630b3c32802",
+      "witness": "TX-SUPPLEMENTARY",
+      "optimization": "O2",
+      "prefill": 0,
+      "exit": 0,
+      "expected_hex": "0000000001000000010000000000000006000000000000000000000000000000",
+      "actual_hex": "0000000001000000040000000000000006000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "mutation": "scalar-is-byte",
+      "file": "text_llvm.rs",
+      "edit": {
+        "old": "if scalars{2}else{1}",
+        "new": "if scalars{1}else{1}"
+      },
+      "source_sha256": "a820b720656f20ed97ace8fce7b2094dde628c7e556acf3ceaf6c630b3c32802",
+      "witness": "TX-SUPPLEMENTARY",
+      "optimization": "O2",
+      "prefill": 165,
+      "exit": 0,
+      "expected_hex": "0000000001000000010000000000000006000000000000000000000000000000",
+      "actual_hex": "0000000001000000040000000000000006000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "mutation": "reverse-byte-order",
+      "file": "text_compare.ll",
+      "edit": {
+        "old": "icmp ult i8 %av, %bv",
+        "new": "icmp ugt i8 %av, %bv"
+      },
+      "source_sha256": "dd8930036b428579b58de7fa7c363b1ab8ac6bef03314e71804100fb37efa7e7",
+      "witness": "TX-SCALAR-ORDER",
+      "optimization": "O0",
+      "prefill": 0,
+      "exit": 0,
+      "expected_hex": "0000000002000000010000000000000011000000000000000000000000000000",
+      "actual_hex": "0000000002000000000000000000000011000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "mutation": "reverse-byte-order",
+      "file": "text_compare.ll",
+      "edit": {
+        "old": "icmp ult i8 %av, %bv",
+        "new": "icmp ugt i8 %av, %bv"
+      },
+      "source_sha256": "dd8930036b428579b58de7fa7c363b1ab8ac6bef03314e71804100fb37efa7e7",
+      "witness": "TX-SCALAR-ORDER",
+      "optimization": "O0",
+      "prefill": 165,
+      "exit": 0,
+      "expected_hex": "0000000002000000010000000000000011000000000000000000000000000000",
+      "actual_hex": "0000000002000000000000000000000011000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "mutation": "reverse-byte-order",
+      "file": "text_compare.ll",
+      "edit": {
+        "old": "icmp ult i8 %av, %bv",
+        "new": "icmp ugt i8 %av, %bv"
+      },
+      "source_sha256": "dd8930036b428579b58de7fa7c363b1ab8ac6bef03314e71804100fb37efa7e7",
+      "witness": "TX-SCALAR-ORDER",
+      "optimization": "O2",
+      "prefill": 0,
+      "exit": 0,
+      "expected_hex": "0000000002000000010000000000000011000000000000000000000000000000",
+      "actual_hex": "0000000002000000000000000000000011000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "mutation": "reverse-byte-order",
+      "file": "text_compare.ll",
+      "edit": {
+        "old": "icmp ult i8 %av, %bv",
+        "new": "icmp ugt i8 %av, %bv"
+      },
+      "source_sha256": "dd8930036b428579b58de7fa7c363b1ab8ac6bef03314e71804100fb37efa7e7",
+      "witness": "TX-SCALAR-ORDER",
+      "optimization": "O2",
+      "prefill": 165,
+      "exit": 0,
+      "expected_hex": "0000000002000000010000000000000011000000000000000000000000000000",
+      "actual_hex": "0000000002000000000000000000000011000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "mutation": "strict-work-limit",
+      "file": "text_llvm.rs",
+      "edit": {
+        "old": "icmp ugt i64 {amount}, {remaining}",
+        "new": "icmp uge i64 {amount}, {remaining}"
+      },
+      "source_sha256": "3d688de9f3a41f43bcb8f82f5727b6457070e8d95a17c72b57606ad6fb1c7a41",
+      "witness": "TX-WORK-EXACT",
+      "optimization": "O0",
+      "prefill": 0,
+      "exit": 0,
+      "expected_hex": "00000000010000003b0000000000000000000100000000000000000000000000",
+      "actual_hex": "02000000000000000000000000000000c5ff0000000000000a00000007000000",
+      "input_preserved": true
+    },
+    {
+      "mutation": "strict-work-limit",
+      "file": "text_llvm.rs",
+      "edit": {
+        "old": "icmp ugt i64 {amount}, {remaining}",
+        "new": "icmp uge i64 {amount}, {remaining}"
+      },
+      "source_sha256": "3d688de9f3a41f43bcb8f82f5727b6457070e8d95a17c72b57606ad6fb1c7a41",
+      "witness": "TX-WORK-EXACT",
+      "optimization": "O0",
+      "prefill": 165,
+      "exit": 0,
+      "expected_hex": "00000000010000003b0000000000000000000100000000000000000000000000",
+      "actual_hex": "02000000000000000000000000000000c5ff0000000000000a00000007000000",
+      "input_preserved": true
+    },
+    {
+      "mutation": "strict-work-limit",
+      "file": "text_llvm.rs",
+      "edit": {
+        "old": "icmp ugt i64 {amount}, {remaining}",
+        "new": "icmp uge i64 {amount}, {remaining}"
+      },
+      "source_sha256": "3d688de9f3a41f43bcb8f82f5727b6457070e8d95a17c72b57606ad6fb1c7a41",
+      "witness": "TX-WORK-EXACT",
+      "optimization": "O2",
+      "prefill": 0,
+      "exit": 0,
+      "expected_hex": "00000000010000003b0000000000000000000100000000000000000000000000",
+      "actual_hex": "02000000000000000000000000000000c5ff0000000000000a00000007000000",
+      "input_preserved": true
+    },
+    {
+      "mutation": "strict-work-limit",
+      "file": "text_llvm.rs",
+      "edit": {
+        "old": "icmp ugt i64 {amount}, {remaining}",
+        "new": "icmp uge i64 {amount}, {remaining}"
+      },
+      "source_sha256": "3d688de9f3a41f43bcb8f82f5727b6457070e8d95a17c72b57606ad6fb1c7a41",
+      "witness": "TX-WORK-EXACT",
+      "optimization": "O2",
+      "prefill": 165,
+      "exit": 0,
+      "expected_hex": "00000000010000003b0000000000000000000100000000000000000000000000",
+      "actual_hex": "02000000000000000000000000000000c5ff0000000000000a00000007000000",
+      "input_preserved": true
+    },
+    {
+      "mutation": "partial-work-reservation",
+      "file": "text_llvm.rs",
+      "edit": {
+        "old": "self.label(&refuse)?;self.fail(2,node)?;",
+        "new": "self.label(&refuse)?;writeln!(self.output,\"  store volatile i64 65536, ptr %work, align 8\")?;self.fail(2,node)?;"
+      },
+      "source_sha256": "cc961e50b30359e2340e82dc11895202d44b3696dbf1f5730b1708b8fa0621bd",
+      "witness": "TX-COMPARE-WORK-REFUSAL",
+      "optimization": "O0",
+      "prefill": 0,
+      "exit": 0,
+      "expected_hex": "02000000000000000000000000000000e4ff0000000000000a00000006000000",
+      "actual_hex": "0200000000000000000000000000000000000100000000000a00000006000000",
+      "input_preserved": true
+    },
+    {
+      "mutation": "partial-work-reservation",
+      "file": "text_llvm.rs",
+      "edit": {
+        "old": "self.label(&refuse)?;self.fail(2,node)?;",
+        "new": "self.label(&refuse)?;writeln!(self.output,\"  store volatile i64 65536, ptr %work, align 8\")?;self.fail(2,node)?;"
+      },
+      "source_sha256": "cc961e50b30359e2340e82dc11895202d44b3696dbf1f5730b1708b8fa0621bd",
+      "witness": "TX-COMPARE-WORK-REFUSAL",
+      "optimization": "O0",
+      "prefill": 165,
+      "exit": 0,
+      "expected_hex": "02000000000000000000000000000000e4ff0000000000000a00000006000000",
+      "actual_hex": "0200000000000000000000000000000000000100000000000a00000006000000",
+      "input_preserved": true
+    },
+    {
+      "mutation": "partial-work-reservation",
+      "file": "text_llvm.rs",
+      "edit": {
+        "old": "self.label(&refuse)?;self.fail(2,node)?;",
+        "new": "self.label(&refuse)?;writeln!(self.output,\"  store volatile i64 65536, ptr %work, align 8\")?;self.fail(2,node)?;"
+      },
+      "source_sha256": "cc961e50b30359e2340e82dc11895202d44b3696dbf1f5730b1708b8fa0621bd",
+      "witness": "TX-COMPARE-WORK-REFUSAL",
+      "optimization": "O2",
+      "prefill": 0,
+      "exit": 0,
+      "expected_hex": "02000000000000000000000000000000e4ff0000000000000a00000006000000",
+      "actual_hex": "0200000000000000000000000000000000000100000000000a00000006000000",
+      "input_preserved": true
+    },
+    {
+      "mutation": "partial-work-reservation",
+      "file": "text_llvm.rs",
+      "edit": {
+        "old": "self.label(&refuse)?;self.fail(2,node)?;",
+        "new": "self.label(&refuse)?;writeln!(self.output,\"  store volatile i64 65536, ptr %work, align 8\")?;self.fail(2,node)?;"
+      },
+      "source_sha256": "cc961e50b30359e2340e82dc11895202d44b3696dbf1f5730b1708b8fa0621bd",
+      "witness": "TX-COMPARE-WORK-REFUSAL",
+      "optimization": "O2",
+      "prefill": 165,
+      "exit": 0,
+      "expected_hex": "02000000000000000000000000000000e4ff0000000000000a00000006000000",
+      "actual_hex": "0200000000000000000000000000000000000100000000000a00000006000000",
+      "input_preserved": true
+    }
+  ],
+  "limits": [
+    "Concrete wrong native result witnesses only",
+    "No arbitrary-defect, pointer-safety or performance proof"
+  ],
+  "review": "Separate same-maintainer pass. Every mutated emitter compiled; generated programs exited normally with a complete wrong 32-byte output and unchanged full frame.",
+  "baseline_source_sha256": {
+    "text_llvm.rs": "c2d75f89d0fc58aa3256c34e7ebef875c0538ba3d30928984f7bdda4b229252c",
+    "text_compare.ll": "24245d13c98bc33fd2741dd95b9015192075c74acc494d8405f2d7a9924279e7"
+  }
+}
