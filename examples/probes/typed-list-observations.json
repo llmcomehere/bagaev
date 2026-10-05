@@ -1,0 +1,137 @@
+{
+  "schema": "bagaev-typed-list-observations/1",
+  "reference_cases": 32,
+  "inherited_regression_cases": 65,
+  "mutation_witnesses": 5,
+  "fixture_sha256": "eac96268c91fd4008c2065a1418d8ec91ee52f14c3bb87cbafdb6a2d5c47169d",
+  "reference_binary_sha256": "6cef0560b90f5f7f110591447646fd74d16f06bb6f851f650318973f1f665336",
+  "mutation_controls": [
+    {
+      "mutation": "free-unique",
+      "witness": "LI-UNIQUE",
+      "exit": 0,
+      "expected": {
+        "schema": "bagaev-typed-list-result/1",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Int64",
+        "value": 2,
+        "work": 85
+      },
+      "actual": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-list-result/1",
+        "status": "success",
+        "value": 2,
+        "value_type": "Int64",
+        "work": 16
+      }
+    },
+    {
+      "mutation": "undercharge-contains",
+      "witness": "LI-CONTAINS",
+      "exit": 0,
+      "expected": {
+        "schema": "bagaev-typed-list-result/1",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Bool",
+        "value": true,
+        "work": 30
+      },
+      "actual": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-list-result/1",
+        "status": "success",
+        "value": true,
+        "value_type": "Bool",
+        "work": 24
+      }
+    },
+    {
+      "mutation": "reject-index-zero",
+      "witness": "LI-UNICODE-FIRST",
+      "exit": 0,
+      "expected": {
+        "schema": "bagaev-typed-list-result/1",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Int64",
+        "value": 3,
+        "work": 46
+      },
+      "actual": {
+        "location": "/program/functions/main/body/1",
+        "reason": "LI_INDEX",
+        "schema": "bagaev-typed-list-result/1",
+        "status": "list-index",
+        "value": null,
+        "value_type": null,
+        "work": 46
+      }
+    },
+    {
+      "mutation": "unbounded-aggregate",
+      "witness": "LI-CONSTRUCT-BYTES",
+      "exit": 0,
+      "expected": {
+        "schema": "bagaev-typed-list-result/1",
+        "status": "list-bound",
+        "reason": "LI_LIST_BYTES",
+        "location": "/program/functions/main/body/1",
+        "value_type": null,
+        "value": null,
+        "work": 5127
+      },
+      "actual": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-list-result/1",
+        "status": "success",
+        "value": 5,
+        "value_type": "Int64",
+        "work": 5127
+      }
+    },
+    {
+      "mutation": "early-aggregate",
+      "witness": "LI-CHILD-BEFORE-AGGREGATE",
+      "exit": 0,
+      "expected": {
+        "schema": "bagaev-typed-list-result/1",
+        "status": "integer-overflow",
+        "reason": "LI_OVERFLOW",
+        "location": "/program/functions/bad/body/1/1",
+        "value_type": null,
+        "value": null,
+        "work": 5133
+      },
+      "actual": {
+        "location": "/program/functions/main/body/1",
+        "reason": "LI_LIST_BYTES",
+        "schema": "bagaev-typed-list-result/1",
+        "status": "list-bound",
+        "value": null,
+        "value_type": null,
+        "work": 5127
+      }
+    }
+  ],
+  "limitations": [
+    "Separate same-maintainer review, not independent review",
+    "Reference evaluator only; native list lowering absent",
+    "Logical work is not timing or token savings",
+    "Inherited cases adapt schema/reason prefix only; not new independent cases"
+  ],
+  "review_repeat": {
+    "complete_wires": 32,
+    "status": "PASS",
+    "binary_sha256": "6cef0560b90f5f7f110591447646fd74d16f06bb6f851f650318973f1f665336",
+    "scope": "Same frozen cases repeated, not 32 additional cases; final module-title comment correction has no executable change"
+  }
+}
