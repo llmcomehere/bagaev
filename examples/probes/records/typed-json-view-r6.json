@@ -1,0 +1,882 @@
+{
+  "cases": [
+    {
+      "id": "NULL",
+      "invocation": {
+        "schema": "bagaev-typed-record-invocation/6",
+        "program": {
+          "schema": "bagaev-typed-record/6",
+          "records": {},
+          "lists": {},
+          "variants": {},
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [
+                [
+                  "j",
+                  "Json"
+                ]
+              ],
+              "result": "Text",
+              "body": [
+                "json.kind",
+                [
+                  "arg",
+                  "j"
+                ]
+              ]
+            }
+          }
+        },
+        "arguments": [
+          null
+        ]
+      },
+      "expected": {
+        "schema": "bagaev-typed-record-result/6",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Text",
+        "value": "null",
+        "work": 2
+      }
+    },
+    {
+      "id": "MISSING",
+      "invocation": {
+        "schema": "bagaev-typed-record-invocation/6",
+        "program": {
+          "schema": "bagaev-typed-record/6",
+          "records": {},
+          "lists": {},
+          "variants": {},
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [
+                [
+                  "j",
+                  "Json"
+                ]
+              ],
+              "result": "Text",
+              "body": [
+                "json.kind",
+                [
+                  "json.field",
+                  [
+                    "arg",
+                    "j"
+                  ],
+                  "d"
+                ]
+              ]
+            }
+          }
+        },
+        "arguments": [
+          {}
+        ]
+      },
+      "expected": {
+        "schema": "bagaev-typed-record-result/6",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Text",
+        "value": "missing",
+        "work": 3
+      }
+    },
+    {
+      "id": "PRESENT-NULL",
+      "invocation": {
+        "schema": "bagaev-typed-record-invocation/6",
+        "program": {
+          "schema": "bagaev-typed-record/6",
+          "records": {},
+          "lists": {},
+          "variants": {},
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [
+                [
+                  "j",
+                  "Json"
+                ]
+              ],
+              "result": "Text",
+              "body": [
+                "json.kind",
+                [
+                  "json.field",
+                  [
+                    "arg",
+                    "j"
+                  ],
+                  "d"
+                ]
+              ]
+            }
+          }
+        },
+        "arguments": [
+          {
+            "d": null
+          }
+        ]
+      },
+      "expected": {
+        "schema": "bagaev-typed-record-result/6",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Text",
+        "value": "null",
+        "work": 5
+      }
+    },
+    {
+      "id": "ZERO",
+      "invocation": {
+        "schema": "bagaev-typed-record-invocation/6",
+        "program": {
+          "schema": "bagaev-typed-record/6",
+          "records": {},
+          "lists": {},
+          "variants": {},
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [
+                [
+                  "j",
+                  "Json"
+                ]
+              ],
+              "result": "OptionInt64",
+              "body": [
+                "json.int",
+                [
+                  "json.field",
+                  [
+                    "arg",
+                    "j"
+                  ],
+                  "d"
+                ]
+              ]
+            }
+          }
+        },
+        "arguments": [
+          {
+            "d": 0
+          }
+        ]
+      },
+      "expected": {
+        "schema": "bagaev-typed-record-result/6",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "OptionInt64",
+        "value": 0,
+        "work": 6
+      }
+    },
+    {
+      "id": "BOOL",
+      "invocation": {
+        "schema": "bagaev-typed-record-invocation/6",
+        "program": {
+          "schema": "bagaev-typed-record/6",
+          "records": {},
+          "lists": {},
+          "variants": {},
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [
+                [
+                  "j",
+                  "Json"
+                ]
+              ],
+              "result": "OptionInt64",
+              "body": [
+                "json.int",
+                [
+                  "json.field",
+                  [
+                    "arg",
+                    "j"
+                  ],
+                  "d"
+                ]
+              ]
+            }
+          }
+        },
+        "arguments": [
+          {
+            "d": false
+          }
+        ]
+      },
+      "expected": {
+        "schema": "bagaev-typed-record-result/6",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "OptionInt64",
+        "value": null,
+        "work": 5
+      }
+    },
+    {
+      "id": "FLOAT",
+      "invocation": {
+        "schema": "bagaev-typed-record-invocation/6",
+        "program": {
+          "schema": "bagaev-typed-record/6",
+          "records": {},
+          "lists": {},
+          "variants": {},
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [
+                [
+                  "j",
+                  "Json"
+                ]
+              ],
+              "result": "OptionInt64",
+              "body": [
+                "json.int",
+                [
+                  "arg",
+                  "j"
+                ]
+              ]
+            }
+          }
+        },
+        "arguments": [
+          1.0
+        ]
+      },
+      "expected": {
+        "schema": "bagaev-typed-record-result/6",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "OptionInt64",
+        "value": null,
+        "work": 2
+      }
+    },
+    {
+      "id": "BIG-INT",
+      "invocation": {
+        "schema": "bagaev-typed-record-invocation/6",
+        "program": {
+          "schema": "bagaev-typed-record/6",
+          "records": {},
+          "lists": {},
+          "variants": {},
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [
+                [
+                  "j",
+                  "Json"
+                ]
+              ],
+              "result": "OptionInt64",
+              "body": [
+                "json.int",
+                [
+                  "arg",
+                  "j"
+                ]
+              ]
+            }
+          }
+        },
+        "arguments": [
+          9223372036854775808
+        ]
+      },
+      "expected": {
+        "schema": "bagaev-typed-record-result/6",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "OptionInt64",
+        "value": null,
+        "work": 21
+      }
+    },
+    {
+      "id": "MIN-INT",
+      "invocation": {
+        "schema": "bagaev-typed-record-invocation/6",
+        "program": {
+          "schema": "bagaev-typed-record/6",
+          "records": {},
+          "lists": {},
+          "variants": {},
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [
+                [
+                  "j",
+                  "Json"
+                ]
+              ],
+              "result": "OptionInt64",
+              "body": [
+                "json.int",
+                [
+                  "arg",
+                  "j"
+                ]
+              ]
+            }
+          }
+        },
+        "arguments": [
+          -9223372036854775808
+        ]
+      },
+      "expected": {
+        "schema": "bagaev-typed-record-result/6",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "OptionInt64",
+        "value": -9223372036854775808,
+        "work": 22
+      }
+    },
+    {
+      "id": "LENGTH",
+      "invocation": {
+        "schema": "bagaev-typed-record-invocation/6",
+        "program": {
+          "schema": "bagaev-typed-record/6",
+          "records": {},
+          "lists": {},
+          "variants": {},
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [
+                [
+                  "j",
+                  "Json"
+                ]
+              ],
+              "result": "OptionInt64",
+              "body": [
+                "json.len",
+                [
+                  "arg",
+                  "j"
+                ]
+              ]
+            }
+          }
+        },
+        "arguments": [
+          {
+            "a": 0,
+            "b": 1
+          }
+        ]
+      },
+      "expected": {
+        "schema": "bagaev-typed-record-result/6",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "OptionInt64",
+        "value": 2,
+        "work": 2
+      }
+    },
+    {
+      "id": "UTF8",
+      "invocation": {
+        "schema": "bagaev-typed-record-invocation/6",
+        "program": {
+          "schema": "bagaev-typed-record/6",
+          "records": {},
+          "lists": {},
+          "variants": {},
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [
+                [
+                  "j",
+                  "Json"
+                ]
+              ],
+              "result": "Text",
+              "body": [
+                "json.text_or",
+                [
+                  "json.at",
+                  [
+                    "arg",
+                    "j"
+                  ],
+                  [
+                    "int",
+                    0
+                  ]
+                ],
+                [
+                  "text",
+                  "bad"
+                ]
+              ]
+            }
+          }
+        },
+        "arguments": [
+          [
+            "\u00e9"
+          ]
+        ]
+      },
+      "expected": {
+        "schema": "bagaev-typed-record-result/6",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Text",
+        "value": "\u00e9",
+        "work": 6
+      }
+    },
+    {
+      "id": "FALLBACK",
+      "invocation": {
+        "schema": "bagaev-typed-record-invocation/6",
+        "program": {
+          "schema": "bagaev-typed-record/6",
+          "records": {},
+          "lists": {},
+          "variants": {},
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [
+                [
+                  "j",
+                  "Json"
+                ]
+              ],
+              "result": "Text",
+              "body": [
+                "json.text_or",
+                [
+                  "arg",
+                  "j"
+                ],
+                [
+                  "text",
+                  "fallback"
+                ]
+              ]
+            }
+          }
+        },
+        "arguments": [
+          1
+        ]
+      },
+      "expected": {
+        "schema": "bagaev-typed-record-result/6",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Text",
+        "value": "fallback",
+        "work": 11
+      }
+    },
+    {
+      "id": "TEXT-BOUND",
+      "invocation": {
+        "schema": "bagaev-typed-record-invocation/6",
+        "program": {
+          "schema": "bagaev-typed-record/6",
+          "records": {},
+          "lists": {},
+          "variants": {},
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [
+                [
+                  "j",
+                  "Json"
+                ]
+              ],
+              "result": "Bool",
+              "body": [
+                "json.is_text",
+                [
+                  "arg",
+                  "j"
+                ]
+              ]
+            }
+          }
+        },
+        "arguments": [
+          "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        ]
+      },
+      "expected": {
+        "schema": "bagaev-typed-record-result/6",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Bool",
+        "value": false,
+        "work": 2
+      }
+    },
+    {
+      "id": "SURROGATE",
+      "invocation": {
+        "schema": "bagaev-typed-record-invocation/6",
+        "program": {
+          "schema": "bagaev-typed-record/6",
+          "records": {},
+          "lists": {},
+          "variants": {},
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [
+                [
+                  "j",
+                  "Json"
+                ]
+              ],
+              "result": "Bool",
+              "body": [
+                "json.is_text",
+                [
+                  "arg",
+                  "j"
+                ]
+              ]
+            }
+          }
+        },
+        "arguments": [
+          "\ud800"
+        ]
+      },
+      "expected": {
+        "schema": "bagaev-typed-record-result/6",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Bool",
+        "value": false,
+        "work": 2
+      }
+    },
+    {
+      "id": "NEGATIVE",
+      "invocation": {
+        "schema": "bagaev-typed-record-invocation/6",
+        "program": {
+          "schema": "bagaev-typed-record/6",
+          "records": {},
+          "lists": {},
+          "variants": {},
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [
+                [
+                  "j",
+                  "Json"
+                ]
+              ],
+              "result": "Text",
+              "body": [
+                "json.kind",
+                [
+                  "json.at",
+                  [
+                    "arg",
+                    "j"
+                  ],
+                  [
+                    "int",
+                    -1
+                  ]
+                ]
+              ]
+            }
+          }
+        },
+        "arguments": [
+          [
+            1
+          ]
+        ]
+      },
+      "expected": {
+        "schema": "bagaev-typed-record-result/6",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Text",
+        "value": "missing",
+        "work": 4
+      }
+    },
+    {
+      "id": "EMPTY-KEY",
+      "invocation": {
+        "schema": "bagaev-typed-record-invocation/6",
+        "program": {
+          "schema": "bagaev-typed-record/6",
+          "records": {},
+          "lists": {},
+          "variants": {},
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [
+                [
+                  "j",
+                  "Json"
+                ]
+              ],
+              "result": "Text",
+              "body": [
+                "json.kind",
+                [
+                  "json.field",
+                  [
+                    "arg",
+                    "j"
+                  ],
+                  ""
+                ]
+              ]
+            }
+          }
+        },
+        "arguments": [
+          {
+            "": null
+          }
+        ]
+      },
+      "expected": {
+        "schema": "bagaev-typed-record-result/6",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Text",
+        "value": "null",
+        "work": 4
+      }
+    },
+    {
+      "id": "UNICODE-KEY",
+      "invocation": {
+        "schema": "bagaev-typed-record-invocation/6",
+        "program": {
+          "schema": "bagaev-typed-record/6",
+          "records": {},
+          "lists": {},
+          "variants": {},
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [
+                [
+                  "j",
+                  "Json"
+                ]
+              ],
+              "result": "Text",
+              "body": [
+                "json.kind",
+                [
+                  "json.field",
+                  [
+                    "arg",
+                    "j"
+                  ],
+                  "\u00e9"
+                ]
+              ]
+            }
+          }
+        },
+        "arguments": [
+          {
+            "\u00e9": 1
+          }
+        ]
+      },
+      "expected": {
+        "schema": "bagaev-typed-record-result/6",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Text",
+        "value": "int",
+        "work": 6
+      }
+    },
+    {
+      "id": "ENTRY-JSON",
+      "invocation": {
+        "schema": "bagaev-typed-record-invocation/6",
+        "program": {
+          "schema": "bagaev-typed-record/6",
+          "records": {},
+          "lists": {},
+          "variants": {},
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [
+                [
+                  "j",
+                  "Json"
+                ]
+              ],
+              "result": "Json",
+              "body": [
+                "arg",
+                "j"
+              ]
+            }
+          }
+        },
+        "arguments": [
+          {}
+        ]
+      },
+      "expected": {
+        "schema": "bagaev-typed-record-result/6",
+        "status": "invalid-ir",
+        "reason": "RR_TYPE",
+        "location": "/program/functions/main/result",
+        "value_type": null,
+        "value": null,
+        "work": 0
+      }
+    },
+    {
+      "id": "WRONG-TYPE",
+      "invocation": {
+        "schema": "bagaev-typed-record-invocation/6",
+        "program": {
+          "schema": "bagaev-typed-record/6",
+          "records": {},
+          "lists": {},
+          "variants": {},
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [
+                [
+                  "j",
+                  "Json"
+                ]
+              ],
+              "result": "Text",
+              "body": [
+                "json.kind",
+                [
+                  "int",
+                  1
+                ]
+              ]
+            }
+          }
+        },
+        "arguments": [
+          {}
+        ]
+      },
+      "expected": {
+        "schema": "bagaev-typed-record-result/6",
+        "status": "invalid-ir",
+        "reason": "RR_TYPE",
+        "location": "/program/functions/main/body/1",
+        "value_type": null,
+        "value": null,
+        "work": 0
+      }
+    },
+    {
+      "id": "KEY-BOUND",
+      "invocation": {
+        "schema": "bagaev-typed-record-invocation/6",
+        "program": {
+          "schema": "bagaev-typed-record/6",
+          "records": {},
+          "lists": {},
+          "variants": {},
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [
+                [
+                  "j",
+                  "Json"
+                ]
+              ],
+              "result": "Json",
+              "body": [
+                "json.field",
+                [
+                  "arg",
+                  "j"
+                ],
+                "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+              ]
+            }
+          }
+        },
+        "arguments": [
+          {}
+        ]
+      },
+      "expected": {
+        "schema": "bagaev-typed-record-result/6",
+        "status": "invalid-ir",
+        "reason": "RR_BOUNDS",
+        "location": "/program/functions/main/body/2",
+        "value_type": null,
+        "value": null,
+        "work": 0
+      }
+    }
+  ]
+}

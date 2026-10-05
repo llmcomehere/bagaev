@@ -1,0 +1,770 @@
+{
+  "cases": [
+    {
+      "id": "EMPTY",
+      "invocation": {
+        "schema": "bagaev-typed-record-invocation/4",
+        "program": {
+          "schema": "bagaev-typed-record/4",
+          "records": {
+            "Entry": {
+              "n": "Int64"
+            }
+          },
+          "lists": {
+            "Entries": {
+              "element": "Entry",
+              "capacity": 4
+            }
+          },
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [],
+              "result": "Entries",
+              "body": [
+                "records.list",
+                "Entries"
+              ]
+            }
+          }
+        },
+        "arguments": []
+      },
+      "expected": {
+        "schema": "bagaev-typed-record-result/4",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "RecordList:Entries",
+        "value": [],
+        "work": 1
+      }
+    },
+    {
+      "id": "PAIR",
+      "invocation": {
+        "schema": "bagaev-typed-record-invocation/4",
+        "program": {
+          "schema": "bagaev-typed-record/4",
+          "records": {
+            "Entry": {
+              "n": "Int64"
+            }
+          },
+          "lists": {
+            "Entries": {
+              "element": "Entry",
+              "capacity": 4
+            }
+          },
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [],
+              "result": "Entries",
+              "body": [
+                "records.list",
+                "Entries",
+                [
+                  "record",
+                  "Entry",
+                  [
+                    "int",
+                    3
+                  ]
+                ],
+                [
+                  "record",
+                  "Entry",
+                  [
+                    "int",
+                    4
+                  ]
+                ]
+              ]
+            }
+          }
+        },
+        "arguments": []
+      },
+      "expected": {
+        "schema": "bagaev-typed-record-result/4",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "RecordList:Entries",
+        "value": [
+          {
+            "n": 3
+          },
+          {
+            "n": 4
+          }
+        ],
+        "work": 5
+      }
+    },
+    {
+      "id": "LEN",
+      "invocation": {
+        "schema": "bagaev-typed-record-invocation/4",
+        "program": {
+          "schema": "bagaev-typed-record/4",
+          "records": {
+            "Entry": {
+              "n": "Int64"
+            }
+          },
+          "lists": {
+            "Entries": {
+              "element": "Entry",
+              "capacity": 4
+            }
+          },
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [],
+              "result": "Int64",
+              "body": [
+                "records.len",
+                [
+                  "records.list",
+                  "Entries",
+                  [
+                    "record",
+                    "Entry",
+                    [
+                      "int",
+                      3
+                    ]
+                  ]
+                ]
+              ]
+            }
+          }
+        },
+        "arguments": []
+      },
+      "expected": {
+        "schema": "bagaev-typed-record-result/4",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Int64",
+        "value": 1,
+        "work": 4
+      }
+    },
+    {
+      "id": "AT",
+      "invocation": {
+        "schema": "bagaev-typed-record-invocation/4",
+        "program": {
+          "schema": "bagaev-typed-record/4",
+          "records": {
+            "Entry": {
+              "n": "Int64"
+            }
+          },
+          "lists": {
+            "Entries": {
+              "element": "Entry",
+              "capacity": 4
+            }
+          },
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [],
+              "result": "Entry",
+              "body": [
+                "records.at",
+                [
+                  "records.list",
+                  "Entries",
+                  [
+                    "record",
+                    "Entry",
+                    [
+                      "int",
+                      3
+                    ]
+                  ]
+                ],
+                [
+                  "int",
+                  0
+                ]
+              ]
+            }
+          }
+        },
+        "arguments": []
+      },
+      "expected": {
+        "schema": "bagaev-typed-record-result/4",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Record:Entry",
+        "value": {
+          "n": 3
+        },
+        "work": 5
+      }
+    },
+    {
+      "id": "NEGATIVE",
+      "invocation": {
+        "schema": "bagaev-typed-record-invocation/4",
+        "program": {
+          "schema": "bagaev-typed-record/4",
+          "records": {
+            "Entry": {
+              "n": "Int64"
+            }
+          },
+          "lists": {
+            "Entries": {
+              "element": "Entry",
+              "capacity": 4
+            }
+          },
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [],
+              "result": "Entry",
+              "body": [
+                "records.at",
+                [
+                  "records.list",
+                  "Entries",
+                  [
+                    "record",
+                    "Entry",
+                    [
+                      "int",
+                      3
+                    ]
+                  ]
+                ],
+                [
+                  "int",
+                  -1
+                ]
+              ]
+            }
+          }
+        },
+        "arguments": []
+      },
+      "expected": {
+        "schema": "bagaev-typed-record-result/4",
+        "status": "list-index",
+        "reason": "RR_INDEX",
+        "location": "/program/functions/main/body",
+        "value_type": null,
+        "value": null,
+        "work": 5
+      }
+    },
+    {
+      "id": "EMPTY-AT",
+      "invocation": {
+        "schema": "bagaev-typed-record-invocation/4",
+        "program": {
+          "schema": "bagaev-typed-record/4",
+          "records": {
+            "Entry": {
+              "n": "Int64"
+            }
+          },
+          "lists": {
+            "Entries": {
+              "element": "Entry",
+              "capacity": 4
+            }
+          },
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [],
+              "result": "Entry",
+              "body": [
+                "records.at",
+                [
+                  "records.list",
+                  "Entries"
+                ],
+                [
+                  "int",
+                  0
+                ]
+              ]
+            }
+          }
+        },
+        "arguments": []
+      },
+      "expected": {
+        "schema": "bagaev-typed-record-result/4",
+        "status": "list-index",
+        "reason": "RR_INDEX",
+        "location": "/program/functions/main/body",
+        "value_type": null,
+        "value": null,
+        "work": 3
+      }
+    },
+    {
+      "id": "ARG",
+      "invocation": {
+        "schema": "bagaev-typed-record-invocation/4",
+        "program": {
+          "schema": "bagaev-typed-record/4",
+          "records": {
+            "Entry": {
+              "n": "Int64"
+            }
+          },
+          "lists": {
+            "Entries": {
+              "element": "Entry",
+              "capacity": 4
+            }
+          },
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [
+                [
+                  "x",
+                  "Entries"
+                ]
+              ],
+              "result": "Entries",
+              "body": [
+                "arg",
+                "x"
+              ]
+            }
+          }
+        },
+        "arguments": [
+          [
+            {
+              "n": 0
+            },
+            {
+              "n": 1
+            }
+          ]
+        ]
+      },
+      "expected": {
+        "schema": "bagaev-typed-record-result/4",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "RecordList:Entries",
+        "value": [
+          {
+            "n": 0
+          },
+          {
+            "n": 1
+          }
+        ],
+        "work": 1
+      }
+    },
+    {
+      "id": "BAD-ARG",
+      "invocation": {
+        "schema": "bagaev-typed-record-invocation/4",
+        "program": {
+          "schema": "bagaev-typed-record/4",
+          "records": {
+            "Entry": {
+              "n": "Int64"
+            }
+          },
+          "lists": {
+            "Entries": {
+              "element": "Entry",
+              "capacity": 4
+            }
+          },
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [
+                [
+                  "x",
+                  "Entries"
+                ]
+              ],
+              "result": "Entries",
+              "body": [
+                "arg",
+                "x"
+              ]
+            }
+          }
+        },
+        "arguments": [
+          [
+            {
+              "n": 0
+            },
+            {
+              "n": true
+            }
+          ]
+        ]
+      },
+      "expected": {
+        "schema": "bagaev-typed-record-result/4",
+        "status": "invalid-ir",
+        "reason": "RR_ARGUMENT",
+        "location": "/arguments/0/1/n",
+        "value_type": null,
+        "value": null,
+        "work": 0
+      }
+    },
+    {
+      "id": "ARG-BOUND",
+      "invocation": {
+        "schema": "bagaev-typed-record-invocation/4",
+        "program": {
+          "schema": "bagaev-typed-record/4",
+          "records": {
+            "Entry": {
+              "n": "Int64"
+            }
+          },
+          "lists": {
+            "Entries": {
+              "element": "Entry",
+              "capacity": 4
+            }
+          },
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [
+                [
+                  "x",
+                  "Entries"
+                ]
+              ],
+              "result": "Entries",
+              "body": [
+                "arg",
+                "x"
+              ]
+            }
+          }
+        },
+        "arguments": [
+          [
+            {
+              "n": 0
+            },
+            {
+              "n": 0
+            },
+            {
+              "n": 0
+            },
+            {
+              "n": 0
+            },
+            {
+              "n": 0
+            }
+          ]
+        ]
+      },
+      "expected": {
+        "schema": "bagaev-typed-record-result/4",
+        "status": "invalid-ir",
+        "reason": "RR_ARGUMENT",
+        "location": "/arguments/0",
+        "value_type": null,
+        "value": null,
+        "work": 0
+      }
+    },
+    {
+      "id": "CONSTRUCTOR-BOUND",
+      "invocation": {
+        "schema": "bagaev-typed-record-invocation/4",
+        "program": {
+          "schema": "bagaev-typed-record/4",
+          "records": {
+            "Entry": {
+              "n": "Int64"
+            }
+          },
+          "lists": {
+            "Entries": {
+              "element": "Entry",
+              "capacity": 4
+            }
+          },
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [],
+              "result": "Entries",
+              "body": [
+                "records.list",
+                "Entries",
+                [
+                  "record",
+                  "Entry",
+                  [
+                    "int",
+                    3
+                  ]
+                ],
+                [
+                  "record",
+                  "Entry",
+                  [
+                    "int",
+                    3
+                  ]
+                ],
+                [
+                  "record",
+                  "Entry",
+                  [
+                    "int",
+                    3
+                  ]
+                ],
+                [
+                  "record",
+                  "Entry",
+                  [
+                    "int",
+                    3
+                  ]
+                ],
+                [
+                  "record",
+                  "Entry",
+                  [
+                    "int",
+                    3
+                  ]
+                ]
+              ]
+            }
+          }
+        },
+        "arguments": []
+      },
+      "expected": {
+        "schema": "bagaev-typed-record-result/4",
+        "status": "invalid-ir",
+        "reason": "RR_BOUNDS",
+        "location": "/program/functions/main/body",
+        "value_type": null,
+        "value": null,
+        "work": 0
+      }
+    },
+    {
+      "id": "UNKNOWN-LIST",
+      "invocation": {
+        "schema": "bagaev-typed-record-invocation/4",
+        "program": {
+          "schema": "bagaev-typed-record/4",
+          "records": {
+            "Entry": {
+              "n": "Int64"
+            }
+          },
+          "lists": {
+            "Entries": {
+              "element": "Entry",
+              "capacity": 4
+            }
+          },
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [],
+              "result": "Entries",
+              "body": [
+                "records.list",
+                "Missing"
+              ]
+            }
+          }
+        },
+        "arguments": []
+      },
+      "expected": {
+        "schema": "bagaev-typed-record-result/4",
+        "status": "invalid-ir",
+        "reason": "RR_REFERENCE",
+        "location": "/program/functions/main/body/1",
+        "value_type": null,
+        "value": null,
+        "work": 0
+      }
+    },
+    {
+      "id": "STATE",
+      "invocation": {
+        "schema": "bagaev-typed-record-invocation/4",
+        "program": {
+          "schema": "bagaev-typed-record/4",
+          "records": {
+            "Entry": {
+              "n": "Int64"
+            },
+            "State": {
+              "entries": "Entries"
+            }
+          },
+          "lists": {
+            "Entries": {
+              "element": "Entry",
+              "capacity": 4
+            }
+          },
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [],
+              "result": "State",
+              "body": [
+                "record",
+                "State",
+                [
+                  "records.list",
+                  "Entries",
+                  [
+                    "record",
+                    "Entry",
+                    [
+                      "int",
+                      3
+                    ]
+                  ]
+                ]
+              ]
+            }
+          }
+        },
+        "arguments": []
+      },
+      "expected": {
+        "schema": "bagaev-typed-record-result/4",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Record:State",
+        "value": {
+          "entries": [
+            {
+              "n": 3
+            }
+          ]
+        },
+        "work": 4
+      }
+    },
+    {
+      "id": "RECURSIVE",
+      "invocation": {
+        "schema": "bagaev-typed-record-invocation/4",
+        "program": {
+          "schema": "bagaev-typed-record/4",
+          "records": {
+            "Entry": {
+              "kids": "Entries"
+            }
+          },
+          "lists": {
+            "Entries": {
+              "element": "Entry",
+              "capacity": 4
+            }
+          },
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [],
+              "result": "Int64",
+              "body": [
+                "int",
+                0
+              ]
+            }
+          }
+        },
+        "arguments": []
+      },
+      "expected": {
+        "schema": "bagaev-typed-record-result/4",
+        "status": "invalid-ir",
+        "reason": "RR_CYCLE",
+        "location": "/program/records/Entry",
+        "value_type": null,
+        "value": null,
+        "work": 0
+      }
+    },
+    {
+      "id": "BAD-CAPACITY",
+      "invocation": {
+        "schema": "bagaev-typed-record-invocation/4",
+        "program": {
+          "schema": "bagaev-typed-record/4",
+          "records": {
+            "Entry": {
+              "n": "Int64"
+            }
+          },
+          "lists": {
+            "Entries": {
+              "element": "Entry",
+              "capacity": 5
+            }
+          },
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [],
+              "result": "Int64",
+              "body": [
+                "int",
+                0
+              ]
+            }
+          }
+        },
+        "arguments": []
+      },
+      "expected": {
+        "schema": "bagaev-typed-record-result/4",
+        "status": "invalid-ir",
+        "reason": "RR_BOUNDS",
+        "location": "/program/lists/Entries/capacity",
+        "value_type": null,
+        "value": null,
+        "work": 0
+      }
+    }
+  ]
+}
