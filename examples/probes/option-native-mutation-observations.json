@@ -1,0 +1,331 @@
+{
+  "status": "PASS",
+  "mutations": 5,
+  "observations": [
+    {
+      "mutation": "none-as-present",
+      "file": "option_llvm.rs",
+      "edit": {
+        "old": "NodeKind::OptionNone=>Ok(\"zeroinitializer\".to_owned()),",
+        "new": "NodeKind::OptionNone=>Ok(\"{ i64 1, i64 0 }\".to_owned()),"
+      },
+      "source_sha256": "5a154c96fcaccc64789c339291092a21ae4b3e83584ec006b73ab59114f96b09",
+      "witness": "OI-NONE-FALLBACK",
+      "optimization": "O0",
+      "prefill": 0,
+      "exit": 0,
+      "expected_hex": "0000000001000000070000000000000003000000000000000000000000000000",
+      "actual_hex": "0000000001000000000000000000000002000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "mutation": "none-as-present",
+      "file": "option_llvm.rs",
+      "edit": {
+        "old": "NodeKind::OptionNone=>Ok(\"zeroinitializer\".to_owned()),",
+        "new": "NodeKind::OptionNone=>Ok(\"{ i64 1, i64 0 }\".to_owned()),"
+      },
+      "source_sha256": "5a154c96fcaccc64789c339291092a21ae4b3e83584ec006b73ab59114f96b09",
+      "witness": "OI-NONE-FALLBACK",
+      "optimization": "O0",
+      "prefill": 165,
+      "exit": 0,
+      "expected_hex": "0000000001000000070000000000000003000000000000000000000000000000",
+      "actual_hex": "0000000001000000000000000000000002000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "mutation": "none-as-present",
+      "file": "option_llvm.rs",
+      "edit": {
+        "old": "NodeKind::OptionNone=>Ok(\"zeroinitializer\".to_owned()),",
+        "new": "NodeKind::OptionNone=>Ok(\"{ i64 1, i64 0 }\".to_owned()),"
+      },
+      "source_sha256": "5a154c96fcaccc64789c339291092a21ae4b3e83584ec006b73ab59114f96b09",
+      "witness": "OI-NONE-FALLBACK",
+      "optimization": "O2",
+      "prefill": 0,
+      "exit": 0,
+      "expected_hex": "0000000001000000070000000000000003000000000000000000000000000000",
+      "actual_hex": "0000000001000000000000000000000002000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "mutation": "none-as-present",
+      "file": "option_llvm.rs",
+      "edit": {
+        "old": "NodeKind::OptionNone=>Ok(\"zeroinitializer\".to_owned()),",
+        "new": "NodeKind::OptionNone=>Ok(\"{ i64 1, i64 0 }\".to_owned()),"
+      },
+      "source_sha256": "5a154c96fcaccc64789c339291092a21ae4b3e83584ec006b73ab59114f96b09",
+      "witness": "OI-NONE-FALLBACK",
+      "optimization": "O2",
+      "prefill": 165,
+      "exit": 0,
+      "expected_hex": "0000000001000000070000000000000003000000000000000000000000000000",
+      "actual_hex": "0000000001000000000000000000000002000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "mutation": "some-as-absent",
+      "file": "option_llvm.rs",
+      "edit": {
+        "old": "insertvalue %Option zeroinitializer, i64 1, 0",
+        "new": "insertvalue %Option zeroinitializer, i64 0, 0"
+      },
+      "source_sha256": "26432b5604d482aa394b0c4ade3fda30e6eaad7ad8eaa43b19f0b0de49084a88",
+      "witness": "OI-SOME-ZERO-LAZY",
+      "optimization": "O0",
+      "prefill": 0,
+      "exit": 0,
+      "expected_hex": "0000000001000000000000000000000003000000000000000000000000000000",
+      "actual_hex": "0100000000000000000000000000000006000000000000000900000004000000",
+      "input_preserved": true
+    },
+    {
+      "mutation": "some-as-absent",
+      "file": "option_llvm.rs",
+      "edit": {
+        "old": "insertvalue %Option zeroinitializer, i64 1, 0",
+        "new": "insertvalue %Option zeroinitializer, i64 0, 0"
+      },
+      "source_sha256": "26432b5604d482aa394b0c4ade3fda30e6eaad7ad8eaa43b19f0b0de49084a88",
+      "witness": "OI-SOME-ZERO-LAZY",
+      "optimization": "O0",
+      "prefill": 165,
+      "exit": 0,
+      "expected_hex": "0000000001000000000000000000000003000000000000000000000000000000",
+      "actual_hex": "0100000000000000000000000000000006000000000000000900000004000000",
+      "input_preserved": true
+    },
+    {
+      "mutation": "some-as-absent",
+      "file": "option_llvm.rs",
+      "edit": {
+        "old": "insertvalue %Option zeroinitializer, i64 1, 0",
+        "new": "insertvalue %Option zeroinitializer, i64 0, 0"
+      },
+      "source_sha256": "26432b5604d482aa394b0c4ade3fda30e6eaad7ad8eaa43b19f0b0de49084a88",
+      "witness": "OI-SOME-ZERO-LAZY",
+      "optimization": "O2",
+      "prefill": 0,
+      "exit": 0,
+      "expected_hex": "0000000001000000000000000000000003000000000000000000000000000000",
+      "actual_hex": "0100000000000000000000000000000006000000000000000900000004000000",
+      "input_preserved": true
+    },
+    {
+      "mutation": "some-as-absent",
+      "file": "option_llvm.rs",
+      "edit": {
+        "old": "insertvalue %Option zeroinitializer, i64 1, 0",
+        "new": "insertvalue %Option zeroinitializer, i64 0, 0"
+      },
+      "source_sha256": "26432b5604d482aa394b0c4ade3fda30e6eaad7ad8eaa43b19f0b0de49084a88",
+      "witness": "OI-SOME-ZERO-LAZY",
+      "optimization": "O2",
+      "prefill": 165,
+      "exit": 0,
+      "expected_hex": "0000000001000000000000000000000003000000000000000000000000000000",
+      "actual_hex": "0100000000000000000000000000000006000000000000000900000004000000",
+      "input_preserved": true
+    },
+    {
+      "mutation": "payload-as-presence",
+      "file": "option_llvm.rs",
+      "edit": {
+        "old": "NodeKind::OptionHas{operand}=>{let value=self.expression(operand)?;self.value(&format!(\"extractvalue %Option {value}, 0\"))}",
+        "new": "NodeKind::OptionHas{operand}=>{let value=self.expression(operand)?;self.value(&format!(\"extractvalue %Option {value}, 1\"))}"
+      },
+      "source_sha256": "0056d7de2489e604bff42afeb05c504c8b470b81c352358b4e7304ae8c7923ed",
+      "witness": "OI-HAS-ZERO",
+      "optimization": "O0",
+      "prefill": 0,
+      "exit": 0,
+      "expected_hex": "0000000002000000010000000000000003000000000000000000000000000000",
+      "actual_hex": "0000000002000000000000000000000003000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "mutation": "payload-as-presence",
+      "file": "option_llvm.rs",
+      "edit": {
+        "old": "NodeKind::OptionHas{operand}=>{let value=self.expression(operand)?;self.value(&format!(\"extractvalue %Option {value}, 0\"))}",
+        "new": "NodeKind::OptionHas{operand}=>{let value=self.expression(operand)?;self.value(&format!(\"extractvalue %Option {value}, 1\"))}"
+      },
+      "source_sha256": "0056d7de2489e604bff42afeb05c504c8b470b81c352358b4e7304ae8c7923ed",
+      "witness": "OI-HAS-ZERO",
+      "optimization": "O0",
+      "prefill": 165,
+      "exit": 0,
+      "expected_hex": "0000000002000000010000000000000003000000000000000000000000000000",
+      "actual_hex": "0000000002000000000000000000000003000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "mutation": "payload-as-presence",
+      "file": "option_llvm.rs",
+      "edit": {
+        "old": "NodeKind::OptionHas{operand}=>{let value=self.expression(operand)?;self.value(&format!(\"extractvalue %Option {value}, 0\"))}",
+        "new": "NodeKind::OptionHas{operand}=>{let value=self.expression(operand)?;self.value(&format!(\"extractvalue %Option {value}, 1\"))}"
+      },
+      "source_sha256": "0056d7de2489e604bff42afeb05c504c8b470b81c352358b4e7304ae8c7923ed",
+      "witness": "OI-HAS-ZERO",
+      "optimization": "O2",
+      "prefill": 0,
+      "exit": 0,
+      "expected_hex": "0000000002000000010000000000000003000000000000000000000000000000",
+      "actual_hex": "0000000002000000000000000000000003000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "mutation": "payload-as-presence",
+      "file": "option_llvm.rs",
+      "edit": {
+        "old": "NodeKind::OptionHas{operand}=>{let value=self.expression(operand)?;self.value(&format!(\"extractvalue %Option {value}, 0\"))}",
+        "new": "NodeKind::OptionHas{operand}=>{let value=self.expression(operand)?;self.value(&format!(\"extractvalue %Option {value}, 1\"))}"
+      },
+      "source_sha256": "0056d7de2489e604bff42afeb05c504c8b470b81c352358b4e7304ae8c7923ed",
+      "witness": "OI-HAS-ZERO",
+      "optimization": "O2",
+      "prefill": 165,
+      "exit": 0,
+      "expected_hex": "0000000002000000010000000000000003000000000000000000000000000000",
+      "actual_hex": "0000000002000000000000000000000003000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "mutation": "always-fallback",
+      "file": "option_llvm.rs",
+      "edit": {
+        "old": "icmp ne i64 {flag}, 0",
+        "new": "icmp ne i64 {flag}, {flag}"
+      },
+      "source_sha256": "e5d71f795c6b7c08f2caeeb2ef5d488acc75c2dbc0d2d7420dd127fdc444af0e",
+      "witness": "OI-SOME-ZERO-LAZY",
+      "optimization": "O0",
+      "prefill": 0,
+      "exit": 0,
+      "expected_hex": "0000000001000000000000000000000003000000000000000000000000000000",
+      "actual_hex": "0100000000000000000000000000000006000000000000000900000004000000",
+      "input_preserved": true
+    },
+    {
+      "mutation": "always-fallback",
+      "file": "option_llvm.rs",
+      "edit": {
+        "old": "icmp ne i64 {flag}, 0",
+        "new": "icmp ne i64 {flag}, {flag}"
+      },
+      "source_sha256": "e5d71f795c6b7c08f2caeeb2ef5d488acc75c2dbc0d2d7420dd127fdc444af0e",
+      "witness": "OI-SOME-ZERO-LAZY",
+      "optimization": "O0",
+      "prefill": 165,
+      "exit": 0,
+      "expected_hex": "0000000001000000000000000000000003000000000000000000000000000000",
+      "actual_hex": "0100000000000000000000000000000006000000000000000900000004000000",
+      "input_preserved": true
+    },
+    {
+      "mutation": "always-fallback",
+      "file": "option_llvm.rs",
+      "edit": {
+        "old": "icmp ne i64 {flag}, 0",
+        "new": "icmp ne i64 {flag}, {flag}"
+      },
+      "source_sha256": "e5d71f795c6b7c08f2caeeb2ef5d488acc75c2dbc0d2d7420dd127fdc444af0e",
+      "witness": "OI-SOME-ZERO-LAZY",
+      "optimization": "O2",
+      "prefill": 0,
+      "exit": 0,
+      "expected_hex": "0000000001000000000000000000000003000000000000000000000000000000",
+      "actual_hex": "0100000000000000000000000000000006000000000000000900000004000000",
+      "input_preserved": true
+    },
+    {
+      "mutation": "always-fallback",
+      "file": "option_llvm.rs",
+      "edit": {
+        "old": "icmp ne i64 {flag}, 0",
+        "new": "icmp ne i64 {flag}, {flag}"
+      },
+      "source_sha256": "e5d71f795c6b7c08f2caeeb2ef5d488acc75c2dbc0d2d7420dd127fdc444af0e",
+      "witness": "OI-SOME-ZERO-LAZY",
+      "optimization": "O2",
+      "prefill": 165,
+      "exit": 0,
+      "expected_hex": "0000000001000000000000000000000003000000000000000000000000000000",
+      "actual_hex": "0100000000000000000000000000000006000000000000000900000004000000",
+      "input_preserved": true
+    },
+    {
+      "mutation": "zero-input-is-missing",
+      "file": "option_native_adapter.rs",
+      "edit": {
+        "old": "len:u64::from(v.is_some())",
+        "new": "len:u64::from(v.value().unwrap_or(0)!=0)"
+      },
+      "source_sha256": "69886a6911cd2fa2a5ecce96cfa140941eafd074399a9322648e00af2398f2e8",
+      "witness": "OI-ARG-ZERO",
+      "optimization": "O0",
+      "prefill": 0,
+      "exit": 0,
+      "expected_hex": "0000000001000000000000000000000002000000000000000000000000000000",
+      "actual_hex": "0000000001000000090000000000000003000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "mutation": "zero-input-is-missing",
+      "file": "option_native_adapter.rs",
+      "edit": {
+        "old": "len:u64::from(v.is_some())",
+        "new": "len:u64::from(v.value().unwrap_or(0)!=0)"
+      },
+      "source_sha256": "69886a6911cd2fa2a5ecce96cfa140941eafd074399a9322648e00af2398f2e8",
+      "witness": "OI-ARG-ZERO",
+      "optimization": "O0",
+      "prefill": 165,
+      "exit": 0,
+      "expected_hex": "0000000001000000000000000000000002000000000000000000000000000000",
+      "actual_hex": "0000000001000000090000000000000003000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "mutation": "zero-input-is-missing",
+      "file": "option_native_adapter.rs",
+      "edit": {
+        "old": "len:u64::from(v.is_some())",
+        "new": "len:u64::from(v.value().unwrap_or(0)!=0)"
+      },
+      "source_sha256": "69886a6911cd2fa2a5ecce96cfa140941eafd074399a9322648e00af2398f2e8",
+      "witness": "OI-ARG-ZERO",
+      "optimization": "O2",
+      "prefill": 0,
+      "exit": 0,
+      "expected_hex": "0000000001000000000000000000000002000000000000000000000000000000",
+      "actual_hex": "0000000001000000090000000000000003000000000000000000000000000000",
+      "input_preserved": true
+    },
+    {
+      "mutation": "zero-input-is-missing",
+      "file": "option_native_adapter.rs",
+      "edit": {
+        "old": "len:u64::from(v.is_some())",
+        "new": "len:u64::from(v.value().unwrap_or(0)!=0)"
+      },
+      "source_sha256": "69886a6911cd2fa2a5ecce96cfa140941eafd074399a9322648e00af2398f2e8",
+      "witness": "OI-ARG-ZERO",
+      "optimization": "O2",
+      "prefill": 165,
+      "exit": 0,
+      "expected_hex": "0000000001000000000000000000000002000000000000000000000000000000",
+      "actual_hex": "0000000001000000090000000000000003000000000000000000000000000000",
+      "input_preserved": true
+    }
+  ],
+  "limits": [
+    "Five concrete native wrong-result defects only",
+    "Not arbitrary-defect, general pointer-safety, or performance proof"
+  ],
+  "review": "Separate same-maintainer pass; all builds succeeded and all witnesses exited normally with full wrong records and unchanged input; no arbitrary-defect proof"
+}

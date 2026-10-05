@@ -56,3 +56,13 @@ This is bounded same-maintainer conformance, not arbitrary-pointer safety,
 independent reproduction, production isolation, full language/application
 acceptance or a measured advantage. Existing profiles and original fixtures
 remain unchanged.
+
+## Native negative controls
+
+Five concrete emitter/adapter mutations were detected in20 complete native
+observations at O0/O2 and both prefills: None marked present, Some marked absent,
+payload used as presence, unconditional fallback, and input zero treated as
+missing. Every witness built successfully and exited normally with a complete
+wrong32-byte output and preserved input. [Exact edits and outputs](../examples/probes/option-native-mutation-observations.json)
+retain the evidence. Original source and frozen expected bytes were unchanged;
+this is a finite same-maintainer pass, not proof against arbitrary defects.
