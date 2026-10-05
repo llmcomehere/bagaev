@@ -116,3 +116,25 @@ expression bounds remain depth 32 and 512 occurrences across all functions.
 Canonical result JSON is followed by one LF; environment output failure must
 not become a truncated language success. No command/path/authority is inferred
 from invocation data.
+
+## Bounded reference implementation
+
+The separate [Rust reference evaluator](../examples/probes/backend/rust/typed_text.rs)
+and [explicit CLI](../examples/probes/backend/rust/text_main.rs) now check and
+evaluate this profile. They do not alter or lower through the old scalar IR.
+The CLI accepts `run --input FILE`, with bounded regular-file input and one
+complete result on stdout. Text values flow through literals, arguments, locals,
+helpers and loops; only Bool/Int64 can leave the entry result.
+
+All 26 [pre-frozen invocations](../examples/probes/typed-text-cases.json) matched
+complete result wires, including work and error pointers. Another 25 old static
+refusals were adapted after implementation; one initial location assumption was
+corrected because the whole-invocation depth gate precedes program checking.
+The original mismatch and the derivation are disclosed in the
+[observations](../examples/probes/typed-text-observations.json). No frozen oracle
+or candidate behavior was changed to repair that adaptation.
+
+Rust 1.93.0 compiled the reference with warnings denied. This is executed
+reference-interpreter evidence and a separate same-maintainer review, not a
+generated native Text backend, independent review, complete conformance,
+performance result or production admission.

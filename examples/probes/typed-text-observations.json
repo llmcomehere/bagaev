@@ -1,0 +1,998 @@
+{
+  "schema": "typed-text-reference-observations/1",
+  "scope": "Bounded Rust reference evaluator for typed Text programs; no generated native Text backend or ABI",
+  "review": "Separate same-maintainer code/semantics pass, not independent review",
+  "source_sha256": {
+    "examples/probes/backend/rust/text_ir.rs": "75defdbec652fcae2035a05b74dff85f16e34480e59e820a5d9cad3a0e6db1aa",
+    "examples/probes/backend/rust/typed_text.rs": "a114ded285b77a3f16b57f97e8a40832dae63463442b15be35a5de700388b15f",
+    "examples/probes/backend/rust/text_main.rs": "3fbbce61e14d85113272b3155abe627157196927added3ddbe1dc166c1025201",
+    "tests/probes/typed_text_contract.py": "f1bb5a6214fa9c7b36b95d3ce38eeb849e0548864de58daafb8b79b5789c61b9"
+  },
+  "build": "Rust 1.93.0 edition 2021 -D warnings",
+  "frozen_cases": {
+    "status": "PASS",
+    "fixture_sha256": "3511b6199d17019139fc1e90d53b9aeb5762aa10c441e6adbfa963dca64e2368",
+    "binary_sha256": "82082c209f8050ba021dc93afccdc330f05fd04b6e54ce2965b35f908f3ff7cc",
+    "observations": [
+      {
+        "id": "TX-ASCII-BYTES",
+        "exit": 0,
+        "exact_wire_match": true,
+        "expected": {
+          "schema": "bagaev-typed-text-result/1",
+          "status": "success",
+          "reason": null,
+          "location": null,
+          "value_type": "Int64",
+          "value": 3,
+          "work": 5
+        },
+        "actual_sha256": "24cee9560d8e86ca74e7b25e3a1afdea17b668012bbc5214ab921c048ba85feb",
+        "stderr": ""
+      },
+      {
+        "id": "TX-EMPTY",
+        "exit": 0,
+        "exact_wire_match": true,
+        "expected": {
+          "schema": "bagaev-typed-text-result/1",
+          "status": "success",
+          "reason": null,
+          "location": null,
+          "value_type": "Int64",
+          "value": 0,
+          "work": 2
+        },
+        "actual_sha256": "80103f658e38d51386e1610220e4538278f7757d391835357a2999fe9b9a94b4",
+        "stderr": ""
+      },
+      {
+        "id": "TX-SUPPLEMENTARY",
+        "exit": 0,
+        "exact_wire_match": true,
+        "expected": {
+          "schema": "bagaev-typed-text-result/1",
+          "status": "success",
+          "reason": null,
+          "location": null,
+          "value_type": "Int64",
+          "value": 1,
+          "work": 6
+        },
+        "actual_sha256": "6b664d4ad78baf6b3112cedb517516bf0b1f82996770cb9653b54eb57d702b8b",
+        "stderr": ""
+      },
+      {
+        "id": "TX-SUPPLEMENTARY-BYTES",
+        "exit": 0,
+        "exact_wire_match": true,
+        "expected": {
+          "schema": "bagaev-typed-text-result/1",
+          "status": "success",
+          "reason": null,
+          "location": null,
+          "value_type": "Int64",
+          "value": 4,
+          "work": 6
+        },
+        "actual_sha256": "8685bde7a79dfcd24fccfbc46589969471eedbfd92a1c909f04b3aae7304e175",
+        "stderr": ""
+      },
+      {
+        "id": "TX-NUL",
+        "exit": 0,
+        "exact_wire_match": true,
+        "expected": {
+          "schema": "bagaev-typed-text-result/1",
+          "status": "success",
+          "reason": null,
+          "location": null,
+          "value_type": "Int64",
+          "value": 3,
+          "work": 5
+        },
+        "actual_sha256": "24cee9560d8e86ca74e7b25e3a1afdea17b668012bbc5214ab921c048ba85feb",
+        "stderr": ""
+      },
+      {
+        "id": "TX-PARAM-EQ",
+        "exit": 0,
+        "exact_wire_match": true,
+        "expected": {
+          "schema": "bagaev-typed-text-result/1",
+          "status": "success",
+          "reason": null,
+          "location": null,
+          "value_type": "Bool",
+          "value": false,
+          "work": 8
+        },
+        "actual_sha256": "66a84482220e44226ab27ef122face3f98a0dff9b662308f782d388617e7962d",
+        "stderr": ""
+      },
+      {
+        "id": "TX-PARAM-EQ-SAME-LENGTH",
+        "exit": 0,
+        "exact_wire_match": true,
+        "expected": {
+          "schema": "bagaev-typed-text-result/1",
+          "status": "success",
+          "reason": null,
+          "location": null,
+          "value_type": "Bool",
+          "value": false,
+          "work": 7
+        },
+        "actual_sha256": "ed49860a4644cd9c1f83c0f780029f885a5103e56af7d46a34fe2abb18e8c7bb",
+        "stderr": ""
+      },
+      {
+        "id": "TX-PARAM-EQ-EQUAL",
+        "exit": 0,
+        "exact_wire_match": true,
+        "expected": {
+          "schema": "bagaev-typed-text-result/1",
+          "status": "success",
+          "reason": null,
+          "location": null,
+          "value_type": "Bool",
+          "value": true,
+          "work": 7
+        },
+        "actual_sha256": "d1874ee77942d08df5bfb54a82b7b893efae9211583f0d62d5ad74237b32cc1b",
+        "stderr": ""
+      },
+      {
+        "id": "TX-SCALAR-ORDER",
+        "exit": 0,
+        "exact_wire_match": true,
+        "expected": {
+          "schema": "bagaev-typed-text-result/1",
+          "status": "success",
+          "reason": null,
+          "location": null,
+          "value_type": "Bool",
+          "value": true,
+          "work": 17
+        },
+        "actual_sha256": "2921f15df07626db1db5c86ca2a2e82e0e51bb3bfe53fa9cffb9fb6764b0c412",
+        "stderr": ""
+      },
+      {
+        "id": "TX-TEXT-LOOP",
+        "exit": 0,
+        "exact_wire_match": true,
+        "expected": {
+          "schema": "bagaev-typed-text-result/1",
+          "status": "success",
+          "reason": null,
+          "location": null,
+          "value_type": "Int64",
+          "value": 1,
+          "work": 6
+        },
+        "actual_sha256": "6b664d4ad78baf6b3112cedb517516bf0b1f82996770cb9653b54eb57d702b8b",
+        "stderr": ""
+      },
+      {
+        "id": "TX-ZERO-TEXT-LOOP",
+        "exit": 0,
+        "exact_wire_match": true,
+        "expected": {
+          "schema": "bagaev-typed-text-result/1",
+          "status": "success",
+          "reason": null,
+          "location": null,
+          "value_type": "Int64",
+          "value": 1,
+          "work": 4
+        },
+        "actual_sha256": "d2810a30b224215228469f736f25ca05d189bcc51573827018694b66ed08a271",
+        "stderr": ""
+      },
+      {
+        "id": "TX-TEXT-HELPER",
+        "exit": 0,
+        "exact_wire_match": true,
+        "expected": {
+          "schema": "bagaev-typed-text-result/1",
+          "status": "success",
+          "reason": null,
+          "location": null,
+          "value_type": "Int64",
+          "value": 1,
+          "work": 5
+        },
+        "actual_sha256": "d3790370efcb9b0c63797d7e23d9aa2fffd10a19473cf1141416d995703b837f",
+        "stderr": ""
+      },
+      {
+        "id": "TX-LAZY",
+        "exit": 0,
+        "exact_wire_match": true,
+        "expected": {
+          "schema": "bagaev-typed-text-result/1",
+          "status": "success",
+          "reason": null,
+          "location": null,
+          "value_type": "Int64",
+          "value": 7,
+          "work": 3
+        },
+        "actual_sha256": "932cc9a22caf4d1c26732d3101c4b64cbbb3abc851bd1084e892a3ce524ff9b1",
+        "stderr": ""
+      },
+      {
+        "id": "TX-WORK-EXACT",
+        "exit": 0,
+        "exact_wire_match": true,
+        "expected": {
+          "schema": "bagaev-typed-text-result/1",
+          "status": "success",
+          "reason": null,
+          "location": null,
+          "value_type": "Int64",
+          "value": 59,
+          "work": 65536
+        },
+        "actual_sha256": "dbe6351a6efb8ee73637b9d9e19df7ae2613df4180b25b64ee97d59f3facd808",
+        "stderr": ""
+      },
+      {
+        "id": "TX-WORK-EXTRA-REFUSAL",
+        "exit": 0,
+        "exact_wire_match": true,
+        "expected": {
+          "schema": "bagaev-typed-text-result/1",
+          "status": "work-limit",
+          "reason": "TX_WORK",
+          "location": "/program/functions/main/body/3/1",
+          "value_type": null,
+          "value": null,
+          "work": 65477
+        },
+        "actual_sha256": "957cd43c246d3fb797adbade256696144b0475ebc26eae899a033c561726170b",
+        "stderr": ""
+      },
+      {
+        "id": "TX-ENTRY-TEXT",
+        "exit": 0,
+        "exact_wire_match": true,
+        "expected": {
+          "schema": "bagaev-typed-text-result/1",
+          "status": "invalid-ir",
+          "reason": "TX_TYPE",
+          "location": "/program/functions/main/result",
+          "value_type": null,
+          "value": null,
+          "work": 0
+        },
+        "actual_sha256": "d39d441378641453aca2c01b29022df13af86465d74424cf16014f22a0473eea",
+        "stderr": ""
+      },
+      {
+        "id": "TX-ARG-TAG",
+        "exit": 0,
+        "exact_wire_match": true,
+        "expected": {
+          "schema": "bagaev-typed-text-result/1",
+          "status": "invalid-ir",
+          "reason": "TX_ARGUMENT",
+          "location": "/arguments/0",
+          "value_type": null,
+          "value": null,
+          "work": 0
+        },
+        "actual_sha256": "69ad9105edda4ecb6847268493328cc236ac8103a2dedcd1cd5d2b9768e58d07",
+        "stderr": ""
+      },
+      {
+        "id": "TX-ARG-SURROGATE",
+        "exit": 0,
+        "exact_wire_match": true,
+        "expected": {
+          "schema": "bagaev-typed-text-result/1",
+          "status": "invalid-ir",
+          "reason": "TX_ARGUMENT",
+          "location": "/arguments/0",
+          "value_type": null,
+          "value": null,
+          "work": 0
+        },
+        "actual_sha256": "69ad9105edda4ecb6847268493328cc236ac8103a2dedcd1cd5d2b9768e58d07",
+        "stderr": ""
+      },
+      {
+        "id": "TX-ARG-SCALAR-BOUND",
+        "exit": 0,
+        "exact_wire_match": true,
+        "expected": {
+          "schema": "bagaev-typed-text-result/1",
+          "status": "invalid-ir",
+          "reason": "TX_ARGUMENT",
+          "location": "/arguments/0",
+          "value_type": null,
+          "value": null,
+          "work": 0
+        },
+        "actual_sha256": "69ad9105edda4ecb6847268493328cc236ac8103a2dedcd1cd5d2b9768e58d07",
+        "stderr": ""
+      },
+      {
+        "id": "TX-LITERAL-BOUND",
+        "exit": 0,
+        "exact_wire_match": true,
+        "expected": {
+          "schema": "bagaev-typed-text-result/1",
+          "status": "invalid-ir",
+          "reason": "TX_BOUNDS",
+          "location": "/program/functions/main/body/1/1",
+          "value_type": null,
+          "value": null,
+          "work": 0
+        },
+        "actual_sha256": "7ab6fe9c50ae8693d9b1328807988a7ce55a04d04b211cf07d20cfebed541f9d",
+        "stderr": ""
+      },
+      {
+        "id": "TX-LITERAL-SURROGATE",
+        "exit": 0,
+        "exact_wire_match": true,
+        "expected": {
+          "schema": "bagaev-typed-text-result/1",
+          "status": "invalid-ir",
+          "reason": "TX_SHAPE",
+          "location": "/program/functions/main/body/1/1",
+          "value_type": null,
+          "value": null,
+          "work": 0
+        },
+        "actual_sha256": "13b290ef0487a29a440f89df6031441696d519429c611b293787fab266e101bd",
+        "stderr": ""
+      },
+      {
+        "id": "TX-UNTAKEN-TYPE",
+        "exit": 0,
+        "exact_wire_match": true,
+        "expected": {
+          "schema": "bagaev-typed-text-result/1",
+          "status": "invalid-ir",
+          "reason": "TX_TYPE",
+          "location": "/program/functions/main/body/3/1",
+          "value_type": null,
+          "value": null,
+          "work": 0
+        },
+        "actual_sha256": "4eb1fa663c3e3a5dc4d11506b1c6303c3eb87b7bdaffe659e9e413c8a5d64402",
+        "stderr": ""
+      },
+      {
+        "id": "TX-SCALAR-PARITY",
+        "exit": 0,
+        "exact_wire_match": true,
+        "expected": {
+          "schema": "bagaev-typed-text-result/1",
+          "status": "success",
+          "reason": null,
+          "location": null,
+          "value_type": "Int64",
+          "value": 3,
+          "work": 3
+        },
+        "actual_sha256": "f155fe1bdacbc565f4405d8b63dfdd40b3e7d9191045e5eb07937842d63bd2bd",
+        "stderr": ""
+      },
+      {
+        "id": "TX-LEFT-OVERFLOW",
+        "exit": 0,
+        "exact_wire_match": true,
+        "expected": {
+          "schema": "bagaev-typed-text-result/1",
+          "status": "integer-overflow",
+          "reason": "TX_OVERFLOW",
+          "location": "/program/functions/main/body/1",
+          "value_type": null,
+          "value": null,
+          "work": 4
+        },
+        "actual_sha256": "b00ca62d1781f6998b842cd0014340cfe9363aaa6624301f7e9032c60fca5924",
+        "stderr": ""
+      },
+      {
+        "id": "TX-COMPARE-WORK-EXACT",
+        "exit": 0,
+        "exact_wire_match": true,
+        "expected": {
+          "schema": "bagaev-typed-text-result/1",
+          "status": "success",
+          "reason": null,
+          "location": null,
+          "value_type": "Bool",
+          "value": false,
+          "work": 65536
+        },
+        "actual_sha256": "b49a9dbb18778295718a36ae257d52436a2a353fe9f8c8d0dbceef8f5b607aea",
+        "stderr": ""
+      },
+      {
+        "id": "TX-COMPARE-WORK-REFUSAL",
+        "exit": 0,
+        "exact_wire_match": true,
+        "expected": {
+          "schema": "bagaev-typed-text-result/1",
+          "status": "work-limit",
+          "reason": "TX_WORK",
+          "location": "/program/functions/main/body/3",
+          "value_type": null,
+          "value": null,
+          "work": 65508
+        },
+        "actual_sha256": "fde0785e9b80ebd28524f83e1e5c68d54b208773c6b5a7de0bfcd81ed49edad1",
+        "stderr": ""
+      }
+    ],
+    "scope": "Typed-Text reference evaluator only; not generated native Text code or performance evidence"
+  },
+  "adapted_static_regressions": {
+    "status": "PASS",
+    "cases": 25,
+    "observations": [
+      {
+        "id": "F-VERSION",
+        "matched": true,
+        "expected": {
+          "schema": "bagaev-typed-text-result/1",
+          "status": "invalid-ir",
+          "reason": "TX_VERSION",
+          "location": "/program/schema",
+          "value_type": null,
+          "value": null,
+          "work": 0
+        },
+        "actual": {
+          "location": "/program/schema",
+          "reason": "TX_VERSION",
+          "schema": "bagaev-typed-text-result/1",
+          "status": "invalid-ir",
+          "value": null,
+          "value_type": null,
+          "work": 0
+        }
+      },
+      {
+        "id": "F-EXTRA",
+        "matched": true,
+        "expected": {
+          "schema": "bagaev-typed-text-result/1",
+          "status": "invalid-ir",
+          "reason": "TX_SHAPE",
+          "location": "/program",
+          "value_type": null,
+          "value": null,
+          "work": 0
+        },
+        "actual": {
+          "location": "/program",
+          "reason": "TX_SHAPE",
+          "schema": "bagaev-typed-text-result/1",
+          "status": "invalid-ir",
+          "value": null,
+          "value_type": null,
+          "work": 0
+        }
+      },
+      {
+        "id": "F-OLD-ANNOTATION",
+        "matched": true,
+        "expected": {
+          "schema": "bagaev-typed-text-result/1",
+          "status": "invalid-ir",
+          "reason": "TX_SHAPE",
+          "location": "/program/functions/main/body",
+          "value_type": null,
+          "value": null,
+          "work": 0
+        },
+        "actual": {
+          "location": "/program/functions/main/body",
+          "reason": "TX_SHAPE",
+          "schema": "bagaev-typed-text-result/1",
+          "status": "invalid-ir",
+          "value": null,
+          "value_type": null,
+          "work": 0
+        }
+      },
+      {
+        "id": "F-SHADOW",
+        "matched": true,
+        "expected": {
+          "schema": "bagaev-typed-text-result/1",
+          "status": "invalid-ir",
+          "reason": "TX_SHAPE",
+          "location": "/program/functions/main/body/1",
+          "value_type": null,
+          "value": null,
+          "work": 0
+        },
+        "actual": {
+          "location": "/program/functions/main/body/1",
+          "reason": "TX_SHAPE",
+          "schema": "bagaev-typed-text-result/1",
+          "status": "invalid-ir",
+          "value": null,
+          "value_type": null,
+          "work": 0
+        }
+      },
+      {
+        "id": "F-LOOP-DUP",
+        "matched": true,
+        "expected": {
+          "schema": "bagaev-typed-text-result/1",
+          "status": "invalid-ir",
+          "reason": "TX_SHAPE",
+          "location": "/program/functions/main/body/3",
+          "value_type": null,
+          "value": null,
+          "work": 0
+        },
+        "actual": {
+          "location": "/program/functions/main/body/3",
+          "reason": "TX_SHAPE",
+          "schema": "bagaev-typed-text-result/1",
+          "status": "invalid-ir",
+          "value": null,
+          "value_type": null,
+          "work": 0
+        }
+      },
+      {
+        "id": "F-COUNT",
+        "matched": true,
+        "expected": {
+          "schema": "bagaev-typed-text-result/1",
+          "status": "invalid-ir",
+          "reason": "TX_BOUNDS",
+          "location": "/program/functions/main/body/1",
+          "value_type": null,
+          "value": null,
+          "work": 0
+        },
+        "actual": {
+          "location": "/program/functions/main/body/1",
+          "reason": "TX_BOUNDS",
+          "schema": "bagaev-typed-text-result/1",
+          "status": "invalid-ir",
+          "value": null,
+          "value_type": null,
+          "work": 0
+        }
+      },
+      {
+        "id": "F-INT-BOUND",
+        "matched": true,
+        "expected": {
+          "schema": "bagaev-typed-text-result/1",
+          "status": "invalid-ir",
+          "reason": "TX_BOUNDS",
+          "location": "/program/functions/main/body/1",
+          "value_type": null,
+          "value": null,
+          "work": 0
+        },
+        "actual": {
+          "location": "/program/functions/main/body/1",
+          "reason": "TX_BOUNDS",
+          "schema": "bagaev-typed-text-result/1",
+          "status": "invalid-ir",
+          "value": null,
+          "value_type": null,
+          "work": 0
+        }
+      },
+      {
+        "id": "F-SELF-BINDING",
+        "matched": true,
+        "expected": {
+          "schema": "bagaev-typed-text-result/1",
+          "status": "invalid-ir",
+          "reason": "TX_REFERENCE",
+          "location": "/program/functions/main/body/2",
+          "value_type": null,
+          "value": null,
+          "work": 0
+        },
+        "actual": {
+          "location": "/program/functions/main/body/2",
+          "reason": "TX_REFERENCE",
+          "schema": "bagaev-typed-text-result/1",
+          "status": "invalid-ir",
+          "value": null,
+          "value_type": null,
+          "work": 0
+        }
+      },
+      {
+        "id": "F-ARG-IS-NOT-LOCAL",
+        "matched": true,
+        "expected": {
+          "schema": "bagaev-typed-text-result/1",
+          "status": "invalid-ir",
+          "reason": "TX_REFERENCE",
+          "location": "/program/functions/main/body/3",
+          "value_type": null,
+          "value": null,
+          "work": 0
+        },
+        "actual": {
+          "location": "/program/functions/main/body/3",
+          "reason": "TX_REFERENCE",
+          "schema": "bagaev-typed-text-result/1",
+          "status": "invalid-ir",
+          "value": null,
+          "value_type": null,
+          "work": 0
+        }
+      },
+      {
+        "id": "F-LOOP-INITIAL-SCOPE",
+        "matched": true,
+        "expected": {
+          "schema": "bagaev-typed-text-result/1",
+          "status": "invalid-ir",
+          "reason": "TX_REFERENCE",
+          "location": "/program/functions/main/body/4",
+          "value_type": null,
+          "value": null,
+          "work": 0
+        },
+        "actual": {
+          "location": "/program/functions/main/body/4",
+          "reason": "TX_REFERENCE",
+          "schema": "bagaev-typed-text-result/1",
+          "status": "invalid-ir",
+          "value": null,
+          "value_type": null,
+          "work": 0
+        }
+      },
+      {
+        "id": "F-LOOP-BODY-TYPE",
+        "matched": true,
+        "expected": {
+          "schema": "bagaev-typed-text-result/1",
+          "status": "invalid-ir",
+          "reason": "TX_TYPE",
+          "location": "/program/functions/main/body/5",
+          "value_type": null,
+          "value": null,
+          "work": 0
+        },
+        "actual": {
+          "location": "/program/functions/main/body/5",
+          "reason": "TX_TYPE",
+          "schema": "bagaev-typed-text-result/1",
+          "status": "invalid-ir",
+          "value": null,
+          "value_type": null,
+          "work": 0
+        }
+      },
+      {
+        "id": "F-RETURN-TYPE",
+        "matched": true,
+        "expected": {
+          "schema": "bagaev-typed-text-result/1",
+          "status": "invalid-ir",
+          "reason": "TX_TYPE",
+          "location": "/program/functions/main/body",
+          "value_type": null,
+          "value": null,
+          "work": 0
+        },
+        "actual": {
+          "location": "/program/functions/main/body",
+          "reason": "TX_TYPE",
+          "schema": "bagaev-typed-text-result/1",
+          "status": "invalid-ir",
+          "value": null,
+          "value_type": null,
+          "work": 0
+        }
+      },
+      {
+        "id": "F-LEFT-TYPE-FIRST",
+        "matched": true,
+        "expected": {
+          "schema": "bagaev-typed-text-result/1",
+          "status": "invalid-ir",
+          "reason": "TX_TYPE",
+          "location": "/program/functions/main/body/1",
+          "value_type": null,
+          "value": null,
+          "work": 0
+        },
+        "actual": {
+          "location": "/program/functions/main/body/1",
+          "reason": "TX_TYPE",
+          "schema": "bagaev-typed-text-result/1",
+          "status": "invalid-ir",
+          "value": null,
+          "value_type": null,
+          "work": 0
+        }
+      },
+      {
+        "id": "F-UNTAKEN-TYPE",
+        "matched": true,
+        "expected": {
+          "schema": "bagaev-typed-text-result/1",
+          "status": "invalid-ir",
+          "reason": "TX_TYPE",
+          "location": "/program/functions/main/body/3",
+          "value_type": null,
+          "value": null,
+          "work": 0
+        },
+        "actual": {
+          "location": "/program/functions/main/body/3",
+          "reason": "TX_TYPE",
+          "schema": "bagaev-typed-text-result/1",
+          "status": "invalid-ir",
+          "value": null,
+          "value_type": null,
+          "work": 0
+        }
+      },
+      {
+        "id": "F-SHAPE-BEFORE-REFERENCE",
+        "matched": true,
+        "expected": {
+          "schema": "bagaev-typed-text-result/1",
+          "status": "invalid-ir",
+          "reason": "TX_SHAPE",
+          "location": "/program/functions/main/body/2",
+          "value_type": null,
+          "value": null,
+          "work": 0
+        },
+        "actual": {
+          "location": "/program/functions/main/body/2",
+          "reason": "TX_SHAPE",
+          "schema": "bagaev-typed-text-result/1",
+          "status": "invalid-ir",
+          "value": null,
+          "value_type": null,
+          "work": 0
+        }
+      },
+      {
+        "id": "F-REFERENCE-BEFORE-TYPE",
+        "matched": true,
+        "expected": {
+          "schema": "bagaev-typed-text-result/1",
+          "status": "invalid-ir",
+          "reason": "TX_REFERENCE",
+          "location": "/program/functions/main/body/2",
+          "value_type": null,
+          "value": null,
+          "work": 0
+        },
+        "actual": {
+          "location": "/program/functions/main/body/2",
+          "reason": "TX_REFERENCE",
+          "schema": "bagaev-typed-text-result/1",
+          "status": "invalid-ir",
+          "value": null,
+          "value_type": null,
+          "work": 0
+        }
+      },
+      {
+        "id": "F-CYCLE",
+        "matched": true,
+        "expected": {
+          "schema": "bagaev-typed-text-result/1",
+          "status": "invalid-ir",
+          "reason": "TX_CYCLE",
+          "location": "/program/functions/main/body",
+          "value_type": null,
+          "value": null,
+          "work": 0
+        },
+        "actual": {
+          "location": "/program/functions/main/body",
+          "reason": "TX_CYCLE",
+          "schema": "bagaev-typed-text-result/1",
+          "status": "invalid-ir",
+          "value": null,
+          "value_type": null,
+          "work": 0
+        }
+      },
+      {
+        "id": "B-DEPTH-33",
+        "matched": true,
+        "expected": {
+          "schema": "bagaev-typed-text-result/1",
+          "status": "invalid-ir",
+          "reason": "TX_BOUNDS",
+          "location": "/program/functions/main/body/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1",
+          "value_type": null,
+          "value": null,
+          "work": 0
+        },
+        "actual": {
+          "location": "/program/functions/main/body/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1",
+          "reason": "TX_BOUNDS",
+          "schema": "bagaev-typed-text-result/1",
+          "status": "invalid-ir",
+          "value": null,
+          "value_type": null,
+          "work": 0
+        }
+      },
+      {
+        "id": "B-NODES-513",
+        "matched": true,
+        "expected": {
+          "schema": "bagaev-typed-text-result/1",
+          "status": "invalid-ir",
+          "reason": "TX_BOUNDS",
+          "location": "/program/functions/H/body/1/1/2/2/2/2/2",
+          "value_type": null,
+          "value": null,
+          "work": 0
+        },
+        "actual": {
+          "location": "/program/functions/H/body/1/1/2/2/2/2/2",
+          "reason": "TX_BOUNDS",
+          "schema": "bagaev-typed-text-result/1",
+          "status": "invalid-ir",
+          "value": null,
+          "value_type": null,
+          "work": 0
+        }
+      },
+      {
+        "id": "B-FUNCTIONS-9",
+        "matched": true,
+        "expected": {
+          "schema": "bagaev-typed-text-result/1",
+          "status": "invalid-ir",
+          "reason": "TX_BOUNDS",
+          "location": "/program/functions",
+          "value_type": null,
+          "value": null,
+          "work": 0
+        },
+        "actual": {
+          "location": "/program/functions",
+          "reason": "TX_BOUNDS",
+          "schema": "bagaev-typed-text-result/1",
+          "status": "invalid-ir",
+          "value": null,
+          "value_type": null,
+          "work": 0
+        }
+      },
+      {
+        "id": "B-PARAMS-9",
+        "matched": true,
+        "expected": {
+          "schema": "bagaev-typed-text-result/1",
+          "status": "invalid-ir",
+          "reason": "TX_BOUNDS",
+          "location": "/program/functions/main/params",
+          "value_type": null,
+          "value": null,
+          "work": 0
+        },
+        "actual": {
+          "location": "/program/functions/main/params",
+          "reason": "TX_BOUNDS",
+          "schema": "bagaev-typed-text-result/1",
+          "status": "invalid-ir",
+          "value": null,
+          "value_type": null,
+          "work": 0
+        }
+      },
+      {
+        "id": "B-JSON-DEPTH",
+        "matched": true,
+        "expected": {
+          "schema": "bagaev-typed-text-result/1",
+          "status": "invalid-ir",
+          "reason": "TX_BOUNDS",
+          "location": "/program/functions/main/body/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0",
+          "value_type": null,
+          "value": null,
+          "work": 0
+        },
+        "actual": {
+          "location": "/program/functions/main/body/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0",
+          "reason": "TX_BOUNDS",
+          "schema": "bagaev-typed-text-result/1",
+          "status": "invalid-ir",
+          "value": null,
+          "value_type": null,
+          "work": 0
+        }
+      },
+      {
+        "id": "B-JSON-VALUES",
+        "matched": true,
+        "expected": {
+          "schema": "bagaev-typed-text-result/1",
+          "status": "invalid-ir",
+          "reason": "TX_BOUNDS",
+          "location": "/program/functions/main/body/8187",
+          "value_type": null,
+          "value": null,
+          "work": 0
+        },
+        "actual": {
+          "location": "/program/functions/main/body/8187",
+          "reason": "TX_BOUNDS",
+          "schema": "bagaev-typed-text-result/1",
+          "status": "invalid-ir",
+          "value": null,
+          "value_type": null,
+          "work": 0
+        }
+      },
+      {
+        "id": "B-CYCLE-FIRST-BACK-EDGE",
+        "matched": true,
+        "expected": {
+          "schema": "bagaev-typed-text-result/1",
+          "status": "invalid-ir",
+          "reason": "TX_CYCLE",
+          "location": "/program/functions/B/body",
+          "value_type": null,
+          "value": null,
+          "work": 0
+        },
+        "actual": {
+          "location": "/program/functions/B/body",
+          "reason": "TX_CYCLE",
+          "schema": "bagaev-typed-text-result/1",
+          "status": "invalid-ir",
+          "value": null,
+          "value_type": null,
+          "work": 0
+        }
+      },
+      {
+        "id": "B-REFERENCE-BEFORE-CYCLE",
+        "matched": true,
+        "expected": {
+          "schema": "bagaev-typed-text-result/1",
+          "status": "invalid-ir",
+          "reason": "TX_REFERENCE",
+          "location": "/program/functions/A/body/1",
+          "value_type": null,
+          "value": null,
+          "work": 0
+        },
+        "actual": {
+          "location": "/program/functions/A/body/1",
+          "reason": "TX_REFERENCE",
+          "schema": "bagaev-typed-text-result/1",
+          "status": "invalid-ir",
+          "value": null,
+          "value_type": null,
+          "work": 0
+        }
+      }
+    ]
+  },
+  "adaptation_correction": "R1 naively prefixed every standalone source location. B-JSON-DEPTH reaches the whole-invocation depth gate first, per the frozen contract. At invocation root1, program2, functions3, main4, body5, 128 nested index0 components reach forbidden depth133. R2 uses this independently derived location. Original fixtures and candidate unchanged; R1 mismatch retained. These are post-implementation adapted regression cases, not new independent pre-implementation source oracles.",
+  "limits": [
+    "26 frozen invocations and 25 adapted static refusals are finite coverage",
+    "No native Text code generation, ABI, performance comparison or production isolation",
+    "Text export/containers/allocation are excluded from this profile"
+  ]
+}
