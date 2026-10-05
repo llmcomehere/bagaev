@@ -38,3 +38,28 @@ passed: 37 module records and 7 exact source/transport refusals. The original
 returned nonzero with no domain output. [Observations](../examples/probes/text-llvm-envelope-observations.json)
 record the bounded checks. Separate same-maintainer review, no independent
 semantic proof, new native execution or performance result from envelope tests.
+
+## Small CLI example
+
+Review the source and arrange an admitted Rust build/run profile before using
+these commands. From the repository root, with Rust 1.93.0 and an existing
+owned `target` directory:
+
+```sh
+rustc --edition=2021 -D warnings examples/probes/backend/rust/text_main.rs -o target/typed-text
+target/typed-text run --input examples/probes/text-example-invocation.json
+target/typed-text emit-llvm --input examples/probes/text-example-program.json
+```
+
+The [invocation](../examples/probes/text-example-invocation.json) computes the
+UTF-8 byte length of `Hello`. Its complete result is:
+
+```json
+{"location":null,"reason":null,"schema":"bagaev-typed-text-result/1","status":"success","value":5,"value_type":"Int64","work":7}
+```
+
+Work7 is one length-expression tick, one literal tick and five literal bytes;
+it is not time. The [program-only input](../examples/probes/text-example-program.json)
+produces a `kind=module` envelope with `execution_admission=false`. Printing that
+envelope does not execute the program or invoke LLVM. Both example commands were
+checked in the bounded profile; the example is not an unqualified native runner.

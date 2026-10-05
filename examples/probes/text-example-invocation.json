@@ -1,0 +1,21 @@
+{
+  "schema": "bagaev-typed-text-invocation/1",
+  "program": {
+    "schema": "bagaev-typed-text/1",
+    "entry": "main",
+    "functions": {
+      "main": {
+        "params": [],
+        "result": "Int64",
+        "body": [
+          "text.bytes",
+          [
+            "text",
+            "Hello"
+          ]
+        ]
+      }
+    }
+  },
+  "arguments": []
+}
