@@ -1,0 +1,478 @@
+{
+  "status": "PASS",
+  "observations": [
+    {
+      "id": "TX-ASCII-BYTES",
+      "optimization": "O0",
+      "prefill": 0,
+      "matched": true
+    },
+    {
+      "id": "TX-ASCII-BYTES",
+      "optimization": "O0",
+      "prefill": 165,
+      "matched": true
+    },
+    {
+      "id": "TX-ASCII-BYTES",
+      "optimization": "O2",
+      "prefill": 0,
+      "matched": true
+    },
+    {
+      "id": "TX-ASCII-BYTES",
+      "optimization": "O2",
+      "prefill": 165,
+      "matched": true
+    },
+    {
+      "id": "TX-EMPTY",
+      "optimization": "O0",
+      "prefill": 0,
+      "matched": true
+    },
+    {
+      "id": "TX-EMPTY",
+      "optimization": "O0",
+      "prefill": 165,
+      "matched": true
+    },
+    {
+      "id": "TX-EMPTY",
+      "optimization": "O2",
+      "prefill": 0,
+      "matched": true
+    },
+    {
+      "id": "TX-EMPTY",
+      "optimization": "O2",
+      "prefill": 165,
+      "matched": true
+    },
+    {
+      "id": "TX-SUPPLEMENTARY",
+      "optimization": "O0",
+      "prefill": 0,
+      "matched": true
+    },
+    {
+      "id": "TX-SUPPLEMENTARY",
+      "optimization": "O0",
+      "prefill": 165,
+      "matched": true
+    },
+    {
+      "id": "TX-SUPPLEMENTARY",
+      "optimization": "O2",
+      "prefill": 0,
+      "matched": true
+    },
+    {
+      "id": "TX-SUPPLEMENTARY",
+      "optimization": "O2",
+      "prefill": 165,
+      "matched": true
+    },
+    {
+      "id": "TX-SUPPLEMENTARY-BYTES",
+      "optimization": "O0",
+      "prefill": 0,
+      "matched": true
+    },
+    {
+      "id": "TX-SUPPLEMENTARY-BYTES",
+      "optimization": "O0",
+      "prefill": 165,
+      "matched": true
+    },
+    {
+      "id": "TX-SUPPLEMENTARY-BYTES",
+      "optimization": "O2",
+      "prefill": 0,
+      "matched": true
+    },
+    {
+      "id": "TX-SUPPLEMENTARY-BYTES",
+      "optimization": "O2",
+      "prefill": 165,
+      "matched": true
+    },
+    {
+      "id": "TX-NUL",
+      "optimization": "O0",
+      "prefill": 0,
+      "matched": true
+    },
+    {
+      "id": "TX-NUL",
+      "optimization": "O0",
+      "prefill": 165,
+      "matched": true
+    },
+    {
+      "id": "TX-NUL",
+      "optimization": "O2",
+      "prefill": 0,
+      "matched": true
+    },
+    {
+      "id": "TX-NUL",
+      "optimization": "O2",
+      "prefill": 165,
+      "matched": true
+    },
+    {
+      "id": "TX-PARAM-EQ",
+      "optimization": "O0",
+      "prefill": 0,
+      "matched": true
+    },
+    {
+      "id": "TX-PARAM-EQ",
+      "optimization": "O0",
+      "prefill": 165,
+      "matched": true
+    },
+    {
+      "id": "TX-PARAM-EQ",
+      "optimization": "O2",
+      "prefill": 0,
+      "matched": true
+    },
+    {
+      "id": "TX-PARAM-EQ",
+      "optimization": "O2",
+      "prefill": 165,
+      "matched": true
+    },
+    {
+      "id": "TX-PARAM-EQ-SAME-LENGTH",
+      "optimization": "O0",
+      "prefill": 0,
+      "matched": true
+    },
+    {
+      "id": "TX-PARAM-EQ-SAME-LENGTH",
+      "optimization": "O0",
+      "prefill": 165,
+      "matched": true
+    },
+    {
+      "id": "TX-PARAM-EQ-SAME-LENGTH",
+      "optimization": "O2",
+      "prefill": 0,
+      "matched": true
+    },
+    {
+      "id": "TX-PARAM-EQ-SAME-LENGTH",
+      "optimization": "O2",
+      "prefill": 165,
+      "matched": true
+    },
+    {
+      "id": "TX-PARAM-EQ-EQUAL",
+      "optimization": "O0",
+      "prefill": 0,
+      "matched": true
+    },
+    {
+      "id": "TX-PARAM-EQ-EQUAL",
+      "optimization": "O0",
+      "prefill": 165,
+      "matched": true
+    },
+    {
+      "id": "TX-PARAM-EQ-EQUAL",
+      "optimization": "O2",
+      "prefill": 0,
+      "matched": true
+    },
+    {
+      "id": "TX-PARAM-EQ-EQUAL",
+      "optimization": "O2",
+      "prefill": 165,
+      "matched": true
+    },
+    {
+      "id": "TX-SCALAR-ORDER",
+      "optimization": "O0",
+      "prefill": 0,
+      "matched": true
+    },
+    {
+      "id": "TX-SCALAR-ORDER",
+      "optimization": "O0",
+      "prefill": 165,
+      "matched": true
+    },
+    {
+      "id": "TX-SCALAR-ORDER",
+      "optimization": "O2",
+      "prefill": 0,
+      "matched": true
+    },
+    {
+      "id": "TX-SCALAR-ORDER",
+      "optimization": "O2",
+      "prefill": 165,
+      "matched": true
+    },
+    {
+      "id": "TX-TEXT-LOOP",
+      "optimization": "O0",
+      "prefill": 0,
+      "matched": true
+    },
+    {
+      "id": "TX-TEXT-LOOP",
+      "optimization": "O0",
+      "prefill": 165,
+      "matched": true
+    },
+    {
+      "id": "TX-TEXT-LOOP",
+      "optimization": "O2",
+      "prefill": 0,
+      "matched": true
+    },
+    {
+      "id": "TX-TEXT-LOOP",
+      "optimization": "O2",
+      "prefill": 165,
+      "matched": true
+    },
+    {
+      "id": "TX-ZERO-TEXT-LOOP",
+      "optimization": "O0",
+      "prefill": 0,
+      "matched": true
+    },
+    {
+      "id": "TX-ZERO-TEXT-LOOP",
+      "optimization": "O0",
+      "prefill": 165,
+      "matched": true
+    },
+    {
+      "id": "TX-ZERO-TEXT-LOOP",
+      "optimization": "O2",
+      "prefill": 0,
+      "matched": true
+    },
+    {
+      "id": "TX-ZERO-TEXT-LOOP",
+      "optimization": "O2",
+      "prefill": 165,
+      "matched": true
+    },
+    {
+      "id": "TX-TEXT-HELPER",
+      "optimization": "O0",
+      "prefill": 0,
+      "matched": true
+    },
+    {
+      "id": "TX-TEXT-HELPER",
+      "optimization": "O0",
+      "prefill": 165,
+      "matched": true
+    },
+    {
+      "id": "TX-TEXT-HELPER",
+      "optimization": "O2",
+      "prefill": 0,
+      "matched": true
+    },
+    {
+      "id": "TX-TEXT-HELPER",
+      "optimization": "O2",
+      "prefill": 165,
+      "matched": true
+    },
+    {
+      "id": "TX-LAZY",
+      "optimization": "O0",
+      "prefill": 0,
+      "matched": true
+    },
+    {
+      "id": "TX-LAZY",
+      "optimization": "O0",
+      "prefill": 165,
+      "matched": true
+    },
+    {
+      "id": "TX-LAZY",
+      "optimization": "O2",
+      "prefill": 0,
+      "matched": true
+    },
+    {
+      "id": "TX-LAZY",
+      "optimization": "O2",
+      "prefill": 165,
+      "matched": true
+    },
+    {
+      "id": "TX-WORK-EXACT",
+      "optimization": "O0",
+      "prefill": 0,
+      "matched": true
+    },
+    {
+      "id": "TX-WORK-EXACT",
+      "optimization": "O0",
+      "prefill": 165,
+      "matched": true
+    },
+    {
+      "id": "TX-WORK-EXACT",
+      "optimization": "O2",
+      "prefill": 0,
+      "matched": true
+    },
+    {
+      "id": "TX-WORK-EXACT",
+      "optimization": "O2",
+      "prefill": 165,
+      "matched": true
+    },
+    {
+      "id": "TX-WORK-EXTRA-REFUSAL",
+      "optimization": "O0",
+      "prefill": 0,
+      "matched": true
+    },
+    {
+      "id": "TX-WORK-EXTRA-REFUSAL",
+      "optimization": "O0",
+      "prefill": 165,
+      "matched": true
+    },
+    {
+      "id": "TX-WORK-EXTRA-REFUSAL",
+      "optimization": "O2",
+      "prefill": 0,
+      "matched": true
+    },
+    {
+      "id": "TX-WORK-EXTRA-REFUSAL",
+      "optimization": "O2",
+      "prefill": 165,
+      "matched": true
+    },
+    {
+      "id": "TX-SCALAR-PARITY",
+      "optimization": "O0",
+      "prefill": 0,
+      "matched": true
+    },
+    {
+      "id": "TX-SCALAR-PARITY",
+      "optimization": "O0",
+      "prefill": 165,
+      "matched": true
+    },
+    {
+      "id": "TX-SCALAR-PARITY",
+      "optimization": "O2",
+      "prefill": 0,
+      "matched": true
+    },
+    {
+      "id": "TX-SCALAR-PARITY",
+      "optimization": "O2",
+      "prefill": 165,
+      "matched": true
+    },
+    {
+      "id": "TX-LEFT-OVERFLOW",
+      "optimization": "O0",
+      "prefill": 0,
+      "matched": true
+    },
+    {
+      "id": "TX-LEFT-OVERFLOW",
+      "optimization": "O0",
+      "prefill": 165,
+      "matched": true
+    },
+    {
+      "id": "TX-LEFT-OVERFLOW",
+      "optimization": "O2",
+      "prefill": 0,
+      "matched": true
+    },
+    {
+      "id": "TX-LEFT-OVERFLOW",
+      "optimization": "O2",
+      "prefill": 165,
+      "matched": true
+    },
+    {
+      "id": "TX-COMPARE-WORK-EXACT",
+      "optimization": "O0",
+      "prefill": 0,
+      "matched": true
+    },
+    {
+      "id": "TX-COMPARE-WORK-EXACT",
+      "optimization": "O0",
+      "prefill": 165,
+      "matched": true
+    },
+    {
+      "id": "TX-COMPARE-WORK-EXACT",
+      "optimization": "O2",
+      "prefill": 0,
+      "matched": true
+    },
+    {
+      "id": "TX-COMPARE-WORK-EXACT",
+      "optimization": "O2",
+      "prefill": 165,
+      "matched": true
+    },
+    {
+      "id": "TX-COMPARE-WORK-REFUSAL",
+      "optimization": "O0",
+      "prefill": 0,
+      "matched": true
+    },
+    {
+      "id": "TX-COMPARE-WORK-REFUSAL",
+      "optimization": "O0",
+      "prefill": 165,
+      "matched": true
+    },
+    {
+      "id": "TX-COMPARE-WORK-REFUSAL",
+      "optimization": "O2",
+      "prefill": 0,
+      "matched": true
+    },
+    {
+      "id": "TX-COMPARE-WORK-REFUSAL",
+      "optimization": "O2",
+      "prefill": 165,
+      "matched": true
+    }
+  ],
+  "scope": "Outer entry template: 19 frozen program cases, O0/O2 objects reused, two output prefills, unchanged full input",
+  "admission": {
+    "cases": 25,
+    "test_functions": 1,
+    "status": "PASS",
+    "fixture_sha256": "58863f3a65e9f6065b3608deac10626cbe9a2a2d49487d05df25ceb9b06cb5c9",
+    "refused_dispatch_calls": 0,
+    "accepted_dispatch_calls": 1,
+    "witness": "Fixed counting test kernel, not language evaluation"
+  },
+  "review": "Separate same-maintainer source and safety-precondition pass, no independent review",
+  "limits": [
+    "Caller-owned valid disjoint fixed buffers required",
+    "No adversarial pointer validity or arbitrary kernel safety proof",
+    "Existing LLVM objects reused, not new compiler observations",
+    "No performance or production admission"
+  ]
+}
