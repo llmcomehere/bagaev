@@ -1,0 +1,74 @@
+{
+  "fixture_sha256": "f808f9182f4df3e4a06d657572c11a25a9401886a9fb183e55ce105acdeba09d",
+  "literal_tests": 15,
+  "status": "PASS",
+  "checks": [
+    "exact sorted unique indices and first-occurrence byte pointers",
+    "unchanged full owned input",
+    "output survives original descriptor array drop",
+    "length/aggregate bounds and precedence",
+    "NUL, supplementary order, non-normalization"
+  ],
+  "mutations": [
+    {
+      "mutation": "count-too-strict",
+      "old": "items.len()>ITEM_LIMIT",
+      "new": "items.len()>ITEM_LIMIT-1",
+      "witness": "count_max",
+      "source_sha256": "2e2406c8f4a2a932369cadd324b84bd3f679833d59f530d007b951bd5f449964",
+      "test_exit": 101,
+      "detected": true
+    },
+    {
+      "mutation": "byte-bound-too-loose",
+      "old": "total>BYTE_LIMIT",
+      "new": "total>BYTE_LIMIT+1024",
+      "witness": "bytes_over",
+      "source_sha256": "8fc73d0382c2f6ed0639f6ad4b2ffd1b91f8c547fee1e46dd928dfae5fbf060d",
+      "test_exit": 101,
+      "detected": true
+    },
+    {
+      "mutation": "duplicate-is-increasing",
+      "old": "pair[0].compare(pair[1])<0",
+      "new": "pair[0].compare(pair[1])<=0",
+      "witness": "zero_bytes_max",
+      "source_sha256": "ddc75ee195c5182afad58a29f3b728ed1f0d646bb8e15fa615d552e7c7e47a4d",
+      "test_exit": 101,
+      "detected": true
+    },
+    {
+      "mutation": "reverse-sort",
+      "old": "if order>0{break;}",
+      "new": "if order<0{break;}",
+      "witness": "reversed",
+      "source_sha256": "e13acdcd06e3b3505cf651d88b714c24841947df58e2da624022dc612f2fce86",
+      "test_exit": 101,
+      "detected": true
+    },
+    {
+      "mutation": "retain-duplicates",
+      "old": "if order==0{duplicate=true;break;}",
+      "new": "if order==0{duplicate=false;break;}",
+      "witness": "duplicates",
+      "source_sha256": "7f17d6b1100e5984e7bda1493cd8b123f95ee8b4024fff8f0a7599c359d0340d",
+      "test_exit": 101,
+      "detected": true
+    },
+    {
+      "mutation": "last-occurrence-view",
+      "old": "if order==0{duplicate=true;break;}",
+      "new": "if order==0{out.items[at]=Some(item);duplicate=true;break;}",
+      "witness": "duplicates",
+      "source_sha256": "032fd9c6c2ed2ad2476dc3d101837acc9e7f9f8906a1fcc656b1e297036a28da",
+      "test_exit": 101,
+      "detected": true
+    }
+  ],
+  "review": "Separate same-maintainer pass; no independent reproduction",
+  "limits": [
+    "Library value precursor only",
+    "No source-language/native ABI or application acceptance",
+    "No timing or performance advantage claim"
+  ]
+}
