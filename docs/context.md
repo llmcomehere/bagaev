@@ -16,6 +16,7 @@ instructions](../AGENTS.md) and authority boundaries always apply.
 | [Code of conduct](../CODE_OF_CONDUCT.md) and [security policy](../SECURITY.md) | Community behavior and sensitive-reporting routes. |
 | [Foundation](foundation.md) | Research questions, hypotheses, limits, and later research. |
 | [Operational semantics candidates](operational-semantics.md) | Concrete type/evidence/effect/continuation mechanisms, synthetic counterexamples and ordinary alternatives; no change to normative contracts or execution authority. |
+| [Whole-language design sketch](language-design.md) | Coherent proposed computation/component/change semantics, paper scenarios, all-principle map and reuse boundaries; non-normative and unexecuted. |
 | [L0](l0.md) | Normative L0 semantics and bounds. |
 | [L1 proposal](l1-proposal.md) | Bounded CPython backend and selected-case contract. |
 | [L2](l2.md) and [language oracle](../examples/l2/oracle.json) | Structured pure language, pinned definitions, transactional changes, and independent language expectations. |
