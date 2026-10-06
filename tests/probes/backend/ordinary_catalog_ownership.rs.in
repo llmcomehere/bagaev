@@ -1,0 +1,9 @@
+#[path="{{TRANSPORT}}"]pub mod transport;
+#[path="{{CATALOG}}"]pub mod catalog;
+#[cfg(immutable_input)]
+pub fn attempt(d:&transport::Document){d.values.clear();}
+#[cfg(borrowed_not_owned)]
+pub fn attempt(entries:&Vec<catalog::Entry>)->catalog::State{catalog::State{entries}}
+#[cfg(drop_input)]
+pub fn attempt(raw:&[u8])->Vec<u8>{let d=transport::parse(raw).unwrap();let result=catalog::evaluate(&d);drop(d);catalog::encode(&result)}
+fn main(){}

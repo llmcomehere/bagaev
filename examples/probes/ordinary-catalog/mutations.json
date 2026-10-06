@@ -1,0 +1,251 @@
+{
+  "schema": "ordinary-catalog-mutations/1",
+  "source_sha256": "f97c938ae77c9a6c01a4ed42f0172b1059969c9121b056d932ff45b2e9646ea7",
+  "mutants": [
+    {
+      "id": "MUT-FIRST-SEEN-SET",
+      "source_sha256": "4f56e1a138696fa4fc2dc4b7497279d8bc10c628b4f26f34046baa2c15d95eec",
+      "witness_ids": [
+        "SET-1",
+        "SET-2",
+        "SET-3"
+      ],
+      "expected": "normal application JSON unequal to complete frozen oracle on every named witness",
+      "old": "e.manual_tags.sort_unstable();e.manual_tags.dedup();e.indexed_tags.sort_unstable();e.indexed_tags.dedup();",
+      "new": "let mut seen=Vec::new();e.manual_tags.retain(|s|if seen.contains(s){false}else{seen.push(s.clone());true});let mut seen=Vec::new();e.indexed_tags.retain(|s|if seen.contains(s){false}else{seen.push(s.clone());true});",
+      "occurrences": 1
+    },
+    {
+      "id": "MUT-NO-DEDUP",
+      "source_sha256": "69f5799fd7494ff17ee524a1c67f1dc5346af6de845b8fa0851a1ce009348ad7",
+      "witness_ids": [
+        "REV-1",
+        "SET-1"
+      ],
+      "expected": "normal application JSON unequal to complete frozen oracle on every named witness",
+      "old": "e.manual_tags.sort_unstable();e.manual_tags.dedup();e.indexed_tags.sort_unstable();e.indexed_tags.dedup();",
+      "new": "e.manual_tags.sort_unstable();e.indexed_tags.sort_unstable();",
+      "occurrences": 1
+    },
+    {
+      "id": "MUT-NORMALIZE-BASELINE",
+      "source_sha256": "9bd4b558aeacb89174ea50f762d84be9c3a6f95e44a16b60343a7c8bd2625f3c",
+      "witness_ids": [
+        "REV-0",
+        "LIST-0"
+      ],
+      "expected": "normal application JSON unequal to complete frozen oracle on every named witness",
+      "old": "if request.revision>=1",
+      "new": "if request.revision>=0",
+      "occurrences": 1
+    },
+    {
+      "id": "MUT-NORMALIZE-SELECTED-ONLY",
+      "source_sha256": "ddad43350a2a8096aaa0a11ef64d846b07eca750d8e001209851e5c450100cd5",
+      "witness_ids": [
+        "REV-1"
+      ],
+      "expected": "normal application JSON unequal to complete frozen oracle on every named witness",
+      "old": "for e in &mut entries{e.manual_tags",
+      "new": "for (i,e) in entries.iter_mut().enumerate(){if target!=Some(i){continue};e.manual_tags",
+      "occurrences": 1
+    },
+    {
+      "id": "MUT-DROP-MANUAL",
+      "source_sha256": "c76ca3aa1c35bf13c1271ceb3cd56fb332861b71cadfb6f0df91f482a83187cd",
+      "witness_ids": [
+        "REV-2",
+        "REV-3",
+        "CHAIN-2",
+        "CLEAR-INDEX"
+      ],
+      "expected": "normal application JSON unequal to complete frozen oracle on every named witness",
+      "old": "if request.revision<2{entries[i].manual_tags.clear()}",
+      "new": "entries[i].manual_tags.clear()",
+      "occurrences": 1
+    },
+    {
+      "id": "MUT-PRESERVE-TOO-EARLY",
+      "source_sha256": "e551e5eada26a70d080240d46cf4a4e0ddb773943483b01e759be646a68a11ae",
+      "witness_ids": [
+        "REV-0",
+        "REV-1",
+        "REINDEX-COLLISION-0",
+        "REINDEX-COLLISION-1"
+      ],
+      "expected": "normal application JSON unequal to complete frozen oracle on every named witness",
+      "old": "if request.revision<2{entries[i].manual_tags.clear()}",
+      "new": "if request.revision<0{entries[i].manual_tags.clear()}",
+      "occurrences": 1
+    },
+    {
+      "id": "MUT-UNION-INDEX",
+      "source_sha256": "89d0a7d53b451a88820a94ca9b82365c88f8f1921ff31a22c136bb11d6c4c1c6",
+      "witness_ids": [
+        "REV-2",
+        "CLEAR-INDEX"
+      ],
+      "expected": "normal application JSON unequal to complete frozen oracle on every named witness",
+      "old": "entries[i].indexed_tags=r.tags",
+      "new": "entries[i].indexed_tags.extend(r.tags)",
+      "occurrences": 1
+    },
+    {
+      "id": "MUT-ALLOW-ORIGIN-OVERLAP",
+      "source_sha256": "6e8f60a1a9885c9030f87ff6ca6d7b9fc0fe628d786c9f7626a82364fc745327",
+      "witness_ids": [
+        "STORED-COLLISION-0",
+        "STORED-COLLISION-3",
+        "REINDEX-COLLISION-2",
+        "REINDEX-COLLISION-3"
+      ],
+      "expected": "normal application JSON unequal to complete frozen oracle on every named witness",
+      "old": "fn intersects(a:&[String],b:&[String])->bool{a.iter().any(|x|b.contains(x))}",
+      "new": "fn intersects(_a:&[String],_b:&[String])->bool{false}",
+      "occurrences": 1
+    },
+    {
+      "id": "MUT-MISSING-PLACEMENT",
+      "source_sha256": "fc396edfd8945286b7a8111b69f328404327af494f8b2dafee1a4585e8f09558",
+      "witness_ids": [
+        "REV-3"
+      ],
+      "expected": "normal application JSON unequal to complete frozen oracle on every named witness",
+      "old": "if request.revision==3{1}else{-1}",
+      "new": "if false{1}else{-1}",
+      "occurrences": 1
+    },
+    {
+      "id": "MUT-IGNORE-DATE-VALUE",
+      "source_sha256": "617dddb4f82703484a245eac59659768d7f494d21ab934536e5a35fba29eedef",
+      "witness_ids": [
+        "REV-3"
+      ],
+      "expected": "normal application JSON unequal to complete frozen oracle on every named witness",
+      "old": "Some(n)=>(0,n)",
+      "new": "Some(_n)=>(0,0)",
+      "occurrences": 1
+    },
+    {
+      "id": "MUT-REVERSE-TIE",
+      "source_sha256": "bcbb797155aefcef2d4941d89bc071c7af1e812817999af4c25f061ae857047a",
+      "witness_ids": [
+        "REV-3",
+        "ALL-ABSENT"
+      ],
+      "expected": "normal application JSON unequal to complete frozen oracle on every named witness",
+      "old": "x.id.cmp(&y.id)",
+      "new": "y.id.cmp(&x.id)",
+      "occurrences": 1
+    },
+    {
+      "id": "MUT-ZERO-IS-MISSING",
+      "source_sha256": "cf6175f6f9aa300642f1fbb8f579a33327a53354d68475f71b27cff9ea73b9f3",
+      "witness_ids": [
+        "ZERO-DATE"
+      ],
+      "expected": "normal application JSON unequal to complete frozen oracle on every named witness",
+      "old": "p.entry.date=Some(n)",
+      "new": "p.entry.date=if n==0{None}else{Some(n)}",
+      "occurrences": 1
+    },
+    {
+      "id": "MUT-INVALID-IS-MISSING",
+      "source_sha256": "9b4e8a1784c63cd7b61f342dd5e99abff0faff41e71f76db6e652a5aaba16318",
+      "witness_ids": [
+        "DATE-NULL",
+        "DATE-STRING",
+        "DATE-LOW",
+        "DATE-HIGH"
+      ],
+      "expected": "normal application JSON unequal to complete frozen oracle on every named witness",
+      "old": "let Some(n)=integer(d,id,31) else{return Response::Refusal(\"invalid-date\")};p.entry.date=Some(n);",
+      "new": "p.entry.date=integer(d,id,31);",
+      "occurrences": 1
+    },
+    {
+      "id": "MUT-REORDER-STATE",
+      "source_sha256": "feb27fee6f47b664d4f6b895bb813ac8b6e75d3035a14bc7a9cd8fba904ef3c8",
+      "witness_ids": [
+        "REV-3"
+      ],
+      "expected": "normal application JSON unequal to complete frozen oracle on every named witness",
+      "old": "let entry_ids=order.into_iter().map(|i|entries[i].id.clone()).collect();Response",
+      "new": "let entry_ids=order.iter().map(|&i|entries[i].id.clone()).collect();entries=order.into_iter().map(|i|entries[i].clone()).collect();Response",
+      "occurrences": 1
+    },
+    {
+      "id": "MUT-NORMALIZE-BEFORE-BOUND",
+      "source_sha256": "7eb8da9976ff8db433eb2cff78d759620b3c77367e3c6a4e5fb5263a5d7d04a5",
+      "witness_ids": [
+        "MANUAL-LIMIT",
+        "REINDEX-LIMIT"
+      ],
+      "expected": "normal application JSON unequal to complete frozen oracle on every named witness",
+      "old": "if a.len()>4{return None};a.iter().map(|id|id_text(d,*id)).collect()",
+      "new": "let mut result:Vec<String>=a.iter().map(|id|id_text(d,*id)).collect::<Option<_>>()?;result.sort_unstable();result.dedup();if result.len()>4{return None};Some(result)",
+      "occurrences": 1
+    },
+    {
+      "id": "MUT-BOOL-OR-FLOAT-AS-INT",
+      "source_sha256": "8d49eb223a1e0658f98b311b5abae8d33caf6ad464cc7b775a41cd5bedc82c16",
+      "witness_ids": [
+        "REVISION-BOOL",
+        "REVISION-FLOAT-INTEGRAL",
+        "DATE-BOOL",
+        "DATE-FLOAT-INTEGRAL"
+      ],
+      "expected": "normal application JSON unequal to complete frozen oracle on every named witness",
+      "old": "let Value::Integer(raw)=d.values.get(id)? else{return None};let n=raw.parse::<i64>().ok()?;",
+      "new": "let n=match d.values.get(id)?{Value::Integer(raw)=>raw.parse::<i64>().ok()?,Value::Bool(v)=>i64::from(*v),Value::Number(raw)=>{let x=raw.parse::<f64>().ok()?;if x.fract()!=0.0||x<0.0||x>high as f64{return None};x as i64},_=>return None};",
+      "occurrences": 1
+    },
+    {
+      "id": "MUT-LOOKUP-FIRST",
+      "source_sha256": "f3a057bfdf1459eb79da3337b99c8cbddf2c79493b4b99ccc7e6f016037a15bd",
+      "witness_ids": [
+        "PRIORITY-2",
+        "PRIORITY-5"
+      ],
+      "expected": "normal application JSON unequal to complete frozen oracle on every named witness",
+      "old": "// Date validation is deliberately after the complete request-shape gate.",
+      "new": "if let Some(r)=&request.reindex{if !request.entries.iter().any(|e|e.entry.id==r.entry_id){return Response::Refusal(\"entry-not-found\")}}\n // Date validation is deliberately after the complete request-shape gate.",
+      "occurrences": 1
+    },
+    {
+      "id": "MUT-PARTIAL-VALIDATION",
+      "source_sha256": "6315fe9329e08e74ab55bd67cd9922e57e471f1b934041064b07e92db3fd6942",
+      "witness_ids": [
+        "LATE-INVALID"
+      ],
+      "expected": "normal application JSON unequal to complete frozen oracle on every named witness",
+      "old": "for p in &mut request.entries {",
+      "new": "for p in request.entries.iter_mut().take(1) {",
+      "occurrences": 1
+    },
+    {
+      "id": "MUT-PARTIAL-REFUSAL",
+      "source_sha256": "dc368b61ec98b0e9500e8770756c7727deb69aad13487b0060513da7ad764a75",
+      "witness_ids": [
+        "REINDEX-COLLISION-2",
+        "LATE-INVALID"
+      ],
+      "expected": "normal application JSON unequal to complete frozen oracle on every named witness",
+      "old": "quote(reason,&mut out);out.push('}')",
+      "new": "quote(reason,&mut out);out.push_str(\",\\\"state\\\":{\\\"entries\\\":[]}}\")",
+      "occurrences": 1
+    },
+    {
+      "id": "MUT-LEXICAL-DATE",
+      "source_sha256": "6eb536f410b1a2e1fbfbe0039287d51d18a781245123ad188c53363d2079716f",
+      "witness_ids": [
+        "NUMERIC-DATE"
+      ],
+      "expected": "normal application JSON unequal to complete frozen oracle on every named witness",
+      "old": "key(x).cmp(&key(y)).then_with(||x.id.cmp(&y.id))",
+      "new": "(match (x.date,y.date){(Some(a),Some(b))=>a.to_string().cmp(&b.to_string()),_=>key(x).cmp(&key(y))}).then_with(||x.id.cmp(&y.id))",
+      "occurrences": 1
+    }
+  ],
+  "scope": "20 safe named application faults and44preexisting oracle witnesses. Data only; no compilation/execution authority."
+}
