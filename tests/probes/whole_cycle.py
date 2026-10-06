@@ -126,9 +126,12 @@ class Receiver:
  def projection(self):
   keyA=identity({'resource':'catalogue/g1','domain':'owner','id':'A'});keyB=identity({'resource':'catalogue/g1','domain':'owner','id':'B'});a=self.ledger.get(keyA);b=self.ledger.get(keyB)
   return {'last_observation':clone(self.last),'observations':clone(self.observations),'catalogue_revision':self.state['revision'],'entry':clone(self.state['entries'][0]),'ledger_rows':len(self.ledger),'data_mutations':self.mutations,'write_epoch':self.state['write_epoch'],'audit_rows':self.audit,'receiver_terminal':None if a is None else clone(a['receipt']),'observer_outcome':self.knowledge.get(keyA,'OutcomeUnknown'),'private_receipt_disclosed':False if self.last=='AccessDenied' else None,'original_intent_deadline_tick':None if a is None else a['intent']['deadline_tick'],'new_run_default':self.default,'original_run_programme':self.runs['original'],'new_run_programme':self.runs.get('new-run'),'resumed_unresolved_programme':None if self.resumed is None else self.resumed['programme'],'receipt_behaviour':None if a is None else a['intent']['behaviour'],'A_terminal_exists':a is not None,'B_terminal_kind':None if b is None else b['receipt']['kind'],'automatic_fresh_operation':False,'source_call_order':self.calls,**clone(self.extra)}
-def main():
+def verify_inputs():
  frozen=json.loads((D/'inputs.json').read_text())
  for n,h in frozen['sha256'].items():need(hashlib.sha256((D/n).read_bytes()).hexdigest()==h,'frozen input changed: '+n)
+ return frozen
+def main():
+ frozen=verify_inputs()
  suite=json.loads((D/'cases.json').read_text());engine=Engine();rows=[]
  for c in suite['cases']:
   receiver=Receiver(suite['profile'],engine);receiver.current_case=c['id']

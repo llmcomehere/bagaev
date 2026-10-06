@@ -2,7 +2,7 @@
 from pathlib import Path
 import copy,datetime,hashlib,importlib.util,json
 HERE=Path(__file__).resolve().parent
-spec=importlib.util.spec_from_file_location('whole_cycle_owned',HERE/'whole_cycle.py');m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m);m.configure()
+spec=importlib.util.spec_from_file_location('whole_cycle_owned',HERE/'whole_cycle.py');m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m);m.configure();m.verify_inputs()
 suite=json.loads((m.D/'cases.json').read_text());cases={c['id']:c for c in suite['cases']};ROOT=m.R
 class StaleBeforeReplay(m.Receiver):
  def submit(self,e):
