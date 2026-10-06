@@ -1,4 +1,4 @@
-# bagaev: programming language and development environment for LLM-created and evolving programs — research foundation, version 0.8 (research preview)
+# bagaev: programming language and development environment for LLM-created and evolving programs — research foundation, version 0.9 (research preview)
 
 For selective task entry, use the [context map](context.md). Read this complete
 foundation for explicit whole-concept review or when a task cannot be bounded
@@ -6,11 +6,13 @@ safely to the mapped section ranges. The [beta roadmap](roadmap.md) owns planned
 beta scope, dependencies, and gates; this foundation owns research hypotheses,
 limits, and later directions.
 
-Date of revision: October 2, 2026. Status: research proposal; see [README](../README.md) for the current executable preview. **bagaev** is a programming language and development environment being built for LLMs to create and evolve programs. The language and its semantics are the central product. A compiler or interpreter, program store, model interface, and human views form the surrounding platform; memory, coordination, and tools support the language rather than replace its purpose.
+Date of revision: October 6, 2026. Status: research proposal; see [README](../README.md) for the current executable preview. **bagaev** is a programming language and development environment being built for LLMs to create and evolve programs. The language and its semantics are the central product. A compiler or interpreter, program store, model interface, and human views form the surrounding platform; memory, coordination, and tools support the language rather than replace its purpose.
+
+Version 0.9 adds concrete operational-semantics candidates and discriminating cases within B01–B18. The external-source survey retains its stated earlier read dates; this revision is not a renewed literature audit or a claim of new comparative results. Normative language/application contracts and the historical P0 section remain unchanged. Current authority, maintenance review policy and execution profiles are not changed by this research document.
 
 **Mission:** make changes to programs more precise and checkable for models and people. The project aims to reduce total development and maintenance cost and to reduce errors, from intent through a working system, checks, repairs, handoff, and recovery. These are hypotheses to measure, not established benefits. Token count is only one possible cost component alongside reliability, latency, memory use, and operating cost.
 
-Existing languages, adapters, and work environments are comparison and interoperability routes. They may provide a baseline or a bounded integration path, but success of that tooling does not fulfill the language goal. The current core has bounded local Linux/CPython implementations; native compilation, a full program platform, mobile delivery, GPU execution, and distributed execution remain later work. The [measured M5 results](model.md#measured-m5-results) record selected model-driven changes and fresh continuation; full USD lifecycle cost is indeterminate and no cost advantage is established. Links have been checked against primary pages, but published external experiments have not been independently reproduced.
+Existing languages, adapters, and work environments are comparison and interoperability routes. They may provide a baseline or a bounded integration path, but success of that tooling does not fulfill the language goal. The current core has bounded local Linux/CPython implementations and separately scoped experimental native probes; a full native program platform, mobile delivery, GPU execution, and distributed execution remain later work. The [measured M5 results](model.md#measured-m5-results) record selected model-driven changes and fresh continuation; full USD lifecycle cost is indeterminate and no cost advantage is established. Links have been checked against primary pages, but published external experiments have not been independently reproduced.
 
 The long-term ambition remains for an overwhelming majority of model profiles to discover and freely select bagaev first when a development task does not prescribe a stack. The limited panel below is a measurable proxy, not a claim about every model or permission to override user instructions. When a task already prescribes a language, runtime, or CI, bagaev must interoperate through a bounded adapter or state that the profile is unsupported; a missing adapter never authorizes replacing the selected stack.
 
@@ -152,6 +154,8 @@ A typed graph is a strong candidate for representing these relationships. It doe
 
 A short model reference is only a handle: in an explicit snapshot it must resolve to stable identity and revision. It does not replace an ID, scope, lifetime, collision rules, access check, or authority. The receiver/verifier, rather than a model summary, decides whether disclosure of a reference or reuse of a previous result is admissible.
 
+Semantic domains remain distinct even when their bytes or shapes coincide: an issuer-request digest is not a user-request digest, a built artifact is not a running process, and an omitted patch field is not an explicit clear. Existing nominal wrappers and closed variants may already express these distinctions. Their construction does not authenticate origin; deliberate unwrapping and reconstruction require a separately stated trust boundary if relabelling must be prohibited. A stronger typing claim must identify where it is enforced, including dynamic adapters and native escape paths.
+
 ### B03. Computation boundaries are defined by contracts and tasks.
 
 A work unit exposes information sufficient for use and checking: inputs, results, preconditions, guarantees, errors, state changes, external actions, and material timing properties. Internal details need not be disclosed until a task requires changing or checking them.
@@ -212,6 +216,8 @@ Statuses differ: structurally admissible; proved relative to stated assumptions;
 
 Admission is determined per obligation: who checks, which evidence is admissible, which snapshot it concerns, and what to do with an unknown result. These rules are fixed first; the candidate is presented afterwards. A successful test of one property does not compensate for an unchecked mandatory restriction of another. The concrete policy appears in “Boundaries of checking and admission.”
 
+Coverage retains its method and denominator: inventoried, read, statically checked, selected, executed, skipped and observed are not interchangeable. A negative witness first needs a valid setup and evidence that its intended predicate was reached; rejection by an earlier unrelated guard is not that witness. Check the relevant combinations of conditions and actual producer-to-consumer paths, not only isolated helpers. A candidate's supplied rows cannot silently shrink the frozen obligation set.
+
 ### B08. State, effects, time, and resources belong to semantics.
 
 Ownership of mutable state, read and write rights, resource lifetime, error handling, cancellation, and completion of background actions must be defined explicitly. It is useful to distinguish pure computation from operations that alter the external world. This neither requires banning all mutability nor choosing one memory-management mechanism in advance.
@@ -219,6 +225,8 @@ Ownership of mutable state, read and write rights, resource lifetime, error hand
 Clocks, randomness, input, network, and an LLM call are observable sources of nondeterminism. Event order is defined where it affects the result. Streams require overload rules: slow the producer, bounded queue, drop with known semantics, or refusal. An await timeout is not identical to cancellation of an action at the receiver.
 
 A resource contract includes memory, time, and availability constraints where material. A hard deadline guarantee requires corresponding properties of the whole environment. Stating a desired latency does not itself make an ordinary OS and remote model a real-time system.
+
+Ownership spans acquisition, use, partial failure and cleanup. A read-oriented helper can still affect transaction lifecycle; it must not commit or roll back a borrowed caller transaction merely because it performs SELECTs. Deferred use retains owned data or a valid borrow. Original custody must exist before it authorizes recovery, and a mutating callback can invalidate an earlier check. The component that accepts the protected effect must enforce the applicable current state and authority under its declared atomicity or exclusion assumptions.
 
 ### B09. Interpretation, compilation, and specialization are execution modes.
 
@@ -253,6 +261,8 @@ A task has stable identity, state, a pinned behavior revision, inputs, accepted 
 It cannot promise to transfer an arbitrary live process together with all open sockets, pointers, and GPU state. Permitted stopping points and a representable way to restore resources are needed. A long-running task and a short computational core may use different reliability strategies; journaling every machine step is unnecessary.
 
 For external actions, repeat of an attempt, repeat of result observation, and compensation are distinct. An operation key and receiver support can remove some duplicates, but cannot guarantee “exactly once” for an arbitrary external service. An unknown outcome requires reconciliation or a specified decision. Practical details of identifier lifetime and late requests appear in the [Amazon Builders’ Library](https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/).
+
+A current state or timestamp reached by another attempt does not establish the outcome of a lost response. Durable completion and disposable diagnostic history may need different lifetimes. Creation, replacement, terminal replay and retirement have distinct prerequisites: a completed transition can lawfully remove inputs required only for its fresh execution. A selected recovery model must expose cycles and preserve the original operation/intent and deadline; it cannot manufacture new authority by restarting or renewing an unrelated phase.
 
 ### B13. Cooperation among agents has a checkable protocol.
 
@@ -294,6 +304,8 @@ A model receives a compact diagnostic, counterexample, or trace fragment suffici
 
 Debugging considers time, repeatability, and the effect of observation on the system. Sensitive data need not be copied without control to every journal for convenience. For UI and mobile applications, real interactions, accessibility, graphics, energy use, and behavior on devices matter in addition to correctness of the computational core.
 
+Resource observations keep their units and phase. Logical language charges, allocator-requested bytes, process memory, elapsed time and model/account quotas answer different questions. A conservative bound may be inconclusive because it combines mutually exclusive paths; refinement must preserve relevant state correlations and disclose its input domain and modeling assumptions. A witness matching such a calculation is useful evidence, not a universal latency or memory guarantee.
+
 ### B17. Extensions and learning have explicit boundaries.
 
 In a common-core variant, the core defines rules of meaning, relationships, change, and checking; its minimality is tested on needed tasks. In a separated variant, the same obligations are distributed among explicitly designated components. A domain operation is admissible as an extension when its semantics, types, effects, checking tools, and execution means are declared. A receiver must not guess the meaning of an unknown operation from a similar name. An extension that changes obligations or the trusted checking part needs separate assessment and compatibility.
@@ -328,6 +340,22 @@ Evidence binds an **assertion, contract revision, checked snapshot and dependenc
 An admission restriction does not stop all work: the contract may be clarified, alternatives investigated, and authorized pure computations performed. But an action for which a mandatory condition is unmet is not performed under the guise of research. The checking algorithm itself and its supporting environment belong to an explicitly described trust boundary.
 
 Every material assertion has one of these grounds: **user goal; project obligation; architectural hypothesis; inference from an external source; checking plan; own observation**. An external inference retains its link and transfer limit; an observation retains experiment version and results. This revision contains no own measurements of the environment's advantage. Council advice and example analysis concern design, not experimental results.
+
+## Operational refinement candidates
+
+The [operational-semantics note](operational-semantics.md) develops seven concrete mechanisms, enforcement boundaries, ordinary alternatives and synthetic counterexamples. It refines existing propositions rather than adds a new layer of project bureaucracy or eighteen new mandatory implementation tasks.
+
+| Candidate | Proposed enforcing boundary | Principal limits |
+| --- | --- | --- |
+| Semantic-domain types and checked representations | Compiler/type checker and declared codecs | Nominal shape does not authenticate origin; explicit relabelling remains possible without an opaque boundary. |
+| Evidence applicability by obligation | Trusted checker and admission receiver | Matching descriptive fields does not establish evidence truth or permission. |
+| Operation identity and explicit unknown outcomes | Durable protocol and cooperating effect receiver | State observation, cancellation request and operation success differ; arbitrary external exactly-once is not promised. |
+| Whole-operation ownership and final-boundary checks | Lifetime rules plus actual runtime/DB/OS adapters | Preflight and observation alone do not enforce exclusion or authority freshness. |
+| Scoped inventories, time and retention dependencies | Profile checker and finite lifecycle model | Unknown absence remains unknown; incompatible promises require an authorized decision. |
+| Actual consumer and change-obligation closure | Semantic dependency boundary plus integration evidence | A graph is not proof that dynamic or omitted dependencies are complete. |
+| Source-bound context and goal continuation | Versioned context/decision receiver | Hashes do not prove understanding; a ready task is not automatically the current authorized goal. |
+
+Each adopted profile states whether it prevents an invalid construction, refuses admission, detects a failure, or permits bounded recovery. A pure compatibility function is a useful precursor but does not implement the trusted receiver or durable effect boundary. The strong ordinary-language baseline gets the same domain types, memory, checks and workflow capabilities. Keep a new mechanism only when its additional semantic or full-cost value is demonstrated under the comparative experiment; reusing an existing construct is a valid outcome.
 
 ## Model properties to consider
 
@@ -683,7 +711,7 @@ These rules can be checked on finite traces and in a small simulator. A real gua
 
 The next sequence is owned by the [beta roadmap](roadmap.md). The synthetic [application contract](application.md) and ordinary-language reference define the workload and comparison; [L2](l2.md) supplies the corresponding language contract and source candidate. Current execution status remains in [README](../README.md); source alone does not close an acceptance gate. L0 remains the initial bounded kernel, L1 remains its profile-specific CPython backend, and frozen P0 remains historical input.
 
-Every later comparison must still compare behavior rather than a slogan, preserve explicit structural benefit, freeze measurement conditions before model work, and separate language evidence from environment evidence. Native compilation, a persistent platform, mobile, GPU, distributed execution, training, and adoption remain separate stages with their own evidence. A negative or indeterminate measured result revises or stops the affected branch; it never becomes a positive language claim.
+Every later comparison must still compare behavior rather than a slogan, preserve explicit structural benefit, freeze measurement conditions before model work, and separate language evidence from environment evidence. Broader native support, production persistence, mobile, GPU, distributed execution, training, and adoption remain separate stages with their own evidence. A negative or indeterminate measured result revises or stops the affected branch; it never becomes a positive language claim.
 
 ### Extension after the first language slice
 
