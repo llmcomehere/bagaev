@@ -1,0 +1,28 @@
+// Compile/link only with an independently admitted exact own kernel and bounded profile.
+#[path="{{BACKEND}}/composite_result_decode.rs"]pub mod composite_result_decode;
+#[path="{{BACKEND}}/transport.rs"]pub mod transport;
+#[path="{{BACKEND}}/check.rs"]pub mod check;
+#[path="{{BACKEND}}/ir.rs"]pub mod ir;
+#[path="{{BACKEND}}/canonical.rs"]pub mod canonical;
+#[path="{{BACKEND}}/sha256.rs"]pub mod sha256;
+#[path="{{BACKEND}}/record_ir.rs"]pub mod record_ir;
+#[path="{{BACKEND}}/option_int.rs"]pub mod option_int;
+#[path="{{BACKEND}}/text_value.rs"]pub mod text_value;
+#[path="{{BACKEND}}/text_list.rs"]pub mod text_list;
+#[path="{{BACKEND}}/typed_record.rs"]pub mod typed_record;
+#[path="{{BACKEND}}/text_inspection.rs"]pub mod text_inspection;
+#[path="{{BACKEND}}/int_projection.rs"]pub mod int_projection;
+#[path="{{BACKEND}}/record_value.rs"]pub mod record_value;
+#[path="{{BACKEND}}/type_graph.rs"]pub mod type_graph;
+#[path="{{BACKEND}}/json_view.rs"]pub mod json_view;
+#[path="{{BACKEND}}/variant_admission.rs"]pub mod variant_admission;
+#[path="{{BACKEND}}/list_callframe.rs"]pub mod list_callframe;
+#[path="{{BACKEND}}/list_native_adapter.rs"]pub mod list_native_adapter;
+#[path="{{BACKEND}}/json_native_input.rs"]pub mod json_native_input;
+#[path="{{BACKEND}}/json_native_invocation.rs"]pub mod json_native_invocation;
+#[path="{{BACKEND}}/json_native_adapter_v8.rs"]pub mod json_native_adapter_v8;
+#[path="{{BACKEND}}/composite_export_v8.rs"]pub mod composite_export_v8;
+#[path="{{BACKEND}}/composite_native_cells.rs"]pub mod composite_native_cells;
+
+fn bounded_read(path:&str)->Vec<u8>{use std::io::Read;let f=std::fs::File::open(path).unwrap();let meta=f.metadata().unwrap();assert!(meta.is_file()&&meta.len()<=1048576);let mut raw=Vec::new();f.take(1048577).read_to_end(&mut raw).unwrap();assert!(raw.len()<=1048576);raw}
+fn main(){let args:Vec<_>=std::env::args().collect();assert_eq!(args.len(),2);let raw=bounded_read(&args[1]);let out=typed_record::process_v8(&raw).unwrap();use std::io::Write;std::io::stdout().write_all(&out).unwrap();}

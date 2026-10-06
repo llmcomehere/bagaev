@@ -188,3 +188,7 @@ For /10 nominal record-list accumulation, read
 ## Prepared JSON /10 calling convention
 
 [The source-once /10 boundary](probe-prepared-json10.md) has distinct handle types and a 70-byte conceptual-envelope constant. Existing /8 interfaces remain unchanged. Finite replay, ownership and refusal controls are documented separately from measurements and execution authority.
+
+## Evidence compatibility example
+
+Read [the finite metadata contract](probe-evidence-compatibility.md) for exact matching, conflicting receipts and explicit limits on what acceptance means.
