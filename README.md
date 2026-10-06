@@ -70,6 +70,10 @@ untrusted code. No model account is needed for this example.
 
 ## What exists today
 
+- **Readable component programme:** a [bounded notation](docs/probe-component-form.md)
+  expresses the actual working component's records, pure functions and state/frame
+  declarations. It reconstructs the same checked source and enters the connected
+  change/recovery example, without introducing a host evaluator or new rights.
 - **Experimental evidence-bound changes:** the [connected change example](docs/probe-component-change.md)
   checks all five receiving obligations against exact retained observations,
   then rechecks base/authority before switching the simulated new-run default.
