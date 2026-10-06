@@ -177,3 +177,7 @@ secrets, private identity, correspondence, and hidden reasoning.
 For experimental source-once JSON calls, read the [prepared-call guide](probe-prepared-json.md)
 and the [native JSON contract](probe-native-json.md). Preparation, argument
 admission, per-call scratch checking and kernel authority remain distinct.
+
+For the explicit /9 immutable TextList append extension, read
+[its contract and portable checks](probe-list-push.md). Older source and native
+profiles retain their boundaries.

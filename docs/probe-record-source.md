@@ -16,6 +16,7 @@ old limits and refuse later operations.
 | /6 | Bounded raw JSON views for staged source-level validation | json_main.rs |
 | /7 | Optional OptionInt64 field metadata and omission of None | optional_fields_main.rs |
 | /8 | Explicit composition limits:32 functions and2048 expression nodes | composition_main.rs |
+| /9 | Immutable TextList append with the same /8 limits | list_push_main.rs |
 
 Invocation/result schemas use bagaev-typed-record-invocation/N and
 bagaev-typed-record-result/N. The checked program schema is bagaev-typed-record/N.
@@ -55,7 +56,7 @@ No field name, date range or application refusal phase is hard-coded.
 
 All profiles retain expression depth32, program JSON8192 values, invocation
 JSON16384 values, work65536, up to8 parameters and existing bounded Text/list
-rules. /1–7 retain8 functions/512 expression nodes; only /8 raises those two
+rules. /1–7 retain8 functions/512 expression nodes; /8 and /9 use the higher two
 structure caps. Structural/work bounds are not latency or whole-process resource
 measurements.
 
@@ -83,3 +84,6 @@ not native pointer/alias proofs. Review was a separate same-maintainer pass,
 without independent reproduction. This source slice establishes no native
 record/JSON execution, full production acceptance, speed, token-cost or uptime
 advantage.
+
+The [/9 append contract](probe-list-push.md) defines its additional operator,
+work charge, refusal priority and distinct native output version.

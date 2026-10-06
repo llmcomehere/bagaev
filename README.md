@@ -174,3 +174,7 @@ The experimental [source-once JSON interface](docs/probe-prepared-json.md)
 separates program preparation from per-call argument admission. Its owned data
 handles do not confer native execution authority; portable reproduction surfaces
 and narrower input-budget equivalence are documented separately.
+
+The explicit [/9 immutable TextList append probe](docs/probe-list-push.md) adds
+source-level accumulation without changing /1–8. Its native output has a separate
+version; finite conformance and source-size observations are not performance claims.
