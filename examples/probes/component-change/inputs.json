@@ -1,0 +1,20 @@
+{
+  "status": "FROZEN_PORTABLE_INPUTS_BEFORE_PACKET_EXECUTION",
+  "at": "2026-10-06T19:22:32.211264+00:00",
+  "sha256": {
+    "connected-expectations.json": "5b24b36bf70b04c1c7ee107cd30360ccf7d6a9975d75d97231d9e2ccf700773d",
+    "decision-cases.json": "fbc09c27074d014a4da43245b6dcab2e8478137ada8d85f5f8c7c42447042cd2",
+    "final-boundary-control.json": "b9d95ef9844e7881f31cc9eb7a200bced183bbd3722481626e37ef9d43859d21",
+    "obligation-binding-control.json": "c7d2e913312d6091a24c145697b988814836ce835684a9a29a296ecfcd1454d6",
+    "qualification.json": "73647d239d474a8e5534cd78678bd79cddd8ac1b48ab41c968b614c0dfbaa824",
+    "receiving-obligations.json": "0bb164e5c42393c38ebdacccddbcaef25b957d129f73fd50f35417e62785d5bb"
+  },
+  "repository_sha256": {
+    "examples/probes/evidence-obligations/program.json": "bb94e2ef4c7936e6cfe7a042b257ce0dfa75489917e2062db4e1325621362804",
+    "examples/probes/whole-cycle/cases.json": "f19cae136cdcf76fabb255aa5ae16171701e740da21a54e9db1b89589355e0b7",
+    "examples/probes/whole-cycle/pure/cases.json": "4172d1f7a01aa64a7d8f858f09067d6f003a5f422032491f060570544e796cad",
+    "examples/probes/component-source/S1.json": "b5f867bd28b474ff4a4225d3c421dde2fea4c48c9ad8507b0975a74251126554",
+    "examples/probes/component-source/S2.json": "d13c5de9cdd904f54cddfb689c1a03eeabf968ad92beb58f22fdb17c63082b20",
+    "examples/probes/component-source/policy.json": "7d10137110eb42da1fa751d45de87f0275b25db64808e4a997eeaba60788e7e5"
+  }
+}

@@ -77,6 +77,9 @@ execution; receiver/admission/continuation guarantees remain explicitly simulate
 The next [source-level component construction](probe-component-source.md) makes
 state/request types and identity/revision/replacement bindings explicit in source,
 then checks those declarations along that same connected path.
+The [source-bound change adapter](probe-component-change.md) connects five fixed
+receiving obligations to retained exact observations and the final simulated
+admission boundary, preserving prior execution timestamps and old-run pins.
 
 ## Routes
 
