@@ -9,7 +9,7 @@ pub const MODULE_LIMIT: usize = 8 * 1024 * 1024;
 pub const BINDING_LIMIT: usize = 2 * 1024 * 1024;
 pub const TARGET: &str = "x86_64-unknown-linux-gnu";
 pub const CPU: &str = "x86-64";
-pub const SIGNATURE: &str = "void bagaev_json_view8_kernel(const void *validated_values, void *arena, void *cells, void *output)";
+pub const SIGNATURE: &str = "void bagaev_json_view10_kernel(const void *validated_values, void *arena, void *cells, void *output)";
 
 #[derive(Clone, Copy, Debug, Eq, PartialEq)]
 pub enum EmitError { Bound, Interface }
@@ -50,7 +50,7 @@ fn llvm_ty(ty:Type)->String{match ty{Type::Json=>"ptr".into(),Type::Variant(_)=>
 fn zero(ty:Type)->&'static str{if ty==Type::Json{return "null";}if matches!(ty,Type::Text|Type::OptionInt64|Type::TextList|Type::Record(_)|Type::RecordList(_)|Type::Variant(_)){"zeroinitializer"}else{"0"}}
 fn descriptor(program:&CheckedProgram,limit:usize)->Result<String>{
  let mut out=Text::new(limit);
- out.write_str("{\"cell_capacity\":65536,\"execution_admission\":false,\"schema\":\"bagaev-json-view8-llvm-binding/1\",\"scratch_capacity\":65536,\"signature\":")?;
+ out.write_str("{\"cell_capacity\":65536,\"execution_admission\":false,\"schema\":\"bagaev-json-view10-llvm-binding/1\",\"scratch_capacity\":65536,\"signature\":")?;
  out.quote(SIGNATURE)?;out.write_str(",\"source\":")?;
  out.quote(std::str::from_utf8(program.canonical_bytes()).map_err(|_|EmitError::Interface)?)?;
  out.write_str(",\"source_pin\":")?;out.quote(program.identity())?;
@@ -168,8 +168,51 @@ impl FunctionEmitter<'_, '_> {
         let kind=node.kind().clone(); let ty=llvm_ty(node.ty());
         writeln!(self.output,"  ; node {id}")?; self.tick(id)?;
         match kind {
-            NodeKind::RecordsPush{..}=>Err(EmitError::Interface),
-            NodeKind::ListPush{..}=>Err(EmitError::Interface),
+            NodeKind::RecordsPush{list,value}=>{
+                let definition=match self.program.node(list).ok_or(EmitError::Interface)?.ty(){Type::RecordList(n)=>usize::from(n),_=>return Err(EmitError::Interface)};
+                let capacity=self.program.list_definitions()[definition].capacity();let element=self.program.list_definitions()[definition].element();
+                let list=self.expression(list)?;let record=self.expression(value)?;
+                let n=self.value(&format!("extractvalue %Records {list}, 1"))?;
+                let count=self.value(&format!("add i64 {n}, 1"))?;self.charge(&count,id)?;
+                let full=self.value(&format!("icmp ugt i64 {count}, {capacity}"))?;self.refuse_if(&full,8,id)?;
+                let dest=self.value(&format!("call ptr @cells_alloc(ptr %cells, i64 {count})"))?;
+                let bad=self.value(&format!("icmp eq ptr {dest}, null"))?;self.refuse_if(&bad,6,id)?;
+                let source=self.value(&format!("extractvalue %Records {list}, 0"))?;
+                let initial=self.current.clone();let test=self.fresh();let body=self.fresh();let done=self.fresh();let next=self.fresh();
+                self.branch(&test)?;self.label(&test)?;
+                let i=self.value(&format!("phi i64 [ 0, %{initial} ], [ %{next}, %{body} ]"))?;
+                let more=self.value(&format!("icmp ult i64 {i}, {n}"))?;writeln!(self.output,"  br i1 {more}, label %{body}, label %{done}")?;
+                self.label(&body)?;let from=self.value(&format!("getelementptr %Cell, ptr {source}, i64 {i}"))?;let cell=self.value(&format!("load %Cell, ptr {from}, align 8"))?;let to=self.value(&format!("getelementptr %Cell, ptr {dest}, i64 {i}"))?;
+                writeln!(self.output,"  store %Cell {cell}, ptr {to}, align 8\n  %{next} = add i64 {i}, 1")?;self.branch(&test)?;self.label(&done)?;
+                let to=self.value(&format!("getelementptr %Cell, ptr {dest}, i64 {n}"))?;self.store_cell(&to,Type::Record(element as u8),&record)?;
+                self.records_value(&dest,&count)
+            },
+            NodeKind::ListPush{list,value}=>{
+                let list=self.expression(list)?;let text=self.expression(value)?;
+                let n=self.value(&format!("extractvalue %List {list}, 1"))?;
+                let count=self.value(&format!("add i64 {n}, 1"))?;self.charge(&count,id)?;
+                let full=self.value(&format!("icmp ugt i64 {count}, 64"))?;self.refuse_if(&full,7,id)?;
+                let oldbytes=self.value(&format!("extractvalue %List {list}, 2"))?;
+                let bytes=self.value(&format!("extractvalue %Text {text}, 1"))?;
+                let sum=self.value(&format!("add i64 {oldbytes}, {bytes}"))?;
+                let full=self.value(&format!("icmp ugt i64 {sum}, 4096"))?;self.refuse_if(&full,4,id)?;
+                let dest=self.allocate(&count,id)?;
+                let source=self.value(&format!("extractvalue %List {list}, 0"))?;
+                let initial=self.current.clone();let test=self.fresh();let body=self.fresh();let done=self.fresh();let next=self.fresh();
+                self.branch(&test)?;self.label(&test)?;
+                let i=self.value(&format!("phi i64 [ 0, %{initial} ], [ %{next}, %{body} ]"))?;
+                let more=self.value(&format!("icmp ult i64 {i}, {n}"))?;
+                writeln!(self.output,"  br i1 {more}, label %{body}, label %{done}")?;
+                self.label(&body)?;
+                let from=self.value(&format!("getelementptr %Text, ptr {source}, i64 {i}"))?;
+                let cell=self.value(&format!("load %Text, ptr {from}, align 8"))?;
+                let to=self.value(&format!("getelementptr %Text, ptr {dest}, i64 {i}"))?;
+                writeln!(self.output,"  store %Text {cell}, ptr {to}, align 8\n  %{next} = add i64 {i}, 1")?;
+                self.branch(&test)?;self.label(&done)?;
+                let to=self.value(&format!("getelementptr %Text, ptr {dest}, i64 {n}"))?;
+                writeln!(self.output,"  store %Text {text}, ptr {to}, align 8")?;
+                self.list_value(&dest,&count,&sum)
+            },
             NodeKind::Variant{definition,alternative,value}=>{
                 let payload_type=self.program.variant_definitions().get(definition).and_then(|v|v.alternatives().get(alternative)).ok_or(EmitError::Interface)?.1;
                 let value=self.expression(value)?;
@@ -433,7 +476,7 @@ fn output_writer(out: &mut Text) -> Result<()> {
 
 fn entry(program:&CheckedProgram,out:&mut Text)->Result<()>{
  let function=&program.functions()[program.entry()];
- out.write_str("define ccc void @bagaev_json_view8_kernel(ptr %arguments, ptr %arena, ptr %cells, ptr %output) #0 {\nentry:\n  call void @llvm.memset.p0.i64(ptr %output, i8 0, i64 64, i1 false)\n  %work = alloca i64, align 8\n  %status = alloca i32, align 4\n  %location = alloca i32, align 4\n  store volatile i64 0, ptr %work, align 8\n  store volatile i32 0, ptr %status, align 4\n  store volatile i32 0, ptr %location, align 4\n")?;
+ out.write_str("define ccc void @bagaev_json_view10_kernel(ptr %arguments, ptr %arena, ptr %cells, ptr %output) #0 {\nentry:\n  call void @llvm.memset.p0.i64(ptr %output, i8 0, i64 64, i1 false)\n  %work = alloca i64, align 8\n  %status = alloca i32, align 4\n  %location = alloca i32, align 4\n  store volatile i64 0, ptr %work, align 8\n  store volatile i32 0, ptr %status, align 4\n  store volatile i32 0, ptr %location, align 4\n")?;
  for (i,p) in function.parameters().iter().enumerate(){
   if p.ty()==Type::OptionInt64{
    let at=32*i;let presence=at+16;
@@ -455,17 +498,17 @@ fn entry(program:&CheckedProgram,out:&mut Text)->Result<()>{
   Type::OptionInt64=>{out.write_str("  %compound_payload = extractvalue %Option %result, 1\n  %compound_presence = extractvalue %Option %result, 0\n  %payload_out = getelementptr i8, ptr %output, i64 32\n  %presence_out = getelementptr i8, ptr %output, i64 48\n  store i64 %compound_payload, ptr %payload_out, align 8\n  store i64 %compound_presence, ptr %presence_out, align 8\n")?;}
   _=>{}
  }
- writeln!(out,"  call void @probe_write(ptr %output, i32 0, i32 {}, i64 {inline}, i64 %w, i32 0, i32 0)\n  ret void\nbad:\n  %ov = icmp eq i32 %s, 1\n  %is_work = icmp eq i32 %s, 2\n  %is_bound = icmp eq i32 %s, 4\n  %is_index = icmp eq i32 %s, 5\n  %r1 = select i1 %is_index, i32 12, i32 13\n  %r2 = select i1 %is_bound, i32 11, i32 %r1\n  %r3 = select i1 %is_work, i32 10, i32 %r2\n  %r = select i1 %ov, i32 9, i32 %r3\n  call void @probe_write(ptr %output, i32 %s, i32 0, i64 0, i64 %w, i32 %r, i32 %l)\n  ret void\n}}",type_code(function.result()))?;Ok(())
+ writeln!(out,"  call void @probe_write(ptr %output, i32 0, i32 {}, i64 {inline}, i64 %w, i32 0, i32 0)\n  ret void\nbad:\n  %ov = icmp eq i32 %s, 1\n  %is_work = icmp eq i32 %s, 2\n  %is_bound = icmp eq i32 %s, 4\n  %is_index = icmp eq i32 %s, 5\n  %is_items = icmp eq i32 %s, 7\n  %is_record_items = icmp eq i32 %s, 8\n  %rr = select i1 %is_record_items, i32 15, i32 13\n  %ri = select i1 %is_items, i32 14, i32 %rr\n  %r1 = select i1 %is_index, i32 12, i32 %ri\n  %r2 = select i1 %is_bound, i32 11, i32 %r1\n  %r3 = select i1 %is_work, i32 10, i32 %r2\n  %r = select i1 %ov, i32 9, i32 %r3\n  call void @probe_write(ptr %output, i32 %s, i32 0, i64 0, i64 %w, i32 %r, i32 %l)\n  ret void\n}}",type_code(function.result()))?;Ok(())
 }
 
 fn emit(program: &CheckedProgram, module_limit: usize, binding_limit: usize) -> Result<Module> {
-    if program.profile()>8{return Err(EmitError::Interface);}
+    if program.profile()!=10{return Err(EmitError::Interface);}
     if program.nodes().len()>2048||program.functions().len()>32{return Err(EmitError::Interface);}
     let entry_fn=&program.functions()[program.entry()];
     if entry_fn.result()==Type::Json||entry_fn.parameters().iter().any(|p|p.ty()!=Type::Json){return Err(EmitError::Interface);}
     let description=descriptor(program,binding_limit)?;
     let mut out=Text::new(module_limit);
-    out.write_str("; bagaev-json-view8-llvm/1: fixed typed kernel, data binding is not authority\nsource_filename = \"bagaev-probe-llvm\"\ntarget datalayout = \"e-m:e-p:64:64-i64:64-i128:128-n8:16:32:64-S128\"\n")?;
+    out.write_str("; bagaev-json-view10-llvm/1: fixed typed kernel, data binding is not authority\nsource_filename = \"bagaev-probe-llvm\"\ntarget datalayout = \"e-m:e-p:64:64-i64:64-i128:128-n8:16:32:64-S128\"\n")?;
     writeln!(out,"target triple = \"{TARGET}\"\n")?;
     // Literal byte escaping avoids LLVM syntax injection and preserves exact UTF-8.
     write!(out,"@bagaev_probe_binding = constant [{} x i8] c\"",description.len())?;
@@ -492,7 +535,7 @@ fn emit(program: &CheckedProgram, module_limit: usize, binding_limit: usize) -> 
     binding.write_str("{\"artifact_pin\":")?; binding.quote(&identity)?;
     write!(binding,",\"binding\":{description},\"binding_pin\":")?;
     binding.quote(&sha256::digest(description.as_bytes()))?;
-    write!(binding,",\"module_bytes\":{},\"schema\":\"bagaev-json-view8-llvm-module/1\"}}\n",bytes.len())?;
+    write!(binding,",\"module_bytes\":{},\"schema\":\"bagaev-json-view10-llvm-module/1\"}}\n",bytes.len())?;
     Ok(Module{bytes,binding:binding.value.into_bytes(),identity})
 }
 

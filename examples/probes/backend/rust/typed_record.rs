@@ -213,9 +213,10 @@ impl Builder {
         if self.profile<4 && matches!(op.as_str(),"records.list"|"records.len"|"records.at"){return fail(Reason::Shape,&path);}
         if self.profile<5 && matches!(op.as_str(),"variant"|"match"){return fail(Reason::Shape,&path);}
         if self.profile<6 && matches!(op.as_str(),"json.kind"|"json.len"|"json.int"|"json.is_text"|"json.field"|"json.at"|"json.text_or"){return fail(Reason::Shape,&path);}
+        if self.profile<10 && op=="records.push"{return fail(Reason::Shape,&path);}
         if self.profile<9 && op=="list.push"{return fail(Reason::Shape,&path);}
         let arity=match op.as_str() {
-            "list.push"=>Some(3),
+            "list.push"|"records.push"=>Some(3),
             "json.kind"|"json.len"|"json.int"|"json.is_text"=>Some(2),"json.field"|"json.at"|"json.text_or"=>Some(3),
             "variant"=>Some(4),"match"=>Some(3),
             "records.list" if items.len()>=2=>None,"records.len"=>Some(2),"records.at"=>Some(3),
@@ -233,6 +234,7 @@ impl Builder {
         self.nodes.push(RawNode {function,pointer:path.clone(),ty:None,kind:RawKind::Ready(NodeKind::Int(0))});
         let mut result_type=None;
         let kind=match op.as_str() {
+            "records.push"=>{let list=self.expression(doc,items[1],index(&path,1),depth+1,function,scope)?;let value=self.expression(doc,items[2],index(&path,2),depth+1,function,scope)?;RawKind::Ready(NodeKind::RecordsPush{list,value})},
             "list.push"=>{let list=self.expression(doc,items[1],index(&path,1),depth+1,function,scope)?;let value=self.expression(doc,items[2],index(&path,2),depth+1,function,scope)?;RawKind::Ready(NodeKind::ListPush{list,value})},
             "json.kind"|"json.len"|"json.int"|"json.is_text"=>{let operand=self.expression(doc,items[1],index(&path,1),depth+1,function,scope)?;RawKind::Ready(match op.as_str(){"json.kind"=>NodeKind::JsonKind{operand},"json.len"=>NodeKind::JsonLen{operand},"json.int"=>NodeKind::JsonInt{operand},_=>NodeKind::JsonIsText{operand}})}
             "json.field"=>{let object=self.expression(doc,items[1],index(&path,1),depth+1,function,scope)?;let key=string(doc,items[2],&index(&path,2))?;if key.len()>64{return fail(Reason::Bounds,&index(&path,2));}RawKind::Ready(NodeKind::JsonField{object,key})}
@@ -409,6 +411,7 @@ impl Builder {
             NodeKind::Match{variant,cases}=>{let definition=match self.infer(variant)?{Type::Variant(v)=>usize::from(v),_=>return fail(Reason::Type,&self.nodes[usize::from(variant)-1].pointer)};let alts=self.variants[definition].alternatives.clone();let at=index(&self.nodes[n].pointer,2);if cases.len()!=alts.len(){return fail(Reason::Shape,&at);}let mut result=None;for(i,c)in cases.iter().enumerate(){let ty=alts.iter().find(|(name,_)|*name==c.name).map(|(_,t)|*t).ok_or_else(||Refusal::new(Reason::Reference,&index(&index(&at,i),0)))?;let f=self.nodes[n].function;self.functions[f].locals[c.slot].ty=ty;let ty=self.infer(c.body)?;if let Some(expected)=result{if expected!=ty{return fail(Reason::Type,&self.nodes[usize::from(c.body)-1].pointer);}}else{result=Some(ty);}}result.expect("nonempty exhaustive match")}
 
             NodeKind::RecordList{definition,values}=>{let element=self.lists[definition].element;for v in values{self.require(v,Type::Record(element as u8))?;}Type::RecordList(definition as u8)}
+            NodeKind::RecordsPush{list,value}=>{let definition=match self.infer(list)?{Type::RecordList(n)=>usize::from(n),_=>return fail(Reason::Type,&self.nodes[usize::from(list)-1].pointer)};self.require(value,Type::Record(self.lists[definition].element as u8))?;Type::RecordList(definition as u8)}
             NodeKind::RecordsLength{list}=>{if !matches!(self.infer(list)?,Type::RecordList(_)){return fail(Reason::Type,&self.nodes[usize::from(list)-1].pointer);}Type::Int64}
             NodeKind::RecordsAt{list,index}=>{let n=match self.infer(list)?{Type::RecordList(n)=>n,_=>return fail(Reason::Type,&self.nodes[usize::from(list)-1].pointer)};self.require(index,Type::Int64)?;Type::Record(self.lists[usize::from(n)].element as u8)}
 
@@ -472,7 +475,7 @@ impl Builder {
 
 fn program(doc: &Document, root: ValueId, profile:u8) -> Result<CheckedSource,FrontendError> {
     let envelope=exact(doc,root,if profile>=5{&["schema","records","lists","variants","entry","functions"]}else if profile==4{&["schema","records","lists","entry","functions"]}else{&["schema","records","entry","functions"]},"")?;
-    schema(doc,envelope,if profile==9{"bagaev-typed-record/9"}else if profile==8{"bagaev-typed-record/8"}else if profile==7{"bagaev-typed-record/7"}else if profile==6{"bagaev-typed-record/6"}else if profile==5{"bagaev-typed-record/5"}else if profile==4{"bagaev-typed-record/4"}else if profile==3{"bagaev-typed-record/3"}else if profile==2{"bagaev-typed-record/2"}else{"bagaev-typed-record/1"},"")?;
+    schema(doc,envelope,if profile==10{"bagaev-typed-record/10"}else if profile==9{"bagaev-typed-record/9"}else if profile==8{"bagaev-typed-record/8"}else if profile==7{"bagaev-typed-record/7"}else if profile==6{"bagaev-typed-record/6"}else if profile==5{"bagaev-typed-record/5"}else if profile==4{"bagaev-typed-record/4"}else if profile==3{"bagaev-typed-record/3"}else if profile==2{"bagaev-typed-record/2"}else{"bagaev-typed-record/1"},"")?;
     json_bounds(doc,root,128,8192,"")?;
     if profile>=6{for name in ["records","lists","variants"]{if object(doc,field(envelope,name),&format!("/{name}"))?.contains_key(&JsonString::from_str("Json")){return Err(Refusal::new(Reason::Shape,&format!("/{name}")).into());}}}
     let (records,lists,variants)=if profile>=5{variant_declarations(doc,field(envelope,"records"),field(envelope,"lists"),field(envelope,"variants"),profile)?}else{let pair=if profile==4{composite_records(doc,field(envelope,"records"),field(envelope,"lists"))?}else{(if profile==3{nested_records(doc,field(envelope,"records"))?}else{records(doc,field(envelope,"records"))?},Vec::new())}; (pair.0,pair.1,Vec::new())};
@@ -550,7 +553,7 @@ impl<'a> RuntimeValue<'a> {
     fn boolean(self)->Result<bool,EvalError>{match self{Self::Bool(x)=>Ok(x),_=>Err(EvalError::Environment("checked boolean type"))}}
     fn text(self)->Result<crate::text_value::Text<'a>,EvalError>{match self{Self::Text(x)=>Ok(x),_=>Err(EvalError::Environment("checked text type"))}}
 }
-enum EvalError { ListItems(NodeId), ListBytes(NodeId), Index(NodeId), Work(NodeId), Overflow(NodeId), Environment(&'static str) }
+enum EvalError { RecordListItems(NodeId), ListItems(NodeId), ListBytes(NodeId), Index(NodeId), Work(NodeId), Overflow(NodeId), Environment(&'static str) }
 struct Runtime<'a> { program:&'a CheckedSource, work:u64 }
 impl<'a> Runtime<'a> {
     fn charge(&mut self,n:u64,id:NodeId)->Result<(),EvalError>{
@@ -577,6 +580,14 @@ impl<'a> Runtime<'a> {
             NodeKind::Match{variant,cases}=>{let value=self.expression(*variant,args,locals)?.variant()?;let name=&self.program.variants[value.definition].alternatives[value.alternative].0;let arm=cases.iter().find(|c|c.name==*name).ok_or(EvalError::Environment("exhaustive match"))?;locals[arm.slot]=Some((*value.value).clone());self.expression(arm.body,args,locals)}
 
             NodeKind::RecordList{definition,values}=>{let mut fields=Vec::new();for v in values{fields.push(self.expression(*v,args,locals)?);}Ok(RuntimeValue::RecordList(RuntimeRecord{definition:*definition,values:std::rc::Rc::new(fields)}))}
+            NodeKind::RecordsPush{list,value}=>{
+                let list=self.expression(*list,args,locals)?.record_list()?;
+                let record=self.expression(*value,args,locals)?.record()?;
+                let count=list.values.len()+1;self.charge(count as u64,id)?;
+                if count>program.lists[list.definition].capacity{return Err(EvalError::RecordListItems(id));}
+                let mut values=list.values.as_ref().clone();values.push(RuntimeValue::Record(record));
+                Ok(RuntimeValue::RecordList(RuntimeRecord{definition:list.definition,values:std::rc::Rc::new(values)}))
+            }
             NodeKind::RecordsLength{list}=>Ok(RuntimeValue::Int(self.expression(*list,args,locals)?.record_list()?.values.len() as i64)),
             NodeKind::RecordsAt{list,index}=>{let list=self.expression(*list,args,locals)?.record_list()?;let at=self.expression(*index,args,locals)?.int()?;if at<0||at as u64>=list.values.len() as u64{return Err(EvalError::Index(id));}Ok(list.values[at as usize].clone())}
 
@@ -695,7 +706,7 @@ fn decode_argument(doc:&Document,id:ValueId,ty:Type,path:&str,records:&[RecordDe
  })
 }
 fn checked_invocation(doc:&Document,profile:u8)->Result<(CheckedSource,Vec<OwnedArgument>),FrontendError>{
- let outer=exact(doc,doc.root,&["schema","program","arguments"],"")?;schema(doc,outer,if profile==9{"bagaev-typed-record-invocation/9"}else if profile==8{"bagaev-typed-record-invocation/8"}else if profile==7{"bagaev-typed-record-invocation/7"}else if profile==6{"bagaev-typed-record-invocation/6"}else if profile==5{"bagaev-typed-record-invocation/5"}else if profile==4{"bagaev-typed-record-invocation/4"}else if profile==3{"bagaev-typed-record-invocation/3"}else if profile==2{"bagaev-typed-record-invocation/2"}else{"bagaev-typed-record-invocation/1"},"")?;json_bounds(doc,doc.root,132,16384,"")?;
+ let outer=exact(doc,doc.root,&["schema","program","arguments"],"")?;schema(doc,outer,if profile==10{"bagaev-typed-record-invocation/10"}else if profile==9{"bagaev-typed-record-invocation/9"}else if profile==8{"bagaev-typed-record-invocation/8"}else if profile==7{"bagaev-typed-record-invocation/7"}else if profile==6{"bagaev-typed-record-invocation/6"}else if profile==5{"bagaev-typed-record-invocation/5"}else if profile==4{"bagaev-typed-record-invocation/4"}else if profile==3{"bagaev-typed-record-invocation/3"}else if profile==2{"bagaev-typed-record-invocation/2"}else{"bagaev-typed-record-invocation/1"},"")?;json_bounds(doc,doc.root,132,16384,"")?;
  let checked=program(doc,field(outer,"program"),profile).map_err(|e|match e{FrontendError::Refusal(mut r)=>{r.location=format!("/program{}",r.location);FrontendError::Refusal(r)},other=>other})?;
  let vals=match &doc.values[field(outer,"arguments")]{Value::Array(v)=>v,_=>return Err(Refusal::new(Reason::Argument,"/arguments").into())};let params=&checked.functions[checked.entry].parameters;if vals.len()!=params.len(){return Err(Refusal::new(Reason::Argument,"/arguments").into());}let mut args=Vec::new();for(i,(&v,p))in vals.iter().zip(params).enumerate(){args.push(decode_argument(doc,v,p.ty,&format!("/arguments/{i}"),&checked.records,&checked.lists,&checked.variants)?);}Ok((checked,args))
 }
@@ -725,7 +736,7 @@ fn process_profile(bytes:&[u8],profile:u8)->Result<Vec<u8>,&'static str>{
     match runtime.function(program.entry,&args){
         Ok(value)=>result_wire("success",None,None,Some(value),runtime.work,&program.records,&program.lists,&program.variants,profile),
         Err(EvalError::Environment(e))=>Err(e),
-        Err(error)=>{let (id,status,reason)=match error{EvalError::ListItems(id)=>(id,"list-bound","RR_LIST_ITEMS"),EvalError::ListBytes(id)=>(id,"list-bound","RR_LIST_BYTES"),EvalError::Index(id)=>(id,"list-index","RR_INDEX"),EvalError::Work(id)=>(id,"work-limit","RR_WORK"),EvalError::Overflow(id)=>(id,"integer-overflow","RR_OVERFLOW"),EvalError::Environment(_)=>unreachable!()};let loc=format!("/program{}",program.node(id).ok_or("runtime node")?.pointer());result_wire(status,Some(reason),Some(&loc),None,runtime.work,&program.records,&program.lists,&program.variants,profile)}
+        Err(error)=>{let (id,status,reason)=match error{EvalError::RecordListItems(id)=>(id,"record-list-bound","RR_RECORD_LIST_ITEMS"),EvalError::ListItems(id)=>(id,"list-bound","RR_LIST_ITEMS"),EvalError::ListBytes(id)=>(id,"list-bound","RR_LIST_BYTES"),EvalError::Index(id)=>(id,"list-index","RR_INDEX"),EvalError::Work(id)=>(id,"work-limit","RR_WORK"),EvalError::Overflow(id)=>(id,"integer-overflow","RR_OVERFLOW"),EvalError::Environment(_)=>unreachable!()};let loc=format!("/program{}",program.node(id).ok_or("runtime node")?.pointer());result_wire(status,Some(reason),Some(&loc),None,runtime.work,&program.records,&program.lists,&program.variants,profile)}
     }
 }
 
@@ -823,7 +834,7 @@ pub fn evaluate_prepared_json_v8(invocation:&PreparedJsonInvocation<'_>)->Result
   Err(EvalError::Environment(e))=>Err(e),
   Err(error)=>{
    let(id,status,reason)=match error {
-    EvalError::ListItems(id)=>(id,"list-bound","RR_LIST_ITEMS"),EvalError::ListBytes(id)=>(id,"list-bound","RR_LIST_BYTES"),EvalError::Index(id)=>(id,"list-index","RR_INDEX"),
+    EvalError::RecordListItems(id)=>(id,"record-list-bound","RR_RECORD_LIST_ITEMS"),EvalError::ListItems(id)=>(id,"list-bound","RR_LIST_ITEMS"),EvalError::ListBytes(id)=>(id,"list-bound","RR_LIST_BYTES"),EvalError::Index(id)=>(id,"list-index","RR_INDEX"),
     EvalError::Work(id)=>(id,"work-limit","RR_WORK"),EvalError::Overflow(id)=>(id,"integer-overflow","RR_OVERFLOW"),
     EvalError::Environment(_)=>unreachable!(),
    };
@@ -838,6 +849,18 @@ pub fn checked_program_v9(bytes:&[u8])->Result<CheckedSource,String>{let doc=par
 pub fn checked_json_invocation_v9(bytes:&[u8])->Result<CheckedJsonInvocation,String>{
  let doc=parsed(bytes).map_err(|e|format!("{e:?}"))?;
  let (program,args)=checked_invocation(&doc,9).map_err(|e|format!("{e:?}"))?;
+ if program.functions[program.entry].parameters.iter().any(|p|p.ty!=Type::Json){return Err("NATIVE_JSON_SIGNATURE".to_owned());}
+ let mut arguments=Vec::new();
+ for arg in args{match arg{OwnedArgument::Json(v)=>arguments.push(v),_=>return Err("NATIVE_JSON_SIGNATURE".to_owned())}}
+ Ok(CheckedJsonInvocation{program,arguments})
+}
+
+pub fn process_v10(bytes:&[u8])->Result<Vec<u8>,&'static str>{process_profile(bytes,10)}
+pub fn checked_program_v10(bytes:&[u8])->Result<CheckedSource,String>{let doc=parsed(bytes).map_err(|e|format!("{e:?}"))?;program(&doc,doc.root,10).map_err(|e|format!("{e:?}"))}
+
+pub fn checked_json_invocation_v10(bytes:&[u8])->Result<CheckedJsonInvocation,String>{
+ let doc=parsed(bytes).map_err(|e|format!("{e:?}"))?;
+ let (program,args)=checked_invocation(&doc,10).map_err(|e|format!("{e:?}"))?;
  if program.functions[program.entry].parameters.iter().any(|p|p.ty!=Type::Json){return Err("NATIVE_JSON_SIGNATURE".to_owned());}
  let mut arguments=Vec::new();
  for arg in args{match arg{OwnedArgument::Json(v)=>arguments.push(v),_=>return Err("NATIVE_JSON_SIGNATURE".to_owned())}}
