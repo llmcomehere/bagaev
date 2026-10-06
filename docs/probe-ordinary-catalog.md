@@ -81,3 +81,5 @@ the two exact compiler refusals/one positive control, and all 44 wrong outcomes
 from its 20 emitted mutant sources. Four helper controls reject an extra output
 field, duplicate output key, nonfinite output and unknown mutant. These are
 replays of fixed expectations, not new independent semantic cases.
+
+A later [equal application-output study](probe-equal-application-boundary.md) includes each path's wrapping, projection, encoding and output checks. Its limited observations remain separate from this conformance qualification.

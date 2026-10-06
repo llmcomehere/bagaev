@@ -194,3 +194,5 @@ The [lease metadata example](docs/probe-lease-compatibility.md) checks clock lab
 The [nominal-domain parity control](docs/probe-nominal-domains.md) demonstrates existing record distinctions alongside ordinary Rust newtypes, including the deliberate explicit-conversion escape.
 
 The [direct ordinary Rust catalogue](docs/probe-ordinary-catalog.md) implements the same frozen workload without the language interpreter, providing a qualified comparison path before any new measurements.
+
+The [equal application-boundary observations](docs/probe-equal-application-boundary.md) compare complete owned output across ordinary Rust and prepared reference/native paths. The ordinary baseline is faster in the three resolvable cases; no universal advantage is claimed.

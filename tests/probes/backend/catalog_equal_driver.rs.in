@@ -1,0 +1,48 @@
+#[path="{{BACKEND}}/prepared_json_native_v10.rs"]pub mod prepared_json_native_v10;
+// Compile/link only with an independently admitted exact own kernel and bounded profile.
+#[path="{{BACKEND}}/composite_result_decode_v10.rs"]pub mod composite_result_decode_v10;
+#[path="{{BACKEND}}/transport.rs"]pub mod transport;
+#[path="{{BACKEND}}/check.rs"]pub mod check;
+#[path="{{BACKEND}}/ir.rs"]pub mod ir;
+#[path="{{BACKEND}}/canonical.rs"]pub mod canonical;
+#[path="{{BACKEND}}/sha256.rs"]pub mod sha256;
+#[path="{{BACKEND}}/record_ir.rs"]pub mod record_ir;
+#[path="{{BACKEND}}/option_int.rs"]pub mod option_int;
+#[path="{{BACKEND}}/text_value.rs"]pub mod text_value;
+#[path="{{BACKEND}}/text_list.rs"]pub mod text_list;
+#[path="{{BACKEND}}/typed_record.rs"]pub mod typed_record;
+#[path="{{BACKEND}}/text_inspection.rs"]pub mod text_inspection;
+#[path="{{BACKEND}}/int_projection.rs"]pub mod int_projection;
+#[path="{{BACKEND}}/record_value.rs"]pub mod record_value;
+#[path="{{BACKEND}}/type_graph.rs"]pub mod type_graph;
+#[path="{{BACKEND}}/json_view.rs"]pub mod json_view;
+#[path="{{BACKEND}}/variant_admission.rs"]pub mod variant_admission;
+#[path="{{BACKEND}}/list_callframe.rs"]pub mod list_callframe;
+#[path="{{BACKEND}}/list_native_adapter.rs"]pub mod list_native_adapter;
+#[path="{{BACKEND}}/json_native_input.rs"]pub mod json_native_input;
+#[path="{{BACKEND}}/json_native_invocation.rs"]pub mod json_native_invocation;
+#[path="{{BACKEND}}/json_native_adapter_v10.rs"]pub mod json_native_adapter_v10;
+#[path="{{BACKEND}}/composite_export_v10.rs"]pub mod composite_export_v10;
+#[path="{{BACKEND}}/composite_native_cells.rs"]pub mod composite_native_cells;
+
+#[path="{{CATALOG_DIR}}/catalog.rs"]pub mod catalog;
+#[path="{{CATALOG_DIR}}/native_projection.rs"]pub mod native_projection;
+#[path="{{CATALOG_DIR}}/reference_projection.rs"]pub mod reference_projection;
+#[path="{{CATALOG_DIR}}/call_boundary.rs"]pub mod call_boundary;
+
+use std::hint::black_box;
+fn read(path:&str)->Vec<u8>{use std::io::Read;let f=std::fs::File::open(path).unwrap();let m=f.metadata().unwrap();assert!(m.is_file()&&m.len()<=1048576);let mut b=Vec::new();f.take(1048577).read_to_end(&mut b).unwrap();assert!(b.len()<=1048576);b}
+fn checked(session:&mut call_boundary::Session,raw:&[u8],expected:&[u8])->usize{
+ let out=unsafe{session.call(black_box(raw))}.unwrap();assert_eq!(black_box(out.as_slice()),black_box(expected));out.len()
+}
+fn main(){
+ let a:Vec<_>=std::env::args().collect();assert_eq!(a.len(),5);assert!(a[2]=="qualify"||a[2]=="measure");
+ let raw=read(&a[3]);let expected=read(&a[4]);let before=raw.clone();let source=include_bytes!("{{SOURCE}}");let mut session=call_boundary::Session::new(&a[1],source).unwrap();
+ if a[2]=="qualify"{let n=checked(&mut session,&raw,&expected);assert_eq!(raw,before);println!("{{\"status\":\"checked\",\"calls\":1,\"output_bytes\":{n}}}");return}
+ for _ in 0..8{checked(&mut session,&raw,&expected);}
+ let mut calls=0usize;let mut compared_bytes=0usize;let start=std::time::Instant::now();
+ for _ in 0..512{compared_bytes+=checked(&mut session,&raw,&expected);calls+=1;}
+ let elapsed_ns=start.elapsed().as_nanos();assert_eq!(raw,before);assert_eq!(calls,512);assert_eq!(compared_bytes,512*expected.len());
+ let scratch=if a[1]=="native"{65536*(std::mem::size_of::<prepared_json_native_v10::NativeText>()+std::mem::size_of::<prepared_json_native_v10::NativeValue>())}else{0};
+ println!("{{\"status\":\"measured\",\"calls\":{calls},\"warmups\":8,\"compared_bytes\":{compared_bytes},\"output_bytes\":{},\"elapsed_ns\":{elapsed_ns},\"retained_native_descriptor_bytes\":{scratch}}}",expected.len());
+}

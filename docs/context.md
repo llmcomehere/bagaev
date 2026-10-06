@@ -200,3 +200,5 @@ The [clock-bound lease compatibility example](probe-lease-compatibility.md) make
 For accidental domain substitution, the [existing nominal-domain control](probe-nominal-domains.md) checks bagaev records against ordinary Rust newtypes without claiming authentication.
 
 The [ordinary native catalogue baseline](probe-ordinary-catalog.md) shares only reviewed JSON transport with the typed probe. Application-value conformance precedes any equal-boundary cost study.
+
+Read [the equal-output call study](probe-equal-application-boundary.md) for the fixed interval, all retained rows, short-batch exclusions from ratios and the distinction from kernel or full lifecycle cost.
