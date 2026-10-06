@@ -192,3 +192,5 @@ For /10 nominal record-list accumulation, read
 ## Evidence compatibility example
 
 Read [the finite metadata contract](probe-evidence-compatibility.md) for exact matching, conflicting receipts and explicit limits on what acceptance means.
+
+The [fixed obligation-set successor](probe-evidence-obligations.md) extends descriptive matching to one or two distinct required assertions without inferring truth or execution permission.

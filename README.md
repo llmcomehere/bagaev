@@ -186,3 +186,5 @@ capacity. It preserves earlier source/native profiles.
 The [experimental prepared /10 JSON API](docs/probe-prepared-json10.md) reuses checked /10 source with distinct ownership types, preserving the older /8 interface. Finite conformance is separate from production acceptance.
 
 The [finite evidence compatibility example](docs/probe-evidence-compatibility.md) compares descriptive receipt metadata with frozen requirements using existing /8 JSON operations. It grants no execution authority.
+
+The [fixed obligation-set example](docs/probe-evidence-obligations.md) checks every member of a trusted finite requirement set and gives conflicts priority over missing evidence.
