@@ -1,0 +1,1800 @@
+{
+  "schema": "owned-record-oracle/1",
+  "sources": {
+    "stock": {
+      "schema": "bagaev-component-source/1",
+      "program": {
+        "schema": "bagaev-typed-record/10",
+        "records": {
+          "StockKey": {
+            "code": "Text"
+          },
+          "StockVersion": {
+            "value": "Int64"
+          },
+          "Stock": {
+            "key": "StockKey",
+            "quantity": "Int64",
+            "note": "Text"
+          },
+          "SetStock": {
+            "item": "StockKey",
+            "expected": "StockVersion",
+            "quantity": "Int64"
+          }
+        },
+        "lists": {},
+        "variants": {},
+        "entry": "apply",
+        "functions": {
+          "apply": {
+            "params": [
+              [
+                "state",
+                "Stock"
+              ],
+              [
+                "request",
+                "SetStock"
+              ]
+            ],
+            "result": "Stock",
+            "body": [
+              "record",
+              "Stock",
+              [
+                "field",
+                [
+                  "arg",
+                  "state"
+                ],
+                "key"
+              ],
+              [
+                "field",
+                [
+                  "arg",
+                  "state"
+                ],
+                "note"
+              ],
+              [
+                "field",
+                [
+                  "arg",
+                  "request"
+                ],
+                "quantity"
+              ]
+            ]
+          }
+        }
+      },
+      "component": {
+        "name": "StockItem",
+        "operation": "set_quantity",
+        "state_type": "Stock",
+        "request_type": "SetStock",
+        "revision_type": "StockVersion",
+        "entry": "apply",
+        "identity_binding": {
+          "state": "key",
+          "request": "item"
+        },
+        "revision_binding": "expected",
+        "replace_fields": [
+          "quantity"
+        ]
+      }
+    },
+    "tags": {
+      "schema": "bagaev-component-source/1",
+      "program": {
+        "schema": "bagaev-typed-record/10",
+        "records": {
+          "EntryId": {
+            "value": "Text"
+          },
+          "CatalogRevision": {
+            "value": "Int64"
+          },
+          "Entry": {
+            "id": "EntryId",
+            "indexed": "TextList",
+            "manual": "TextList"
+          },
+          "ReindexRequest": {
+            "base": "CatalogRevision",
+            "id": "EntryId",
+            "tags": "TextList"
+          }
+        },
+        "lists": {},
+        "variants": {},
+        "entry": "main",
+        "functions": {
+          "main": {
+            "params": [
+              [
+                "state",
+                "Entry"
+              ],
+              [
+                "request",
+                "ReindexRequest"
+              ]
+            ],
+            "result": "Entry",
+            "body": [
+              "record",
+              "Entry",
+              [
+                "field",
+                [
+                  "arg",
+                  "state"
+                ],
+                "id"
+              ],
+              [
+                "list.unique",
+                [
+                  "field",
+                  [
+                    "arg",
+                    "request"
+                  ],
+                  "tags"
+                ]
+              ],
+              [
+                "field",
+                [
+                  "arg",
+                  "state"
+                ],
+                "manual"
+              ]
+            ]
+          }
+        }
+      },
+      "component": {
+        "name": "CatalogEntry",
+        "operation": "reindex",
+        "state_type": "Entry",
+        "request_type": "ReindexRequest",
+        "revision_type": "CatalogRevision",
+        "entry": "main",
+        "identity_binding": {
+          "state": "id",
+          "request": "id"
+        },
+        "revision_binding": "base",
+        "replace_fields": [
+          "indexed"
+        ]
+      }
+    }
+  },
+  "policies": {
+    "stock": {
+      "schema": "bagaev-component-policy/1",
+      "component": "StockItem",
+      "operation": "set_quantity",
+      "state_type": "Stock",
+      "request_type": "SetStock",
+      "revision_type": "StockVersion",
+      "identity_binding": {
+        "state": "key",
+        "request": "item"
+      },
+      "revision_binding": "expected",
+      "replace_fields": [
+        "quantity"
+      ],
+      "records": {
+        "StockKey": {
+          "code": "Text"
+        },
+        "StockVersion": {
+          "value": "Int64"
+        },
+        "Stock": {
+          "key": "StockKey",
+          "quantity": "Int64",
+          "note": "Text"
+        },
+        "SetStock": {
+          "item": "StockKey",
+          "expected": "StockVersion",
+          "quantity": "Int64"
+        }
+      }
+    },
+    "tags": {
+      "schema": "bagaev-component-policy/1",
+      "state_type": "Entry",
+      "request_type": "ReindexRequest",
+      "revision_type": "CatalogRevision",
+      "identity_binding": {
+        "state": "id",
+        "request": "id"
+      },
+      "revision_binding": "base",
+      "replace_fields": [
+        "indexed"
+      ],
+      "component": "CatalogEntry",
+      "operation": "reindex",
+      "records": {
+        "EntryId": {
+          "value": "Text"
+        },
+        "CatalogRevision": {
+          "value": "Int64"
+        },
+        "Entry": {
+          "id": "EntryId",
+          "indexed": "TextList",
+          "manual": "TextList"
+        },
+        "ReindexRequest": {
+          "base": "CatalogRevision",
+          "id": "EntryId",
+          "tags": "TextList"
+        }
+      }
+    }
+  },
+  "initial": {
+    "stock": {
+      "key": {
+        "code": "sku1"
+      },
+      "note": "kept",
+      "quantity": 10
+    },
+    "tags": {
+      "id": {
+        "value": "e1"
+      },
+      "manual": [
+        "family"
+      ],
+      "indexed": [
+        "old"
+      ]
+    }
+  },
+  "initial_revision": 7,
+  "initial_conditions": {
+    "tick": 1,
+    "epoch": 1,
+    "submit": true,
+    "write": true,
+    "observe": true,
+    "cancel": true
+  },
+  "cases": [
+    {
+      "id": "TAGS-CYCLE",
+      "domain": "tags",
+      "actions": [
+        {
+          "command": "submit",
+          "packet": {
+            "key": {
+              "resource": "tags/g1",
+              "domain": "owner",
+              "id": "A"
+            },
+            "source": "f57aa73a733951b8321b89b4813bc27021ec2f49af34dc19989812925033bfbc",
+            "request": {
+              "id": {
+                "value": "e1"
+              },
+              "base": {
+                "value": 7
+              },
+              "tags": [
+                "new",
+                "new"
+              ]
+            },
+            "epoch": 1,
+            "deadline": 100
+          },
+          "drop_reply": true
+        },
+        {
+          "command": "submit",
+          "packet": {
+            "key": {
+              "resource": "tags/g1",
+              "domain": "owner",
+              "id": "B"
+            },
+            "source": "f57aa73a733951b8321b89b4813bc27021ec2f49af34dc19989812925033bfbc",
+            "request": {
+              "id": {
+                "value": "e1"
+              },
+              "base": {
+                "value": 8
+              },
+              "tags": [
+                "next"
+              ]
+            },
+            "epoch": 1,
+            "deadline": 100
+          }
+        },
+        {
+          "command": "observe",
+          "packet": {
+            "key": {
+              "resource": "tags/g1",
+              "domain": "owner",
+              "id": "A"
+            },
+            "source": "f57aa73a733951b8321b89b4813bc27021ec2f49af34dc19989812925033bfbc",
+            "request": {
+              "id": {
+                "value": "e1"
+              },
+              "base": {
+                "value": 7
+              },
+              "tags": [
+                "new",
+                "new"
+              ]
+            },
+            "epoch": 1,
+            "deadline": 100
+          }
+        }
+      ],
+      "expected": {
+        "outputs": [
+          {
+            "transport": "lost"
+          },
+          {
+            "kind": "Applied",
+            "key": {
+              "resource": "tags/g1",
+              "domain": "owner",
+              "id": "B"
+            },
+            "intent": {
+              "source": "f57aa73a733951b8321b89b4813bc27021ec2f49af34dc19989812925033bfbc",
+              "request": {
+                "id": {
+                  "value": "e1"
+                },
+                "base": {
+                  "value": 8
+                },
+                "tags": [
+                  "next"
+                ]
+              },
+              "epoch": 1,
+              "deadline": 100
+            },
+            "revision": 9,
+            "state": {
+              "id": {
+                "value": "e1"
+              },
+              "manual": [
+                "family"
+              ],
+              "indexed": [
+                "next"
+              ]
+            }
+          },
+          {
+            "kind": "Applied",
+            "key": {
+              "resource": "tags/g1",
+              "domain": "owner",
+              "id": "A"
+            },
+            "intent": {
+              "source": "f57aa73a733951b8321b89b4813bc27021ec2f49af34dc19989812925033bfbc",
+              "request": {
+                "id": {
+                  "value": "e1"
+                },
+                "base": {
+                  "value": 7
+                },
+                "tags": [
+                  "new",
+                  "new"
+                ]
+              },
+              "epoch": 1,
+              "deadline": 100
+            },
+            "revision": 8,
+            "state": {
+              "id": {
+                "value": "e1"
+              },
+              "manual": [
+                "family"
+              ],
+              "indexed": [
+                "new"
+              ]
+            }
+          }
+        ],
+        "state": {
+          "id": {
+            "value": "e1"
+          },
+          "manual": [
+            "family"
+          ],
+          "indexed": [
+            "next"
+          ]
+        },
+        "revision": 9,
+        "mutations": 2,
+        "application_evaluations": 2,
+        "terminal_rows": 2
+      }
+    },
+    {
+      "id": "STOCK-CYCLE",
+      "domain": "stock",
+      "actions": [
+        {
+          "command": "submit",
+          "packet": {
+            "key": {
+              "resource": "stock/g1",
+              "domain": "owner",
+              "id": "A"
+            },
+            "source": "c07a5c80ee84d4fe61bfee557a52ef227a79db6eae2b1df2bbd7d6de6e77af7e",
+            "request": {
+              "item": {
+                "code": "sku1"
+              },
+              "expected": {
+                "value": 7
+              },
+              "quantity": 13
+            },
+            "epoch": 1,
+            "deadline": 100
+          },
+          "drop_reply": true
+        },
+        {
+          "command": "submit",
+          "packet": {
+            "key": {
+              "resource": "stock/g1",
+              "domain": "owner",
+              "id": "B"
+            },
+            "source": "c07a5c80ee84d4fe61bfee557a52ef227a79db6eae2b1df2bbd7d6de6e77af7e",
+            "request": {
+              "item": {
+                "code": "sku1"
+              },
+              "expected": {
+                "value": 8
+              },
+              "quantity": 11
+            },
+            "epoch": 1,
+            "deadline": 100
+          }
+        },
+        {
+          "command": "observe",
+          "packet": {
+            "key": {
+              "resource": "stock/g1",
+              "domain": "owner",
+              "id": "A"
+            },
+            "source": "c07a5c80ee84d4fe61bfee557a52ef227a79db6eae2b1df2bbd7d6de6e77af7e",
+            "request": {
+              "item": {
+                "code": "sku1"
+              },
+              "expected": {
+                "value": 7
+              },
+              "quantity": 13
+            },
+            "epoch": 1,
+            "deadline": 100
+          }
+        }
+      ],
+      "expected": {
+        "outputs": [
+          {
+            "transport": "lost"
+          },
+          {
+            "kind": "Applied",
+            "key": {
+              "resource": "stock/g1",
+              "domain": "owner",
+              "id": "B"
+            },
+            "intent": {
+              "source": "c07a5c80ee84d4fe61bfee557a52ef227a79db6eae2b1df2bbd7d6de6e77af7e",
+              "request": {
+                "item": {
+                  "code": "sku1"
+                },
+                "expected": {
+                  "value": 8
+                },
+                "quantity": 11
+              },
+              "epoch": 1,
+              "deadline": 100
+            },
+            "revision": 9,
+            "state": {
+              "key": {
+                "code": "sku1"
+              },
+              "note": "kept",
+              "quantity": 11
+            }
+          },
+          {
+            "kind": "Applied",
+            "key": {
+              "resource": "stock/g1",
+              "domain": "owner",
+              "id": "A"
+            },
+            "intent": {
+              "source": "c07a5c80ee84d4fe61bfee557a52ef227a79db6eae2b1df2bbd7d6de6e77af7e",
+              "request": {
+                "item": {
+                  "code": "sku1"
+                },
+                "expected": {
+                  "value": 7
+                },
+                "quantity": 13
+              },
+              "epoch": 1,
+              "deadline": 100
+            },
+            "revision": 8,
+            "state": {
+              "key": {
+                "code": "sku1"
+              },
+              "note": "kept",
+              "quantity": 13
+            }
+          }
+        ],
+        "state": {
+          "key": {
+            "code": "sku1"
+          },
+          "note": "kept",
+          "quantity": 11
+        },
+        "revision": 9,
+        "mutations": 2,
+        "application_evaluations": 2,
+        "terminal_rows": 2
+      }
+    },
+    {
+      "id": "REPLAY",
+      "domain": "stock",
+      "actions": [
+        {
+          "command": "submit",
+          "packet": {
+            "key": {
+              "resource": "stock/g1",
+              "domain": "owner",
+              "id": "A"
+            },
+            "source": "c07a5c80ee84d4fe61bfee557a52ef227a79db6eae2b1df2bbd7d6de6e77af7e",
+            "request": {
+              "item": {
+                "code": "sku1"
+              },
+              "expected": {
+                "value": 7
+              },
+              "quantity": 13
+            },
+            "epoch": 1,
+            "deadline": 100
+          }
+        },
+        {
+          "command": "submit",
+          "packet": {
+            "key": {
+              "resource": "stock/g1",
+              "domain": "owner",
+              "id": "A"
+            },
+            "source": "c07a5c80ee84d4fe61bfee557a52ef227a79db6eae2b1df2bbd7d6de6e77af7e",
+            "request": {
+              "item": {
+                "code": "sku1"
+              },
+              "expected": {
+                "value": 7
+              },
+              "quantity": 13
+            },
+            "epoch": 1,
+            "deadline": 100
+          }
+        }
+      ],
+      "expected": {
+        "outputs": [
+          {
+            "kind": "Applied",
+            "key": {
+              "resource": "stock/g1",
+              "domain": "owner",
+              "id": "A"
+            },
+            "intent": {
+              "source": "c07a5c80ee84d4fe61bfee557a52ef227a79db6eae2b1df2bbd7d6de6e77af7e",
+              "request": {
+                "item": {
+                  "code": "sku1"
+                },
+                "expected": {
+                  "value": 7
+                },
+                "quantity": 13
+              },
+              "epoch": 1,
+              "deadline": 100
+            },
+            "revision": 8,
+            "state": {
+              "key": {
+                "code": "sku1"
+              },
+              "note": "kept",
+              "quantity": 13
+            }
+          },
+          {
+            "kind": "Applied",
+            "key": {
+              "resource": "stock/g1",
+              "domain": "owner",
+              "id": "A"
+            },
+            "intent": {
+              "source": "c07a5c80ee84d4fe61bfee557a52ef227a79db6eae2b1df2bbd7d6de6e77af7e",
+              "request": {
+                "item": {
+                  "code": "sku1"
+                },
+                "expected": {
+                  "value": 7
+                },
+                "quantity": 13
+              },
+              "epoch": 1,
+              "deadline": 100
+            },
+            "revision": 8,
+            "state": {
+              "key": {
+                "code": "sku1"
+              },
+              "note": "kept",
+              "quantity": 13
+            }
+          }
+        ],
+        "state": {
+          "key": {
+            "code": "sku1"
+          },
+          "note": "kept",
+          "quantity": 13
+        },
+        "revision": 8,
+        "mutations": 1,
+        "application_evaluations": 1,
+        "terminal_rows": 1
+      }
+    },
+    {
+      "id": "CONFLICT",
+      "domain": "stock",
+      "actions": [
+        {
+          "command": "submit",
+          "packet": {
+            "key": {
+              "resource": "stock/g1",
+              "domain": "owner",
+              "id": "A"
+            },
+            "source": "c07a5c80ee84d4fe61bfee557a52ef227a79db6eae2b1df2bbd7d6de6e77af7e",
+            "request": {
+              "item": {
+                "code": "sku1"
+              },
+              "expected": {
+                "value": 7
+              },
+              "quantity": 13
+            },
+            "epoch": 1,
+            "deadline": 100
+          }
+        },
+        {
+          "command": "submit",
+          "packet": {
+            "key": {
+              "resource": "stock/g1",
+              "domain": "owner",
+              "id": "A"
+            },
+            "source": "c07a5c80ee84d4fe61bfee557a52ef227a79db6eae2b1df2bbd7d6de6e77af7e",
+            "request": {
+              "item": {
+                "code": "sku1"
+              },
+              "expected": {
+                "value": 7
+              },
+              "quantity": 14
+            },
+            "epoch": 1,
+            "deadline": 100
+          }
+        }
+      ],
+      "expected": {
+        "outputs": [
+          {
+            "kind": "Applied",
+            "key": {
+              "resource": "stock/g1",
+              "domain": "owner",
+              "id": "A"
+            },
+            "intent": {
+              "source": "c07a5c80ee84d4fe61bfee557a52ef227a79db6eae2b1df2bbd7d6de6e77af7e",
+              "request": {
+                "item": {
+                  "code": "sku1"
+                },
+                "expected": {
+                  "value": 7
+                },
+                "quantity": 13
+              },
+              "epoch": 1,
+              "deadline": 100
+            },
+            "revision": 8,
+            "state": {
+              "key": {
+                "code": "sku1"
+              },
+              "note": "kept",
+              "quantity": 13
+            }
+          },
+          {
+            "status": "IntentConflict"
+          }
+        ],
+        "state": {
+          "key": {
+            "code": "sku1"
+          },
+          "note": "kept",
+          "quantity": 13
+        },
+        "revision": 8,
+        "mutations": 1,
+        "application_evaluations": 1,
+        "terminal_rows": 1
+      }
+    },
+    {
+      "id": "OBSERVE-DENIED",
+      "domain": "stock",
+      "actions": [
+        {
+          "command": "submit",
+          "packet": {
+            "key": {
+              "resource": "stock/g1",
+              "domain": "owner",
+              "id": "A"
+            },
+            "source": "c07a5c80ee84d4fe61bfee557a52ef227a79db6eae2b1df2bbd7d6de6e77af7e",
+            "request": {
+              "item": {
+                "code": "sku1"
+              },
+              "expected": {
+                "value": 7
+              },
+              "quantity": 13
+            },
+            "epoch": 1,
+            "deadline": 100
+          }
+        },
+        {
+          "command": "observe",
+          "packet": {
+            "key": {
+              "resource": "stock/g1",
+              "domain": "owner",
+              "id": "A"
+            },
+            "source": "c07a5c80ee84d4fe61bfee557a52ef227a79db6eae2b1df2bbd7d6de6e77af7e",
+            "request": {
+              "item": {
+                "code": "sku1"
+              },
+              "expected": {
+                "value": 7
+              },
+              "quantity": 13
+            },
+            "epoch": 1,
+            "deadline": 100
+          },
+          "conditions": {
+            "observe": false
+          }
+        }
+      ],
+      "expected": {
+        "outputs": [
+          {
+            "kind": "Applied",
+            "key": {
+              "resource": "stock/g1",
+              "domain": "owner",
+              "id": "A"
+            },
+            "intent": {
+              "source": "c07a5c80ee84d4fe61bfee557a52ef227a79db6eae2b1df2bbd7d6de6e77af7e",
+              "request": {
+                "item": {
+                  "code": "sku1"
+                },
+                "expected": {
+                  "value": 7
+                },
+                "quantity": 13
+              },
+              "epoch": 1,
+              "deadline": 100
+            },
+            "revision": 8,
+            "state": {
+              "key": {
+                "code": "sku1"
+              },
+              "note": "kept",
+              "quantity": 13
+            }
+          },
+          {
+            "status": "AccessDenied"
+          }
+        ],
+        "state": {
+          "key": {
+            "code": "sku1"
+          },
+          "note": "kept",
+          "quantity": 13
+        },
+        "revision": 8,
+        "mutations": 1,
+        "application_evaluations": 1,
+        "terminal_rows": 1
+      }
+    },
+    {
+      "id": "WRITE-DENIED",
+      "domain": "stock",
+      "actions": [
+        {
+          "command": "submit",
+          "packet": {
+            "key": {
+              "resource": "stock/g1",
+              "domain": "owner",
+              "id": "A"
+            },
+            "source": "c07a5c80ee84d4fe61bfee557a52ef227a79db6eae2b1df2bbd7d6de6e77af7e",
+            "request": {
+              "item": {
+                "code": "sku1"
+              },
+              "expected": {
+                "value": 7
+              },
+              "quantity": 13
+            },
+            "epoch": 1,
+            "deadline": 100
+          },
+          "conditions": {
+            "write": false
+          }
+        }
+      ],
+      "expected": {
+        "outputs": [
+          {
+            "status": "AccessDenied"
+          }
+        ],
+        "state": {
+          "key": {
+            "code": "sku1"
+          },
+          "note": "kept",
+          "quantity": 10
+        },
+        "revision": 7,
+        "mutations": 0,
+        "application_evaluations": 0,
+        "terminal_rows": 0
+      }
+    },
+    {
+      "id": "UNKNOWN",
+      "domain": "stock",
+      "actions": [
+        {
+          "command": "observe",
+          "packet": {
+            "key": {
+              "resource": "stock/g1",
+              "domain": "owner",
+              "id": "A"
+            },
+            "source": "c07a5c80ee84d4fe61bfee557a52ef227a79db6eae2b1df2bbd7d6de6e77af7e",
+            "request": {
+              "item": {
+                "code": "sku1"
+              },
+              "expected": {
+                "value": 7
+              },
+              "quantity": 13
+            },
+            "epoch": 1,
+            "deadline": 100
+          }
+        }
+      ],
+      "expected": {
+        "outputs": [
+          {
+            "status": "Unknown"
+          }
+        ],
+        "state": {
+          "key": {
+            "code": "sku1"
+          },
+          "note": "kept",
+          "quantity": 10
+        },
+        "revision": 7,
+        "mutations": 0,
+        "application_evaluations": 0,
+        "terminal_rows": 0
+      }
+    },
+    {
+      "id": "DEADLINE",
+      "domain": "stock",
+      "actions": [
+        {
+          "command": "submit",
+          "packet": {
+            "key": {
+              "resource": "stock/g1",
+              "domain": "owner",
+              "id": "A"
+            },
+            "source": "c07a5c80ee84d4fe61bfee557a52ef227a79db6eae2b1df2bbd7d6de6e77af7e",
+            "request": {
+              "item": {
+                "code": "sku1"
+              },
+              "expected": {
+                "value": 7
+              },
+              "quantity": 13
+            },
+            "epoch": 1,
+            "deadline": 100
+          },
+          "conditions": {
+            "tick": 101
+          }
+        }
+      ],
+      "expected": {
+        "outputs": [
+          {
+            "kind": "Refused",
+            "reason": "DeadlineExpired",
+            "revision": 7
+          }
+        ],
+        "state": {
+          "key": {
+            "code": "sku1"
+          },
+          "note": "kept",
+          "quantity": 10
+        },
+        "revision": 7,
+        "mutations": 0,
+        "application_evaluations": 0,
+        "terminal_rows": 1
+      }
+    },
+    {
+      "id": "EPOCH",
+      "domain": "stock",
+      "actions": [
+        {
+          "command": "submit",
+          "packet": {
+            "key": {
+              "resource": "stock/g1",
+              "domain": "owner",
+              "id": "A"
+            },
+            "source": "c07a5c80ee84d4fe61bfee557a52ef227a79db6eae2b1df2bbd7d6de6e77af7e",
+            "request": {
+              "item": {
+                "code": "sku1"
+              },
+              "expected": {
+                "value": 7
+              },
+              "quantity": 13
+            },
+            "epoch": 1,
+            "deadline": 100
+          },
+          "conditions": {
+            "epoch": 2
+          }
+        }
+      ],
+      "expected": {
+        "outputs": [
+          {
+            "kind": "Refused",
+            "reason": "EpochMismatch",
+            "revision": 7
+          }
+        ],
+        "state": {
+          "key": {
+            "code": "sku1"
+          },
+          "note": "kept",
+          "quantity": 10
+        },
+        "revision": 7,
+        "mutations": 0,
+        "application_evaluations": 0,
+        "terminal_rows": 1
+      }
+    },
+    {
+      "id": "REVISION",
+      "domain": "stock",
+      "actions": [
+        {
+          "command": "submit",
+          "packet": {
+            "key": {
+              "resource": "stock/g1",
+              "domain": "owner",
+              "id": "A"
+            },
+            "source": "c07a5c80ee84d4fe61bfee557a52ef227a79db6eae2b1df2bbd7d6de6e77af7e",
+            "request": {
+              "item": {
+                "code": "sku1"
+              },
+              "expected": {
+                "value": 6
+              },
+              "quantity": 13
+            },
+            "epoch": 1,
+            "deadline": 100
+          }
+        }
+      ],
+      "expected": {
+        "outputs": [
+          {
+            "kind": "Refused",
+            "reason": "RevisionMismatch",
+            "revision": 7
+          }
+        ],
+        "state": {
+          "key": {
+            "code": "sku1"
+          },
+          "note": "kept",
+          "quantity": 10
+        },
+        "revision": 7,
+        "mutations": 0,
+        "application_evaluations": 0,
+        "terminal_rows": 1
+      }
+    },
+    {
+      "id": "LATE-WRITE-REVOCATION",
+      "domain": "stock",
+      "actions": [
+        {
+          "command": "submit",
+          "packet": {
+            "key": {
+              "resource": "stock/g1",
+              "domain": "owner",
+              "id": "A"
+            },
+            "source": "c07a5c80ee84d4fe61bfee557a52ef227a79db6eae2b1df2bbd7d6de6e77af7e",
+            "request": {
+              "item": {
+                "code": "sku1"
+              },
+              "expected": {
+                "value": 7
+              },
+              "quantity": 13
+            },
+            "epoch": 1,
+            "deadline": 100
+          },
+          "during_evaluation": {
+            "write": false
+          }
+        }
+      ],
+      "expected": {
+        "outputs": [
+          {
+            "status": "AccessDenied"
+          }
+        ],
+        "state": {
+          "key": {
+            "code": "sku1"
+          },
+          "note": "kept",
+          "quantity": 10
+        },
+        "revision": 7,
+        "mutations": 0,
+        "application_evaluations": 1,
+        "terminal_rows": 0
+      }
+    },
+    {
+      "id": "LATE-EPOCH",
+      "domain": "stock",
+      "actions": [
+        {
+          "command": "submit",
+          "packet": {
+            "key": {
+              "resource": "stock/g1",
+              "domain": "owner",
+              "id": "A"
+            },
+            "source": "c07a5c80ee84d4fe61bfee557a52ef227a79db6eae2b1df2bbd7d6de6e77af7e",
+            "request": {
+              "item": {
+                "code": "sku1"
+              },
+              "expected": {
+                "value": 7
+              },
+              "quantity": 13
+            },
+            "epoch": 1,
+            "deadline": 100
+          },
+          "during_evaluation": {
+            "epoch": 2
+          }
+        }
+      ],
+      "expected": {
+        "outputs": [
+          {
+            "kind": "Refused",
+            "reason": "EpochMismatch",
+            "revision": 7
+          }
+        ],
+        "state": {
+          "key": {
+            "code": "sku1"
+          },
+          "note": "kept",
+          "quantity": 10
+        },
+        "revision": 7,
+        "mutations": 0,
+        "application_evaluations": 1,
+        "terminal_rows": 1
+      }
+    },
+    {
+      "id": "LATE-DEADLINE",
+      "domain": "stock",
+      "actions": [
+        {
+          "command": "submit",
+          "packet": {
+            "key": {
+              "resource": "stock/g1",
+              "domain": "owner",
+              "id": "A"
+            },
+            "source": "c07a5c80ee84d4fe61bfee557a52ef227a79db6eae2b1df2bbd7d6de6e77af7e",
+            "request": {
+              "item": {
+                "code": "sku1"
+              },
+              "expected": {
+                "value": 7
+              },
+              "quantity": 13
+            },
+            "epoch": 1,
+            "deadline": 100
+          },
+          "during_evaluation": {
+            "tick": 101
+          }
+        }
+      ],
+      "expected": {
+        "outputs": [
+          {
+            "kind": "Refused",
+            "reason": "DeadlineExpired",
+            "revision": 7
+          }
+        ],
+        "state": {
+          "key": {
+            "code": "sku1"
+          },
+          "note": "kept",
+          "quantity": 10
+        },
+        "revision": 7,
+        "mutations": 0,
+        "application_evaluations": 1,
+        "terminal_rows": 1
+      }
+    },
+    {
+      "id": "BAD-PRESERVED",
+      "domain": "stock",
+      "actions": [
+        {
+          "command": "submit",
+          "packet": {
+            "key": {
+              "resource": "stock/g1",
+              "domain": "owner",
+              "id": "A"
+            },
+            "source": "c07a5c80ee84d4fe61bfee557a52ef227a79db6eae2b1df2bbd7d6de6e77af7e",
+            "request": {
+              "item": {
+                "code": "sku1"
+              },
+              "expected": {
+                "value": 7
+              },
+              "quantity": 13
+            },
+            "epoch": 1,
+            "deadline": 100
+          },
+          "evaluator_fault": "preserved"
+        }
+      ],
+      "expected": {
+        "outputs": [
+          {
+            "error": "OWNER_FRAME"
+          }
+        ],
+        "state": {
+          "key": {
+            "code": "sku1"
+          },
+          "note": "kept",
+          "quantity": 10
+        },
+        "revision": 7,
+        "mutations": 0,
+        "application_evaluations": 1,
+        "terminal_rows": 0
+      }
+    },
+    {
+      "id": "BAD-TYPE",
+      "domain": "stock",
+      "actions": [
+        {
+          "command": "submit",
+          "packet": {
+            "key": {
+              "resource": "stock/g1",
+              "domain": "owner",
+              "id": "A"
+            },
+            "source": "c07a5c80ee84d4fe61bfee557a52ef227a79db6eae2b1df2bbd7d6de6e77af7e",
+            "request": {
+              "item": {
+                "code": "sku1"
+              },
+              "expected": {
+                "value": 7
+              },
+              "quantity": 13
+            },
+            "epoch": 1,
+            "deadline": 100
+          },
+          "evaluator_fault": "type"
+        }
+      ],
+      "expected": {
+        "outputs": [
+          {
+            "error": "OWNER_RESULT_TYPE"
+          }
+        ],
+        "state": {
+          "key": {
+            "code": "sku1"
+          },
+          "note": "kept",
+          "quantity": 10
+        },
+        "revision": 7,
+        "mutations": 0,
+        "application_evaluations": 1,
+        "terminal_rows": 0
+      }
+    },
+    {
+      "id": "BAD-UNAVAILABLE",
+      "domain": "stock",
+      "actions": [
+        {
+          "command": "submit",
+          "packet": {
+            "key": {
+              "resource": "stock/g1",
+              "domain": "owner",
+              "id": "A"
+            },
+            "source": "c07a5c80ee84d4fe61bfee557a52ef227a79db6eae2b1df2bbd7d6de6e77af7e",
+            "request": {
+              "item": {
+                "code": "sku1"
+              },
+              "expected": {
+                "value": 7
+              },
+              "quantity": 13
+            },
+            "epoch": 1,
+            "deadline": 100
+          },
+          "evaluator_fault": "unavailable"
+        }
+      ],
+      "expected": {
+        "outputs": [
+          {
+            "error": "OwnerUnavailable"
+          }
+        ],
+        "state": {
+          "key": {
+            "code": "sku1"
+          },
+          "note": "kept",
+          "quantity": 10
+        },
+        "revision": 7,
+        "mutations": 0,
+        "application_evaluations": 1,
+        "terminal_rows": 0
+      }
+    },
+    {
+      "id": "IDENTITY",
+      "domain": "stock",
+      "actions": [
+        {
+          "command": "submit",
+          "packet": {
+            "key": {
+              "resource": "stock/g1",
+              "domain": "owner",
+              "id": "A"
+            },
+            "source": "c07a5c80ee84d4fe61bfee557a52ef227a79db6eae2b1df2bbd7d6de6e77af7e",
+            "request": {
+              "item": {
+                "code": "other"
+              },
+              "expected": {
+                "value": 7
+              },
+              "quantity": 13
+            },
+            "epoch": 1,
+            "deadline": 100
+          }
+        }
+      ],
+      "expected": {
+        "outputs": [
+          {
+            "error": "OWNER_IDENTITY"
+          }
+        ],
+        "state": {
+          "key": {
+            "code": "sku1"
+          },
+          "note": "kept",
+          "quantity": 10
+        },
+        "revision": 7,
+        "mutations": 0,
+        "application_evaluations": 0,
+        "terminal_rows": 0
+      }
+    },
+    {
+      "id": "REQUEST-TYPE",
+      "domain": "stock",
+      "actions": [
+        {
+          "command": "submit",
+          "packet": {
+            "key": {
+              "resource": "stock/g1",
+              "domain": "owner",
+              "id": "A"
+            },
+            "source": "c07a5c80ee84d4fe61bfee557a52ef227a79db6eae2b1df2bbd7d6de6e77af7e",
+            "request": {
+              "item": {
+                "code": "sku1"
+              },
+              "expected": {
+                "value": 7
+              },
+              "quantity": "13"
+            },
+            "epoch": 1,
+            "deadline": 100
+          }
+        }
+      ],
+      "expected": {
+        "outputs": [
+          {
+            "error": "OWNER_REQUEST_TYPE"
+          }
+        ],
+        "state": {
+          "key": {
+            "code": "sku1"
+          },
+          "note": "kept",
+          "quantity": 10
+        },
+        "revision": 7,
+        "mutations": 0,
+        "application_evaluations": 0,
+        "terminal_rows": 0
+      }
+    },
+    {
+      "id": "CANCEL-BEFORE",
+      "domain": "stock",
+      "actions": [
+        {
+          "command": "cancel",
+          "packet": {
+            "key": {
+              "resource": "stock/g1",
+              "domain": "owner",
+              "id": "A"
+            },
+            "source": "c07a5c80ee84d4fe61bfee557a52ef227a79db6eae2b1df2bbd7d6de6e77af7e",
+            "request": {
+              "item": {
+                "code": "sku1"
+              },
+              "expected": {
+                "value": 7
+              },
+              "quantity": 13
+            },
+            "epoch": 1,
+            "deadline": 100
+          }
+        },
+        {
+          "command": "submit",
+          "packet": {
+            "key": {
+              "resource": "stock/g1",
+              "domain": "owner",
+              "id": "A"
+            },
+            "source": "c07a5c80ee84d4fe61bfee557a52ef227a79db6eae2b1df2bbd7d6de6e77af7e",
+            "request": {
+              "item": {
+                "code": "sku1"
+              },
+              "expected": {
+                "value": 7
+              },
+              "quantity": 13
+            },
+            "epoch": 1,
+            "deadline": 100
+          }
+        }
+      ],
+      "expected": {
+        "outputs": [
+          {
+            "kind": "Cancelled",
+            "key": {
+              "resource": "stock/g1",
+              "domain": "owner",
+              "id": "A"
+            },
+            "intent": {
+              "source": "c07a5c80ee84d4fe61bfee557a52ef227a79db6eae2b1df2bbd7d6de6e77af7e",
+              "request": {
+                "item": {
+                  "code": "sku1"
+                },
+                "expected": {
+                  "value": 7
+                },
+                "quantity": 13
+              },
+              "epoch": 1,
+              "deadline": 100
+            },
+            "revision": 7
+          },
+          {
+            "kind": "Cancelled",
+            "key": {
+              "resource": "stock/g1",
+              "domain": "owner",
+              "id": "A"
+            },
+            "intent": {
+              "source": "c07a5c80ee84d4fe61bfee557a52ef227a79db6eae2b1df2bbd7d6de6e77af7e",
+              "request": {
+                "item": {
+                  "code": "sku1"
+                },
+                "expected": {
+                  "value": 7
+                },
+                "quantity": 13
+              },
+              "epoch": 1,
+              "deadline": 100
+            },
+            "revision": 7
+          }
+        ],
+        "state": {
+          "key": {
+            "code": "sku1"
+          },
+          "note": "kept",
+          "quantity": 10
+        },
+        "revision": 7,
+        "mutations": 0,
+        "application_evaluations": 0,
+        "terminal_rows": 1
+      }
+    },
+    {
+      "id": "CANCEL-AFTER",
+      "domain": "stock",
+      "actions": [
+        {
+          "command": "submit",
+          "packet": {
+            "key": {
+              "resource": "stock/g1",
+              "domain": "owner",
+              "id": "A"
+            },
+            "source": "c07a5c80ee84d4fe61bfee557a52ef227a79db6eae2b1df2bbd7d6de6e77af7e",
+            "request": {
+              "item": {
+                "code": "sku1"
+              },
+              "expected": {
+                "value": 7
+              },
+              "quantity": 13
+            },
+            "epoch": 1,
+            "deadline": 100
+          }
+        },
+        {
+          "command": "cancel",
+          "packet": {
+            "key": {
+              "resource": "stock/g1",
+              "domain": "owner",
+              "id": "A"
+            },
+            "source": "c07a5c80ee84d4fe61bfee557a52ef227a79db6eae2b1df2bbd7d6de6e77af7e",
+            "request": {
+              "item": {
+                "code": "sku1"
+              },
+              "expected": {
+                "value": 7
+              },
+              "quantity": 13
+            },
+            "epoch": 1,
+            "deadline": 100
+          }
+        }
+      ],
+      "expected": {
+        "outputs": [
+          {
+            "kind": "Applied",
+            "key": {
+              "resource": "stock/g1",
+              "domain": "owner",
+              "id": "A"
+            },
+            "intent": {
+              "source": "c07a5c80ee84d4fe61bfee557a52ef227a79db6eae2b1df2bbd7d6de6e77af7e",
+              "request": {
+                "item": {
+                  "code": "sku1"
+                },
+                "expected": {
+                  "value": 7
+                },
+                "quantity": 13
+              },
+              "epoch": 1,
+              "deadline": 100
+            },
+            "revision": 8,
+            "state": {
+              "key": {
+                "code": "sku1"
+              },
+              "note": "kept",
+              "quantity": 13
+            }
+          },
+          {
+            "kind": "AlreadyApplied",
+            "receipt": {
+              "kind": "Applied",
+              "key": {
+                "resource": "stock/g1",
+                "domain": "owner",
+                "id": "A"
+              },
+              "intent": {
+                "source": "c07a5c80ee84d4fe61bfee557a52ef227a79db6eae2b1df2bbd7d6de6e77af7e",
+                "request": {
+                  "item": {
+                    "code": "sku1"
+                  },
+                  "expected": {
+                    "value": 7
+                  },
+                  "quantity": 13
+                },
+                "epoch": 1,
+                "deadline": 100
+              },
+              "revision": 8,
+              "state": {
+                "key": {
+                  "code": "sku1"
+                },
+                "note": "kept",
+                "quantity": 13
+              }
+            }
+          }
+        ],
+        "state": {
+          "key": {
+            "code": "sku1"
+          },
+          "note": "kept",
+          "quantity": 13
+        },
+        "revision": 8,
+        "mutations": 1,
+        "application_evaluations": 1,
+        "terminal_rows": 1
+      }
+    }
+  ]
+}

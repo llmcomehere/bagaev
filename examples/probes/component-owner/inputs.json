@@ -1,0 +1,11 @@
+{
+  "status": "FROZEN_PORTABLE_INPUTS_BEFORE_PACKET_EXECUTION",
+  "at": "2026-10-06T21:23:56.518998+00:00",
+  "sha256": {
+    "Stock.bagaev": "4982012d62607090d4ec496f5ab475cdadf3d186e0c72a9eb0578a4b05024654",
+    "extra-cases.json": "a3988c533e3affbfc05c27acff7b08de037cc6a7e3b87ca1de317d538bfb4cbf",
+    "receiver-cases.json": "06dfd5752405a862856825399c6566d09dfcaff5a2d75488fb81e5b7b32d967f",
+    "stock-policy.json": "cdf309a4be555597516301cf0b6b11c14b17b5a030a0744fec6fa75478f399cd",
+    "stock-values.json": "a4f13265df768b7ab7d52c7ef0194935e555cfdee9375ab8b5294351c36c48d9"
+  }
+}

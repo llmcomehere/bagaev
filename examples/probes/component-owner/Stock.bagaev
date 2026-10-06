@@ -1,0 +1,13 @@
+bagaev component-form/1;
+component StockItem operation set_quantity {
+  record StockKey { code: Text };
+  record StockVersion { value: Int64 };
+  record Stock { key: StockKey, quantity: Int64, note: Text };
+  record SetStock { item: StockKey, expected: StockVersion, quantity: Int64 };
+  state Stock identity key;
+  request SetStock identity item revision expected: StockVersion;
+  replace quantity;
+  entry apply;
+  fn apply(state: Stock, request: SetStock) -> Stock =
+    Stock { key: state.key, note: state.note, quantity: request.quantity };
+}

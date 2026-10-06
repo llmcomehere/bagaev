@@ -1,0 +1,12 @@
+{
+  "status": "HAND_AUTHORED_EXPECTATIONS_BEFORE_RECEIVER_IMPLEMENTATION",
+  "initial": {"revision":7,"state":{"key":{"code":"sku1"},"note":"kept","quantity":10}},
+  "first_request": {"item":{"code":"sku1"},"expected":{"value":7},"quantity":13},
+  "first_result": {"key":{"code":"sku1"},"note":"kept","quantity":13},
+  "first_commit_revision": 8,
+  "second_request": {"item":{"code":"sku1"},"expected":{"value":8},"quantity":11},
+  "second_result": {"key":{"code":"sku1"},"note":"kept","quantity":11},
+  "second_commit_revision": 9,
+  "old_observation": {"revision":8,"state":{"key":{"code":"sku1"},"note":"kept","quantity":13}},
+  "after_old_observation": {"revision":9,"state":{"key":{"code":"sku1"},"note":"kept","quantity":11},"mutations":2,"application_evaluations":2}
+}

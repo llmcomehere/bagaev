@@ -70,6 +70,7 @@ untrusted code. No model account is needed for this example.
 
 ## What exists today
 
+- **Source-driven owned record:** a [generic serial receiver model](docs/probe-component-owner.md) uses the checked component bindings for both catalogue tags and a stock record. Pure computation is actual reference execution; state and authority remain in-memory simulation.
 - **Explicit component context:** [inspection and continuation](docs/probe-component-context.md) bind current and pending programme sources, required unknowns and open effects. The first connected demonstration reconstructs explicit data at WC17; it does not restore authority or establish durable recovery.
 - **Checked readable changes:** the [component edit receiver](docs/probe-component-edit.md)
   turns a proposed source change into a detached exact-base/target draft and
