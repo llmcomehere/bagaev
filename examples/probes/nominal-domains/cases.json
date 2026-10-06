@@ -1,0 +1,623 @@
+{
+  "schema": "nominal-domain-parity/1",
+  "scope": "Seven prior literal cases using existing records and ordinary Rust newtypes. Wire work counts are prior observations; explicit rewrap is intentionally permitted.",
+  "cases": [
+    {
+      "id": "EQUAL",
+      "program": {
+        "schema": "bagaev-typed-record/8",
+        "records": {
+          "ArtifactDigest": {
+            "value": "Text"
+          },
+          "RequestDigest": {
+            "value": "Text"
+          }
+        },
+        "lists": {},
+        "variants": {},
+        "entry": "main",
+        "functions": {
+          "same": {
+            "params": [
+              [
+                "a",
+                "ArtifactDigest"
+              ],
+              [
+                "b",
+                "ArtifactDigest"
+              ]
+            ],
+            "result": "Bool",
+            "body": [
+              "text.eq",
+              [
+                "field",
+                [
+                  "arg",
+                  "a"
+                ],
+                "value"
+              ],
+              [
+                "field",
+                [
+                  "arg",
+                  "b"
+                ],
+                "value"
+              ]
+            ]
+          },
+          "main": {
+            "params": [],
+            "result": "Bool",
+            "body": [
+              "call",
+              "same",
+              [
+                "record",
+                "ArtifactDigest",
+                [
+                  "text",
+                  "x"
+                ]
+              ],
+              [
+                "record",
+                "ArtifactDigest",
+                [
+                  "text",
+                  "x"
+                ]
+              ]
+            ]
+          }
+        }
+      },
+      "rust_source": "#[allow(dead_code)] struct ArtifactDigest(&'static str);\n#[allow(dead_code)] struct RequestDigest(&'static str);\n#[allow(dead_code)] fn same(a:ArtifactDigest,b:ArtifactDigest)->bool{a.0==b.0}\nfn main(){assert!(same(ArtifactDigest(\"x\"),ArtifactDigest(\"x\")));}",
+      "expected": {
+        "status": "success",
+        "value": true
+      },
+      "reference_hex": "7b226c6f636174696f6e223a6e756c6c2c22726561736f6e223a6e756c6c2c22736368656d61223a226261676165762d74797065642d7265636f72642d726573756c742f38222c22737461747573223a2273756363657373222c2276616c7565223a747275652c2276616c75655f74797065223a22426f6f6c222c22776f726b223a31347d0a",
+      "rust_expected": "success"
+    },
+    {
+      "id": "UNEQUAL",
+      "program": {
+        "schema": "bagaev-typed-record/8",
+        "records": {
+          "ArtifactDigest": {
+            "value": "Text"
+          },
+          "RequestDigest": {
+            "value": "Text"
+          }
+        },
+        "lists": {},
+        "variants": {},
+        "entry": "main",
+        "functions": {
+          "same": {
+            "params": [
+              [
+                "a",
+                "ArtifactDigest"
+              ],
+              [
+                "b",
+                "ArtifactDigest"
+              ]
+            ],
+            "result": "Bool",
+            "body": [
+              "text.eq",
+              [
+                "field",
+                [
+                  "arg",
+                  "a"
+                ],
+                "value"
+              ],
+              [
+                "field",
+                [
+                  "arg",
+                  "b"
+                ],
+                "value"
+              ]
+            ]
+          },
+          "main": {
+            "params": [],
+            "result": "Bool",
+            "body": [
+              "call",
+              "same",
+              [
+                "record",
+                "ArtifactDigest",
+                [
+                  "text",
+                  "x"
+                ]
+              ],
+              [
+                "record",
+                "ArtifactDigest",
+                [
+                  "text",
+                  "y"
+                ]
+              ]
+            ]
+          }
+        }
+      },
+      "rust_source": "#[allow(dead_code)] struct ArtifactDigest(&'static str);\n#[allow(dead_code)] struct RequestDigest(&'static str);\n#[allow(dead_code)] fn same(a:ArtifactDigest,b:ArtifactDigest)->bool{a.0==b.0}\nfn main(){assert!(!same(ArtifactDigest(\"x\"),ArtifactDigest(\"y\")));}",
+      "expected": {
+        "status": "success",
+        "value": false
+      },
+      "reference_hex": "7b226c6f636174696f6e223a6e756c6c2c22726561736f6e223a6e756c6c2c22736368656d61223a226261676165762d74797065642d7265636f72642d726573756c742f38222c22737461747573223a2273756363657373222c2276616c7565223a66616c73652c2276616c75655f74797065223a22426f6f6c222c22776f726b223a31347d0a",
+      "rust_expected": "success"
+    },
+    {
+      "id": "CROSS-FIRST",
+      "program": {
+        "schema": "bagaev-typed-record/8",
+        "records": {
+          "ArtifactDigest": {
+            "value": "Text"
+          },
+          "RequestDigest": {
+            "value": "Text"
+          }
+        },
+        "lists": {},
+        "variants": {},
+        "entry": "main",
+        "functions": {
+          "same": {
+            "params": [
+              [
+                "a",
+                "ArtifactDigest"
+              ],
+              [
+                "b",
+                "ArtifactDigest"
+              ]
+            ],
+            "result": "Bool",
+            "body": [
+              "text.eq",
+              [
+                "field",
+                [
+                  "arg",
+                  "a"
+                ],
+                "value"
+              ],
+              [
+                "field",
+                [
+                  "arg",
+                  "b"
+                ],
+                "value"
+              ]
+            ]
+          },
+          "main": {
+            "params": [],
+            "result": "Bool",
+            "body": [
+              "call",
+              "same",
+              [
+                "record",
+                "RequestDigest",
+                [
+                  "text",
+                  "x"
+                ]
+              ],
+              [
+                "record",
+                "ArtifactDigest",
+                [
+                  "text",
+                  "x"
+                ]
+              ]
+            ]
+          }
+        }
+      },
+      "rust_source": "#[allow(dead_code)] struct ArtifactDigest(&'static str);\n#[allow(dead_code)] struct RequestDigest(&'static str);\n#[allow(dead_code)] fn same(a:ArtifactDigest,b:ArtifactDigest)->bool{a.0==b.0}\nfn main(){let _=same(RequestDigest(\"x\"),ArtifactDigest(\"x\"));}",
+      "expected": {
+        "status": "invalid-ir",
+        "reason": "RR_TYPE",
+        "location": "/program/functions/main/body/2",
+        "value": null,
+        "value_type": null,
+        "work": 0
+      },
+      "reference_hex": "7b226c6f636174696f6e223a222f70726f6772616d2f66756e6374696f6e732f6d61696e2f626f64792f32222c22726561736f6e223a2252525f54595045222c22736368656d61223a226261676165762d74797065642d7265636f72642d726573756c742f38222c22737461747573223a22696e76616c69642d6972222c2276616c7565223a6e756c6c2c2276616c75655f74797065223a6e756c6c2c22776f726b223a307d0a",
+      "rust_expected": "E0308"
+    },
+    {
+      "id": "CROSS-SECOND",
+      "program": {
+        "schema": "bagaev-typed-record/8",
+        "records": {
+          "ArtifactDigest": {
+            "value": "Text"
+          },
+          "RequestDigest": {
+            "value": "Text"
+          }
+        },
+        "lists": {},
+        "variants": {},
+        "entry": "main",
+        "functions": {
+          "same": {
+            "params": [
+              [
+                "a",
+                "ArtifactDigest"
+              ],
+              [
+                "b",
+                "ArtifactDigest"
+              ]
+            ],
+            "result": "Bool",
+            "body": [
+              "text.eq",
+              [
+                "field",
+                [
+                  "arg",
+                  "a"
+                ],
+                "value"
+              ],
+              [
+                "field",
+                [
+                  "arg",
+                  "b"
+                ],
+                "value"
+              ]
+            ]
+          },
+          "main": {
+            "params": [],
+            "result": "Bool",
+            "body": [
+              "call",
+              "same",
+              [
+                "record",
+                "ArtifactDigest",
+                [
+                  "text",
+                  "x"
+                ]
+              ],
+              [
+                "record",
+                "RequestDigest",
+                [
+                  "text",
+                  "x"
+                ]
+              ]
+            ]
+          }
+        }
+      },
+      "rust_source": "#[allow(dead_code)] struct ArtifactDigest(&'static str);\n#[allow(dead_code)] struct RequestDigest(&'static str);\n#[allow(dead_code)] fn same(a:ArtifactDigest,b:ArtifactDigest)->bool{a.0==b.0}\nfn main(){let _=same(ArtifactDigest(\"x\"),RequestDigest(\"x\"));}",
+      "expected": {
+        "status": "invalid-ir",
+        "reason": "RR_TYPE",
+        "location": "/program/functions/main/body/3",
+        "value": null,
+        "value_type": null,
+        "work": 0
+      },
+      "reference_hex": "7b226c6f636174696f6e223a222f70726f6772616d2f66756e6374696f6e732f6d61696e2f626f64792f33222c22726561736f6e223a2252525f54595045222c22736368656d61223a226261676165762d74797065642d7265636f72642d726573756c742f38222c22737461747573223a22696e76616c69642d6972222c2276616c7565223a6e756c6c2c2276616c75655f74797065223a6e756c6c2c22776f726b223a307d0a",
+      "rust_expected": "E0308"
+    },
+    {
+      "id": "UNUSED",
+      "program": {
+        "schema": "bagaev-typed-record/8",
+        "records": {
+          "ArtifactDigest": {
+            "value": "Text"
+          },
+          "RequestDigest": {
+            "value": "Text"
+          }
+        },
+        "lists": {},
+        "variants": {},
+        "entry": "main",
+        "functions": {
+          "same": {
+            "params": [
+              [
+                "a",
+                "ArtifactDigest"
+              ],
+              [
+                "b",
+                "ArtifactDigest"
+              ]
+            ],
+            "result": "Bool",
+            "body": [
+              "text.eq",
+              [
+                "field",
+                [
+                  "arg",
+                  "a"
+                ],
+                "value"
+              ],
+              [
+                "field",
+                [
+                  "arg",
+                  "b"
+                ],
+                "value"
+              ]
+            ]
+          },
+          "main": {
+            "params": [],
+            "result": "Bool",
+            "body": [
+              "bool",
+              true
+            ]
+          },
+          "bad": {
+            "params": [],
+            "result": "Bool",
+            "body": [
+              "call",
+              "same",
+              [
+                "record",
+                "ArtifactDigest",
+                [
+                  "text",
+                  "x"
+                ]
+              ],
+              [
+                "record",
+                "RequestDigest",
+                [
+                  "text",
+                  "x"
+                ]
+              ]
+            ]
+          }
+        }
+      },
+      "rust_source": "#[allow(dead_code)] struct ArtifactDigest(&'static str);\n#[allow(dead_code)] struct RequestDigest(&'static str);\n#[allow(dead_code)] fn same(a:ArtifactDigest,b:ArtifactDigest)->bool{a.0==b.0}\n#[allow(dead_code)] fn bad()->bool{same(ArtifactDigest(\"x\"),RequestDigest(\"x\"))}\nfn main(){}",
+      "expected": {
+        "status": "invalid-ir",
+        "reason": "RR_TYPE",
+        "location": "/program/functions/bad/body/3",
+        "value": null,
+        "value_type": null,
+        "work": 0
+      },
+      "reference_hex": "7b226c6f636174696f6e223a222f70726f6772616d2f66756e6374696f6e732f6261642f626f64792f33222c22726561736f6e223a2252525f54595045222c22736368656d61223a226261676165762d74797065642d7265636f72642d726573756c742f38222c22737461747573223a22696e76616c69642d6972222c2276616c7565223a6e756c6c2c2276616c75655f74797065223a6e756c6c2c22776f726b223a307d0a",
+      "rust_expected": "E0308"
+    },
+    {
+      "id": "UNREACHABLE",
+      "program": {
+        "schema": "bagaev-typed-record/8",
+        "records": {
+          "ArtifactDigest": {
+            "value": "Text"
+          },
+          "RequestDigest": {
+            "value": "Text"
+          }
+        },
+        "lists": {},
+        "variants": {},
+        "entry": "main",
+        "functions": {
+          "same": {
+            "params": [
+              [
+                "a",
+                "ArtifactDigest"
+              ],
+              [
+                "b",
+                "ArtifactDigest"
+              ]
+            ],
+            "result": "Bool",
+            "body": [
+              "text.eq",
+              [
+                "field",
+                [
+                  "arg",
+                  "a"
+                ],
+                "value"
+              ],
+              [
+                "field",
+                [
+                  "arg",
+                  "b"
+                ],
+                "value"
+              ]
+            ]
+          },
+          "main": {
+            "params": [],
+            "result": "Bool",
+            "body": [
+              "if",
+              [
+                "bool",
+                true
+              ],
+              [
+                "bool",
+                true
+              ],
+              [
+                "call",
+                "same",
+                [
+                  "record",
+                  "ArtifactDigest",
+                  [
+                    "text",
+                    "x"
+                  ]
+                ],
+                [
+                  "record",
+                  "RequestDigest",
+                  [
+                    "text",
+                    "x"
+                  ]
+                ]
+              ]
+            ]
+          }
+        }
+      },
+      "rust_source": "#[allow(dead_code)] struct ArtifactDigest(&'static str);\n#[allow(dead_code)] struct RequestDigest(&'static str);\n#[allow(dead_code)] fn same(a:ArtifactDigest,b:ArtifactDigest)->bool{a.0==b.0}\nfn main(){if true{assert!(true)}else{let _=same(ArtifactDigest(\"x\"),RequestDigest(\"x\"));}}",
+      "expected": {
+        "status": "invalid-ir",
+        "reason": "RR_TYPE",
+        "location": "/program/functions/main/body/3/3",
+        "value": null,
+        "value_type": null,
+        "work": 0
+      },
+      "reference_hex": "7b226c6f636174696f6e223a222f70726f6772616d2f66756e6374696f6e732f6d61696e2f626f64792f332f33222c22726561736f6e223a2252525f54595045222c22736368656d61223a226261676165762d74797065642d7265636f72642d726573756c742f38222c22737461747573223a22696e76616c69642d6972222c2276616c7565223a6e756c6c2c2276616c75655f74797065223a6e756c6c2c22776f726b223a307d0a",
+      "rust_expected": "E0308"
+    },
+    {
+      "id": "EXPLICIT-REWRAP",
+      "program": {
+        "schema": "bagaev-typed-record/8",
+        "records": {
+          "ArtifactDigest": {
+            "value": "Text"
+          },
+          "RequestDigest": {
+            "value": "Text"
+          }
+        },
+        "lists": {},
+        "variants": {},
+        "entry": "main",
+        "functions": {
+          "same": {
+            "params": [
+              [
+                "a",
+                "ArtifactDigest"
+              ],
+              [
+                "b",
+                "ArtifactDigest"
+              ]
+            ],
+            "result": "Bool",
+            "body": [
+              "text.eq",
+              [
+                "field",
+                [
+                  "arg",
+                  "a"
+                ],
+                "value"
+              ],
+              [
+                "field",
+                [
+                  "arg",
+                  "b"
+                ],
+                "value"
+              ]
+            ]
+          },
+          "main": {
+            "params": [],
+            "result": "Bool",
+            "body": [
+              "call",
+              "same",
+              [
+                "record",
+                "ArtifactDigest",
+                [
+                  "text",
+                  "x"
+                ]
+              ],
+              [
+                "record",
+                "ArtifactDigest",
+                [
+                  "field",
+                  [
+                    "record",
+                    "RequestDigest",
+                    [
+                      "text",
+                      "x"
+                    ]
+                  ],
+                  "value"
+                ]
+              ]
+            ]
+          }
+        }
+      },
+      "rust_source": "#[allow(dead_code)] struct ArtifactDigest(&'static str);\n#[allow(dead_code)] struct RequestDigest(&'static str);\n#[allow(dead_code)] fn same(a:ArtifactDigest,b:ArtifactDigest)->bool{a.0==b.0}\nfn main(){let r=RequestDigest(\"x\");assert!(same(ArtifactDigest(\"x\"),ArtifactDigest(r.0)));}",
+      "expected": {
+        "status": "success",
+        "value": true
+      },
+      "reference_hex": "7b226c6f636174696f6e223a6e756c6c2c22726561736f6e223a6e756c6c2c22736368656d61223a226261676165762d74797065642d7265636f72642d726573756c742f38222c22737461747573223a2273756363657373222c2276616c7565223a747275652c2276616c75655f74797065223a22426f6f6c222c22776f726b223a31367d0a",
+      "rust_expected": "success"
+    }
+  ]
+}

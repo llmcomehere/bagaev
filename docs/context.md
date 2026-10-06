@@ -196,3 +196,5 @@ Read [the finite metadata contract](probe-evidence-compatibility.md) for exact m
 The [fixed obligation-set successor](probe-evidence-obligations.md) extends descriptive matching to one or two distinct required assertions without inferring truth or execution permission.
 
 The [clock-bound lease compatibility example](probe-lease-compatibility.md) makes endpoint and renewal mistakes observable in a pure four-input predicate.
+
+For accidental domain substitution, the [existing nominal-domain control](probe-nominal-domains.md) checks bagaev records against ordinary Rust newtypes without claiming authentication.

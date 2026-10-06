@@ -190,3 +190,5 @@ The [finite evidence compatibility example](docs/probe-evidence-compatibility.md
 The [fixed obligation-set example](docs/probe-evidence-obligations.md) checks every member of a trusted finite requirement set and gives conflicts priority over missing evidence.
 
 The [lease metadata example](docs/probe-lease-compatibility.md) checks clock labels, half-open containment and bounded renewal descriptions without reading a clock or granting authority.
+
+The [nominal-domain parity control](docs/probe-nominal-domains.md) demonstrates existing record distinctions alongside ordinary Rust newtypes, including the deliberate explicit-conversion escape.
