@@ -1,0 +1,3733 @@
+[
+  {
+    "id": "EMPTY",
+    "profile": 9,
+    "program": {
+      "schema": "bagaev-typed-record/9",
+      "records": {},
+      "lists": {},
+      "variants": {},
+      "entry": "main",
+      "functions": {
+        "main": {
+          "params": [],
+          "result": "TextList",
+          "body": [
+            "list.push",
+            [
+              "list.text"
+            ],
+            [
+              "text",
+              "a"
+            ]
+          ]
+        }
+      }
+    },
+    "arguments": [],
+    "expected": {
+      "schema": "bagaev-typed-record-result/9",
+      "status": "success",
+      "reason": null,
+      "location": null,
+      "value_type": "TextList",
+      "value": [
+        "a"
+      ],
+      "work": 5
+    }
+  },
+  {
+    "id": "EMPTY-TEXT",
+    "profile": 9,
+    "program": {
+      "schema": "bagaev-typed-record/9",
+      "records": {},
+      "lists": {},
+      "variants": {},
+      "entry": "main",
+      "functions": {
+        "main": {
+          "params": [],
+          "result": "TextList",
+          "body": [
+            "list.push",
+            [
+              "list.text"
+            ],
+            [
+              "text",
+              ""
+            ]
+          ]
+        }
+      }
+    },
+    "arguments": [],
+    "expected": {
+      "schema": "bagaev-typed-record-result/9",
+      "status": "success",
+      "reason": null,
+      "location": null,
+      "value_type": "TextList",
+      "value": [
+        ""
+      ],
+      "work": 4
+    }
+  },
+  {
+    "id": "ONE",
+    "profile": 9,
+    "program": {
+      "schema": "bagaev-typed-record/9",
+      "records": {},
+      "lists": {},
+      "variants": {},
+      "entry": "main",
+      "functions": {
+        "main": {
+          "params": [],
+          "result": "TextList",
+          "body": [
+            "list.push",
+            [
+              "list.text",
+              [
+                "text",
+                "a"
+              ]
+            ],
+            [
+              "text",
+              "b"
+            ]
+          ]
+        }
+      }
+    },
+    "arguments": [],
+    "expected": {
+      "schema": "bagaev-typed-record-result/9",
+      "status": "success",
+      "reason": null,
+      "location": null,
+      "value_type": "TextList",
+      "value": [
+        "a",
+        "b"
+      ],
+      "work": 8
+    }
+  },
+  {
+    "id": "NESTED",
+    "profile": 9,
+    "program": {
+      "schema": "bagaev-typed-record/9",
+      "records": {},
+      "lists": {},
+      "variants": {},
+      "entry": "main",
+      "functions": {
+        "main": {
+          "params": [],
+          "result": "TextList",
+          "body": [
+            "list.push",
+            [
+              "list.push",
+              [
+                "list.text"
+              ],
+              [
+                "text",
+                "a"
+              ]
+            ],
+            [
+              "text",
+              "b"
+            ]
+          ]
+        }
+      }
+    },
+    "arguments": [],
+    "expected": {
+      "schema": "bagaev-typed-record-result/9",
+      "status": "success",
+      "reason": null,
+      "location": null,
+      "value_type": "TextList",
+      "value": [
+        "a",
+        "b"
+      ],
+      "work": 10
+    }
+  },
+  {
+    "id": "ORDER-DUPLICATE",
+    "profile": 9,
+    "program": {
+      "schema": "bagaev-typed-record/9",
+      "records": {},
+      "lists": {},
+      "variants": {},
+      "entry": "main",
+      "functions": {
+        "main": {
+          "params": [],
+          "result": "TextList",
+          "body": [
+            "list.push",
+            [
+              "list.text",
+              [
+                "text",
+                "b"
+              ],
+              [
+                "text",
+                "a"
+              ]
+            ],
+            [
+              "text",
+              "b"
+            ]
+          ]
+        }
+      }
+    },
+    "arguments": [],
+    "expected": {
+      "schema": "bagaev-typed-record-result/9",
+      "status": "success",
+      "reason": null,
+      "location": null,
+      "value_type": "TextList",
+      "value": [
+        "b",
+        "a",
+        "b"
+      ],
+      "work": 11
+    }
+  },
+  {
+    "id": "UNICODE",
+    "profile": 9,
+    "program": {
+      "schema": "bagaev-typed-record/9",
+      "records": {},
+      "lists": {},
+      "variants": {},
+      "entry": "main",
+      "functions": {
+        "main": {
+          "params": [],
+          "result": "TextList",
+          "body": [
+            "list.push",
+            [
+              "list.text",
+              [
+                "text",
+                "\u00e9"
+              ]
+            ],
+            [
+              "text",
+              "\ud83d\ude00"
+            ]
+          ]
+        }
+      }
+    },
+    "arguments": [],
+    "expected": {
+      "schema": "bagaev-typed-record-result/9",
+      "status": "success",
+      "reason": null,
+      "location": null,
+      "value_type": "TextList",
+      "value": [
+        "\u00e9",
+        "\ud83d\ude00"
+      ],
+      "work": 12
+    }
+  },
+  {
+    "id": "NUL",
+    "profile": 9,
+    "program": {
+      "schema": "bagaev-typed-record/9",
+      "records": {},
+      "lists": {},
+      "variants": {},
+      "entry": "main",
+      "functions": {
+        "main": {
+          "params": [],
+          "result": "TextList",
+          "body": [
+            "list.push",
+            [
+              "list.text"
+            ],
+            [
+              "text",
+              "a\u0000b"
+            ]
+          ]
+        }
+      }
+    },
+    "arguments": [],
+    "expected": {
+      "schema": "bagaev-typed-record-result/9",
+      "status": "success",
+      "reason": null,
+      "location": null,
+      "value_type": "TextList",
+      "value": [
+        "a\u0000b"
+      ],
+      "work": 7
+    }
+  },
+  {
+    "id": "ITEMS-64",
+    "profile": 9,
+    "program": {
+      "schema": "bagaev-typed-record/9",
+      "records": {},
+      "lists": {},
+      "variants": {},
+      "entry": "main",
+      "functions": {
+        "main": {
+          "params": [],
+          "result": "TextList",
+          "body": [
+            "list.push",
+            [
+              "list.text",
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ]
+            ],
+            [
+              "text",
+              ""
+            ]
+          ]
+        }
+      }
+    },
+    "arguments": [],
+    "expected": {
+      "schema": "bagaev-typed-record-result/9",
+      "status": "success",
+      "reason": null,
+      "location": null,
+      "value_type": "TextList",
+      "value": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "work": 130
+    }
+  },
+  {
+    "id": "ITEMS-65",
+    "profile": 9,
+    "program": {
+      "schema": "bagaev-typed-record/9",
+      "records": {},
+      "lists": {},
+      "variants": {},
+      "entry": "main",
+      "functions": {
+        "main": {
+          "params": [],
+          "result": "TextList",
+          "body": [
+            "list.push",
+            [
+              "list.text",
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ]
+            ],
+            [
+              "text",
+              ""
+            ]
+          ]
+        }
+      }
+    },
+    "arguments": [],
+    "expected": {
+      "schema": "bagaev-typed-record-result/9",
+      "status": "list-bound",
+      "reason": "RR_LIST_ITEMS",
+      "location": "/program/functions/main/body",
+      "value_type": null,
+      "value": null,
+      "work": 132
+    }
+  },
+  {
+    "id": "BYTES-4096",
+    "profile": 9,
+    "program": {
+      "schema": "bagaev-typed-record/9",
+      "records": {},
+      "lists": {},
+      "variants": {},
+      "entry": "main",
+      "functions": {
+        "main": {
+          "params": [],
+          "result": "TextList",
+          "body": [
+            "list.push",
+            [
+              "list.text",
+              [
+                "text",
+                "\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00"
+              ],
+              [
+                "text",
+                "\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00"
+              ],
+              [
+                "text",
+                "\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00"
+              ],
+              [
+                "text",
+                "\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\u20ac"
+              ]
+            ],
+            [
+              "text",
+              "x"
+            ]
+          ]
+        }
+      }
+    },
+    "arguments": [],
+    "expected": {
+      "schema": "bagaev-typed-record-result/9",
+      "status": "success",
+      "reason": null,
+      "location": null,
+      "value_type": "TextList",
+      "value": [
+        "\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00",
+        "\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00",
+        "\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00",
+        "\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\u20ac",
+        "x"
+      ],
+      "work": 4108
+    }
+  },
+  {
+    "id": "BYTES-4097",
+    "profile": 9,
+    "program": {
+      "schema": "bagaev-typed-record/9",
+      "records": {},
+      "lists": {},
+      "variants": {},
+      "entry": "main",
+      "functions": {
+        "main": {
+          "params": [],
+          "result": "TextList",
+          "body": [
+            "list.push",
+            [
+              "list.text",
+              [
+                "text",
+                "\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00"
+              ],
+              [
+                "text",
+                "\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00"
+              ],
+              [
+                "text",
+                "\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00"
+              ],
+              [
+                "text",
+                "\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\u20ac"
+              ]
+            ],
+            [
+              "text",
+              "xx"
+            ]
+          ]
+        }
+      }
+    },
+    "arguments": [],
+    "expected": {
+      "schema": "bagaev-typed-record-result/9",
+      "status": "list-bound",
+      "reason": "RR_LIST_BYTES",
+      "location": "/program/functions/main/body",
+      "value_type": null,
+      "value": null,
+      "work": 4109
+    }
+  },
+  {
+    "id": "COUNT-BEFORE-BYTES",
+    "profile": 9,
+    "program": {
+      "schema": "bagaev-typed-record/9",
+      "records": {},
+      "lists": {},
+      "variants": {},
+      "entry": "main",
+      "functions": {
+        "main": {
+          "params": [],
+          "result": "TextList",
+          "body": [
+            "list.push",
+            [
+              "list.text",
+              [
+                "text",
+                "\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00"
+              ],
+              [
+                "text",
+                "\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00"
+              ],
+              [
+                "text",
+                "\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00"
+              ],
+              [
+                "text",
+                "\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00"
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ]
+            ],
+            [
+              "text",
+              "z"
+            ]
+          ]
+        }
+      }
+    },
+    "arguments": [],
+    "expected": {
+      "schema": "bagaev-typed-record-result/9",
+      "status": "list-bound",
+      "reason": "RR_LIST_ITEMS",
+      "location": "/program/functions/main/body",
+      "value_type": null,
+      "value": null,
+      "work": 4229
+    }
+  },
+  {
+    "id": "RIGHT-ERROR-FIRST",
+    "profile": 9,
+    "program": {
+      "schema": "bagaev-typed-record/9",
+      "records": {},
+      "lists": {},
+      "variants": {},
+      "entry": "main",
+      "functions": {
+        "main": {
+          "params": [],
+          "result": "TextList",
+          "body": [
+            "list.push",
+            [
+              "list.text",
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ],
+              [
+                "text",
+                ""
+              ]
+            ],
+            [
+              "list.at",
+              [
+                "list.text"
+              ],
+              [
+                "int",
+                0
+              ]
+            ]
+          ]
+        }
+      }
+    },
+    "arguments": [],
+    "expected": {
+      "schema": "bagaev-typed-record-result/9",
+      "status": "list-index",
+      "reason": "RR_INDEX",
+      "location": "/program/functions/main/body/2",
+      "value_type": null,
+      "value": null,
+      "work": 69
+    }
+  },
+  {
+    "id": "LEFT-ERROR-FIRST",
+    "profile": 9,
+    "program": {
+      "schema": "bagaev-typed-record/9",
+      "records": {},
+      "lists": {},
+      "variants": {},
+      "entry": "main",
+      "functions": {
+        "main": {
+          "params": [],
+          "result": "TextList",
+          "body": [
+            "list.push",
+            [
+              "list.text",
+              [
+                "text",
+                "\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00"
+              ],
+              [
+                "text",
+                "\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00"
+              ],
+              [
+                "text",
+                "\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00"
+              ],
+              [
+                "text",
+                "\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00"
+              ],
+              [
+                "text",
+                "a"
+              ]
+            ],
+            [
+              "list.at",
+              [
+                "list.text"
+              ],
+              [
+                "int",
+                0
+              ]
+            ]
+          ]
+        }
+      }
+    },
+    "arguments": [],
+    "expected": {
+      "schema": "bagaev-typed-record-result/9",
+      "status": "list-bound",
+      "reason": "RR_LIST_BYTES",
+      "location": "/program/functions/main/body/1",
+      "value_type": null,
+      "value": null,
+      "work": 4104
+    }
+  },
+  {
+    "id": "LAZY",
+    "profile": 9,
+    "program": {
+      "schema": "bagaev-typed-record/9",
+      "records": {},
+      "lists": {},
+      "variants": {},
+      "entry": "main",
+      "functions": {
+        "main": {
+          "params": [],
+          "result": "TextList",
+          "body": [
+            "if",
+            [
+              "bool",
+              false
+            ],
+            [
+              "list.push",
+              [
+                "list.text",
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ]
+              ],
+              [
+                "text",
+                ""
+              ]
+            ],
+            [
+              "list.text"
+            ]
+          ]
+        }
+      }
+    },
+    "arguments": [],
+    "expected": {
+      "schema": "bagaev-typed-record-result/9",
+      "status": "success",
+      "reason": null,
+      "location": null,
+      "value_type": "TextList",
+      "value": [],
+      "work": 3
+    }
+  },
+  {
+    "id": "ALIASES",
+    "profile": 9,
+    "program": {
+      "schema": "bagaev-typed-record/9",
+      "records": {
+        "Pair": {
+          "after": "TextList",
+          "before": "TextList"
+        }
+      },
+      "lists": {},
+      "variants": {},
+      "entry": "main",
+      "functions": {
+        "main": {
+          "params": [],
+          "result": "Pair",
+          "body": [
+            "let",
+            "old",
+            [
+              "list.text",
+              [
+                "text",
+                "a"
+              ]
+            ],
+            [
+              "record",
+              "Pair",
+              [
+                "list.push",
+                [
+                  "use",
+                  "old"
+                ],
+                [
+                  "text",
+                  "b"
+                ]
+              ],
+              [
+                "use",
+                "old"
+              ]
+            ]
+          ]
+        }
+      }
+    },
+    "arguments": [],
+    "expected": {
+      "schema": "bagaev-typed-record-result/9",
+      "status": "success",
+      "reason": null,
+      "location": null,
+      "value_type": "Record:Pair",
+      "value": {
+        "after": [
+          "a",
+          "b"
+        ],
+        "before": [
+          "a"
+        ]
+      },
+      "work": 12
+    }
+  },
+  {
+    "id": "HELPER",
+    "profile": 9,
+    "program": {
+      "schema": "bagaev-typed-record/9",
+      "records": {},
+      "lists": {},
+      "variants": {},
+      "entry": "main",
+      "functions": {
+        "main": {
+          "params": [],
+          "result": "TextList",
+          "body": [
+            "call",
+            "append",
+            [
+              "list.text",
+              [
+                "text",
+                "a"
+              ]
+            ],
+            [
+              "text",
+              "b"
+            ]
+          ]
+        },
+        "append": {
+          "params": [
+            [
+              "l",
+              "TextList"
+            ],
+            [
+              "t",
+              "Text"
+            ]
+          ],
+          "result": "TextList",
+          "body": [
+            "list.push",
+            [
+              "arg",
+              "l"
+            ],
+            [
+              "arg",
+              "t"
+            ]
+          ]
+        }
+      }
+    },
+    "arguments": [],
+    "expected": {
+      "schema": "bagaev-typed-record-result/9",
+      "status": "success",
+      "reason": null,
+      "location": null,
+      "value_type": "TextList",
+      "value": [
+        "a",
+        "b"
+      ],
+      "work": 11
+    }
+  },
+  {
+    "id": "LOOP-4",
+    "profile": 9,
+    "program": {
+      "schema": "bagaev-typed-record/9",
+      "records": {},
+      "lists": {},
+      "variants": {},
+      "entry": "main",
+      "functions": {
+        "main": {
+          "params": [],
+          "result": "TextList",
+          "body": [
+            "loop",
+            4,
+            "i",
+            "acc",
+            [
+              "list.text"
+            ],
+            [
+              "list.push",
+              [
+                "use",
+                "acc"
+              ],
+              [
+                "text",
+                "x"
+              ]
+            ]
+          ]
+        }
+      }
+    },
+    "arguments": [],
+    "expected": {
+      "schema": "bagaev-typed-record-result/9",
+      "status": "success",
+      "reason": null,
+      "location": null,
+      "value_type": "TextList",
+      "value": [
+        "x",
+        "x",
+        "x",
+        "x"
+      ],
+      "work": 28
+    }
+  },
+  {
+    "id": "LOOP-64",
+    "profile": 9,
+    "program": {
+      "schema": "bagaev-typed-record/9",
+      "records": {},
+      "lists": {},
+      "variants": {},
+      "entry": "main",
+      "functions": {
+        "main": {
+          "params": [],
+          "result": "TextList",
+          "body": [
+            "loop",
+            64,
+            "i",
+            "acc",
+            [
+              "list.text"
+            ],
+            [
+              "list.push",
+              [
+                "use",
+                "acc"
+              ],
+              [
+                "text",
+                "x"
+              ]
+            ]
+          ]
+        }
+      }
+    },
+    "arguments": [],
+    "expected": {
+      "schema": "bagaev-typed-record-result/9",
+      "status": "success",
+      "reason": null,
+      "location": null,
+      "value_type": "TextList",
+      "value": [
+        "x",
+        "x",
+        "x",
+        "x",
+        "x",
+        "x",
+        "x",
+        "x",
+        "x",
+        "x",
+        "x",
+        "x",
+        "x",
+        "x",
+        "x",
+        "x",
+        "x",
+        "x",
+        "x",
+        "x",
+        "x",
+        "x",
+        "x",
+        "x",
+        "x",
+        "x",
+        "x",
+        "x",
+        "x",
+        "x",
+        "x",
+        "x",
+        "x",
+        "x",
+        "x",
+        "x",
+        "x",
+        "x",
+        "x",
+        "x",
+        "x",
+        "x",
+        "x",
+        "x",
+        "x",
+        "x",
+        "x",
+        "x",
+        "x",
+        "x",
+        "x",
+        "x",
+        "x",
+        "x",
+        "x",
+        "x",
+        "x",
+        "x",
+        "x",
+        "x",
+        "x",
+        "x",
+        "x",
+        "x"
+      ],
+      "work": 2338
+    }
+  },
+  {
+    "id": "LOOP-65",
+    "profile": 9,
+    "program": {
+      "schema": "bagaev-typed-record/9",
+      "records": {},
+      "lists": {},
+      "variants": {},
+      "entry": "main",
+      "functions": {
+        "main": {
+          "params": [],
+          "result": "TextList",
+          "body": [
+            "loop",
+            65,
+            "i",
+            "acc",
+            [
+              "list.text"
+            ],
+            [
+              "list.push",
+              [
+                "use",
+                "acc"
+              ],
+              [
+                "text",
+                "x"
+              ]
+            ]
+          ]
+        }
+      }
+    },
+    "arguments": [],
+    "expected": {
+      "schema": "bagaev-typed-record-result/9",
+      "status": "list-bound",
+      "reason": "RR_LIST_ITEMS",
+      "location": "/program/functions/main/body/5",
+      "value_type": null,
+      "value": null,
+      "work": 2407
+    }
+  },
+  {
+    "id": "ARGUMENTS",
+    "profile": 9,
+    "program": {
+      "schema": "bagaev-typed-record/9",
+      "records": {},
+      "lists": {},
+      "variants": {},
+      "entry": "main",
+      "functions": {
+        "main": {
+          "params": [
+            [
+              "l",
+              "TextList"
+            ],
+            [
+              "t",
+              "Text"
+            ]
+          ],
+          "result": "TextList",
+          "body": [
+            "list.push",
+            [
+              "arg",
+              "l"
+            ],
+            [
+              "arg",
+              "t"
+            ]
+          ]
+        }
+      }
+    },
+    "arguments": [
+      [
+        "a"
+      ],
+      "b"
+    ],
+    "expected": {
+      "schema": "bagaev-typed-record-result/9",
+      "status": "success",
+      "reason": null,
+      "location": null,
+      "value_type": "TextList",
+      "value": [
+        "a",
+        "b"
+      ],
+      "work": 5
+    }
+  },
+  {
+    "id": "WRONG-LIST",
+    "profile": 9,
+    "program": {
+      "schema": "bagaev-typed-record/9",
+      "records": {},
+      "lists": {},
+      "variants": {},
+      "entry": "main",
+      "functions": {
+        "main": {
+          "params": [],
+          "result": "TextList",
+          "body": [
+            "list.push",
+            [
+              "int",
+              0
+            ],
+            [
+              "text",
+              "x"
+            ]
+          ]
+        }
+      }
+    },
+    "arguments": [],
+    "expected": {
+      "schema": "bagaev-typed-record-result/9",
+      "status": "invalid-ir",
+      "reason": "RR_TYPE",
+      "location": "/program/functions/main/body/1",
+      "value_type": null,
+      "value": null,
+      "work": 0
+    }
+  },
+  {
+    "id": "WRONG-TEXT",
+    "profile": 9,
+    "program": {
+      "schema": "bagaev-typed-record/9",
+      "records": {},
+      "lists": {},
+      "variants": {},
+      "entry": "main",
+      "functions": {
+        "main": {
+          "params": [],
+          "result": "TextList",
+          "body": [
+            "list.push",
+            [
+              "list.text"
+            ],
+            [
+              "int",
+              0
+            ]
+          ]
+        }
+      }
+    },
+    "arguments": [],
+    "expected": {
+      "schema": "bagaev-typed-record-result/9",
+      "status": "invalid-ir",
+      "reason": "RR_TYPE",
+      "location": "/program/functions/main/body/2",
+      "value_type": null,
+      "value": null,
+      "work": 0
+    }
+  },
+  {
+    "id": "WRONG-ARITY",
+    "profile": 9,
+    "program": {
+      "schema": "bagaev-typed-record/9",
+      "records": {},
+      "lists": {},
+      "variants": {},
+      "entry": "main",
+      "functions": {
+        "main": {
+          "params": [],
+          "result": "TextList",
+          "body": [
+            "list.push",
+            [
+              "list.text"
+            ]
+          ]
+        }
+      }
+    },
+    "arguments": [],
+    "expected": {
+      "schema": "bagaev-typed-record-result/9",
+      "status": "invalid-ir",
+      "reason": "RR_SHAPE",
+      "location": "/program/functions/main/body",
+      "value_type": null,
+      "value": null,
+      "work": 0
+    }
+  },
+  {
+    "id": "OLD-PROFILE",
+    "profile": 8,
+    "program": {
+      "schema": "bagaev-typed-record/8",
+      "records": {},
+      "lists": {},
+      "variants": {},
+      "entry": "main",
+      "functions": {
+        "main": {
+          "params": [],
+          "result": "TextList",
+          "body": [
+            "list.push",
+            [
+              "list.text"
+            ],
+            [
+              "text",
+              "a"
+            ]
+          ]
+        }
+      }
+    },
+    "arguments": [],
+    "expected": {
+      "schema": "bagaev-typed-record-result/8",
+      "status": "invalid-ir",
+      "reason": "RR_SHAPE",
+      "location": "/program/functions/main/body",
+      "value_type": null,
+      "value": null,
+      "work": 0
+    }
+  },
+  {
+    "id": "OLD-LAZY",
+    "profile": 8,
+    "program": {
+      "schema": "bagaev-typed-record/8",
+      "records": {},
+      "lists": {},
+      "variants": {},
+      "entry": "main",
+      "functions": {
+        "main": {
+          "params": [],
+          "result": "TextList",
+          "body": [
+            "if",
+            [
+              "bool",
+              false
+            ],
+            [
+              "list.push",
+              [
+                "list.text"
+              ],
+              [
+                "text",
+                "a"
+              ]
+            ],
+            [
+              "list.text"
+            ]
+          ]
+        }
+      }
+    },
+    "arguments": [],
+    "expected": {
+      "schema": "bagaev-typed-record-result/8",
+      "status": "invalid-ir",
+      "reason": "RR_SHAPE",
+      "location": "/program/functions/main/body/2",
+      "value_type": null,
+      "value": null,
+      "work": 0
+    }
+  },
+  {
+    "id": "WORK-BEFORE-COUNT",
+    "profile": 9,
+    "program": {
+      "schema": "bagaev-typed-record/9",
+      "records": {},
+      "lists": {},
+      "variants": {},
+      "entry": "main",
+      "functions": {
+        "main": {
+          "params": [],
+          "result": "TextList",
+          "body": [
+            "list.push",
+            [
+              "loop",
+              1007,
+              "i",
+              "acc",
+              [
+                "list.text",
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ]
+              ],
+              [
+                "list.text",
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ]
+              ]
+            ],
+            [
+              "text",
+              ""
+            ]
+          ]
+        }
+      }
+    },
+    "arguments": [],
+    "expected": {
+      "schema": "bagaev-typed-record-result/9",
+      "status": "work-limit",
+      "reason": "RR_WORK",
+      "location": "/program/functions/main/body",
+      "value_type": null,
+      "value": null,
+      "work": 65523
+    }
+  },
+  {
+    "id": "COUNT-BELOW-WORK",
+    "profile": 9,
+    "program": {
+      "schema": "bagaev-typed-record/9",
+      "records": {},
+      "lists": {},
+      "variants": {},
+      "entry": "main",
+      "functions": {
+        "main": {
+          "params": [],
+          "result": "TextList",
+          "body": [
+            "list.push",
+            [
+              "loop",
+              1006,
+              "i",
+              "acc",
+              [
+                "list.text",
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ]
+              ],
+              [
+                "list.text",
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ]
+              ]
+            ],
+            [
+              "text",
+              ""
+            ]
+          ]
+        }
+      }
+    },
+    "arguments": [],
+    "expected": {
+      "schema": "bagaev-typed-record-result/9",
+      "status": "list-bound",
+      "reason": "RR_LIST_ITEMS",
+      "location": "/program/functions/main/body",
+      "value_type": null,
+      "value": null,
+      "work": 65523
+    }
+  }
+]
