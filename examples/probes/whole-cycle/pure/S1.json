@@ -1,0 +1,75 @@
+{
+  "schema": "bagaev-typed-record/10",
+  "records": {
+    "EntryId": {
+      "value": "Text"
+    },
+    "Entry": {
+      "id": "EntryId",
+      "indexed": "TextList",
+      "manual": "TextList"
+    }
+  },
+  "lists": {},
+  "variants": {},
+  "entry": "main",
+  "functions": {
+    "canonical_tags": {
+      "params": [
+        [
+          "tags",
+          "TextList"
+        ]
+      ],
+      "result": "TextList",
+      "body": [
+        "list.unique",
+        [
+          "arg",
+          "tags"
+        ]
+      ]
+    },
+    "main": {
+      "params": [
+        [
+          "entry",
+          "Entry"
+        ],
+        [
+          "tags",
+          "TextList"
+        ]
+      ],
+      "result": "Entry",
+      "body": [
+        "record",
+        "Entry",
+        [
+          "field",
+          [
+            "arg",
+            "entry"
+          ],
+          "id"
+        ],
+        [
+          "call",
+          "canonical_tags",
+          [
+            "arg",
+            "tags"
+          ]
+        ],
+        [
+          "field",
+          [
+            "arg",
+            "entry"
+          ],
+          "manual"
+        ]
+      ]
+    }
+  }
+}

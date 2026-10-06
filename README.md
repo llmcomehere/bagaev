@@ -70,6 +70,10 @@ untrusted code. No model account is needed for this example.
 
 ## What exists today
 
+- **Experimental whole-cycle reference simulation:** a [connected example](docs/probe-whole-cycle.md)
+  runs typed pure computation through simulated state mutation, source change
+  and lost-response continuation. Seventeen finite trace projections matched;
+  this is not a durable receiver, real access enforcement or a full runtime.
 - **Experimental portable context:** the [bounded context receiver](docs/probe-context.md)
   checks pinned sources, obligations, choices and separate exchange frames.
   It preserves unknowns and never grants admission; kernel checking remains an

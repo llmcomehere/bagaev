@@ -1,0 +1,294 @@
+{
+  "status": "FROZEN_LITERAL_EXPECTATIONS_BEFORE_FIRST_RUN",
+  "at": "2026-10-06T17:37:05.050086+00:00",
+  "selected_profile": "bagaev-typed-record/10 generic invocation, not Json-only prepared API",
+  "purpose": "Pure component computation in the whole-cycle demonstrator; not a benchmark or standalone new language feature",
+  "work_derivation": "S1 visits9 expressions including call+callee arg; S2 visits7. Existing list.unique adds n*n+2*n*aggregate UTF8 bytes. Unicode input B=9. Values and work are hand-authored from the public contracts before running. No new timing study.",
+  "cases": [
+    {
+      "id": "DUPLICATE",
+      "entry": {
+        "id": {
+          "value": "e1"
+        },
+        "indexed": [
+          "old"
+        ],
+        "manual": [
+          "family"
+        ]
+      },
+      "tags": [
+        "new",
+        "new"
+      ],
+      "value": {
+        "id": {
+          "value": "e1"
+        },
+        "indexed": [
+          "new"
+        ],
+        "manual": [
+          "family"
+        ]
+      },
+      "work": {
+        "S1": 37,
+        "S2": 35
+      },
+      "expected": {
+        "S1": {
+          "schema": "bagaev-typed-record-result/10",
+          "status": "success",
+          "reason": null,
+          "location": null,
+          "value_type": "Record:Entry",
+          "value": {
+            "id": {
+              "value": "e1"
+            },
+            "indexed": [
+              "new"
+            ],
+            "manual": [
+              "family"
+            ]
+          },
+          "work": 37
+        },
+        "S2": {
+          "schema": "bagaev-typed-record-result/10",
+          "status": "success",
+          "reason": null,
+          "location": null,
+          "value_type": "Record:Entry",
+          "value": {
+            "id": {
+              "value": "e1"
+            },
+            "indexed": [
+              "new"
+            ],
+            "manual": [
+              "family"
+            ]
+          },
+          "work": 35
+        }
+      }
+    },
+    {
+      "id": "EMPTY",
+      "entry": {
+        "id": {
+          "value": "e1"
+        },
+        "indexed": [
+          "old"
+        ],
+        "manual": [
+          "family"
+        ]
+      },
+      "tags": [],
+      "value": {
+        "id": {
+          "value": "e1"
+        },
+        "indexed": [],
+        "manual": [
+          "family"
+        ]
+      },
+      "work": {
+        "S1": 9,
+        "S2": 7
+      },
+      "expected": {
+        "S1": {
+          "schema": "bagaev-typed-record-result/10",
+          "status": "success",
+          "reason": null,
+          "location": null,
+          "value_type": "Record:Entry",
+          "value": {
+            "id": {
+              "value": "e1"
+            },
+            "indexed": [],
+            "manual": [
+              "family"
+            ]
+          },
+          "work": 9
+        },
+        "S2": {
+          "schema": "bagaev-typed-record-result/10",
+          "status": "success",
+          "reason": null,
+          "location": null,
+          "value_type": "Record:Entry",
+          "value": {
+            "id": {
+              "value": "e1"
+            },
+            "indexed": [],
+            "manual": [
+              "family"
+            ]
+          },
+          "work": 7
+        }
+      }
+    },
+    {
+      "id": "SORT",
+      "entry": {
+        "id": {
+          "value": "e2"
+        },
+        "indexed": [],
+        "manual": [
+          "first",
+          "second"
+        ]
+      },
+      "tags": [
+        "z",
+        "a",
+        "z"
+      ],
+      "value": {
+        "id": {
+          "value": "e2"
+        },
+        "indexed": [
+          "a",
+          "z"
+        ],
+        "manual": [
+          "first",
+          "second"
+        ]
+      },
+      "work": {
+        "S1": 36,
+        "S2": 34
+      },
+      "expected": {
+        "S1": {
+          "schema": "bagaev-typed-record-result/10",
+          "status": "success",
+          "reason": null,
+          "location": null,
+          "value_type": "Record:Entry",
+          "value": {
+            "id": {
+              "value": "e2"
+            },
+            "indexed": [
+              "a",
+              "z"
+            ],
+            "manual": [
+              "first",
+              "second"
+            ]
+          },
+          "work": 36
+        },
+        "S2": {
+          "schema": "bagaev-typed-record-result/10",
+          "status": "success",
+          "reason": null,
+          "location": null,
+          "value_type": "Record:Entry",
+          "value": {
+            "id": {
+              "value": "e2"
+            },
+            "indexed": [
+              "a",
+              "z"
+            ],
+            "manual": [
+              "first",
+              "second"
+            ]
+          },
+          "work": 34
+        }
+      }
+    },
+    {
+      "id": "UNICODE",
+      "entry": {
+        "id": {
+          "value": "e3"
+        },
+        "indexed": [
+          "old"
+        ],
+        "manual": []
+      },
+      "tags": [
+        "ёж",
+        "a",
+        "ёж"
+      ],
+      "value": {
+        "id": {
+          "value": "e3"
+        },
+        "indexed": [
+          "a",
+          "ёж"
+        ],
+        "manual": []
+      },
+      "work": {
+        "S1": 72,
+        "S2": 70
+      },
+      "expected": {
+        "S1": {
+          "schema": "bagaev-typed-record-result/10",
+          "status": "success",
+          "reason": null,
+          "location": null,
+          "value_type": "Record:Entry",
+          "value": {
+            "id": {
+              "value": "e3"
+            },
+            "indexed": [
+              "a",
+              "ёж"
+            ],
+            "manual": []
+          },
+          "work": 72
+        },
+        "S2": {
+          "schema": "bagaev-typed-record-result/10",
+          "status": "success",
+          "reason": null,
+          "location": null,
+          "value_type": "Record:Entry",
+          "value": {
+            "id": {
+              "value": "e3"
+            },
+            "indexed": [
+              "a",
+              "ёж"
+            ],
+            "manual": []
+          },
+          "work": 70
+        }
+      }
+    }
+  ]
+}
