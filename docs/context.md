@@ -202,3 +202,5 @@ For accidental domain substitution, the [existing nominal-domain control](probe-
 The [ordinary native catalogue baseline](probe-ordinary-catalog.md) shares only reviewed JSON transport with the typed probe. Application-value conformance precedes any equal-boundary cost study.
 
 Read [the equal-output call study](probe-equal-application-boundary.md) for the fixed interval, all retained rows, short-batch exclusions from ratios and the distinction from kernel or full lifecycle cost.
+
+For descriptive artifact-byte association only, see [partial build-record inspection](probe-build-record-inspection.md). A matching record grants no build verification or execution admission.

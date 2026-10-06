@@ -1,0 +1,408 @@
+[
+  {
+    "name": "VALID",
+    "expected": "matched-data"
+  },
+  {
+    "name": "ASSERTED-BUILD-NOT-PROOF",
+    "expected": "matched-data",
+    "both": [
+      [
+        "provenance",
+        "observed-build"
+      ]
+    ]
+  },
+  {
+    "name": "NO-EXPECTED",
+    "expected": "EXPECTED",
+    "expected_absent": true
+  },
+  {
+    "name": "SCHEMA",
+    "expected": "SHAPE",
+    "record_set": [
+      [
+        [
+          "schema"
+        ],
+        "next"
+      ]
+    ]
+  },
+  {
+    "name": "BOOL-PROFILE",
+    "expected": "SHAPE",
+    "record_set": [
+      [
+        [
+          "profile"
+        ],
+        true
+      ]
+    ]
+  },
+  {
+    "name": "EXTRA",
+    "expected": "SHAPE",
+    "record_set": [
+      [
+        [
+          "extra"
+        ],
+        1
+      ]
+    ]
+  },
+  {
+    "name": "BUILD-EXTRA",
+    "expected": "SHAPE",
+    "record_set": [
+      [
+        [
+          "build",
+          "command"
+        ],
+        "run"
+      ]
+    ]
+  },
+  {
+    "name": "DUP-DEP",
+    "expected": "SHAPE",
+    "record_set": [
+      [
+        [
+          "dependencies",
+          "needed"
+        ],
+        [
+          "libc.so.6",
+          "libc.so.6"
+        ]
+      ]
+    ]
+  },
+  {
+    "name": "UNSORTED-DEP",
+    "expected": "SHAPE",
+    "record_set": [
+      [
+        [
+          "dependencies",
+          "needed"
+        ],
+        [
+          "z",
+          "a"
+        ]
+      ]
+    ]
+  },
+  {
+    "name": "SEARCH-PATH",
+    "expected": "SHAPE",
+    "record_set": [
+      [
+        [
+          "dependencies",
+          "search_path"
+        ],
+        [
+          "/tmp"
+        ]
+      ]
+    ]
+  },
+  {
+    "name": "PIN-SPELLING",
+    "expected": "SHAPE",
+    "record_set": [
+      [
+        [
+          "source"
+        ],
+        "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+      ]
+    ]
+  },
+  {
+    "name": "FLOAT-PROFILE",
+    "expected": "FORMAT",
+    "record_set": [
+      [
+        [
+          "profile"
+        ],
+        8.0
+      ]
+    ]
+  },
+  {
+    "name": "TARGET",
+    "expected": "SHAPE",
+    "record_set": [
+      [
+        [
+          "build",
+          "target"
+        ],
+        "other"
+      ]
+    ]
+  },
+  {
+    "name": "OPT",
+    "expected": "CONTEXT",
+    "record_set": [
+      [
+        [
+          "build",
+          "llvm_opt"
+        ],
+        "O0"
+      ]
+    ]
+  },
+  {
+    "name": "CLANG",
+    "expected": "CONTEXT",
+    "record_set": [
+      [
+        [
+          "build",
+          "clang"
+        ],
+        "1111111111111111111111111111111111111111111111111111111111111111"
+      ]
+    ]
+  },
+  {
+    "name": "RUSTC",
+    "expected": "CONTEXT",
+    "record_set": [
+      [
+        [
+          "build",
+          "rustc"
+        ],
+        "2222222222222222222222222222222222222222222222222222222222222222"
+      ]
+    ]
+  },
+  {
+    "name": "PROVENANCE",
+    "expected": "CONTEXT",
+    "record_set": [
+      [
+        [
+          "provenance"
+        ],
+        "observed-build"
+      ]
+    ]
+  },
+  {
+    "name": "VERSIONS",
+    "expected": "CONTEXT",
+    "record_set": [
+      [
+        [
+          "dependencies",
+          "versions"
+        ],
+        [
+          "GLIBC_2.2.5"
+        ]
+      ]
+    ]
+  },
+  {
+    "name": "PIN-source",
+    "expected": "PIN",
+    "record_set": [
+      [
+        [
+          "source"
+        ],
+        "3333333333333333333333333333333333333333333333333333333333333333"
+      ]
+    ]
+  },
+  {
+    "name": "CONTENT-source",
+    "expected": "CONTENT",
+    "bytes_change": "source"
+  },
+  {
+    "name": "BOUND-source",
+    "expected": "BOUND",
+    "bytes_bound": "source"
+  },
+  {
+    "name": "PIN-module",
+    "expected": "PIN",
+    "record_set": [
+      [
+        [
+          "module"
+        ],
+        "3333333333333333333333333333333333333333333333333333333333333333"
+      ]
+    ]
+  },
+  {
+    "name": "CONTENT-module",
+    "expected": "CONTENT",
+    "bytes_change": "module"
+  },
+  {
+    "name": "BOUND-module",
+    "expected": "BOUND",
+    "bytes_bound": "module"
+  },
+  {
+    "name": "PIN-harness",
+    "expected": "PIN",
+    "record_set": [
+      [
+        [
+          "harness"
+        ],
+        "3333333333333333333333333333333333333333333333333333333333333333"
+      ]
+    ]
+  },
+  {
+    "name": "CONTENT-harness",
+    "expected": "CONTENT",
+    "bytes_change": "harness"
+  },
+  {
+    "name": "BOUND-harness",
+    "expected": "BOUND",
+    "bytes_bound": "harness"
+  },
+  {
+    "name": "PIN-artifact",
+    "expected": "PIN",
+    "record_set": [
+      [
+        [
+          "artifact"
+        ],
+        "3333333333333333333333333333333333333333333333333333333333333333"
+      ]
+    ]
+  },
+  {
+    "name": "CONTENT-artifact",
+    "expected": "CONTENT",
+    "bytes_change": "artifact"
+  },
+  {
+    "name": "BOUND-artifact",
+    "expected": "BOUND",
+    "bytes_bound": "artifact"
+  },
+  {
+    "name": "MISSING-BYTES",
+    "expected": "BYTES",
+    "bytes_missing": "artifact"
+  },
+  {
+    "name": "WRONG-BYTES",
+    "expected": "BYTES",
+    "bytes_mutable": "source"
+  },
+  {
+    "name": "DUP-ESCAPED",
+    "expected": "FORMAT",
+    "raw": "duplicate-escaped"
+  },
+  {
+    "name": "UTF8",
+    "expected": "FORMAT",
+    "raw": "utf8"
+  },
+  {
+    "name": "BOM",
+    "expected": "FORMAT",
+    "raw": "bom"
+  },
+  {
+    "name": "TRAILING",
+    "expected": "FORMAT",
+    "raw": "trailing"
+  },
+  {
+    "name": "OVERSIZE",
+    "expected": "BOUND",
+    "raw": "oversize"
+  },
+  {
+    "name": "EXPECTED-BEFORE-SHAPE",
+    "expected": "EXPECTED",
+    "expected_absent": true,
+    "record_set": [
+      [
+        [
+          "extra"
+        ],
+        1
+      ]
+    ]
+  },
+  {
+    "name": "SHAPE-BEFORE-CONTEXT",
+    "expected": "SHAPE",
+    "record_set": [
+      [
+        [
+          "extra"
+        ],
+        1
+      ],
+      [
+        [
+          "build",
+          "llvm_opt"
+        ],
+        "O0"
+      ]
+    ]
+  },
+  {
+    "name": "CONTEXT-BEFORE-CONTENT",
+    "expected": "CONTEXT",
+    "record_set": [
+      [
+        [
+          "build",
+          "llvm_opt"
+        ],
+        "O0"
+      ]
+    ],
+    "bytes_change": "source"
+  },
+  {
+    "name": "PIN-BEFORE-CONTENT",
+    "expected": "PIN",
+    "record_set": [
+      [
+        [
+          "module"
+        ],
+        "3333333333333333333333333333333333333333333333333333333333333333"
+      ]
+    ],
+    "bytes_change": "source"
+  },
+  {
+    "name": "BYTES-BOUND-BEFORE-HASH",
+    "expected": "BOUND",
+    "bytes_change": "source",
+    "bytes_bound": "artifact"
+  }
+]

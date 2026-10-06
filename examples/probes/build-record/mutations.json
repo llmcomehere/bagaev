@@ -1,0 +1,42 @@
+[
+  {
+    "name": "ignore-build-context",
+    "witness": "OPT",
+    "old": "if record[key] != expected[key]:",
+    "new": "if key != 'build' and record[key] != expected[key]:",
+    "occurrences": 2,
+    "replacements": 1
+  },
+  {
+    "name": "ignore-provenance-context",
+    "witness": "PROVENANCE",
+    "old": "if record[key] != expected[key]:",
+    "new": "if key != 'provenance' and record[key] != expected[key]:",
+    "occurrences": 2,
+    "replacements": 1
+  },
+  {
+    "name": "ignore-artifact-content",
+    "witness": "CONTENT-artifact",
+    "old": "if hashlib.sha256(content[key]).hexdigest() != record[key]:",
+    "new": "if key != 'artifact' and hashlib.sha256(content[key]).hexdigest() != record[key]:",
+    "occurrences": 1,
+    "replacements": 1
+  },
+  {
+    "name": "trust-self-selected-expectation",
+    "witness": "NO-EXPECTED",
+    "old": "if not shape(expected):",
+    "new": "if expected is None: expected = record\n    if not shape(expected):",
+    "occurrences": 1,
+    "replacements": 1
+  },
+  {
+    "name": "promote-build-assertion",
+    "witness": "ASSERTED-BUILD-NOT-PROOF",
+    "old": "'build_verified': False",
+    "new": "'build_verified': record['provenance'] == 'observed-build'",
+    "occurrences": 1,
+    "replacements": 1
+  }
+]
