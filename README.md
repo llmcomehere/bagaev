@@ -70,6 +70,10 @@ untrusted code. No model account is needed for this example.
 
 ## What exists today
 
+- **Checked readable changes:** the [component edit receiver](docs/probe-component-edit.md)
+  turns a proposed source change into a detached exact-base/target draft and
+  add/replace function delta. Actual source/policy checking precedes the separate
+  evidence/authority admission boundary; draft creation changes no live state.
 - **Readable component programme:** a [bounded notation](docs/probe-component-form.md)
   expresses the actual working component's records, pure functions and state/frame
   declarations. It reconstructs the same checked source and enters the connected

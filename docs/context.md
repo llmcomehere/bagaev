@@ -83,6 +83,9 @@ admission boundary, preserving prior execution timestamps and old-run pins.
 The [readable component form](probe-component-form.md) expresses that same working
 source as records, pure functions and state/request declarations. It is a bounded
 exact view, not a new evaluator or the entire proposed surface language.
+The [component edit receiver](probe-component-edit.md) checks a readable proposal
+against its exact original and returns a detached unadmitted structural draft.
+It preserves the separate evidence/current-authority/live-head admission boundary.
 
 ## Routes
 

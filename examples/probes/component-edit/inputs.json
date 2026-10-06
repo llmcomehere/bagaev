@@ -1,0 +1,9 @@
+{
+  "status": "FROZEN_PORTABLE_INPUTS_BEFORE_PACKET_EXECUTION",
+  "at": "2026-10-06T20:23:25.688976+00:00",
+  "sha256": {
+    "cases.json": "597cdba3452dc908b9c29e4e961210a7146ddfec8c5b7191ce6b967c3cf77a0e",
+    "connected-expectations.json": "e46c577c129f32a634fbff3cada44b0f53fef23f9047ad17a5e3603a24a04382",
+    "guard-expectations.json": "5a64742197687a656203d48b0bcbb29776a1b5b6acc581c051f6316f9b996f98"
+  }
+}
