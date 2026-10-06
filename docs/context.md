@@ -204,3 +204,5 @@ The [ordinary native catalogue baseline](probe-ordinary-catalog.md) shares only 
 Read [the equal-output call study](probe-equal-application-boundary.md) for the fixed interval, all retained rows, short-batch exclusions from ratios and the distinction from kernel or full lifecycle cost.
 
 For descriptive artifact-byte association only, see [partial build-record inspection](probe-build-record-inspection.md). A matching record grants no build verification or execution admission.
+
+For detached native-result byte context, see [experimental outcome framing](probe-outcome-context.md). Framing is separate from typed validation, truthful execution and authority.
