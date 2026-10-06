@@ -3,7 +3,7 @@ import component_change as q
 import sys
 import component_cycle as c
 b=c.b
-def main():
+def main(*,before_event=None):
  parser=q.argparse.ArgumentParser(description='Connected simulated change with retained source-bound qualification.')
  parser.add_argument('--matcher',required=True);parser.add_argument('--matcher-sha256',required=True)
  ns,remaining=parser.parse_known_args();original_args=sys.argv;sys.argv=[sys.argv[0],*remaining]
@@ -37,7 +37,9 @@ def main():
  suite=q.read(b.D/'cases.json');rows=[]
  for case in suite['cases']:
   receiver=Receiver(suite['profile'],engine);receiver.current_case=case['id'];start=len(engine.bindings)
-  for event in case['events']:receiver.execute(event)
+  for event in case['events']:
+   if before_event is not None:before_event(receiver,b.clone(event))
+   receiver.execute(event)
   actual=receiver.projection();diff={k:{'expected':v,'actual':actual.get(k)} for k,v in case['expected'].items() if b.encoded(v)!=b.encoded(actual.get(k))}
   if case['id']=='WC17':
    effects=engine.bindings[start:];b.need([x['source'] for x in effects]==['S1','S2'] and [x['operation_key']['id'] for x in effects]==['A','B'],'new application association')
