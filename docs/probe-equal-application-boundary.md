@@ -94,3 +94,5 @@ an excluded, unmeasured upfront cost in this study. Shared dependencies, fixed
 warm workload, same-maintainer checks and no CPU-isolation guarantee limit the
 inference. This does not prove model-cost savings, production readiness or
 language-wide superiority. Exact-head CI checks documentation, not native timing.
+
+A separate [allocation lifecycle study](probe-equal-allocation.md) reports preparation, per-call peaks and stage counts without attributing timing differences to them.
