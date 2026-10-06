@@ -1,0 +1,9 @@
+#[path="{{TRANSPORT}}"]pub mod transport;
+#[path="{{CATALOG}}"]pub mod catalog;
+
+fn main(){
+ use std::io::{Read,Write};let a:Vec<_>=std::env::args().collect();assert_eq!(a.len(),2);let f=std::fs::File::open(&a[1]).unwrap();assert!(f.metadata().unwrap().len()<=1048576);let mut raw=Vec::new();f.take(1048577).read_to_end(&mut raw).unwrap();assert!(raw.len()<=1048576);
+ let doc=transport::parse(&raw).unwrap();let before=format!("{doc:?}");let mut first=catalog::evaluate(&doc);let second=catalog::evaluate(&doc);let expected=catalog::encode(&second);assert_eq!(catalog::encode(&first),expected);
+ if let catalog::Response::Success{state,entry_ids}=&mut first{entry_ids.push("changed".to_owned());for e in &mut state.entries{e.id.push_str("-changed");e.title.clear();e.manual_tags.clear();e.indexed_tags.push("changed".to_owned());e.date=Some(31);}state.entries.clear();}
+ drop(first);assert_eq!(format!("{doc:?}"),before);assert_eq!(catalog::encode(&second),expected);let third=catalog::evaluate(&doc);assert_eq!(catalog::encode(&third),expected);drop(third);drop(doc);drop(raw);let output=catalog::encode(&second);drop(second);assert_eq!(output,expected);std::io::stdout().write_all(&output).unwrap();
+}

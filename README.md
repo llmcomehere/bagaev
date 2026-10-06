@@ -192,3 +192,5 @@ The [fixed obligation-set example](docs/probe-evidence-obligations.md) checks ev
 The [lease metadata example](docs/probe-lease-compatibility.md) checks clock labels, half-open containment and bounded renewal descriptions without reading a clock or granting authority.
 
 The [nominal-domain parity control](docs/probe-nominal-domains.md) demonstrates existing record distinctions alongside ordinary Rust newtypes, including the deliberate explicit-conversion escape.
+
+The [direct ordinary Rust catalogue](docs/probe-ordinary-catalog.md) implements the same frozen workload without the language interpreter, providing a qualified comparison path before any new measurements.

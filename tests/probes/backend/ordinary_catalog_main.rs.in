@@ -1,0 +1,8 @@
+#[path="{{TRANSPORT}}"]pub mod transport;
+#[path="{{CATALOG}}"]pub mod catalog;
+fn main(){
+ use std::io::{Read,Write};let args:Vec<_>=std::env::args().collect();assert_eq!(args.len(),2);
+ let f=std::fs::File::open(&args[1]).unwrap();let m=f.metadata().unwrap();assert!(m.is_file()&&m.len()<=1048576);let mut raw=Vec::new();f.take(1048577).read_to_end(&mut raw).unwrap();assert!(raw.len()<=1048576);
+ let doc=match transport::parse(&raw){Ok(d)=>d,Err(e)=>{eprintln!("TRANSPORT:{e:?}");std::process::exit(2)}};
+ let response=catalog::evaluate(&doc);drop(doc);drop(raw);let output=catalog::encode(&response);drop(response);std::io::stdout().write_all(&output).unwrap();
+}

@@ -51,7 +51,9 @@ Existing fixed Text/Cell scratch capacities, target and unsafe exact-kernel
 obligations are unchanged. The adapter rechecks storage, invokes once, checks
 arena descriptors and exports owned output before owners are released. Hashes,
 checked source and pointer shapes do not admit arbitrary code. The existing
-[prepared-call API](probe-prepared-json.md) remains /8 only.
+[prepared-call API](probe-prepared-json.md) remains the separate /8 interface;
+[distinct prepared /10 calls](probe-prepared-json10.md) are now available without
+changing it.
 
 ## Portable checks
 

@@ -198,3 +198,5 @@ The [fixed obligation-set successor](probe-evidence-obligations.md) extends desc
 The [clock-bound lease compatibility example](probe-lease-compatibility.md) makes endpoint and renewal mistakes observable in a pure four-input predicate.
 
 For accidental domain substitution, the [existing nominal-domain control](probe-nominal-domains.md) checks bagaev records against ordinary Rust newtypes without claiming authentication.
+
+The [ordinary native catalogue baseline](probe-ordinary-catalog.md) shares only reviewed JSON transport with the typed probe. Application-value conformance precedes any equal-boundary cost study.
