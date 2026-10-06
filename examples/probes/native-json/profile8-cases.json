@@ -1,0 +1,4270 @@
+[
+  {
+    "name": "json-native-r1_NULL",
+    "invocation": {
+      "schema": "bagaev-typed-record-invocation/8",
+      "program": {
+        "schema": "bagaev-typed-record/8",
+        "records": {},
+        "lists": {},
+        "variants": {},
+        "entry": "main",
+        "functions": {
+          "main": {
+            "params": [
+              [
+                "j",
+                "Json"
+              ]
+            ],
+            "result": "Text",
+            "body": [
+              "json.kind",
+              [
+                "arg",
+                "j"
+              ]
+            ]
+          }
+        }
+      },
+      "arguments": [
+        null
+      ]
+    },
+    "program": {
+      "schema": "bagaev-typed-record/8",
+      "records": {},
+      "lists": {},
+      "variants": {},
+      "entry": "main",
+      "functions": {
+        "main": {
+          "params": [
+            [
+              "j",
+              "Json"
+            ]
+          ],
+          "result": "Text",
+          "body": [
+            "json.kind",
+            [
+              "arg",
+              "j"
+            ]
+          ]
+        }
+      }
+    },
+    "program_raw": "{\"entry\":\"main\",\"functions\":{\"main\":{\"body\":[\"json.kind\",[\"arg\",\"j\"]],\"params\":[[\"j\",\"Json\"]],\"result\":\"Text\"}},\"lists\":{},\"records\":{},\"schema\":\"bagaev-typed-record/8\",\"variants\":{}}",
+    "source_sha256": "1176744c48af754452fdfbb3580eb4a2d023079589258f5fd643bd640b57beaf",
+    "work": 2,
+    "result": "Text",
+    "expected_hex": "42434d5052455331010000000400000002000000000000001176744c48af754452fdfbb3580eb4a2d023079589258f5fd643bd640b57beaf000000000000000003000000000000000000000000000000010000000000000000000000040000006e756c6c",
+    "kernel_cells": 0
+  },
+  {
+    "name": "json-native-r1_MISSING",
+    "invocation": {
+      "schema": "bagaev-typed-record-invocation/8",
+      "program": {
+        "schema": "bagaev-typed-record/8",
+        "records": {},
+        "lists": {},
+        "variants": {},
+        "entry": "main",
+        "functions": {
+          "main": {
+            "params": [
+              [
+                "j",
+                "Json"
+              ]
+            ],
+            "result": "Text",
+            "body": [
+              "json.kind",
+              [
+                "json.field",
+                [
+                  "arg",
+                  "j"
+                ],
+                "d"
+              ]
+            ]
+          }
+        }
+      },
+      "arguments": [
+        {}
+      ]
+    },
+    "program": {
+      "schema": "bagaev-typed-record/8",
+      "records": {},
+      "lists": {},
+      "variants": {},
+      "entry": "main",
+      "functions": {
+        "main": {
+          "params": [
+            [
+              "j",
+              "Json"
+            ]
+          ],
+          "result": "Text",
+          "body": [
+            "json.kind",
+            [
+              "json.field",
+              [
+                "arg",
+                "j"
+              ],
+              "d"
+            ]
+          ]
+        }
+      }
+    },
+    "program_raw": "{\"entry\":\"main\",\"functions\":{\"main\":{\"body\":[\"json.kind\",[\"json.field\",[\"arg\",\"j\"],\"d\"]],\"params\":[[\"j\",\"Json\"]],\"result\":\"Text\"}},\"lists\":{},\"records\":{},\"schema\":\"bagaev-typed-record/8\",\"variants\":{}}",
+    "source_sha256": "1099d821745b7bc8cad30dc6d877869d8ef5de8f55234975761d212c1562b03b",
+    "work": 3,
+    "result": "Text",
+    "expected_hex": "42434d5052455331010000000700000003000000000000001099d821745b7bc8cad30dc6d877869d8ef5de8f55234975761d212c1562b03b000000000000000003000000000000000000000000000000010000000000000000000000070000006d697373696e67",
+    "kernel_cells": 0
+  },
+  {
+    "name": "json-native-r1_PRESENT-NULL",
+    "invocation": {
+      "schema": "bagaev-typed-record-invocation/8",
+      "program": {
+        "schema": "bagaev-typed-record/8",
+        "records": {},
+        "lists": {},
+        "variants": {},
+        "entry": "main",
+        "functions": {
+          "main": {
+            "params": [
+              [
+                "j",
+                "Json"
+              ]
+            ],
+            "result": "Text",
+            "body": [
+              "json.kind",
+              [
+                "json.field",
+                [
+                  "arg",
+                  "j"
+                ],
+                "d"
+              ]
+            ]
+          }
+        }
+      },
+      "arguments": [
+        {
+          "d": null
+        }
+      ]
+    },
+    "program": {
+      "schema": "bagaev-typed-record/8",
+      "records": {},
+      "lists": {},
+      "variants": {},
+      "entry": "main",
+      "functions": {
+        "main": {
+          "params": [
+            [
+              "j",
+              "Json"
+            ]
+          ],
+          "result": "Text",
+          "body": [
+            "json.kind",
+            [
+              "json.field",
+              [
+                "arg",
+                "j"
+              ],
+              "d"
+            ]
+          ]
+        }
+      }
+    },
+    "program_raw": "{\"entry\":\"main\",\"functions\":{\"main\":{\"body\":[\"json.kind\",[\"json.field\",[\"arg\",\"j\"],\"d\"]],\"params\":[[\"j\",\"Json\"]],\"result\":\"Text\"}},\"lists\":{},\"records\":{},\"schema\":\"bagaev-typed-record/8\",\"variants\":{}}",
+    "source_sha256": "1099d821745b7bc8cad30dc6d877869d8ef5de8f55234975761d212c1562b03b",
+    "work": 5,
+    "result": "Text",
+    "expected_hex": "42434d5052455331010000000400000005000000000000001099d821745b7bc8cad30dc6d877869d8ef5de8f55234975761d212c1562b03b000000000000000003000000000000000000000000000000010000000000000000000000040000006e756c6c",
+    "kernel_cells": 0
+  },
+  {
+    "name": "json-native-r1_ZERO",
+    "invocation": {
+      "schema": "bagaev-typed-record-invocation/8",
+      "program": {
+        "schema": "bagaev-typed-record/8",
+        "records": {},
+        "lists": {},
+        "variants": {},
+        "entry": "main",
+        "functions": {
+          "main": {
+            "params": [
+              [
+                "j",
+                "Json"
+              ]
+            ],
+            "result": "OptionInt64",
+            "body": [
+              "json.int",
+              [
+                "json.field",
+                [
+                  "arg",
+                  "j"
+                ],
+                "d"
+              ]
+            ]
+          }
+        }
+      },
+      "arguments": [
+        {
+          "d": 0
+        }
+      ]
+    },
+    "program": {
+      "schema": "bagaev-typed-record/8",
+      "records": {},
+      "lists": {},
+      "variants": {},
+      "entry": "main",
+      "functions": {
+        "main": {
+          "params": [
+            [
+              "j",
+              "Json"
+            ]
+          ],
+          "result": "OptionInt64",
+          "body": [
+            "json.int",
+            [
+              "json.field",
+              [
+                "arg",
+                "j"
+              ],
+              "d"
+            ]
+          ]
+        }
+      }
+    },
+    "program_raw": "{\"entry\":\"main\",\"functions\":{\"main\":{\"body\":[\"json.int\",[\"json.field\",[\"arg\",\"j\"],\"d\"]],\"params\":[[\"j\",\"Json\"]],\"result\":\"OptionInt64\"}},\"lists\":{},\"records\":{},\"schema\":\"bagaev-typed-record/8\",\"variants\":{}}",
+    "source_sha256": "6f37a395c0af96ec75686e7d2c350751412b1945c60114ade7a30c8d957a4e0b",
+    "work": 6,
+    "result": "OptionInt64",
+    "expected_hex": "42434d5052455331010000000000000006000000000000006f37a395c0af96ec75686e7d2c350751412b1945c60114ade7a30c8d957a4e0b00000000000000000900000000000000000000000000000001000000000000000000000000000000",
+    "kernel_cells": 0
+  },
+  {
+    "name": "json-native-r1_BOOL",
+    "invocation": {
+      "schema": "bagaev-typed-record-invocation/8",
+      "program": {
+        "schema": "bagaev-typed-record/8",
+        "records": {},
+        "lists": {},
+        "variants": {},
+        "entry": "main",
+        "functions": {
+          "main": {
+            "params": [
+              [
+                "j",
+                "Json"
+              ]
+            ],
+            "result": "OptionInt64",
+            "body": [
+              "json.int",
+              [
+                "json.field",
+                [
+                  "arg",
+                  "j"
+                ],
+                "d"
+              ]
+            ]
+          }
+        }
+      },
+      "arguments": [
+        {
+          "d": false
+        }
+      ]
+    },
+    "program": {
+      "schema": "bagaev-typed-record/8",
+      "records": {},
+      "lists": {},
+      "variants": {},
+      "entry": "main",
+      "functions": {
+        "main": {
+          "params": [
+            [
+              "j",
+              "Json"
+            ]
+          ],
+          "result": "OptionInt64",
+          "body": [
+            "json.int",
+            [
+              "json.field",
+              [
+                "arg",
+                "j"
+              ],
+              "d"
+            ]
+          ]
+        }
+      }
+    },
+    "program_raw": "{\"entry\":\"main\",\"functions\":{\"main\":{\"body\":[\"json.int\",[\"json.field\",[\"arg\",\"j\"],\"d\"]],\"params\":[[\"j\",\"Json\"]],\"result\":\"OptionInt64\"}},\"lists\":{},\"records\":{},\"schema\":\"bagaev-typed-record/8\",\"variants\":{}}",
+    "source_sha256": "6f37a395c0af96ec75686e7d2c350751412b1945c60114ade7a30c8d957a4e0b",
+    "work": 5,
+    "result": "OptionInt64",
+    "expected_hex": "42434d5052455331010000000000000005000000000000006f37a395c0af96ec75686e7d2c350751412b1945c60114ade7a30c8d957a4e0b00000000000000000400000000000000000000000000000001000000000000000000000000000000",
+    "kernel_cells": 0
+  },
+  {
+    "name": "json-native-r1_FLOAT",
+    "invocation": {
+      "schema": "bagaev-typed-record-invocation/8",
+      "program": {
+        "schema": "bagaev-typed-record/8",
+        "records": {},
+        "lists": {},
+        "variants": {},
+        "entry": "main",
+        "functions": {
+          "main": {
+            "params": [
+              [
+                "j",
+                "Json"
+              ]
+            ],
+            "result": "OptionInt64",
+            "body": [
+              "json.int",
+              [
+                "arg",
+                "j"
+              ]
+            ]
+          }
+        }
+      },
+      "arguments": [
+        1.0
+      ]
+    },
+    "program": {
+      "schema": "bagaev-typed-record/8",
+      "records": {},
+      "lists": {},
+      "variants": {},
+      "entry": "main",
+      "functions": {
+        "main": {
+          "params": [
+            [
+              "j",
+              "Json"
+            ]
+          ],
+          "result": "OptionInt64",
+          "body": [
+            "json.int",
+            [
+              "arg",
+              "j"
+            ]
+          ]
+        }
+      }
+    },
+    "program_raw": "{\"entry\":\"main\",\"functions\":{\"main\":{\"body\":[\"json.int\",[\"arg\",\"j\"]],\"params\":[[\"j\",\"Json\"]],\"result\":\"OptionInt64\"}},\"lists\":{},\"records\":{},\"schema\":\"bagaev-typed-record/8\",\"variants\":{}}",
+    "source_sha256": "3957d967077ad919310b8521879f94fb32f2178c0195fa1a4e3638f4394ec920",
+    "work": 2,
+    "result": "OptionInt64",
+    "expected_hex": "42434d5052455331010000000000000002000000000000003957d967077ad919310b8521879f94fb32f2178c0195fa1a4e3638f4394ec92000000000000000000400000000000000000000000000000001000000000000000000000000000000",
+    "kernel_cells": 0
+  },
+  {
+    "name": "json-native-r1_BIG-INT",
+    "invocation": {
+      "schema": "bagaev-typed-record-invocation/8",
+      "program": {
+        "schema": "bagaev-typed-record/8",
+        "records": {},
+        "lists": {},
+        "variants": {},
+        "entry": "main",
+        "functions": {
+          "main": {
+            "params": [
+              [
+                "j",
+                "Json"
+              ]
+            ],
+            "result": "OptionInt64",
+            "body": [
+              "json.int",
+              [
+                "arg",
+                "j"
+              ]
+            ]
+          }
+        }
+      },
+      "arguments": [
+        9223372036854775808
+      ]
+    },
+    "program": {
+      "schema": "bagaev-typed-record/8",
+      "records": {},
+      "lists": {},
+      "variants": {},
+      "entry": "main",
+      "functions": {
+        "main": {
+          "params": [
+            [
+              "j",
+              "Json"
+            ]
+          ],
+          "result": "OptionInt64",
+          "body": [
+            "json.int",
+            [
+              "arg",
+              "j"
+            ]
+          ]
+        }
+      }
+    },
+    "program_raw": "{\"entry\":\"main\",\"functions\":{\"main\":{\"body\":[\"json.int\",[\"arg\",\"j\"]],\"params\":[[\"j\",\"Json\"]],\"result\":\"OptionInt64\"}},\"lists\":{},\"records\":{},\"schema\":\"bagaev-typed-record/8\",\"variants\":{}}",
+    "source_sha256": "3957d967077ad919310b8521879f94fb32f2178c0195fa1a4e3638f4394ec920",
+    "work": 21,
+    "result": "OptionInt64",
+    "expected_hex": "42434d5052455331010000000000000015000000000000003957d967077ad919310b8521879f94fb32f2178c0195fa1a4e3638f4394ec92000000000000000000400000000000000000000000000000001000000000000000000000000000000",
+    "kernel_cells": 0
+  },
+  {
+    "name": "json-native-r1_MIN-INT",
+    "invocation": {
+      "schema": "bagaev-typed-record-invocation/8",
+      "program": {
+        "schema": "bagaev-typed-record/8",
+        "records": {},
+        "lists": {},
+        "variants": {},
+        "entry": "main",
+        "functions": {
+          "main": {
+            "params": [
+              [
+                "j",
+                "Json"
+              ]
+            ],
+            "result": "OptionInt64",
+            "body": [
+              "json.int",
+              [
+                "arg",
+                "j"
+              ]
+            ]
+          }
+        }
+      },
+      "arguments": [
+        -9223372036854775808
+      ]
+    },
+    "program": {
+      "schema": "bagaev-typed-record/8",
+      "records": {},
+      "lists": {},
+      "variants": {},
+      "entry": "main",
+      "functions": {
+        "main": {
+          "params": [
+            [
+              "j",
+              "Json"
+            ]
+          ],
+          "result": "OptionInt64",
+          "body": [
+            "json.int",
+            [
+              "arg",
+              "j"
+            ]
+          ]
+        }
+      }
+    },
+    "program_raw": "{\"entry\":\"main\",\"functions\":{\"main\":{\"body\":[\"json.int\",[\"arg\",\"j\"]],\"params\":[[\"j\",\"Json\"]],\"result\":\"OptionInt64\"}},\"lists\":{},\"records\":{},\"schema\":\"bagaev-typed-record/8\",\"variants\":{}}",
+    "source_sha256": "3957d967077ad919310b8521879f94fb32f2178c0195fa1a4e3638f4394ec920",
+    "work": 22,
+    "result": "OptionInt64",
+    "expected_hex": "42434d5052455331010000000000000016000000000000003957d967077ad919310b8521879f94fb32f2178c0195fa1a4e3638f4394ec92000000000000000000900000000000000000000000000008001000000000000000000000000000000",
+    "kernel_cells": 0
+  },
+  {
+    "name": "json-native-r1_LENGTH",
+    "invocation": {
+      "schema": "bagaev-typed-record-invocation/8",
+      "program": {
+        "schema": "bagaev-typed-record/8",
+        "records": {},
+        "lists": {},
+        "variants": {},
+        "entry": "main",
+        "functions": {
+          "main": {
+            "params": [
+              [
+                "j",
+                "Json"
+              ]
+            ],
+            "result": "OptionInt64",
+            "body": [
+              "json.len",
+              [
+                "arg",
+                "j"
+              ]
+            ]
+          }
+        }
+      },
+      "arguments": [
+        {
+          "a": 0,
+          "b": 1
+        }
+      ]
+    },
+    "program": {
+      "schema": "bagaev-typed-record/8",
+      "records": {},
+      "lists": {},
+      "variants": {},
+      "entry": "main",
+      "functions": {
+        "main": {
+          "params": [
+            [
+              "j",
+              "Json"
+            ]
+          ],
+          "result": "OptionInt64",
+          "body": [
+            "json.len",
+            [
+              "arg",
+              "j"
+            ]
+          ]
+        }
+      }
+    },
+    "program_raw": "{\"entry\":\"main\",\"functions\":{\"main\":{\"body\":[\"json.len\",[\"arg\",\"j\"]],\"params\":[[\"j\",\"Json\"]],\"result\":\"OptionInt64\"}},\"lists\":{},\"records\":{},\"schema\":\"bagaev-typed-record/8\",\"variants\":{}}",
+    "source_sha256": "7a0c53c57cf68673331bca3c0e526fa9c6637e65e0274ef723b15126f4d241fb",
+    "work": 2,
+    "result": "OptionInt64",
+    "expected_hex": "42434d5052455331010000000000000002000000000000007a0c53c57cf68673331bca3c0e526fa9c6637e65e0274ef723b15126f4d241fb00000000000000000900000000000000020000000000000001000000000000000000000000000000",
+    "kernel_cells": 0
+  },
+  {
+    "name": "json-native-r1_UTF8",
+    "invocation": {
+      "schema": "bagaev-typed-record-invocation/8",
+      "program": {
+        "schema": "bagaev-typed-record/8",
+        "records": {},
+        "lists": {},
+        "variants": {},
+        "entry": "main",
+        "functions": {
+          "main": {
+            "params": [
+              [
+                "j",
+                "Json"
+              ]
+            ],
+            "result": "Text",
+            "body": [
+              "json.text_or",
+              [
+                "json.at",
+                [
+                  "arg",
+                  "j"
+                ],
+                [
+                  "int",
+                  0
+                ]
+              ],
+              [
+                "text",
+                "bad"
+              ]
+            ]
+          }
+        }
+      },
+      "arguments": [
+        [
+          "\u00e9"
+        ]
+      ]
+    },
+    "program": {
+      "schema": "bagaev-typed-record/8",
+      "records": {},
+      "lists": {},
+      "variants": {},
+      "entry": "main",
+      "functions": {
+        "main": {
+          "params": [
+            [
+              "j",
+              "Json"
+            ]
+          ],
+          "result": "Text",
+          "body": [
+            "json.text_or",
+            [
+              "json.at",
+              [
+                "arg",
+                "j"
+              ],
+              [
+                "int",
+                0
+              ]
+            ],
+            [
+              "text",
+              "bad"
+            ]
+          ]
+        }
+      }
+    },
+    "program_raw": "{\"entry\":\"main\",\"functions\":{\"main\":{\"body\":[\"json.text_or\",[\"json.at\",[\"arg\",\"j\"],[\"int\",0]],[\"text\",\"bad\"]],\"params\":[[\"j\",\"Json\"]],\"result\":\"Text\"}},\"lists\":{},\"records\":{},\"schema\":\"bagaev-typed-record/8\",\"variants\":{}}",
+    "source_sha256": "c7e111f7d1172dc092d3d5dc1c7cb98652a0830bec8efca6b4b4bcc4c1ea4459",
+    "work": 6,
+    "result": "Text",
+    "expected_hex": "42434d505245533101000000020000000600000000000000c7e111f7d1172dc092d3d5dc1c7cb98652a0830bec8efca6b4b4bcc4c1ea445900000000000000000300000000000000000000000000000001000000000000000000000002000000c3a9",
+    "kernel_cells": 0
+  },
+  {
+    "name": "json-native-r1_FALLBACK",
+    "invocation": {
+      "schema": "bagaev-typed-record-invocation/8",
+      "program": {
+        "schema": "bagaev-typed-record/8",
+        "records": {},
+        "lists": {},
+        "variants": {},
+        "entry": "main",
+        "functions": {
+          "main": {
+            "params": [
+              [
+                "j",
+                "Json"
+              ]
+            ],
+            "result": "Text",
+            "body": [
+              "json.text_or",
+              [
+                "arg",
+                "j"
+              ],
+              [
+                "text",
+                "fallback"
+              ]
+            ]
+          }
+        }
+      },
+      "arguments": [
+        1
+      ]
+    },
+    "program": {
+      "schema": "bagaev-typed-record/8",
+      "records": {},
+      "lists": {},
+      "variants": {},
+      "entry": "main",
+      "functions": {
+        "main": {
+          "params": [
+            [
+              "j",
+              "Json"
+            ]
+          ],
+          "result": "Text",
+          "body": [
+            "json.text_or",
+            [
+              "arg",
+              "j"
+            ],
+            [
+              "text",
+              "fallback"
+            ]
+          ]
+        }
+      }
+    },
+    "program_raw": "{\"entry\":\"main\",\"functions\":{\"main\":{\"body\":[\"json.text_or\",[\"arg\",\"j\"],[\"text\",\"fallback\"]],\"params\":[[\"j\",\"Json\"]],\"result\":\"Text\"}},\"lists\":{},\"records\":{},\"schema\":\"bagaev-typed-record/8\",\"variants\":{}}",
+    "source_sha256": "6996dcd5dc5f16cac91b5885ec3a1d6af00972d9da420a0980613b582a120240",
+    "work": 11,
+    "result": "Text",
+    "expected_hex": "42434d505245533101000000080000000b000000000000006996dcd5dc5f16cac91b5885ec3a1d6af00972d9da420a0980613b582a1202400000000000000000030000000000000000000000000000000100000000000000000000000800000066616c6c6261636b",
+    "kernel_cells": 0
+  },
+  {
+    "name": "json-native-r1_TEXT-BOUND",
+    "invocation": {
+      "schema": "bagaev-typed-record-invocation/8",
+      "program": {
+        "schema": "bagaev-typed-record/8",
+        "records": {},
+        "lists": {},
+        "variants": {},
+        "entry": "main",
+        "functions": {
+          "main": {
+            "params": [
+              [
+                "j",
+                "Json"
+              ]
+            ],
+            "result": "Bool",
+            "body": [
+              "json.is_text",
+              [
+                "arg",
+                "j"
+              ]
+            ]
+          }
+        }
+      },
+      "arguments": [
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      ]
+    },
+    "program": {
+      "schema": "bagaev-typed-record/8",
+      "records": {},
+      "lists": {},
+      "variants": {},
+      "entry": "main",
+      "functions": {
+        "main": {
+          "params": [
+            [
+              "j",
+              "Json"
+            ]
+          ],
+          "result": "Bool",
+          "body": [
+            "json.is_text",
+            [
+              "arg",
+              "j"
+            ]
+          ]
+        }
+      }
+    },
+    "program_raw": "{\"entry\":\"main\",\"functions\":{\"main\":{\"body\":[\"json.is_text\",[\"arg\",\"j\"]],\"params\":[[\"j\",\"Json\"]],\"result\":\"Bool\"}},\"lists\":{},\"records\":{},\"schema\":\"bagaev-typed-record/8\",\"variants\":{}}",
+    "source_sha256": "f71c7291eb9a0bd68e4f97ee1d6295917d89b755e4854c2719bc25866251cadc",
+    "work": 2,
+    "result": "Bool",
+    "expected_hex": "42434d505245533101000000000000000200000000000000f71c7291eb9a0bd68e4f97ee1d6295917d89b755e4854c2719bc25866251cadc00000000000000000200000000000000000000000000000001000000000000000000000000000000",
+    "kernel_cells": 0
+  },
+  {
+    "name": "json-native-r1_SURROGATE",
+    "invocation": {
+      "schema": "bagaev-typed-record-invocation/8",
+      "program": {
+        "schema": "bagaev-typed-record/8",
+        "records": {},
+        "lists": {},
+        "variants": {},
+        "entry": "main",
+        "functions": {
+          "main": {
+            "params": [
+              [
+                "j",
+                "Json"
+              ]
+            ],
+            "result": "Bool",
+            "body": [
+              "json.is_text",
+              [
+                "arg",
+                "j"
+              ]
+            ]
+          }
+        }
+      },
+      "arguments": [
+        "\ud800"
+      ]
+    },
+    "program": {
+      "schema": "bagaev-typed-record/8",
+      "records": {},
+      "lists": {},
+      "variants": {},
+      "entry": "main",
+      "functions": {
+        "main": {
+          "params": [
+            [
+              "j",
+              "Json"
+            ]
+          ],
+          "result": "Bool",
+          "body": [
+            "json.is_text",
+            [
+              "arg",
+              "j"
+            ]
+          ]
+        }
+      }
+    },
+    "program_raw": "{\"entry\":\"main\",\"functions\":{\"main\":{\"body\":[\"json.is_text\",[\"arg\",\"j\"]],\"params\":[[\"j\",\"Json\"]],\"result\":\"Bool\"}},\"lists\":{},\"records\":{},\"schema\":\"bagaev-typed-record/8\",\"variants\":{}}",
+    "source_sha256": "f71c7291eb9a0bd68e4f97ee1d6295917d89b755e4854c2719bc25866251cadc",
+    "work": 2,
+    "result": "Bool",
+    "expected_hex": "42434d505245533101000000000000000200000000000000f71c7291eb9a0bd68e4f97ee1d6295917d89b755e4854c2719bc25866251cadc00000000000000000200000000000000000000000000000001000000000000000000000000000000",
+    "kernel_cells": 0
+  },
+  {
+    "name": "json-native-r1_NEGATIVE",
+    "invocation": {
+      "schema": "bagaev-typed-record-invocation/8",
+      "program": {
+        "schema": "bagaev-typed-record/8",
+        "records": {},
+        "lists": {},
+        "variants": {},
+        "entry": "main",
+        "functions": {
+          "main": {
+            "params": [
+              [
+                "j",
+                "Json"
+              ]
+            ],
+            "result": "Text",
+            "body": [
+              "json.kind",
+              [
+                "json.at",
+                [
+                  "arg",
+                  "j"
+                ],
+                [
+                  "int",
+                  -1
+                ]
+              ]
+            ]
+          }
+        }
+      },
+      "arguments": [
+        [
+          1
+        ]
+      ]
+    },
+    "program": {
+      "schema": "bagaev-typed-record/8",
+      "records": {},
+      "lists": {},
+      "variants": {},
+      "entry": "main",
+      "functions": {
+        "main": {
+          "params": [
+            [
+              "j",
+              "Json"
+            ]
+          ],
+          "result": "Text",
+          "body": [
+            "json.kind",
+            [
+              "json.at",
+              [
+                "arg",
+                "j"
+              ],
+              [
+                "int",
+                -1
+              ]
+            ]
+          ]
+        }
+      }
+    },
+    "program_raw": "{\"entry\":\"main\",\"functions\":{\"main\":{\"body\":[\"json.kind\",[\"json.at\",[\"arg\",\"j\"],[\"int\",-1]]],\"params\":[[\"j\",\"Json\"]],\"result\":\"Text\"}},\"lists\":{},\"records\":{},\"schema\":\"bagaev-typed-record/8\",\"variants\":{}}",
+    "source_sha256": "8aba373c91bc994d0ae1b2b01f2c5f732ade304b127f53f9654102f09eb83b6d",
+    "work": 4,
+    "result": "Text",
+    "expected_hex": "42434d5052455331010000000700000004000000000000008aba373c91bc994d0ae1b2b01f2c5f732ade304b127f53f9654102f09eb83b6d000000000000000003000000000000000000000000000000010000000000000000000000070000006d697373696e67",
+    "kernel_cells": 0
+  },
+  {
+    "name": "json-native-r1_EMPTY-KEY",
+    "invocation": {
+      "schema": "bagaev-typed-record-invocation/8",
+      "program": {
+        "schema": "bagaev-typed-record/8",
+        "records": {},
+        "lists": {},
+        "variants": {},
+        "entry": "main",
+        "functions": {
+          "main": {
+            "params": [
+              [
+                "j",
+                "Json"
+              ]
+            ],
+            "result": "Text",
+            "body": [
+              "json.kind",
+              [
+                "json.field",
+                [
+                  "arg",
+                  "j"
+                ],
+                ""
+              ]
+            ]
+          }
+        }
+      },
+      "arguments": [
+        {
+          "": null
+        }
+      ]
+    },
+    "program": {
+      "schema": "bagaev-typed-record/8",
+      "records": {},
+      "lists": {},
+      "variants": {},
+      "entry": "main",
+      "functions": {
+        "main": {
+          "params": [
+            [
+              "j",
+              "Json"
+            ]
+          ],
+          "result": "Text",
+          "body": [
+            "json.kind",
+            [
+              "json.field",
+              [
+                "arg",
+                "j"
+              ],
+              ""
+            ]
+          ]
+        }
+      }
+    },
+    "program_raw": "{\"entry\":\"main\",\"functions\":{\"main\":{\"body\":[\"json.kind\",[\"json.field\",[\"arg\",\"j\"],\"\"]],\"params\":[[\"j\",\"Json\"]],\"result\":\"Text\"}},\"lists\":{},\"records\":{},\"schema\":\"bagaev-typed-record/8\",\"variants\":{}}",
+    "source_sha256": "0a6be638776f132f32f219cac63144d2c4dc1f8f1c2b7efb864992dc0aee47bd",
+    "work": 4,
+    "result": "Text",
+    "expected_hex": "42434d5052455331010000000400000004000000000000000a6be638776f132f32f219cac63144d2c4dc1f8f1c2b7efb864992dc0aee47bd000000000000000003000000000000000000000000000000010000000000000000000000040000006e756c6c",
+    "kernel_cells": 0
+  },
+  {
+    "name": "json-native-r1_UNICODE-KEY",
+    "invocation": {
+      "schema": "bagaev-typed-record-invocation/8",
+      "program": {
+        "schema": "bagaev-typed-record/8",
+        "records": {},
+        "lists": {},
+        "variants": {},
+        "entry": "main",
+        "functions": {
+          "main": {
+            "params": [
+              [
+                "j",
+                "Json"
+              ]
+            ],
+            "result": "Text",
+            "body": [
+              "json.kind",
+              [
+                "json.field",
+                [
+                  "arg",
+                  "j"
+                ],
+                "\u00e9"
+              ]
+            ]
+          }
+        }
+      },
+      "arguments": [
+        {
+          "\u00e9": 1
+        }
+      ]
+    },
+    "program": {
+      "schema": "bagaev-typed-record/8",
+      "records": {},
+      "lists": {},
+      "variants": {},
+      "entry": "main",
+      "functions": {
+        "main": {
+          "params": [
+            [
+              "j",
+              "Json"
+            ]
+          ],
+          "result": "Text",
+          "body": [
+            "json.kind",
+            [
+              "json.field",
+              [
+                "arg",
+                "j"
+              ],
+              "\u00e9"
+            ]
+          ]
+        }
+      }
+    },
+    "program_raw": "{\"entry\":\"main\",\"functions\":{\"main\":{\"body\":[\"json.kind\",[\"json.field\",[\"arg\",\"j\"],\"\\u00e9\"]],\"params\":[[\"j\",\"Json\"]],\"result\":\"Text\"}},\"lists\":{},\"records\":{},\"schema\":\"bagaev-typed-record/8\",\"variants\":{}}",
+    "source_sha256": "ed7b0fa00a0c34bb743e69290e447c8f4bd273990fbb1520369dddcc3471de3b",
+    "work": 6,
+    "result": "Text",
+    "expected_hex": "42434d505245533101000000030000000600000000000000ed7b0fa00a0c34bb743e69290e447c8f4bd273990fbb1520369dddcc3471de3b00000000000000000300000000000000000000000000000001000000000000000000000003000000696e74",
+    "kernel_cells": 0
+  },
+  {
+    "name": "json-native-supplement-r1_LAZY_VALID",
+    "invocation": {
+      "schema": "bagaev-typed-record-invocation/8",
+      "program": {
+        "schema": "bagaev-typed-record/8",
+        "records": {},
+        "lists": {},
+        "variants": {},
+        "entry": "main",
+        "functions": {
+          "main": {
+            "params": [
+              [
+                "j",
+                "Json"
+              ]
+            ],
+            "result": "Text",
+            "body": [
+              "json.text_or",
+              [
+                "arg",
+                "j"
+              ],
+              [
+                "if",
+                [
+                  "eq",
+                  [
+                    "add",
+                    [
+                      "int",
+                      9223372036854775807
+                    ],
+                    [
+                      "int",
+                      1
+                    ]
+                  ],
+                  [
+                    "int",
+                    0
+                  ]
+                ],
+                [
+                  "text",
+                  "bad"
+                ],
+                [
+                  "text",
+                  "bad"
+                ]
+              ]
+            ]
+          }
+        }
+      },
+      "arguments": [
+        "ok"
+      ]
+    },
+    "program": {
+      "schema": "bagaev-typed-record/8",
+      "records": {},
+      "lists": {},
+      "variants": {},
+      "entry": "main",
+      "functions": {
+        "main": {
+          "params": [
+            [
+              "j",
+              "Json"
+            ]
+          ],
+          "result": "Text",
+          "body": [
+            "json.text_or",
+            [
+              "arg",
+              "j"
+            ],
+            [
+              "if",
+              [
+                "eq",
+                [
+                  "add",
+                  [
+                    "int",
+                    9223372036854775807
+                  ],
+                  [
+                    "int",
+                    1
+                  ]
+                ],
+                [
+                  "int",
+                  0
+                ]
+              ],
+              [
+                "text",
+                "bad"
+              ],
+              [
+                "text",
+                "bad"
+              ]
+            ]
+          ]
+        }
+      }
+    },
+    "program_raw": "{\"entry\":\"main\",\"functions\":{\"main\":{\"body\":[\"json.text_or\",[\"arg\",\"j\"],[\"if\",[\"eq\",[\"add\",[\"int\",9223372036854775807],[\"int\",1]],[\"int\",0]],[\"text\",\"bad\"],[\"text\",\"bad\"]]],\"params\":[[\"j\",\"Json\"]],\"result\":\"Text\"}},\"lists\":{},\"records\":{},\"schema\":\"bagaev-typed-record/8\",\"variants\":{}}",
+    "source_sha256": "c3e2046597d215c77d8f40338dd34401aacdb27967bbe2c6c020664853061c4f",
+    "work": 4,
+    "result": "Text",
+    "expected_hex": "42434d505245533101000000020000000400000000000000c3e2046597d215c77d8f40338dd34401aacdb27967bbe2c6c020664853061c4f000000000000000003000000000000000000000000000000010000000000000000000000020000006f6b",
+    "kernel_cells": 0
+  },
+  {
+    "name": "json-native-supplement-r1_LAZY_INVALID",
+    "invocation": {
+      "schema": "bagaev-typed-record-invocation/8",
+      "program": {
+        "schema": "bagaev-typed-record/8",
+        "records": {},
+        "lists": {},
+        "variants": {},
+        "entry": "main",
+        "functions": {
+          "main": {
+            "params": [
+              [
+                "j",
+                "Json"
+              ]
+            ],
+            "result": "Text",
+            "body": [
+              "json.text_or",
+              [
+                "arg",
+                "j"
+              ],
+              [
+                "if",
+                [
+                  "eq",
+                  [
+                    "add",
+                    [
+                      "int",
+                      9223372036854775807
+                    ],
+                    [
+                      "int",
+                      1
+                    ]
+                  ],
+                  [
+                    "int",
+                    0
+                  ]
+                ],
+                [
+                  "text",
+                  "bad"
+                ],
+                [
+                  "text",
+                  "bad"
+                ]
+              ]
+            ]
+          }
+        }
+      },
+      "arguments": [
+        null
+      ]
+    },
+    "program": {
+      "schema": "bagaev-typed-record/8",
+      "records": {},
+      "lists": {},
+      "variants": {},
+      "entry": "main",
+      "functions": {
+        "main": {
+          "params": [
+            [
+              "j",
+              "Json"
+            ]
+          ],
+          "result": "Text",
+          "body": [
+            "json.text_or",
+            [
+              "arg",
+              "j"
+            ],
+            [
+              "if",
+              [
+                "eq",
+                [
+                  "add",
+                  [
+                    "int",
+                    9223372036854775807
+                  ],
+                  [
+                    "int",
+                    1
+                  ]
+                ],
+                [
+                  "int",
+                  0
+                ]
+              ],
+              [
+                "text",
+                "bad"
+              ],
+              [
+                "text",
+                "bad"
+              ]
+            ]
+          ]
+        }
+      }
+    },
+    "program_raw": "{\"entry\":\"main\",\"functions\":{\"main\":{\"body\":[\"json.text_or\",[\"arg\",\"j\"],[\"if\",[\"eq\",[\"add\",[\"int\",9223372036854775807],[\"int\",1]],[\"int\",0]],[\"text\",\"bad\"],[\"text\",\"bad\"]]],\"params\":[[\"j\",\"Json\"]],\"result\":\"Text\"}},\"lists\":{},\"records\":{},\"schema\":\"bagaev-typed-record/8\",\"variants\":{}}",
+    "source_sha256": "c3e2046597d215c77d8f40338dd34401aacdb27967bbe2c6c020664853061c4f",
+    "work": 7,
+    "result": "Text",
+    "expected_hex": "0100000000000000000000000000000007000000000000000900000005000000",
+    "kernel_cells": 0
+  },
+  {
+    "name": "json-native-supplement-r1_HELPER",
+    "invocation": {
+      "schema": "bagaev-typed-record-invocation/8",
+      "program": {
+        "schema": "bagaev-typed-record/8",
+        "records": {},
+        "lists": {},
+        "variants": {},
+        "entry": "main",
+        "functions": {
+          "main": {
+            "params": [
+              [
+                "j",
+                "Json"
+              ]
+            ],
+            "result": "Text",
+            "body": [
+              "json.kind",
+              [
+                "call",
+                "h",
+                [
+                  "arg",
+                  "j"
+                ]
+              ]
+            ]
+          },
+          "h": {
+            "params": [
+              [
+                "j",
+                "Json"
+              ]
+            ],
+            "result": "Json",
+            "body": [
+              "json.field",
+              [
+                "arg",
+                "j"
+              ],
+              "gone"
+            ]
+          }
+        }
+      },
+      "arguments": [
+        {
+          "x": null
+        }
+      ]
+    },
+    "program": {
+      "schema": "bagaev-typed-record/8",
+      "records": {},
+      "lists": {},
+      "variants": {},
+      "entry": "main",
+      "functions": {
+        "main": {
+          "params": [
+            [
+              "j",
+              "Json"
+            ]
+          ],
+          "result": "Text",
+          "body": [
+            "json.kind",
+            [
+              "call",
+              "h",
+              [
+                "arg",
+                "j"
+              ]
+            ]
+          ]
+        },
+        "h": {
+          "params": [
+            [
+              "j",
+              "Json"
+            ]
+          ],
+          "result": "Json",
+          "body": [
+            "json.field",
+            [
+              "arg",
+              "j"
+            ],
+            "gone"
+          ]
+        }
+      }
+    },
+    "program_raw": "{\"entry\":\"main\",\"functions\":{\"h\":{\"body\":[\"json.field\",[\"arg\",\"j\"],\"gone\"],\"params\":[[\"j\",\"Json\"]],\"result\":\"Json\"},\"main\":{\"body\":[\"json.kind\",[\"call\",\"h\",[\"arg\",\"j\"]]],\"params\":[[\"j\",\"Json\"]],\"result\":\"Text\"}},\"lists\":{},\"records\":{},\"schema\":\"bagaev-typed-record/8\",\"variants\":{}}",
+    "source_sha256": "59c389ff8d0600817c17ad78956f87edb63c8de3b27c5acaefc7ca8718f73c8b",
+    "work": 10,
+    "result": "Text",
+    "expected_hex": "42434d505245533101000000070000000a0000000000000059c389ff8d0600817c17ad78956f87edb63c8de3b27c5acaefc7ca8718f73c8b000000000000000003000000000000000000000000000000010000000000000000000000070000006d697373696e67",
+    "kernel_cells": 0
+  },
+  {
+    "name": "json-native-supplement-r1_LOOP",
+    "invocation": {
+      "schema": "bagaev-typed-record-invocation/8",
+      "program": {
+        "schema": "bagaev-typed-record/8",
+        "records": {},
+        "lists": {},
+        "variants": {},
+        "entry": "main",
+        "functions": {
+          "main": {
+            "params": [
+              [
+                "j",
+                "Json"
+              ]
+            ],
+            "result": "Text",
+            "body": [
+              "json.kind",
+              [
+                "loop",
+                2,
+                "i",
+                "v",
+                [
+                  "arg",
+                  "j"
+                ],
+                [
+                  "json.at",
+                  [
+                    "use",
+                    "v"
+                  ],
+                  [
+                    "int",
+                    0
+                  ]
+                ]
+              ]
+            ]
+          }
+        }
+      },
+      "arguments": [
+        [
+          [
+            7
+          ]
+        ]
+      ]
+    },
+    "program": {
+      "schema": "bagaev-typed-record/8",
+      "records": {},
+      "lists": {},
+      "variants": {},
+      "entry": "main",
+      "functions": {
+        "main": {
+          "params": [
+            [
+              "j",
+              "Json"
+            ]
+          ],
+          "result": "Text",
+          "body": [
+            "json.kind",
+            [
+              "loop",
+              2,
+              "i",
+              "v",
+              [
+                "arg",
+                "j"
+              ],
+              [
+                "json.at",
+                [
+                  "use",
+                  "v"
+                ],
+                [
+                  "int",
+                  0
+                ]
+              ]
+            ]
+          ]
+        }
+      }
+    },
+    "program_raw": "{\"entry\":\"main\",\"functions\":{\"main\":{\"body\":[\"json.kind\",[\"loop\",2,\"i\",\"v\",[\"arg\",\"j\"],[\"json.at\",[\"use\",\"v\"],[\"int\",0]]]],\"params\":[[\"j\",\"Json\"]],\"result\":\"Text\"}},\"lists\":{},\"records\":{},\"schema\":\"bagaev-typed-record/8\",\"variants\":{}}",
+    "source_sha256": "3a8fb99b125ddb374478ab3269c0859c2ca9cbd41c544bdeb1fd4cbd46a08dea",
+    "work": 9,
+    "result": "Text",
+    "expected_hex": "42434d5052455331010000000300000009000000000000003a8fb99b125ddb374478ab3269c0859c2ca9cbd41c544bdeb1fd4cbd46a08dea00000000000000000300000000000000000000000000000001000000000000000000000003000000696e74",
+    "kernel_cells": 0
+  },
+  {
+    "name": "json-native-supplement-r1_WORK10",
+    "invocation": {
+      "schema": "bagaev-typed-record-invocation/8",
+      "program": {
+        "schema": "bagaev-typed-record/8",
+        "records": {},
+        "lists": {},
+        "variants": {},
+        "entry": "main",
+        "functions": {
+          "main": {
+            "params": [
+              [
+                "j",
+                "Json"
+              ]
+            ],
+            "result": "Text",
+            "body": [
+              "let",
+              "burn",
+              [
+                "loop",
+                10,
+                "i",
+                "a",
+                [
+                  "int",
+                  0
+                ],
+                [
+                  "use",
+                  "a"
+                ]
+              ],
+              [
+                "json.kind",
+                [
+                  "json.field",
+                  [
+                    "arg",
+                    "j"
+                  ],
+                  "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+                ]
+              ]
+            ]
+          }
+        }
+      },
+      "arguments": [
+        {
+          "k0000": null,
+          "k0001": null,
+          "k0002": null,
+          "k0003": null,
+          "k0004": null,
+          "k0005": null,
+          "k0006": null,
+          "k0007": null,
+          "k0008": null,
+          "k0009": null,
+          "k0010": null,
+          "k0011": null,
+          "k0012": null,
+          "k0013": null,
+          "k0014": null,
+          "k0015": null,
+          "k0016": null,
+          "k0017": null,
+          "k0018": null,
+          "k0019": null,
+          "k0020": null,
+          "k0021": null,
+          "k0022": null,
+          "k0023": null,
+          "k0024": null,
+          "k0025": null,
+          "k0026": null,
+          "k0027": null,
+          "k0028": null,
+          "k0029": null,
+          "k0030": null,
+          "k0031": null,
+          "k0032": null,
+          "k0033": null,
+          "k0034": null,
+          "k0035": null,
+          "k0036": null,
+          "k0037": null,
+          "k0038": null,
+          "k0039": null,
+          "k0040": null,
+          "k0041": null,
+          "k0042": null,
+          "k0043": null,
+          "k0044": null,
+          "k0045": null,
+          "k0046": null,
+          "k0047": null,
+          "k0048": null,
+          "k0049": null,
+          "k0050": null,
+          "k0051": null,
+          "k0052": null,
+          "k0053": null,
+          "k0054": null,
+          "k0055": null,
+          "k0056": null,
+          "k0057": null,
+          "k0058": null,
+          "k0059": null,
+          "k0060": null,
+          "k0061": null,
+          "k0062": null,
+          "k0063": null,
+          "k0064": null,
+          "k0065": null,
+          "k0066": null,
+          "k0067": null,
+          "k0068": null,
+          "k0069": null,
+          "k0070": null,
+          "k0071": null,
+          "k0072": null,
+          "k0073": null,
+          "k0074": null,
+          "k0075": null,
+          "k0076": null,
+          "k0077": null,
+          "k0078": null,
+          "k0079": null,
+          "k0080": null,
+          "k0081": null,
+          "k0082": null,
+          "k0083": null,
+          "k0084": null,
+          "k0085": null,
+          "k0086": null,
+          "k0087": null,
+          "k0088": null,
+          "k0089": null,
+          "k0090": null,
+          "k0091": null,
+          "k0092": null,
+          "k0093": null,
+          "k0094": null,
+          "k0095": null,
+          "k0096": null,
+          "k0097": null,
+          "k0098": null,
+          "k0099": null,
+          "k0100": null,
+          "k0101": null,
+          "k0102": null,
+          "k0103": null,
+          "k0104": null,
+          "k0105": null,
+          "k0106": null,
+          "k0107": null,
+          "k0108": null,
+          "k0109": null,
+          "k0110": null,
+          "k0111": null,
+          "k0112": null,
+          "k0113": null,
+          "k0114": null,
+          "k0115": null,
+          "k0116": null,
+          "k0117": null,
+          "k0118": null,
+          "k0119": null,
+          "k0120": null,
+          "k0121": null,
+          "k0122": null,
+          "k0123": null,
+          "k0124": null,
+          "k0125": null,
+          "k0126": null,
+          "k0127": null,
+          "k0128": null,
+          "k0129": null,
+          "k0130": null,
+          "k0131": null,
+          "k0132": null,
+          "k0133": null,
+          "k0134": null,
+          "k0135": null,
+          "k0136": null,
+          "k0137": null,
+          "k0138": null,
+          "k0139": null,
+          "k0140": null,
+          "k0141": null,
+          "k0142": null,
+          "k0143": null,
+          "k0144": null,
+          "k0145": null,
+          "k0146": null,
+          "k0147": null,
+          "k0148": null,
+          "k0149": null,
+          "k0150": null,
+          "k0151": null,
+          "k0152": null,
+          "k0153": null,
+          "k0154": null,
+          "k0155": null,
+          "k0156": null,
+          "k0157": null,
+          "k0158": null,
+          "k0159": null,
+          "k0160": null,
+          "k0161": null,
+          "k0162": null,
+          "k0163": null,
+          "k0164": null,
+          "k0165": null,
+          "k0166": null,
+          "k0167": null,
+          "k0168": null,
+          "k0169": null,
+          "k0170": null,
+          "k0171": null,
+          "k0172": null,
+          "k0173": null,
+          "k0174": null,
+          "k0175": null,
+          "k0176": null,
+          "k0177": null,
+          "k0178": null,
+          "k0179": null,
+          "k0180": null,
+          "k0181": null,
+          "k0182": null,
+          "k0183": null,
+          "k0184": null,
+          "k0185": null,
+          "k0186": null,
+          "k0187": null,
+          "k0188": null,
+          "k0189": null,
+          "k0190": null,
+          "k0191": null,
+          "k0192": null,
+          "k0193": null,
+          "k0194": null,
+          "k0195": null,
+          "k0196": null,
+          "k0197": null,
+          "k0198": null,
+          "k0199": null,
+          "k0200": null,
+          "k0201": null,
+          "k0202": null,
+          "k0203": null,
+          "k0204": null,
+          "k0205": null,
+          "k0206": null,
+          "k0207": null,
+          "k0208": null,
+          "k0209": null,
+          "k0210": null,
+          "k0211": null,
+          "k0212": null,
+          "k0213": null,
+          "k0214": null,
+          "k0215": null,
+          "k0216": null,
+          "k0217": null,
+          "k0218": null,
+          "k0219": null,
+          "k0220": null,
+          "k0221": null,
+          "k0222": null,
+          "k0223": null,
+          "k0224": null,
+          "k0225": null,
+          "k0226": null,
+          "k0227": null,
+          "k0228": null,
+          "k0229": null,
+          "k0230": null,
+          "k0231": null,
+          "k0232": null,
+          "k0233": null,
+          "k0234": null,
+          "k0235": null,
+          "k0236": null,
+          "k0237": null,
+          "k0238": null,
+          "k0239": null,
+          "k0240": null,
+          "k0241": null,
+          "k0242": null,
+          "k0243": null,
+          "k0244": null,
+          "k0245": null,
+          "k0246": null,
+          "k0247": null,
+          "k0248": null,
+          "k0249": null,
+          "k0250": null,
+          "k0251": null,
+          "k0252": null,
+          "k0253": null,
+          "k0254": null,
+          "k0255": null,
+          "k0256": null,
+          "k0257": null,
+          "k0258": null,
+          "k0259": null,
+          "k0260": null,
+          "k0261": null,
+          "k0262": null,
+          "k0263": null,
+          "k0264": null,
+          "k0265": null,
+          "k0266": null,
+          "k0267": null,
+          "k0268": null,
+          "k0269": null,
+          "k0270": null,
+          "k0271": null,
+          "k0272": null,
+          "k0273": null,
+          "k0274": null,
+          "k0275": null,
+          "k0276": null,
+          "k0277": null,
+          "k0278": null,
+          "k0279": null,
+          "k0280": null,
+          "k0281": null,
+          "k0282": null,
+          "k0283": null,
+          "k0284": null,
+          "k0285": null,
+          "k0286": null,
+          "k0287": null,
+          "k0288": null,
+          "k0289": null,
+          "k0290": null,
+          "k0291": null,
+          "k0292": null,
+          "k0293": null,
+          "k0294": null,
+          "k0295": null,
+          "k0296": null,
+          "k0297": null,
+          "k0298": null,
+          "k0299": null,
+          "k0300": null,
+          "k0301": null,
+          "k0302": null,
+          "k0303": null,
+          "k0304": null,
+          "k0305": null,
+          "k0306": null,
+          "k0307": null,
+          "k0308": null,
+          "k0309": null,
+          "k0310": null,
+          "k0311": null,
+          "k0312": null,
+          "k0313": null,
+          "k0314": null,
+          "k0315": null,
+          "k0316": null,
+          "k0317": null,
+          "k0318": null,
+          "k0319": null,
+          "k0320": null,
+          "k0321": null,
+          "k0322": null,
+          "k0323": null,
+          "k0324": null,
+          "k0325": null,
+          "k0326": null,
+          "k0327": null,
+          "k0328": null,
+          "k0329": null,
+          "k0330": null,
+          "k0331": null,
+          "k0332": null,
+          "k0333": null,
+          "k0334": null,
+          "k0335": null,
+          "k0336": null,
+          "k0337": null,
+          "k0338": null,
+          "k0339": null,
+          "k0340": null,
+          "k0341": null,
+          "k0342": null,
+          "k0343": null,
+          "k0344": null,
+          "k0345": null,
+          "k0346": null,
+          "k0347": null,
+          "k0348": null,
+          "k0349": null,
+          "k0350": null,
+          "k0351": null,
+          "k0352": null,
+          "k0353": null,
+          "k0354": null,
+          "k0355": null,
+          "k0356": null,
+          "k0357": null,
+          "k0358": null,
+          "k0359": null,
+          "k0360": null,
+          "k0361": null,
+          "k0362": null,
+          "k0363": null,
+          "k0364": null,
+          "k0365": null,
+          "k0366": null,
+          "k0367": null,
+          "k0368": null,
+          "k0369": null,
+          "k0370": null,
+          "k0371": null,
+          "k0372": null,
+          "k0373": null,
+          "k0374": null,
+          "k0375": null,
+          "k0376": null,
+          "k0377": null,
+          "k0378": null,
+          "k0379": null,
+          "k0380": null,
+          "k0381": null,
+          "k0382": null,
+          "k0383": null,
+          "k0384": null,
+          "k0385": null,
+          "k0386": null,
+          "k0387": null,
+          "k0388": null,
+          "k0389": null,
+          "k0390": null,
+          "k0391": null,
+          "k0392": null,
+          "k0393": null,
+          "k0394": null,
+          "k0395": null,
+          "k0396": null,
+          "k0397": null,
+          "k0398": null,
+          "k0399": null,
+          "k0400": null,
+          "k0401": null,
+          "k0402": null,
+          "k0403": null,
+          "k0404": null,
+          "k0405": null,
+          "k0406": null,
+          "k0407": null,
+          "k0408": null,
+          "k0409": null,
+          "k0410": null,
+          "k0411": null,
+          "k0412": null,
+          "k0413": null,
+          "k0414": null,
+          "k0415": null,
+          "k0416": null,
+          "k0417": null,
+          "k0418": null,
+          "k0419": null,
+          "k0420": null,
+          "k0421": null,
+          "k0422": null,
+          "k0423": null,
+          "k0424": null,
+          "k0425": null,
+          "k0426": null,
+          "k0427": null,
+          "k0428": null,
+          "k0429": null,
+          "k0430": null,
+          "k0431": null,
+          "k0432": null,
+          "k0433": null,
+          "k0434": null,
+          "k0435": null,
+          "k0436": null,
+          "k0437": null,
+          "k0438": null,
+          "k0439": null,
+          "k0440": null,
+          "k0441": null,
+          "k0442": null,
+          "k0443": null,
+          "k0444": null,
+          "k0445": null,
+          "k0446": null,
+          "k0447": null,
+          "k0448": null,
+          "k0449": null,
+          "k0450": null,
+          "k0451": null,
+          "k0452": null,
+          "k0453": null,
+          "k0454": null,
+          "k0455": null,
+          "k0456": null,
+          "k0457": null,
+          "k0458": null,
+          "k0459": null,
+          "k0460": null,
+          "k0461": null,
+          "k0462": null,
+          "k0463": null,
+          "k0464": null,
+          "k0465": null,
+          "k0466": null,
+          "k0467": null,
+          "k0468": null,
+          "k0469": null,
+          "k0470": null,
+          "k0471": null,
+          "k0472": null,
+          "k0473": null,
+          "k0474": null,
+          "k0475": null,
+          "k0476": null,
+          "k0477": null,
+          "k0478": null,
+          "k0479": null,
+          "k0480": null,
+          "k0481": null,
+          "k0482": null,
+          "k0483": null,
+          "k0484": null,
+          "k0485": null,
+          "k0486": null,
+          "k0487": null,
+          "k0488": null,
+          "k0489": null,
+          "k0490": null,
+          "k0491": null,
+          "k0492": null,
+          "k0493": null,
+          "k0494": null,
+          "k0495": null,
+          "k0496": null,
+          "k0497": null,
+          "k0498": null,
+          "k0499": null,
+          "k0500": null,
+          "k0501": null,
+          "k0502": null,
+          "k0503": null,
+          "k0504": null,
+          "k0505": null,
+          "k0506": null,
+          "k0507": null,
+          "k0508": null,
+          "k0509": null,
+          "k0510": null,
+          "k0511": null,
+          "k0512": null,
+          "k0513": null,
+          "k0514": null,
+          "k0515": null,
+          "k0516": null,
+          "k0517": null,
+          "k0518": null,
+          "k0519": null,
+          "k0520": null,
+          "k0521": null,
+          "k0522": null,
+          "k0523": null,
+          "k0524": null,
+          "k0525": null,
+          "k0526": null,
+          "k0527": null,
+          "k0528": null,
+          "k0529": null,
+          "k0530": null,
+          "k0531": null,
+          "k0532": null,
+          "k0533": null,
+          "k0534": null,
+          "k0535": null,
+          "k0536": null,
+          "k0537": null,
+          "k0538": null,
+          "k0539": null,
+          "k0540": null,
+          "k0541": null,
+          "k0542": null,
+          "k0543": null,
+          "k0544": null,
+          "k0545": null,
+          "k0546": null,
+          "k0547": null,
+          "k0548": null,
+          "k0549": null,
+          "k0550": null,
+          "k0551": null,
+          "k0552": null,
+          "k0553": null,
+          "k0554": null,
+          "k0555": null,
+          "k0556": null,
+          "k0557": null,
+          "k0558": null,
+          "k0559": null,
+          "k0560": null,
+          "k0561": null,
+          "k0562": null,
+          "k0563": null,
+          "k0564": null,
+          "k0565": null,
+          "k0566": null,
+          "k0567": null,
+          "k0568": null,
+          "k0569": null,
+          "k0570": null,
+          "k0571": null,
+          "k0572": null,
+          "k0573": null,
+          "k0574": null,
+          "k0575": null,
+          "k0576": null,
+          "k0577": null,
+          "k0578": null,
+          "k0579": null,
+          "k0580": null,
+          "k0581": null,
+          "k0582": null,
+          "k0583": null,
+          "k0584": null,
+          "k0585": null,
+          "k0586": null,
+          "k0587": null,
+          "k0588": null,
+          "k0589": null,
+          "k0590": null,
+          "k0591": null,
+          "k0592": null,
+          "k0593": null,
+          "k0594": null,
+          "k0595": null,
+          "k0596": null,
+          "k0597": null,
+          "k0598": null,
+          "k0599": null,
+          "k0600": null,
+          "k0601": null,
+          "k0602": null,
+          "k0603": null,
+          "k0604": null,
+          "k0605": null,
+          "k0606": null,
+          "k0607": null,
+          "k0608": null,
+          "k0609": null,
+          "k0610": null,
+          "k0611": null,
+          "k0612": null,
+          "k0613": null,
+          "k0614": null,
+          "k0615": null,
+          "k0616": null,
+          "k0617": null,
+          "k0618": null,
+          "k0619": null,
+          "k0620": null,
+          "k0621": null,
+          "k0622": null,
+          "k0623": null,
+          "k0624": null,
+          "k0625": null,
+          "k0626": null,
+          "k0627": null,
+          "k0628": null,
+          "k0629": null,
+          "k0630": null,
+          "k0631": null,
+          "k0632": null,
+          "k0633": null,
+          "k0634": null,
+          "k0635": null,
+          "k0636": null,
+          "k0637": null,
+          "k0638": null,
+          "k0639": null,
+          "k0640": null,
+          "k0641": null,
+          "k0642": null,
+          "k0643": null,
+          "k0644": null,
+          "k0645": null,
+          "k0646": null,
+          "k0647": null,
+          "k0648": null,
+          "k0649": null,
+          "k0650": null,
+          "k0651": null,
+          "k0652": null,
+          "k0653": null,
+          "k0654": null,
+          "k0655": null,
+          "k0656": null,
+          "k0657": null,
+          "k0658": null,
+          "k0659": null,
+          "k0660": null,
+          "k0661": null,
+          "k0662": null,
+          "k0663": null,
+          "k0664": null,
+          "k0665": null,
+          "k0666": null,
+          "k0667": null,
+          "k0668": null,
+          "k0669": null,
+          "k0670": null,
+          "k0671": null,
+          "k0672": null,
+          "k0673": null,
+          "k0674": null,
+          "k0675": null,
+          "k0676": null,
+          "k0677": null,
+          "k0678": null,
+          "k0679": null,
+          "k0680": null,
+          "k0681": null,
+          "k0682": null,
+          "k0683": null,
+          "k0684": null,
+          "k0685": null,
+          "k0686": null,
+          "k0687": null,
+          "k0688": null,
+          "k0689": null,
+          "k0690": null,
+          "k0691": null,
+          "k0692": null,
+          "k0693": null,
+          "k0694": null,
+          "k0695": null,
+          "k0696": null,
+          "k0697": null,
+          "k0698": null,
+          "k0699": null,
+          "k0700": null,
+          "k0701": null,
+          "k0702": null,
+          "k0703": null,
+          "k0704": null,
+          "k0705": null,
+          "k0706": null,
+          "k0707": null,
+          "k0708": null,
+          "k0709": null,
+          "k0710": null,
+          "k0711": null,
+          "k0712": null,
+          "k0713": null,
+          "k0714": null,
+          "k0715": null,
+          "k0716": null,
+          "k0717": null,
+          "k0718": null,
+          "k0719": null,
+          "k0720": null,
+          "k0721": null,
+          "k0722": null,
+          "k0723": null,
+          "k0724": null,
+          "k0725": null,
+          "k0726": null,
+          "k0727": null,
+          "k0728": null,
+          "k0729": null,
+          "k0730": null,
+          "k0731": null,
+          "k0732": null,
+          "k0733": null,
+          "k0734": null,
+          "k0735": null,
+          "k0736": null,
+          "k0737": null,
+          "k0738": null,
+          "k0739": null,
+          "k0740": null,
+          "k0741": null,
+          "k0742": null,
+          "k0743": null,
+          "k0744": null,
+          "k0745": null,
+          "k0746": null,
+          "k0747": null,
+          "k0748": null,
+          "k0749": null,
+          "k0750": null,
+          "k0751": null,
+          "k0752": null,
+          "k0753": null,
+          "k0754": null,
+          "k0755": null,
+          "k0756": null,
+          "k0757": null,
+          "k0758": null,
+          "k0759": null,
+          "k0760": null,
+          "k0761": null,
+          "k0762": null,
+          "k0763": null,
+          "k0764": null,
+          "k0765": null,
+          "k0766": null,
+          "k0767": null,
+          "k0768": null,
+          "k0769": null,
+          "k0770": null,
+          "k0771": null,
+          "k0772": null,
+          "k0773": null,
+          "k0774": null,
+          "k0775": null,
+          "k0776": null,
+          "k0777": null,
+          "k0778": null,
+          "k0779": null,
+          "k0780": null,
+          "k0781": null,
+          "k0782": null,
+          "k0783": null,
+          "k0784": null,
+          "k0785": null,
+          "k0786": null,
+          "k0787": null,
+          "k0788": null,
+          "k0789": null,
+          "k0790": null,
+          "k0791": null,
+          "k0792": null,
+          "k0793": null,
+          "k0794": null,
+          "k0795": null,
+          "k0796": null,
+          "k0797": null,
+          "k0798": null,
+          "k0799": null,
+          "k0800": null,
+          "k0801": null,
+          "k0802": null,
+          "k0803": null,
+          "k0804": null,
+          "k0805": null,
+          "k0806": null,
+          "k0807": null,
+          "k0808": null,
+          "k0809": null,
+          "k0810": null,
+          "k0811": null,
+          "k0812": null,
+          "k0813": null,
+          "k0814": null,
+          "k0815": null,
+          "k0816": null,
+          "k0817": null,
+          "k0818": null,
+          "k0819": null,
+          "k0820": null,
+          "k0821": null,
+          "k0822": null,
+          "k0823": null,
+          "k0824": null,
+          "k0825": null,
+          "k0826": null,
+          "k0827": null,
+          "k0828": null,
+          "k0829": null,
+          "k0830": null,
+          "k0831": null,
+          "k0832": null,
+          "k0833": null,
+          "k0834": null,
+          "k0835": null,
+          "k0836": null,
+          "k0837": null,
+          "k0838": null,
+          "k0839": null,
+          "k0840": null,
+          "k0841": null,
+          "k0842": null,
+          "k0843": null,
+          "k0844": null,
+          "k0845": null,
+          "k0846": null,
+          "k0847": null,
+          "k0848": null,
+          "k0849": null,
+          "k0850": null,
+          "k0851": null,
+          "k0852": null,
+          "k0853": null,
+          "k0854": null,
+          "k0855": null,
+          "k0856": null,
+          "k0857": null,
+          "k0858": null,
+          "k0859": null,
+          "k0860": null,
+          "k0861": null,
+          "k0862": null,
+          "k0863": null,
+          "k0864": null,
+          "k0865": null,
+          "k0866": null,
+          "k0867": null,
+          "k0868": null,
+          "k0869": null,
+          "k0870": null,
+          "k0871": null,
+          "k0872": null,
+          "k0873": null,
+          "k0874": null,
+          "k0875": null,
+          "k0876": null,
+          "k0877": null,
+          "k0878": null,
+          "k0879": null,
+          "k0880": null,
+          "k0881": null,
+          "k0882": null,
+          "k0883": null,
+          "k0884": null,
+          "k0885": null,
+          "k0886": null,
+          "k0887": null,
+          "k0888": null,
+          "k0889": null,
+          "k0890": null,
+          "k0891": null,
+          "k0892": null,
+          "k0893": null,
+          "k0894": null,
+          "k0895": null,
+          "k0896": null,
+          "k0897": null,
+          "k0898": null,
+          "k0899": null,
+          "k0900": null,
+          "k0901": null,
+          "k0902": null,
+          "k0903": null,
+          "k0904": null,
+          "k0905": null,
+          "k0906": null,
+          "k0907": null,
+          "k0908": null,
+          "k0909": null,
+          "k0910": null,
+          "k0911": null,
+          "k0912": null,
+          "k0913": null,
+          "k0914": null,
+          "k0915": null,
+          "k0916": null,
+          "k0917": null,
+          "k0918": null,
+          "k0919": null,
+          "k0920": null,
+          "k0921": null,
+          "k0922": null,
+          "k0923": null,
+          "k0924": null,
+          "k0925": null,
+          "k0926": null,
+          "k0927": null,
+          "k0928": null,
+          "k0929": null,
+          "k0930": null,
+          "k0931": null,
+          "k0932": null,
+          "k0933": null,
+          "k0934": null,
+          "k0935": null,
+          "k0936": null,
+          "k0937": null,
+          "k0938": null,
+          "k0939": null,
+          "k0940": null,
+          "k0941": null,
+          "k0942": null,
+          "k0943": null,
+          "k0944": null,
+          "k0945": null,
+          "k0946": null,
+          "k0947": null,
+          "k0948": null,
+          "k0949": null,
+          "k0950": null,
+          "k0951": null,
+          "k0952": null,
+          "k0953": null,
+          "k0954": null,
+          "k0955": null,
+          "k0956": null,
+          "k0957": null,
+          "k0958": null,
+          "k0959": null,
+          "k0960": null,
+          "k0961": null,
+          "k0962": null,
+          "k0963": null,
+          "k0964": null,
+          "k0965": null,
+          "k0966": null,
+          "k0967": null,
+          "k0968": null,
+          "k0969": null,
+          "k0970": null,
+          "k0971": null,
+          "k0972": null,
+          "k0973": null,
+          "k0974": null,
+          "k0975": null,
+          "k0976": null,
+          "k0977": null,
+          "k0978": null,
+          "k0979": null,
+          "k0980": null,
+          "k0981": null,
+          "k0982": null,
+          "k0983": null,
+          "k0984": null,
+          "k0985": null,
+          "k0986": null,
+          "k0987": null,
+          "k0988": null,
+          "k0989": null,
+          "k0990": null,
+          "k0991": null,
+          "k0992": null,
+          "k0993": null,
+          "k0994": null,
+          "k0995": null,
+          "k0996": null,
+          "k0997": null,
+          "k0998": null,
+          "k0999": null,
+          "k1000": null,
+          "k1001": null,
+          "k1002": null,
+          "k1003": null,
+          "k1004": null,
+          "k1005": null,
+          "k1006": null,
+          "k1007": null
+        }
+      ]
+    },
+    "program": {
+      "schema": "bagaev-typed-record/8",
+      "records": {},
+      "lists": {},
+      "variants": {},
+      "entry": "main",
+      "functions": {
+        "main": {
+          "params": [
+            [
+              "j",
+              "Json"
+            ]
+          ],
+          "result": "Text",
+          "body": [
+            "let",
+            "burn",
+            [
+              "loop",
+              10,
+              "i",
+              "a",
+              [
+                "int",
+                0
+              ],
+              [
+                "use",
+                "a"
+              ]
+            ],
+            [
+              "json.kind",
+              [
+                "json.field",
+                [
+                  "arg",
+                  "j"
+                ],
+                "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+              ]
+            ]
+          ]
+        }
+      }
+    },
+    "program_raw": "{\"entry\":\"main\",\"functions\":{\"main\":{\"body\":[\"let\",\"burn\",[\"loop\",10,\"i\",\"a\",[\"int\",0],[\"use\",\"a\"]],[\"json.kind\",[\"json.field\",[\"arg\",\"j\"],\"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\"]]],\"params\":[[\"j\",\"Json\"]],\"result\":\"Text\"}},\"lists\":{},\"records\":{},\"schema\":\"bagaev-typed-record/8\",\"variants\":{}}",
+    "source_sha256": "69e032dc8da7f550632d6f12854d88e61f9639ec0569850ad118d08f9889b79a",
+    "work": 65536,
+    "result": "Text",
+    "expected_hex": "42434d50524553310100000007000000000001000000000069e032dc8da7f550632d6f12854d88e61f9639ec0569850ad118d08f9889b79a000000000000000003000000000000000000000000000000010000000000000000000000070000006d697373696e67",
+    "kernel_cells": 0
+  },
+  {
+    "name": "json-native-supplement-r1_WORK11",
+    "invocation": {
+      "schema": "bagaev-typed-record-invocation/8",
+      "program": {
+        "schema": "bagaev-typed-record/8",
+        "records": {},
+        "lists": {},
+        "variants": {},
+        "entry": "main",
+        "functions": {
+          "main": {
+            "params": [
+              [
+                "j",
+                "Json"
+              ]
+            ],
+            "result": "Text",
+            "body": [
+              "let",
+              "burn",
+              [
+                "loop",
+                11,
+                "i",
+                "a",
+                [
+                  "int",
+                  0
+                ],
+                [
+                  "use",
+                  "a"
+                ]
+              ],
+              [
+                "json.kind",
+                [
+                  "json.field",
+                  [
+                    "arg",
+                    "j"
+                  ],
+                  "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+                ]
+              ]
+            ]
+          }
+        }
+      },
+      "arguments": [
+        {
+          "k0000": null,
+          "k0001": null,
+          "k0002": null,
+          "k0003": null,
+          "k0004": null,
+          "k0005": null,
+          "k0006": null,
+          "k0007": null,
+          "k0008": null,
+          "k0009": null,
+          "k0010": null,
+          "k0011": null,
+          "k0012": null,
+          "k0013": null,
+          "k0014": null,
+          "k0015": null,
+          "k0016": null,
+          "k0017": null,
+          "k0018": null,
+          "k0019": null,
+          "k0020": null,
+          "k0021": null,
+          "k0022": null,
+          "k0023": null,
+          "k0024": null,
+          "k0025": null,
+          "k0026": null,
+          "k0027": null,
+          "k0028": null,
+          "k0029": null,
+          "k0030": null,
+          "k0031": null,
+          "k0032": null,
+          "k0033": null,
+          "k0034": null,
+          "k0035": null,
+          "k0036": null,
+          "k0037": null,
+          "k0038": null,
+          "k0039": null,
+          "k0040": null,
+          "k0041": null,
+          "k0042": null,
+          "k0043": null,
+          "k0044": null,
+          "k0045": null,
+          "k0046": null,
+          "k0047": null,
+          "k0048": null,
+          "k0049": null,
+          "k0050": null,
+          "k0051": null,
+          "k0052": null,
+          "k0053": null,
+          "k0054": null,
+          "k0055": null,
+          "k0056": null,
+          "k0057": null,
+          "k0058": null,
+          "k0059": null,
+          "k0060": null,
+          "k0061": null,
+          "k0062": null,
+          "k0063": null,
+          "k0064": null,
+          "k0065": null,
+          "k0066": null,
+          "k0067": null,
+          "k0068": null,
+          "k0069": null,
+          "k0070": null,
+          "k0071": null,
+          "k0072": null,
+          "k0073": null,
+          "k0074": null,
+          "k0075": null,
+          "k0076": null,
+          "k0077": null,
+          "k0078": null,
+          "k0079": null,
+          "k0080": null,
+          "k0081": null,
+          "k0082": null,
+          "k0083": null,
+          "k0084": null,
+          "k0085": null,
+          "k0086": null,
+          "k0087": null,
+          "k0088": null,
+          "k0089": null,
+          "k0090": null,
+          "k0091": null,
+          "k0092": null,
+          "k0093": null,
+          "k0094": null,
+          "k0095": null,
+          "k0096": null,
+          "k0097": null,
+          "k0098": null,
+          "k0099": null,
+          "k0100": null,
+          "k0101": null,
+          "k0102": null,
+          "k0103": null,
+          "k0104": null,
+          "k0105": null,
+          "k0106": null,
+          "k0107": null,
+          "k0108": null,
+          "k0109": null,
+          "k0110": null,
+          "k0111": null,
+          "k0112": null,
+          "k0113": null,
+          "k0114": null,
+          "k0115": null,
+          "k0116": null,
+          "k0117": null,
+          "k0118": null,
+          "k0119": null,
+          "k0120": null,
+          "k0121": null,
+          "k0122": null,
+          "k0123": null,
+          "k0124": null,
+          "k0125": null,
+          "k0126": null,
+          "k0127": null,
+          "k0128": null,
+          "k0129": null,
+          "k0130": null,
+          "k0131": null,
+          "k0132": null,
+          "k0133": null,
+          "k0134": null,
+          "k0135": null,
+          "k0136": null,
+          "k0137": null,
+          "k0138": null,
+          "k0139": null,
+          "k0140": null,
+          "k0141": null,
+          "k0142": null,
+          "k0143": null,
+          "k0144": null,
+          "k0145": null,
+          "k0146": null,
+          "k0147": null,
+          "k0148": null,
+          "k0149": null,
+          "k0150": null,
+          "k0151": null,
+          "k0152": null,
+          "k0153": null,
+          "k0154": null,
+          "k0155": null,
+          "k0156": null,
+          "k0157": null,
+          "k0158": null,
+          "k0159": null,
+          "k0160": null,
+          "k0161": null,
+          "k0162": null,
+          "k0163": null,
+          "k0164": null,
+          "k0165": null,
+          "k0166": null,
+          "k0167": null,
+          "k0168": null,
+          "k0169": null,
+          "k0170": null,
+          "k0171": null,
+          "k0172": null,
+          "k0173": null,
+          "k0174": null,
+          "k0175": null,
+          "k0176": null,
+          "k0177": null,
+          "k0178": null,
+          "k0179": null,
+          "k0180": null,
+          "k0181": null,
+          "k0182": null,
+          "k0183": null,
+          "k0184": null,
+          "k0185": null,
+          "k0186": null,
+          "k0187": null,
+          "k0188": null,
+          "k0189": null,
+          "k0190": null,
+          "k0191": null,
+          "k0192": null,
+          "k0193": null,
+          "k0194": null,
+          "k0195": null,
+          "k0196": null,
+          "k0197": null,
+          "k0198": null,
+          "k0199": null,
+          "k0200": null,
+          "k0201": null,
+          "k0202": null,
+          "k0203": null,
+          "k0204": null,
+          "k0205": null,
+          "k0206": null,
+          "k0207": null,
+          "k0208": null,
+          "k0209": null,
+          "k0210": null,
+          "k0211": null,
+          "k0212": null,
+          "k0213": null,
+          "k0214": null,
+          "k0215": null,
+          "k0216": null,
+          "k0217": null,
+          "k0218": null,
+          "k0219": null,
+          "k0220": null,
+          "k0221": null,
+          "k0222": null,
+          "k0223": null,
+          "k0224": null,
+          "k0225": null,
+          "k0226": null,
+          "k0227": null,
+          "k0228": null,
+          "k0229": null,
+          "k0230": null,
+          "k0231": null,
+          "k0232": null,
+          "k0233": null,
+          "k0234": null,
+          "k0235": null,
+          "k0236": null,
+          "k0237": null,
+          "k0238": null,
+          "k0239": null,
+          "k0240": null,
+          "k0241": null,
+          "k0242": null,
+          "k0243": null,
+          "k0244": null,
+          "k0245": null,
+          "k0246": null,
+          "k0247": null,
+          "k0248": null,
+          "k0249": null,
+          "k0250": null,
+          "k0251": null,
+          "k0252": null,
+          "k0253": null,
+          "k0254": null,
+          "k0255": null,
+          "k0256": null,
+          "k0257": null,
+          "k0258": null,
+          "k0259": null,
+          "k0260": null,
+          "k0261": null,
+          "k0262": null,
+          "k0263": null,
+          "k0264": null,
+          "k0265": null,
+          "k0266": null,
+          "k0267": null,
+          "k0268": null,
+          "k0269": null,
+          "k0270": null,
+          "k0271": null,
+          "k0272": null,
+          "k0273": null,
+          "k0274": null,
+          "k0275": null,
+          "k0276": null,
+          "k0277": null,
+          "k0278": null,
+          "k0279": null,
+          "k0280": null,
+          "k0281": null,
+          "k0282": null,
+          "k0283": null,
+          "k0284": null,
+          "k0285": null,
+          "k0286": null,
+          "k0287": null,
+          "k0288": null,
+          "k0289": null,
+          "k0290": null,
+          "k0291": null,
+          "k0292": null,
+          "k0293": null,
+          "k0294": null,
+          "k0295": null,
+          "k0296": null,
+          "k0297": null,
+          "k0298": null,
+          "k0299": null,
+          "k0300": null,
+          "k0301": null,
+          "k0302": null,
+          "k0303": null,
+          "k0304": null,
+          "k0305": null,
+          "k0306": null,
+          "k0307": null,
+          "k0308": null,
+          "k0309": null,
+          "k0310": null,
+          "k0311": null,
+          "k0312": null,
+          "k0313": null,
+          "k0314": null,
+          "k0315": null,
+          "k0316": null,
+          "k0317": null,
+          "k0318": null,
+          "k0319": null,
+          "k0320": null,
+          "k0321": null,
+          "k0322": null,
+          "k0323": null,
+          "k0324": null,
+          "k0325": null,
+          "k0326": null,
+          "k0327": null,
+          "k0328": null,
+          "k0329": null,
+          "k0330": null,
+          "k0331": null,
+          "k0332": null,
+          "k0333": null,
+          "k0334": null,
+          "k0335": null,
+          "k0336": null,
+          "k0337": null,
+          "k0338": null,
+          "k0339": null,
+          "k0340": null,
+          "k0341": null,
+          "k0342": null,
+          "k0343": null,
+          "k0344": null,
+          "k0345": null,
+          "k0346": null,
+          "k0347": null,
+          "k0348": null,
+          "k0349": null,
+          "k0350": null,
+          "k0351": null,
+          "k0352": null,
+          "k0353": null,
+          "k0354": null,
+          "k0355": null,
+          "k0356": null,
+          "k0357": null,
+          "k0358": null,
+          "k0359": null,
+          "k0360": null,
+          "k0361": null,
+          "k0362": null,
+          "k0363": null,
+          "k0364": null,
+          "k0365": null,
+          "k0366": null,
+          "k0367": null,
+          "k0368": null,
+          "k0369": null,
+          "k0370": null,
+          "k0371": null,
+          "k0372": null,
+          "k0373": null,
+          "k0374": null,
+          "k0375": null,
+          "k0376": null,
+          "k0377": null,
+          "k0378": null,
+          "k0379": null,
+          "k0380": null,
+          "k0381": null,
+          "k0382": null,
+          "k0383": null,
+          "k0384": null,
+          "k0385": null,
+          "k0386": null,
+          "k0387": null,
+          "k0388": null,
+          "k0389": null,
+          "k0390": null,
+          "k0391": null,
+          "k0392": null,
+          "k0393": null,
+          "k0394": null,
+          "k0395": null,
+          "k0396": null,
+          "k0397": null,
+          "k0398": null,
+          "k0399": null,
+          "k0400": null,
+          "k0401": null,
+          "k0402": null,
+          "k0403": null,
+          "k0404": null,
+          "k0405": null,
+          "k0406": null,
+          "k0407": null,
+          "k0408": null,
+          "k0409": null,
+          "k0410": null,
+          "k0411": null,
+          "k0412": null,
+          "k0413": null,
+          "k0414": null,
+          "k0415": null,
+          "k0416": null,
+          "k0417": null,
+          "k0418": null,
+          "k0419": null,
+          "k0420": null,
+          "k0421": null,
+          "k0422": null,
+          "k0423": null,
+          "k0424": null,
+          "k0425": null,
+          "k0426": null,
+          "k0427": null,
+          "k0428": null,
+          "k0429": null,
+          "k0430": null,
+          "k0431": null,
+          "k0432": null,
+          "k0433": null,
+          "k0434": null,
+          "k0435": null,
+          "k0436": null,
+          "k0437": null,
+          "k0438": null,
+          "k0439": null,
+          "k0440": null,
+          "k0441": null,
+          "k0442": null,
+          "k0443": null,
+          "k0444": null,
+          "k0445": null,
+          "k0446": null,
+          "k0447": null,
+          "k0448": null,
+          "k0449": null,
+          "k0450": null,
+          "k0451": null,
+          "k0452": null,
+          "k0453": null,
+          "k0454": null,
+          "k0455": null,
+          "k0456": null,
+          "k0457": null,
+          "k0458": null,
+          "k0459": null,
+          "k0460": null,
+          "k0461": null,
+          "k0462": null,
+          "k0463": null,
+          "k0464": null,
+          "k0465": null,
+          "k0466": null,
+          "k0467": null,
+          "k0468": null,
+          "k0469": null,
+          "k0470": null,
+          "k0471": null,
+          "k0472": null,
+          "k0473": null,
+          "k0474": null,
+          "k0475": null,
+          "k0476": null,
+          "k0477": null,
+          "k0478": null,
+          "k0479": null,
+          "k0480": null,
+          "k0481": null,
+          "k0482": null,
+          "k0483": null,
+          "k0484": null,
+          "k0485": null,
+          "k0486": null,
+          "k0487": null,
+          "k0488": null,
+          "k0489": null,
+          "k0490": null,
+          "k0491": null,
+          "k0492": null,
+          "k0493": null,
+          "k0494": null,
+          "k0495": null,
+          "k0496": null,
+          "k0497": null,
+          "k0498": null,
+          "k0499": null,
+          "k0500": null,
+          "k0501": null,
+          "k0502": null,
+          "k0503": null,
+          "k0504": null,
+          "k0505": null,
+          "k0506": null,
+          "k0507": null,
+          "k0508": null,
+          "k0509": null,
+          "k0510": null,
+          "k0511": null,
+          "k0512": null,
+          "k0513": null,
+          "k0514": null,
+          "k0515": null,
+          "k0516": null,
+          "k0517": null,
+          "k0518": null,
+          "k0519": null,
+          "k0520": null,
+          "k0521": null,
+          "k0522": null,
+          "k0523": null,
+          "k0524": null,
+          "k0525": null,
+          "k0526": null,
+          "k0527": null,
+          "k0528": null,
+          "k0529": null,
+          "k0530": null,
+          "k0531": null,
+          "k0532": null,
+          "k0533": null,
+          "k0534": null,
+          "k0535": null,
+          "k0536": null,
+          "k0537": null,
+          "k0538": null,
+          "k0539": null,
+          "k0540": null,
+          "k0541": null,
+          "k0542": null,
+          "k0543": null,
+          "k0544": null,
+          "k0545": null,
+          "k0546": null,
+          "k0547": null,
+          "k0548": null,
+          "k0549": null,
+          "k0550": null,
+          "k0551": null,
+          "k0552": null,
+          "k0553": null,
+          "k0554": null,
+          "k0555": null,
+          "k0556": null,
+          "k0557": null,
+          "k0558": null,
+          "k0559": null,
+          "k0560": null,
+          "k0561": null,
+          "k0562": null,
+          "k0563": null,
+          "k0564": null,
+          "k0565": null,
+          "k0566": null,
+          "k0567": null,
+          "k0568": null,
+          "k0569": null,
+          "k0570": null,
+          "k0571": null,
+          "k0572": null,
+          "k0573": null,
+          "k0574": null,
+          "k0575": null,
+          "k0576": null,
+          "k0577": null,
+          "k0578": null,
+          "k0579": null,
+          "k0580": null,
+          "k0581": null,
+          "k0582": null,
+          "k0583": null,
+          "k0584": null,
+          "k0585": null,
+          "k0586": null,
+          "k0587": null,
+          "k0588": null,
+          "k0589": null,
+          "k0590": null,
+          "k0591": null,
+          "k0592": null,
+          "k0593": null,
+          "k0594": null,
+          "k0595": null,
+          "k0596": null,
+          "k0597": null,
+          "k0598": null,
+          "k0599": null,
+          "k0600": null,
+          "k0601": null,
+          "k0602": null,
+          "k0603": null,
+          "k0604": null,
+          "k0605": null,
+          "k0606": null,
+          "k0607": null,
+          "k0608": null,
+          "k0609": null,
+          "k0610": null,
+          "k0611": null,
+          "k0612": null,
+          "k0613": null,
+          "k0614": null,
+          "k0615": null,
+          "k0616": null,
+          "k0617": null,
+          "k0618": null,
+          "k0619": null,
+          "k0620": null,
+          "k0621": null,
+          "k0622": null,
+          "k0623": null,
+          "k0624": null,
+          "k0625": null,
+          "k0626": null,
+          "k0627": null,
+          "k0628": null,
+          "k0629": null,
+          "k0630": null,
+          "k0631": null,
+          "k0632": null,
+          "k0633": null,
+          "k0634": null,
+          "k0635": null,
+          "k0636": null,
+          "k0637": null,
+          "k0638": null,
+          "k0639": null,
+          "k0640": null,
+          "k0641": null,
+          "k0642": null,
+          "k0643": null,
+          "k0644": null,
+          "k0645": null,
+          "k0646": null,
+          "k0647": null,
+          "k0648": null,
+          "k0649": null,
+          "k0650": null,
+          "k0651": null,
+          "k0652": null,
+          "k0653": null,
+          "k0654": null,
+          "k0655": null,
+          "k0656": null,
+          "k0657": null,
+          "k0658": null,
+          "k0659": null,
+          "k0660": null,
+          "k0661": null,
+          "k0662": null,
+          "k0663": null,
+          "k0664": null,
+          "k0665": null,
+          "k0666": null,
+          "k0667": null,
+          "k0668": null,
+          "k0669": null,
+          "k0670": null,
+          "k0671": null,
+          "k0672": null,
+          "k0673": null,
+          "k0674": null,
+          "k0675": null,
+          "k0676": null,
+          "k0677": null,
+          "k0678": null,
+          "k0679": null,
+          "k0680": null,
+          "k0681": null,
+          "k0682": null,
+          "k0683": null,
+          "k0684": null,
+          "k0685": null,
+          "k0686": null,
+          "k0687": null,
+          "k0688": null,
+          "k0689": null,
+          "k0690": null,
+          "k0691": null,
+          "k0692": null,
+          "k0693": null,
+          "k0694": null,
+          "k0695": null,
+          "k0696": null,
+          "k0697": null,
+          "k0698": null,
+          "k0699": null,
+          "k0700": null,
+          "k0701": null,
+          "k0702": null,
+          "k0703": null,
+          "k0704": null,
+          "k0705": null,
+          "k0706": null,
+          "k0707": null,
+          "k0708": null,
+          "k0709": null,
+          "k0710": null,
+          "k0711": null,
+          "k0712": null,
+          "k0713": null,
+          "k0714": null,
+          "k0715": null,
+          "k0716": null,
+          "k0717": null,
+          "k0718": null,
+          "k0719": null,
+          "k0720": null,
+          "k0721": null,
+          "k0722": null,
+          "k0723": null,
+          "k0724": null,
+          "k0725": null,
+          "k0726": null,
+          "k0727": null,
+          "k0728": null,
+          "k0729": null,
+          "k0730": null,
+          "k0731": null,
+          "k0732": null,
+          "k0733": null,
+          "k0734": null,
+          "k0735": null,
+          "k0736": null,
+          "k0737": null,
+          "k0738": null,
+          "k0739": null,
+          "k0740": null,
+          "k0741": null,
+          "k0742": null,
+          "k0743": null,
+          "k0744": null,
+          "k0745": null,
+          "k0746": null,
+          "k0747": null,
+          "k0748": null,
+          "k0749": null,
+          "k0750": null,
+          "k0751": null,
+          "k0752": null,
+          "k0753": null,
+          "k0754": null,
+          "k0755": null,
+          "k0756": null,
+          "k0757": null,
+          "k0758": null,
+          "k0759": null,
+          "k0760": null,
+          "k0761": null,
+          "k0762": null,
+          "k0763": null,
+          "k0764": null,
+          "k0765": null,
+          "k0766": null,
+          "k0767": null,
+          "k0768": null,
+          "k0769": null,
+          "k0770": null,
+          "k0771": null,
+          "k0772": null,
+          "k0773": null,
+          "k0774": null,
+          "k0775": null,
+          "k0776": null,
+          "k0777": null,
+          "k0778": null,
+          "k0779": null,
+          "k0780": null,
+          "k0781": null,
+          "k0782": null,
+          "k0783": null,
+          "k0784": null,
+          "k0785": null,
+          "k0786": null,
+          "k0787": null,
+          "k0788": null,
+          "k0789": null,
+          "k0790": null,
+          "k0791": null,
+          "k0792": null,
+          "k0793": null,
+          "k0794": null,
+          "k0795": null,
+          "k0796": null,
+          "k0797": null,
+          "k0798": null,
+          "k0799": null,
+          "k0800": null,
+          "k0801": null,
+          "k0802": null,
+          "k0803": null,
+          "k0804": null,
+          "k0805": null,
+          "k0806": null,
+          "k0807": null,
+          "k0808": null,
+          "k0809": null,
+          "k0810": null,
+          "k0811": null,
+          "k0812": null,
+          "k0813": null,
+          "k0814": null,
+          "k0815": null,
+          "k0816": null,
+          "k0817": null,
+          "k0818": null,
+          "k0819": null,
+          "k0820": null,
+          "k0821": null,
+          "k0822": null,
+          "k0823": null,
+          "k0824": null,
+          "k0825": null,
+          "k0826": null,
+          "k0827": null,
+          "k0828": null,
+          "k0829": null,
+          "k0830": null,
+          "k0831": null,
+          "k0832": null,
+          "k0833": null,
+          "k0834": null,
+          "k0835": null,
+          "k0836": null,
+          "k0837": null,
+          "k0838": null,
+          "k0839": null,
+          "k0840": null,
+          "k0841": null,
+          "k0842": null,
+          "k0843": null,
+          "k0844": null,
+          "k0845": null,
+          "k0846": null,
+          "k0847": null,
+          "k0848": null,
+          "k0849": null,
+          "k0850": null,
+          "k0851": null,
+          "k0852": null,
+          "k0853": null,
+          "k0854": null,
+          "k0855": null,
+          "k0856": null,
+          "k0857": null,
+          "k0858": null,
+          "k0859": null,
+          "k0860": null,
+          "k0861": null,
+          "k0862": null,
+          "k0863": null,
+          "k0864": null,
+          "k0865": null,
+          "k0866": null,
+          "k0867": null,
+          "k0868": null,
+          "k0869": null,
+          "k0870": null,
+          "k0871": null,
+          "k0872": null,
+          "k0873": null,
+          "k0874": null,
+          "k0875": null,
+          "k0876": null,
+          "k0877": null,
+          "k0878": null,
+          "k0879": null,
+          "k0880": null,
+          "k0881": null,
+          "k0882": null,
+          "k0883": null,
+          "k0884": null,
+          "k0885": null,
+          "k0886": null,
+          "k0887": null,
+          "k0888": null,
+          "k0889": null,
+          "k0890": null,
+          "k0891": null,
+          "k0892": null,
+          "k0893": null,
+          "k0894": null,
+          "k0895": null,
+          "k0896": null,
+          "k0897": null,
+          "k0898": null,
+          "k0899": null,
+          "k0900": null,
+          "k0901": null,
+          "k0902": null,
+          "k0903": null,
+          "k0904": null,
+          "k0905": null,
+          "k0906": null,
+          "k0907": null,
+          "k0908": null,
+          "k0909": null,
+          "k0910": null,
+          "k0911": null,
+          "k0912": null,
+          "k0913": null,
+          "k0914": null,
+          "k0915": null,
+          "k0916": null,
+          "k0917": null,
+          "k0918": null,
+          "k0919": null,
+          "k0920": null,
+          "k0921": null,
+          "k0922": null,
+          "k0923": null,
+          "k0924": null,
+          "k0925": null,
+          "k0926": null,
+          "k0927": null,
+          "k0928": null,
+          "k0929": null,
+          "k0930": null,
+          "k0931": null,
+          "k0932": null,
+          "k0933": null,
+          "k0934": null,
+          "k0935": null,
+          "k0936": null,
+          "k0937": null,
+          "k0938": null,
+          "k0939": null,
+          "k0940": null,
+          "k0941": null,
+          "k0942": null,
+          "k0943": null,
+          "k0944": null,
+          "k0945": null,
+          "k0946": null,
+          "k0947": null,
+          "k0948": null,
+          "k0949": null,
+          "k0950": null,
+          "k0951": null,
+          "k0952": null,
+          "k0953": null,
+          "k0954": null,
+          "k0955": null,
+          "k0956": null,
+          "k0957": null,
+          "k0958": null,
+          "k0959": null,
+          "k0960": null,
+          "k0961": null,
+          "k0962": null,
+          "k0963": null,
+          "k0964": null,
+          "k0965": null,
+          "k0966": null,
+          "k0967": null,
+          "k0968": null,
+          "k0969": null,
+          "k0970": null,
+          "k0971": null,
+          "k0972": null,
+          "k0973": null,
+          "k0974": null,
+          "k0975": null,
+          "k0976": null,
+          "k0977": null,
+          "k0978": null,
+          "k0979": null,
+          "k0980": null,
+          "k0981": null,
+          "k0982": null,
+          "k0983": null,
+          "k0984": null,
+          "k0985": null,
+          "k0986": null,
+          "k0987": null,
+          "k0988": null,
+          "k0989": null,
+          "k0990": null,
+          "k0991": null,
+          "k0992": null,
+          "k0993": null,
+          "k0994": null,
+          "k0995": null,
+          "k0996": null,
+          "k0997": null,
+          "k0998": null,
+          "k0999": null,
+          "k1000": null,
+          "k1001": null,
+          "k1002": null,
+          "k1003": null,
+          "k1004": null,
+          "k1005": null,
+          "k1006": null,
+          "k1007": null
+        }
+      ]
+    },
+    "program": {
+      "schema": "bagaev-typed-record/8",
+      "records": {},
+      "lists": {},
+      "variants": {},
+      "entry": "main",
+      "functions": {
+        "main": {
+          "params": [
+            [
+              "j",
+              "Json"
+            ]
+          ],
+          "result": "Text",
+          "body": [
+            "let",
+            "burn",
+            [
+              "loop",
+              11,
+              "i",
+              "a",
+              [
+                "int",
+                0
+              ],
+              [
+                "use",
+                "a"
+              ]
+            ],
+            [
+              "json.kind",
+              [
+                "json.field",
+                [
+                  "arg",
+                  "j"
+                ],
+                "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+              ]
+            ]
+          ]
+        }
+      }
+    },
+    "program_raw": "{\"entry\":\"main\",\"functions\":{\"main\":{\"body\":[\"let\",\"burn\",[\"loop\",11,\"i\",\"a\",[\"int\",0],[\"use\",\"a\"]],[\"json.kind\",[\"json.field\",[\"arg\",\"j\"],\"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\"]]],\"params\":[[\"j\",\"Json\"]],\"result\":\"Text\"}},\"lists\":{},\"records\":{},\"schema\":\"bagaev-typed-record/8\",\"variants\":{}}",
+    "source_sha256": "f345aeb09641b2a0a8e5a063e9b47f7c17cc0ddc64be6cfd62d7beec57dd3475",
+    "work": 17,
+    "result": "Text",
+    "expected_hex": "0200000000000000000000000000000011000000000000000a00000006000000",
+    "kernel_cells": 0
+  },
+  {
+    "name": "json-native-composite-r1_record",
+    "invocation": {
+      "schema": "bagaev-typed-record-invocation/8",
+      "program": {
+        "schema": "bagaev-typed-record/8",
+        "records": {
+          "R": {
+            "n": "OptionInt64",
+            "t": "Text"
+          }
+        },
+        "lists": {
+          "Ls": {
+            "element": "R",
+            "capacity": 2
+          }
+        },
+        "variants": {
+          "V": {
+            "Bad": "Int64",
+            "Good": "Ls"
+          }
+        },
+        "entry": "main",
+        "functions": {
+          "main": {
+            "params": [
+              [
+                "j",
+                "Json"
+              ]
+            ],
+            "result": "R",
+            "body": [
+              "record",
+              "R",
+              [
+                "json.int",
+                [
+                  "arg",
+                  "j"
+                ]
+              ],
+              [
+                "json.text_or",
+                [
+                  "arg",
+                  "j"
+                ],
+                [
+                  "text",
+                  "fallback"
+                ]
+              ]
+            ]
+          }
+        }
+      },
+      "arguments": [
+        "\u00e9"
+      ]
+    },
+    "program": {
+      "schema": "bagaev-typed-record/8",
+      "records": {
+        "R": {
+          "n": "OptionInt64",
+          "t": "Text"
+        }
+      },
+      "lists": {
+        "Ls": {
+          "element": "R",
+          "capacity": 2
+        }
+      },
+      "variants": {
+        "V": {
+          "Bad": "Int64",
+          "Good": "Ls"
+        }
+      },
+      "entry": "main",
+      "functions": {
+        "main": {
+          "params": [
+            [
+              "j",
+              "Json"
+            ]
+          ],
+          "result": "R",
+          "body": [
+            "record",
+            "R",
+            [
+              "json.int",
+              [
+                "arg",
+                "j"
+              ]
+            ],
+            [
+              "json.text_or",
+              [
+                "arg",
+                "j"
+              ],
+              [
+                "text",
+                "fallback"
+              ]
+            ]
+          ]
+        }
+      }
+    },
+    "program_raw": "{\"entry\":\"main\",\"functions\":{\"main\":{\"body\":[\"record\",\"R\",[\"json.int\",[\"arg\",\"j\"]],[\"json.text_or\",[\"arg\",\"j\"],[\"text\",\"fallback\"]]],\"params\":[[\"j\",\"Json\"]],\"result\":\"R\"}},\"lists\":{\"Ls\":{\"capacity\":2,\"element\":\"R\"}},\"records\":{\"R\":{\"n\":\"OptionInt64\",\"t\":\"Text\"}},\"schema\":\"bagaev-typed-record/8\",\"variants\":{\"V\":{\"Bad\":\"Int64\",\"Good\":\"Ls\"}}}",
+    "source_sha256": "582dbb7e3f39e1e1f3dd65fb33bd2c6d49f927b40879ce459081d3539fa8f691",
+    "work": 7,
+    "kernel_cells": 2,
+    "result": "R",
+    "expected_hex": "42434d505245533103000000020000000700000000000000582dbb7e3f39e1e1f3dd65fb33bd2c6d49f927b40879ce459081d3539fa8f6910000000000000000060000000000000000000000000000000300000002000000000000000000000004000000000000000000000000000000020000000000000000000000000000000300000000000000000000000000000003000000000000000000000002000000c3a9"
+  },
+  {
+    "name": "json-native-composite-r1_list",
+    "invocation": {
+      "schema": "bagaev-typed-record-invocation/8",
+      "program": {
+        "schema": "bagaev-typed-record/8",
+        "records": {
+          "R": {
+            "n": "OptionInt64",
+            "t": "Text"
+          }
+        },
+        "lists": {
+          "Ls": {
+            "element": "R",
+            "capacity": 2
+          }
+        },
+        "variants": {
+          "V": {
+            "Bad": "Int64",
+            "Good": "Ls"
+          }
+        },
+        "entry": "main",
+        "functions": {
+          "main": {
+            "params": [
+              [
+                "j",
+                "Json"
+              ]
+            ],
+            "result": "Ls",
+            "body": [
+              "let",
+              "r",
+              [
+                "record",
+                "R",
+                [
+                  "json.int",
+                  [
+                    "arg",
+                    "j"
+                  ]
+                ],
+                [
+                  "json.text_or",
+                  [
+                    "arg",
+                    "j"
+                  ],
+                  [
+                    "text",
+                    "fallback"
+                  ]
+                ]
+              ],
+              [
+                "records.list",
+                "Ls",
+                [
+                  "use",
+                  "r"
+                ],
+                [
+                  "use",
+                  "r"
+                ]
+              ]
+            ]
+          }
+        }
+      },
+      "arguments": [
+        "\u00e9"
+      ]
+    },
+    "program": {
+      "schema": "bagaev-typed-record/8",
+      "records": {
+        "R": {
+          "n": "OptionInt64",
+          "t": "Text"
+        }
+      },
+      "lists": {
+        "Ls": {
+          "element": "R",
+          "capacity": 2
+        }
+      },
+      "variants": {
+        "V": {
+          "Bad": "Int64",
+          "Good": "Ls"
+        }
+      },
+      "entry": "main",
+      "functions": {
+        "main": {
+          "params": [
+            [
+              "j",
+              "Json"
+            ]
+          ],
+          "result": "Ls",
+          "body": [
+            "let",
+            "r",
+            [
+              "record",
+              "R",
+              [
+                "json.int",
+                [
+                  "arg",
+                  "j"
+                ]
+              ],
+              [
+                "json.text_or",
+                [
+                  "arg",
+                  "j"
+                ],
+                [
+                  "text",
+                  "fallback"
+                ]
+              ]
+            ],
+            [
+              "records.list",
+              "Ls",
+              [
+                "use",
+                "r"
+              ],
+              [
+                "use",
+                "r"
+              ]
+            ]
+          ]
+        }
+      }
+    },
+    "program_raw": "{\"entry\":\"main\",\"functions\":{\"main\":{\"body\":[\"let\",\"r\",[\"record\",\"R\",[\"json.int\",[\"arg\",\"j\"]],[\"json.text_or\",[\"arg\",\"j\"],[\"text\",\"fallback\"]]],[\"records.list\",\"Ls\",[\"use\",\"r\"],[\"use\",\"r\"]]],\"params\":[[\"j\",\"Json\"]],\"result\":\"Ls\"}},\"lists\":{\"Ls\":{\"capacity\":2,\"element\":\"R\"}},\"records\":{\"R\":{\"n\":\"OptionInt64\",\"t\":\"Text\"}},\"schema\":\"bagaev-typed-record/8\",\"variants\":{\"V\":{\"Bad\":\"Int64\",\"Good\":\"Ls\"}}}",
+    "source_sha256": "e868e8fc04b785affe009eb5417d91be0b284a8bdad43690cc87c47ce215d3b0",
+    "work": 11,
+    "kernel_cells": 4,
+    "result": "Ls",
+    "expected_hex": "42434d505245533107000000040000000b00000000000000e868e8fc04b785affe009eb5417d91be0b284a8bdad43690cc87c47ce215d3b000000000000000000700000001000000000000000000000007000000020000000000000000000000060000000000000000000000000000000400000002000000000000000000000004000000000000000000000000000000030000000000000000000000000000000300000000000000000000000000000004000000000000000000000002000000060000000000000000000000000000000700000002000000000000000000000004000000000000000000000000000000060000000000000000000000000000000300000000000000000000000000000007000000000000000200000002000000c3a9c3a9"
+  },
+  {
+    "name": "json-native-composite-r1_variant",
+    "invocation": {
+      "schema": "bagaev-typed-record-invocation/8",
+      "program": {
+        "schema": "bagaev-typed-record/8",
+        "records": {
+          "R": {
+            "n": "OptionInt64",
+            "t": "Text"
+          }
+        },
+        "lists": {
+          "Ls": {
+            "element": "R",
+            "capacity": 2
+          }
+        },
+        "variants": {
+          "V": {
+            "Bad": "Int64",
+            "Good": "Ls"
+          }
+        },
+        "entry": "main",
+        "functions": {
+          "main": {
+            "params": [
+              [
+                "j",
+                "Json"
+              ]
+            ],
+            "result": "V",
+            "body": [
+              "variant",
+              "V",
+              "Good",
+              [
+                "records.list",
+                "Ls",
+                [
+                  "record",
+                  "R",
+                  [
+                    "json.int",
+                    [
+                      "arg",
+                      "j"
+                    ]
+                  ],
+                  [
+                    "json.text_or",
+                    [
+                      "arg",
+                      "j"
+                    ],
+                    [
+                      "text",
+                      "fallback"
+                    ]
+                  ]
+                ]
+              ]
+            ]
+          }
+        }
+      },
+      "arguments": [
+        "\u00e9"
+      ]
+    },
+    "program": {
+      "schema": "bagaev-typed-record/8",
+      "records": {
+        "R": {
+          "n": "OptionInt64",
+          "t": "Text"
+        }
+      },
+      "lists": {
+        "Ls": {
+          "element": "R",
+          "capacity": 2
+        }
+      },
+      "variants": {
+        "V": {
+          "Bad": "Int64",
+          "Good": "Ls"
+        }
+      },
+      "entry": "main",
+      "functions": {
+        "main": {
+          "params": [
+            [
+              "j",
+              "Json"
+            ]
+          ],
+          "result": "V",
+          "body": [
+            "variant",
+            "V",
+            "Good",
+            [
+              "records.list",
+              "Ls",
+              [
+                "record",
+                "R",
+                [
+                  "json.int",
+                  [
+                    "arg",
+                    "j"
+                  ]
+                ],
+                [
+                  "json.text_or",
+                  [
+                    "arg",
+                    "j"
+                  ],
+                  [
+                    "text",
+                    "fallback"
+                  ]
+                ]
+              ]
+            ]
+          ]
+        }
+      }
+    },
+    "program_raw": "{\"entry\":\"main\",\"functions\":{\"main\":{\"body\":[\"variant\",\"V\",\"Good\",[\"records.list\",\"Ls\",[\"record\",\"R\",[\"json.int\",[\"arg\",\"j\"]],[\"json.text_or\",[\"arg\",\"j\"],[\"text\",\"fallback\"]]]]],\"params\":[[\"j\",\"Json\"]],\"result\":\"V\"}},\"lists\":{\"Ls\":{\"capacity\":2,\"element\":\"R\"}},\"records\":{\"R\":{\"n\":\"OptionInt64\",\"t\":\"Text\"}},\"schema\":\"bagaev-typed-record/8\",\"variants\":{\"V\":{\"Bad\":\"Int64\",\"Good\":\"Ls\"}}}",
+    "source_sha256": "303c314d794021d940480aab3941f0b1052cee879b87359dc9c2ef12dd4653f1",
+    "work": 9,
+    "kernel_cells": 4,
+    "result": "V",
+    "expected_hex": "42434d505245533105000000020000000900000000000000303c314d794021d940480aab3941f0b1052cee879b87359dc9c2ef12dd4653f1000000000000000008000000020000000100000000000000050000000100000000000000000000000700000001000000000000000000000005000000010000000000000000000000060000000000000000000000000000000500000002000000000000000000000004000000000000000000000000000000040000000000000000000000000000000300000000000000000000000000000005000000000000000000000002000000c3a9"
+  }
+]
