@@ -1,0 +1,17 @@
+{
+  "status":"LITERAL_DECISIONS_FROZEN_BEFORE_ADAPTER_IMPLEMENTATION",
+  "cases":[
+    {"id":"COMPLETE","variation":"none","expected":{"decision":"accepted","reason":"all-obligations"}},
+    {"id":"MISSING-CONSUMER","variation":"omit-consumer-duplicate-pure","expected":{"decision":"pending","reason":"missing-obligation"}},
+    {"id":"OTHER-SOURCE","variation":"other-source","expected":{"decision":"pending","reason":"missing-obligation"}},
+    {"id":"OTHER-PREMISE","variation":"other-expectation","expected":{"decision":"pending","reason":"missing-obligation"}},
+    {"id":"BYTES-ONLY","variation":"bytes-only","expected":{"decision":"pending","reason":"missing-obligation"}},
+    {"id":"CONFLICT","variation":"negative-zero-selection-and-missing","expected":{"decision":"pending","reason":"conflicting-evidence"}},
+    {"id":"STALE-BASE","variation":"stale-base","expected":{"decision":"stale","reason":"base-changed"}},
+    {"id":"NO-AUTHORITY","variation":"no-authority","expected":{"decision":"denied","reason":"admission-authority"}},
+    {"id":"UNRELATED-NEGATIVE","variation":"unrelated-negative","expected":{"decision":"accepted","reason":"all-obligations"}},
+    {"id":"MALFORMED-LATE","variation":"malformed-last-receipt","expected":{"decision":"invalid","reason":"receipts"}},
+    {"id":"SHRUNK-DENOMINATOR","variation":"remove-required-consumer","expected":{"decision":"invalid","reason":"requirements"}}
+  ],
+  "scope":"Descriptive applicability/refusal decisions plus final simulated boundary. Negative fixtures do not authenticate imported evidence."
+}

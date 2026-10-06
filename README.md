@@ -70,6 +70,10 @@ untrusted code. No model account is needed for this example.
 
 ## What exists today
 
+- **Experimental evidence-bound changes:** the [connected change example](docs/probe-component-change.md)
+  checks all five receiving obligations against exact retained observations,
+  then rechecks base/authority before switching the simulated new-run default.
+  Evidence reuse is distinguished from new execution and never grants real rights.
 - **Experimental source-level components:** [typed declarations](docs/probe-component-source.md)
   name state/request types, identity/revision bindings and replacement fields.
   A data-only checker feeds the connected simulation's actual typed computation
