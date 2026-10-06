@@ -169,3 +169,8 @@ measurement design, and limits.
 
 Original code and original documentation are under the
 [Apache License 2.0](LICENSE). Referenced works retain their own terms.
+
+The experimental [source-once JSON interface](docs/probe-prepared-json.md)
+separates program preparation from per-call argument admission. Its owned data
+handles do not confer native execution authority; portable reproduction surfaces
+and narrower input-budget equivalence are documented separately.
