@@ -1,0 +1,1385 @@
+{
+  "status": "FROZEN_SIMULATION_EXPECTATIONS_BEFORE_IMPLEMENTATION",
+  "authored_at": "2026-10-06T17:08:02.555173+00:00",
+  "purpose": "Literal independent expectations for a future complete semantic slice; no evaluator used to generate expected results",
+  "profile": {
+    "id": "whole-cycle-draft/v0.1",
+    "initial_state": {
+      "resource": "catalogue/g1",
+      "revision": 7,
+      "write_epoch": 1,
+      "entries": [
+        {
+          "id": "e1",
+          "manual": [
+            "family"
+          ],
+          "indexed": [
+            "old"
+          ]
+        }
+      ]
+    },
+    "initial_ledger": [],
+    "initial_programme": "S1",
+    "reconciliation_horizon_tick": 200,
+    "clock": "supplied logical ticks, not a claim about host clocks",
+    "text_equality": "exact Unicode code-point sequence",
+    "tag_output_order": "ascending code point",
+    "permissions": "controlled trusted-context fixture inputs, not request-granted rights",
+    "initial_audit_rows": 0,
+    "diagnostic_audit": "Fixture receiver appends one disposable diagnostic row after a terminal submit, independently of durable terminal ledger; audit failure is not terminal-state failure.",
+    "source_binding": {
+      "reindex/v1": "S1.json",
+      "reindex/v2": "S2.json"
+    },
+    "admission_evidence_boundary": "Controlled trusted fixture assumption for receiver transition only, not a production verifier; the simulator additionally checks each candidate pure source against the four frozen complete pure outputs.",
+    "resume_boundary": "Roundtrip of explicit continuation data only, not process/database crash recovery or restored authority."
+  },
+  "evidence_fixtures": {
+    "catalogue-contract/v1": [
+      "types-and-imports",
+      "manual-tags-preserved",
+      "actual-entry-consumer",
+      "operation-recovery",
+      "old-run-binding"
+    ],
+    "complete-admissible-fixture": "all five obligations supported by controlled admissible fixture evidence; this is not real CI/admission authority",
+    "missing-actual-entry-consumer": "same fixture except required actual-entry-consumer omitted"
+  },
+  "cases": [
+    {
+      "id": "WC01",
+      "purpose": "A complete pure transform preserves the ordinary immutable input",
+      "events": [
+        {
+          "command": "PureCall",
+          "function": "reindex_entry/v1",
+          "entry": {
+            "id": "e1",
+            "manual": [
+              "family"
+            ],
+            "indexed": [
+              "old"
+            ]
+          },
+          "tags": [
+            "new",
+            "new"
+          ]
+        }
+      ],
+      "expected": {
+        "result": {
+          "id": "e1",
+          "manual": [
+            "family"
+          ],
+          "indexed": [
+            "new"
+          ]
+        },
+        "input_after": {
+          "id": "e1",
+          "manual": [
+            "family"
+          ],
+          "indexed": [
+            "old"
+          ]
+        },
+        "ledger_rows": 0,
+        "catalogue_revision": 7
+      }
+    },
+    {
+      "id": "WC02",
+      "purpose": "Actual component entry reaches the atomic state owner",
+      "events": [
+        {
+          "command": "Submit",
+          "key": {
+            "resource": "catalogue/g1",
+            "domain": "owner",
+            "id": "A"
+          },
+          "intent": {
+            "behaviour": "reindex/v1",
+            "entry": "e1",
+            "tags": [
+              "new"
+            ],
+            "expected_revision": 7,
+            "write_epoch": 1,
+            "deadline_tick": 100
+          },
+          "tick": 20,
+          "permissions": {
+            "submit": true,
+            "write": true,
+            "cancel": true,
+            "observe": true
+          },
+          "reply": "deliver"
+        }
+      ],
+      "expected": {
+        "last_observation": {
+          "kind": "Applied",
+          "key": {
+            "resource": "catalogue/g1",
+            "domain": "owner",
+            "id": "A"
+          },
+          "intent": {
+            "behaviour": "reindex/v1",
+            "entry": "e1",
+            "tags": [
+              "new"
+            ],
+            "expected_revision": 7,
+            "write_epoch": 1,
+            "deadline_tick": 100
+          },
+          "revision": 8,
+          "entry": {
+            "id": "e1",
+            "manual": [
+              "family"
+            ],
+            "indexed": [
+              "new"
+            ]
+          }
+        },
+        "catalogue_revision": 8,
+        "entry": {
+          "id": "e1",
+          "manual": [
+            "family"
+          ],
+          "indexed": [
+            "new"
+          ]
+        },
+        "ledger_rows": 1,
+        "data_mutations": 1
+      }
+    },
+    {
+      "id": "WC03",
+      "purpose": "Lost reply, restarted observer and same-intent replay after execution deadline",
+      "events": [
+        {
+          "command": "Submit",
+          "key": {
+            "resource": "catalogue/g1",
+            "domain": "owner",
+            "id": "A"
+          },
+          "intent": {
+            "behaviour": "reindex/v1",
+            "entry": "e1",
+            "tags": [
+              "new"
+            ],
+            "expected_revision": 7,
+            "write_epoch": 1,
+            "deadline_tick": 100
+          },
+          "tick": 20,
+          "permissions": {
+            "submit": true,
+            "write": true,
+            "cancel": true,
+            "observe": true
+          },
+          "reply": "drop"
+        },
+        {
+          "command": "ObserverTimeout"
+        },
+        {
+          "command": "SaveContinuation",
+          "programme": "S1",
+          "unresolved": [
+            {
+              "key": {
+                "resource": "catalogue/g1",
+                "domain": "owner",
+                "id": "A"
+              },
+              "intent": {
+                "behaviour": "reindex/v1",
+                "entry": "e1",
+                "tags": [
+                  "new"
+                ],
+                "expected_revision": 7,
+                "write_epoch": 1,
+                "deadline_tick": 100
+              }
+            }
+          ]
+        },
+        {
+          "command": "Resume",
+          "programme": "S1",
+          "permissions": {
+            "submit": true,
+            "write": true,
+            "cancel": true,
+            "observe": true
+          }
+        },
+        {
+          "command": "Submit",
+          "key": {
+            "resource": "catalogue/g1",
+            "domain": "owner",
+            "id": "A"
+          },
+          "intent": {
+            "behaviour": "reindex/v1",
+            "entry": "e1",
+            "tags": [
+              "new"
+            ],
+            "expected_revision": 7,
+            "write_epoch": 1,
+            "deadline_tick": 100
+          },
+          "tick": 120,
+          "permissions": {
+            "submit": true,
+            "write": true,
+            "cancel": true,
+            "observe": true
+          },
+          "reply": "deliver"
+        }
+      ],
+      "expected": {
+        "observations": [
+          "OutcomeUnknown",
+          {
+            "kind": "Applied",
+            "key": {
+              "resource": "catalogue/g1",
+              "domain": "owner",
+              "id": "A"
+            },
+            "intent": {
+              "behaviour": "reindex/v1",
+              "entry": "e1",
+              "tags": [
+                "new"
+              ],
+              "expected_revision": 7,
+              "write_epoch": 1,
+              "deadline_tick": 100
+            },
+            "revision": 8,
+            "entry": {
+              "id": "e1",
+              "manual": [
+                "family"
+              ],
+              "indexed": [
+                "new"
+              ]
+            }
+          }
+        ],
+        "catalogue_revision": 8,
+        "entry": {
+          "id": "e1",
+          "manual": [
+            "family"
+          ],
+          "indexed": [
+            "new"
+          ]
+        },
+        "ledger_rows": 1,
+        "data_mutations": 1,
+        "original_intent_deadline_tick": 100
+      }
+    },
+    {
+      "id": "WC04",
+      "purpose": "Read revocation cannot relabel an old applied effect as failed",
+      "events": [
+        {
+          "command": "Submit",
+          "key": {
+            "resource": "catalogue/g1",
+            "domain": "owner",
+            "id": "A"
+          },
+          "intent": {
+            "behaviour": "reindex/v1",
+            "entry": "e1",
+            "tags": [
+              "new"
+            ],
+            "expected_revision": 7,
+            "write_epoch": 1,
+            "deadline_tick": 100
+          },
+          "tick": 20,
+          "permissions": {
+            "submit": true,
+            "write": true,
+            "cancel": true,
+            "observe": true
+          },
+          "reply": "drop"
+        },
+        {
+          "command": "Observe",
+          "key": {
+            "resource": "catalogue/g1",
+            "domain": "owner",
+            "id": "A"
+          },
+          "intent": {
+            "behaviour": "reindex/v1",
+            "entry": "e1",
+            "tags": [
+              "new"
+            ],
+            "expected_revision": 7,
+            "write_epoch": 1,
+            "deadline_tick": 100
+          },
+          "tick": 30,
+          "permissions": {
+            "submit": true,
+            "write": false,
+            "cancel": false,
+            "observe": false
+          }
+        }
+      ],
+      "expected": {
+        "last_observation": "AccessDenied",
+        "observer_outcome": "OutcomeUnknown",
+        "receiver_terminal": {
+          "kind": "Applied",
+          "key": {
+            "resource": "catalogue/g1",
+            "domain": "owner",
+            "id": "A"
+          },
+          "intent": {
+            "behaviour": "reindex/v1",
+            "entry": "e1",
+            "tags": [
+              "new"
+            ],
+            "expected_revision": 7,
+            "write_epoch": 1,
+            "deadline_tick": 100
+          },
+          "revision": 8,
+          "entry": {
+            "id": "e1",
+            "manual": [
+              "family"
+            ],
+            "indexed": [
+              "new"
+            ]
+          }
+        },
+        "catalogue_revision": 8,
+        "data_mutations": 1,
+        "private_receipt_disclosed": false
+      }
+    },
+    {
+      "id": "WC05",
+      "purpose": "Changed request is not a harmless retry",
+      "events": [
+        {
+          "command": "Submit",
+          "key": {
+            "resource": "catalogue/g1",
+            "domain": "owner",
+            "id": "A"
+          },
+          "intent": {
+            "behaviour": "reindex/v1",
+            "entry": "e1",
+            "tags": [
+              "new"
+            ],
+            "expected_revision": 7,
+            "write_epoch": 1,
+            "deadline_tick": 100
+          },
+          "tick": 20,
+          "permissions": {
+            "submit": true,
+            "write": true,
+            "cancel": true,
+            "observe": true
+          },
+          "reply": "deliver"
+        },
+        {
+          "command": "Submit",
+          "key": {
+            "resource": "catalogue/g1",
+            "domain": "owner",
+            "id": "A"
+          },
+          "intent": {
+            "behaviour": "reindex/v1",
+            "entry": "e1",
+            "tags": [
+              "different"
+            ],
+            "expected_revision": 7,
+            "write_epoch": 1,
+            "deadline_tick": 100
+          },
+          "tick": 30,
+          "permissions": {
+            "submit": true,
+            "write": true,
+            "cancel": true,
+            "observe": true
+          },
+          "reply": "deliver"
+        }
+      ],
+      "expected": {
+        "last_observation": "IntentConflict",
+        "receiver_terminal": {
+          "kind": "Applied",
+          "key": {
+            "resource": "catalogue/g1",
+            "domain": "owner",
+            "id": "A"
+          },
+          "intent": {
+            "behaviour": "reindex/v1",
+            "entry": "e1",
+            "tags": [
+              "new"
+            ],
+            "expected_revision": 7,
+            "write_epoch": 1,
+            "deadline_tick": 100
+          },
+          "revision": 8,
+          "entry": {
+            "id": "e1",
+            "manual": [
+              "family"
+            ],
+            "indexed": [
+              "new"
+            ]
+          }
+        },
+        "catalogue_revision": 8,
+        "entry": {
+          "id": "e1",
+          "manual": [
+            "family"
+          ],
+          "indexed": [
+            "new"
+          ]
+        },
+        "data_mutations": 1
+      }
+    },
+    {
+      "id": "WC06",
+      "purpose": "Confirmed cancellation precedes a delayed first request",
+      "events": [
+        {
+          "command": "Cancel",
+          "key": {
+            "resource": "catalogue/g1",
+            "domain": "owner",
+            "id": "A"
+          },
+          "intent": {
+            "behaviour": "reindex/v1",
+            "entry": "e1",
+            "tags": [
+              "new"
+            ],
+            "expected_revision": 7,
+            "write_epoch": 1,
+            "deadline_tick": 100
+          },
+          "tick": 10,
+          "permissions": {
+            "submit": true,
+            "write": true,
+            "cancel": true,
+            "observe": true
+          }
+        },
+        {
+          "command": "Submit",
+          "key": {
+            "resource": "catalogue/g1",
+            "domain": "owner",
+            "id": "A"
+          },
+          "intent": {
+            "behaviour": "reindex/v1",
+            "entry": "e1",
+            "tags": [
+              "new"
+            ],
+            "expected_revision": 7,
+            "write_epoch": 1,
+            "deadline_tick": 100
+          },
+          "tick": 20,
+          "permissions": {
+            "submit": true,
+            "write": true,
+            "cancel": true,
+            "observe": true
+          },
+          "reply": "deliver"
+        }
+      ],
+      "expected": {
+        "last_observation": {
+          "kind": "Cancelled",
+          "key": {
+            "resource": "catalogue/g1",
+            "domain": "owner",
+            "id": "A"
+          },
+          "intent": {
+            "behaviour": "reindex/v1",
+            "entry": "e1",
+            "tags": [
+              "new"
+            ],
+            "expected_revision": 7,
+            "write_epoch": 1,
+            "deadline_tick": 100
+          },
+          "revision": 7
+        },
+        "catalogue_revision": 7,
+        "entry": {
+          "id": "e1",
+          "manual": [
+            "family"
+          ],
+          "indexed": [
+            "old"
+          ]
+        },
+        "ledger_rows": 1,
+        "data_mutations": 0
+      }
+    },
+    {
+      "id": "WC07",
+      "purpose": "Late cancellation cannot undo a committed write",
+      "events": [
+        {
+          "command": "Submit",
+          "key": {
+            "resource": "catalogue/g1",
+            "domain": "owner",
+            "id": "A"
+          },
+          "intent": {
+            "behaviour": "reindex/v1",
+            "entry": "e1",
+            "tags": [
+              "new"
+            ],
+            "expected_revision": 7,
+            "write_epoch": 1,
+            "deadline_tick": 100
+          },
+          "tick": 20,
+          "permissions": {
+            "submit": true,
+            "write": true,
+            "cancel": true,
+            "observe": true
+          },
+          "reply": "drop"
+        },
+        {
+          "command": "Cancel",
+          "key": {
+            "resource": "catalogue/g1",
+            "domain": "owner",
+            "id": "A"
+          },
+          "intent": {
+            "behaviour": "reindex/v1",
+            "entry": "e1",
+            "tags": [
+              "new"
+            ],
+            "expected_revision": 7,
+            "write_epoch": 1,
+            "deadline_tick": 100
+          },
+          "tick": 30,
+          "permissions": {
+            "submit": true,
+            "write": true,
+            "cancel": true,
+            "observe": true
+          }
+        }
+      ],
+      "expected": {
+        "last_observation": {
+          "kind": "AlreadyApplied",
+          "receipt": {
+            "kind": "Applied",
+            "key": {
+              "resource": "catalogue/g1",
+              "domain": "owner",
+              "id": "A"
+            },
+            "intent": {
+              "behaviour": "reindex/v1",
+              "entry": "e1",
+              "tags": [
+                "new"
+              ],
+              "expected_revision": 7,
+              "write_epoch": 1,
+              "deadline_tick": 100
+            },
+            "revision": 8,
+            "entry": {
+              "id": "e1",
+              "manual": [
+                "family"
+              ],
+              "indexed": [
+                "new"
+              ]
+            }
+          }
+        },
+        "catalogue_revision": 8,
+        "entry": {
+          "id": "e1",
+          "manual": [
+            "family"
+          ],
+          "indexed": [
+            "new"
+          ]
+        },
+        "data_mutations": 1
+      }
+    },
+    {
+      "id": "WC08",
+      "purpose": "Receiver fence wins ordering against a fresh old writer",
+      "events": [
+        {
+          "command": "FenceWrites",
+          "expected_epoch": 1,
+          "new_epoch": 2,
+          "control_authorized": true
+        },
+        {
+          "command": "Submit",
+          "key": {
+            "resource": "catalogue/g1",
+            "domain": "owner",
+            "id": "A"
+          },
+          "intent": {
+            "behaviour": "reindex/v1",
+            "entry": "e1",
+            "tags": [
+              "new"
+            ],
+            "expected_revision": 7,
+            "write_epoch": 1,
+            "deadline_tick": 100
+          },
+          "tick": 20,
+          "permissions": {
+            "submit": true,
+            "write": true,
+            "cancel": true,
+            "observe": true
+          },
+          "reply": "deliver"
+        }
+      ],
+      "expected": {
+        "last_observation": {
+          "kind": "Refused",
+          "reason": "EpochMismatch",
+          "revision": 7
+        },
+        "catalogue_revision": 7,
+        "write_epoch": 2,
+        "entry": {
+          "id": "e1",
+          "manual": [
+            "family"
+          ],
+          "indexed": [
+            "old"
+          ]
+        },
+        "ledger_rows": 1,
+        "data_mutations": 0
+      }
+    },
+    {
+      "id": "WC09",
+      "purpose": "Already committed old result survives later programme and epoch changes",
+      "events": [
+        {
+          "command": "Submit",
+          "key": {
+            "resource": "catalogue/g1",
+            "domain": "owner",
+            "id": "A"
+          },
+          "intent": {
+            "behaviour": "reindex/v1",
+            "entry": "e1",
+            "tags": [
+              "new"
+            ],
+            "expected_revision": 7,
+            "write_epoch": 1,
+            "deadline_tick": 100
+          },
+          "tick": 20,
+          "permissions": {
+            "submit": true,
+            "write": true,
+            "cancel": true,
+            "observe": true
+          },
+          "reply": "drop"
+        },
+        {
+          "command": "FenceWrites",
+          "expected_epoch": 1,
+          "new_epoch": 2,
+          "control_authorized": true
+        },
+        {
+          "command": "AdmitProgramme",
+          "base": "S1",
+          "candidate": "S2",
+          "obligation_set": "catalogue-contract/v1",
+          "evidence_set": "complete-admissible-fixture",
+          "admission_authorized": true,
+          "requires_migration": false
+        },
+        {
+          "command": "Observe",
+          "key": {
+            "resource": "catalogue/g1",
+            "domain": "owner",
+            "id": "A"
+          },
+          "intent": {
+            "behaviour": "reindex/v1",
+            "entry": "e1",
+            "tags": [
+              "new"
+            ],
+            "expected_revision": 7,
+            "write_epoch": 1,
+            "deadline_tick": 100
+          },
+          "tick": 30,
+          "permissions": {
+            "submit": true,
+            "write": true,
+            "cancel": true,
+            "observe": true
+          }
+        }
+      ],
+      "expected": {
+        "last_observation": {
+          "kind": "Applied",
+          "key": {
+            "resource": "catalogue/g1",
+            "domain": "owner",
+            "id": "A"
+          },
+          "intent": {
+            "behaviour": "reindex/v1",
+            "entry": "e1",
+            "tags": [
+              "new"
+            ],
+            "expected_revision": 7,
+            "write_epoch": 1,
+            "deadline_tick": 100
+          },
+          "revision": 8,
+          "entry": {
+            "id": "e1",
+            "manual": [
+              "family"
+            ],
+            "indexed": [
+              "new"
+            ]
+          }
+        },
+        "new_run_default": "S2",
+        "original_run_programme": "S1",
+        "receipt_behaviour": "reindex/v1",
+        "catalogue_revision": 8,
+        "write_epoch": 2,
+        "data_mutations": 1
+      }
+    },
+    {
+      "id": "WC10",
+      "purpose": "Current state reached by a different operation does not prove A succeeded",
+      "events": [
+        {
+          "command": "Submit",
+          "key": {
+            "resource": "catalogue/g1",
+            "domain": "owner",
+            "id": "B"
+          },
+          "intent": {
+            "behaviour": "reindex/v1",
+            "entry": "e1",
+            "tags": [
+              "new"
+            ],
+            "expected_revision": 7,
+            "write_epoch": 1,
+            "deadline_tick": 100
+          },
+          "tick": 20,
+          "permissions": {
+            "submit": true,
+            "write": true,
+            "cancel": true,
+            "observe": true
+          },
+          "reply": "deliver"
+        },
+        {
+          "command": "Observe",
+          "key": {
+            "resource": "catalogue/g1",
+            "domain": "owner",
+            "id": "A"
+          },
+          "intent": {
+            "behaviour": "reindex/v1",
+            "entry": "e1",
+            "tags": [
+              "new"
+            ],
+            "expected_revision": 7,
+            "write_epoch": 1,
+            "deadline_tick": 100
+          },
+          "tick": 30,
+          "permissions": {
+            "submit": true,
+            "write": true,
+            "cancel": true,
+            "observe": true
+          }
+        }
+      ],
+      "expected": {
+        "last_observation": "NoRecordedOutcome",
+        "catalogue_revision": 8,
+        "entry": {
+          "id": "e1",
+          "manual": [
+            "family"
+          ],
+          "indexed": [
+            "new"
+          ]
+        },
+        "ledger_rows": 1,
+        "A_terminal_exists": false,
+        "B_terminal_kind": "Applied",
+        "data_mutations": 1
+      }
+    },
+    {
+      "id": "WC11",
+      "purpose": "Short-lived diagnostic audit is not the terminal state",
+      "events": [
+        {
+          "command": "Submit",
+          "key": {
+            "resource": "catalogue/g1",
+            "domain": "owner",
+            "id": "A"
+          },
+          "intent": {
+            "behaviour": "reindex/v1",
+            "entry": "e1",
+            "tags": [
+              "new"
+            ],
+            "expected_revision": 7,
+            "write_epoch": 1,
+            "deadline_tick": 100
+          },
+          "tick": 20,
+          "permissions": {
+            "submit": true,
+            "write": true,
+            "cancel": true,
+            "observe": true
+          },
+          "reply": "drop"
+        },
+        {
+          "command": "AssertFixtureAuditRows",
+          "expected": 1
+        },
+        {
+          "command": "RemoveDiagnosticAudit",
+          "tick": 40
+        },
+        {
+          "command": "Observe",
+          "key": {
+            "resource": "catalogue/g1",
+            "domain": "owner",
+            "id": "A"
+          },
+          "intent": {
+            "behaviour": "reindex/v1",
+            "entry": "e1",
+            "tags": [
+              "new"
+            ],
+            "expected_revision": 7,
+            "write_epoch": 1,
+            "deadline_tick": 100
+          },
+          "tick": 50,
+          "permissions": {
+            "submit": true,
+            "write": true,
+            "cancel": true,
+            "observe": true
+          }
+        }
+      ],
+      "expected": {
+        "last_observation": {
+          "kind": "Applied",
+          "key": {
+            "resource": "catalogue/g1",
+            "domain": "owner",
+            "id": "A"
+          },
+          "intent": {
+            "behaviour": "reindex/v1",
+            "entry": "e1",
+            "tags": [
+              "new"
+            ],
+            "expected_revision": 7,
+            "write_epoch": 1,
+            "deadline_tick": 100
+          },
+          "revision": 8,
+          "entry": {
+            "id": "e1",
+            "manual": [
+              "family"
+            ],
+            "indexed": [
+              "new"
+            ]
+          }
+        },
+        "catalogue_revision": 8,
+        "ledger_rows": 1,
+        "audit_rows": 0,
+        "data_mutations": 1
+      }
+    },
+    {
+      "id": "WC12",
+      "purpose": "Horizon expiry does not become evidence of non-execution",
+      "events": [
+        {
+          "command": "Submit",
+          "key": {
+            "resource": "catalogue/g1",
+            "domain": "owner",
+            "id": "A"
+          },
+          "intent": {
+            "behaviour": "reindex/v1",
+            "entry": "e1",
+            "tags": [
+              "new"
+            ],
+            "expected_revision": 7,
+            "write_epoch": 1,
+            "deadline_tick": 100
+          },
+          "tick": 20,
+          "permissions": {
+            "submit": true,
+            "write": true,
+            "cancel": true,
+            "observe": true
+          },
+          "reply": "drop"
+        },
+        {
+          "command": "RetireTerminalWitness",
+          "tick": 201,
+          "retention_authorized": true,
+          "live_consumers": 0
+        },
+        {
+          "command": "Observe",
+          "key": {
+            "resource": "catalogue/g1",
+            "domain": "owner",
+            "id": "A"
+          },
+          "intent": {
+            "behaviour": "reindex/v1",
+            "entry": "e1",
+            "tags": [
+              "new"
+            ],
+            "expected_revision": 7,
+            "write_epoch": 1,
+            "deadline_tick": 100
+          },
+          "tick": 202,
+          "permissions": {
+            "submit": true,
+            "write": true,
+            "cancel": true,
+            "observe": true
+          }
+        }
+      ],
+      "expected": {
+        "last_observation": "ReconciliationUnavailableExpired",
+        "catalogue_revision": 8,
+        "entry": {
+          "id": "e1",
+          "manual": [
+            "family"
+          ],
+          "indexed": [
+            "new"
+          ]
+        },
+        "observer_outcome": "OutcomeUnknown",
+        "data_mutations": 1,
+        "automatic_fresh_operation": false
+      }
+    },
+    {
+      "id": "WC13",
+      "purpose": "Replacement display name does not restore old resource identity",
+      "events": [
+        {
+          "command": "ResolveDisplayName",
+          "name": "catalogue",
+          "resolved_resource": "catalogue/g2"
+        },
+        {
+          "command": "AttemptReacquire",
+          "requested_resource": "catalogue/g1",
+          "available_resource": "catalogue/g2"
+        }
+      ],
+      "expected": {
+        "last_observation": "ResourceIncarnationMismatch",
+        "g2_mutations": 0,
+        "automatic_rebind": false
+      }
+    },
+    {
+      "id": "WC14",
+      "purpose": "Missing required consumer evidence cannot admit a new revision",
+      "events": [
+        {
+          "command": "AdmitProgramme",
+          "base": "S1",
+          "candidate": "S2",
+          "obligation_set": "catalogue-contract/v1",
+          "evidence_set": "missing-actual-entry-consumer",
+          "admission_authorized": true,
+          "requires_migration": false
+        }
+      ],
+      "expected": {
+        "last_observation": "AdmissionUnresolved",
+        "new_run_default": "S1",
+        "missing_obligation": "actual-entry-consumer",
+        "data_mutations": 0
+      }
+    },
+    {
+      "id": "WC15",
+      "purpose": "Pure lazy branch semantics are distinguishable from eager error",
+      "events": [
+        {
+          "command": "PureConditional",
+          "condition": true,
+          "then_value": 7,
+          "else_expression": {
+            "add_int64": [
+              9223372036854775807,
+              1
+            ]
+          }
+        }
+      ],
+      "expected": {
+        "result": 7,
+        "else_evaluated": false,
+        "ledger_rows": 0
+      }
+    },
+    {
+      "id": "WC16",
+      "purpose": "Pure overflow is not a successful empty value",
+      "events": [
+        {
+          "command": "PureCall",
+          "function": "add_int64",
+          "arguments": [
+            9223372036854775807,
+            1
+          ]
+        }
+      ],
+      "expected": {
+        "error": "Int64Overflow",
+        "success_value_present": false,
+        "ledger_rows": 0
+      }
+    },
+    {
+      "id": "WC17",
+      "purpose": "One complete source-change, new-run, lost-old-reply and resumed-observer path",
+      "events": [
+        {
+          "command": "Submit",
+          "key": {
+            "resource": "catalogue/g1",
+            "domain": "owner",
+            "id": "A"
+          },
+          "intent": {
+            "behaviour": "reindex/v1",
+            "entry": "e1",
+            "tags": [
+              "new"
+            ],
+            "expected_revision": 7,
+            "write_epoch": 1,
+            "deadline_tick": 100
+          },
+          "tick": 20,
+          "permissions": {
+            "submit": true,
+            "write": true,
+            "cancel": true,
+            "observe": true
+          },
+          "reply": "drop"
+        },
+        {
+          "command": "SaveContinuation",
+          "programme": "S1",
+          "unresolved": [
+            {
+              "key": {
+                "resource": "catalogue/g1",
+                "domain": "owner",
+                "id": "A"
+              },
+              "intent": {
+                "behaviour": "reindex/v1",
+                "entry": "e1",
+                "tags": [
+                  "new"
+                ],
+                "expected_revision": 7,
+                "write_epoch": 1,
+                "deadline_tick": 100
+              }
+            }
+          ]
+        },
+        {
+          "command": "AdmitProgramme",
+          "base": "S1",
+          "candidate": "S2",
+          "obligation_set": "catalogue-contract/v1",
+          "evidence_set": "complete-admissible-fixture",
+          "admission_authorized": true,
+          "requires_migration": false
+        },
+        {
+          "command": "StartRun",
+          "run_id": "new-run"
+        },
+        {
+          "command": "Submit",
+          "key": {
+            "resource": "catalogue/g1",
+            "domain": "owner",
+            "id": "B"
+          },
+          "intent": {
+            "behaviour": "reindex/v2",
+            "entry": "e1",
+            "tags": [
+              "next"
+            ],
+            "expected_revision": 8,
+            "write_epoch": 1,
+            "deadline_tick": 100
+          },
+          "tick": 30,
+          "permissions": {
+            "submit": true,
+            "write": true,
+            "cancel": true,
+            "observe": true
+          },
+          "reply": "deliver",
+          "run_id": "new-run"
+        },
+        {
+          "command": "Resume",
+          "programme": "S1",
+          "permissions": {
+            "submit": true,
+            "write": true,
+            "cancel": true,
+            "observe": true
+          }
+        },
+        {
+          "command": "Observe",
+          "key": {
+            "resource": "catalogue/g1",
+            "domain": "owner",
+            "id": "A"
+          },
+          "intent": {
+            "behaviour": "reindex/v1",
+            "entry": "e1",
+            "tags": [
+              "new"
+            ],
+            "expected_revision": 7,
+            "write_epoch": 1,
+            "deadline_tick": 100
+          },
+          "tick": 40,
+          "permissions": {
+            "submit": true,
+            "write": true,
+            "cancel": true,
+            "observe": true
+          }
+        }
+      ],
+      "expected": {
+        "last_observation": {
+          "kind": "Applied",
+          "key": {
+            "resource": "catalogue/g1",
+            "domain": "owner",
+            "id": "A"
+          },
+          "intent": {
+            "behaviour": "reindex/v1",
+            "entry": "e1",
+            "tags": [
+              "new"
+            ],
+            "expected_revision": 7,
+            "write_epoch": 1,
+            "deadline_tick": 100
+          },
+          "revision": 8,
+          "entry": {
+            "id": "e1",
+            "manual": [
+              "family"
+            ],
+            "indexed": [
+              "new"
+            ]
+          }
+        },
+        "catalogue_revision": 9,
+        "entry": {
+          "id": "e1",
+          "manual": [
+            "family"
+          ],
+          "indexed": [
+            "next"
+          ]
+        },
+        "ledger_rows": 2,
+        "data_mutations": 2,
+        "new_run_default": "S2",
+        "new_run_programme": "S2",
+        "original_run_programme": "S1",
+        "source_call_order": [
+          "S1",
+          "S2"
+        ],
+        "resumed_unresolved_programme": "S1"
+      }
+    }
+  ],
+  "not_claimed": [
+    "Executed tests",
+    "Production durability",
+    "Actual permission enforcement",
+    "Real clocks",
+    "Complete general-language acceptance",
+    "Performance or model-cost improvement"
+  ],
+  "comparison_scope": "Specified observables and persistent state projections, not an exhaustive wire transcript. Every command remains a draft semantic operation.",
+  "frozen_at": "2026-10-06T17:39:20.257819+00:00"
+}

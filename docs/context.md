@@ -71,6 +71,10 @@ restricted familiar constructors for the unchanged L2 semantics. The pure
 an implementation slice. The [pure edit receiver](../src/bagaev_form_edit.py)
 returns detached, unadmitted drafts; this is not a completed form/model study.
 
+For the first connected design demonstration, read the [whole-cycle reference
+simulation](probe-whole-cycle.md). Its typed pure computation is real reference
+execution; receiver/admission/continuation guarantees remain explicitly simulated.
+
 ## Routes
 
 For experimental portable context, read the [receiver guide](probe-context.md),
