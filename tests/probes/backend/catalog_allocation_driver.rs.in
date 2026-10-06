@@ -1,0 +1,58 @@
+#[path="{{BACKEND}}/prepared_json_native_v10.rs"]pub mod prepared_json_native_v10;
+// Compile/link only with an independently admitted exact own kernel and bounded profile.
+#[path="{{BACKEND}}/composite_result_decode_v10.rs"]pub mod composite_result_decode_v10;
+#[path="{{BACKEND}}/transport.rs"]pub mod transport;
+#[path="{{BACKEND}}/check.rs"]pub mod check;
+#[path="{{BACKEND}}/ir.rs"]pub mod ir;
+#[path="{{BACKEND}}/canonical.rs"]pub mod canonical;
+#[path="{{BACKEND}}/sha256.rs"]pub mod sha256;
+#[path="{{BACKEND}}/record_ir.rs"]pub mod record_ir;
+#[path="{{BACKEND}}/option_int.rs"]pub mod option_int;
+#[path="{{BACKEND}}/text_value.rs"]pub mod text_value;
+#[path="{{BACKEND}}/text_list.rs"]pub mod text_list;
+#[path="{{BACKEND}}/typed_record.rs"]pub mod typed_record;
+#[path="{{BACKEND}}/text_inspection.rs"]pub mod text_inspection;
+#[path="{{BACKEND}}/int_projection.rs"]pub mod int_projection;
+#[path="{{BACKEND}}/record_value.rs"]pub mod record_value;
+#[path="{{BACKEND}}/type_graph.rs"]pub mod type_graph;
+#[path="{{BACKEND}}/json_view.rs"]pub mod json_view;
+#[path="{{BACKEND}}/variant_admission.rs"]pub mod variant_admission;
+#[path="{{BACKEND}}/list_callframe.rs"]pub mod list_callframe;
+#[path="{{BACKEND}}/list_native_adapter.rs"]pub mod list_native_adapter;
+#[path="{{BACKEND}}/json_native_input.rs"]pub mod json_native_input;
+#[path="{{BACKEND}}/json_native_invocation.rs"]pub mod json_native_invocation;
+#[path="{{BACKEND}}/json_native_adapter_v10.rs"]pub mod json_native_adapter_v10;
+#[path="{{BACKEND}}/composite_export_v10.rs"]pub mod composite_export_v10;
+#[path="{{BACKEND}}/composite_native_cells.rs"]pub mod composite_native_cells;
+
+#[path="{{CATALOG_DIR}}/catalog.rs"]pub mod catalog;
+#[path="{{CATALOG_DIR}}/native_projection.rs"]pub mod native_projection;
+#[path="{{CATALOG_DIR}}/reference_projection.rs"]pub mod reference_projection;
+#[path="{{CATALOG_DIR}}/call_boundary.rs"]pub mod call_boundary;
+
+#[path="{{ALLOCATION_DIR}}/instrumented_boundary.rs"]pub mod instrumented_boundary;
+
+#[path="{{ALLOCATION_DIR}}/counter.rs"]mod counter;
+#[global_allocator]static ALLOCATOR:counter::Tracked=counter::Tracked;
+use counter::Snapshot;
+enum Runner{Normal(call_boundary::Session),Profiled(instrumented_boundary::Session)}
+impl Runner{
+ fn new(kind:&str,mode:&str,source:&[u8])->Self{match kind{"normal"=>Self::Normal(call_boundary::Session::new(mode,source).unwrap()),"profiled"=>Self::Profiled(instrumented_boundary::Session::new(mode,source).unwrap()),_=>panic!("kind")}}
+ unsafe fn call(&mut self,raw:&[u8],marks:&mut[Snapshot;4])->Result<Vec<u8>,String>{match self{
+  Self::Normal(s)=>{marks[0]=counter::snapshot();counter::reset_peak();let out=unsafe{s.call(raw)};marks[3]=counter::snapshot();marks[1]=marks[3];marks[2]=marks[3];out},
+  Self::Profiled(s)=>unsafe{s.call(raw,marks)},
+ }}
+}
+fn read(path:&str)->Vec<u8>{use std::io::Read;let f=std::fs::File::open(path).unwrap();let m=f.metadata().unwrap();assert!(m.is_file()&&m.len()<=1048576);let mut b=Vec::new();f.take(1048577).read_to_end(&mut b).unwrap();assert!(b.len()<=1048576);b}
+fn snap(s:Snapshot){print!("{{\"live\":{},\"peak\":{},\"alloc\":{},\"realloc\":{},\"dealloc\":{}}}",s.live,s.peak,s.alloc,s.realloc,s.dealloc);}
+fn main(){
+ let a:Vec<_>=std::env::args().collect();assert_eq!(a.len(),6);let count=match a[3].as_str(){"qualify"=>1,"collect"=>16,_=>panic!("phase")};
+ let raw=read(&a[4]);let expected=read(&a[5]);let before=raw.clone();assert!(counter::failed_resize_probe());let base=counter::snapshot();counter::reset_peak();let mut runner=Runner::new(&a[2],&a[1],include_bytes!("{{SOURCE}}"));let prepared=counter::snapshot();
+ let mut rows=[([base;4],base,0usize,0usize);16];
+ for row in rows.iter_mut().take(count){
+  let mut marks=[counter::snapshot();4];let out=unsafe{runner.call(std::hint::black_box(&raw),&mut marks)}.unwrap();let len=out.len();let capacity=out.capacity();assert_eq!(std::hint::black_box(out.as_slice()),expected.as_slice());assert_eq!(raw,before);assert_eq!(marks[3].live-marks[0].live,capacity as u64);drop(out);let after=counter::snapshot();assert_eq!(after.live,marks[0].live);*row=(marks,after,len,capacity);
+ }
+ drop(runner);let final_state=counter::snapshot();assert_eq!(final_state.live,base.live);
+ print!("{{\"kind\":\"{}\",\"mode\":\"{}\",\"base\":",a[2],a[1]);snap(base);print!(",\"prepared\":");snap(prepared);print!(",\"final\":");snap(final_state);print!(",\"rows\":[");
+ for(i,(marks,after,len,cap))in rows.iter().take(count).enumerate(){if i>0{print!(",");}print!("{{\"call\":{i},\"marks\":[");for(j,m)in marks.iter().enumerate(){if j>0{print!(",");}snap(*m);}print!("],\"after\":");snap(*after);print!(",\"output_len\":{len},\"output_capacity\":{cap}}}");}println!("]}}");
+}
