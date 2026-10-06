@@ -80,6 +80,9 @@ then checks those declarations along that same connected path.
 The [source-bound change adapter](probe-component-change.md) connects five fixed
 receiving obligations to retained exact observations and the final simulated
 admission boundary, preserving prior execution timestamps and old-run pins.
+The [readable component form](probe-component-form.md) expresses that same working
+source as records, pure functions and state/request declarations. It is a bounded
+exact view, not a new evaluator or the entire proposed surface language.
 
 ## Routes
 

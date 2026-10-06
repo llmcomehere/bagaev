@@ -1,0 +1,16 @@
+bagaev component-form/1;
+component CatalogEntry operation reindex {
+  record EntryId { value: Text };
+  record CatalogRevision { value: Int64 };
+  record Entry { id: EntryId, indexed: TextList, manual: TextList };
+  record ReindexRequest { base: CatalogRevision, id: EntryId, tags: TextList };
+
+  state Entry identity id;
+  request ReindexRequest identity id revision base: CatalogRevision;
+  replace indexed;
+  entry main;
+
+  fn normalize(tags: TextList) -> TextList = list.unique(tags);
+  fn main(state: Entry, request: ReindexRequest) -> Entry =
+    Entry { id: state.id, indexed: normalize(request.tags), manual: state.manual };
+}

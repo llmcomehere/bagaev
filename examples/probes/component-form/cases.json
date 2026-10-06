@@ -1,0 +1,561 @@
+{
+  "status": "FROZEN_BEFORE_PARSER_IMPLEMENTATION",
+  "at": "2026-10-06T19:42:43.760320+00:00",
+  "policy": {
+    "schema": "bagaev-component-policy/1",
+    "state_type": "Entry",
+    "request_type": "ReindexRequest",
+    "revision_type": "CatalogRevision",
+    "identity_binding": {
+      "state": "id",
+      "request": "id"
+    },
+    "revision_binding": "base",
+    "replace_fields": [
+      "indexed"
+    ],
+    "component": "CatalogEntry",
+    "operation": "reindex",
+    "records": {
+      "EntryId": {
+        "value": "Text"
+      },
+      "CatalogRevision": {
+        "value": "Int64"
+      },
+      "Entry": {
+        "id": "EntryId",
+        "indexed": "TextList",
+        "manual": "TextList"
+      },
+      "ReindexRequest": {
+        "base": "CatalogRevision",
+        "id": "EntryId",
+        "tags": "TextList"
+      }
+    }
+  },
+  "cases": [
+    {
+      "id": "S1",
+      "source": "bagaev component-form/1;\ncomponent CatalogEntry operation reindex {\n  record EntryId { value: Text };\n  record CatalogRevision { value: Int64 };\n  record Entry { id: EntryId, indexed: TextList, manual: TextList };\n  record ReindexRequest { base: CatalogRevision, id: EntryId, tags: TextList };\n\n  state Entry identity id;\n  request ReindexRequest identity id revision base: CatalogRevision;\n  replace indexed;\n  entry main;\n\n  fn main(state: Entry, request: ReindexRequest) -> Entry =\n    Entry { id: state.id, indexed: list.unique(request.tags), manual: state.manual };\n}\n",
+      "expected_data": {
+        "schema": "bagaev-component-source/1",
+        "program": {
+          "schema": "bagaev-typed-record/10",
+          "records": {
+            "EntryId": {
+              "value": "Text"
+            },
+            "CatalogRevision": {
+              "value": "Int64"
+            },
+            "Entry": {
+              "id": "EntryId",
+              "indexed": "TextList",
+              "manual": "TextList"
+            },
+            "ReindexRequest": {
+              "base": "CatalogRevision",
+              "id": "EntryId",
+              "tags": "TextList"
+            }
+          },
+          "lists": {},
+          "variants": {},
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [
+                [
+                  "state",
+                  "Entry"
+                ],
+                [
+                  "request",
+                  "ReindexRequest"
+                ]
+              ],
+              "result": "Entry",
+              "body": [
+                "record",
+                "Entry",
+                [
+                  "field",
+                  [
+                    "arg",
+                    "state"
+                  ],
+                  "id"
+                ],
+                [
+                  "list.unique",
+                  [
+                    "field",
+                    [
+                      "arg",
+                      "request"
+                    ],
+                    "tags"
+                  ]
+                ],
+                [
+                  "field",
+                  [
+                    "arg",
+                    "state"
+                  ],
+                  "manual"
+                ]
+              ]
+            }
+          }
+        },
+        "component": {
+          "name": "CatalogEntry",
+          "operation": "reindex",
+          "state_type": "Entry",
+          "request_type": "ReindexRequest",
+          "revision_type": "CatalogRevision",
+          "entry": "main",
+          "identity_binding": {
+            "state": "id",
+            "request": "id"
+          },
+          "revision_binding": "base",
+          "replace_fields": [
+            "indexed"
+          ]
+        }
+      },
+      "expected_checker": {
+        "schema": "bagaev-component-check/1",
+        "status": "checked",
+        "execution_admission": false,
+        "name": "CatalogEntry",
+        "operation": "reindex",
+        "source_sha256": "f57aa73a733951b8321b89b4813bc27021ec2f49af34dc19989812925033bfbc",
+        "program_sha256": "c9a8b4f6569328bae110f5c8a95e097093535c78e4e5bffd720234410bb5eea4",
+        "state_type": "Entry",
+        "request_type": "ReindexRequest",
+        "revision_type": "CatalogRevision",
+        "revision_binding": "base",
+        "identity_binding": {
+          "state": "id",
+          "request": "id"
+        },
+        "replace_fields": [
+          "indexed"
+        ],
+        "preserve_fields": [
+          "id",
+          "manual"
+        ],
+        "policy_compatible": true,
+        "policy_sha256": "037b1d6e2eff566661ff10c3e6e7f1e4ec2fe5f41c7c10e8cdee78282912a815"
+      }
+    },
+    {
+      "id": "S2",
+      "source": "bagaev component-form/1;\ncomponent CatalogEntry operation reindex {\n  record EntryId { value: Text };\n  record CatalogRevision { value: Int64 };\n  record Entry { id: EntryId, indexed: TextList, manual: TextList };\n  record ReindexRequest { base: CatalogRevision, id: EntryId, tags: TextList };\n\n  state Entry identity id;\n  request ReindexRequest identity id revision base: CatalogRevision;\n  replace indexed;\n  entry main;\n\n  fn normalize(tags: TextList) -> TextList = list.unique(tags);\n  fn main(state: Entry, request: ReindexRequest) -> Entry =\n    Entry { id: state.id, indexed: normalize(request.tags), manual: state.manual };\n}\n",
+      "expected_data": {
+        "schema": "bagaev-component-source/1",
+        "program": {
+          "schema": "bagaev-typed-record/10",
+          "records": {
+            "EntryId": {
+              "value": "Text"
+            },
+            "CatalogRevision": {
+              "value": "Int64"
+            },
+            "Entry": {
+              "id": "EntryId",
+              "indexed": "TextList",
+              "manual": "TextList"
+            },
+            "ReindexRequest": {
+              "base": "CatalogRevision",
+              "id": "EntryId",
+              "tags": "TextList"
+            }
+          },
+          "lists": {},
+          "variants": {},
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [
+                [
+                  "state",
+                  "Entry"
+                ],
+                [
+                  "request",
+                  "ReindexRequest"
+                ]
+              ],
+              "result": "Entry",
+              "body": [
+                "record",
+                "Entry",
+                [
+                  "field",
+                  [
+                    "arg",
+                    "state"
+                  ],
+                  "id"
+                ],
+                [
+                  "call",
+                  "normalize",
+                  [
+                    "field",
+                    [
+                      "arg",
+                      "request"
+                    ],
+                    "tags"
+                  ]
+                ],
+                [
+                  "field",
+                  [
+                    "arg",
+                    "state"
+                  ],
+                  "manual"
+                ]
+              ]
+            },
+            "normalize": {
+              "params": [
+                [
+                  "tags",
+                  "TextList"
+                ]
+              ],
+              "result": "TextList",
+              "body": [
+                "list.unique",
+                [
+                  "arg",
+                  "tags"
+                ]
+              ]
+            }
+          }
+        },
+        "component": {
+          "name": "CatalogEntry",
+          "operation": "reindex",
+          "state_type": "Entry",
+          "request_type": "ReindexRequest",
+          "revision_type": "CatalogRevision",
+          "entry": "main",
+          "identity_binding": {
+            "state": "id",
+            "request": "id"
+          },
+          "revision_binding": "base",
+          "replace_fields": [
+            "indexed"
+          ]
+        }
+      },
+      "expected_checker": {
+        "schema": "bagaev-component-check/1",
+        "status": "checked",
+        "execution_admission": false,
+        "name": "CatalogEntry",
+        "operation": "reindex",
+        "source_sha256": "50902f5b21f6817783595b02f270abe8c3bd433270f13704d8ee0bde178f3a27",
+        "program_sha256": "41752aa1de702398fb243e95bc546fe0e6015a9b05fdd4e72c1ed4b4dd7a3521",
+        "state_type": "Entry",
+        "request_type": "ReindexRequest",
+        "revision_type": "CatalogRevision",
+        "revision_binding": "base",
+        "identity_binding": {
+          "state": "id",
+          "request": "id"
+        },
+        "replace_fields": [
+          "indexed"
+        ],
+        "preserve_fields": [
+          "id",
+          "manual"
+        ],
+        "policy_compatible": true,
+        "policy_sha256": "037b1d6e2eff566661ff10c3e6e7f1e4ec2fe5f41c7c10e8cdee78282912a815"
+      }
+    },
+    {
+      "id": "REORDERED-FIELDS",
+      "source": "bagaev component-form/1;\ncomponent CatalogEntry operation reindex {\n  record EntryId { value: Text };\n  record CatalogRevision { value: Int64 };\n  record Entry { id: EntryId, indexed: TextList, manual: TextList };\n  record ReindexRequest { base: CatalogRevision, id: EntryId, tags: TextList };\n\n  state Entry identity id;\n  request ReindexRequest identity id revision base: CatalogRevision;\n  replace indexed;\n  entry main;\n\n  fn main(state: Entry, request: ReindexRequest) -> Entry =\n    Entry { manual: state.manual, id: state.id, indexed: list.unique(request.tags) };\n}\n",
+      "expected_data": {
+        "schema": "bagaev-component-source/1",
+        "program": {
+          "schema": "bagaev-typed-record/10",
+          "records": {
+            "EntryId": {
+              "value": "Text"
+            },
+            "CatalogRevision": {
+              "value": "Int64"
+            },
+            "Entry": {
+              "id": "EntryId",
+              "indexed": "TextList",
+              "manual": "TextList"
+            },
+            "ReindexRequest": {
+              "base": "CatalogRevision",
+              "id": "EntryId",
+              "tags": "TextList"
+            }
+          },
+          "lists": {},
+          "variants": {},
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [
+                [
+                  "state",
+                  "Entry"
+                ],
+                [
+                  "request",
+                  "ReindexRequest"
+                ]
+              ],
+              "result": "Entry",
+              "body": [
+                "record",
+                "Entry",
+                [
+                  "field",
+                  [
+                    "arg",
+                    "state"
+                  ],
+                  "id"
+                ],
+                [
+                  "list.unique",
+                  [
+                    "field",
+                    [
+                      "arg",
+                      "request"
+                    ],
+                    "tags"
+                  ]
+                ],
+                [
+                  "field",
+                  [
+                    "arg",
+                    "state"
+                  ],
+                  "manual"
+                ]
+              ]
+            }
+          }
+        },
+        "component": {
+          "name": "CatalogEntry",
+          "operation": "reindex",
+          "state_type": "Entry",
+          "request_type": "ReindexRequest",
+          "revision_type": "CatalogRevision",
+          "entry": "main",
+          "identity_binding": {
+            "state": "id",
+            "request": "id"
+          },
+          "revision_binding": "base",
+          "replace_fields": [
+            "indexed"
+          ]
+        }
+      },
+      "expected_checker": {
+        "schema": "bagaev-component-check/1",
+        "status": "checked",
+        "execution_admission": false,
+        "name": "CatalogEntry",
+        "operation": "reindex",
+        "source_sha256": "f57aa73a733951b8321b89b4813bc27021ec2f49af34dc19989812925033bfbc",
+        "program_sha256": "c9a8b4f6569328bae110f5c8a95e097093535c78e4e5bffd720234410bb5eea4",
+        "state_type": "Entry",
+        "request_type": "ReindexRequest",
+        "revision_type": "CatalogRevision",
+        "revision_binding": "base",
+        "identity_binding": {
+          "state": "id",
+          "request": "id"
+        },
+        "replace_fields": [
+          "indexed"
+        ],
+        "preserve_fields": [
+          "id",
+          "manual"
+        ],
+        "policy_compatible": true,
+        "policy_sha256": "037b1d6e2eff566661ff10c3e6e7f1e4ec2fe5f41c7c10e8cdee78282912a815"
+      }
+    },
+    {
+      "id": "OTHER-ID",
+      "source": "bagaev component-form/1;\ncomponent CatalogEntry operation reindex {\n  record EntryId { value: Text };\n  record OtherId { value: Text };\n  record CatalogRevision { value: Int64 };\n  record Entry { id: EntryId, indexed: TextList, manual: TextList };\n  record ReindexRequest { base: CatalogRevision, id: OtherId, tags: TextList };\n\n  state Entry identity id;\n  request ReindexRequest identity id revision base: CatalogRevision;\n  replace indexed;\n  entry main;\n\n  fn main(state: Entry, request: ReindexRequest) -> Entry =\n    Entry { id: state.id, indexed: list.unique(request.tags), manual: state.manual };\n}\n",
+      "expected_data": {
+        "schema": "bagaev-component-source/1",
+        "program": {
+          "schema": "bagaev-typed-record/10",
+          "records": {
+            "EntryId": {
+              "value": "Text"
+            },
+            "CatalogRevision": {
+              "value": "Int64"
+            },
+            "Entry": {
+              "id": "EntryId",
+              "indexed": "TextList",
+              "manual": "TextList"
+            },
+            "ReindexRequest": {
+              "base": "CatalogRevision",
+              "id": "OtherId",
+              "tags": "TextList"
+            },
+            "OtherId": {
+              "value": "Text"
+            }
+          },
+          "lists": {},
+          "variants": {},
+          "entry": "main",
+          "functions": {
+            "main": {
+              "params": [
+                [
+                  "state",
+                  "Entry"
+                ],
+                [
+                  "request",
+                  "ReindexRequest"
+                ]
+              ],
+              "result": "Entry",
+              "body": [
+                "record",
+                "Entry",
+                [
+                  "field",
+                  [
+                    "arg",
+                    "state"
+                  ],
+                  "id"
+                ],
+                [
+                  "list.unique",
+                  [
+                    "field",
+                    [
+                      "arg",
+                      "request"
+                    ],
+                    "tags"
+                  ]
+                ],
+                [
+                  "field",
+                  [
+                    "arg",
+                    "state"
+                  ],
+                  "manual"
+                ]
+              ]
+            }
+          }
+        },
+        "component": {
+          "name": "CatalogEntry",
+          "operation": "reindex",
+          "state_type": "Entry",
+          "request_type": "ReindexRequest",
+          "revision_type": "CatalogRevision",
+          "entry": "main",
+          "identity_binding": {
+            "state": "id",
+            "request": "id"
+          },
+          "revision_binding": "base",
+          "replace_fields": [
+            "indexed"
+          ]
+        }
+      },
+      "expected_checker": {
+        "status": "refused",
+        "reason": "CS_IDENTITY",
+        "schema": "bagaev-component-check/1",
+        "execution_admission": false
+      }
+    },
+    {
+      "id": "VERSION",
+      "source": "bagaev component-form/2;\ncomponent CatalogEntry operation reindex {\n  record EntryId { value: Text };\n  record CatalogRevision { value: Int64 };\n  record Entry { id: EntryId, indexed: TextList, manual: TextList };\n  record ReindexRequest { base: CatalogRevision, id: EntryId, tags: TextList };\n\n  state Entry identity id;\n  request ReindexRequest identity id revision base: CatalogRevision;\n  replace indexed;\n  entry main;\n\n  fn main(state: Entry, request: ReindexRequest) -> Entry =\n    Entry { id: state.id, indexed: list.unique(request.tags), manual: state.manual };\n}\n",
+      "error": "FORM_VERSION"
+    },
+    {
+      "id": "DUPLICATE-RECORD",
+      "source": "bagaev component-form/1;\ncomponent CatalogEntry operation reindex {\n  record EntryId { value: Text }; record EntryId { value: Text };\n  record CatalogRevision { value: Int64 };\n  record Entry { id: EntryId, indexed: TextList, manual: TextList };\n  record ReindexRequest { base: CatalogRevision, id: EntryId, tags: TextList };\n\n  state Entry identity id;\n  request ReindexRequest identity id revision base: CatalogRevision;\n  replace indexed;\n  entry main;\n\n  fn main(state: Entry, request: ReindexRequest) -> Entry =\n    Entry { id: state.id, indexed: list.unique(request.tags), manual: state.manual };\n}\n",
+      "error": "FORM_DUPLICATE"
+    },
+    {
+      "id": "DUPLICATE-CLAUSE",
+      "source": "bagaev component-form/1;\ncomponent CatalogEntry operation reindex {\n  record EntryId { value: Text };\n  record CatalogRevision { value: Int64 };\n  record Entry { id: EntryId, indexed: TextList, manual: TextList };\n  record ReindexRequest { base: CatalogRevision, id: EntryId, tags: TextList };\n\n  state Entry identity id;\n  request ReindexRequest identity id revision base: CatalogRevision;\n  replace indexed;\n  entry main; entry main;\n\n  fn main(state: Entry, request: ReindexRequest) -> Entry =\n    Entry { id: state.id, indexed: list.unique(request.tags), manual: state.manual };\n}\n",
+      "error": "FORM_DUPLICATE"
+    },
+    {
+      "id": "DUPLICATE-FIELD",
+      "source": "bagaev component-form/1;\ncomponent CatalogEntry operation reindex {\n  record EntryId { value: Text };\n  record CatalogRevision { value: Int64 };\n  record Entry { id: EntryId, indexed: TextList, manual: TextList };\n  record ReindexRequest { base: CatalogRevision, id: EntryId, tags: TextList };\n\n  state Entry identity id;\n  request ReindexRequest identity id revision base: CatalogRevision;\n  replace indexed;\n  entry main;\n\n  fn main(state: Entry, request: ReindexRequest) -> Entry =\n    Entry { id: state.id, id: state.id, indexed: list.unique(request.tags), manual: state.manual };\n}\n",
+      "error": "FORM_DUPLICATE"
+    },
+    {
+      "id": "MISSING-CLAUSE",
+      "source": "bagaev component-form/1;\ncomponent CatalogEntry operation reindex {\n  record EntryId { value: Text };\n  record CatalogRevision { value: Int64 };\n  record Entry { id: EntryId, indexed: TextList, manual: TextList };\n  record ReindexRequest { base: CatalogRevision, id: EntryId, tags: TextList };\n\n  state Entry identity id;\n  request ReindexRequest identity id revision base: CatalogRevision;\n  replace indexed;\n  \n\n  fn main(state: Entry, request: ReindexRequest) -> Entry =\n    Entry { id: state.id, indexed: list.unique(request.tags), manual: state.manual };\n}\n",
+      "error": "FORM_SHAPE"
+    },
+    {
+      "id": "UNKNOWN-RECORD",
+      "source": "bagaev component-form/1;\ncomponent CatalogEntry operation reindex {\n  record EntryId { value: Text };\n  record CatalogRevision { value: Int64 };\n  record Entry { id: EntryId, indexed: TextList, manual: TextList };\n  record ReindexRequest { base: CatalogRevision, id: EntryId, tags: TextList };\n\n  state Entry identity id;\n  request ReindexRequest identity id revision base: CatalogRevision;\n  replace indexed;\n  entry main;\n\n  fn main(state: Entry, request: ReindexRequest) -> Entry =\n    Absent { id: state.id, indexed: list.unique(request.tags), manual: state.manual };\n}\n",
+      "error": "FORM_REFERENCE"
+    },
+    {
+      "id": "MISSING-CONSTRUCTION-FIELD",
+      "source": "bagaev component-form/1;\ncomponent CatalogEntry operation reindex {\n  record EntryId { value: Text };\n  record CatalogRevision { value: Int64 };\n  record Entry { id: EntryId, indexed: TextList, manual: TextList };\n  record ReindexRequest { base: CatalogRevision, id: EntryId, tags: TextList };\n\n  state Entry identity id;\n  request ReindexRequest identity id revision base: CatalogRevision;\n  replace indexed;\n  entry main;\n\n  fn main(state: Entry, request: ReindexRequest) -> Entry =\n    Entry { id: state.id, indexed: list.unique(request.tags) };\n}\n",
+      "error": "FORM_RECORD_FIELDS"
+    },
+    {
+      "id": "HOST-CODE",
+      "source": "bagaev component-form/1;\ncomponent CatalogEntry operation reindex {\n  record EntryId { value: Text };\n  record CatalogRevision { value: Int64 };\n  record Entry { id: EntryId, indexed: TextList, manual: TextList };\n  record ReindexRequest { base: CatalogRevision, id: EntryId, tags: TextList };\n\n  state Entry identity id;\n  request ReindexRequest identity id revision base: CatalogRevision;\n  replace indexed;\n  entry main;\n\n  fn main(state: Entry, request: ReindexRequest) -> Entry =\n    Entry { id: __import__(\"os\"), indexed: list.unique(request.tags), manual: state.manual };\n}\n",
+      "error": "FORM_SYNTAX"
+    },
+    {
+      "id": "UNKNOWN-TOKEN",
+      "source": "bagaev component-form/1;\ncomponent CatalogEntry operation reindex {\n  record EntryId { value: Text };\n  record CatalogRevision { value: Int64 };\n  record Entry { id: EntryId, indexed: TextList, manual: TextList };\n  record ReindexRequest { base: CatalogRevision, id: EntryId, tags: TextList };\n\n  state Entry identity id;\n  request ReindexRequest identity id revision base: CatalogRevision;\n  replace indexed;\n  entry main;\n\n  fn main(state: Entry, request: ReindexRequest) -> Entry =\n    Entry { id: state.id, indexed: list.unique(request.tags), manual: state.manual };\n}\n#comment",
+      "error": "FORM_SYNTAX"
+    }
+  ]
+}
