@@ -1,0 +1,89 @@
+{
+  "schema": "bagaev-component-source/1",
+  "program": {
+    "schema": "bagaev-typed-record/10",
+    "records": {
+      "EntryId": {
+        "value": "Text"
+      },
+      "CatalogRevision": {
+        "value": "Int64"
+      },
+      "Entry": {
+        "id": "EntryId",
+        "indexed": "TextList",
+        "manual": "TextList"
+      },
+      "ReindexRequest": {
+        "base": "CatalogRevision",
+        "id": "EntryId",
+        "tags": "TextList"
+      }
+    },
+    "lists": {},
+    "variants": {},
+    "entry": "main",
+    "functions": {
+      "main": {
+        "params": [
+          [
+            "state",
+            "Entry"
+          ],
+          [
+            "request",
+            "ReindexRequest"
+          ]
+        ],
+        "result": "Entry",
+        "body": [
+          "record",
+          "Entry",
+          [
+            "field",
+            [
+              "arg",
+              "state"
+            ],
+            "id"
+          ],
+          [
+            "list.unique",
+            [
+              "field",
+              [
+                "arg",
+                "request"
+              ],
+              "tags"
+            ]
+          ],
+          [
+            "field",
+            [
+              "arg",
+              "state"
+            ],
+            "manual"
+          ]
+        ]
+      }
+    }
+  },
+  "component": {
+    "name": "CatalogEntry",
+    "operation": "reindex",
+    "state_type": "Entry",
+    "request_type": "ReindexRequest",
+    "revision_type": "CatalogRevision",
+    "entry": "main",
+    "identity_binding": {
+      "state": "id",
+      "request": "id"
+    },
+    "revision_binding": "base",
+    "replace_fields": [
+      "indexed"
+    ]
+  }
+}

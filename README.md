@@ -70,6 +70,10 @@ untrusted code. No model account is needed for this example.
 
 ## What exists today
 
+- **Experimental source-level components:** [typed declarations](docs/probe-component-source.md)
+  name state/request types, identity/revision bindings and replacement fields.
+  A data-only checker feeds the connected simulation's actual typed computation
+  and preservation checks. Compatibility does not grant execution permission.
 - **Experimental whole-cycle reference simulation:** a [connected example](docs/probe-whole-cycle.md)
   runs typed pure computation through simulated state mutation, source change
   and lost-response continuation. Seventeen finite trace projections matched;

@@ -27,6 +27,8 @@ class Engine:
   need(out['status']=='success' and out['reason'] is None and out['location'] is None and out['value_type']=='Record:Entry','pure evaluation refused')
   v=out['value'];need(type(v) is dict and set(v)=={'id','manual','indexed'} and type(v['id']) is dict and set(v['id'])=={'value'},'entry shape')
   need(entry==original,'input mutation');return {'id':v['id']['value'],'manual':clone(v['manual']),'indexed':clone(v['indexed'])}
+ def transition(self,source,entry,intent,label,operation_key=None):
+  return self.transform(source,entry,intent['tags'],label)
  def check_candidate(self,source):
   for c in json.loads((D/'pure/cases.json').read_text())['cases']:
    out=self.invoke(self.sources[source],[c['entry'],c['tags']],'admission-pure-'+source+'-'+c['id']);need(encoded(out)==encoded(c['expected'][source]),'candidate pure expectation')
@@ -63,7 +65,7 @@ class Receiver:
   if reason is None and len(matches)!=1:reason='MissingEntry'
   if reason is not None:
    receipt={'kind':'Refused','reason':reason,'revision':self.state['revision']};self.bind(e,receipt);self.read_terminal(e,self.ledger[k]);return
-  index=matches[0];entry=self.state['entries'][index];candidate=self.engine.transform(source,entry,i['tags'],self.current_case+'-operation-'+source);self.calls.append(source)
+  index=matches[0];entry=self.state['entries'][index];candidate=self.engine.transition(source,entry,i,self.current_case+'-operation-'+source,operation_key=e['key']);self.calls.append(source)
   # A source result is not a write receipt. Independent component frame before commit.
   need(candidate['id']==entry['id'] and candidate['manual']==entry['manual'] and candidate['indexed']==sorted(set(i['tags'])),'component frame')
   self.state['entries'][index]=candidate;self.state['revision']+=1;self.mutations+=1

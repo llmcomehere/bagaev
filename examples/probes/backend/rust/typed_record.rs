@@ -47,7 +47,7 @@ pub struct CheckedSource {
     functions: Vec<Function>, nodes: Vec<Node>, entry: usize,
     canonical: Vec<u8>, identity: String,
 }
-impl RecordDefinition {pub fn fields(&self)->&[(String,Type)]{&self.fields}}
+impl RecordDefinition {pub fn name(&self)->&str{&self.name} pub fn fields(&self)->&[(String,Type)]{&self.fields}}
 impl CheckedSource {
     pub fn profile(&self)->u8{self.profile}
     pub fn variant_definitions(&self)->&[VariantDefinition]{&self.variants}
@@ -925,3 +925,13 @@ pub fn evaluate_prepared_json_v10(invocation:&PreparedJsonInvocationV10<'_>)->Re
  }
 }
 
+
+/// Structured, data-only /10 source checking for composition readers.
+/// Preserves refusal versus environment failure; does not evaluate or admit code.
+pub fn check_source_v10(bytes:&[u8])->Result<SourceCheck,&'static str>{
+ match parsed(bytes).and_then(|doc|program(&doc,doc.root,10)) {
+  Ok(source)=>Ok(SourceCheck::Checked(source)),
+  Err(FrontendError::Refusal(r))=>Ok(SourceCheck::Refused{reason:r.reason().name(),location:r.location().to_owned()}),
+  Err(FrontendError::Environment(e))=>Err(e),
+ }
+}
