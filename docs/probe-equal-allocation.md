@@ -34,3 +34,5 @@ The [driver template](../tests/probes/backend/catalog_allocation_driver.rs.in) u
 The unchanged System counter and direct/phase toy sources are adjacent. Direct toy expects live32,48,96,24,0 and peak96. Phase toy expects live0,64,128,0 and phase peaks64,192,128. Replacing peak fetch_max with store yields the normal wrong phase peak144, which must be detected. The failed-resize check is a modeled bookkeeping control, not a forced operating-system allocation failure. No allocation-failure or process-tree memory guarantee follows.
 
 Stage1 covers evaluation/export (including parsing); stage2 covers projection and owner cleanup, or only parsed-input cleanup for ordinary Rust; stage3 covers encoding and Response destruction. Output destruction is outside the three stages and adds one deallocation to the whole-call total. The unsafe native preconditions from call_boundary.rs remain mandatory. CI validates documentation; bounded native observations are separate evidence.
+
+The [failure/recovery lifecycle extension](probe-failure-allocation-lifecycle.md) checks diagnostic ownership, subsequent success and retained outputs after Session destruction.

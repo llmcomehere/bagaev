@@ -1,0 +1,51 @@
+#[path="{{BACKEND}}/prepared_json_native_v10.rs"]pub mod prepared_json_native_v10;
+// Compile/link only with an independently admitted exact own kernel and bounded profile.
+#[path="{{BACKEND}}/composite_result_decode_v10.rs"]pub mod composite_result_decode_v10;
+#[path="{{BACKEND}}/transport.rs"]pub mod transport;
+#[path="{{BACKEND}}/check.rs"]pub mod check;
+#[path="{{BACKEND}}/ir.rs"]pub mod ir;
+#[path="{{BACKEND}}/canonical.rs"]pub mod canonical;
+#[path="{{BACKEND}}/sha256.rs"]pub mod sha256;
+#[path="{{BACKEND}}/record_ir.rs"]pub mod record_ir;
+#[path="{{BACKEND}}/option_int.rs"]pub mod option_int;
+#[path="{{BACKEND}}/text_value.rs"]pub mod text_value;
+#[path="{{BACKEND}}/text_list.rs"]pub mod text_list;
+#[path="{{BACKEND}}/typed_record.rs"]pub mod typed_record;
+#[path="{{BACKEND}}/text_inspection.rs"]pub mod text_inspection;
+#[path="{{BACKEND}}/int_projection.rs"]pub mod int_projection;
+#[path="{{BACKEND}}/record_value.rs"]pub mod record_value;
+#[path="{{BACKEND}}/type_graph.rs"]pub mod type_graph;
+#[path="{{BACKEND}}/json_view.rs"]pub mod json_view;
+#[path="{{BACKEND}}/variant_admission.rs"]pub mod variant_admission;
+#[path="{{BACKEND}}/list_callframe.rs"]pub mod list_callframe;
+#[path="{{BACKEND}}/list_native_adapter.rs"]pub mod list_native_adapter;
+#[path="{{BACKEND}}/json_native_input.rs"]pub mod json_native_input;
+#[path="{{BACKEND}}/json_native_invocation.rs"]pub mod json_native_invocation;
+#[path="{{BACKEND}}/json_native_adapter_v10.rs"]pub mod json_native_adapter_v10;
+#[path="{{BACKEND}}/composite_export_v10.rs"]pub mod composite_export_v10;
+#[path="{{BACKEND}}/composite_native_cells.rs"]pub mod composite_native_cells;
+
+#[path="{{CATALOG_DIR}}/catalog.rs"]pub mod catalog;
+#[path="{{CATALOG_DIR}}/native_projection.rs"]pub mod native_projection;
+#[path="{{CATALOG_DIR}}/reference_projection.rs"]pub mod reference_projection;
+#[path="{{CATALOG_DIR}}/call_boundary.rs"]pub mod call_boundary;
+
+
+#[path="{{ALLOCATION_DIR}}/counter.rs"]mod counter;
+#[global_allocator]static ALLOCATOR:counter::Tracked=counter::Tracked;
+fn read(path:&str)->Vec<u8>{use std::io::Read;let f=std::fs::File::open(path).unwrap();assert!(f.metadata().unwrap().len()<=1048576);let mut out=Vec::new();f.take(1048577).read_to_end(&mut out).unwrap();assert!(out.len()<=1048576);out}
+fn success(session:&mut call_boundary::Session,raw:&[u8],expected:&[u8])->Vec<u8>{let base=counter::snapshot().live;let out=unsafe{session.call(std::hint::black_box(raw))}.unwrap();assert_eq!(out.as_slice(),expected);assert_eq!(counter::snapshot().live-base,out.capacity() as u64);out}
+fn main(){
+ let a:Vec<_>=std::env::args().collect();assert_eq!(a.len(),5);let raw=read(&a[2]);let expected=read(&a[3]);let before=raw.clone();let control=match a[4].as_str(){"normal"=>false,"hold-extra"=>true,_=>panic!("control")};
+ let failures:Vec<Vec<u8>>=vec![vec![],b"{".to_vec(),b"{\"revision\":".to_vec(),b"null trailing".to_vec(),vec![b' ';1048577]];let copies=failures.clone();let mut outputs:[Option<Vec<u8>>;16]=std::array::from_fn(|_|None);let mut capacities=[0usize;15];
+ assert!(counter::failed_resize_probe());counter::reset_peak();let base=counter::snapshot().live;let mut session=call_boundary::Session::new(&a[1],include_bytes!("{{SOURCE}}")).unwrap();let prepared=counter::snapshot().live;
+ outputs[0]=Some(success(&mut session,&raw,&expected));let mut count=1;
+ for cycle in 0..3{for (j,bad) in failures.iter().enumerate(){
+  let live=counter::snapshot().live;let error=unsafe{session.call(std::hint::black_box(bad))}.expect_err("boundary failure required");assert!(!error.is_empty());let cap=error.capacity();assert_eq!(counter::snapshot().live-live,cap as u64);capacities[cycle*5+j]=cap;
+  let extra=if control{Some(vec![std::hint::black_box(7u8);64])}else{None};std::hint::black_box(&extra);drop(error);assert_eq!(counter::snapshot().live,live,"error lifecycle restoration");drop(extra);
+  assert_eq!(bad,&copies[j]);outputs[count]=Some(success(&mut session,&raw,&expected));count+=1;
+ }}
+ assert_eq!(count,16);assert_eq!(raw,before);let retained:u64=outputs.iter().map(|x|x.as_ref().unwrap().capacity() as u64).sum();assert_eq!(counter::snapshot().live,prepared+retained);drop(session);assert_eq!(counter::snapshot().live,base+retained);
+ for out in outputs.iter(){assert_eq!(out.as_ref().unwrap().as_slice(),expected.as_slice());}drop(outputs);assert_eq!(counter::snapshot().live,base);
+ println!("{{\"mode\":\"{}\",\"successes\":16,\"errors\":15,\"retained_output_capacity\":{},\"diagnostic_capacities\":{:?},\"restored\":true}}",a[1],retained,capacities);
+}

@@ -1,0 +1,109 @@
+{
+  "at": "2026-10-06T15:15:27.744235+00:00",
+  "status": "PASS",
+  "attempts": 93,
+  "successes": 48,
+  "boundary_errors": 45,
+  "controls": [
+    {
+      "mode": "ordinary",
+      "control": "wrong"
+    },
+    {
+      "mode": "ordinary",
+      "control": "hold-extra"
+    },
+    {
+      "mode": "reference",
+      "control": "wrong"
+    },
+    {
+      "mode": "reference",
+      "control": "hold-extra"
+    },
+    {
+      "mode": "native",
+      "control": "wrong"
+    },
+    {
+      "mode": "native",
+      "control": "hold-extra"
+    }
+  ],
+  "rows": [
+    {
+      "mode": "ordinary",
+      "successes": 16,
+      "errors": 15,
+      "retained_output_capacity": 6656,
+      "diagnostic_capacities": [
+        20,
+        20,
+        20,
+        20,
+        17,
+        20,
+        20,
+        20,
+        20,
+        17,
+        20,
+        20,
+        20,
+        20,
+        17
+      ],
+      "restored": true
+    },
+    {
+      "mode": "reference",
+      "successes": 16,
+      "errors": 15,
+      "retained_output_capacity": 6656,
+      "diagnostic_capacities": [
+        23,
+        64,
+        64,
+        64,
+        17,
+        23,
+        64,
+        64,
+        64,
+        17,
+        23,
+        64,
+        64,
+        64,
+        17
+      ],
+      "restored": true
+    },
+    {
+      "mode": "native",
+      "successes": 16,
+      "errors": 15,
+      "retained_output_capacity": 6656,
+      "diagnostic_capacities": [
+        56,
+        120,
+        120,
+        120,
+        17,
+        56,
+        120,
+        120,
+        120,
+        17,
+        56,
+        120,
+        120,
+        120,
+        17
+      ],
+      "restored": true
+    }
+  ],
+  "scope": "Finite malformed/oversized failure and recovery ownership accounting; no phase attribution, timers, RSS, OS allocation failure, or general leak-freedom.",
+  "schema": "catalog-failure-lifecycle/1"
+}
