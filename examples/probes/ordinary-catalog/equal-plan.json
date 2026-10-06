@@ -1,0 +1,30 @@
+{
+  "schema": "catalog-equal-call-plan/1",
+  "cases": [
+    "REQUEST-TYPE",
+    "EMPTY-0",
+    "REV-0",
+    "REV-3"
+  ],
+  "modes": [
+    "ordinary",
+    "reference",
+    "native"
+  ],
+  "blocks": 12,
+  "batch_calls": 512,
+  "warmups": 8,
+  "minimum_batch_ns_for_ratios": 1000000,
+  "case_order": "rotate cases by block modulo4",
+  "mode_order": "rotate modes by block modulo3",
+  "source_sha256": {
+    "call_boundary.rs": "8fc873135295682366ea06fd4091b650e5960512b66d9c52c777902ad217e9ce",
+    "native_projection.rs": "45ff2304345dfbf0c9a8a5607279b821d5ef19585202eb7c374ba234bae30f9b",
+    "reference_projection.rs": "d4bb1c5e9dee9593760d9213262ea4fc03ae918839ee637345fdc089aea13831"
+  },
+  "interval": "raw request wrapping/parsing, actual application evaluation, output validation/projection/copy/encoding, complete expected-byte comparison and dropping returned bytes",
+  "excluded": "source preparation, retained native scratch allocation, process/file I/O, final report",
+  "failure_policy": "Retain all rows. Mismatch/timeout/identity change makes collection incomplete. No row deletion or parameter tuning from timings. Below1ms rows retained with no ratio conclusion for that group.",
+  "qualification": "103cases perpath plus12wrongexpected controls before collection",
+  "limits": "finite common admitted inputs; shared parser/encoder; no CPU isolation, total lifecycle, RSS, model-cost or production guarantee"
+}
