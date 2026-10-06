@@ -90,6 +90,27 @@ numbers.
 This map states supported boundaries, not complete implementation of all
 eighteen propositions.
 
+## Operational refinement placement
+
+The [operational-semantics candidates](operational-semantics.md) refine existing
+workpackages. [Issue #26](https://github.com/llmcomehere/bagaev/issues/26) owns the
+current bounded typed-core/probe research. Select concrete contracts and freeze
+their independent oracles before implementation; do not make every candidate a
+new mandatory prerequisite or rewrite earlier acceptance criteria.
+
+| Candidate work | Existing placement | Exit evidence for an adopted slice |
+| --- | --- | --- |
+| Domain wrappers, explicit absence/clear and checked codecs | M2 LANG-1 and bounded typed-core probes | Wrong-domain implicit use refuses; lawful explicit conversion remains; compare existing ordinary types before adding syntax. |
+| Evidence method/scope and affected-consumer closure | M2 semantics, M3 TOOL-1 and M4 STORE-1 | Exact subject/revision/consumer binding, valid positive/negative witnesses, real entry/selected-test path, and justified reuse. |
+| Operation outcome, ownership, final-boundary checks and retention | M4 STORE-1 and a separately selected effect profile | Finite transition model, original intent/custody, failure after real partial effects, and no false success/cancellation/absence. A simulation does not close a real receiver boundary. |
+| Portable obligation context and goal continuation | M4 continuation and M5 MODEL-1 | Missing/stale context and open effects survive a handoff; current goal and authority remain distinct from queue eligibility. |
+| Resource bounds and cost of the mechanism | Relevant language/runtime profile and M5 comparison | Stated input/measurement domain, correct units, retained branch/state correlations, and preparation/checking/recovery cost against a strong baseline. |
+
+Frozen P0 remains a separate support track; these future cases are not silently
+added to its immutable oracle. The optional static site remains optional.
+Unsupported effect/trust boundaries stay explicit while independent pure work
+can continue. Current repository authorization and review rules are unchanged.
+
 ## Later horizon
 
 | Direction | Prerequisite and go/revise/stop evidence |

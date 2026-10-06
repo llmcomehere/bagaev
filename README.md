@@ -34,6 +34,12 @@ inspectable form; it is not a claim that JSON is ideal for models. Existing
 languages remain serious baselines and interoperability partners. A prescribed
 stack should be respected, and unsupported profiles should be stated plainly.
 
+The [operational-semantics candidates](docs/operational-semantics.md) make this
+thesis concrete: preserve semantic domains, evidence scope, operation identity,
+ownership and obligations through real consumers and continuation. They include
+synthetic counterexamples and ordinary alternatives. These are scoped research
+candidates, not a claim that the full runtime or a new permission system exists.
+
 The experiment must count the whole job: preparation, failed attempts, model
 and tool work, review, repair, continuation, and maintenance. Saving tokens
 while increasing those costs would not establish success. A negative or

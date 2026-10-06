@@ -15,6 +15,7 @@ instructions](../AGENTS.md) and authority boundaries always apply.
 | [CONTRIBUTING](../CONTRIBUTING.md) | Public contribution path and local-work distinction. |
 | [Code of conduct](../CODE_OF_CONDUCT.md) and [security policy](../SECURITY.md) | Community behavior and sensitive-reporting routes. |
 | [Foundation](foundation.md) | Research questions, hypotheses, limits, and later research. |
+| [Operational semantics candidates](operational-semantics.md) | Concrete type/evidence/effect/continuation mechanisms, synthetic counterexamples and ordinary alternatives; no change to normative contracts or execution authority. |
 | [L0](l0.md) | Normative L0 semantics and bounds. |
 | [L1 proposal](l1-proposal.md) | Bounded CPython backend and selected-case contract. |
 | [L2](l2.md) and [language oracle](../examples/l2/oracle.json) | Structured pure language, pinned definitions, transactional changes, and independent language expectations. |
@@ -109,7 +110,10 @@ all raw timing rows, exact source-byte counts and unavailable comparison terms.
    and [First experiment P0](foundation.md#first-experiment-p0-metadata-change-and-work-handoff).
 7. **Research, comparison, or later platform work:** read the complete
    [foundation](foundation.md). For a planned beta package, also read the
-   [roadmap](roadmap.md).
+   [roadmap](roadmap.md). For semantic-domain, evidence, resource, recovery or
+   consumer-closure work, the [operational candidates](operational-semantics.md)
+   identify proposed enforcement boundaries and discriminating cases. Their
+   presence is not implementation or execution evidence.
 8. **Whole-concept review:** read the complete [foundation](foundation.md),
    L0, L1, L2, frozen P0 boundaries, and the roadmap.
 

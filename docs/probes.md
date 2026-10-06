@@ -681,3 +681,19 @@ This list defines coverage obligations, not literal expected outputs.
 Contract/source review cannot close runtime, native, resource isolation,
 comparative measurement, full AP1 or model-benefit gates. Unobserved checks are
 NOT_RUN; unsupported/negative/indeterminate findings remain distinct.
+
+## Operational-semantics follow-on candidates
+
+The [operational-semantics note](operational-semantics.md) supplies proposed
+synthetic discriminating cases OE01–OE17 for domain identity, evidence
+applicability, effects, ownership, retention, consumer closure and continuation.
+These are research input to a separately frozen profile, not additional executed
+cases or amendments to the existing oracles in this document.
+
+First test expressibility with the existing structured source profiles and a
+strong ordinary-language implementation. A descriptive evidence matcher does
+not authenticate its producer or grant rights; a nominal wrapper does not prevent
+an explicitly permitted unwrap/rewrap. Any stronger guarantee requires its actual
+enforcing boundary and countertests. Record source acceptance, runtime conformance
+and measured full-cost benefit independently. No workflow, permission, maintenance
+review policy or execution profile changes follow from this proposal.
