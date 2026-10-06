@@ -40,6 +40,11 @@ ownership and obligations through real consumers and continuation. They include
 synthetic counterexamples and ordinary alternatives. These are scoped research
 candidates, not a claim that the full runtime or a new permission system exists.
 
+The [whole-language design sketch](docs/language-design.md) connects these
+mechanisms into a proposed computational, component and change model, with
+paper scenarios and a map of all eighteen principles. It is a non-normative
+architecture proposal, not new syntax or runtime acceptance.
+
 The experiment must count the whole job: preparation, failed attempts, model
 and tool work, review, repair, continuation, and maintenance. Saving tokens
 while increasing those costs would not establish success. A negative or
