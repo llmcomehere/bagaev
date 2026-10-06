@@ -15,6 +15,7 @@ impl Owned{
   };values[new]=value;}
   let texts=values.iter().map(|v|match v{Value::String(s) if s.0.len()<=256=>s.scalar_string().filter(|s|Text::from_bytes(s.as_bytes()).is_ok()),_=>None}).collect();Ok(Self{document:Document{values,root:0},texts})
  }
+ pub fn document(&self)->&Document{&self.document}
  pub fn root(&self)->View<'_>{View{owner:self,id:Some(0)}}
 }
 impl<'a> View<'a>{

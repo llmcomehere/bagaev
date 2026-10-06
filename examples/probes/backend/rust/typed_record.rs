@@ -34,8 +34,10 @@ type CheckResult<T> = Result<T, Refusal>;
 pub struct RecordDefinition { name:String, fields:Vec<(String,Type)>, optional:Vec<String> }
 #[derive(Clone,Debug)]
 pub struct ListDefinition{name:String,element:usize,capacity:usize}
+impl ListDefinition {pub fn element(&self)->usize{self.element} pub fn capacity(&self)->usize{self.capacity}}
 #[derive(Clone,Debug)]
 pub struct VariantDefinition{name:String,alternatives:Vec<(String,Type)>}
+impl VariantDefinition {pub fn alternatives(&self)->&[(String,Type)]{&self.alternatives}}
 #[derive(Debug)]
 pub struct CheckedSource {
     variants:Vec<VariantDefinition>,
@@ -46,7 +48,9 @@ pub struct CheckedSource {
 }
 impl RecordDefinition {pub fn fields(&self)->&[(String,Type)]{&self.fields}}
 impl CheckedSource {
+    pub fn variant_definitions(&self)->&[VariantDefinition]{&self.variants}
     pub fn record_definitions(&self)->&[RecordDefinition]{&self.records}
+    pub fn list_definitions(&self)->&[ListDefinition]{&self.lists}
     pub fn functions(&self)->&[Function]{&self.functions}
     pub fn nodes(&self)->&[Node]{&self.nodes}
     pub fn entry(&self)->usize{self.entry}
@@ -721,3 +725,35 @@ pub fn check_source(bytes:&[u8])->Result<SourceCheck,&'static str>{
 }
 
 pub fn checked_program_v2(bytes:&[u8])->Result<CheckedSource,String>{let doc=parsed(bytes).map_err(|e|format!("{e:?}"))?;program(&doc,doc.root,2).map_err(|e|format!("{e:?}"))}
+
+pub fn checked_program_v3(bytes:&[u8])->Result<CheckedSource,String>{let doc=parsed(bytes).map_err(|e|format!("{e:?}"))?;program(&doc,doc.root,3).map_err(|e|format!("{e:?}"))}
+
+pub fn checked_program_v4(bytes:&[u8])->Result<CheckedSource,String>{let doc=parsed(bytes).map_err(|e|format!("{e:?}"))?;program(&doc,doc.root,4).map_err(|e|format!("{e:?}"))}
+
+pub fn checked_program_v5(bytes:&[u8])->Result<CheckedSource,String>{let doc=parsed(bytes).map_err(|e|format!("{e:?}"))?;program(&doc,doc.root,5).map_err(|e|format!("{e:?}"))}
+
+/// Full /6 envelope data admission; not an execution capability.
+/// The first native Json slice accepts Json-only entry arguments.
+pub struct CheckedJsonInvocation { program:CheckedSource, arguments:Vec<Box<crate::json_view::Owned>> }
+impl CheckedJsonInvocation {
+ pub fn program(&self)->&CheckedSource{&self.program}
+ pub fn json_arguments(&self)->&[Box<crate::json_view::Owned>]{&self.arguments}
+}
+pub fn checked_json_invocation(bytes:&[u8])->Result<CheckedJsonInvocation,String>{
+ let doc=parsed(bytes).map_err(|e|format!("{e:?}"))?;
+ let (program,args)=checked_invocation(&doc,6).map_err(|e|format!("{e:?}"))?;
+ if program.functions[program.entry].parameters.iter().any(|p|p.ty!=Type::Json){return Err("NATIVE_JSON_SIGNATURE".to_owned());}
+ let mut arguments=Vec::new();
+ for arg in args{match arg{OwnedArgument::Json(v)=>arguments.push(v),_=>return Err("NATIVE_JSON_SIGNATURE".to_owned())}}
+ Ok(CheckedJsonInvocation{program,arguments})
+}
+pub fn checked_program_v6(bytes:&[u8])->Result<CheckedSource,String>{let doc=parsed(bytes).map_err(|e|format!("{e:?}"))?;program(&doc,doc.root,6).map_err(|e|format!("{e:?}"))}
+
+pub fn checked_json_invocation_v8(bytes:&[u8])->Result<CheckedJsonInvocation,String>{
+ let doc=parsed(bytes).map_err(|e|format!("{e:?}"))?;
+ let (program,args)=checked_invocation(&doc,8).map_err(|e|format!("{e:?}"))?;
+ if program.functions[program.entry].parameters.iter().any(|p|p.ty!=Type::Json){return Err("NATIVE_JSON_SIGNATURE".to_owned());}
+ let mut arguments=Vec::new();
+ for arg in args{match arg{OwnedArgument::Json(v)=>arguments.push(v),_=>return Err("NATIVE_JSON_SIGNATURE".to_owned())}}
+ Ok(CheckedJsonInvocation{program,arguments})
+}
