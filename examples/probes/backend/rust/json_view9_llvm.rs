@@ -168,6 +168,7 @@ impl FunctionEmitter<'_, '_> {
         let kind=node.kind().clone(); let ty=llvm_ty(node.ty());
         writeln!(self.output,"  ; node {id}")?; self.tick(id)?;
         match kind {
+            NodeKind::RecordsPush{..}=>Err(EmitError::Interface),
             NodeKind::ListPush{list,value}=>{
                 let list=self.expression(list)?;let text=self.expression(value)?;
                 let n=self.value(&format!("extractvalue %List {list}, 1"))?;

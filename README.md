@@ -178,3 +178,7 @@ and narrower input-budget equivalence are documented separately.
 The explicit [/9 immutable TextList append probe](docs/probe-list-push.md) adds
 source-level accumulation without changing /1–8. Its native output has a separate
 version; finite conformance and source-size observations are not performance claims.
+
+The explicit [/10 named record-list append probe](docs/probe-record-list-push.md)
+extends immutable accumulation to nominal record lists without increasing their
+capacity. It preserves earlier source/native profiles.

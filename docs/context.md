@@ -181,3 +181,6 @@ admission, per-call scratch checking and kernel authority remain distinct.
 For the explicit /9 immutable TextList append extension, read
 [its contract and portable checks](probe-list-push.md). Older source and native
 profiles retain their boundaries.
+
+For /10 nominal record-list accumulation, read
+[the record-list append contract](probe-record-list-push.md). /9 remains separate.

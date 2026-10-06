@@ -1,0 +1,2818 @@
+[
+  {
+    "id": "EMPTY",
+    "profile": 10,
+    "program": {
+      "schema": "bagaev-typed-record/10",
+      "records": {
+        "R": {
+          "n": "Int64"
+        }
+      },
+      "lists": {
+        "Entries": {
+          "element": "R",
+          "capacity": 4
+        }
+      },
+      "variants": {},
+      "entry": "main",
+      "functions": {
+        "main": {
+          "params": [],
+          "result": "Entries",
+          "body": [
+            "records.push",
+            [
+              "records.list",
+              "Entries"
+            ],
+            [
+              "record",
+              "R",
+              [
+                "int",
+                7
+              ]
+            ]
+          ]
+        }
+      }
+    },
+    "arguments": [],
+    "expected": {
+      "schema": "bagaev-typed-record-result/10",
+      "status": "success",
+      "reason": null,
+      "location": null,
+      "value_type": "RecordList:Entries",
+      "value": [
+        {
+          "n": 7
+        }
+      ],
+      "work": 5
+    }
+  },
+  {
+    "id": "ONE",
+    "profile": 10,
+    "program": {
+      "schema": "bagaev-typed-record/10",
+      "records": {
+        "R": {
+          "n": "Int64"
+        }
+      },
+      "lists": {
+        "Entries": {
+          "element": "R",
+          "capacity": 4
+        }
+      },
+      "variants": {},
+      "entry": "main",
+      "functions": {
+        "main": {
+          "params": [],
+          "result": "Entries",
+          "body": [
+            "records.push",
+            [
+              "records.list",
+              "Entries",
+              [
+                "record",
+                "R",
+                [
+                  "int",
+                  7
+                ]
+              ]
+            ],
+            [
+              "record",
+              "R",
+              [
+                "int",
+                8
+              ]
+            ]
+          ]
+        }
+      }
+    },
+    "arguments": [],
+    "expected": {
+      "schema": "bagaev-typed-record-result/10",
+      "status": "success",
+      "reason": null,
+      "location": null,
+      "value_type": "RecordList:Entries",
+      "value": [
+        {
+          "n": 7
+        },
+        {
+          "n": 8
+        }
+      ],
+      "work": 8
+    }
+  },
+  {
+    "id": "ORDER-DUPLICATE",
+    "profile": 10,
+    "program": {
+      "schema": "bagaev-typed-record/10",
+      "records": {
+        "R": {
+          "n": "Int64"
+        }
+      },
+      "lists": {
+        "Entries": {
+          "element": "R",
+          "capacity": 4
+        }
+      },
+      "variants": {},
+      "entry": "main",
+      "functions": {
+        "main": {
+          "params": [],
+          "result": "Entries",
+          "body": [
+            "records.push",
+            [
+              "records.list",
+              "Entries",
+              [
+                "record",
+                "R",
+                [
+                  "int",
+                  7
+                ]
+              ],
+              [
+                "record",
+                "R",
+                [
+                  "int",
+                  8
+                ]
+              ]
+            ],
+            [
+              "record",
+              "R",
+              [
+                "int",
+                7
+              ]
+            ]
+          ]
+        }
+      }
+    },
+    "arguments": [],
+    "expected": {
+      "schema": "bagaev-typed-record-result/10",
+      "status": "success",
+      "reason": null,
+      "location": null,
+      "value_type": "RecordList:Entries",
+      "value": [
+        {
+          "n": 7
+        },
+        {
+          "n": 8
+        },
+        {
+          "n": 7
+        }
+      ],
+      "work": 11
+    }
+  },
+  {
+    "id": "CAPACITY-4",
+    "profile": 10,
+    "program": {
+      "schema": "bagaev-typed-record/10",
+      "records": {
+        "R": {
+          "n": "Int64"
+        }
+      },
+      "lists": {
+        "Entries": {
+          "element": "R",
+          "capacity": 4
+        }
+      },
+      "variants": {},
+      "entry": "main",
+      "functions": {
+        "main": {
+          "params": [],
+          "result": "Entries",
+          "body": [
+            "records.push",
+            [
+              "records.list",
+              "Entries",
+              [
+                "record",
+                "R",
+                [
+                  "int",
+                  1
+                ]
+              ],
+              [
+                "record",
+                "R",
+                [
+                  "int",
+                  2
+                ]
+              ],
+              [
+                "record",
+                "R",
+                [
+                  "int",
+                  3
+                ]
+              ]
+            ],
+            [
+              "record",
+              "R",
+              [
+                "int",
+                4
+              ]
+            ]
+          ]
+        }
+      }
+    },
+    "arguments": [],
+    "expected": {
+      "schema": "bagaev-typed-record-result/10",
+      "status": "success",
+      "reason": null,
+      "location": null,
+      "value_type": "RecordList:Entries",
+      "value": [
+        {
+          "n": 1
+        },
+        {
+          "n": 2
+        },
+        {
+          "n": 3
+        },
+        {
+          "n": 4
+        }
+      ],
+      "work": 14
+    }
+  },
+  {
+    "id": "CAPACITY-5",
+    "profile": 10,
+    "program": {
+      "schema": "bagaev-typed-record/10",
+      "records": {
+        "R": {
+          "n": "Int64"
+        }
+      },
+      "lists": {
+        "Entries": {
+          "element": "R",
+          "capacity": 4
+        }
+      },
+      "variants": {},
+      "entry": "main",
+      "functions": {
+        "main": {
+          "params": [],
+          "result": "Entries",
+          "body": [
+            "records.push",
+            [
+              "records.list",
+              "Entries",
+              [
+                "record",
+                "R",
+                [
+                  "int",
+                  1
+                ]
+              ],
+              [
+                "record",
+                "R",
+                [
+                  "int",
+                  2
+                ]
+              ],
+              [
+                "record",
+                "R",
+                [
+                  "int",
+                  3
+                ]
+              ],
+              [
+                "record",
+                "R",
+                [
+                  "int",
+                  4
+                ]
+              ]
+            ],
+            [
+              "record",
+              "R",
+              [
+                "int",
+                5
+              ]
+            ]
+          ]
+        }
+      }
+    },
+    "arguments": [],
+    "expected": {
+      "schema": "bagaev-typed-record-result/10",
+      "status": "record-list-bound",
+      "reason": "RR_RECORD_LIST_ITEMS",
+      "location": "/program/functions/main/body",
+      "value_type": null,
+      "value": null,
+      "work": 17
+    }
+  },
+  {
+    "id": "CAPACITY-0",
+    "profile": 10,
+    "program": {
+      "schema": "bagaev-typed-record/10",
+      "records": {
+        "R": {
+          "n": "Int64"
+        }
+      },
+      "lists": {
+        "Entries": {
+          "element": "R",
+          "capacity": 0
+        }
+      },
+      "variants": {},
+      "entry": "main",
+      "functions": {
+        "main": {
+          "params": [],
+          "result": "Entries",
+          "body": [
+            "records.push",
+            [
+              "records.list",
+              "Entries"
+            ],
+            [
+              "record",
+              "R",
+              [
+                "int",
+                7
+              ]
+            ]
+          ]
+        }
+      }
+    },
+    "arguments": [],
+    "expected": {
+      "schema": "bagaev-typed-record-result/10",
+      "status": "record-list-bound",
+      "reason": "RR_RECORD_LIST_ITEMS",
+      "location": "/program/functions/main/body",
+      "value_type": null,
+      "value": null,
+      "work": 5
+    }
+  },
+  {
+    "id": "CAPACITY-1",
+    "profile": 10,
+    "program": {
+      "schema": "bagaev-typed-record/10",
+      "records": {
+        "R": {
+          "n": "Int64"
+        }
+      },
+      "lists": {
+        "Entries": {
+          "element": "R",
+          "capacity": 1
+        }
+      },
+      "variants": {},
+      "entry": "main",
+      "functions": {
+        "main": {
+          "params": [],
+          "result": "Entries",
+          "body": [
+            "records.push",
+            [
+              "records.list",
+              "Entries"
+            ],
+            [
+              "record",
+              "R",
+              [
+                "int",
+                7
+              ]
+            ]
+          ]
+        }
+      }
+    },
+    "arguments": [],
+    "expected": {
+      "schema": "bagaev-typed-record-result/10",
+      "status": "success",
+      "reason": null,
+      "location": null,
+      "value_type": "RecordList:Entries",
+      "value": [
+        {
+          "n": 7
+        }
+      ],
+      "work": 5
+    }
+  },
+  {
+    "id": "CAPACITY-1-FULL",
+    "profile": 10,
+    "program": {
+      "schema": "bagaev-typed-record/10",
+      "records": {
+        "R": {
+          "n": "Int64"
+        }
+      },
+      "lists": {
+        "Entries": {
+          "element": "R",
+          "capacity": 1
+        }
+      },
+      "variants": {},
+      "entry": "main",
+      "functions": {
+        "main": {
+          "params": [],
+          "result": "Entries",
+          "body": [
+            "records.push",
+            [
+              "records.list",
+              "Entries",
+              [
+                "record",
+                "R",
+                [
+                  "int",
+                  7
+                ]
+              ]
+            ],
+            [
+              "record",
+              "R",
+              [
+                "int",
+                8
+              ]
+            ]
+          ]
+        }
+      }
+    },
+    "arguments": [],
+    "expected": {
+      "schema": "bagaev-typed-record-result/10",
+      "status": "record-list-bound",
+      "reason": "RR_RECORD_LIST_ITEMS",
+      "location": "/program/functions/main/body",
+      "value_type": null,
+      "value": null,
+      "work": 8
+    }
+  },
+  {
+    "id": "EMPTY-RECORD",
+    "profile": 10,
+    "program": {
+      "schema": "bagaev-typed-record/10",
+      "records": {
+        "R": {}
+      },
+      "lists": {
+        "Entries": {
+          "element": "R",
+          "capacity": 4
+        }
+      },
+      "variants": {},
+      "entry": "main",
+      "functions": {
+        "main": {
+          "params": [],
+          "result": "Entries",
+          "body": [
+            "records.push",
+            [
+              "records.list",
+              "Entries"
+            ],
+            [
+              "record",
+              "R"
+            ]
+          ]
+        }
+      }
+    },
+    "arguments": [],
+    "expected": {
+      "schema": "bagaev-typed-record-result/10",
+      "status": "success",
+      "reason": null,
+      "location": null,
+      "value_type": "RecordList:Entries",
+      "value": [
+        {}
+      ],
+      "work": 4
+    }
+  },
+  {
+    "id": "NESTED",
+    "profile": 10,
+    "program": {
+      "schema": "bagaev-typed-record/10",
+      "records": {
+        "Leaf": {
+          "n": "Int64"
+        },
+        "R": {
+          "leaf": "Leaf"
+        }
+      },
+      "lists": {
+        "Entries": {
+          "element": "R",
+          "capacity": 4
+        }
+      },
+      "variants": {},
+      "entry": "main",
+      "functions": {
+        "main": {
+          "params": [],
+          "result": "Entries",
+          "body": [
+            "records.push",
+            [
+              "records.list",
+              "Entries"
+            ],
+            [
+              "record",
+              "R",
+              [
+                "record",
+                "Leaf",
+                [
+                  "int",
+                  7
+                ]
+              ]
+            ]
+          ]
+        }
+      }
+    },
+    "arguments": [],
+    "expected": {
+      "schema": "bagaev-typed-record-result/10",
+      "status": "success",
+      "reason": null,
+      "location": null,
+      "value_type": "RecordList:Entries",
+      "value": [
+        {
+          "leaf": {
+            "n": 7
+          }
+        }
+      ],
+      "work": 6
+    }
+  },
+  {
+    "id": "ALIASES",
+    "profile": 10,
+    "program": {
+      "schema": "bagaev-typed-record/10",
+      "records": {
+        "R": {
+          "n": "Int64"
+        },
+        "Pair": {
+          "after": "Entries",
+          "before": "Entries"
+        }
+      },
+      "lists": {
+        "Entries": {
+          "element": "R",
+          "capacity": 4
+        }
+      },
+      "variants": {},
+      "entry": "main",
+      "functions": {
+        "main": {
+          "params": [],
+          "result": "Pair",
+          "body": [
+            "let",
+            "x",
+            [
+              "records.list",
+              "Entries",
+              [
+                "record",
+                "R",
+                [
+                  "int",
+                  7
+                ]
+              ]
+            ],
+            [
+              "record",
+              "Pair",
+              [
+                "records.push",
+                [
+                  "use",
+                  "x"
+                ],
+                [
+                  "record",
+                  "R",
+                  [
+                    "int",
+                    8
+                  ]
+                ]
+              ],
+              [
+                "use",
+                "x"
+              ]
+            ]
+          ]
+        }
+      }
+    },
+    "arguments": [],
+    "expected": {
+      "schema": "bagaev-typed-record-result/10",
+      "status": "success",
+      "reason": null,
+      "location": null,
+      "value_type": "Record:Pair",
+      "value": {
+        "after": [
+          {
+            "n": 7
+          },
+          {
+            "n": 8
+          }
+        ],
+        "before": [
+          {
+            "n": 7
+          }
+        ]
+      },
+      "work": 12
+    }
+  },
+  {
+    "id": "HELPER",
+    "profile": 10,
+    "program": {
+      "schema": "bagaev-typed-record/10",
+      "records": {
+        "R": {
+          "n": "Int64"
+        }
+      },
+      "lists": {
+        "Entries": {
+          "element": "R",
+          "capacity": 4
+        }
+      },
+      "variants": {},
+      "entry": "main",
+      "functions": {
+        "main": {
+          "params": [],
+          "result": "Entries",
+          "body": [
+            "records.push",
+            [
+              "records.list",
+              "Entries"
+            ],
+            [
+              "call",
+              "make"
+            ]
+          ]
+        },
+        "make": {
+          "params": [],
+          "result": "R",
+          "body": [
+            "record",
+            "R",
+            [
+              "int",
+              7
+            ]
+          ]
+        }
+      }
+    },
+    "arguments": [],
+    "expected": {
+      "schema": "bagaev-typed-record-result/10",
+      "status": "success",
+      "reason": null,
+      "location": null,
+      "value_type": "RecordList:Entries",
+      "value": [
+        {
+          "n": 7
+        }
+      ],
+      "work": 6
+    }
+  },
+  {
+    "id": "LOOP-4",
+    "profile": 10,
+    "program": {
+      "schema": "bagaev-typed-record/10",
+      "records": {
+        "R": {
+          "n": "Int64"
+        }
+      },
+      "lists": {
+        "Entries": {
+          "element": "R",
+          "capacity": 4
+        }
+      },
+      "variants": {},
+      "entry": "main",
+      "functions": {
+        "main": {
+          "params": [],
+          "result": "Entries",
+          "body": [
+            "loop",
+            4,
+            "i",
+            "xs",
+            [
+              "records.list",
+              "Entries"
+            ],
+            [
+              "records.push",
+              [
+                "use",
+                "xs"
+              ],
+              [
+                "record",
+                "R",
+                [
+                  "int",
+                  7
+                ]
+              ]
+            ]
+          ]
+        }
+      }
+    },
+    "arguments": [],
+    "expected": {
+      "schema": "bagaev-typed-record-result/10",
+      "status": "success",
+      "reason": null,
+      "location": null,
+      "value_type": "RecordList:Entries",
+      "value": [
+        {
+          "n": 7
+        },
+        {
+          "n": 7
+        },
+        {
+          "n": 7
+        },
+        {
+          "n": 7
+        }
+      ],
+      "work": 28
+    }
+  },
+  {
+    "id": "LOOP-5",
+    "profile": 10,
+    "program": {
+      "schema": "bagaev-typed-record/10",
+      "records": {
+        "R": {
+          "n": "Int64"
+        }
+      },
+      "lists": {
+        "Entries": {
+          "element": "R",
+          "capacity": 4
+        }
+      },
+      "variants": {},
+      "entry": "main",
+      "functions": {
+        "main": {
+          "params": [],
+          "result": "Entries",
+          "body": [
+            "loop",
+            5,
+            "i",
+            "xs",
+            [
+              "records.list",
+              "Entries"
+            ],
+            [
+              "records.push",
+              [
+                "use",
+                "xs"
+              ],
+              [
+                "record",
+                "R",
+                [
+                  "int",
+                  7
+                ]
+              ]
+            ]
+          ]
+        }
+      }
+    },
+    "arguments": [],
+    "expected": {
+      "schema": "bagaev-typed-record-result/10",
+      "status": "record-list-bound",
+      "reason": "RR_RECORD_LIST_ITEMS",
+      "location": "/program/functions/main/body/5",
+      "value_type": null,
+      "value": null,
+      "work": 37
+    }
+  },
+  {
+    "id": "ARGUMENTS",
+    "profile": 10,
+    "program": {
+      "schema": "bagaev-typed-record/10",
+      "records": {
+        "R": {
+          "n": "Int64"
+        }
+      },
+      "lists": {
+        "Entries": {
+          "element": "R",
+          "capacity": 4
+        }
+      },
+      "variants": {},
+      "entry": "main",
+      "functions": {
+        "main": {
+          "params": [
+            [
+              "xs",
+              "Entries"
+            ],
+            [
+              "r",
+              "R"
+            ]
+          ],
+          "result": "Entries",
+          "body": [
+            "records.push",
+            [
+              "arg",
+              "xs"
+            ],
+            [
+              "arg",
+              "r"
+            ]
+          ]
+        }
+      }
+    },
+    "arguments": [
+      [
+        {
+          "n": 7
+        }
+      ],
+      {
+        "n": 8
+      }
+    ],
+    "expected": {
+      "schema": "bagaev-typed-record-result/10",
+      "status": "success",
+      "reason": null,
+      "location": null,
+      "value_type": "RecordList:Entries",
+      "value": [
+        {
+          "n": 7
+        },
+        {
+          "n": 8
+        }
+      ],
+      "work": 5
+    }
+  },
+  {
+    "id": "RIGHT-ERROR-FIRST",
+    "profile": 10,
+    "program": {
+      "schema": "bagaev-typed-record/10",
+      "records": {
+        "R": {
+          "n": "Int64"
+        }
+      },
+      "lists": {
+        "Entries": {
+          "element": "R",
+          "capacity": 4
+        }
+      },
+      "variants": {},
+      "entry": "main",
+      "functions": {
+        "main": {
+          "params": [],
+          "result": "Entries",
+          "body": [
+            "records.push",
+            [
+              "records.list",
+              "Entries",
+              [
+                "record",
+                "R",
+                [
+                  "int",
+                  1
+                ]
+              ],
+              [
+                "record",
+                "R",
+                [
+                  "int",
+                  2
+                ]
+              ],
+              [
+                "record",
+                "R",
+                [
+                  "int",
+                  3
+                ]
+              ],
+              [
+                "record",
+                "R",
+                [
+                  "int",
+                  4
+                ]
+              ]
+            ],
+            [
+              "records.at",
+              [
+                "records.list",
+                "Entries"
+              ],
+              [
+                "int",
+                0
+              ]
+            ]
+          ]
+        }
+      }
+    },
+    "arguments": [],
+    "expected": {
+      "schema": "bagaev-typed-record-result/10",
+      "status": "list-index",
+      "reason": "RR_INDEX",
+      "location": "/program/functions/main/body/2",
+      "value_type": null,
+      "value": null,
+      "work": 13
+    }
+  },
+  {
+    "id": "LEFT-ERROR-FIRST",
+    "profile": 10,
+    "program": {
+      "schema": "bagaev-typed-record/10",
+      "records": {
+        "R": {
+          "n": "Int64"
+        }
+      },
+      "lists": {
+        "Entries": {
+          "element": "R",
+          "capacity": 4
+        }
+      },
+      "variants": {},
+      "entry": "main",
+      "functions": {
+        "main": {
+          "params": [],
+          "result": "Entries",
+          "body": [
+            "records.push",
+            [
+              "let",
+              "bad",
+              [
+                "records.at",
+                [
+                  "records.list",
+                  "Entries"
+                ],
+                [
+                  "int",
+                  0
+                ]
+              ],
+              [
+                "records.list",
+                "Entries"
+              ]
+            ],
+            [
+              "record",
+              "R",
+              [
+                "add",
+                [
+                  "int",
+                  9223372036854775807
+                ],
+                [
+                  "int",
+                  1
+                ]
+              ]
+            ]
+          ]
+        }
+      }
+    },
+    "arguments": [],
+    "expected": {
+      "schema": "bagaev-typed-record-result/10",
+      "status": "list-index",
+      "reason": "RR_INDEX",
+      "location": "/program/functions/main/body/1/2",
+      "value_type": null,
+      "value": null,
+      "work": 5
+    }
+  },
+  {
+    "id": "RIGHT-OVERFLOW",
+    "profile": 10,
+    "program": {
+      "schema": "bagaev-typed-record/10",
+      "records": {
+        "R": {
+          "n": "Int64"
+        }
+      },
+      "lists": {
+        "Entries": {
+          "element": "R",
+          "capacity": 4
+        }
+      },
+      "variants": {},
+      "entry": "main",
+      "functions": {
+        "main": {
+          "params": [],
+          "result": "Entries",
+          "body": [
+            "records.push",
+            [
+              "records.list",
+              "Entries"
+            ],
+            [
+              "record",
+              "R",
+              [
+                "add",
+                [
+                  "int",
+                  9223372036854775807
+                ],
+                [
+                  "int",
+                  1
+                ]
+              ]
+            ]
+          ]
+        }
+      }
+    },
+    "arguments": [],
+    "expected": {
+      "schema": "bagaev-typed-record-result/10",
+      "status": "integer-overflow",
+      "reason": "RR_OVERFLOW",
+      "location": "/program/functions/main/body/2/2",
+      "value_type": null,
+      "value": null,
+      "work": 6
+    }
+  },
+  {
+    "id": "LAZY",
+    "profile": 10,
+    "program": {
+      "schema": "bagaev-typed-record/10",
+      "records": {
+        "R": {
+          "n": "Int64"
+        }
+      },
+      "lists": {
+        "Entries": {
+          "element": "R",
+          "capacity": 0
+        }
+      },
+      "variants": {},
+      "entry": "main",
+      "functions": {
+        "main": {
+          "params": [],
+          "result": "Entries",
+          "body": [
+            "if",
+            [
+              "bool",
+              false
+            ],
+            [
+              "records.push",
+              [
+                "records.list",
+                "Entries"
+              ],
+              [
+                "record",
+                "R",
+                [
+                  "int",
+                  7
+                ]
+              ]
+            ],
+            [
+              "records.list",
+              "Entries"
+            ]
+          ]
+        }
+      }
+    },
+    "arguments": [],
+    "expected": {
+      "schema": "bagaev-typed-record-result/10",
+      "status": "success",
+      "reason": null,
+      "location": null,
+      "value_type": "RecordList:Entries",
+      "value": [],
+      "work": 3
+    }
+  },
+  {
+    "id": "WRONG-LIST",
+    "profile": 10,
+    "program": {
+      "schema": "bagaev-typed-record/10",
+      "records": {
+        "R": {
+          "n": "Int64"
+        }
+      },
+      "lists": {
+        "Entries": {
+          "element": "R",
+          "capacity": 4
+        }
+      },
+      "variants": {},
+      "entry": "main",
+      "functions": {
+        "main": {
+          "params": [],
+          "result": "Entries",
+          "body": [
+            "records.push",
+            [
+              "list.text"
+            ],
+            [
+              "record",
+              "R",
+              [
+                "int",
+                7
+              ]
+            ]
+          ]
+        }
+      }
+    },
+    "arguments": [],
+    "expected": {
+      "schema": "bagaev-typed-record-result/10",
+      "status": "invalid-ir",
+      "reason": "RR_TYPE",
+      "location": "/program/functions/main/body/1",
+      "value_type": null,
+      "value": null,
+      "work": 0
+    }
+  },
+  {
+    "id": "WRONG-RECORD",
+    "profile": 10,
+    "program": {
+      "schema": "bagaev-typed-record/10",
+      "records": {
+        "R": {
+          "n": "Int64"
+        }
+      },
+      "lists": {
+        "Entries": {
+          "element": "R",
+          "capacity": 4
+        }
+      },
+      "variants": {},
+      "entry": "main",
+      "functions": {
+        "main": {
+          "params": [],
+          "result": "Entries",
+          "body": [
+            "records.push",
+            [
+              "records.list",
+              "Entries"
+            ],
+            [
+              "int",
+              7
+            ]
+          ]
+        }
+      }
+    },
+    "arguments": [],
+    "expected": {
+      "schema": "bagaev-typed-record-result/10",
+      "status": "invalid-ir",
+      "reason": "RR_TYPE",
+      "location": "/program/functions/main/body/2",
+      "value_type": null,
+      "value": null,
+      "work": 0
+    }
+  },
+  {
+    "id": "NOMINAL-RECORD",
+    "profile": 10,
+    "program": {
+      "schema": "bagaev-typed-record/10",
+      "records": {
+        "R": {
+          "n": "Int64"
+        },
+        "Other": {
+          "n": "Int64"
+        }
+      },
+      "lists": {
+        "Entries": {
+          "element": "R",
+          "capacity": 4
+        }
+      },
+      "variants": {},
+      "entry": "main",
+      "functions": {
+        "main": {
+          "params": [],
+          "result": "Entries",
+          "body": [
+            "records.push",
+            [
+              "records.list",
+              "Entries"
+            ],
+            [
+              "record",
+              "Other",
+              [
+                "int",
+                7
+              ]
+            ]
+          ]
+        }
+      }
+    },
+    "arguments": [],
+    "expected": {
+      "schema": "bagaev-typed-record-result/10",
+      "status": "invalid-ir",
+      "reason": "RR_TYPE",
+      "location": "/program/functions/main/body/2",
+      "value_type": null,
+      "value": null,
+      "work": 0
+    }
+  },
+  {
+    "id": "WRONG-ARITY",
+    "profile": 10,
+    "program": {
+      "schema": "bagaev-typed-record/10",
+      "records": {
+        "R": {
+          "n": "Int64"
+        }
+      },
+      "lists": {
+        "Entries": {
+          "element": "R",
+          "capacity": 4
+        }
+      },
+      "variants": {},
+      "entry": "main",
+      "functions": {
+        "main": {
+          "params": [],
+          "result": "Entries",
+          "body": [
+            "records.push",
+            [
+              "records.list",
+              "Entries"
+            ]
+          ]
+        }
+      }
+    },
+    "arguments": [],
+    "expected": {
+      "schema": "bagaev-typed-record-result/10",
+      "status": "invalid-ir",
+      "reason": "RR_SHAPE",
+      "location": "/program/functions/main/body",
+      "value_type": null,
+      "value": null,
+      "work": 0
+    }
+  },
+  {
+    "id": "OLD-PROFILE",
+    "profile": 9,
+    "program": {
+      "schema": "bagaev-typed-record/9",
+      "records": {
+        "R": {
+          "n": "Int64"
+        }
+      },
+      "lists": {
+        "Entries": {
+          "element": "R",
+          "capacity": 4
+        }
+      },
+      "variants": {},
+      "entry": "main",
+      "functions": {
+        "main": {
+          "params": [],
+          "result": "Entries",
+          "body": [
+            "records.push",
+            [
+              "records.list",
+              "Entries"
+            ],
+            [
+              "record",
+              "R",
+              [
+                "int",
+                7
+              ]
+            ]
+          ]
+        }
+      }
+    },
+    "arguments": [],
+    "expected": {
+      "schema": "bagaev-typed-record-result/9",
+      "status": "invalid-ir",
+      "reason": "RR_SHAPE",
+      "location": "/program/functions/main/body",
+      "value_type": null,
+      "value": null,
+      "work": 0
+    }
+  },
+  {
+    "id": "OLD-LAZY",
+    "profile": 9,
+    "program": {
+      "schema": "bagaev-typed-record/9",
+      "records": {
+        "R": {
+          "n": "Int64"
+        }
+      },
+      "lists": {
+        "Entries": {
+          "element": "R",
+          "capacity": 4
+        }
+      },
+      "variants": {},
+      "entry": "main",
+      "functions": {
+        "main": {
+          "params": [],
+          "result": "Entries",
+          "body": [
+            "if",
+            [
+              "bool",
+              false
+            ],
+            [
+              "records.push",
+              [
+                "records.list",
+                "Entries"
+              ],
+              [
+                "record",
+                "R",
+                [
+                  "int",
+                  7
+                ]
+              ]
+            ],
+            [
+              "records.list",
+              "Entries"
+            ]
+          ]
+        }
+      }
+    },
+    "arguments": [],
+    "expected": {
+      "schema": "bagaev-typed-record-result/9",
+      "status": "invalid-ir",
+      "reason": "RR_SHAPE",
+      "location": "/program/functions/main/body/2",
+      "value_type": null,
+      "value": null,
+      "work": 0
+    }
+  },
+  {
+    "id": "WORK-BEFORE-CAPACITY",
+    "profile": 10,
+    "program": {
+      "schema": "bagaev-typed-record/10",
+      "records": {
+        "R": {
+          "n": "Int64"
+        }
+      },
+      "lists": {
+        "Entries": {
+          "element": "R",
+          "capacity": 4
+        }
+      },
+      "variants": {},
+      "entry": "main",
+      "functions": {
+        "main": {
+          "params": [],
+          "result": "Entries",
+          "body": [
+            "let",
+            "padding",
+            [
+              "loop",
+              1007,
+              "i",
+              "a",
+              [
+                "list.text",
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ]
+              ],
+              [
+                "list.text",
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ]
+              ]
+            ],
+            [
+              "records.push",
+              [
+                "records.list",
+                "Entries",
+                [
+                  "record",
+                  "R",
+                  [
+                    "int",
+                    1
+                  ]
+                ],
+                [
+                  "record",
+                  "R",
+                  [
+                    "int",
+                    2
+                  ]
+                ],
+                [
+                  "record",
+                  "R",
+                  [
+                    "int",
+                    3
+                  ]
+                ],
+                [
+                  "record",
+                  "R",
+                  [
+                    "int",
+                    4
+                  ]
+                ]
+              ],
+              [
+                "record",
+                "R",
+                [
+                  "int",
+                  5
+                ]
+              ]
+            ]
+          ]
+        }
+      }
+    },
+    "arguments": [],
+    "expected": {
+      "schema": "bagaev-typed-record-result/10",
+      "status": "work-limit",
+      "reason": "RR_WORK",
+      "location": "/program/functions/main/body/3",
+      "value_type": null,
+      "value": null,
+      "work": 65534
+    }
+  },
+  {
+    "id": "CAPACITY-BELOW-WORK",
+    "profile": 10,
+    "program": {
+      "schema": "bagaev-typed-record/10",
+      "records": {
+        "R": {
+          "n": "Int64"
+        }
+      },
+      "lists": {
+        "Entries": {
+          "element": "R",
+          "capacity": 4
+        }
+      },
+      "variants": {},
+      "entry": "main",
+      "functions": {
+        "main": {
+          "params": [],
+          "result": "Entries",
+          "body": [
+            "let",
+            "padding",
+            [
+              "loop",
+              1006,
+              "i",
+              "a",
+              [
+                "list.text",
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ]
+              ],
+              [
+                "list.text",
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "text",
+                  ""
+                ]
+              ]
+            ],
+            [
+              "records.push",
+              [
+                "records.list",
+                "Entries",
+                [
+                  "record",
+                  "R",
+                  [
+                    "int",
+                    1
+                  ]
+                ],
+                [
+                  "record",
+                  "R",
+                  [
+                    "int",
+                    2
+                  ]
+                ],
+                [
+                  "record",
+                  "R",
+                  [
+                    "int",
+                    3
+                  ]
+                ],
+                [
+                  "record",
+                  "R",
+                  [
+                    "int",
+                    4
+                  ]
+                ]
+              ],
+              [
+                "record",
+                "R",
+                [
+                  "int",
+                  5
+                ]
+              ]
+            ]
+          ]
+        }
+      }
+    },
+    "arguments": [],
+    "expected": {
+      "schema": "bagaev-typed-record-result/10",
+      "status": "record-list-bound",
+      "reason": "RR_RECORD_LIST_ITEMS",
+      "location": "/program/functions/main/body/3",
+      "value_type": null,
+      "value": null,
+      "work": 65474
+    }
+  }
+]
