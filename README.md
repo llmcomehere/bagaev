@@ -188,3 +188,5 @@ The [experimental prepared /10 JSON API](docs/probe-prepared-json10.md) reuses c
 The [finite evidence compatibility example](docs/probe-evidence-compatibility.md) compares descriptive receipt metadata with frozen requirements using existing /8 JSON operations. It grants no execution authority.
 
 The [fixed obligation-set example](docs/probe-evidence-obligations.md) checks every member of a trusted finite requirement set and gives conflicts priority over missing evidence.
+
+The [lease metadata example](docs/probe-lease-compatibility.md) checks clock labels, half-open containment and bounded renewal descriptions without reading a clock or granting authority.
