@@ -1,0 +1,11 @@
+{
+  "status": "FROZEN_PORTABLE_INPUTS_BEFORE_PACKET_EXECUTION",
+  "at": "2026-10-06T18:51:40.290363+00:00",
+  "sha256": {
+    "CONTRACT.json": "798856db192a23a111b2487dcc96e935c267b100cd6c185159840555753d6668",
+    "S1.json": "b5f867bd28b474ff4a4225d3c421dde2fea4c48c9ad8507b0975a74251126554",
+    "S2.json": "d13c5de9cdd904f54cddfb689c1a03eeabf968ad92beb58f22fdb17c63082b20",
+    "check-cases.json": "d747b121e1a7f69176aa9023cd86969eabaf5dbf634d2ab6c3b0586aecb040b4",
+    "policy.json": "7d10137110eb42da1fa751d45de87f0275b25db64808e4a997eeaba60788e7e5"
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "at": "2026-10-06T18:43:37.907287+00:00",
+  "status": "FROZEN_BEFORE_COMPONENT_CYCLE_IMPLEMENTATION",
+  "goal": "Checked source-level component declarations drive typed request/state binding and preservation in the existing connected simulation.",
+  "reuse": "All17 published whole-cycle world/receipt projections remain unchanged, plus explicit per-operation component/core/input/result associations. Source S1 is the existing inline component; S2 extracts normalization into a named helper. No cost claim.",
+  "pins": {
+    "S1": {
+      "component_sha256": "f57aa73a733951b8321b89b4813bc27021ec2f49af34dc19989812925033bfbc",
+      "program_sha256": "c9a8b4f6569328bae110f5c8a95e097093535c78e4e5bffd720234410bb5eea4"
+    },
+    "S2": {
+      "component_sha256": "50902f5b21f6817783595b02f270abe8c3bd433270f13704d8ee0bde178f3a27",
+      "program_sha256": "41752aa1de702398fb243e95bc546fe0e6015a9b05fdd4e72c1ed4b4dd7a3521"
+    }
+  },
+  "policy_sha256": "037b1d6e2eff566661ff10c3e6e7f1e4ec2fe5f41c7c10e8cdee78282912a815",
+  "immutable_expectation_files": {
+    "whole_cycle_cases_sha256": "f19cae136cdcf76fabb255aa5ae16171701e740da21a54e9db1b89589355e0b7",
+    "pure_value_expectations_sha256": "4172d1f7a01aa64a7d8f858f09067d6f003a5f422032491f060570544e796cad"
+  },
+  "new_expected_observations": {
+    "WC17": {
+      "state_revision": 9,
+      "old_receipt_revision": 8,
+      "source_order": [
+        "S1",
+        "S2"
+      ],
+      "operation_A_component": "f57aa73a733951b8321b89b4813bc27021ec2f49af34dc19989812925033bfbc",
+      "operation_B_component": "50902f5b21f6817783595b02f270abe8c3bd433270f13704d8ee0bde178f3a27",
+      "old_receipt_replay_does_not_reinvoke": true
+    },
+    "guards": [
+      {
+        "fault": "corrupt manual after actual pure return",
+        "required": "declared component frame",
+        "committed": false
+      },
+      {
+        "fault": "corrupt indexed to a non-TextList after actual pure return",
+        "required": "declared result type",
+        "committed": false
+      },
+      {
+        "fault": "same-shaped wrong receiver type contract",
+        "required": "component policy refused",
+        "pure_invoked": false
+      }
+    ]
+  },
+  "runtime_rules": [
+    "Immutable checked source bytes and fixed alias-to-revision pins; never mutate a shared program dictionary",
+    "Receiver contract supplied independently; compatibility does not grant actual rights",
+    "Explicit transition hook receives whole intent and operation key; no hidden current-request global",
+    "Nominal request ID and base revision are built by the declared catalogue wire bridge and checked before pure transition",
+    "Result type revalidated through an existing typed identity programme; preservation uses fields returned by actual source checker",
+    "The old application-frame check remains a separate redundant workload contract; controls require the new declared-frame failure before it",
+    "Request/result associations are local observations with exact operation identity, not externally authenticated execution proof"
+  ],
+  "limits": [
+    "Only the typed core actually runs; receiver, authority and admission assumptions remain simulated",
+    "No real persistence, permissions or source execution profile change",
+    "Reused17 traces are regression/composition coverage, not17 new independent scenarios",
+    "Old logical work expectations are not copied to differently shaped new sources; compare declared values and retain actual charges without timing claims"
+  ]
+}

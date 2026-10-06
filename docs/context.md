@@ -74,6 +74,9 @@ returns detached, unadmitted drafts; this is not a completed form/model study.
 For the first connected design demonstration, read the [whole-cycle reference
 simulation](probe-whole-cycle.md). Its typed pure computation is real reference
 execution; receiver/admission/continuation guarantees remain explicitly simulated.
+The next [source-level component construction](probe-component-source.md) makes
+state/request types and identity/revision/replacement bindings explicit in source,
+then checks those declarations along that same connected path.
 
 ## Routes
 
