@@ -1,0 +1,162 @@
+{
+  "schema": "prepared10-boundary-fixtures/1",
+  "envelope_constant": 70,
+  "frame_limit": 1048576,
+  "value_limit": 16384,
+  "sources": [
+    {
+      "arity": 0,
+      "source_sha256": "24b092fce3f9d13381dc585b17a49213c5ac8dd8343315b05a521efdea391f21",
+      "source_bytes": 174,
+      "source_values": 15,
+      "expected": {
+        "schema": "bagaev-typed-record-result/10",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Int64",
+        "value": 7,
+        "work": 1
+      },
+      "source": {
+        "entry": "main",
+        "functions": {
+          "main": {
+            "body": [
+              "int",
+              7
+            ],
+            "params": [],
+            "result": "Int64"
+          }
+        },
+        "lists": {},
+        "records": {
+          "R": {
+            "n": "Int64"
+          }
+        },
+        "schema": "bagaev-typed-record/10",
+        "variants": {}
+      }
+    },
+    {
+      "arity": 1,
+      "source_sha256": "021986180e581e908211cc4a408fcbca6be3818e0ca8a0d95d586805bd62de09",
+      "source_bytes": 187,
+      "source_values": 18,
+      "expected": {
+        "schema": "bagaev-typed-record-result/10",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Int64",
+        "value": 7,
+        "work": 1
+      },
+      "source": {
+        "entry": "main",
+        "functions": {
+          "main": {
+            "body": [
+              "int",
+              7
+            ],
+            "params": [
+              [
+                "j0",
+                "Json"
+              ]
+            ],
+            "result": "Int64"
+          }
+        },
+        "lists": {},
+        "records": {
+          "R": {
+            "n": "Int64"
+          }
+        },
+        "schema": "bagaev-typed-record/10",
+        "variants": {}
+      }
+    },
+    {
+      "arity": 8,
+      "source_sha256": "9e2a65d18c8e4b02e09ad254f1f183743a830f427b33fc52536176fcc87190f4",
+      "source_bytes": 285,
+      "source_values": 39,
+      "expected": {
+        "schema": "bagaev-typed-record-result/10",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Int64",
+        "value": 7,
+        "work": 1
+      },
+      "source": {
+        "entry": "main",
+        "functions": {
+          "main": {
+            "body": [
+              "int",
+              7
+            ],
+            "params": [
+              [
+                "j0",
+                "Json"
+              ],
+              [
+                "j1",
+                "Json"
+              ],
+              [
+                "j2",
+                "Json"
+              ],
+              [
+                "j3",
+                "Json"
+              ],
+              [
+                "j4",
+                "Json"
+              ],
+              [
+                "j5",
+                "Json"
+              ],
+              [
+                "j6",
+                "Json"
+              ],
+              [
+                "j7",
+                "Json"
+              ]
+            ],
+            "result": "Int64"
+          }
+        },
+        "lists": {},
+        "records": {
+          "R": {
+            "n": "Int64"
+          }
+        },
+        "schema": "bagaev-typed-record/10",
+        "variants": {}
+      }
+    }
+  ],
+  "expectations": {
+    "bytes_exact": "ADMITTED",
+    "bytes_over_valid": "PREPARED_FRAME_BOUNDS",
+    "bytes_over_malformed": "PREPARED_FRAME_BOUNDS",
+    "values_exact": "ADMITTED",
+    "values_over": "PREPARED_VALUE_BOUNDS"
+  },
+  "scope": "Manual constant7/work1 sources and arithmetic boundaries; output/admission truth is separate from authority."
+}

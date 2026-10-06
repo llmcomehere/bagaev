@@ -182,3 +182,5 @@ version; finite conformance and source-size observations are not performance cla
 The explicit [/10 named record-list append probe](docs/probe-record-list-push.md)
 extends immutable accumulation to nominal record lists without increasing their
 capacity. It preserves earlier source/native profiles.
+
+The [experimental prepared /10 JSON API](docs/probe-prepared-json10.md) reuses checked /10 source with distinct ownership types, preserving the older /8 interface. Finite conformance is separate from production acceptance.

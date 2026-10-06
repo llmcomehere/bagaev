@@ -91,3 +91,7 @@ same-maintainer review was performed; it is not independent review.
 Exact-head documentation CI does not execute native tests.
 No broad native safety, production, general memory, elapsed-time or model-cost
 claim follows from this API or from finite conformance.
+
+## Explicit /10 successor
+
+The [distinct /10 prepared API](probe-prepared-json10.md) uses different handle types and a 70-byte conceptual envelope. This /8 API and its 69-byte budget remain unchanged.
