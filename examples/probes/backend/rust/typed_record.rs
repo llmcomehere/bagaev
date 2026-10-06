@@ -757,3 +757,61 @@ pub fn checked_json_invocation_v8(bytes:&[u8])->Result<CheckedJsonInvocation,Str
  for arg in args{match arg{OwnedArgument::Json(v)=>arguments.push(v),_=>return Err("NATIVE_JSON_SIGNATURE".to_owned())}}
  Ok(CheckedJsonInvocation{program,arguments})
 }
+
+/// Experimental source-once /8 Json data handle. This is not native execution authority.
+/// Its calling convention has a canonical conceptual-envelope budget; old APIs are unchanged.
+pub struct PreparedJsonProgram { source:CheckedSource, source_values:usize }
+impl PreparedJsonProgram {
+ pub fn source(&self)->&CheckedSource { &self.source }
+ pub fn source_values(&self)->usize { self.source_values }
+}
+pub struct PreparedJsonInvocation<'p> {
+ program:&'p PreparedJsonProgram,
+ arguments:Vec<Box<crate::json_view::Owned>>,
+}
+impl<'p> PreparedJsonInvocation<'p> {
+ pub fn program(&self)->&PreparedJsonProgram { self.program }
+ pub fn json_arguments(&self)->&[Box<crate::json_view::Owned>] { &self.arguments }
+}
+pub fn prepare_json_program_v8(bytes:&[u8])->Result<PreparedJsonProgram,String> {
+ let doc=parsed(bytes).map_err(|e|format!("{e:?}"))?;
+ let source=program(&doc,doc.root,8).map_err(|e|format!("{e:?}"))?;
+ if source.functions[source.entry].parameters.iter().any(|p|p.ty!=Type::Json) {
+  return Err("NATIVE_JSON_SIGNATURE".to_owned());
+ }
+ // Reparse only at preparation to count the canonical source's actual JSON values.
+ let canonical=parsed(source.canonical_bytes()).map_err(|e|format!("{e:?}"))?;
+ Ok(PreparedJsonProgram{source,source_values:canonical.values.len()})
+}
+pub fn prepare_json_arguments_v8<'p>(program:&'p PreparedJsonProgram,raw:&[u8])->Result<PreparedJsonInvocation<'p>,String> {
+ let bytes=69usize.checked_add(program.source.canonical_bytes().len()).and_then(|n|n.checked_add(raw.len()));
+ if bytes.map_or(true,|n|n>transport::FRAME_LIMIT) { return Err("PREPARED_FRAME_BOUNDS".to_owned()); }
+ let doc=parsed(raw).map_err(|e|format!("{e:?}"))?;
+ let total=program.source_values.checked_add(doc.values.len()).and_then(|n|n.checked_add(2));
+ if total.map_or(true,|n|n>16384) { return Err("PREPARED_VALUE_BOUNDS".to_owned()); }
+ json_bounds(&doc,doc.root,131,16384,"/arguments").map_err(|e|format!("{e:?}"))?;
+ let items=match &doc.values[doc.root] { Value::Array(v)=>v,_=>return Err("PREPARED_ARGUMENT_ARRAY".to_owned()) };
+ if items.len()!=program.source.functions[program.source.entry].parameters.len() { return Err("PREPARED_ARGUMENT_ARITY".to_owned()); }
+ let mut arguments=Vec::with_capacity(items.len());
+ for &id in items { arguments.push(Box::new(crate::json_view::Owned::copy(&doc,id).map_err(str::to_owned)?)); }
+ Ok(PreparedJsonInvocation{program,arguments})
+}
+/// Evaluate already admitted source and per-call Json owners. Work starts at zero each time.
+pub fn evaluate_prepared_json_v8(invocation:&PreparedJsonInvocation<'_>)->Result<Vec<u8>,&'static str> {
+ let program=&invocation.program.source;
+ let args=invocation.arguments.iter().map(|v|RuntimeValue::Json(v.root())).collect::<Vec<_>>();
+ let mut runtime=Runtime{program,work:0};
+ match runtime.function(program.entry,&args) {
+  Ok(value)=>result_wire("success",None,None,Some(value),runtime.work,&program.records,&program.lists,&program.variants,8),
+  Err(EvalError::Environment(e))=>Err(e),
+  Err(error)=>{
+   let(id,status,reason)=match error {
+    EvalError::ListBytes(id)=>(id,"list-bound","RR_LIST_BYTES"),EvalError::Index(id)=>(id,"list-index","RR_INDEX"),
+    EvalError::Work(id)=>(id,"work-limit","RR_WORK"),EvalError::Overflow(id)=>(id,"integer-overflow","RR_OVERFLOW"),
+    EvalError::Environment(_)=>unreachable!(),
+   };
+   let loc=format!("/program{}",program.node(id).ok_or("runtime node")?.pointer());
+   result_wire(status,Some(reason),Some(&loc),None,runtime.work,&program.records,&program.lists,&program.variants,8)
+  }
+ }
+}

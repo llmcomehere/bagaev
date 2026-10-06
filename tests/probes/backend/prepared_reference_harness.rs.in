@@ -1,0 +1,34 @@
+#[path="{{BACKEND}}/transport.rs"]pub mod transport;
+#[path="{{BACKEND}}/check.rs"]pub mod check;
+#[path="{{BACKEND}}/ir.rs"]pub mod ir;
+#[path="{{BACKEND}}/canonical.rs"]pub mod canonical;
+#[path="{{BACKEND}}/sha256.rs"]pub mod sha256;
+#[path="{{BACKEND}}/record_ir.rs"]pub mod record_ir;
+#[path="{{BACKEND}}/option_int.rs"]pub mod option_int;
+#[path="{{BACKEND}}/text_value.rs"]pub mod text_value;
+#[path="{{BACKEND}}/text_list.rs"]pub mod text_list;
+#[path="{{BACKEND}}/typed_record.rs"]pub mod typed_record;
+#[path="{{BACKEND}}/text_inspection.rs"]pub mod text_inspection;
+#[path="{{BACKEND}}/int_projection.rs"]pub mod int_projection;
+#[path="{{BACKEND}}/record_value.rs"]pub mod record_value;
+#[path="{{BACKEND}}/type_graph.rs"]pub mod type_graph;
+#[path="{{BACKEND}}/json_view.rs"]pub mod json_view;
+#[path="{{BACKEND}}/variant_admission.rs"]pub mod variant_admission;
+#[path="{{BACKEND}}/list_callframe.rs"]pub mod list_callframe;
+#[path="{{BACKEND}}/list_native_adapter.rs"]pub mod list_native_adapter;
+#[path="{{BACKEND}}/composite_export_v8.rs"]pub mod composite_export_v8;
+#[path="{{BACKEND}}/composite_native_cells.rs"]pub mod composite_native_cells;
+#[path="{{BACKEND}}/json_native_input.rs"]pub mod json_native_input;
+#[path="{{BACKEND}}/json_native_invocation.rs"]pub mod json_native_invocation;
+#[path="{{BACKEND}}/json_native_adapter_v8.rs"]pub mod json_native_adapter_v8;
+
+
+fn bounded_read(path:&str,limit:usize)->Vec<u8>{
+ use std::io::Read;
+ let file=std::fs::File::open(path).unwrap();let meta=file.metadata().unwrap();
+ assert!(meta.is_file()&&meta.len()<=limit as u64);
+ let mut bytes=Vec::new();file.take(limit as u64+1).read_to_end(&mut bytes).unwrap();
+ assert!(bytes.len()<=limit);bytes
+}
+
+fn main(){let a:Vec<_>=std::env::args().collect();assert_eq!(a.len(),4);assert!(a[3]=="run"||a[3]=="admit");let source=bounded_read(&a[1],1048576);let raw=bounded_read(&a[2],1048576);let p=typed_record::prepare_json_program_v8(&source).unwrap();match typed_record::prepare_json_arguments_v8(&p,&raw){Ok(i)=>{if a[3]=="admit"{println!("true");}else{let out=typed_record::evaluate_prepared_json_v8(&i).unwrap();use std::io::Write;std::io::stdout().write_all(&out).unwrap();}},Err(_)=>{assert_eq!(a[3],"admit");println!("false");}}}

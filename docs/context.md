@@ -173,3 +173,7 @@ Keep a handoff small and checkable: task and scope; base and candidate snapshot;
 changed paths; checks with actual results and limits; process handles; open
 effects; and source anchors. Do not report unrun checks as passed. Exclude
 secrets, private identity, correspondence, and hidden reasoning.
+
+For experimental source-once JSON calls, read the [prepared-call guide](probe-prepared-json.md)
+and the [native JSON contract](probe-native-json.md). Preparation, argument
+admission, per-call scratch checking and kernel authority remain distinct.
