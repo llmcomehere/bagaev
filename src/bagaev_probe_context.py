@@ -56,12 +56,13 @@ def _schema(value,name,path=''):
     _text(value['schema'],path+'/schema',None)
     _need(value['schema']==name,'CTX_VERSION',path+'/schema')
 
-def _axes(value,path='/axes'):
+def _axes(value,path='/axes',*,component=False):
     _fields(value,AXES,path)
     for key in AXES:_text(value[key],path+'/'+key,None)
-    _need(value['semantic'] in ('bagaev-l2/1','bagaev-probe-ir/1'),'CTX_VERSION',path+'/semantic')
+    allowed=('bagaev-component-source/1',) if component else ('bagaev-l2/1','bagaev-probe-ir/1')
+    _need(value['semantic'] in allowed,'CTX_VERSION',path+'/semantic')
     _need(value['ir']==value['semantic'],'CTX_VERSION',path+'/ir')
-    for key,name in [('form','probe-forms/1'),('envelope','probe-context/1'),('evidence','probe-evidence/1')]:
+    for key,name in [('form','component-form/1' if component else 'probe-forms/1'),('envelope','component-context/1' if component else 'probe-context/1'),('evidence','probe-evidence/1')]:
         _need(value[key]==name,'CTX_VERSION',path+'/'+key)
 
 def _bounds(value,depth_limit,count_limit):
@@ -143,9 +144,9 @@ def _resolve(ref,sources,path):
     try:raw[:start].decode('utf-8');raw[:end].decode('utf-8')
     except UnicodeError:raise ContextError('CTX_SHAPE',path) from None
 
-def _shape(context):
+def _shape(context,*,component=False):
     _fields(context,CONTEXT_FIELDS);_fields(context['axes'],AXES,'/axes')
-    _schema(context,'probe-context/1');_axes(context['axes']);_bounds(context,136,65536)
+    _schema(context,'component-context/1' if component else 'probe-context/1');_axes(context['axes'],component=component);_bounds(context,136,65536)
     _pin(context['snapshot'],'/snapshot')
     total=0
     for i,row in enumerate(_records(context['sources'],1,16,'/sources',('id','pin','text'))):
@@ -162,7 +163,7 @@ def _shape(context):
     for i,row in enumerate(_records(context['candidates'],0,16,'/candidates',('id','kind','state','content','pin'))):
         path='/candidates/'+str(i)
         _need(type(row['kind']) is str and row['kind'] in ('program','patch'),path=path+'/kind')
-        if context['axes']['semantic']=='bagaev-probe-ir/1':_need(row['kind']=='program',path=path+'/kind')
+        if context['axes']['semantic']!='bagaev-l2/1':_need(row['kind']=='program',path=path+'/kind')
         _need(type(row['state']) is str and row['state'] in ('choice','draft'),path=path+'/state')
         _need(type(row['content']) is dict,path=path+'/content')
         total+=len(_canonical(row['content'],1048576,path+'/content'))
@@ -174,14 +175,25 @@ def _shape(context):
         if meta[key] is not None:_text(meta[key],'/metadata/'+key)
     _canonical(context)
 
-def _expectation(source):
+def _expectation(source,*,component=False):
     _need(source is not None,'CTX_MISSING')
     value=_parse(source,2097152)
-    _fields(value,('schema','axes','snapshot','candidate_set','sources','obligations','baseline'))
-    _schema(value,'probe-expectation/1');_axes(value['axes']);_bounds(value,136,32768)
+    fields=('schema','axes','snapshot','candidate_set','sources','obligations','baseline')
+    _fields(value,fields+(('programme_sources','unknowns','open_effects') if component else ()))
+    _schema(value,'component-expectation/1' if component else 'probe-expectation/1');_axes(value['axes'],component=component);_bounds(value,136,32768)
     _pin(value['snapshot'],'/snapshot');_pin(value['candidate_set'],'/candidate_set')
     for name,limit in [('sources',16),('obligations',32)]:
         for i,row in enumerate(_records(value[name],1,limit,'/'+name,('id','pin'))):_pin(row['pin'],'/'+name+'/'+str(i)+'/pin')
+    if component:
+        known_sources={row['id'] for row in value['sources']}
+        programmes=_records(value['programme_sources'],1,16,'/programme_sources',('id','pin','role'))
+        for i,row in enumerate(programmes):
+            path='/programme_sources/'+str(i);_pin(row['pin'],path+'/pin')
+            _need(type(row['role']) is str and row['role'] in ('baseline','dependency'),path=path+'/role')
+            _need(row['id'] in known_sources,'CTX_MISSING',path+'/id')
+        _need(sum(row['role']=='baseline' for row in programmes)==1,path='/programme_sources')
+        for name,limit in [('unknowns',32),('open_effects',16)]:
+            for i,row in enumerate(_records(value[name],0,limit,'/'+name,('id','pin'))):_pin(row['pin'],'/'+name+'/'+str(i)+'/pin')
     _canonical(value,2097152)
     return value
 
@@ -191,16 +203,16 @@ def _semantic(program,semantic,kernel_checker,path):
         if type(program) is not dict:raise l2.L2Error('L2_PROGRAM')
         checked=l2.check_program(program).canonical
     else:
-        if kernel_checker is None:raise ContextUnavailable('an explicit trusted kernel checker is required')
+        if kernel_checker is None:raise ContextUnavailable('an explicit trusted '+('component' if semantic=='bagaev-component-source/1' else 'kernel')+' checker is required')
         try:checked=kernel_checker(copy.deepcopy(program))
         except KernelRefusal as error:raise KernelRefusal(error.code,path+error.location) from None
         if type(checked) is not bytes:raise ContextUnavailable('checker must return checked canonical program bytes')
     if checked!=_canonical(program,1048576,path):raise ContextUnavailable('checker changed or failed to bind the complete program')
     return _bytes_pin(checked)
 
-def _validate(context_source,expectation_source,kernel_checker):
-    context=_parse(context_source,4194304);_shape(context)
-    expected=_expectation(expectation_source)
+def _validate(context_source,expectation_source,kernel_checker,*,component=False):
+    context=_parse(context_source,4194304);_shape(context,component=component)
+    expected=_expectation(expectation_source,component=component)
     snapshot=_semantic(expected['baseline'],expected['axes']['semantic'],kernel_checker,'/baseline')
     for key in AXES:_need(expected['axes'][key]==context['axes'][key],'CTX_STALE','/axes/'+key)
     _need(expected['snapshot']==snapshot and context['snapshot']==snapshot,'CTX_STALE','/snapshot')
@@ -217,6 +229,13 @@ def _validate(context_source,expectation_source,kernel_checker):
     for row in expected['obligations']:
         _need(row['id'] in obligations,'CTX_MISSING','/obligations')
         actual,i=obligations[row['id']];_need(actual['pin']==row['pin'],'CTX_STALE','/obligations/'+str(i)+'/pin')
+    if component:
+        for name in ('unknowns','open_effects'):
+            facts={row['id']:(row,i) for i,row in enumerate(context[name])}
+            for wanted in expected[name]:
+                _need(wanted['id'] in facts,'CTX_MISSING','/'+name)
+                actual,i=facts[wanted['id']];_need(_hash(actual)==wanted['pin'],'CTX_STALE','/'+name+'/'+str(i))
+            _need(set(facts)=={row['id'] for row in expected[name]},'CTX_REMAPPED','/'+name)
     for i,row in enumerate(context['candidates']):_need(_hash(row['content'])==row['pin'],'CTX_PIN','/candidates/'+str(i)+'/pin')
     mapping={'schema':'probe-candidate-set/1','candidates':[{k:row[k] for k in ('id','kind','state','pin')} for row in context['candidates']]}
     _need(_hash(mapping)==context['candidate_set'],'CTX_PIN','/candidate_set')
@@ -226,6 +245,19 @@ def _validate(context_source,expectation_source,kernel_checker):
         if row['kind']=='program':_semantic(row['content'],context['axes']['semantic'],kernel_checker,'/candidates/'+str(i)+'/content')
         else:
             l2.apply_patch(expected['baseline'],row['content'])
+    if component:
+        # Fixed host dependency, never a module name or callable from packet data.
+        import bagaev_component_form as component_form
+        for i,row in enumerate(expected['programme_sources']):
+            path='/programme_sources/'+str(i);_need(row['id'] in sources,'CTX_MISSING',path+'/id')
+            programme=component_form.decode(sources[row['id']][2])
+            if row['role']=='baseline':
+                checked=_canonical(programme,1048576,path)
+                _need(checked==_canonical(expected['baseline'],1048576,'/baseline'),'CTX_STALE',path+'/pin')
+                observed=_bytes_pin(checked)
+                _need(row['pin']==snapshot,'CTX_STALE',path+'/pin')
+            else:observed=_semantic(programme,expected['axes']['semantic'],kernel_checker,path)
+            _need(observed==row['pin'],'CTX_STALE',path+'/pin')
     return context,expected,sources,obligations
 
 def inspect(context,expectation,*,kernel_checker=None):
