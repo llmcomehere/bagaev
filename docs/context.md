@@ -184,3 +184,7 @@ profiles retain their boundaries.
 
 For /10 nominal record-list accumulation, read
 [the record-list append contract](probe-record-list-push.md). /9 remains separate.
+
+## Prepared JSON /10 calling convention
+
+[The source-once /10 boundary](probe-prepared-json10.md) has distinct handle types and a 70-byte conceptual-envelope constant. Existing /8 interfaces remain unchanged. Finite replay, ownership and refusal controls are documented separately from measurements and execution authority.

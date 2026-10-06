@@ -1,0 +1,57 @@
+#[path="{{BACKEND}}/transport.rs"]pub mod transport;
+#[path="{{BACKEND}}/check.rs"]pub mod check;
+#[path="{{BACKEND}}/ir.rs"]pub mod ir;
+#[path="{{BACKEND}}/canonical.rs"]pub mod canonical;
+#[path="{{BACKEND}}/sha256.rs"]pub mod sha256;
+#[path="{{BACKEND}}/record_ir.rs"]pub mod record_ir;
+#[path="{{BACKEND}}/option_int.rs"]pub mod option_int;
+#[path="{{BACKEND}}/text_value.rs"]pub mod text_value;
+#[path="{{BACKEND}}/text_list.rs"]pub mod text_list;
+#[path="{{BACKEND}}/typed_record.rs"]pub mod typed_record;
+#[path="{{BACKEND}}/text_inspection.rs"]pub mod text_inspection;
+#[path="{{BACKEND}}/int_projection.rs"]pub mod int_projection;
+#[path="{{BACKEND}}/record_value.rs"]pub mod record_value;
+#[path="{{BACKEND}}/type_graph.rs"]pub mod type_graph;
+#[path="{{BACKEND}}/json_view.rs"]pub mod json_view;
+#[path="{{BACKEND}}/variant_admission.rs"]pub mod variant_admission;
+#[path="{{BACKEND}}/list_callframe.rs"]pub mod list_callframe;
+#[path="{{BACKEND}}/list_native_adapter.rs"]pub mod list_native_adapter;
+#[path="{{BACKEND}}/composite_export_v10.rs"]pub mod composite_export_v10;
+#[path="{{BACKEND}}/composite_native_cells.rs"]pub mod composite_native_cells;
+#[path="{{BACKEND}}/json_native_input.rs"]pub mod json_native_input;
+#[path="{{BACKEND}}/json_native_invocation.rs"]pub mod json_native_invocation;
+#[path="{{BACKEND}}/json_native_adapter_v10.rs"]pub mod json_native_adapter_v10;
+
+#[path="{{BACKEND}}/prepared_json_native_v10.rs"]pub mod prepared_json_native_v10;
+
+pub const SOURCE:&[u8]=br#"{"schema":"bagaev-typed-record/10","records":{},"lists":{},"variants":{},"entry":"main","functions":{"main":{"params":[["x","Json"]],"result":"Bool","body":["json.is_text",["arg","x"]]}}}"#;
+pub unsafe extern "C" fn marker(_: *const prepared_json_native_v10::NativeValue,_: *mut prepared_json_native_v10::Arena,_: *mut prepared_json_native_v10::Cells,_: *mut prepared_json_native_v10::KernelOutput){}
+#[cfg(return_local)]
+pub fn attempt()->typed_record::PreparedJsonInvocationV10<'static>{let p=typed_record::prepare_json_program_v10(SOURCE).unwrap();typed_record::prepare_json_arguments_v10(&p,b"[null]").unwrap()}
+
+#[cfg(drop_borrowed)]
+pub fn attempt(){let p=typed_record::prepare_json_program_v10(SOURCE).unwrap();let i=typed_record::prepare_json_arguments_v10(&p,b"[null]").unwrap();drop(p);let _=typed_record::evaluate_prepared_json_v10(&i);}
+#[cfg(private_field)]
+pub fn attempt(p:typed_record::PreparedJsonProgramV10){let _=&p.source;}
+
+#[cfg(scoped_borrow)]
+pub fn attempt(){let p=typed_record::prepare_json_program_v10(SOURCE).unwrap();let i=typed_record::prepare_json_arguments_v10(&p,b"[null]").unwrap();let result=typed_record::evaluate_prepared_json_v10(&i).unwrap();drop(i);drop(p);assert!(!result.is_empty());}
+#[cfg(unsafe_required)]
+pub fn attempt(p:&prepared_json_native_v10::Prepared,t:&mut[prepared_json_native_v10::NativeText],c:&mut[prepared_json_native_v10::NativeValue]){let _=prepared_json_native_v10::evaluate(p,b"[]",t,c,&[0;32],marker);}
+
+#[cfg(explicit_unsafe)]
+pub fn attempt(p:&prepared_json_native_v10::Prepared,t:&mut[prepared_json_native_v10::NativeText],c:&mut[prepared_json_native_v10::NativeValue]){let _=unsafe{prepared_json_native_v10::evaluate(p,b"[]",t,c,&[0;32],marker)};}
+
+#[cfg(old_program_to10)]
+pub fn attempt(p:&typed_record::PreparedJsonProgram){let _=typed_record::prepare_json_arguments_v10(p,b"[]");}
+
+#[cfg(new_program_to8)]
+pub fn attempt(p:&typed_record::PreparedJsonProgramV10){let _=typed_record::prepare_json_arguments_v8(p,b"[]");}
+
+#[cfg(old_invocation_to10)]
+pub fn attempt(p:&typed_record::PreparedJsonInvocation<'_>){let _=typed_record::evaluate_prepared_json_v10(p);}
+
+#[cfg(new_invocation_to8)]
+pub fn attempt(p:&typed_record::PreparedJsonInvocationV10<'_>){let _=typed_record::evaluate_prepared_json_v8(p);}
+
+fn main(){}
