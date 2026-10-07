@@ -1,0 +1,1655 @@
+{
+  "base": {
+    "component": {
+      "entry": "apply",
+      "error_type": "StockError",
+      "identity_binding": {
+        "request": "item",
+        "state": "key"
+      },
+      "name": "StockItem",
+      "operation": "adjust_quantity",
+      "outcome_type": "StockOutcome",
+      "replace_fields": [
+        "quantity"
+      ],
+      "request_type": "AdjustStock",
+      "revision_binding": "expected",
+      "revision_type": "StockVersion",
+      "state_type": "Stock"
+    },
+    "program": {
+      "entry": "apply",
+      "functions": {
+        "apply": {
+          "body": [
+            "let",
+            "next",
+            [
+              "add",
+              [
+                "field",
+                [
+                  "arg",
+                  "state"
+                ],
+                "quantity"
+              ],
+              [
+                "field",
+                [
+                  "arg",
+                  "request"
+                ],
+                "delta"
+              ]
+            ],
+            [
+              "if",
+              [
+                "lt",
+                [
+                  "use",
+                  "next"
+                ],
+                [
+                  "int",
+                  0
+                ]
+              ],
+              [
+                "variant",
+                "StockOutcome",
+                "Decline",
+                [
+                  "record",
+                  "StockError",
+                  [
+                    "text",
+                    "negative-quantity"
+                  ]
+                ]
+              ],
+              [
+                "variant",
+                "StockOutcome",
+                "Propose",
+                [
+                  "record",
+                  "Stock",
+                  [
+                    "field",
+                    [
+                      "arg",
+                      "state"
+                    ],
+                    "key"
+                  ],
+                  [
+                    "field",
+                    [
+                      "arg",
+                      "state"
+                    ],
+                    "note"
+                  ],
+                  [
+                    "use",
+                    "next"
+                  ]
+                ]
+              ]
+            ]
+          ],
+          "params": [
+            [
+              "state",
+              "Stock"
+            ],
+            [
+              "request",
+              "AdjustStock"
+            ]
+          ],
+          "result": "StockOutcome"
+        }
+      },
+      "lists": {
+        "Items": {
+          "element": "Item",
+          "capacity": 4
+        }
+      },
+      "records": {
+        "AdjustStock": {
+          "delta": "Int64",
+          "expected": "StockVersion",
+          "item": "StockKey"
+        },
+        "Stock": {
+          "key": "StockKey",
+          "note": "Text",
+          "quantity": "Int64"
+        },
+        "StockError": {
+          "reason": "Text"
+        },
+        "StockKey": {
+          "code": "Text"
+        },
+        "StockVersion": {
+          "value": "Int64"
+        },
+        "Item": {
+          "value": "Int64"
+        }
+      },
+      "schema": "bagaev-typed-record/10",
+      "variants": {
+        "StockOutcome": {
+          "Decline": "StockError",
+          "Propose": "Stock"
+        }
+      }
+    },
+    "schema": "bagaev-component-source/2"
+  },
+  "template": "bagaev component-form/7;\ncomponent StockItem operation adjust_quantity {\n  record StockKey { code: Text };\n  record StockVersion { value: Int64 };\n  record Stock { key: StockKey, quantity: Int64, note: Text };\n  record AdjustStock { item: StockKey, expected: StockVersion, delta: Int64 };\n  record StockError { reason: Text };\n  variant StockOutcome { Decline: StockError, Propose: Stock };\n  record Item { value: Int64 };\n  list Items of Item capacity 4;\n  state Stock identity key;\n  request AdjustStock identity item revision expected: StockVersion;\n  replace quantity;\n  outcome StockOutcome error StockError;\n  entry apply;\n  fn apply(state: Stock, request: AdjustStock) -> StockOutcome =\n    let next = state.quantity + request.delta in\n    if next < 0\n    then StockOutcome.Decline(StockError { reason: \"negative-quantity\" })\n    else StockOutcome.Propose(Stock { key: state.key, note: state.note, quantity: next });\n}\n",
+  "positive": [
+    {
+      "id": "empty",
+      "source": "bagaev component-form/7;\ncomponent StockItem operation adjust_quantity {\n  record StockKey { code: Text };\n  record StockVersion { value: Int64 };\n  record Stock { key: StockKey, quantity: Int64, note: Text };\n  record AdjustStock { item: StockKey, expected: StockVersion, delta: Int64 };\n  record StockError { reason: Text };\n  variant StockOutcome { Decline: StockError, Propose: Stock };\n  record Item { value: Int64 };\n  list Items of Item capacity 4;\n  state Stock identity key;\n  request AdjustStock identity item revision expected: StockVersion;\n  replace quantity;\n  outcome StockOutcome error StockError;\n  entry apply;\n  fn apply(state: Stock, request: AdjustStock) -> StockOutcome =\n    let next = state.quantity + request.delta in\n    if next < 0\n    then StockOutcome.Decline(StockError { reason: \"negative-quantity\" })\n    else StockOutcome.Propose(Stock { key: state.key, note: state.note, quantity: next });\n fn calc() -> Items = records.list(Items);\n}\n",
+      "expected": {
+        "component": {
+          "entry": "apply",
+          "error_type": "StockError",
+          "identity_binding": {
+            "request": "item",
+            "state": "key"
+          },
+          "name": "StockItem",
+          "operation": "adjust_quantity",
+          "outcome_type": "StockOutcome",
+          "replace_fields": [
+            "quantity"
+          ],
+          "request_type": "AdjustStock",
+          "revision_binding": "expected",
+          "revision_type": "StockVersion",
+          "state_type": "Stock"
+        },
+        "program": {
+          "entry": "apply",
+          "functions": {
+            "apply": {
+              "body": [
+                "let",
+                "next",
+                [
+                  "add",
+                  [
+                    "field",
+                    [
+                      "arg",
+                      "state"
+                    ],
+                    "quantity"
+                  ],
+                  [
+                    "field",
+                    [
+                      "arg",
+                      "request"
+                    ],
+                    "delta"
+                  ]
+                ],
+                [
+                  "if",
+                  [
+                    "lt",
+                    [
+                      "use",
+                      "next"
+                    ],
+                    [
+                      "int",
+                      0
+                    ]
+                  ],
+                  [
+                    "variant",
+                    "StockOutcome",
+                    "Decline",
+                    [
+                      "record",
+                      "StockError",
+                      [
+                        "text",
+                        "negative-quantity"
+                      ]
+                    ]
+                  ],
+                  [
+                    "variant",
+                    "StockOutcome",
+                    "Propose",
+                    [
+                      "record",
+                      "Stock",
+                      [
+                        "field",
+                        [
+                          "arg",
+                          "state"
+                        ],
+                        "key"
+                      ],
+                      [
+                        "field",
+                        [
+                          "arg",
+                          "state"
+                        ],
+                        "note"
+                      ],
+                      [
+                        "use",
+                        "next"
+                      ]
+                    ]
+                  ]
+                ]
+              ],
+              "params": [
+                [
+                  "state",
+                  "Stock"
+                ],
+                [
+                  "request",
+                  "AdjustStock"
+                ]
+              ],
+              "result": "StockOutcome"
+            },
+            "calc": {
+              "params": [],
+              "result": "Items",
+              "body": [
+                "records.list",
+                "Items"
+              ]
+            }
+          },
+          "lists": {
+            "Items": {
+              "element": "Item",
+              "capacity": 4
+            }
+          },
+          "records": {
+            "AdjustStock": {
+              "delta": "Int64",
+              "expected": "StockVersion",
+              "item": "StockKey"
+            },
+            "Stock": {
+              "key": "StockKey",
+              "note": "Text",
+              "quantity": "Int64"
+            },
+            "StockError": {
+              "reason": "Text"
+            },
+            "StockKey": {
+              "code": "Text"
+            },
+            "StockVersion": {
+              "value": "Int64"
+            },
+            "Item": {
+              "value": "Int64"
+            }
+          },
+          "schema": "bagaev-typed-record/10",
+          "variants": {
+            "StockOutcome": {
+              "Decline": "StockError",
+              "Propose": "Stock"
+            }
+          }
+        },
+        "schema": "bagaev-component-source/2"
+      },
+      "value_type": "Items",
+      "value": []
+    },
+    {
+      "id": "ordered",
+      "source": "bagaev component-form/7;\ncomponent StockItem operation adjust_quantity {\n  record StockKey { code: Text };\n  record StockVersion { value: Int64 };\n  record Stock { key: StockKey, quantity: Int64, note: Text };\n  record AdjustStock { item: StockKey, expected: StockVersion, delta: Int64 };\n  record StockError { reason: Text };\n  variant StockOutcome { Decline: StockError, Propose: Stock };\n  record Item { value: Int64 };\n  list Items of Item capacity 4;\n  state Stock identity key;\n  request AdjustStock identity item revision expected: StockVersion;\n  replace quantity;\n  outcome StockOutcome error StockError;\n  entry apply;\n  fn apply(state: Stock, request: AdjustStock) -> StockOutcome =\n    let next = state.quantity + request.delta in\n    if next < 0\n    then StockOutcome.Decline(StockError { reason: \"negative-quantity\" })\n    else StockOutcome.Propose(Stock { key: state.key, note: state.note, quantity: next });\n fn calc() -> Items = records.list(Items, Item { value: 3 }, Item { value: 1 });\n}\n",
+      "expected": {
+        "component": {
+          "entry": "apply",
+          "error_type": "StockError",
+          "identity_binding": {
+            "request": "item",
+            "state": "key"
+          },
+          "name": "StockItem",
+          "operation": "adjust_quantity",
+          "outcome_type": "StockOutcome",
+          "replace_fields": [
+            "quantity"
+          ],
+          "request_type": "AdjustStock",
+          "revision_binding": "expected",
+          "revision_type": "StockVersion",
+          "state_type": "Stock"
+        },
+        "program": {
+          "entry": "apply",
+          "functions": {
+            "apply": {
+              "body": [
+                "let",
+                "next",
+                [
+                  "add",
+                  [
+                    "field",
+                    [
+                      "arg",
+                      "state"
+                    ],
+                    "quantity"
+                  ],
+                  [
+                    "field",
+                    [
+                      "arg",
+                      "request"
+                    ],
+                    "delta"
+                  ]
+                ],
+                [
+                  "if",
+                  [
+                    "lt",
+                    [
+                      "use",
+                      "next"
+                    ],
+                    [
+                      "int",
+                      0
+                    ]
+                  ],
+                  [
+                    "variant",
+                    "StockOutcome",
+                    "Decline",
+                    [
+                      "record",
+                      "StockError",
+                      [
+                        "text",
+                        "negative-quantity"
+                      ]
+                    ]
+                  ],
+                  [
+                    "variant",
+                    "StockOutcome",
+                    "Propose",
+                    [
+                      "record",
+                      "Stock",
+                      [
+                        "field",
+                        [
+                          "arg",
+                          "state"
+                        ],
+                        "key"
+                      ],
+                      [
+                        "field",
+                        [
+                          "arg",
+                          "state"
+                        ],
+                        "note"
+                      ],
+                      [
+                        "use",
+                        "next"
+                      ]
+                    ]
+                  ]
+                ]
+              ],
+              "params": [
+                [
+                  "state",
+                  "Stock"
+                ],
+                [
+                  "request",
+                  "AdjustStock"
+                ]
+              ],
+              "result": "StockOutcome"
+            },
+            "calc": {
+              "params": [],
+              "result": "Items",
+              "body": [
+                "records.list",
+                "Items",
+                [
+                  "record",
+                  "Item",
+                  [
+                    "int",
+                    3
+                  ]
+                ],
+                [
+                  "record",
+                  "Item",
+                  [
+                    "int",
+                    1
+                  ]
+                ]
+              ]
+            }
+          },
+          "lists": {
+            "Items": {
+              "element": "Item",
+              "capacity": 4
+            }
+          },
+          "records": {
+            "AdjustStock": {
+              "delta": "Int64",
+              "expected": "StockVersion",
+              "item": "StockKey"
+            },
+            "Stock": {
+              "key": "StockKey",
+              "note": "Text",
+              "quantity": "Int64"
+            },
+            "StockError": {
+              "reason": "Text"
+            },
+            "StockKey": {
+              "code": "Text"
+            },
+            "StockVersion": {
+              "value": "Int64"
+            },
+            "Item": {
+              "value": "Int64"
+            }
+          },
+          "schema": "bagaev-typed-record/10",
+          "variants": {
+            "StockOutcome": {
+              "Decline": "StockError",
+              "Propose": "Stock"
+            }
+          }
+        },
+        "schema": "bagaev-component-source/2"
+      },
+      "value_type": "Items",
+      "value": [
+        {
+          "value": 3
+        },
+        {
+          "value": 1
+        }
+      ]
+    },
+    {
+      "id": "length",
+      "source": "bagaev component-form/7;\ncomponent StockItem operation adjust_quantity {\n  record StockKey { code: Text };\n  record StockVersion { value: Int64 };\n  record Stock { key: StockKey, quantity: Int64, note: Text };\n  record AdjustStock { item: StockKey, expected: StockVersion, delta: Int64 };\n  record StockError { reason: Text };\n  variant StockOutcome { Decline: StockError, Propose: Stock };\n  record Item { value: Int64 };\n  list Items of Item capacity 4;\n  state Stock identity key;\n  request AdjustStock identity item revision expected: StockVersion;\n  replace quantity;\n  outcome StockOutcome error StockError;\n  entry apply;\n  fn apply(state: Stock, request: AdjustStock) -> StockOutcome =\n    let next = state.quantity + request.delta in\n    if next < 0\n    then StockOutcome.Decline(StockError { reason: \"negative-quantity\" })\n    else StockOutcome.Propose(Stock { key: state.key, note: state.note, quantity: next });\n fn calc() -> Int64 = records.len(records.list(Items, Item { value: 3 }));\n}\n",
+      "expected": {
+        "component": {
+          "entry": "apply",
+          "error_type": "StockError",
+          "identity_binding": {
+            "request": "item",
+            "state": "key"
+          },
+          "name": "StockItem",
+          "operation": "adjust_quantity",
+          "outcome_type": "StockOutcome",
+          "replace_fields": [
+            "quantity"
+          ],
+          "request_type": "AdjustStock",
+          "revision_binding": "expected",
+          "revision_type": "StockVersion",
+          "state_type": "Stock"
+        },
+        "program": {
+          "entry": "apply",
+          "functions": {
+            "apply": {
+              "body": [
+                "let",
+                "next",
+                [
+                  "add",
+                  [
+                    "field",
+                    [
+                      "arg",
+                      "state"
+                    ],
+                    "quantity"
+                  ],
+                  [
+                    "field",
+                    [
+                      "arg",
+                      "request"
+                    ],
+                    "delta"
+                  ]
+                ],
+                [
+                  "if",
+                  [
+                    "lt",
+                    [
+                      "use",
+                      "next"
+                    ],
+                    [
+                      "int",
+                      0
+                    ]
+                  ],
+                  [
+                    "variant",
+                    "StockOutcome",
+                    "Decline",
+                    [
+                      "record",
+                      "StockError",
+                      [
+                        "text",
+                        "negative-quantity"
+                      ]
+                    ]
+                  ],
+                  [
+                    "variant",
+                    "StockOutcome",
+                    "Propose",
+                    [
+                      "record",
+                      "Stock",
+                      [
+                        "field",
+                        [
+                          "arg",
+                          "state"
+                        ],
+                        "key"
+                      ],
+                      [
+                        "field",
+                        [
+                          "arg",
+                          "state"
+                        ],
+                        "note"
+                      ],
+                      [
+                        "use",
+                        "next"
+                      ]
+                    ]
+                  ]
+                ]
+              ],
+              "params": [
+                [
+                  "state",
+                  "Stock"
+                ],
+                [
+                  "request",
+                  "AdjustStock"
+                ]
+              ],
+              "result": "StockOutcome"
+            },
+            "calc": {
+              "params": [],
+              "result": "Int64",
+              "body": [
+                "records.len",
+                [
+                  "records.list",
+                  "Items",
+                  [
+                    "record",
+                    "Item",
+                    [
+                      "int",
+                      3
+                    ]
+                  ]
+                ]
+              ]
+            }
+          },
+          "lists": {
+            "Items": {
+              "element": "Item",
+              "capacity": 4
+            }
+          },
+          "records": {
+            "AdjustStock": {
+              "delta": "Int64",
+              "expected": "StockVersion",
+              "item": "StockKey"
+            },
+            "Stock": {
+              "key": "StockKey",
+              "note": "Text",
+              "quantity": "Int64"
+            },
+            "StockError": {
+              "reason": "Text"
+            },
+            "StockKey": {
+              "code": "Text"
+            },
+            "StockVersion": {
+              "value": "Int64"
+            },
+            "Item": {
+              "value": "Int64"
+            }
+          },
+          "schema": "bagaev-typed-record/10",
+          "variants": {
+            "StockOutcome": {
+              "Decline": "StockError",
+              "Propose": "Stock"
+            }
+          }
+        },
+        "schema": "bagaev-component-source/2"
+      },
+      "value_type": "Int64",
+      "value": 1
+    },
+    {
+      "id": "at-field",
+      "source": "bagaev component-form/7;\ncomponent StockItem operation adjust_quantity {\n  record StockKey { code: Text };\n  record StockVersion { value: Int64 };\n  record Stock { key: StockKey, quantity: Int64, note: Text };\n  record AdjustStock { item: StockKey, expected: StockVersion, delta: Int64 };\n  record StockError { reason: Text };\n  variant StockOutcome { Decline: StockError, Propose: Stock };\n  record Item { value: Int64 };\n  list Items of Item capacity 4;\n  state Stock identity key;\n  request AdjustStock identity item revision expected: StockVersion;\n  replace quantity;\n  outcome StockOutcome error StockError;\n  entry apply;\n  fn apply(state: Stock, request: AdjustStock) -> StockOutcome =\n    let next = state.quantity + request.delta in\n    if next < 0\n    then StockOutcome.Decline(StockError { reason: \"negative-quantity\" })\n    else StockOutcome.Propose(Stock { key: state.key, note: state.note, quantity: next });\n fn calc() -> Int64 = let item = records.at(records.list(Items, Item { value: 3 }), 0) in item.value;\n}\n",
+      "expected": {
+        "component": {
+          "entry": "apply",
+          "error_type": "StockError",
+          "identity_binding": {
+            "request": "item",
+            "state": "key"
+          },
+          "name": "StockItem",
+          "operation": "adjust_quantity",
+          "outcome_type": "StockOutcome",
+          "replace_fields": [
+            "quantity"
+          ],
+          "request_type": "AdjustStock",
+          "revision_binding": "expected",
+          "revision_type": "StockVersion",
+          "state_type": "Stock"
+        },
+        "program": {
+          "entry": "apply",
+          "functions": {
+            "apply": {
+              "body": [
+                "let",
+                "next",
+                [
+                  "add",
+                  [
+                    "field",
+                    [
+                      "arg",
+                      "state"
+                    ],
+                    "quantity"
+                  ],
+                  [
+                    "field",
+                    [
+                      "arg",
+                      "request"
+                    ],
+                    "delta"
+                  ]
+                ],
+                [
+                  "if",
+                  [
+                    "lt",
+                    [
+                      "use",
+                      "next"
+                    ],
+                    [
+                      "int",
+                      0
+                    ]
+                  ],
+                  [
+                    "variant",
+                    "StockOutcome",
+                    "Decline",
+                    [
+                      "record",
+                      "StockError",
+                      [
+                        "text",
+                        "negative-quantity"
+                      ]
+                    ]
+                  ],
+                  [
+                    "variant",
+                    "StockOutcome",
+                    "Propose",
+                    [
+                      "record",
+                      "Stock",
+                      [
+                        "field",
+                        [
+                          "arg",
+                          "state"
+                        ],
+                        "key"
+                      ],
+                      [
+                        "field",
+                        [
+                          "arg",
+                          "state"
+                        ],
+                        "note"
+                      ],
+                      [
+                        "use",
+                        "next"
+                      ]
+                    ]
+                  ]
+                ]
+              ],
+              "params": [
+                [
+                  "state",
+                  "Stock"
+                ],
+                [
+                  "request",
+                  "AdjustStock"
+                ]
+              ],
+              "result": "StockOutcome"
+            },
+            "calc": {
+              "params": [],
+              "result": "Int64",
+              "body": [
+                "let",
+                "item",
+                [
+                  "records.at",
+                  [
+                    "records.list",
+                    "Items",
+                    [
+                      "record",
+                      "Item",
+                      [
+                        "int",
+                        3
+                      ]
+                    ]
+                  ],
+                  [
+                    "int",
+                    0
+                  ]
+                ],
+                [
+                  "field",
+                  [
+                    "use",
+                    "item"
+                  ],
+                  "value"
+                ]
+              ]
+            }
+          },
+          "lists": {
+            "Items": {
+              "element": "Item",
+              "capacity": 4
+            }
+          },
+          "records": {
+            "AdjustStock": {
+              "delta": "Int64",
+              "expected": "StockVersion",
+              "item": "StockKey"
+            },
+            "Stock": {
+              "key": "StockKey",
+              "note": "Text",
+              "quantity": "Int64"
+            },
+            "StockError": {
+              "reason": "Text"
+            },
+            "StockKey": {
+              "code": "Text"
+            },
+            "StockVersion": {
+              "value": "Int64"
+            },
+            "Item": {
+              "value": "Int64"
+            }
+          },
+          "schema": "bagaev-typed-record/10",
+          "variants": {
+            "StockOutcome": {
+              "Decline": "StockError",
+              "Propose": "Stock"
+            }
+          }
+        },
+        "schema": "bagaev-component-source/2"
+      },
+      "value_type": "Int64",
+      "value": 3
+    },
+    {
+      "id": "push",
+      "source": "bagaev component-form/7;\ncomponent StockItem operation adjust_quantity {\n  record StockKey { code: Text };\n  record StockVersion { value: Int64 };\n  record Stock { key: StockKey, quantity: Int64, note: Text };\n  record AdjustStock { item: StockKey, expected: StockVersion, delta: Int64 };\n  record StockError { reason: Text };\n  variant StockOutcome { Decline: StockError, Propose: Stock };\n  record Item { value: Int64 };\n  list Items of Item capacity 4;\n  state Stock identity key;\n  request AdjustStock identity item revision expected: StockVersion;\n  replace quantity;\n  outcome StockOutcome error StockError;\n  entry apply;\n  fn apply(state: Stock, request: AdjustStock) -> StockOutcome =\n    let next = state.quantity + request.delta in\n    if next < 0\n    then StockOutcome.Decline(StockError { reason: \"negative-quantity\" })\n    else StockOutcome.Propose(Stock { key: state.key, note: state.note, quantity: next });\n fn calc() -> Items = records.push(records.list(Items, Item { value: 3 }), Item { value: 1 });\n}\n",
+      "expected": {
+        "component": {
+          "entry": "apply",
+          "error_type": "StockError",
+          "identity_binding": {
+            "request": "item",
+            "state": "key"
+          },
+          "name": "StockItem",
+          "operation": "adjust_quantity",
+          "outcome_type": "StockOutcome",
+          "replace_fields": [
+            "quantity"
+          ],
+          "request_type": "AdjustStock",
+          "revision_binding": "expected",
+          "revision_type": "StockVersion",
+          "state_type": "Stock"
+        },
+        "program": {
+          "entry": "apply",
+          "functions": {
+            "apply": {
+              "body": [
+                "let",
+                "next",
+                [
+                  "add",
+                  [
+                    "field",
+                    [
+                      "arg",
+                      "state"
+                    ],
+                    "quantity"
+                  ],
+                  [
+                    "field",
+                    [
+                      "arg",
+                      "request"
+                    ],
+                    "delta"
+                  ]
+                ],
+                [
+                  "if",
+                  [
+                    "lt",
+                    [
+                      "use",
+                      "next"
+                    ],
+                    [
+                      "int",
+                      0
+                    ]
+                  ],
+                  [
+                    "variant",
+                    "StockOutcome",
+                    "Decline",
+                    [
+                      "record",
+                      "StockError",
+                      [
+                        "text",
+                        "negative-quantity"
+                      ]
+                    ]
+                  ],
+                  [
+                    "variant",
+                    "StockOutcome",
+                    "Propose",
+                    [
+                      "record",
+                      "Stock",
+                      [
+                        "field",
+                        [
+                          "arg",
+                          "state"
+                        ],
+                        "key"
+                      ],
+                      [
+                        "field",
+                        [
+                          "arg",
+                          "state"
+                        ],
+                        "note"
+                      ],
+                      [
+                        "use",
+                        "next"
+                      ]
+                    ]
+                  ]
+                ]
+              ],
+              "params": [
+                [
+                  "state",
+                  "Stock"
+                ],
+                [
+                  "request",
+                  "AdjustStock"
+                ]
+              ],
+              "result": "StockOutcome"
+            },
+            "calc": {
+              "params": [],
+              "result": "Items",
+              "body": [
+                "records.push",
+                [
+                  "records.list",
+                  "Items",
+                  [
+                    "record",
+                    "Item",
+                    [
+                      "int",
+                      3
+                    ]
+                  ]
+                ],
+                [
+                  "record",
+                  "Item",
+                  [
+                    "int",
+                    1
+                  ]
+                ]
+              ]
+            }
+          },
+          "lists": {
+            "Items": {
+              "element": "Item",
+              "capacity": 4
+            }
+          },
+          "records": {
+            "AdjustStock": {
+              "delta": "Int64",
+              "expected": "StockVersion",
+              "item": "StockKey"
+            },
+            "Stock": {
+              "key": "StockKey",
+              "note": "Text",
+              "quantity": "Int64"
+            },
+            "StockError": {
+              "reason": "Text"
+            },
+            "StockKey": {
+              "code": "Text"
+            },
+            "StockVersion": {
+              "value": "Int64"
+            },
+            "Item": {
+              "value": "Int64"
+            }
+          },
+          "schema": "bagaev-typed-record/10",
+          "variants": {
+            "StockOutcome": {
+              "Decline": "StockError",
+              "Propose": "Stock"
+            }
+          }
+        },
+        "schema": "bagaev-component-source/2"
+      },
+      "value_type": "Items",
+      "value": [
+        {
+          "value": 3
+        },
+        {
+          "value": 1
+        }
+      ]
+    },
+    {
+      "id": "immutability",
+      "source": "bagaev component-form/7;\ncomponent StockItem operation adjust_quantity {\n  record StockKey { code: Text };\n  record StockVersion { value: Int64 };\n  record Stock { key: StockKey, quantity: Int64, note: Text };\n  record AdjustStock { item: StockKey, expected: StockVersion, delta: Int64 };\n  record StockError { reason: Text };\n  variant StockOutcome { Decline: StockError, Propose: Stock };\n  record Item { value: Int64 };\n  list Items of Item capacity 4;\n  state Stock identity key;\n  request AdjustStock identity item revision expected: StockVersion;\n  replace quantity;\n  outcome StockOutcome error StockError;\n  entry apply;\n  fn apply(state: Stock, request: AdjustStock) -> StockOutcome =\n    let next = state.quantity + request.delta in\n    if next < 0\n    then StockOutcome.Decline(StockError { reason: \"negative-quantity\" })\n    else StockOutcome.Propose(Stock { key: state.key, note: state.note, quantity: next });\n fn calc() -> Int64 = let items = records.list(Items, Item { value: 3 }) in let more = records.push(items, Item { value: 1 }) in records.len(items);\n}\n",
+      "expected": {
+        "component": {
+          "entry": "apply",
+          "error_type": "StockError",
+          "identity_binding": {
+            "request": "item",
+            "state": "key"
+          },
+          "name": "StockItem",
+          "operation": "adjust_quantity",
+          "outcome_type": "StockOutcome",
+          "replace_fields": [
+            "quantity"
+          ],
+          "request_type": "AdjustStock",
+          "revision_binding": "expected",
+          "revision_type": "StockVersion",
+          "state_type": "Stock"
+        },
+        "program": {
+          "entry": "apply",
+          "functions": {
+            "apply": {
+              "body": [
+                "let",
+                "next",
+                [
+                  "add",
+                  [
+                    "field",
+                    [
+                      "arg",
+                      "state"
+                    ],
+                    "quantity"
+                  ],
+                  [
+                    "field",
+                    [
+                      "arg",
+                      "request"
+                    ],
+                    "delta"
+                  ]
+                ],
+                [
+                  "if",
+                  [
+                    "lt",
+                    [
+                      "use",
+                      "next"
+                    ],
+                    [
+                      "int",
+                      0
+                    ]
+                  ],
+                  [
+                    "variant",
+                    "StockOutcome",
+                    "Decline",
+                    [
+                      "record",
+                      "StockError",
+                      [
+                        "text",
+                        "negative-quantity"
+                      ]
+                    ]
+                  ],
+                  [
+                    "variant",
+                    "StockOutcome",
+                    "Propose",
+                    [
+                      "record",
+                      "Stock",
+                      [
+                        "field",
+                        [
+                          "arg",
+                          "state"
+                        ],
+                        "key"
+                      ],
+                      [
+                        "field",
+                        [
+                          "arg",
+                          "state"
+                        ],
+                        "note"
+                      ],
+                      [
+                        "use",
+                        "next"
+                      ]
+                    ]
+                  ]
+                ]
+              ],
+              "params": [
+                [
+                  "state",
+                  "Stock"
+                ],
+                [
+                  "request",
+                  "AdjustStock"
+                ]
+              ],
+              "result": "StockOutcome"
+            },
+            "calc": {
+              "params": [],
+              "result": "Int64",
+              "body": [
+                "let",
+                "items",
+                [
+                  "records.list",
+                  "Items",
+                  [
+                    "record",
+                    "Item",
+                    [
+                      "int",
+                      3
+                    ]
+                  ]
+                ],
+                [
+                  "let",
+                  "more",
+                  [
+                    "records.push",
+                    [
+                      "use",
+                      "items"
+                    ],
+                    [
+                      "record",
+                      "Item",
+                      [
+                        "int",
+                        1
+                      ]
+                    ]
+                  ],
+                  [
+                    "records.len",
+                    [
+                      "use",
+                      "items"
+                    ]
+                  ]
+                ]
+              ]
+            }
+          },
+          "lists": {
+            "Items": {
+              "element": "Item",
+              "capacity": 4
+            }
+          },
+          "records": {
+            "AdjustStock": {
+              "delta": "Int64",
+              "expected": "StockVersion",
+              "item": "StockKey"
+            },
+            "Stock": {
+              "key": "StockKey",
+              "note": "Text",
+              "quantity": "Int64"
+            },
+            "StockError": {
+              "reason": "Text"
+            },
+            "StockKey": {
+              "code": "Text"
+            },
+            "StockVersion": {
+              "value": "Int64"
+            },
+            "Item": {
+              "value": "Int64"
+            }
+          },
+          "schema": "bagaev-typed-record/10",
+          "variants": {
+            "StockOutcome": {
+              "Decline": "StockError",
+              "Propose": "Stock"
+            }
+          }
+        },
+        "schema": "bagaev-component-source/2"
+      },
+      "value_type": "Int64",
+      "value": 1
+    },
+    {
+      "id": "fold",
+      "source": "bagaev component-form/7;\ncomponent StockItem operation adjust_quantity {\n  record StockKey { code: Text };\n  record StockVersion { value: Int64 };\n  record Stock { key: StockKey, quantity: Int64, note: Text };\n  record AdjustStock { item: StockKey, expected: StockVersion, delta: Int64 };\n  record StockError { reason: Text };\n  variant StockOutcome { Decline: StockError, Propose: Stock };\n  record Item { value: Int64 };\n  list Items of Item capacity 4;\n  state Stock identity key;\n  request AdjustStock identity item revision expected: StockVersion;\n  replace quantity;\n  outcome StockOutcome error StockError;\n  entry apply;\n  fn apply(state: Stock, request: AdjustStock) -> StockOutcome =\n    let next = state.quantity + request.delta in\n    if next < 0\n    then StockOutcome.Decline(StockError { reason: \"negative-quantity\" })\n    else StockOutcome.Propose(Stock { key: state.key, note: state.note, quantity: next });\n fn calc() -> Int64 = let items = records.list(Items, Item { value: 3 }, Item { value: 1 }) in fold (4, 0) with (idx, total) in if idx < records.len(items) then let item = records.at(items, idx) in total + item.value else total;\n}\n",
+      "expected": {
+        "component": {
+          "entry": "apply",
+          "error_type": "StockError",
+          "identity_binding": {
+            "request": "item",
+            "state": "key"
+          },
+          "name": "StockItem",
+          "operation": "adjust_quantity",
+          "outcome_type": "StockOutcome",
+          "replace_fields": [
+            "quantity"
+          ],
+          "request_type": "AdjustStock",
+          "revision_binding": "expected",
+          "revision_type": "StockVersion",
+          "state_type": "Stock"
+        },
+        "program": {
+          "entry": "apply",
+          "functions": {
+            "apply": {
+              "body": [
+                "let",
+                "next",
+                [
+                  "add",
+                  [
+                    "field",
+                    [
+                      "arg",
+                      "state"
+                    ],
+                    "quantity"
+                  ],
+                  [
+                    "field",
+                    [
+                      "arg",
+                      "request"
+                    ],
+                    "delta"
+                  ]
+                ],
+                [
+                  "if",
+                  [
+                    "lt",
+                    [
+                      "use",
+                      "next"
+                    ],
+                    [
+                      "int",
+                      0
+                    ]
+                  ],
+                  [
+                    "variant",
+                    "StockOutcome",
+                    "Decline",
+                    [
+                      "record",
+                      "StockError",
+                      [
+                        "text",
+                        "negative-quantity"
+                      ]
+                    ]
+                  ],
+                  [
+                    "variant",
+                    "StockOutcome",
+                    "Propose",
+                    [
+                      "record",
+                      "Stock",
+                      [
+                        "field",
+                        [
+                          "arg",
+                          "state"
+                        ],
+                        "key"
+                      ],
+                      [
+                        "field",
+                        [
+                          "arg",
+                          "state"
+                        ],
+                        "note"
+                      ],
+                      [
+                        "use",
+                        "next"
+                      ]
+                    ]
+                  ]
+                ]
+              ],
+              "params": [
+                [
+                  "state",
+                  "Stock"
+                ],
+                [
+                  "request",
+                  "AdjustStock"
+                ]
+              ],
+              "result": "StockOutcome"
+            },
+            "calc": {
+              "params": [],
+              "result": "Int64",
+              "body": [
+                "let",
+                "items",
+                [
+                  "records.list",
+                  "Items",
+                  [
+                    "record",
+                    "Item",
+                    [
+                      "int",
+                      3
+                    ]
+                  ],
+                  [
+                    "record",
+                    "Item",
+                    [
+                      "int",
+                      1
+                    ]
+                  ]
+                ],
+                [
+                  "loop",
+                  4,
+                  "idx",
+                  "total",
+                  [
+                    "int",
+                    0
+                  ],
+                  [
+                    "if",
+                    [
+                      "lt",
+                      [
+                        "use",
+                        "idx"
+                      ],
+                      [
+                        "records.len",
+                        [
+                          "use",
+                          "items"
+                        ]
+                      ]
+                    ],
+                    [
+                      "let",
+                      "item",
+                      [
+                        "records.at",
+                        [
+                          "use",
+                          "items"
+                        ],
+                        [
+                          "use",
+                          "idx"
+                        ]
+                      ],
+                      [
+                        "add",
+                        [
+                          "use",
+                          "total"
+                        ],
+                        [
+                          "field",
+                          [
+                            "use",
+                            "item"
+                          ],
+                          "value"
+                        ]
+                      ]
+                    ],
+                    [
+                      "use",
+                      "total"
+                    ]
+                  ]
+                ]
+              ]
+            }
+          },
+          "lists": {
+            "Items": {
+              "element": "Item",
+              "capacity": 4
+            }
+          },
+          "records": {
+            "AdjustStock": {
+              "delta": "Int64",
+              "expected": "StockVersion",
+              "item": "StockKey"
+            },
+            "Stock": {
+              "key": "StockKey",
+              "note": "Text",
+              "quantity": "Int64"
+            },
+            "StockError": {
+              "reason": "Text"
+            },
+            "StockKey": {
+              "code": "Text"
+            },
+            "StockVersion": {
+              "value": "Int64"
+            },
+            "Item": {
+              "value": "Int64"
+            }
+          },
+          "schema": "bagaev-typed-record/10",
+          "variants": {
+            "StockOutcome": {
+              "Decline": "StockError",
+              "Propose": "Stock"
+            }
+          }
+        },
+        "schema": "bagaev-component-source/2"
+      },
+      "value_type": "Int64",
+      "value": 4
+    }
+  ],
+  "syntax": [
+    {
+      "id": "arity",
+      "source": "bagaev component-form/7;\ncomponent StockItem operation adjust_quantity {\n  record StockKey { code: Text };\n  record StockVersion { value: Int64 };\n  record Stock { key: StockKey, quantity: Int64, note: Text };\n  record AdjustStock { item: StockKey, expected: StockVersion, delta: Int64 };\n  record StockError { reason: Text };\n  variant StockOutcome { Decline: StockError, Propose: Stock };\n  record Item { value: Int64 };\n  list Items of Item capacity 4;\n  state Stock identity key;\n  request AdjustStock identity item revision expected: StockVersion;\n  replace quantity;\n  outcome StockOutcome error StockError;\n  entry apply;\n  fn apply(state: Stock, request: AdjustStock) -> StockOutcome =\n    let next = state.quantity + request.delta in\n    if next < 0\n    then StockOutcome.Decline(StockError { reason: \"negative-quantity\" })\n    else StockOutcome.Propose(Stock { key: state.key, note: state.note, quantity: next });\n fn calc() -> Int64 = records.len();\n}\n",
+      "code": "FORM_SYNTAX"
+    },
+    {
+      "id": "constructor-count",
+      "source": "bagaev component-form/7;\ncomponent StockItem operation adjust_quantity {\n  record StockKey { code: Text };\n  record StockVersion { value: Int64 };\n  record Stock { key: StockKey, quantity: Int64, note: Text };\n  record AdjustStock { item: StockKey, expected: StockVersion, delta: Int64 };\n  record StockError { reason: Text };\n  variant StockOutcome { Decline: StockError, Propose: Stock };\n  record Item { value: Int64 };\n  list Items of Item capacity 4;\n  state Stock identity key;\n  request AdjustStock identity item revision expected: StockVersion;\n  replace quantity;\n  outcome StockOutcome error StockError;\n  entry apply;\n  fn apply(state: Stock, request: AdjustStock) -> StockOutcome =\n    let next = state.quantity + request.delta in\n    if next < 0\n    then StockOutcome.Decline(StockError { reason: \"negative-quantity\" })\n    else StockOutcome.Propose(Stock { key: state.key, note: state.note, quantity: next });\n fn calc() -> Int64 = records.list(Items, Item { value: 0 }, Item { value: 0 }, Item { value: 0 }, Item { value: 0 }, Item { value: 0 });\n}\n",
+      "code": "FORM_BOUNDS"
+    },
+    {
+      "id": "capacity",
+      "source": "bagaev component-form/7;\ncomponent StockItem operation adjust_quantity {\n  record StockKey { code: Text };\n  record StockVersion { value: Int64 };\n  record Stock { key: StockKey, quantity: Int64, note: Text };\n  record AdjustStock { item: StockKey, expected: StockVersion, delta: Int64 };\n  record StockError { reason: Text };\n  variant StockOutcome { Decline: StockError, Propose: Stock };\n  record Item { value: Int64 };\n  list Items of Item capacity 5;\n  state Stock identity key;\n  request AdjustStock identity item revision expected: StockVersion;\n  replace quantity;\n  outcome StockOutcome error StockError;\n  entry apply;\n  fn apply(state: Stock, request: AdjustStock) -> StockOutcome =\n    let next = state.quantity + request.delta in\n    if next < 0\n    then StockOutcome.Decline(StockError { reason: \"negative-quantity\" })\n    else StockOutcome.Propose(Stock { key: state.key, note: state.note, quantity: next });\n fn calc() -> Items = records.list(Items);\n}\n",
+      "code": "FORM_BOUNDS"
+    }
+  ],
+  "core_refusals": [
+    {
+      "id": "index",
+      "expression": "records.at(records.list(Items), 0)",
+      "body": [
+        "records.at",
+        [
+          "records.list",
+          "Items"
+        ],
+        [
+          "int",
+          0
+        ]
+      ],
+      "type": "Item",
+      "reason": "RR_INDEX"
+    },
+    {
+      "id": "push-capacity",
+      "expression": "records.push(records.list(Items, Item { value: 0 }, Item { value: 0 }, Item { value: 0 }, Item { value: 0 }), Item { value: 1 })",
+      "body": [
+        "records.push",
+        [
+          "records.list",
+          "Items",
+          [
+            "record",
+            "Item",
+            [
+              "int",
+              0
+            ]
+          ],
+          [
+            "record",
+            "Item",
+            [
+              "int",
+              0
+            ]
+          ],
+          [
+            "record",
+            "Item",
+            [
+              "int",
+              0
+            ]
+          ],
+          [
+            "record",
+            "Item",
+            [
+              "int",
+              0
+            ]
+          ]
+        ],
+        [
+          "record",
+          "Item",
+          [
+            "int",
+            1
+          ]
+        ]
+      ],
+      "type": "Items",
+      "reason": "RR_RECORD_LIST_ITEMS"
+    },
+    {
+      "id": "type",
+      "expression": "records.push(records.list(Items), 1)",
+      "body": [
+        "records.push",
+        [
+          "records.list",
+          "Items"
+        ],
+        [
+          "int",
+          1
+        ]
+      ],
+      "type": "Items",
+      "reason": "RR_TYPE"
+    }
+  ]
+}
