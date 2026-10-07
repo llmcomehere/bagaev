@@ -72,3 +72,8 @@ supported; prior captures remain historical. The default 32-call converter suite
 and 15-case diagnostic suite passed. The diagnostic implementation and form/3
 codec are unchanged; its fixture now labels the shared converter hash as a
 dependency rather than claiming that converter remained unchanged.
+
+## Checked changes
+
+The separate [edit/4 route](component-match-edits.md) carries match-bearing source
+through the unchanged source/2 draft checks. Edit/3 remains form/3-only.
