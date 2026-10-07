@@ -1,0 +1,17 @@
+{
+  "scope": "Live S1-only registry consumes exact retained fresh qualification, then old typed decline is restored as caller data",
+  "before_admission": "OWNER_SOURCE",
+  "admission": {
+    "decision": "accepted",
+    "reason": "all-obligations"
+  },
+  "duplicate_run": "RUN_DUPLICATE",
+  "wrong_run_source": "RUN_SOURCE",
+  "restore_wrong_pin": "CONTINUATION_PIN",
+  "restore_wrong_head": "CONTINUATION_HEAD",
+  "restore_rebound_run": "CONTINUATION_SOURCE",
+  "live_application_evaluations": 2,
+  "old_decline_revision": 7,
+  "current_revision": 8,
+  "mutations": 1
+}

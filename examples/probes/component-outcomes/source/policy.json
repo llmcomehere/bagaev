@@ -1,0 +1,39 @@
+{
+  "schema": "bagaev-component-policy/2",
+  "component": "StockItem",
+  "operation": "set_quantity",
+  "state_type": "Stock",
+  "request_type": "SetStock",
+  "revision_type": "StockVersion",
+  "identity_binding": {
+    "state": "key",
+    "request": "item"
+  },
+  "revision_binding": "expected",
+  "replace_fields": [
+    "quantity"
+  ],
+  "records": {
+    "StockKey": {
+      "code": "Text"
+    },
+    "StockVersion": {
+      "value": "Int64"
+    },
+    "Stock": {
+      "key": "StockKey",
+      "quantity": "Int64",
+      "note": "Text"
+    },
+    "SetStock": {
+      "item": "StockKey",
+      "expected": "StockVersion",
+      "quantity": "Int64"
+    },
+    "StockError": {
+      "reason": "Text"
+    }
+  },
+  "outcome_type": "StockOutcome",
+  "error_type": "StockError"
+}

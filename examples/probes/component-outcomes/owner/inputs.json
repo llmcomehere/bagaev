@@ -1,0 +1,7 @@
+{
+  "status": "FROZEN_PORTABLE_INPUTS_BEFORE_EXECUTION",
+  "sha256": {
+    "cases.json": "a0bf9e7a0a7a59a5d083ef03a09e8074ea5f32e57e6f67e006a423e240cac846",
+    "controls.json": "e3919b6a6ed5436827ba8576f8cf1d82209b26a6d95ef58bf3013a65e150e768"
+  }
+}

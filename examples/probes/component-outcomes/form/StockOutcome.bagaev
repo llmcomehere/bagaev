@@ -1,0 +1,18 @@
+bagaev component-form/2;
+component StockItem operation set_quantity {
+  record StockKey { code: Text };
+  record StockVersion { value: Int64 };
+  record Stock { key: StockKey, quantity: Int64, note: Text };
+  record SetStock { item: StockKey, expected: StockVersion, quantity: Int64 };
+  record StockError { reason: Text };
+  variant StockOutcome { Decline: StockError, Propose: Stock };
+  state Stock identity key;
+  request SetStock identity item revision expected: StockVersion;
+  replace quantity;
+  outcome StockOutcome error StockError;
+  entry apply;
+  fn apply(state: Stock, request: SetStock) -> StockOutcome =
+    if request.quantity < 0
+    then StockOutcome.Decline(StockError { reason: "negative-quantity" })
+    else StockOutcome.Propose(Stock { key: state.key, note: state.note, quantity: request.quantity });
+}

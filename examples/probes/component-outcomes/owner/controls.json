@@ -1,0 +1,19 @@
+{
+  "status": "FROZEN_BEFORE_CONTROL_EXECUTION",
+  "version_guards": {
+    "source1": "OWNER_SOURCE_VERSION",
+    "policy1": "OWNER_POLICY_VERSION"
+  },
+  "mutants": [
+    {
+      "id": "SKIP-FINAL-RIGHTS",
+      "witness": "LATE-DENIAL",
+      "required": "normal incorrect Declined terminal result"
+    },
+    {
+      "id": "DECLINE-INCREMENTS-REVISION",
+      "witness": "DECLINE",
+      "required": "normal incorrect revision8 instead of7"
+    }
+  ]
+}

@@ -1,0 +1,189 @@
+{
+  "status": "FROZEN_BEFORE_EXECUTION",
+  "cases": [
+    {
+      "id": "POSITIVE",
+      "arguments": [
+        {
+          "key": {
+            "code": "sku1"
+          },
+          "note": "kept",
+          "quantity": 10
+        },
+        {
+          "item": {
+            "code": "sku1"
+          },
+          "expected": {
+            "value": 7
+          },
+          "quantity": 13
+        }
+      ],
+      "expected": {
+        "schema": "bagaev-typed-record-result/10",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Variant:StockOutcome",
+        "value": {
+          "case": "Propose",
+          "value": {
+            "key": {
+              "code": "sku1"
+            },
+            "note": "kept",
+            "quantity": 13
+          }
+        },
+        "work": 13
+      }
+    },
+    {
+      "id": "ZERO",
+      "arguments": [
+        {
+          "key": {
+            "code": "sku1"
+          },
+          "note": "kept",
+          "quantity": 10
+        },
+        {
+          "item": {
+            "code": "sku1"
+          },
+          "expected": {
+            "value": 7
+          },
+          "quantity": 0
+        }
+      ],
+      "expected": {
+        "schema": "bagaev-typed-record-result/10",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Variant:StockOutcome",
+        "value": {
+          "case": "Propose",
+          "value": {
+            "key": {
+              "code": "sku1"
+            },
+            "note": "kept",
+            "quantity": 0
+          }
+        },
+        "work": 13
+      }
+    },
+    {
+      "id": "NEGATIVE",
+      "arguments": [
+        {
+          "key": {
+            "code": "sku1"
+          },
+          "note": "kept",
+          "quantity": 10
+        },
+        {
+          "item": {
+            "code": "sku1"
+          },
+          "expected": {
+            "value": 7
+          },
+          "quantity": -1
+        }
+      ],
+      "expected": {
+        "schema": "bagaev-typed-record-result/10",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Variant:StockOutcome",
+        "value": {
+          "case": "Decline",
+          "value": {
+            "reason": "negative-quantity"
+          }
+        },
+        "work": 8
+      }
+    },
+    {
+      "id": "INT64-MIN",
+      "arguments": [
+        {
+          "key": {
+            "code": "sku1"
+          },
+          "note": "kept",
+          "quantity": 10
+        },
+        {
+          "item": {
+            "code": "sku1"
+          },
+          "expected": {
+            "value": 7
+          },
+          "quantity": -9223372036854775808
+        }
+      ],
+      "expected": {
+        "schema": "bagaev-typed-record-result/10",
+        "status": "success",
+        "reason": null,
+        "location": null,
+        "value_type": "Variant:StockOutcome",
+        "value": {
+          "case": "Decline",
+          "value": {
+            "reason": "negative-quantity"
+          }
+        },
+        "work": 8
+      }
+    },
+    {
+      "id": "BOOLEAN-IS-NOT-INT",
+      "arguments": [
+        {
+          "key": {
+            "code": "sku1"
+          },
+          "note": "kept",
+          "quantity": 10
+        },
+        {
+          "item": {
+            "code": "sku1"
+          },
+          "expected": {
+            "value": 7
+          },
+          "quantity": true
+        }
+      ],
+      "expected": {
+        "schema": "bagaev-typed-record-result/10",
+        "status": "invalid-ir",
+        "reason": "RR_ARGUMENT",
+        "location": "/arguments/1/quantity",
+        "value_type": null,
+        "value": null,
+        "work": 0
+      }
+    }
+  ],
+  "old_component_reader_expected": {
+    "schema": "bagaev-component-check/1",
+    "status": "refused",
+    "reason": "CS_SIGNATURE",
+    "execution_admission": false
+  }
+}
