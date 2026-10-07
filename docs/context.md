@@ -20,6 +20,7 @@ instructions](../AGENTS.md) and authority boundaries always apply.
 | [L0](l0.md) | Normative L0 semantics and bounds. |
 | [L1 proposal](l1-proposal.md) | Bounded CPython backend and selected-case contract. |
 | [L2](l2.md) and [language oracle](../examples/l2/oracle.json) | Structured pure language, pinned definitions, transactional changes, and independent language expectations. |
+| [Pure filtering profile](pure-filter.md) | Separate experimental L2/2 stable record selection, explicit pure CLI and artifact identities. No Store support or implicit conversion from L2/1. |
 | [Toolchain](toolchain.md) | L2 CLI commands, JSON observations, file transport/effects, generated artifact identity and verification, and clean-checkout walkthrough. |
 | [Local store](store.md) | Immutable L2 revisions, receiver admission, operation receipts, continuation, canonical exchange and explicit backup restore. |
 | [Model proposals](model.md) | Pure provider-neutral packets, Python/L2 named edits, public continuation and bounded accounting. |
@@ -41,6 +42,7 @@ exists.
 | [L1 generator](../src/bagaev_l1.py) | Library that lowers a checked L0 program to deterministic CPython source bytes and identities; it neither writes nor executes the artifact. [L1](l1-proposal.md) owns the backend contract. |
 | [L2 reference library](../src/bagaev_l2.py) | Program checking, pure evaluation, immutable snapshots, and transactional structural changes; behavior is defined by [L2](l2.md). |
 | [L2 CLI](../src/bagaev.py), [backend](../src/bagaev_l2_backend.py), and [fixed runtime](../src/bagaev_l2_runtime.py) | Explicit local CLI and independent lowering to self-contained CPython; the [toolchain contract](toolchain.md) owns interfaces and transport boundaries. |
+| [Filter reference](../src/bagaev_l2_filter.py), [backend](../src/bagaev_l2_filter_backend.py), and [pure CLI](../src/bagaev_filter.py) | Separate L2/2 implementation; [pure filtering](pure-filter.md) owns its explicit route and bounds. The /1 Store and saved-handoff route do not accept this profile. |
 | [Toolchain tests](../tests/test_toolchain.py) and [catalog input](../examples/l2/catalog-input.json) | Bounded parity, file-effect/refusal checks and walkthrough data; their existence does not claim execution. |
 | [Store library](../src/bagaev_store.py) and [tests](../tests/test_store.py) | Bounded SQLite transactions and failure-boundary cases; [store semantics](store.md) own the contract. Tests are not execution evidence. |
 | [Integrated beta test](../tests/test_beta.py) | Actual CLI subprocess scenario with persisted A1 stop, fresh-process continuation to A3 and exact restore; [beta guide](beta.md) explains selected scope and expected observations. Test source is not execution evidence. |
