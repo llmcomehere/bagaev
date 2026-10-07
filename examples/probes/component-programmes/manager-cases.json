@@ -1,0 +1,130 @@
+{
+  "status": "FROZEN_BEFORE_MANAGER_IMPLEMENTATION",
+  "qualification_premise": "Finite complete pass receipts here are controlled test inputs for manager/decision behavior, not new runtime qualification. Live composition requires separately verified owner-profile observations.",
+  "cases": [
+    {
+      "id": "ACCEPT",
+      "variation": "none",
+      "expected": {
+        "decision": "accepted",
+        "reason": "all-obligations"
+      },
+      "candidate_added": true,
+      "application_state_changed": false,
+      "old_runs_changed": false
+    },
+    {
+      "id": "MISSING",
+      "variation": "missing-consumer",
+      "expected": {
+        "decision": "pending",
+        "reason": "missing-obligation"
+      },
+      "candidate_added": false,
+      "application_state_changed": false,
+      "old_runs_changed": false
+    },
+    {
+      "id": "CONFLICT-MISSING",
+      "variation": "conflict-missing",
+      "expected": {
+        "decision": "pending",
+        "reason": "conflicting-evidence"
+      },
+      "candidate_added": false,
+      "application_state_changed": false,
+      "old_runs_changed": false
+    },
+    {
+      "id": "MALFORMED",
+      "variation": "malformed",
+      "expected": {
+        "decision": "invalid",
+        "reason": "receipts"
+      },
+      "candidate_added": false,
+      "application_state_changed": false,
+      "old_runs_changed": false
+    },
+    {
+      "id": "OLD-PROFILE",
+      "variation": "old-profile",
+      "expected": {
+        "decision": "pending",
+        "reason": "missing-obligation"
+      },
+      "candidate_added": false,
+      "application_state_changed": false,
+      "old_runs_changed": false
+    },
+    {
+      "id": "WRONG-PRODUCER",
+      "variation": "wrong-producer",
+      "expected": {
+        "decision": "pending",
+        "reason": "missing-obligation"
+      },
+      "candidate_added": false,
+      "application_state_changed": false,
+      "old_runs_changed": false
+    },
+    {
+      "id": "STALE-BASE",
+      "variation": "stale-base",
+      "expected": {
+        "decision": "stale",
+        "reason": "base-changed"
+      },
+      "candidate_added": false,
+      "application_state_changed": false,
+      "old_runs_changed": false
+    },
+    {
+      "id": "DENIED",
+      "variation": "denied",
+      "expected": {
+        "decision": "denied",
+        "reason": "admission-authority"
+      },
+      "candidate_added": false,
+      "application_state_changed": false,
+      "old_runs_changed": false
+    },
+    {
+      "id": "LATE-BASE",
+      "variation": "late-base",
+      "expected": {
+        "decision": "stale",
+        "reason": "base-changed"
+      },
+      "candidate_added": false,
+      "application_state_changed": false,
+      "old_runs_changed": false
+    },
+    {
+      "id": "LATE-DENIED",
+      "variation": "late-denied",
+      "expected": {
+        "decision": "denied",
+        "reason": "admission-authority"
+      },
+      "candidate_added": false,
+      "application_state_changed": false,
+      "old_runs_changed": false
+    },
+    {
+      "id": "WRONG-CANDIDATE",
+      "variation": "wrong-candidate",
+      "expected": {
+        "decision": "invalid",
+        "reason": "candidate-source"
+      },
+      "candidate_added": false,
+      "application_state_changed": false,
+      "old_runs_changed": false
+    }
+  ],
+  "unknown_source_before_admission": "OWNER_SOURCE",
+  "run_source_mismatch": "RUN_SOURCE",
+  "duplicate_run": "RUN_DUPLICATE"
+}
