@@ -78,3 +78,9 @@ local/argument or scalar-kind substitutions. Encoding preserves the input data.
 Six file-CLI calls check explicit selection and roundtrip, and the unchanged 32-call
 default CLI checks still pass. These are representation/compatibility checks,
 not a new native backend, model study, production acceptance or performance claim.
+
+## Checked changes
+
+The [explicit edit/3 route](component-arithmetic-edits.md) carries this readable
+notation through the existing source/2 compatibility and policy checks. A
+checked draft remains separate from qualification and live admission.
