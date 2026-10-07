@@ -90,3 +90,8 @@ checked draft remains separate from qualification and live admission.
 The [optional diagnostic command](component-diagnostics.md) reports lexical or
 parser-context spans while retaining the existing refusal code. It does not
 replace semantic checking or change the converter output.
+
+## Connected authoring route
+
+Follow [write, diagnose and change a component](readable-authoring.md) to connect
+this notation, syntax diagnostics and a checked helper extraction.
