@@ -1,0 +1,607 @@
+{
+  "contract": "queue-open-filter/1",
+  "rule": "Optional exactBoolean closed defaultsfalse. Validate everyrecord before omittingclosed records; keep original queue revision1 ordering amongopen records. No jobexecution or persistence.",
+  "cases": [
+    {
+      "id": "inherited-empty",
+      "input": {
+        "jobs": []
+      },
+      "expected": {
+        "kind": "ok",
+        "order": []
+      }
+    },
+    {
+      "id": "inherited-single",
+      "input": {
+        "jobs": [
+          {
+            "id": "job",
+            "urgent": false
+          }
+        ]
+      },
+      "expected": {
+        "kind": "ok",
+        "order": [
+          "job"
+        ]
+      }
+    },
+    {
+      "id": "inherited-urgency",
+      "input": {
+        "jobs": [
+          {
+            "id": "a",
+            "urgent": false,
+            "priority": 0
+          },
+          {
+            "id": "b",
+            "urgent": true,
+            "priority": 9
+          }
+        ]
+      },
+      "expected": {
+        "kind": "ok",
+        "order": [
+          "b",
+          "a"
+        ]
+      }
+    },
+    {
+      "id": "inherited-priority",
+      "input": {
+        "jobs": [
+          {
+            "id": "a",
+            "urgent": true,
+            "priority": 9
+          },
+          {
+            "id": "b",
+            "urgent": true,
+            "priority": 0
+          }
+        ]
+      },
+      "expected": {
+        "kind": "ok",
+        "order": [
+          "b",
+          "a"
+        ]
+      }
+    },
+    {
+      "id": "inherited-missing-change",
+      "input": {
+        "jobs": [
+          {
+            "id": "a",
+            "urgent": true
+          },
+          {
+            "id": "b",
+            "urgent": true,
+            "priority": 0
+          }
+        ]
+      },
+      "expected": {
+        "kind": "ok",
+        "order": [
+          "b",
+          "a"
+        ]
+      }
+    },
+    {
+      "id": "inherited-urgent-missing",
+      "input": {
+        "jobs": [
+          {
+            "id": "a",
+            "urgent": false,
+            "priority": 0
+          },
+          {
+            "id": "b",
+            "urgent": true
+          }
+        ]
+      },
+      "expected": {
+        "kind": "ok",
+        "order": [
+          "b",
+          "a"
+        ]
+      }
+    },
+    {
+      "id": "inherited-tie",
+      "input": {
+        "jobs": [
+          {
+            "id": "b",
+            "urgent": false,
+            "priority": 2
+          },
+          {
+            "id": "a",
+            "urgent": false,
+            "priority": 2
+          }
+        ]
+      },
+      "expected": {
+        "kind": "ok",
+        "order": [
+          "a",
+          "b"
+        ]
+      }
+    },
+    {
+      "id": "inherited-duplicate",
+      "input": {
+        "jobs": [
+          {
+            "id": "a",
+            "urgent": false
+          },
+          {
+            "id": "a",
+            "urgent": true
+          }
+        ]
+      },
+      "expected": {
+        "kind": "refusal",
+        "reason": "invalid-request"
+      }
+    },
+    {
+      "id": "inherited-bool-priority",
+      "input": {
+        "jobs": [
+          {
+            "id": "a",
+            "urgent": false,
+            "priority": true
+          }
+        ]
+      },
+      "expected": {
+        "kind": "refusal",
+        "reason": "invalid-request"
+      }
+    },
+    {
+      "id": "inherited-int-urgent",
+      "input": {
+        "jobs": [
+          {
+            "id": "a",
+            "urgent": 1
+          }
+        ]
+      },
+      "expected": {
+        "kind": "refusal",
+        "reason": "invalid-request"
+      }
+    },
+    {
+      "id": "inherited-unknown-root",
+      "input": {
+        "jobs": [],
+        "extra": 0
+      },
+      "expected": {
+        "kind": "refusal",
+        "reason": "invalid-request"
+      }
+    },
+    {
+      "id": "inherited-unknown-job",
+      "input": {
+        "jobs": [
+          {
+            "id": "a",
+            "urgent": false,
+            "extra": 0
+          }
+        ]
+      },
+      "expected": {
+        "kind": "refusal",
+        "reason": "invalid-request"
+      }
+    },
+    {
+      "id": "inherited-null-priority",
+      "input": {
+        "jobs": [
+          {
+            "id": "a",
+            "urgent": false,
+            "priority": null
+          }
+        ]
+      },
+      "expected": {
+        "kind": "refusal",
+        "reason": "invalid-request"
+      }
+    },
+    {
+      "id": "inherited-uppercase-id",
+      "input": {
+        "jobs": [
+          {
+            "id": "A",
+            "urgent": false
+          }
+        ]
+      },
+      "expected": {
+        "kind": "refusal",
+        "reason": "invalid-request"
+      }
+    },
+    {
+      "id": "inherited-too-many",
+      "input": {
+        "jobs": [
+          {
+            "id": "a",
+            "urgent": false
+          },
+          {
+            "id": "b",
+            "urgent": false
+          },
+          {
+            "id": "c",
+            "urgent": false
+          },
+          {
+            "id": "d",
+            "urgent": false
+          },
+          {
+            "id": "e",
+            "urgent": false
+          },
+          {
+            "id": "f",
+            "urgent": false
+          },
+          {
+            "id": "g",
+            "urgent": false
+          },
+          {
+            "id": "h",
+            "urgent": false
+          },
+          {
+            "id": "i",
+            "urgent": false
+          }
+        ]
+      },
+      "expected": {
+        "kind": "refusal",
+        "reason": "invalid-request"
+      }
+    },
+    {
+      "id": "inherited-missing-urgent",
+      "input": {
+        "jobs": [
+          {
+            "id": "a"
+          }
+        ]
+      },
+      "expected": {
+        "kind": "refusal",
+        "reason": "invalid-request"
+      }
+    },
+    {
+      "id": "inherited-priority-high",
+      "input": {
+        "jobs": [
+          {
+            "id": "a",
+            "urgent": false,
+            "priority": 10
+          }
+        ]
+      },
+      "expected": {
+        "kind": "refusal",
+        "reason": "invalid-request"
+      }
+    },
+    {
+      "id": "inherited-priority-negative",
+      "input": {
+        "jobs": [
+          {
+            "id": "a",
+            "urgent": false,
+            "priority": -1
+          }
+        ]
+      },
+      "expected": {
+        "kind": "refusal",
+        "reason": "invalid-request"
+      }
+    },
+    {
+      "id": "inherited-priority-float",
+      "input": {
+        "jobs": [
+          {
+            "id": "a",
+            "urgent": false,
+            "priority": 1.0
+          }
+        ]
+      },
+      "expected": {
+        "kind": "refusal",
+        "reason": "invalid-request"
+      }
+    },
+    {
+      "id": "inherited-jobs-object",
+      "input": {
+        "jobs": {}
+      },
+      "expected": {
+        "kind": "refusal",
+        "reason": "invalid-request"
+      }
+    },
+    {
+      "id": "inherited-root-array",
+      "input": [],
+      "expected": {
+        "kind": "refusal",
+        "reason": "invalid-request"
+      }
+    },
+    {
+      "id": "inherited-empty-id",
+      "input": {
+        "jobs": [
+          {
+            "id": "",
+            "urgent": false
+          }
+        ]
+      },
+      "expected": {
+        "kind": "refusal",
+        "reason": "invalid-request"
+      }
+    },
+    {
+      "id": "inherited-capacity-eight",
+      "input": {
+        "jobs": [
+          {
+            "id": "h",
+            "urgent": false
+          },
+          {
+            "id": "g",
+            "urgent": false
+          },
+          {
+            "id": "f",
+            "urgent": false
+          },
+          {
+            "id": "e",
+            "urgent": false
+          },
+          {
+            "id": "d",
+            "urgent": false
+          },
+          {
+            "id": "c",
+            "urgent": false
+          },
+          {
+            "id": "b",
+            "urgent": false
+          },
+          {
+            "id": "a",
+            "urgent": false
+          }
+        ]
+      },
+      "expected": {
+        "kind": "ok",
+        "order": [
+          "a",
+          "b",
+          "c",
+          "d",
+          "e",
+          "f",
+          "g",
+          "h"
+        ]
+      }
+    },
+    {
+      "id": "closed-urgent",
+      "input": {
+        "jobs": [
+          {
+            "id": "a",
+            "urgent": true,
+            "priority": 0,
+            "closed": true
+          },
+          {
+            "id": "b",
+            "urgent": false,
+            "priority": 9
+          }
+        ]
+      },
+      "expected": {
+        "kind": "ok",
+        "order": [
+          "b"
+        ]
+      }
+    },
+    {
+      "id": "all-closed",
+      "input": {
+        "jobs": [
+          {
+            "id": "a",
+            "urgent": false,
+            "closed": true
+          },
+          {
+            "id": "b",
+            "urgent": true,
+            "closed": true
+          }
+        ]
+      },
+      "expected": {
+        "kind": "ok",
+        "order": []
+      }
+    },
+    {
+      "id": "null-closed",
+      "input": {
+        "jobs": [
+          {
+            "id": "a",
+            "urgent": false,
+            "closed": null
+          }
+        ]
+      },
+      "expected": {
+        "kind": "refusal",
+        "reason": "invalid-request"
+      }
+    },
+    {
+      "id": "integer-closed",
+      "input": {
+        "jobs": [
+          {
+            "id": "a",
+            "urgent": false,
+            "closed": 1
+          }
+        ]
+      },
+      "expected": {
+        "kind": "refusal",
+        "reason": "invalid-request"
+      }
+    },
+    {
+      "id": "invalid-closed-priority",
+      "input": {
+        "jobs": [
+          {
+            "id": "a",
+            "urgent": true,
+            "priority": true,
+            "closed": true
+          }
+        ]
+      },
+      "expected": {
+        "kind": "refusal",
+        "reason": "invalid-request"
+      }
+    },
+    {
+      "id": "duplicate-hidden",
+      "input": {
+        "jobs": [
+          {
+            "id": "a",
+            "urgent": false,
+            "closed": true
+          },
+          {
+            "id": "a",
+            "urgent": true
+          }
+        ]
+      },
+      "expected": {
+        "kind": "refusal",
+        "reason": "invalid-request"
+      }
+    },
+    {
+      "id": "explicit-open",
+      "input": {
+        "jobs": [
+          {
+            "id": "b",
+            "urgent": true
+          },
+          {
+            "id": "a",
+            "urgent": true,
+            "priority": 0,
+            "closed": false
+          }
+        ]
+      },
+      "expected": {
+        "kind": "ok",
+        "order": [
+          "a",
+          "b"
+        ]
+      }
+    },
+    {
+      "id": "bad-id-closed",
+      "input": {
+        "jobs": [
+          {
+            "id": "A",
+            "urgent": true,
+            "closed": true
+          }
+        ]
+      },
+      "expected": {
+        "kind": "refusal",
+        "reason": "invalid-request"
+      }
+    }
+  ]
+}
