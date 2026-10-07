@@ -74,6 +74,8 @@ untrusted code. No model account is needed for this example.
 
 For a readable stateful formula, follow [write, diagnose and change a component](docs/readable-authoring.md): syntax context, explicit JSON conversion and a detached checked helper extraction.
 
+For a composed business rule with retained results, follow the [stock adjustment example](docs/stock-adjustment.md): readable match, actual typed execution, declines, applied revisions and receipt reconstruction.
+
 ## What exists today
 
 - **Typed stateful operations and continuation:** the [worked component guide](docs/stateful-components.md) connects readable Propose/Decline outcomes, source-pinned runs and bounded persisted receipts. Business refusal, unobserved result and applied state remain distinct; this is an experimental single-writer profile.
