@@ -8,6 +8,7 @@ assert R.is_absolute() and R.parent.is_dir() and not R.exists()
 manifest=json.loads((D/'manifest.json').read_bytes())
 for n,h in manifest['sha256'].items():assert hashlib.sha256((D/n).read_bytes()).hexdigest()==h
 for n,h in manifest['unchanged'].items():assert hashlib.sha256((T/n).read_bytes()).hexdigest()==h
+for n,h in manifest.get('dependencies',{}).items():assert hashlib.sha256((T/n).read_bytes()).hexdigest()==h
 sys.path.insert(0,str(T/'src'));import bagaev_component_arithmetic_diagnostics as diag
 import bagaev_component_arithmetic_form as form
 R.mkdir(exist_ok=False);rows=[]

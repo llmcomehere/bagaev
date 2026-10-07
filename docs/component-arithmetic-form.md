@@ -95,3 +95,8 @@ replace semantic checking or change the converter output.
 
 Follow [write, diagnose and change a component](readable-authoring.md) to connect
 this notation, syntax diagnostics and a checked helper extraction.
+
+## Consume a typed result
+
+The explicit [form/4 match extension](component-match-form.md) consumes a variant
+inside a pure helper using the existing exhaustive match semantics. Form/3 stays unchanged.
