@@ -72,6 +72,8 @@ Read the [L0 semantics and CLI examples](docs/l0.md#library-and-cli) to inspect
 and try it. Review source and the [execution rules](AGENTS.md) before running
 untrusted code. No model account is needed for this example.
 
+For a readable stateful formula, follow [write, diagnose and change a component](docs/readable-authoring.md): syntax context, explicit JSON conversion and a detached checked helper extraction.
+
 ## What exists today
 
 - **Typed stateful operations and continuation:** the [worked component guide](docs/stateful-components.md) connects readable Propose/Decline outcomes, source-pinned runs and bounded persisted receipts. Business refusal, unobserved result and applied state remain distinct; this is an experimental single-writer profile.
