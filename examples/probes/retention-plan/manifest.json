@@ -1,0 +1,7 @@
+{
+  "sha256": {
+    "cases.json": "1c4ebeba43813be4e7848d23798f9d3ba4e10dce23f3b064852e370172073252",
+    "controls.json": "932c15ba04fa6c183b92d219ab4aee4cca8fd738ab8f73447154b437cc5adf0e",
+    "program.json": "638ccfbed0a9b8a3cfecec1abcaafe659a627ab81f4faa7e19999bfee3fd2d66"
+  }
+}

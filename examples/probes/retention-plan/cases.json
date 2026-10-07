@@ -1,0 +1,946 @@
+{
+  "schema": "retention-plan-cases/1",
+  "cases": [
+    {
+      "id": "EMPTY",
+      "input": {
+        "complete": true,
+        "nodes": [],
+        "edges": []
+      },
+      "expected": {
+        "decision": "supported",
+        "reason": "finite-plan",
+        "execution_admission": false
+      }
+    },
+    {
+      "id": "DIAGNOSTIC-DROP",
+      "input": {
+        "complete": true,
+        "nodes": [
+          {
+            "id": {
+              "value": 1
+            },
+            "kind": "terminal",
+            "phase": "live",
+            "retire": false
+          },
+          {
+            "id": {
+              "value": 2
+            },
+            "kind": "diagnostic",
+            "phase": "live",
+            "retire": true
+          },
+          {
+            "id": {
+              "value": 3
+            },
+            "kind": "consumer",
+            "phase": "live",
+            "retire": false
+          }
+        ],
+        "edges": [
+          {
+            "consumer": {
+              "value": 3
+            },
+            "witness": {
+              "value": 1
+            }
+          }
+        ]
+      },
+      "expected": {
+        "decision": "supported",
+        "reason": "finite-plan",
+        "execution_admission": false
+      }
+    },
+    {
+      "id": "TERMINAL-DROP",
+      "input": {
+        "complete": true,
+        "nodes": [
+          {
+            "id": {
+              "value": 1
+            },
+            "kind": "terminal",
+            "phase": "live",
+            "retire": true
+          }
+        ],
+        "edges": []
+      },
+      "expected": {
+        "decision": "refused",
+        "reason": "terminal-retirement",
+        "execution_admission": false
+      }
+    },
+    {
+      "id": "LIVE-WITNESS-DROP",
+      "input": {
+        "complete": true,
+        "nodes": [
+          {
+            "id": {
+              "value": 1
+            },
+            "kind": "diagnostic",
+            "phase": "live",
+            "retire": true
+          },
+          {
+            "id": {
+              "value": 2
+            },
+            "kind": "consumer",
+            "phase": "live",
+            "retire": false
+          }
+        ],
+        "edges": [
+          {
+            "consumer": {
+              "value": 2
+            },
+            "witness": {
+              "value": 1
+            }
+          }
+        ]
+      },
+      "expected": {
+        "decision": "refused",
+        "reason": "live-dependency",
+        "execution_admission": false
+      }
+    },
+    {
+      "id": "EXPIRED-AUDIT-RETAINED-FACT",
+      "input": {
+        "complete": true,
+        "nodes": [
+          {
+            "id": {
+              "value": 1
+            },
+            "kind": "terminal",
+            "phase": "live",
+            "retire": false
+          },
+          {
+            "id": {
+              "value": 2
+            },
+            "kind": "diagnostic",
+            "phase": "retired",
+            "retire": false
+          },
+          {
+            "id": {
+              "value": 3
+            },
+            "kind": "consumer",
+            "phase": "live",
+            "retire": false
+          }
+        ],
+        "edges": [
+          {
+            "consumer": {
+              "value": 3
+            },
+            "witness": {
+              "value": 1
+            }
+          }
+        ]
+      },
+      "expected": {
+        "decision": "supported",
+        "reason": "finite-plan",
+        "execution_admission": false
+      }
+    },
+    {
+      "id": "MISSING-ENDPOINT",
+      "input": {
+        "complete": true,
+        "nodes": [
+          {
+            "id": {
+              "value": 1
+            },
+            "kind": "consumer",
+            "phase": "live",
+            "retire": false
+          }
+        ],
+        "edges": [
+          {
+            "consumer": {
+              "value": 1
+            },
+            "witness": {
+              "value": 4
+            }
+          }
+        ]
+      },
+      "expected": {
+        "decision": "invalid",
+        "reason": "graph",
+        "execution_admission": false
+      }
+    },
+    {
+      "id": "PLANNED-MISSING-WITNESS",
+      "input": {
+        "complete": true,
+        "nodes": [
+          {
+            "id": {
+              "value": 1
+            },
+            "kind": "consumer",
+            "phase": "planned",
+            "retire": false
+          },
+          {
+            "id": {
+              "value": 2
+            },
+            "kind": "artifact",
+            "phase": "retired",
+            "retire": false
+          }
+        ],
+        "edges": [
+          {
+            "consumer": {
+              "value": 1
+            },
+            "witness": {
+              "value": 2
+            }
+          }
+        ]
+      },
+      "expected": {
+        "decision": "refused",
+        "reason": "creation-dependency",
+        "execution_admission": false
+      }
+    },
+    {
+      "id": "FIRST-CREATE",
+      "input": {
+        "complete": true,
+        "nodes": [
+          {
+            "id": {
+              "value": 1
+            },
+            "kind": "artifact",
+            "phase": "planned",
+            "retire": false
+          }
+        ],
+        "edges": []
+      },
+      "expected": {
+        "decision": "supported",
+        "reason": "finite-plan",
+        "execution_admission": false
+      }
+    },
+    {
+      "id": "ACYCLIC-CREATE",
+      "input": {
+        "complete": true,
+        "nodes": [
+          {
+            "id": {
+              "value": 1
+            },
+            "kind": "artifact",
+            "phase": "planned",
+            "retire": false
+          },
+          {
+            "id": {
+              "value": 2
+            },
+            "kind": "artifact",
+            "phase": "planned",
+            "retire": false
+          }
+        ],
+        "edges": [
+          {
+            "consumer": {
+              "value": 1
+            },
+            "witness": {
+              "value": 2
+            }
+          }
+        ]
+      },
+      "expected": {
+        "decision": "supported",
+        "reason": "finite-plan",
+        "execution_admission": false
+      }
+    },
+    {
+      "id": "SELF-CYCLE",
+      "input": {
+        "complete": true,
+        "nodes": [
+          {
+            "id": {
+              "value": 1
+            },
+            "kind": "artifact",
+            "phase": "planned",
+            "retire": false
+          }
+        ],
+        "edges": [
+          {
+            "consumer": {
+              "value": 1
+            },
+            "witness": {
+              "value": 1
+            }
+          }
+        ]
+      },
+      "expected": {
+        "decision": "refused",
+        "reason": "phase-cycle",
+        "execution_admission": false
+      }
+    },
+    {
+      "id": "TWO-CYCLE",
+      "input": {
+        "complete": true,
+        "nodes": [
+          {
+            "id": {
+              "value": 1
+            },
+            "kind": "artifact",
+            "phase": "planned",
+            "retire": false
+          },
+          {
+            "id": {
+              "value": 2
+            },
+            "kind": "artifact",
+            "phase": "planned",
+            "retire": false
+          }
+        ],
+        "edges": [
+          {
+            "consumer": {
+              "value": 1
+            },
+            "witness": {
+              "value": 2
+            }
+          },
+          {
+            "consumer": {
+              "value": 2
+            },
+            "witness": {
+              "value": 1
+            }
+          }
+        ]
+      },
+      "expected": {
+        "decision": "refused",
+        "reason": "phase-cycle",
+        "execution_admission": false
+      }
+    },
+    {
+      "id": "THREE-CYCLE",
+      "input": {
+        "complete": true,
+        "nodes": [
+          {
+            "id": {
+              "value": 1
+            },
+            "kind": "artifact",
+            "phase": "planned",
+            "retire": false
+          },
+          {
+            "id": {
+              "value": 2
+            },
+            "kind": "artifact",
+            "phase": "planned",
+            "retire": false
+          },
+          {
+            "id": {
+              "value": 3
+            },
+            "kind": "artifact",
+            "phase": "planned",
+            "retire": false
+          }
+        ],
+        "edges": [
+          {
+            "consumer": {
+              "value": 1
+            },
+            "witness": {
+              "value": 2
+            }
+          },
+          {
+            "consumer": {
+              "value": 2
+            },
+            "witness": {
+              "value": 3
+            }
+          },
+          {
+            "consumer": {
+              "value": 3
+            },
+            "witness": {
+              "value": 1
+            }
+          }
+        ]
+      },
+      "expected": {
+        "decision": "refused",
+        "reason": "phase-cycle",
+        "execution_admission": false
+      }
+    },
+    {
+      "id": "FOUR-CYCLE",
+      "input": {
+        "complete": true,
+        "nodes": [
+          {
+            "id": {
+              "value": 1
+            },
+            "kind": "artifact",
+            "phase": "planned",
+            "retire": false
+          },
+          {
+            "id": {
+              "value": 2
+            },
+            "kind": "artifact",
+            "phase": "planned",
+            "retire": false
+          },
+          {
+            "id": {
+              "value": 3
+            },
+            "kind": "artifact",
+            "phase": "planned",
+            "retire": false
+          },
+          {
+            "id": {
+              "value": 4
+            },
+            "kind": "artifact",
+            "phase": "planned",
+            "retire": false
+          }
+        ],
+        "edges": [
+          {
+            "consumer": {
+              "value": 1
+            },
+            "witness": {
+              "value": 2
+            }
+          },
+          {
+            "consumer": {
+              "value": 2
+            },
+            "witness": {
+              "value": 3
+            }
+          },
+          {
+            "consumer": {
+              "value": 3
+            },
+            "witness": {
+              "value": 4
+            }
+          },
+          {
+            "consumer": {
+              "value": 4
+            },
+            "witness": {
+              "value": 1
+            }
+          }
+        ]
+      },
+      "expected": {
+        "decision": "refused",
+        "reason": "phase-cycle",
+        "execution_admission": false
+      }
+    },
+    {
+      "id": "LIVE-CANNOT-BORROW-FUTURE",
+      "input": {
+        "complete": true,
+        "nodes": [
+          {
+            "id": {
+              "value": 1
+            },
+            "kind": "consumer",
+            "phase": "live",
+            "retire": false
+          },
+          {
+            "id": {
+              "value": 2
+            },
+            "kind": "artifact",
+            "phase": "planned",
+            "retire": false
+          }
+        ],
+        "edges": [
+          {
+            "consumer": {
+              "value": 1
+            },
+            "witness": {
+              "value": 2
+            }
+          }
+        ]
+      },
+      "expected": {
+        "decision": "refused",
+        "reason": "live-dependency",
+        "execution_admission": false
+      }
+    },
+    {
+      "id": "RETIRED-CONSUMER",
+      "input": {
+        "complete": true,
+        "nodes": [
+          {
+            "id": {
+              "value": 1
+            },
+            "kind": "consumer",
+            "phase": "retired",
+            "retire": false
+          },
+          {
+            "id": {
+              "value": 2
+            },
+            "kind": "artifact",
+            "phase": "retired",
+            "retire": false
+          }
+        ],
+        "edges": [
+          {
+            "consumer": {
+              "value": 1
+            },
+            "witness": {
+              "value": 2
+            }
+          }
+        ]
+      },
+      "expected": {
+        "decision": "supported",
+        "reason": "finite-plan",
+        "execution_admission": false
+      }
+    },
+    {
+      "id": "RETIRE-CONSUMER-AND-DIAGNOSTIC",
+      "input": {
+        "complete": true,
+        "nodes": [
+          {
+            "id": {
+              "value": 1
+            },
+            "kind": "consumer",
+            "phase": "live",
+            "retire": true
+          },
+          {
+            "id": {
+              "value": 2
+            },
+            "kind": "diagnostic",
+            "phase": "live",
+            "retire": true
+          }
+        ],
+        "edges": [
+          {
+            "consumer": {
+              "value": 1
+            },
+            "witness": {
+              "value": 2
+            }
+          }
+        ]
+      },
+      "expected": {
+        "decision": "supported",
+        "reason": "finite-plan",
+        "execution_admission": false
+      }
+    },
+    {
+      "id": "LATE-MALFORMED-EDGE",
+      "input": {
+        "complete": true,
+        "nodes": [
+          {
+            "id": {
+              "value": 1
+            },
+            "kind": "consumer",
+            "phase": "live",
+            "retire": false
+          },
+          {
+            "id": {
+              "value": 2
+            },
+            "kind": "artifact",
+            "phase": "live",
+            "retire": true
+          }
+        ],
+        "edges": [
+          {
+            "consumer": {
+              "value": 1
+            },
+            "witness": {
+              "value": 2
+            }
+          },
+          {
+            "consumer": {
+              "value": 1
+            },
+            "witness": {
+              "value": 4
+            }
+          }
+        ]
+      },
+      "expected": {
+        "decision": "invalid",
+        "reason": "graph",
+        "execution_admission": false
+      }
+    },
+    {
+      "id": "DUPLICATE-IDS",
+      "input": {
+        "complete": true,
+        "nodes": [
+          {
+            "id": {
+              "value": 1
+            },
+            "kind": "artifact",
+            "phase": "live",
+            "retire": false
+          },
+          {
+            "id": {
+              "value": 1
+            },
+            "kind": "artifact",
+            "phase": "live",
+            "retire": false
+          }
+        ],
+        "edges": []
+      },
+      "expected": {
+        "decision": "invalid",
+        "reason": "graph",
+        "execution_admission": false
+      }
+    },
+    {
+      "id": "DUPLICATE-EDGES",
+      "input": {
+        "complete": true,
+        "nodes": [
+          {
+            "id": {
+              "value": 1
+            },
+            "kind": "artifact",
+            "phase": "live",
+            "retire": false
+          },
+          {
+            "id": {
+              "value": 2
+            },
+            "kind": "artifact",
+            "phase": "live",
+            "retire": false
+          }
+        ],
+        "edges": [
+          {
+            "consumer": {
+              "value": 1
+            },
+            "witness": {
+              "value": 2
+            }
+          },
+          {
+            "consumer": {
+              "value": 1
+            },
+            "witness": {
+              "value": 2
+            }
+          }
+        ]
+      },
+      "expected": {
+        "decision": "invalid",
+        "reason": "graph",
+        "execution_admission": false
+      }
+    },
+    {
+      "id": "INCOMPLETE",
+      "input": {
+        "complete": false,
+        "nodes": [
+          {
+            "id": {
+              "value": 0
+            },
+            "kind": "artifact",
+            "phase": "live",
+            "retire": false
+          }
+        ],
+        "edges": []
+      },
+      "expected": {
+        "decision": "unavailable",
+        "reason": "incomplete-inventory",
+        "execution_admission": false
+      }
+    },
+    {
+      "id": "PLANNED-RETIRE",
+      "input": {
+        "complete": true,
+        "nodes": [
+          {
+            "id": {
+              "value": 1
+            },
+            "kind": "artifact",
+            "phase": "planned",
+            "retire": true
+          }
+        ],
+        "edges": []
+      },
+      "expected": {
+        "decision": "invalid",
+        "reason": "graph",
+        "execution_admission": false
+      }
+    },
+    {
+      "id": "UNKNOWN-KIND",
+      "input": {
+        "complete": true,
+        "nodes": [
+          {
+            "id": {
+              "value": 1
+            },
+            "kind": "unknown",
+            "phase": "live",
+            "retire": false
+          }
+        ],
+        "edges": []
+      },
+      "expected": {
+        "decision": "invalid",
+        "reason": "graph",
+        "execution_admission": false
+      }
+    },
+    {
+      "id": "UNKNOWN-PHASE",
+      "input": {
+        "complete": true,
+        "nodes": [
+          {
+            "id": {
+              "value": 1
+            },
+            "kind": "artifact",
+            "phase": "unknown",
+            "retire": false
+          }
+        ],
+        "edges": []
+      },
+      "expected": {
+        "decision": "invalid",
+        "reason": "graph",
+        "execution_admission": false
+      }
+    },
+    {
+      "id": "ALREADY-LOST-TERMINAL",
+      "input": {
+        "complete": true,
+        "nodes": [
+          {
+            "id": {
+              "value": 1
+            },
+            "kind": "terminal",
+            "phase": "retired",
+            "retire": false
+          }
+        ],
+        "edges": []
+      },
+      "expected": {
+        "decision": "invalid",
+        "reason": "graph",
+        "execution_admission": false
+      }
+    },
+    {
+      "id": "FOUR-NODE-ACYCLIC",
+      "input": {
+        "complete": true,
+        "nodes": [
+          {
+            "id": {
+              "value": 1
+            },
+            "kind": "artifact",
+            "phase": "planned",
+            "retire": false
+          },
+          {
+            "id": {
+              "value": 2
+            },
+            "kind": "artifact",
+            "phase": "planned",
+            "retire": false
+          },
+          {
+            "id": {
+              "value": 3
+            },
+            "kind": "artifact",
+            "phase": "planned",
+            "retire": false
+          },
+          {
+            "id": {
+              "value": 4
+            },
+            "kind": "artifact",
+            "phase": "planned",
+            "retire": false
+          }
+        ],
+        "edges": [
+          {
+            "consumer": {
+              "value": 1
+            },
+            "witness": {
+              "value": 2
+            }
+          },
+          {
+            "consumer": {
+              "value": 2
+            },
+            "witness": {
+              "value": 3
+            }
+          },
+          {
+            "consumer": {
+              "value": 3
+            },
+            "witness": {
+              "value": 4
+            }
+          }
+        ]
+      },
+      "expected": {
+        "decision": "supported",
+        "reason": "finite-plan",
+        "execution_admission": false
+      }
+    }
+  ]
+}

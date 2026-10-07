@@ -258,3 +258,5 @@ failed attempts and false refusals. If ordinary types or existing components
 provide the same behavior at comparable cost, no extra language mechanism is
 justified by that observation alone. Fewer registry rows, printed tokens or
 reported tests are not accepted-change productivity measures.
+
+A separate [finite retention/creation probe](probe-retention-plan.md) reuses existing typed records for selected OE12–OE13 data-only controls. It does not implement production retirement.
