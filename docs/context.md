@@ -9,6 +9,7 @@ instructions](../AGENTS.md) and authority boundaries always apply.
 | Source | Owns |
 | --- | --- |
 | [README](../README.md) | Entry points and current repository status. |
+| [Offline documentation preview](offline-documentation.md) | Optional deterministic HTML build from selected versioned sources; no hosting or deployment. |
 | [Roadmap](roadmap.md) | Planned beta profile, workpackages, dependencies, and exit gates. |
 | [Integrated beta guide](beta.md) | Standalone integrated workflow, expected observations, compatibility and recovery navigation; README and Issues retain current status. |
 | [AGENTS](../AGENTS.md) | Authority, untrusted-data, and collaboration constraints. |
