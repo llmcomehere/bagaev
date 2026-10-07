@@ -6,6 +6,6 @@
     "src/bagaev_component_arithmetic_form.py": "730aa8af95d8e01cbccdd47fbfe9adc3dbc39019e20edd05133825a62fccd8d5"
   },
   "dependencies": {
-    "tools/component_text.py": "271ecedd2ff53109a4a3652e315248ed100c7c3d564ead284874cd0fd701f895"
+    "tools/component_text.py": "5345dfaaf5c12675e78ae5ee3c0b491ad6e307f32d1e4b46c8ae1c370bb6a3ac"
   }
 }
