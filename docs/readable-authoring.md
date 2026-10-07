@@ -7,6 +7,48 @@ All commands below are data preparation unless a separately reviewed checker
 or reference executable is explicitly selected. Review source and the
 [execution rules](../AGENTS.md) and use an authorized bounded profile first.
 
+## Choose an explicit representation
+
+These are versioned readable representations of component-source/2, not different
+runtime permissions. Select the version matching the actual file header. Do not
+change only a header to migrate a saved source or receipt.
+
+| Need | Form | Converter | Separate optional support |
+| --- | --- | --- | --- |
+| Typed Propose/Decline component | 2 | default or `--form 2` | original edit/2 |
+| Arithmetic and local `let` | 3 | `--form 3` | edit/3; diagnostics default to 3 |
+| Variant `match` | 4 | `--form 4` | edit/4; diagnostics `--form 4`; pinned expression locations |
+| Text and TextList operations | 5 | `--form 5` | no implicit extension of older edit/diagnostic/location APIs |
+| Fixed literal-count accumulator | 6 | `--form 6` | same explicit API boundaries as form5 |
+
+Use the [TextList guide](component-text-list-form.md) for fixed pure calls and
+[fold guide](component-fold-form.md) for counts 0–1024. These later forms retain
+the earlier expression vocabulary, but each has its own header and reserved
+words. Their common semantic JSON does not make every AST representable in every
+reader. The encoder refuses lossy or unsupported representations.
+
+For complete stateful examples, choose [stock adjustment](stock-adjustment.md),
+[TagBox](tag-box.md), or [byte-capacity preflight](tag-box-budget.md). For a
+semantic error's source context, use the separately pinned
+[form4 expression locator](component-expression-locations.md). It does not
+support form5/6 by guessing their version.
+
+## Keep the evidence levels separate
+
+1. Conversion or syntax diagnosis produces data. It does not establish types,
+   business correctness, receiver compatibility or execution admission.
+2. A source/policy check establishes the checked contract at exact source and
+   policy identities. A compatible detached edit remains a draft.
+3. A bounded reference invocation checks selected execution against supplied
+   expectations. A business Decline is different from a computation refusal.
+4. A receipt belongs to its pinned source and request. Reading an old receipt
+   does not mean the current application state has its revision.
+5. Performance, model preference, general reliability and full acceptance need
+   their own evidence. None follows merely from a successful conversion or CI.
+
+The walkthrough below intentionally stays on form3, including its fixed edit
+and diagnostic APIs. It is not an automatic upgrade to the newest form.
+
 ## 1. Start with the business rule
 
 The complete [StockAdjustment source](../examples/probes/component-arithmetic/StockAdjustment.bagaev)

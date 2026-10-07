@@ -1,6 +1,6 @@
 # Readable component files: data-only conversion
 
-The explicit Linux/CPython tool converts the existing component-form/2 notation
+The explicit Linux/CPython tool converts selected component-form/2–6 notation
 and its component-source/2 JSON representation. It does not check types, run an
 application, select an executable, access a Store or grant admission.
 
@@ -20,11 +20,12 @@ when semantic checking is needed. A syntactically convertible component may
 still have invalid types or references.
 
 The tool has only decode and encode, a positional input and required --output.
-The optional --form selector is 2 by default. Explicit --form 5 chooses the
+The optional --form selector is 2 by default. Explicit --form 6 chooses the
+[counted-fold notation](component-fold-form.md). Explicit --form 5 chooses the
 [Text/TextList vocabulary](component-text-list-form.md). Explicit --form 4 chooses the
 [variant-match notation](component-match-form.md); explicit --form 3 chooses the
-[arithmetic/local representation](component-arithmetic-form.md). Neither mode
-autodetects or upgrades another form. Both produce component-source/2 data.
+[arithmetic/local representation](component-arithmetic-form.md). No mode
+autodetects or upgrades another form. All produce component-source/2 data.
 Inputs and outputs are bounded to 1 MiB. Inputs must be regular non-symlink files.
 JSON input rejects duplicate keys, floating/nonfinite numbers, out-of-Int64
 integers and excessive structural nesting. Existing codec version/syntax/profile
