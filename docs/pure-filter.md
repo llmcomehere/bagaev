@@ -45,6 +45,10 @@ these charges are not CPU measurements. The existing source depth and value
 bounds remain. CLI input transport retains its additional byte/nesting limits;
 it is narrower than the borrowed-value library API.
 
+For saved revisions and later-process continuation, explicitly choose the separate
+[filter saved workflow](filter-saved-workflow.md). It does not make the old `/1`
+Store accept `/2`, and the pure CLI below remains unchanged.
+
 ## Prepare a program explicitly
 
 When authoring a new pure program, provide a draft with exactly `schema`, `entry`

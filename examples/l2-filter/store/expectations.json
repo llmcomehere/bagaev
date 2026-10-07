@@ -1,0 +1,28 @@
+{
+  "initial_head": {
+    "generation": 0,
+    "source": null
+  },
+  "first_head": {
+    "generation": 1,
+    "source": "sha256:d08da50bd3d9b80eead8f2b018c7961696c037e1840dfd90701d8588be83d4fa"
+  },
+  "second_head": {
+    "generation": 2,
+    "source": "sha256:a1bd8fdf7c23e8cf9d1329a15c5862d82a7db114dd8fe6b9948875189bdb2018"
+  },
+  "check_cases": 31,
+  "refusals": {
+    "missing_evidence": "STORE_CHECK",
+    "stale_base": "STORE_STALE",
+    "operation_conflict": "STORE_OPERATION",
+    "unknown_effect": "STORE_CHECK",
+    "foreign_source": "L2_PROGRAM",
+    "foreign_package": "STORE_CORRUPT",
+    "foreign_policy": "STORE_POLICY",
+    "foreign_database": "STORE_FORMAT",
+    "failed_evidence": "STORE_CHECK"
+  },
+  "exact_operation_replay": "same receipt, second head unchanged",
+  "restore": "exact exported logical package"
+}
