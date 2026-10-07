@@ -39,3 +39,5 @@ original identifier rules. Supplemental checks cover four core refusals,
 fourteen existing form5 graphs, version gates and six file-CLI operations.
 
 The [TagBox budget example](tag-box-budget.md) uses the fold in a retained-receipt path and preserves computation-work refusals.
+
+For an exact checked helper draft without live admission, see [fold edits](component-fold-edits.md).
