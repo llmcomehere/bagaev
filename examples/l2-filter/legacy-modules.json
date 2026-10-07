@@ -1,0 +1,9 @@
+{
+  "sha256": {
+    "src/bagaev_l2.py": "98ca63c9fdb7a0f60060372d138eb922b348b46aaac6c9b140e8a49635f04a21",
+    "src/bagaev_l2_backend.py": "7f3e0eeac2533ab3fb22afe6d68edb3bad11e72070eaa24e7ed789bae3eafc14",
+    "src/bagaev_l2_runtime.py": "a86dcc3e291d73b18c98225305c7ebc69049a06a1a4658c6e4f6f3114685dd64",
+    "src/bagaev.py": "8712487fc46b156c46c56927d0acf7023727fc180ede9775263a2f8c35115db8"
+  },
+  "scope": "These /1 source bytes remain unchanged in this separate profile addition; hashes are not execution authority."
+}

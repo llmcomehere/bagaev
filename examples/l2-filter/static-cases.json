@@ -1,0 +1,78 @@
+{
+  "cases": [
+    {
+      "id": "unbound-on-empty",
+      "body": [
+        "filter",
+        [
+          "var",
+          "x"
+        ],
+        "item",
+        [
+          "var",
+          "absent"
+        ]
+      ],
+      "error": "L2_REFERENCE"
+    },
+    {
+      "id": "shadow",
+      "body": [
+        "filter",
+        [
+          "var",
+          "x"
+        ],
+        "x",
+        true
+      ],
+      "error": "L2_PROGRAM"
+    },
+    {
+      "id": "bad-arity",
+      "body": [
+        "filter",
+        [
+          "var",
+          "x"
+        ],
+        "item"
+      ],
+      "error": "L2_PROGRAM"
+    },
+    {
+      "id": "bad-binder",
+      "body": [
+        "filter",
+        [
+          "var",
+          "x"
+        ],
+        3,
+        true
+      ],
+      "error": "L2_PROGRAM"
+    },
+    {
+      "id": "unknown-predicate",
+      "body": [
+        "filter",
+        [
+          "var",
+          "x"
+        ],
+        "item",
+        [
+          "unknown"
+        ]
+      ],
+      "error": "L2_PROGRAM"
+    }
+  ],
+  "profile_refusals": {
+    "old1_filter": "L2_PROGRAM",
+    "old1_new2_schema": "L2_PROGRAM",
+    "new2_old1_schema": "L2_PROGRAM"
+  }
+}

@@ -1,0 +1,105 @@
+{
+  "controls": [
+    {
+      "engine": "reference",
+      "fault": "append-predicate",
+      "case": "mixed-order",
+      "wrong": [
+        true,
+        true
+      ]
+    },
+    {
+      "engine": "reference",
+      "fault": "reverse",
+      "case": "mixed-order",
+      "wrong": [
+        {
+          "keep": true,
+          "id": "a"
+        },
+        {
+          "keep": true,
+          "id": "b"
+        }
+      ]
+    },
+    {
+      "engine": "reference",
+      "fault": "deduplicate",
+      "case": "duplicate-retained",
+      "wrong": [
+        {
+          "keep": true,
+          "id": "a"
+        }
+      ]
+    },
+    {
+      "engine": "reference",
+      "fault": "truthiness",
+      "case": "integer-predicate",
+      "wrong": [
+        {
+          "keep": 1
+        }
+      ]
+    },
+    {
+      "engine": "reference",
+      "fault": "skip-last",
+      "case": "first-failure-no-partial",
+      "wrong": [
+        {
+          "keep": true,
+          "id": "a"
+        }
+      ]
+    },
+    {
+      "engine": "cpython",
+      "fault": "append-predicate",
+      "case": "mixed-order",
+      "wrong": [
+        true,
+        true
+      ]
+    },
+    {
+      "engine": "cpython",
+      "fault": "reverse",
+      "case": "mixed-order",
+      "wrong": [
+        {
+          "keep": true,
+          "id": "a"
+        },
+        {
+          "keep": true,
+          "id": "b"
+        }
+      ]
+    },
+    {
+      "engine": "cpython",
+      "fault": "truthiness",
+      "case": "integer-predicate",
+      "wrong": [
+        {
+          "keep": 1
+        }
+      ]
+    },
+    {
+      "engine": "cpython",
+      "fault": "skip-last",
+      "case": "first-failure-no-partial",
+      "wrong": [
+        {
+          "keep": true,
+          "id": "a"
+        }
+      ]
+    }
+  ]
+}

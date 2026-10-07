@@ -1,0 +1,37 @@
+{
+  "status": "POST_IMPLEMENTATION_SUPPLEMENT_EXPECTATIONS_BEFORE_DRIVER",
+  "cases": [
+    {
+      "id": "empty-nonboolean",
+      "expected": []
+    },
+    {
+      "id": "float-predicate",
+      "error": "L2_TYPE"
+    },
+    {
+      "id": "unselected-depth5000",
+      "expected": []
+    },
+    {
+      "id": "selected-depth100",
+      "error": "L2_BOUNDS"
+    },
+    {
+      "id": "unselected-surrogate",
+      "expected": []
+    },
+    {
+      "id": "selected-surrogate",
+      "error": "L2_TYPE"
+    },
+    {
+      "id": "nested-work-under128",
+      "recipe_expected": "integers0through127"
+    },
+    {
+      "id": "nested-work-over256",
+      "error": "L2_BOUNDS"
+    }
+  ]
+}

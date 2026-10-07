@@ -1,0 +1,2461 @@
+{
+  "cases": [
+    {
+      "id": "empty",
+      "input": [],
+      "predicate": "keep-field",
+      "expected": []
+    },
+    {
+      "id": "none",
+      "input": [
+        {
+          "keep": false,
+          "id": "a"
+        }
+      ],
+      "predicate": "keep-field",
+      "expected": []
+    },
+    {
+      "id": "all",
+      "input": [
+        {
+          "keep": true,
+          "id": "a"
+        },
+        {
+          "keep": true,
+          "id": "b"
+        }
+      ],
+      "predicate": "keep-field",
+      "expected": [
+        {
+          "keep": true,
+          "id": "a"
+        },
+        {
+          "keep": true,
+          "id": "b"
+        }
+      ]
+    },
+    {
+      "id": "mixed-order",
+      "input": [
+        {
+          "keep": false,
+          "id": "z"
+        },
+        {
+          "keep": true,
+          "id": "b"
+        },
+        {
+          "keep": true,
+          "id": "a"
+        }
+      ],
+      "predicate": "keep-field",
+      "expected": [
+        {
+          "keep": true,
+          "id": "b"
+        },
+        {
+          "keep": true,
+          "id": "a"
+        }
+      ]
+    },
+    {
+      "id": "duplicate-retained",
+      "input": [
+        {
+          "keep": true,
+          "id": "a"
+        },
+        {
+          "keep": true,
+          "id": "a"
+        }
+      ],
+      "predicate": "keep-field",
+      "expected": [
+        {
+          "keep": true,
+          "id": "a"
+        },
+        {
+          "keep": true,
+          "id": "a"
+        }
+      ]
+    },
+    {
+      "id": "integer-predicate",
+      "input": [
+        {
+          "keep": 1
+        }
+      ],
+      "predicate": "keep-field",
+      "error": "L2_TYPE"
+    },
+    {
+      "id": "missing-predicate-field",
+      "input": [
+        {}
+      ],
+      "predicate": "keep-field",
+      "error": "L2_FIELD"
+    },
+    {
+      "id": "nonarray",
+      "input": {},
+      "predicate": "keep-field",
+      "error": "L2_TYPE"
+    },
+    {
+      "id": "array-bound",
+      "input": [
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        },
+        {
+          "keep": false
+        }
+      ],
+      "predicate": "keep-field",
+      "error": "L2_BOUNDS"
+    },
+    {
+      "id": "capacity256",
+      "input": [
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        }
+      ],
+      "predicate": "keep-field",
+      "expected": [
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        },
+        {
+          "keep": true
+        }
+      ]
+    },
+    {
+      "id": "empty-no-runtime-field",
+      "input": [],
+      "predicate": "missing-field",
+      "expected": []
+    },
+    {
+      "id": "first-failure-no-partial",
+      "input": [
+        {
+          "keep": true,
+          "id": "a"
+        },
+        {}
+      ],
+      "predicate": "keep-field",
+      "error": "L2_FIELD"
+    }
+  ]
+}

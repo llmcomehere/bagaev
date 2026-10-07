@@ -62,6 +62,10 @@ For a different small application, try [changing a support-queue ordering
 rule](example-queue-change.md): existing L2, a one-definition patch, fixed expected
 results and an ordinary Python comparator. It needs no new language mechanism.
 
+To select only open records as well, the separate [pure filtering
+profile](pure-filter.md) has an explicit `/2` source and CLI. It preserves the old
+`/1` interfaces and has no Store or production-runtime acceptance.
+
 - Change the actual task requirement before changing the program; retain an expected
   result independently of the proposed implementation.
 - Stay within the selected [L0 semantics](l0.md), or deliberately choose the existing
