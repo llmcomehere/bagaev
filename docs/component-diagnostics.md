@@ -70,3 +70,27 @@ independent reproduction or an efficiency result.
 For an existing semantic JSON expression pointer, use the separate
 [source-bound location helper](component-expression-locations.md). It maps exact
 expressions in form/4 and does not replace the checker or guess a guilty token.
+
+## Explicit counted-fold diagnostics
+
+Use `--form 6` with a component-form/6 file to select the fixed
+`bagaev_component_fold_diagnostics.diagnose` API. Default3 and explicit4 remain
+unchanged. This does not add form5 autodetection or extend the edit/location APIs.
+
+```console
+python3 -B tools/component_diagnose.py --form 6 examples/probes/tag-box-budget/TagBoxBudget.bagaev
+```
+
+The wrapper returns form:component-form/6 in the same diagnostic/1 schema.
+Token spans and parser context retain the original UTF-8/Unicode conventions;
+lowering spans remain unavailable. A fold whose body has the wrong type can
+still be syntactically valid. Type checking requires the actual core.
+
+The portable `component_fold_diagnostic_checks.py` checks 26 exact observations:
+20 earlier cases adapted to the same-length version header and six fold cases
+(valid, excessive/dynamic count, duplicate binders, missing with, unchecked body
+type), plus encoding and transport supplements. Preparation corrected one stale
+repeated-input hash and two context spans after inspecting the existing parser's
+check-before-advance behavior. Product code and refusal criteria did not change.
+Original failed expectations remain in development evidence. The corrected set
+and unchanged 15/20 earlier suites passed. This is syntax context evidence only.
