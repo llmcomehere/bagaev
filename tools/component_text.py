@@ -105,7 +105,7 @@ def convert(argv):
     parser.add_argument("operation", choices=("decode", "encode"))
     parser.add_argument("input")
     parser.add_argument("--output", required=True)
-    parser.add_argument("--form", choices=("2", "3", "4"), default="2")
+    parser.add_argument("--form", choices=("2", "3", "4", "5"), default="2")
     args = parser.parse_args(argv)
     raw = read_input(args.input)
     codec = form
@@ -113,6 +113,8 @@ def convert(argv):
         import bagaev_component_arithmetic_form as codec
     elif args.form == "4":
         import bagaev_component_match_form as codec
+    elif args.form == "5":
+        import bagaev_component_text_list_form as codec
     if args.operation == "decode":
         value = codec.decode(raw)
         output = json.dumps(value, sort_keys=True, ensure_ascii=False,

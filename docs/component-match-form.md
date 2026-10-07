@@ -77,3 +77,8 @@ dependency rather than claiming that converter remained unchanged.
 
 The separate [edit/4 route](component-match-edits.md) carries match-bearing source
 through the unchanged source/2 draft checks. Edit/3 remains form/3-only.
+
+## Text and lists
+
+The explicit [form/5 vocabulary](component-text-list-form.md) adds fixed pure
+Text/TextList calls while retaining the existing core meaning. Form/4 stays unchanged.
