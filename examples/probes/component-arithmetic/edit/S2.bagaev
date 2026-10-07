@@ -1,0 +1,18 @@
+bagaev component-form/3;
+component StockItem operation adjust_quantity {
+  record AdjustStock { delta: Int64, expected: StockVersion, item: StockKey };
+  record Stock { key: StockKey, note: Text, quantity: Int64 };
+  record StockError { reason: Text };
+  record StockKey { code: Text };
+  record StockVersion { value: Int64 };
+  variant StockOutcome { Decline: StockError, Propose: Stock };
+
+  state Stock identity key;
+  request AdjustStock identity item revision expected: StockVersion;
+  replace quantity;
+  outcome StockOutcome error StockError;
+  entry apply;
+
+  fn adjusted(current: Int64, delta: Int64) -> Int64 = (current + delta);
+  fn apply(state: Stock, request: AdjustStock) -> StockOutcome = let next = (adjusted(state.quantity, request.delta)) in (if ((next < 0)) then (StockOutcome.Decline(StockError { reason: "negative-quantity" })) else (StockOutcome.Propose(Stock { key: state.key, note: state.note, quantity: next })));
+}

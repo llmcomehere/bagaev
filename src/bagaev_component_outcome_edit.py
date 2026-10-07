@@ -20,7 +20,7 @@ def pairs(rows):
   out[k]=v
  return out
 def no_float(_):raise ValueError('unsupported numeric token')
-def frame(source):
+def _frame(source,*,schema,form_name):
  need(type(source) in (str,bytes),'EDIT_SYNTAX')
  try:raw=source.encode('utf8') if type(source)is str else source;text=raw.decode('utf8')
  except UnicodeError:raise EditError('EDIT_SYNTAX') from None
@@ -39,10 +39,12 @@ def frame(source):
  need(type(value)is dict and set(value)=={'schema','form','base','target','candidate_id','source'},'EDIT_SHAPE')
  for k in ['schema','form','base','target','source']:
   need(type(value[k])is str and not any(0xd800<=ord(c)<=0xdfff for c in value[k]),'EDIT_SHAPE')
- need(value['schema']=='component-edit/2' and value['form']=='component-form/2','EDIT_VERSION')
+ need(value['schema']==schema and value['form']==form_name,'EDIT_VERSION')
  need(DIGEST.fullmatch(value['base']) is not None and DIGEST.fullmatch(value['target']) is not None,'EDIT_SHAPE')
  cid=value['candidate_id'];need(cid is None or type(cid)is str and ID.fullmatch(cid) is not None,'EDIT_SHAPE')
  need(len(value['source'].encode('utf8'))<=SOURCE_BYTES,'EDIT_BOUNDS');return value
+def frame(source):
+ return _frame(source,schema='component-edit/2',form_name='component-form/2')
 def checked(component,policy,checker,stage):
  if not callable(checker):raise CheckerUnavailable('component checker required')
  try:wire=checker(canonical(component),policy)
@@ -63,6 +65,8 @@ def checked(component,policy,checker,stage):
  return expected['source_sha256']
 def draft(original,edit_frame,policy,checker,*,candidate_map=None):
  before=form.decode(original);base=checked(before,policy,checker,'base');request=frame(edit_frame);after=form.decode(request['source'])
+ return _draft_values(before,request,after,policy,checker,base,candidate_map=candidate_map)
+def _draft_values(before,request,after,policy,checker,base,*,candidate_map=None):
  need(request['base']==base,'EDIT_BASE');target=digest(after)
  if request['candidate_id'] is not None:
   need(type(candidate_map)is dict and all(type(k)is str for k in candidate_map),'EDIT_CANDIDATE');selected=candidate_map.get(request['candidate_id'])
