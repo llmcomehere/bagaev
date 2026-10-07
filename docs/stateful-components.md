@@ -42,6 +42,10 @@ negative quantity returns a typed business error; nonnegative quantity proposes
 a Stock with its key and note preserved. The generic receiver does not invent
 a stock-management rule.
 
+The [data-only file converter](component-text-cli.md) turns this notation into
+source JSON and back without writing a Python wrapper. Semantic checking remains
+a separate explicit step.
+
 ## Follow the meaning across boundaries
 
 | Observation | Meaning |

@@ -1,0 +1,12 @@
+{
+  "schema": "component-text-cli-expectations/1",
+  "source": {
+    "bytes": 1163,
+    "sha256": "057ed3a68e036bbc8a02b4dd32a2aed7931f7cd02b7514354971aa5c5201a308"
+  },
+  "form": {
+    "bytes": 825,
+    "sha256": "626e8b0ef3869a4f2fe038081505de3a811b90757d52a76a161d4cb77cc8fc49"
+  },
+  "note": "Source comes from the pre-existing frozen EXACT case. Canonical text is an existing-codec compatibility reference, frozen before CLI implementation."
+}
