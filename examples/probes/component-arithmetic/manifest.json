@@ -1,0 +1,14 @@
+{
+  "sha256": {
+    "semantic-values.json": "685a412dda7de106f992221d581eebe6670076a34fe0a173f6497fd55e528e2e",
+    "StockAdjustment.bagaev": "515cadd187cb6d6c9ecad117a422c7226111ef9096d05687f26d447c5983c0cc",
+    "cases.json": "66821627c75e2553cbf158678fd547dbe5f8abe662ed1a0ebd6797f7573b098f",
+    "core-expectations.json": "bee0fa2b09a2c1d36aaf472af29346ae46f414be68b1c3eb78c52b01feae5f05",
+    "policy.json": "a1c64af03c65dc99e4988f2acddd200c6233523e2ea6e97a9a16ae7e6c1d23dd",
+    "source.json": "d433dac0725e23103df91bd012a8e20ba96094f894151cd98e5e0d8b91659fac"
+  },
+  "old_codecs": {
+    "bagaev_component_form.py": "5d8c367a697f5a336f1a61546823fd39cc261bf0dd8f387903873e8ed1a28246",
+    "bagaev_component_outcome_form.py": "9782b925126dcfd6076a1c50ec70b9ef32a113f83922db4ce8b6c9f1c810964d"
+  }
+}

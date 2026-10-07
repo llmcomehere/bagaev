@@ -20,6 +20,9 @@ when semantic checking is needed. A syntactically convertible component may
 still have invalid types or references.
 
 The tool has only decode and encode, a positional input and required --output.
+The optional --form selector is 2 by default; explicit --form 3 chooses the
+[arithmetic/local representation](component-arithmetic-form.md). Neither mode
+autodetects or upgrades another form. Both produce component-source/2 data.
 Inputs and outputs are bounded to 1 MiB. Inputs must be regular non-symlink files.
 JSON input rejects duplicate keys, floating/nonfinite numbers, out-of-Int64
 integers and excessive structural nesting. Existing codec version/syntax/profile

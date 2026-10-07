@@ -1,0 +1,60 @@
+{
+  "calc": [
+    {
+      "id": "precedence",
+      "value": 7
+    },
+    {
+      "id": "left-subtract",
+      "value": 4
+    },
+    {
+      "id": "grouping",
+      "value": 9
+    },
+    {
+      "id": "negative",
+      "value": -2
+    },
+    {
+      "id": "minimum",
+      "value": -9223372036854775808
+    },
+    {
+      "id": "local",
+      "value": 9
+    },
+    {
+      "id": "outer-initializer",
+      "value": 3
+    },
+    {
+      "id": "local-field",
+      "value": 10
+    },
+    {
+      "id": "comparison",
+      "value": true
+    },
+    {
+      "id": "conditional",
+      "value": 7
+    }
+  ],
+  "overflow": {
+    "state_quantity": 9223372036854775807,
+    "delta": 1,
+    "status": "integer-overflow",
+    "reason": "RR_OVERFLOW"
+  },
+  "binding_refusals": [
+    {
+      "expression": "let n = n in n",
+      "reason": "RR_REFERENCE"
+    },
+    {
+      "expression": "let state = 1 in state",
+      "reason": "RR_SHAPE"
+    }
+  ]
+}
