@@ -1,0 +1,9 @@
+{
+  "status": "FROZEN_PORTABLE_INPUTS_BEFORE_EXECUTION",
+  "sha256": {
+    "corrected-cases.json": "d69c596aff5b70902ee40fc7a2ae203ccfe32b4f0ee6cba1a9b322fcbc988db5",
+    "old-profile-source.json": "2fc48561bd244d57724bd3a562aab22187fd78088d9b607bddc2b2caaa663da5",
+    "oracle-correction.md": "4b0af6b6b900c755357ca55a495cc058eeea77e7a5eaef2404ba43060a82543d",
+    "original-cases.json": "ca52af9a5c217a763d9b522f0ed46e9a08e8815a57fab4d3adfd5e4f8f023f85"
+  }
+}

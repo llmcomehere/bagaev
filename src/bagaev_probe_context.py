@@ -56,13 +56,14 @@ def _schema(value,name,path=''):
     _text(value['schema'],path+'/schema',None)
     _need(value['schema']==name,'CTX_VERSION',path+'/schema')
 
-def _axes(value,path='/axes',*,component=False):
+def _axes(value,path='/axes',*,component=False,component_version=1):
+    _need(type(component_version) is int and component_version in (1,2),'CTX_VERSION',path)
     _fields(value,AXES,path)
     for key in AXES:_text(value[key],path+'/'+key,None)
-    allowed=('bagaev-component-source/1',) if component else ('bagaev-l2/1','bagaev-probe-ir/1')
+    allowed=(f'bagaev-component-source/{component_version}',) if component else ('bagaev-l2/1','bagaev-probe-ir/1')
     _need(value['semantic'] in allowed,'CTX_VERSION',path+'/semantic')
     _need(value['ir']==value['semantic'],'CTX_VERSION',path+'/ir')
-    for key,name in [('form','component-form/1' if component else 'probe-forms/1'),('envelope','component-context/1' if component else 'probe-context/1'),('evidence','probe-evidence/1')]:
+    for key,name in [('form',f'component-form/{component_version}' if component else 'probe-forms/1'),('envelope',f'component-context/{component_version}' if component else 'probe-context/1'),('evidence','probe-evidence/1')]:
         _need(value[key]==name,'CTX_VERSION',path+'/'+key)
 
 def _bounds(value,depth_limit,count_limit):
@@ -144,9 +145,9 @@ def _resolve(ref,sources,path):
     try:raw[:start].decode('utf-8');raw[:end].decode('utf-8')
     except UnicodeError:raise ContextError('CTX_SHAPE',path) from None
 
-def _shape(context,*,component=False):
+def _shape(context,*,component=False,component_version=1):
     _fields(context,CONTEXT_FIELDS);_fields(context['axes'],AXES,'/axes')
-    _schema(context,'component-context/1' if component else 'probe-context/1');_axes(context['axes'],component=component);_bounds(context,136,65536)
+    _schema(context,f'component-context/{component_version}' if component else 'probe-context/1');_axes(context['axes'],component=component,component_version=component_version);_bounds(context,136,65536)
     _pin(context['snapshot'],'/snapshot')
     total=0
     for i,row in enumerate(_records(context['sources'],1,16,'/sources',('id','pin','text'))):
@@ -175,12 +176,12 @@ def _shape(context,*,component=False):
         if meta[key] is not None:_text(meta[key],'/metadata/'+key)
     _canonical(context)
 
-def _expectation(source,*,component=False):
+def _expectation(source,*,component=False,component_version=1):
     _need(source is not None,'CTX_MISSING')
     value=_parse(source,2097152)
     fields=('schema','axes','snapshot','candidate_set','sources','obligations','baseline')
     _fields(value,fields+(('programme_sources','unknowns','open_effects') if component else ()))
-    _schema(value,'component-expectation/1' if component else 'probe-expectation/1');_axes(value['axes'],component=component);_bounds(value,136,32768)
+    _schema(value,f'component-expectation/{component_version}' if component else 'probe-expectation/1');_axes(value['axes'],component=component,component_version=component_version);_bounds(value,136,32768)
     _pin(value['snapshot'],'/snapshot');_pin(value['candidate_set'],'/candidate_set')
     for name,limit in [('sources',16),('obligations',32)]:
         for i,row in enumerate(_records(value[name],1,limit,'/'+name,('id','pin'))):_pin(row['pin'],'/'+name+'/'+str(i)+'/pin')
@@ -203,16 +204,16 @@ def _semantic(program,semantic,kernel_checker,path):
         if type(program) is not dict:raise l2.L2Error('L2_PROGRAM')
         checked=l2.check_program(program).canonical
     else:
-        if kernel_checker is None:raise ContextUnavailable('an explicit trusted '+('component' if semantic=='bagaev-component-source/1' else 'kernel')+' checker is required')
+        if kernel_checker is None:raise ContextUnavailable('an explicit trusted '+('component' if semantic in ('bagaev-component-source/1','bagaev-component-source/2') else 'kernel')+' checker is required')
         try:checked=kernel_checker(copy.deepcopy(program))
         except KernelRefusal as error:raise KernelRefusal(error.code,path+error.location) from None
         if type(checked) is not bytes:raise ContextUnavailable('checker must return checked canonical program bytes')
     if checked!=_canonical(program,1048576,path):raise ContextUnavailable('checker changed or failed to bind the complete program')
     return _bytes_pin(checked)
 
-def _validate(context_source,expectation_source,kernel_checker,*,component=False):
-    context=_parse(context_source,4194304);_shape(context,component=component)
-    expected=_expectation(expectation_source,component=component)
+def _validate(context_source,expectation_source,kernel_checker,*,component=False,component_version=1):
+    context=_parse(context_source,4194304);_shape(context,component=component,component_version=component_version)
+    expected=_expectation(expectation_source,component=component,component_version=component_version)
     snapshot=_semantic(expected['baseline'],expected['axes']['semantic'],kernel_checker,'/baseline')
     for key in AXES:_need(expected['axes'][key]==context['axes'][key],'CTX_STALE','/axes/'+key)
     _need(expected['snapshot']==snapshot and context['snapshot']==snapshot,'CTX_STALE','/snapshot')
@@ -247,7 +248,10 @@ def _validate(context_source,expectation_source,kernel_checker,*,component=False
             l2.apply_patch(expected['baseline'],row['content'])
     if component:
         # Fixed host dependency, never a module name or callable from packet data.
-        import bagaev_component_form as component_form
+        if component_version==2:
+            import bagaev_component_outcome_form as component_form
+        else:
+            import bagaev_component_form as component_form
         for i,row in enumerate(expected['programme_sources']):
             path='/programme_sources/'+str(i);_need(row['id'] in sources,'CTX_MISSING',path+'/id')
             programme=component_form.decode(sources[row['id']][2])

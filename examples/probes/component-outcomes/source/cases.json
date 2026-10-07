@@ -1,0 +1,2679 @@
+{
+  "status": "FROZEN_BEFORE_READER_IMPLEMENTATION",
+  "cases": [
+    {
+      "id": "SOURCE",
+      "source": {
+        "schema": "bagaev-component-source/2",
+        "program": {
+          "schema": "bagaev-typed-record/10",
+          "records": {
+            "StockKey": {
+              "code": "Text"
+            },
+            "StockVersion": {
+              "value": "Int64"
+            },
+            "Stock": {
+              "key": "StockKey",
+              "quantity": "Int64",
+              "note": "Text"
+            },
+            "SetStock": {
+              "item": "StockKey",
+              "expected": "StockVersion",
+              "quantity": "Int64"
+            },
+            "StockError": {
+              "reason": "Text"
+            }
+          },
+          "lists": {},
+          "variants": {
+            "StockOutcome": {
+              "Decline": "StockError",
+              "Propose": "Stock"
+            }
+          },
+          "entry": "apply",
+          "functions": {
+            "apply": {
+              "params": [
+                [
+                  "state",
+                  "Stock"
+                ],
+                [
+                  "request",
+                  "SetStock"
+                ]
+              ],
+              "result": "StockOutcome",
+              "body": [
+                "if",
+                [
+                  "lt",
+                  [
+                    "field",
+                    [
+                      "arg",
+                      "request"
+                    ],
+                    "quantity"
+                  ],
+                  [
+                    "int",
+                    0
+                  ]
+                ],
+                [
+                  "variant",
+                  "StockOutcome",
+                  "Decline",
+                  [
+                    "record",
+                    "StockError",
+                    [
+                      "text",
+                      "negative-quantity"
+                    ]
+                  ]
+                ],
+                [
+                  "variant",
+                  "StockOutcome",
+                  "Propose",
+                  [
+                    "record",
+                    "Stock",
+                    [
+                      "field",
+                      [
+                        "arg",
+                        "state"
+                      ],
+                      "key"
+                    ],
+                    [
+                      "field",
+                      [
+                        "arg",
+                        "state"
+                      ],
+                      "note"
+                    ],
+                    [
+                      "field",
+                      [
+                        "arg",
+                        "request"
+                      ],
+                      "quantity"
+                    ]
+                  ]
+                ]
+              ]
+            }
+          }
+        },
+        "component": {
+          "name": "StockItem",
+          "operation": "set_quantity",
+          "state_type": "Stock",
+          "request_type": "SetStock",
+          "revision_type": "StockVersion",
+          "entry": "apply",
+          "identity_binding": {
+            "state": "key",
+            "request": "item"
+          },
+          "revision_binding": "expected",
+          "replace_fields": [
+            "quantity"
+          ],
+          "outcome_type": "StockOutcome",
+          "error_type": "StockError"
+        }
+      },
+      "policy": null,
+      "expected": {
+        "schema": "bagaev-component-check/2",
+        "status": "checked",
+        "execution_admission": false,
+        "name": "StockItem",
+        "operation": "set_quantity",
+        "source_sha256": "057ed3a68e036bbc8a02b4dd32a2aed7931f7cd02b7514354971aa5c5201a308",
+        "program_sha256": "3dc4a56c6412d49f04c498a50bbfd35b2e8ac6cec218d790a72b13736c1c6f1d",
+        "state_type": "Stock",
+        "request_type": "SetStock",
+        "revision_type": "StockVersion",
+        "revision_binding": "expected",
+        "outcome_type": "StockOutcome",
+        "error_type": "StockError",
+        "identity_binding": {
+          "state": "key",
+          "request": "item"
+        },
+        "replace_fields": [
+          "quantity"
+        ],
+        "preserve_fields": [
+          "key",
+          "note"
+        ],
+        "policy_compatible": null,
+        "policy_sha256": null
+      }
+    },
+    {
+      "id": "POLICY",
+      "source": {
+        "schema": "bagaev-component-source/2",
+        "program": {
+          "schema": "bagaev-typed-record/10",
+          "records": {
+            "StockKey": {
+              "code": "Text"
+            },
+            "StockVersion": {
+              "value": "Int64"
+            },
+            "Stock": {
+              "key": "StockKey",
+              "quantity": "Int64",
+              "note": "Text"
+            },
+            "SetStock": {
+              "item": "StockKey",
+              "expected": "StockVersion",
+              "quantity": "Int64"
+            },
+            "StockError": {
+              "reason": "Text"
+            }
+          },
+          "lists": {},
+          "variants": {
+            "StockOutcome": {
+              "Decline": "StockError",
+              "Propose": "Stock"
+            }
+          },
+          "entry": "apply",
+          "functions": {
+            "apply": {
+              "params": [
+                [
+                  "state",
+                  "Stock"
+                ],
+                [
+                  "request",
+                  "SetStock"
+                ]
+              ],
+              "result": "StockOutcome",
+              "body": [
+                "if",
+                [
+                  "lt",
+                  [
+                    "field",
+                    [
+                      "arg",
+                      "request"
+                    ],
+                    "quantity"
+                  ],
+                  [
+                    "int",
+                    0
+                  ]
+                ],
+                [
+                  "variant",
+                  "StockOutcome",
+                  "Decline",
+                  [
+                    "record",
+                    "StockError",
+                    [
+                      "text",
+                      "negative-quantity"
+                    ]
+                  ]
+                ],
+                [
+                  "variant",
+                  "StockOutcome",
+                  "Propose",
+                  [
+                    "record",
+                    "Stock",
+                    [
+                      "field",
+                      [
+                        "arg",
+                        "state"
+                      ],
+                      "key"
+                    ],
+                    [
+                      "field",
+                      [
+                        "arg",
+                        "state"
+                      ],
+                      "note"
+                    ],
+                    [
+                      "field",
+                      [
+                        "arg",
+                        "request"
+                      ],
+                      "quantity"
+                    ]
+                  ]
+                ]
+              ]
+            }
+          }
+        },
+        "component": {
+          "name": "StockItem",
+          "operation": "set_quantity",
+          "state_type": "Stock",
+          "request_type": "SetStock",
+          "revision_type": "StockVersion",
+          "entry": "apply",
+          "identity_binding": {
+            "state": "key",
+            "request": "item"
+          },
+          "revision_binding": "expected",
+          "replace_fields": [
+            "quantity"
+          ],
+          "outcome_type": "StockOutcome",
+          "error_type": "StockError"
+        }
+      },
+      "policy": {
+        "schema": "bagaev-component-policy/2",
+        "component": "StockItem",
+        "operation": "set_quantity",
+        "state_type": "Stock",
+        "request_type": "SetStock",
+        "revision_type": "StockVersion",
+        "identity_binding": {
+          "state": "key",
+          "request": "item"
+        },
+        "revision_binding": "expected",
+        "replace_fields": [
+          "quantity"
+        ],
+        "records": {
+          "StockKey": {
+            "code": "Text"
+          },
+          "StockVersion": {
+            "value": "Int64"
+          },
+          "Stock": {
+            "key": "StockKey",
+            "quantity": "Int64",
+            "note": "Text"
+          },
+          "SetStock": {
+            "item": "StockKey",
+            "expected": "StockVersion",
+            "quantity": "Int64"
+          },
+          "StockError": {
+            "reason": "Text"
+          }
+        },
+        "outcome_type": "StockOutcome",
+        "error_type": "StockError"
+      },
+      "expected": {
+        "schema": "bagaev-component-check/2",
+        "status": "checked",
+        "execution_admission": false,
+        "name": "StockItem",
+        "operation": "set_quantity",
+        "source_sha256": "057ed3a68e036bbc8a02b4dd32a2aed7931f7cd02b7514354971aa5c5201a308",
+        "program_sha256": "3dc4a56c6412d49f04c498a50bbfd35b2e8ac6cec218d790a72b13736c1c6f1d",
+        "state_type": "Stock",
+        "request_type": "SetStock",
+        "revision_type": "StockVersion",
+        "revision_binding": "expected",
+        "outcome_type": "StockOutcome",
+        "error_type": "StockError",
+        "identity_binding": {
+          "state": "key",
+          "request": "item"
+        },
+        "replace_fields": [
+          "quantity"
+        ],
+        "preserve_fields": [
+          "key",
+          "note"
+        ],
+        "policy_compatible": true,
+        "policy_sha256": "73ae20745b6952bee6ce734cba91c72a5ca96ef1dca2782d32e10df4a8b89139"
+      }
+    },
+    {
+      "id": "OLD-VERSION",
+      "source": {
+        "schema": "bagaev-component-source/1",
+        "program": {
+          "schema": "bagaev-typed-record/10",
+          "records": {
+            "StockKey": {
+              "code": "Text"
+            },
+            "StockVersion": {
+              "value": "Int64"
+            },
+            "Stock": {
+              "key": "StockKey",
+              "quantity": "Int64",
+              "note": "Text"
+            },
+            "SetStock": {
+              "item": "StockKey",
+              "expected": "StockVersion",
+              "quantity": "Int64"
+            },
+            "StockError": {
+              "reason": "Text"
+            }
+          },
+          "lists": {},
+          "variants": {
+            "StockOutcome": {
+              "Decline": "StockError",
+              "Propose": "Stock"
+            }
+          },
+          "entry": "apply",
+          "functions": {
+            "apply": {
+              "params": [
+                [
+                  "state",
+                  "Stock"
+                ],
+                [
+                  "request",
+                  "SetStock"
+                ]
+              ],
+              "result": "StockOutcome",
+              "body": [
+                "if",
+                [
+                  "lt",
+                  [
+                    "field",
+                    [
+                      "arg",
+                      "request"
+                    ],
+                    "quantity"
+                  ],
+                  [
+                    "int",
+                    0
+                  ]
+                ],
+                [
+                  "variant",
+                  "StockOutcome",
+                  "Decline",
+                  [
+                    "record",
+                    "StockError",
+                    [
+                      "text",
+                      "negative-quantity"
+                    ]
+                  ]
+                ],
+                [
+                  "variant",
+                  "StockOutcome",
+                  "Propose",
+                  [
+                    "record",
+                    "Stock",
+                    [
+                      "field",
+                      [
+                        "arg",
+                        "state"
+                      ],
+                      "key"
+                    ],
+                    [
+                      "field",
+                      [
+                        "arg",
+                        "state"
+                      ],
+                      "note"
+                    ],
+                    [
+                      "field",
+                      [
+                        "arg",
+                        "request"
+                      ],
+                      "quantity"
+                    ]
+                  ]
+                ]
+              ]
+            }
+          }
+        },
+        "component": {
+          "name": "StockItem",
+          "operation": "set_quantity",
+          "state_type": "Stock",
+          "request_type": "SetStock",
+          "revision_type": "StockVersion",
+          "entry": "apply",
+          "identity_binding": {
+            "state": "key",
+            "request": "item"
+          },
+          "revision_binding": "expected",
+          "replace_fields": [
+            "quantity"
+          ],
+          "outcome_type": "StockOutcome",
+          "error_type": "StockError"
+        }
+      },
+      "policy": null,
+      "expected": {
+        "schema": "bagaev-component-check/2",
+        "status": "refused",
+        "reason": "CS_VERSION",
+        "execution_admission": false
+      }
+    },
+    {
+      "id": "EXTRA-META",
+      "source": {
+        "schema": "bagaev-component-source/2",
+        "program": {
+          "schema": "bagaev-typed-record/10",
+          "records": {
+            "StockKey": {
+              "code": "Text"
+            },
+            "StockVersion": {
+              "value": "Int64"
+            },
+            "Stock": {
+              "key": "StockKey",
+              "quantity": "Int64",
+              "note": "Text"
+            },
+            "SetStock": {
+              "item": "StockKey",
+              "expected": "StockVersion",
+              "quantity": "Int64"
+            },
+            "StockError": {
+              "reason": "Text"
+            }
+          },
+          "lists": {},
+          "variants": {
+            "StockOutcome": {
+              "Decline": "StockError",
+              "Propose": "Stock"
+            }
+          },
+          "entry": "apply",
+          "functions": {
+            "apply": {
+              "params": [
+                [
+                  "state",
+                  "Stock"
+                ],
+                [
+                  "request",
+                  "SetStock"
+                ]
+              ],
+              "result": "StockOutcome",
+              "body": [
+                "if",
+                [
+                  "lt",
+                  [
+                    "field",
+                    [
+                      "arg",
+                      "request"
+                    ],
+                    "quantity"
+                  ],
+                  [
+                    "int",
+                    0
+                  ]
+                ],
+                [
+                  "variant",
+                  "StockOutcome",
+                  "Decline",
+                  [
+                    "record",
+                    "StockError",
+                    [
+                      "text",
+                      "negative-quantity"
+                    ]
+                  ]
+                ],
+                [
+                  "variant",
+                  "StockOutcome",
+                  "Propose",
+                  [
+                    "record",
+                    "Stock",
+                    [
+                      "field",
+                      [
+                        "arg",
+                        "state"
+                      ],
+                      "key"
+                    ],
+                    [
+                      "field",
+                      [
+                        "arg",
+                        "state"
+                      ],
+                      "note"
+                    ],
+                    [
+                      "field",
+                      [
+                        "arg",
+                        "request"
+                      ],
+                      "quantity"
+                    ]
+                  ]
+                ]
+              ]
+            }
+          }
+        },
+        "component": {
+          "name": "StockItem",
+          "operation": "set_quantity",
+          "state_type": "Stock",
+          "request_type": "SetStock",
+          "revision_type": "StockVersion",
+          "entry": "apply",
+          "identity_binding": {
+            "state": "key",
+            "request": "item"
+          },
+          "revision_binding": "expected",
+          "replace_fields": [
+            "quantity"
+          ],
+          "outcome_type": "StockOutcome",
+          "error_type": "StockError",
+          "extra": "x"
+        }
+      },
+      "policy": null,
+      "expected": {
+        "schema": "bagaev-component-check/2",
+        "status": "refused",
+        "reason": "CS_FORMAT",
+        "execution_admission": false
+      }
+    },
+    {
+      "id": "MISSING-ERROR",
+      "source": {
+        "schema": "bagaev-component-source/2",
+        "program": {
+          "schema": "bagaev-typed-record/10",
+          "records": {
+            "StockKey": {
+              "code": "Text"
+            },
+            "StockVersion": {
+              "value": "Int64"
+            },
+            "Stock": {
+              "key": "StockKey",
+              "quantity": "Int64",
+              "note": "Text"
+            },
+            "SetStock": {
+              "item": "StockKey",
+              "expected": "StockVersion",
+              "quantity": "Int64"
+            },
+            "StockError": {
+              "reason": "Text"
+            }
+          },
+          "lists": {},
+          "variants": {
+            "StockOutcome": {
+              "Decline": "StockError",
+              "Propose": "Stock"
+            }
+          },
+          "entry": "apply",
+          "functions": {
+            "apply": {
+              "params": [
+                [
+                  "state",
+                  "Stock"
+                ],
+                [
+                  "request",
+                  "SetStock"
+                ]
+              ],
+              "result": "StockOutcome",
+              "body": [
+                "if",
+                [
+                  "lt",
+                  [
+                    "field",
+                    [
+                      "arg",
+                      "request"
+                    ],
+                    "quantity"
+                  ],
+                  [
+                    "int",
+                    0
+                  ]
+                ],
+                [
+                  "variant",
+                  "StockOutcome",
+                  "Decline",
+                  [
+                    "record",
+                    "StockError",
+                    [
+                      "text",
+                      "negative-quantity"
+                    ]
+                  ]
+                ],
+                [
+                  "variant",
+                  "StockOutcome",
+                  "Propose",
+                  [
+                    "record",
+                    "Stock",
+                    [
+                      "field",
+                      [
+                        "arg",
+                        "state"
+                      ],
+                      "key"
+                    ],
+                    [
+                      "field",
+                      [
+                        "arg",
+                        "state"
+                      ],
+                      "note"
+                    ],
+                    [
+                      "field",
+                      [
+                        "arg",
+                        "request"
+                      ],
+                      "quantity"
+                    ]
+                  ]
+                ]
+              ]
+            }
+          }
+        },
+        "component": {
+          "name": "StockItem",
+          "operation": "set_quantity",
+          "state_type": "Stock",
+          "request_type": "SetStock",
+          "revision_type": "StockVersion",
+          "entry": "apply",
+          "identity_binding": {
+            "state": "key",
+            "request": "item"
+          },
+          "revision_binding": "expected",
+          "replace_fields": [
+            "quantity"
+          ],
+          "outcome_type": "StockOutcome",
+          "error_type": "UnknownError"
+        }
+      },
+      "policy": null,
+      "expected": {
+        "schema": "bagaev-component-check/2",
+        "status": "refused",
+        "reason": "CS_REFERENCE",
+        "execution_admission": false
+      }
+    },
+    {
+      "id": "BAD-CORE",
+      "source": {
+        "schema": "bagaev-component-source/2",
+        "program": {
+          "schema": "bagaev-typed-record/10",
+          "records": {
+            "StockKey": {
+              "code": "Text"
+            },
+            "StockVersion": {
+              "value": "Int64"
+            },
+            "Stock": {
+              "key": "StockKey",
+              "quantity": "Int64",
+              "note": "Text"
+            },
+            "SetStock": {
+              "item": "StockKey",
+              "expected": "StockVersion",
+              "quantity": "Int64"
+            },
+            "StockError": {
+              "reason": "Text"
+            }
+          },
+          "lists": {},
+          "variants": {
+            "StockOutcome": {
+              "Decline": "StockError",
+              "Propose": "Stock"
+            }
+          },
+          "entry": "apply",
+          "functions": {
+            "apply": {
+              "params": [
+                [
+                  "state",
+                  "Stock"
+                ],
+                [
+                  "request",
+                  "SetStock"
+                ]
+              ],
+              "result": "StockOutcome",
+              "body": [
+                "arg",
+                "missing"
+              ]
+            }
+          }
+        },
+        "component": {
+          "name": "StockItem",
+          "operation": "set_quantity",
+          "state_type": "Stock",
+          "request_type": "SetStock",
+          "revision_type": "StockVersion",
+          "entry": "apply",
+          "identity_binding": {
+            "state": "key",
+            "request": "item"
+          },
+          "revision_binding": "expected",
+          "replace_fields": [
+            "quantity"
+          ],
+          "outcome_type": "StockOutcome",
+          "error_type": "StockError"
+        }
+      },
+      "policy": null,
+      "expected": {
+        "schema": "bagaev-component-check/2",
+        "status": "refused",
+        "reason": "CS_CORE",
+        "execution_admission": false
+      }
+    },
+    {
+      "id": "WRONG-ENTRY",
+      "source": {
+        "schema": "bagaev-component-source/2",
+        "program": {
+          "schema": "bagaev-typed-record/10",
+          "records": {
+            "StockKey": {
+              "code": "Text"
+            },
+            "StockVersion": {
+              "value": "Int64"
+            },
+            "Stock": {
+              "key": "StockKey",
+              "quantity": "Int64",
+              "note": "Text"
+            },
+            "SetStock": {
+              "item": "StockKey",
+              "expected": "StockVersion",
+              "quantity": "Int64"
+            },
+            "StockError": {
+              "reason": "Text"
+            }
+          },
+          "lists": {},
+          "variants": {
+            "StockOutcome": {
+              "Decline": "StockError",
+              "Propose": "Stock"
+            }
+          },
+          "entry": "apply",
+          "functions": {
+            "apply": {
+              "params": [
+                [
+                  "state",
+                  "Stock"
+                ],
+                [
+                  "request",
+                  "SetStock"
+                ]
+              ],
+              "result": "StockOutcome",
+              "body": [
+                "if",
+                [
+                  "lt",
+                  [
+                    "field",
+                    [
+                      "arg",
+                      "request"
+                    ],
+                    "quantity"
+                  ],
+                  [
+                    "int",
+                    0
+                  ]
+                ],
+                [
+                  "variant",
+                  "StockOutcome",
+                  "Decline",
+                  [
+                    "record",
+                    "StockError",
+                    [
+                      "text",
+                      "negative-quantity"
+                    ]
+                  ]
+                ],
+                [
+                  "variant",
+                  "StockOutcome",
+                  "Propose",
+                  [
+                    "record",
+                    "Stock",
+                    [
+                      "field",
+                      [
+                        "arg",
+                        "state"
+                      ],
+                      "key"
+                    ],
+                    [
+                      "field",
+                      [
+                        "arg",
+                        "state"
+                      ],
+                      "note"
+                    ],
+                    [
+                      "field",
+                      [
+                        "arg",
+                        "request"
+                      ],
+                      "quantity"
+                    ]
+                  ]
+                ]
+              ]
+            }
+          }
+        },
+        "component": {
+          "name": "StockItem",
+          "operation": "set_quantity",
+          "state_type": "Stock",
+          "request_type": "SetStock",
+          "revision_type": "StockVersion",
+          "entry": "missing",
+          "identity_binding": {
+            "state": "key",
+            "request": "item"
+          },
+          "revision_binding": "expected",
+          "replace_fields": [
+            "quantity"
+          ],
+          "outcome_type": "StockOutcome",
+          "error_type": "StockError"
+        }
+      },
+      "policy": null,
+      "expected": {
+        "schema": "bagaev-component-check/2",
+        "status": "refused",
+        "reason": "CS_REFERENCE",
+        "execution_admission": false
+      }
+    },
+    {
+      "id": "WRONG-OUTCOME-NAME",
+      "source": {
+        "schema": "bagaev-component-source/2",
+        "program": {
+          "schema": "bagaev-typed-record/10",
+          "records": {
+            "StockKey": {
+              "code": "Text"
+            },
+            "StockVersion": {
+              "value": "Int64"
+            },
+            "Stock": {
+              "key": "StockKey",
+              "quantity": "Int64",
+              "note": "Text"
+            },
+            "SetStock": {
+              "item": "StockKey",
+              "expected": "StockVersion",
+              "quantity": "Int64"
+            },
+            "StockError": {
+              "reason": "Text"
+            }
+          },
+          "lists": {},
+          "variants": {
+            "StockOutcome": {
+              "Decline": "StockError",
+              "Propose": "Stock"
+            }
+          },
+          "entry": "apply",
+          "functions": {
+            "apply": {
+              "params": [
+                [
+                  "state",
+                  "Stock"
+                ],
+                [
+                  "request",
+                  "SetStock"
+                ]
+              ],
+              "result": "StockOutcome",
+              "body": [
+                "if",
+                [
+                  "lt",
+                  [
+                    "field",
+                    [
+                      "arg",
+                      "request"
+                    ],
+                    "quantity"
+                  ],
+                  [
+                    "int",
+                    0
+                  ]
+                ],
+                [
+                  "variant",
+                  "StockOutcome",
+                  "Decline",
+                  [
+                    "record",
+                    "StockError",
+                    [
+                      "text",
+                      "negative-quantity"
+                    ]
+                  ]
+                ],
+                [
+                  "variant",
+                  "StockOutcome",
+                  "Propose",
+                  [
+                    "record",
+                    "Stock",
+                    [
+                      "field",
+                      [
+                        "arg",
+                        "state"
+                      ],
+                      "key"
+                    ],
+                    [
+                      "field",
+                      [
+                        "arg",
+                        "state"
+                      ],
+                      "note"
+                    ],
+                    [
+                      "field",
+                      [
+                        "arg",
+                        "request"
+                      ],
+                      "quantity"
+                    ]
+                  ]
+                ]
+              ]
+            }
+          }
+        },
+        "component": {
+          "name": "StockItem",
+          "operation": "set_quantity",
+          "state_type": "Stock",
+          "request_type": "SetStock",
+          "revision_type": "StockVersion",
+          "entry": "apply",
+          "identity_binding": {
+            "state": "key",
+            "request": "item"
+          },
+          "revision_binding": "expected",
+          "replace_fields": [
+            "quantity"
+          ],
+          "outcome_type": "OtherOutcome",
+          "error_type": "StockError"
+        }
+      },
+      "policy": null,
+      "expected": {
+        "schema": "bagaev-component-check/2",
+        "status": "refused",
+        "reason": "CS_SIGNATURE",
+        "execution_admission": false
+      }
+    },
+    {
+      "id": "EXTRA-CASE",
+      "source": {
+        "schema": "bagaev-component-source/2",
+        "program": {
+          "schema": "bagaev-typed-record/10",
+          "records": {
+            "StockKey": {
+              "code": "Text"
+            },
+            "StockVersion": {
+              "value": "Int64"
+            },
+            "Stock": {
+              "key": "StockKey",
+              "quantity": "Int64",
+              "note": "Text"
+            },
+            "SetStock": {
+              "item": "StockKey",
+              "expected": "StockVersion",
+              "quantity": "Int64"
+            },
+            "StockError": {
+              "reason": "Text"
+            }
+          },
+          "lists": {},
+          "variants": {
+            "StockOutcome": {
+              "Decline": "StockError",
+              "Propose": "Stock",
+              "Other": "StockError"
+            }
+          },
+          "entry": "apply",
+          "functions": {
+            "apply": {
+              "params": [
+                [
+                  "state",
+                  "Stock"
+                ],
+                [
+                  "request",
+                  "SetStock"
+                ]
+              ],
+              "result": "StockOutcome",
+              "body": [
+                "if",
+                [
+                  "lt",
+                  [
+                    "field",
+                    [
+                      "arg",
+                      "request"
+                    ],
+                    "quantity"
+                  ],
+                  [
+                    "int",
+                    0
+                  ]
+                ],
+                [
+                  "variant",
+                  "StockOutcome",
+                  "Decline",
+                  [
+                    "record",
+                    "StockError",
+                    [
+                      "text",
+                      "negative-quantity"
+                    ]
+                  ]
+                ],
+                [
+                  "variant",
+                  "StockOutcome",
+                  "Propose",
+                  [
+                    "record",
+                    "Stock",
+                    [
+                      "field",
+                      [
+                        "arg",
+                        "state"
+                      ],
+                      "key"
+                    ],
+                    [
+                      "field",
+                      [
+                        "arg",
+                        "state"
+                      ],
+                      "note"
+                    ],
+                    [
+                      "field",
+                      [
+                        "arg",
+                        "request"
+                      ],
+                      "quantity"
+                    ]
+                  ]
+                ]
+              ]
+            }
+          }
+        },
+        "component": {
+          "name": "StockItem",
+          "operation": "set_quantity",
+          "state_type": "Stock",
+          "request_type": "SetStock",
+          "revision_type": "StockVersion",
+          "entry": "apply",
+          "identity_binding": {
+            "state": "key",
+            "request": "item"
+          },
+          "revision_binding": "expected",
+          "replace_fields": [
+            "quantity"
+          ],
+          "outcome_type": "StockOutcome",
+          "error_type": "StockError"
+        }
+      },
+      "policy": null,
+      "expected": {
+        "schema": "bagaev-component-check/2",
+        "status": "refused",
+        "reason": "CS_OUTCOME",
+        "execution_admission": false
+      }
+    },
+    {
+      "id": "MISSING-CASE",
+      "source": {
+        "schema": "bagaev-component-source/2",
+        "program": {
+          "schema": "bagaev-typed-record/10",
+          "records": {
+            "StockKey": {
+              "code": "Text"
+            },
+            "StockVersion": {
+              "value": "Int64"
+            },
+            "Stock": {
+              "key": "StockKey",
+              "quantity": "Int64",
+              "note": "Text"
+            },
+            "SetStock": {
+              "item": "StockKey",
+              "expected": "StockVersion",
+              "quantity": "Int64"
+            },
+            "StockError": {
+              "reason": "Text"
+            }
+          },
+          "lists": {},
+          "variants": {
+            "StockOutcome": {
+              "Propose": "Stock"
+            }
+          },
+          "entry": "apply",
+          "functions": {
+            "apply": {
+              "params": [
+                [
+                  "state",
+                  "Stock"
+                ],
+                [
+                  "request",
+                  "SetStock"
+                ]
+              ],
+              "result": "StockOutcome",
+              "body": [
+                "variant",
+                "StockOutcome",
+                "Propose",
+                [
+                  "record",
+                  "Stock",
+                  [
+                    "field",
+                    [
+                      "arg",
+                      "state"
+                    ],
+                    "key"
+                  ],
+                  [
+                    "field",
+                    [
+                      "arg",
+                      "state"
+                    ],
+                    "note"
+                  ],
+                  [
+                    "field",
+                    [
+                      "arg",
+                      "request"
+                    ],
+                    "quantity"
+                  ]
+                ]
+              ]
+            }
+          }
+        },
+        "component": {
+          "name": "StockItem",
+          "operation": "set_quantity",
+          "state_type": "Stock",
+          "request_type": "SetStock",
+          "revision_type": "StockVersion",
+          "entry": "apply",
+          "identity_binding": {
+            "state": "key",
+            "request": "item"
+          },
+          "revision_binding": "expected",
+          "replace_fields": [
+            "quantity"
+          ],
+          "outcome_type": "StockOutcome",
+          "error_type": "StockError"
+        }
+      },
+      "policy": null,
+      "expected": {
+        "schema": "bagaev-component-check/2",
+        "status": "refused",
+        "reason": "CS_OUTCOME",
+        "execution_admission": false
+      }
+    },
+    {
+      "id": "WRONG-NOMINAL-ERROR",
+      "source": {
+        "schema": "bagaev-component-source/2",
+        "program": {
+          "schema": "bagaev-typed-record/10",
+          "records": {
+            "StockKey": {
+              "code": "Text"
+            },
+            "StockVersion": {
+              "value": "Int64"
+            },
+            "Stock": {
+              "key": "StockKey",
+              "quantity": "Int64",
+              "note": "Text"
+            },
+            "SetStock": {
+              "item": "StockKey",
+              "expected": "StockVersion",
+              "quantity": "Int64"
+            },
+            "StockError": {
+              "reason": "Text"
+            },
+            "OtherError": {
+              "reason": "Text"
+            }
+          },
+          "lists": {},
+          "variants": {
+            "StockOutcome": {
+              "Decline": "OtherError",
+              "Propose": "Stock"
+            }
+          },
+          "entry": "apply",
+          "functions": {
+            "apply": {
+              "params": [
+                [
+                  "state",
+                  "Stock"
+                ],
+                [
+                  "request",
+                  "SetStock"
+                ]
+              ],
+              "result": "StockOutcome",
+              "body": [
+                "if",
+                [
+                  "lt",
+                  [
+                    "field",
+                    [
+                      "arg",
+                      "request"
+                    ],
+                    "quantity"
+                  ],
+                  [
+                    "int",
+                    0
+                  ]
+                ],
+                [
+                  "variant",
+                  "StockOutcome",
+                  "Decline",
+                  [
+                    "record",
+                    "OtherError",
+                    [
+                      "text",
+                      "negative-quantity"
+                    ]
+                  ]
+                ],
+                [
+                  "variant",
+                  "StockOutcome",
+                  "Propose",
+                  [
+                    "record",
+                    "Stock",
+                    [
+                      "field",
+                      [
+                        "arg",
+                        "state"
+                      ],
+                      "key"
+                    ],
+                    [
+                      "field",
+                      [
+                        "arg",
+                        "state"
+                      ],
+                      "note"
+                    ],
+                    [
+                      "field",
+                      [
+                        "arg",
+                        "request"
+                      ],
+                      "quantity"
+                    ]
+                  ]
+                ]
+              ]
+            }
+          }
+        },
+        "component": {
+          "name": "StockItem",
+          "operation": "set_quantity",
+          "state_type": "Stock",
+          "request_type": "SetStock",
+          "revision_type": "StockVersion",
+          "entry": "apply",
+          "identity_binding": {
+            "state": "key",
+            "request": "item"
+          },
+          "revision_binding": "expected",
+          "replace_fields": [
+            "quantity"
+          ],
+          "outcome_type": "StockOutcome",
+          "error_type": "StockError"
+        }
+      },
+      "policy": null,
+      "expected": {
+        "schema": "bagaev-component-check/2",
+        "status": "refused",
+        "reason": "CS_OUTCOME",
+        "execution_admission": false
+      }
+    },
+    {
+      "id": "OPTIONAL-ERROR-FIELD",
+      "source": {
+        "schema": "bagaev-component-source/2",
+        "program": {
+          "schema": "bagaev-typed-record/10",
+          "records": {
+            "StockKey": {
+              "code": "Text"
+            },
+            "StockVersion": {
+              "value": "Int64"
+            },
+            "Stock": {
+              "key": "StockKey",
+              "quantity": "Int64",
+              "note": "Text"
+            },
+            "SetStock": {
+              "item": "StockKey",
+              "expected": "StockVersion",
+              "quantity": "Int64"
+            },
+            "StockError": {
+              "reason": "Text"
+            },
+            "OtherError": {
+              "detail": {
+                "type": "OptionInt64",
+                "omit_none": true
+              }
+            }
+          },
+          "lists": {},
+          "variants": {
+            "StockOutcome": {
+              "Decline": "StockError",
+              "Propose": "Stock"
+            }
+          },
+          "entry": "apply",
+          "functions": {
+            "apply": {
+              "params": [
+                [
+                  "state",
+                  "Stock"
+                ],
+                [
+                  "request",
+                  "SetStock"
+                ]
+              ],
+              "result": "StockOutcome",
+              "body": [
+                "if",
+                [
+                  "lt",
+                  [
+                    "field",
+                    [
+                      "arg",
+                      "request"
+                    ],
+                    "quantity"
+                  ],
+                  [
+                    "int",
+                    0
+                  ]
+                ],
+                [
+                  "variant",
+                  "StockOutcome",
+                  "Decline",
+                  [
+                    "record",
+                    "StockError",
+                    [
+                      "text",
+                      "negative-quantity"
+                    ]
+                  ]
+                ],
+                [
+                  "variant",
+                  "StockOutcome",
+                  "Propose",
+                  [
+                    "record",
+                    "Stock",
+                    [
+                      "field",
+                      [
+                        "arg",
+                        "state"
+                      ],
+                      "key"
+                    ],
+                    [
+                      "field",
+                      [
+                        "arg",
+                        "state"
+                      ],
+                      "note"
+                    ],
+                    [
+                      "field",
+                      [
+                        "arg",
+                        "request"
+                      ],
+                      "quantity"
+                    ]
+                  ]
+                ]
+              ]
+            }
+          }
+        },
+        "component": {
+          "name": "StockItem",
+          "operation": "set_quantity",
+          "state_type": "Stock",
+          "request_type": "SetStock",
+          "revision_type": "StockVersion",
+          "entry": "apply",
+          "identity_binding": {
+            "state": "key",
+            "request": "item"
+          },
+          "revision_binding": "expected",
+          "replace_fields": [
+            "quantity"
+          ],
+          "outcome_type": "StockOutcome",
+          "error_type": "OtherError"
+        }
+      },
+      "policy": null,
+      "expected": {
+        "schema": "bagaev-component-check/2",
+        "status": "refused",
+        "reason": "CS_OWNED",
+        "execution_admission": false
+      }
+    },
+    {
+      "id": "IDENTITY",
+      "source": {
+        "schema": "bagaev-component-source/2",
+        "program": {
+          "schema": "bagaev-typed-record/10",
+          "records": {
+            "StockKey": {
+              "code": "Text"
+            },
+            "StockVersion": {
+              "value": "Int64"
+            },
+            "Stock": {
+              "key": "StockKey",
+              "quantity": "Int64",
+              "note": "Text"
+            },
+            "SetStock": {
+              "item": "StockKey",
+              "expected": "StockVersion",
+              "quantity": "Int64"
+            },
+            "StockError": {
+              "reason": "Text"
+            }
+          },
+          "lists": {},
+          "variants": {
+            "StockOutcome": {
+              "Decline": "StockError",
+              "Propose": "Stock"
+            }
+          },
+          "entry": "apply",
+          "functions": {
+            "apply": {
+              "params": [
+                [
+                  "state",
+                  "Stock"
+                ],
+                [
+                  "request",
+                  "SetStock"
+                ]
+              ],
+              "result": "StockOutcome",
+              "body": [
+                "if",
+                [
+                  "lt",
+                  [
+                    "field",
+                    [
+                      "arg",
+                      "request"
+                    ],
+                    "quantity"
+                  ],
+                  [
+                    "int",
+                    0
+                  ]
+                ],
+                [
+                  "variant",
+                  "StockOutcome",
+                  "Decline",
+                  [
+                    "record",
+                    "StockError",
+                    [
+                      "text",
+                      "negative-quantity"
+                    ]
+                  ]
+                ],
+                [
+                  "variant",
+                  "StockOutcome",
+                  "Propose",
+                  [
+                    "record",
+                    "Stock",
+                    [
+                      "field",
+                      [
+                        "arg",
+                        "state"
+                      ],
+                      "key"
+                    ],
+                    [
+                      "field",
+                      [
+                        "arg",
+                        "state"
+                      ],
+                      "note"
+                    ],
+                    [
+                      "field",
+                      [
+                        "arg",
+                        "request"
+                      ],
+                      "quantity"
+                    ]
+                  ]
+                ]
+              ]
+            }
+          }
+        },
+        "component": {
+          "name": "StockItem",
+          "operation": "set_quantity",
+          "state_type": "Stock",
+          "request_type": "SetStock",
+          "revision_type": "StockVersion",
+          "entry": "apply",
+          "identity_binding": {
+            "state": "key",
+            "request": "expected"
+          },
+          "revision_binding": "expected",
+          "replace_fields": [
+            "quantity"
+          ],
+          "outcome_type": "StockOutcome",
+          "error_type": "StockError"
+        }
+      },
+      "policy": null,
+      "expected": {
+        "schema": "bagaev-component-check/2",
+        "status": "refused",
+        "reason": "CS_IDENTITY",
+        "execution_admission": false
+      }
+    },
+    {
+      "id": "REVISION",
+      "source": {
+        "schema": "bagaev-component-source/2",
+        "program": {
+          "schema": "bagaev-typed-record/10",
+          "records": {
+            "StockKey": {
+              "code": "Text"
+            },
+            "StockVersion": {
+              "value": "Int64"
+            },
+            "Stock": {
+              "key": "StockKey",
+              "quantity": "Int64",
+              "note": "Text"
+            },
+            "SetStock": {
+              "item": "StockKey",
+              "expected": "StockVersion",
+              "quantity": "Int64"
+            },
+            "StockError": {
+              "reason": "Text"
+            }
+          },
+          "lists": {},
+          "variants": {
+            "StockOutcome": {
+              "Decline": "StockError",
+              "Propose": "Stock"
+            }
+          },
+          "entry": "apply",
+          "functions": {
+            "apply": {
+              "params": [
+                [
+                  "state",
+                  "Stock"
+                ],
+                [
+                  "request",
+                  "SetStock"
+                ]
+              ],
+              "result": "StockOutcome",
+              "body": [
+                "if",
+                [
+                  "lt",
+                  [
+                    "field",
+                    [
+                      "arg",
+                      "request"
+                    ],
+                    "quantity"
+                  ],
+                  [
+                    "int",
+                    0
+                  ]
+                ],
+                [
+                  "variant",
+                  "StockOutcome",
+                  "Decline",
+                  [
+                    "record",
+                    "StockError",
+                    [
+                      "text",
+                      "negative-quantity"
+                    ]
+                  ]
+                ],
+                [
+                  "variant",
+                  "StockOutcome",
+                  "Propose",
+                  [
+                    "record",
+                    "Stock",
+                    [
+                      "field",
+                      [
+                        "arg",
+                        "state"
+                      ],
+                      "key"
+                    ],
+                    [
+                      "field",
+                      [
+                        "arg",
+                        "state"
+                      ],
+                      "note"
+                    ],
+                    [
+                      "field",
+                      [
+                        "arg",
+                        "request"
+                      ],
+                      "quantity"
+                    ]
+                  ]
+                ]
+              ]
+            }
+          }
+        },
+        "component": {
+          "name": "StockItem",
+          "operation": "set_quantity",
+          "state_type": "Stock",
+          "request_type": "SetStock",
+          "revision_type": "StockVersion",
+          "entry": "apply",
+          "identity_binding": {
+            "state": "key",
+            "request": "item"
+          },
+          "revision_binding": "quantity",
+          "replace_fields": [
+            "quantity"
+          ],
+          "outcome_type": "StockOutcome",
+          "error_type": "StockError"
+        }
+      },
+      "policy": null,
+      "expected": {
+        "schema": "bagaev-component-check/2",
+        "status": "refused",
+        "reason": "CS_REVISION",
+        "execution_admission": false
+      }
+    },
+    {
+      "id": "IDENTITY-WRITE",
+      "source": {
+        "schema": "bagaev-component-source/2",
+        "program": {
+          "schema": "bagaev-typed-record/10",
+          "records": {
+            "StockKey": {
+              "code": "Text"
+            },
+            "StockVersion": {
+              "value": "Int64"
+            },
+            "Stock": {
+              "key": "StockKey",
+              "quantity": "Int64",
+              "note": "Text"
+            },
+            "SetStock": {
+              "item": "StockKey",
+              "expected": "StockVersion",
+              "quantity": "Int64"
+            },
+            "StockError": {
+              "reason": "Text"
+            }
+          },
+          "lists": {},
+          "variants": {
+            "StockOutcome": {
+              "Decline": "StockError",
+              "Propose": "Stock"
+            }
+          },
+          "entry": "apply",
+          "functions": {
+            "apply": {
+              "params": [
+                [
+                  "state",
+                  "Stock"
+                ],
+                [
+                  "request",
+                  "SetStock"
+                ]
+              ],
+              "result": "StockOutcome",
+              "body": [
+                "if",
+                [
+                  "lt",
+                  [
+                    "field",
+                    [
+                      "arg",
+                      "request"
+                    ],
+                    "quantity"
+                  ],
+                  [
+                    "int",
+                    0
+                  ]
+                ],
+                [
+                  "variant",
+                  "StockOutcome",
+                  "Decline",
+                  [
+                    "record",
+                    "StockError",
+                    [
+                      "text",
+                      "negative-quantity"
+                    ]
+                  ]
+                ],
+                [
+                  "variant",
+                  "StockOutcome",
+                  "Propose",
+                  [
+                    "record",
+                    "Stock",
+                    [
+                      "field",
+                      [
+                        "arg",
+                        "state"
+                      ],
+                      "key"
+                    ],
+                    [
+                      "field",
+                      [
+                        "arg",
+                        "state"
+                      ],
+                      "note"
+                    ],
+                    [
+                      "field",
+                      [
+                        "arg",
+                        "request"
+                      ],
+                      "quantity"
+                    ]
+                  ]
+                ]
+              ]
+            }
+          }
+        },
+        "component": {
+          "name": "StockItem",
+          "operation": "set_quantity",
+          "state_type": "Stock",
+          "request_type": "SetStock",
+          "revision_type": "StockVersion",
+          "entry": "apply",
+          "identity_binding": {
+            "state": "key",
+            "request": "item"
+          },
+          "revision_binding": "expected",
+          "replace_fields": [
+            "key"
+          ],
+          "outcome_type": "StockOutcome",
+          "error_type": "StockError"
+        }
+      },
+      "policy": null,
+      "expected": {
+        "schema": "bagaev-component-check/2",
+        "status": "refused",
+        "reason": "CS_EFFECT",
+        "execution_admission": false
+      }
+    },
+    {
+      "id": "POLICY-NAME",
+      "source": {
+        "schema": "bagaev-component-source/2",
+        "program": {
+          "schema": "bagaev-typed-record/10",
+          "records": {
+            "StockKey": {
+              "code": "Text"
+            },
+            "StockVersion": {
+              "value": "Int64"
+            },
+            "Stock": {
+              "key": "StockKey",
+              "quantity": "Int64",
+              "note": "Text"
+            },
+            "SetStock": {
+              "item": "StockKey",
+              "expected": "StockVersion",
+              "quantity": "Int64"
+            },
+            "StockError": {
+              "reason": "Text"
+            }
+          },
+          "lists": {},
+          "variants": {
+            "StockOutcome": {
+              "Decline": "StockError",
+              "Propose": "Stock"
+            }
+          },
+          "entry": "apply",
+          "functions": {
+            "apply": {
+              "params": [
+                [
+                  "state",
+                  "Stock"
+                ],
+                [
+                  "request",
+                  "SetStock"
+                ]
+              ],
+              "result": "StockOutcome",
+              "body": [
+                "if",
+                [
+                  "lt",
+                  [
+                    "field",
+                    [
+                      "arg",
+                      "request"
+                    ],
+                    "quantity"
+                  ],
+                  [
+                    "int",
+                    0
+                  ]
+                ],
+                [
+                  "variant",
+                  "StockOutcome",
+                  "Decline",
+                  [
+                    "record",
+                    "StockError",
+                    [
+                      "text",
+                      "negative-quantity"
+                    ]
+                  ]
+                ],
+                [
+                  "variant",
+                  "StockOutcome",
+                  "Propose",
+                  [
+                    "record",
+                    "Stock",
+                    [
+                      "field",
+                      [
+                        "arg",
+                        "state"
+                      ],
+                      "key"
+                    ],
+                    [
+                      "field",
+                      [
+                        "arg",
+                        "state"
+                      ],
+                      "note"
+                    ],
+                    [
+                      "field",
+                      [
+                        "arg",
+                        "request"
+                      ],
+                      "quantity"
+                    ]
+                  ]
+                ]
+              ]
+            }
+          }
+        },
+        "component": {
+          "name": "StockItem",
+          "operation": "set_quantity",
+          "state_type": "Stock",
+          "request_type": "SetStock",
+          "revision_type": "StockVersion",
+          "entry": "apply",
+          "identity_binding": {
+            "state": "key",
+            "request": "item"
+          },
+          "revision_binding": "expected",
+          "replace_fields": [
+            "quantity"
+          ],
+          "outcome_type": "StockOutcome",
+          "error_type": "StockError"
+        }
+      },
+      "policy": {
+        "schema": "bagaev-component-policy/2",
+        "component": "StockItem",
+        "operation": "other",
+        "state_type": "Stock",
+        "request_type": "SetStock",
+        "revision_type": "StockVersion",
+        "identity_binding": {
+          "state": "key",
+          "request": "item"
+        },
+        "revision_binding": "expected",
+        "replace_fields": [
+          "quantity"
+        ],
+        "records": {
+          "StockKey": {
+            "code": "Text"
+          },
+          "StockVersion": {
+            "value": "Int64"
+          },
+          "Stock": {
+            "key": "StockKey",
+            "quantity": "Int64",
+            "note": "Text"
+          },
+          "SetStock": {
+            "item": "StockKey",
+            "expected": "StockVersion",
+            "quantity": "Int64"
+          },
+          "StockError": {
+            "reason": "Text"
+          }
+        },
+        "outcome_type": "StockOutcome",
+        "error_type": "StockError"
+      },
+      "expected": {
+        "schema": "bagaev-component-check/2",
+        "status": "source-checked-policy-refused",
+        "reason": "CS_POLICY",
+        "execution_admission": false
+      }
+    },
+    {
+      "id": "POLICY-UNUSED",
+      "source": {
+        "schema": "bagaev-component-source/2",
+        "program": {
+          "schema": "bagaev-typed-record/10",
+          "records": {
+            "StockKey": {
+              "code": "Text"
+            },
+            "StockVersion": {
+              "value": "Int64"
+            },
+            "Stock": {
+              "key": "StockKey",
+              "quantity": "Int64",
+              "note": "Text"
+            },
+            "SetStock": {
+              "item": "StockKey",
+              "expected": "StockVersion",
+              "quantity": "Int64"
+            },
+            "StockError": {
+              "reason": "Text"
+            }
+          },
+          "lists": {},
+          "variants": {
+            "StockOutcome": {
+              "Decline": "StockError",
+              "Propose": "Stock"
+            }
+          },
+          "entry": "apply",
+          "functions": {
+            "apply": {
+              "params": [
+                [
+                  "state",
+                  "Stock"
+                ],
+                [
+                  "request",
+                  "SetStock"
+                ]
+              ],
+              "result": "StockOutcome",
+              "body": [
+                "if",
+                [
+                  "lt",
+                  [
+                    "field",
+                    [
+                      "arg",
+                      "request"
+                    ],
+                    "quantity"
+                  ],
+                  [
+                    "int",
+                    0
+                  ]
+                ],
+                [
+                  "variant",
+                  "StockOutcome",
+                  "Decline",
+                  [
+                    "record",
+                    "StockError",
+                    [
+                      "text",
+                      "negative-quantity"
+                    ]
+                  ]
+                ],
+                [
+                  "variant",
+                  "StockOutcome",
+                  "Propose",
+                  [
+                    "record",
+                    "Stock",
+                    [
+                      "field",
+                      [
+                        "arg",
+                        "state"
+                      ],
+                      "key"
+                    ],
+                    [
+                      "field",
+                      [
+                        "arg",
+                        "state"
+                      ],
+                      "note"
+                    ],
+                    [
+                      "field",
+                      [
+                        "arg",
+                        "request"
+                      ],
+                      "quantity"
+                    ]
+                  ]
+                ]
+              ]
+            }
+          }
+        },
+        "component": {
+          "name": "StockItem",
+          "operation": "set_quantity",
+          "state_type": "Stock",
+          "request_type": "SetStock",
+          "revision_type": "StockVersion",
+          "entry": "apply",
+          "identity_binding": {
+            "state": "key",
+            "request": "item"
+          },
+          "revision_binding": "expected",
+          "replace_fields": [
+            "quantity"
+          ],
+          "outcome_type": "StockOutcome",
+          "error_type": "StockError"
+        }
+      },
+      "policy": {
+        "schema": "bagaev-component-policy/2",
+        "component": "StockItem",
+        "operation": "set_quantity",
+        "state_type": "Stock",
+        "request_type": "SetStock",
+        "revision_type": "StockVersion",
+        "identity_binding": {
+          "state": "key",
+          "request": "item"
+        },
+        "revision_binding": "expected",
+        "replace_fields": [
+          "quantity"
+        ],
+        "records": {
+          "StockKey": {
+            "code": "Text"
+          },
+          "StockVersion": {
+            "value": "Int64"
+          },
+          "Stock": {
+            "key": "StockKey",
+            "quantity": "Int64",
+            "note": "Text"
+          },
+          "SetStock": {
+            "item": "StockKey",
+            "expected": "StockVersion",
+            "quantity": "Int64"
+          },
+          "StockError": {
+            "reason": "Text"
+          },
+          "Unused": {
+            "value": "Bool"
+          }
+        },
+        "outcome_type": "StockOutcome",
+        "error_type": "StockError"
+      },
+      "expected": {
+        "schema": "bagaev-component-check/2",
+        "status": "source-checked-policy-refused",
+        "reason": "CS_POLICY_FORMAT",
+        "execution_admission": false
+      }
+    },
+    {
+      "id": "POLICY-OLD",
+      "source": {
+        "schema": "bagaev-component-source/2",
+        "program": {
+          "schema": "bagaev-typed-record/10",
+          "records": {
+            "StockKey": {
+              "code": "Text"
+            },
+            "StockVersion": {
+              "value": "Int64"
+            },
+            "Stock": {
+              "key": "StockKey",
+              "quantity": "Int64",
+              "note": "Text"
+            },
+            "SetStock": {
+              "item": "StockKey",
+              "expected": "StockVersion",
+              "quantity": "Int64"
+            },
+            "StockError": {
+              "reason": "Text"
+            }
+          },
+          "lists": {},
+          "variants": {
+            "StockOutcome": {
+              "Decline": "StockError",
+              "Propose": "Stock"
+            }
+          },
+          "entry": "apply",
+          "functions": {
+            "apply": {
+              "params": [
+                [
+                  "state",
+                  "Stock"
+                ],
+                [
+                  "request",
+                  "SetStock"
+                ]
+              ],
+              "result": "StockOutcome",
+              "body": [
+                "if",
+                [
+                  "lt",
+                  [
+                    "field",
+                    [
+                      "arg",
+                      "request"
+                    ],
+                    "quantity"
+                  ],
+                  [
+                    "int",
+                    0
+                  ]
+                ],
+                [
+                  "variant",
+                  "StockOutcome",
+                  "Decline",
+                  [
+                    "record",
+                    "StockError",
+                    [
+                      "text",
+                      "negative-quantity"
+                    ]
+                  ]
+                ],
+                [
+                  "variant",
+                  "StockOutcome",
+                  "Propose",
+                  [
+                    "record",
+                    "Stock",
+                    [
+                      "field",
+                      [
+                        "arg",
+                        "state"
+                      ],
+                      "key"
+                    ],
+                    [
+                      "field",
+                      [
+                        "arg",
+                        "state"
+                      ],
+                      "note"
+                    ],
+                    [
+                      "field",
+                      [
+                        "arg",
+                        "request"
+                      ],
+                      "quantity"
+                    ]
+                  ]
+                ]
+              ]
+            }
+          }
+        },
+        "component": {
+          "name": "StockItem",
+          "operation": "set_quantity",
+          "state_type": "Stock",
+          "request_type": "SetStock",
+          "revision_type": "StockVersion",
+          "entry": "apply",
+          "identity_binding": {
+            "state": "key",
+            "request": "item"
+          },
+          "revision_binding": "expected",
+          "replace_fields": [
+            "quantity"
+          ],
+          "outcome_type": "StockOutcome",
+          "error_type": "StockError"
+        }
+      },
+      "policy": {
+        "schema": "bagaev-component-policy/1",
+        "component": "StockItem",
+        "operation": "set_quantity",
+        "state_type": "Stock",
+        "request_type": "SetStock",
+        "revision_type": "StockVersion",
+        "identity_binding": {
+          "state": "key",
+          "request": "item"
+        },
+        "revision_binding": "expected",
+        "replace_fields": [
+          "quantity"
+        ],
+        "records": {
+          "StockKey": {
+            "code": "Text"
+          },
+          "StockVersion": {
+            "value": "Int64"
+          },
+          "Stock": {
+            "key": "StockKey",
+            "quantity": "Int64",
+            "note": "Text"
+          },
+          "SetStock": {
+            "item": "StockKey",
+            "expected": "StockVersion",
+            "quantity": "Int64"
+          },
+          "StockError": {
+            "reason": "Text"
+          }
+        },
+        "outcome_type": "StockOutcome",
+        "error_type": "StockError"
+      },
+      "expected": {
+        "schema": "bagaev-component-check/2",
+        "status": "source-checked-policy-refused",
+        "reason": "CS_POLICY_FORMAT",
+        "execution_admission": false
+      }
+    }
+  ]
+}

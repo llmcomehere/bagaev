@@ -1,0 +1,3428 @@
+{
+  "policy": {
+    "schema": "bagaev-component-policy/2",
+    "component": "StockItem",
+    "operation": "set_quantity",
+    "state_type": "Stock",
+    "request_type": "SetStock",
+    "revision_type": "StockVersion",
+    "identity_binding": {
+      "state": "key",
+      "request": "item"
+    },
+    "revision_binding": "expected",
+    "replace_fields": [
+      "quantity"
+    ],
+    "records": {
+      "StockKey": {
+        "code": "Text"
+      },
+      "StockVersion": {
+        "value": "Int64"
+      },
+      "Stock": {
+        "key": "StockKey",
+        "quantity": "Int64",
+        "note": "Text"
+      },
+      "SetStock": {
+        "item": "StockKey",
+        "expected": "StockVersion",
+        "quantity": "Int64"
+      },
+      "StockError": {
+        "reason": "Text"
+      }
+    },
+    "outcome_type": "StockOutcome",
+    "error_type": "StockError"
+  },
+  "cases": [
+    {
+      "id": "VALID",
+      "context": {
+        "schema": "component-context/2",
+        "axes": {
+          "semantic": "bagaev-component-source/2",
+          "ir": "bagaev-component-source/2",
+          "form": "component-form/2",
+          "envelope": "component-context/2",
+          "evidence": "probe-evidence/1"
+        },
+        "snapshot": "sha256:8c571078e26436c58a71ee1f4b246fd8af760ca79bc7af3f58831aaaaaed573f",
+        "sources": [
+          {
+            "id": "current-programme",
+            "pin": "sha256:32ec0bb6ce88e14bee0f26a44fef98361329869fdf9f373bb4b3e1bb93ff9422",
+            "text": "bagaev component-form/2;\ncomponent StockItem operation set_quantity {\n  record StockKey { code: Text };\n  record StockVersion { value: Int64 };\n  record Stock { key: StockKey, quantity: Int64, note: Text };\n  record SetStock { item: StockKey, expected: StockVersion, quantity: Int64 };\n  record StockError { reason: Text };\n  variant StockOutcome { Decline: StockError, Propose: Stock };\n  state Stock identity key;\n  request SetStock identity item revision expected: StockVersion;\n  replace quantity;\n  outcome StockOutcome error StockError;\n  entry apply;\n  fn is_negative(quantity: Int64) -> Bool = quantity < 0;\n  fn apply(state: Stock, request: SetStock) -> StockOutcome =\n    if is_negative(request.quantity)\n    then StockOutcome.Decline(StockError { reason: \"negative-quantity\" })\n    else StockOutcome.Propose(Stock { key: state.key, note: state.note, quantity: request.quantity });\n}\n"
+          },
+          {
+            "id": "goal",
+            "pin": "sha256:4fecefa23daacdac76149abb1da58ad6e0e117c2653ec8d86add9cb56c4eac63",
+            "text": "Retain the old typed business decline without confusing it with newer applied state or restoring rights."
+          },
+          {
+            "id": "old-programme",
+            "pin": "sha256:8573053b43fef7ac2d4aa5c3b5e76d0e5aad5642d386d536d6a067ecc3821b82",
+            "text": "bagaev component-form/2;\ncomponent StockItem operation set_quantity {\n  record StockKey { code: Text };\n  record StockVersion { value: Int64 };\n  record Stock { key: StockKey, quantity: Int64, note: Text };\n  record SetStock { item: StockKey, expected: StockVersion, quantity: Int64 };\n  record StockError { reason: Text };\n  variant StockOutcome { Decline: StockError, Propose: Stock };\n  state Stock identity key;\n  request SetStock identity item revision expected: StockVersion;\n  replace quantity;\n  outcome StockOutcome error StockError;\n  entry apply;\n  fn apply(state: Stock, request: SetStock) -> StockOutcome =\n    if request.quantity < 0\n    then StockOutcome.Decline(StockError { reason: \"negative-quantity\" })\n    else StockOutcome.Propose(Stock { key: state.key, note: state.note, quantity: request.quantity });\n}\n"
+          },
+          {
+            "id": "pending-operation",
+            "pin": "sha256:d4743bf13c713c3da4b3a41f96ae788e4145d1ff53343480dba10f625c9745ab",
+            "text": "{\"packet\":{\"deadline\":100,\"epoch\":1,\"key\":{\"domain\":\"owner\",\"id\":\"A\",\"resource\":\"stock/g1\"},\"request\":{\"expected\":{\"value\":7},\"item\":{\"code\":\"sku1\"},\"quantity\":-1},\"source\":\"057ed3a68e036bbc8a02b4dd32a2aed7931f7cd02b7514354971aa5c5201a308\"},\"programme_pin\":\"sha256:057ed3a68e036bbc8a02b4dd32a2aed7931f7cd02b7514354971aa5c5201a308\",\"programme_source\":\"old-programme\",\"run_id\":\"original\",\"schema\":\"owned-outcome-pending/2\"}"
+          },
+          {
+            "id": "receiving-contract",
+            "pin": "sha256:f3e206035f87f4774b3aca41ffef5b7384eeaf2105a39acae9a88e3c7b84b036",
+            "text": "actual-entry-consumer: The actual component entry is exercised.\nmanual-tags-preserved: Manual tags and identity remain unchanged.\nold-run-binding: An old run and its operation retain their source.\noperation-recovery: Old terminal receipt is observed without another write.\ntypes-and-imports: Source, nominal types and receiving policy are checked.\n"
+          }
+        ],
+        "obligations": [
+          {
+            "id": "actual-entry-consumer",
+            "text": "The actual component entry is exercised.",
+            "refs": [
+              {
+                "source": "receiving-contract",
+                "pin": "sha256:f3e206035f87f4774b3aca41ffef5b7384eeaf2105a39acae9a88e3c7b84b036",
+                "start": 0,
+                "end": 64
+              }
+            ],
+            "pin": "sha256:2216b66db42fc24769a1710a1b8780d6ecf9e5eda177bf0a261ba1566bc6bf98"
+          },
+          {
+            "id": "manual-tags-preserved",
+            "text": "Manual tags and identity remain unchanged.",
+            "refs": [
+              {
+                "source": "receiving-contract",
+                "pin": "sha256:f3e206035f87f4774b3aca41ffef5b7384eeaf2105a39acae9a88e3c7b84b036",
+                "start": 64,
+                "end": 130
+              }
+            ],
+            "pin": "sha256:3113beeccc40e80670cecd4e2a38690a08ec07ff0808276f0ebdccbd9135cc28"
+          },
+          {
+            "id": "old-run-binding",
+            "text": "An old run and its operation retain their source.",
+            "refs": [
+              {
+                "source": "receiving-contract",
+                "pin": "sha256:f3e206035f87f4774b3aca41ffef5b7384eeaf2105a39acae9a88e3c7b84b036",
+                "start": 130,
+                "end": 197
+              }
+            ],
+            "pin": "sha256:a9e9fba7393ba8b054545826497baf5dc9c663b6db5820695888b51f49b0eb09"
+          },
+          {
+            "id": "operation-recovery",
+            "text": "Old terminal receipt is observed without another write.",
+            "refs": [
+              {
+                "source": "receiving-contract",
+                "pin": "sha256:f3e206035f87f4774b3aca41ffef5b7384eeaf2105a39acae9a88e3c7b84b036",
+                "start": 197,
+                "end": 273
+              }
+            ],
+            "pin": "sha256:e774923d92a513881eb79d752678037c789f6e6930289d67501957dbb623c785"
+          },
+          {
+            "id": "types-and-imports",
+            "text": "Source, nominal types and receiving policy are checked.",
+            "refs": [
+              {
+                "source": "receiving-contract",
+                "pin": "sha256:f3e206035f87f4774b3aca41ffef5b7384eeaf2105a39acae9a88e3c7b84b036",
+                "start": 273,
+                "end": 348
+              }
+            ],
+            "pin": "sha256:353b6e82f6039d27405d5e175e3b401325ff0c0f50c5d200d6ffcc5ab797fd36"
+          }
+        ],
+        "unknowns": [
+          {
+            "id": "authority",
+            "text": "Current observation permission must be supplied independently; context restores no rights.",
+            "refs": []
+          },
+          {
+            "id": "production-runtime",
+            "text": "Production durability and authentication are not established by this fixture.",
+            "refs": []
+          }
+        ],
+        "open_effects": [
+          {
+            "id": "old-A",
+            "text": "Old A may have a terminal business decline under S1; preserve exact intent until current observation is permitted.",
+            "refs": [
+              {
+                "source": "pending-operation",
+                "pin": "sha256:d4743bf13c713c3da4b3a41f96ae788e4145d1ff53343480dba10f625c9745ab",
+                "start": 0,
+                "end": 421
+              }
+            ]
+          }
+        ],
+        "candidates": [],
+        "candidate_set": "sha256:d5cca013e9a35eeea1cfb1935230ebd6a52171bf09ea3b9b22c7d97a676aab35",
+        "metadata": {
+          "representation": "canonical-json/1",
+          "model_profile": null,
+          "codec": "component-form/2"
+        }
+      },
+      "expectation": {
+        "schema": "component-expectation/2",
+        "axes": {
+          "semantic": "bagaev-component-source/2",
+          "ir": "bagaev-component-source/2",
+          "form": "component-form/2",
+          "envelope": "component-context/2",
+          "evidence": "probe-evidence/1"
+        },
+        "snapshot": "sha256:8c571078e26436c58a71ee1f4b246fd8af760ca79bc7af3f58831aaaaaed573f",
+        "candidate_set": "sha256:d5cca013e9a35eeea1cfb1935230ebd6a52171bf09ea3b9b22c7d97a676aab35",
+        "sources": [
+          {
+            "id": "current-programme",
+            "pin": "sha256:32ec0bb6ce88e14bee0f26a44fef98361329869fdf9f373bb4b3e1bb93ff9422"
+          },
+          {
+            "id": "goal",
+            "pin": "sha256:4fecefa23daacdac76149abb1da58ad6e0e117c2653ec8d86add9cb56c4eac63"
+          },
+          {
+            "id": "old-programme",
+            "pin": "sha256:8573053b43fef7ac2d4aa5c3b5e76d0e5aad5642d386d536d6a067ecc3821b82"
+          },
+          {
+            "id": "pending-operation",
+            "pin": "sha256:d4743bf13c713c3da4b3a41f96ae788e4145d1ff53343480dba10f625c9745ab"
+          },
+          {
+            "id": "receiving-contract",
+            "pin": "sha256:f3e206035f87f4774b3aca41ffef5b7384eeaf2105a39acae9a88e3c7b84b036"
+          }
+        ],
+        "obligations": [
+          {
+            "id": "actual-entry-consumer",
+            "pin": "sha256:2216b66db42fc24769a1710a1b8780d6ecf9e5eda177bf0a261ba1566bc6bf98"
+          },
+          {
+            "id": "manual-tags-preserved",
+            "pin": "sha256:3113beeccc40e80670cecd4e2a38690a08ec07ff0808276f0ebdccbd9135cc28"
+          },
+          {
+            "id": "old-run-binding",
+            "pin": "sha256:a9e9fba7393ba8b054545826497baf5dc9c663b6db5820695888b51f49b0eb09"
+          },
+          {
+            "id": "operation-recovery",
+            "pin": "sha256:e774923d92a513881eb79d752678037c789f6e6930289d67501957dbb623c785"
+          },
+          {
+            "id": "types-and-imports",
+            "pin": "sha256:353b6e82f6039d27405d5e175e3b401325ff0c0f50c5d200d6ffcc5ab797fd36"
+          }
+        ],
+        "baseline": {
+          "component": {
+            "entry": "apply",
+            "error_type": "StockError",
+            "identity_binding": {
+              "request": "item",
+              "state": "key"
+            },
+            "name": "StockItem",
+            "operation": "set_quantity",
+            "outcome_type": "StockOutcome",
+            "replace_fields": [
+              "quantity"
+            ],
+            "request_type": "SetStock",
+            "revision_binding": "expected",
+            "revision_type": "StockVersion",
+            "state_type": "Stock"
+          },
+          "program": {
+            "entry": "apply",
+            "functions": {
+              "apply": {
+                "body": [
+                  "if",
+                  [
+                    "call",
+                    "is_negative",
+                    [
+                      "field",
+                      [
+                        "arg",
+                        "request"
+                      ],
+                      "quantity"
+                    ]
+                  ],
+                  [
+                    "variant",
+                    "StockOutcome",
+                    "Decline",
+                    [
+                      "record",
+                      "StockError",
+                      [
+                        "text",
+                        "negative-quantity"
+                      ]
+                    ]
+                  ],
+                  [
+                    "variant",
+                    "StockOutcome",
+                    "Propose",
+                    [
+                      "record",
+                      "Stock",
+                      [
+                        "field",
+                        [
+                          "arg",
+                          "state"
+                        ],
+                        "key"
+                      ],
+                      [
+                        "field",
+                        [
+                          "arg",
+                          "state"
+                        ],
+                        "note"
+                      ],
+                      [
+                        "field",
+                        [
+                          "arg",
+                          "request"
+                        ],
+                        "quantity"
+                      ]
+                    ]
+                  ]
+                ],
+                "params": [
+                  [
+                    "state",
+                    "Stock"
+                  ],
+                  [
+                    "request",
+                    "SetStock"
+                  ]
+                ],
+                "result": "StockOutcome"
+              },
+              "is_negative": {
+                "body": [
+                  "lt",
+                  [
+                    "arg",
+                    "quantity"
+                  ],
+                  [
+                    "int",
+                    0
+                  ]
+                ],
+                "params": [
+                  [
+                    "quantity",
+                    "Int64"
+                  ]
+                ],
+                "result": "Bool"
+              }
+            },
+            "lists": {},
+            "records": {
+              "SetStock": {
+                "expected": "StockVersion",
+                "item": "StockKey",
+                "quantity": "Int64"
+              },
+              "Stock": {
+                "key": "StockKey",
+                "note": "Text",
+                "quantity": "Int64"
+              },
+              "StockError": {
+                "reason": "Text"
+              },
+              "StockKey": {
+                "code": "Text"
+              },
+              "StockVersion": {
+                "value": "Int64"
+              }
+            },
+            "schema": "bagaev-typed-record/10",
+            "variants": {
+              "StockOutcome": {
+                "Decline": "StockError",
+                "Propose": "Stock"
+              }
+            }
+          },
+          "schema": "bagaev-component-source/2"
+        },
+        "programme_sources": [
+          {
+            "id": "current-programme",
+            "pin": "sha256:8c571078e26436c58a71ee1f4b246fd8af760ca79bc7af3f58831aaaaaed573f",
+            "role": "baseline"
+          },
+          {
+            "id": "old-programme",
+            "pin": "sha256:057ed3a68e036bbc8a02b4dd32a2aed7931f7cd02b7514354971aa5c5201a308",
+            "role": "dependency"
+          }
+        ],
+        "unknowns": [
+          {
+            "id": "authority",
+            "pin": "sha256:10e076561e85e65d2c9dbe1188fcf6d8c281c8a02f4fceae84785902a126b40a"
+          },
+          {
+            "id": "production-runtime",
+            "pin": "sha256:ee8ff38eb4f3716538dd5a20d6a9be8fd936e30f8c0219aa4d45cb5f497a8694"
+          }
+        ],
+        "open_effects": [
+          {
+            "id": "old-A",
+            "pin": "sha256:060805c0094a4b41d03262234503326b960be3e6a808b24418c80720b1f5e06e"
+          }
+        ]
+      },
+      "checker": "actual",
+      "legacy": false,
+      "expected": {
+        "schema": "component-context-inspection/2",
+        "snapshot": "sha256:8c571078e26436c58a71ee1f4b246fd8af760ca79bc7af3f58831aaaaaed573f",
+        "candidate_set": "sha256:d5cca013e9a35eeea1cfb1935230ebd6a52171bf09ea3b9b22c7d97a676aab35",
+        "unknowns": [
+          "authority",
+          "production-runtime"
+        ],
+        "open_effects": [
+          "old-A"
+        ],
+        "programme_sources": [
+          {
+            "id": "current-programme",
+            "pin": "sha256:8c571078e26436c58a71ee1f4b246fd8af760ca79bc7af3f58831aaaaaed573f",
+            "role": "baseline"
+          },
+          {
+            "id": "old-programme",
+            "pin": "sha256:057ed3a68e036bbc8a02b4dd32a2aed7931f7cd02b7514354971aa5c5201a308",
+            "role": "dependency"
+          }
+        ],
+        "admission": false,
+        "model_calls": 0
+      }
+    },
+    {
+      "id": "MISSING-EFFECT",
+      "context": {
+        "schema": "component-context/2",
+        "axes": {
+          "semantic": "bagaev-component-source/2",
+          "ir": "bagaev-component-source/2",
+          "form": "component-form/2",
+          "envelope": "component-context/2",
+          "evidence": "probe-evidence/1"
+        },
+        "snapshot": "sha256:8c571078e26436c58a71ee1f4b246fd8af760ca79bc7af3f58831aaaaaed573f",
+        "sources": [
+          {
+            "id": "current-programme",
+            "pin": "sha256:32ec0bb6ce88e14bee0f26a44fef98361329869fdf9f373bb4b3e1bb93ff9422",
+            "text": "bagaev component-form/2;\ncomponent StockItem operation set_quantity {\n  record StockKey { code: Text };\n  record StockVersion { value: Int64 };\n  record Stock { key: StockKey, quantity: Int64, note: Text };\n  record SetStock { item: StockKey, expected: StockVersion, quantity: Int64 };\n  record StockError { reason: Text };\n  variant StockOutcome { Decline: StockError, Propose: Stock };\n  state Stock identity key;\n  request SetStock identity item revision expected: StockVersion;\n  replace quantity;\n  outcome StockOutcome error StockError;\n  entry apply;\n  fn is_negative(quantity: Int64) -> Bool = quantity < 0;\n  fn apply(state: Stock, request: SetStock) -> StockOutcome =\n    if is_negative(request.quantity)\n    then StockOutcome.Decline(StockError { reason: \"negative-quantity\" })\n    else StockOutcome.Propose(Stock { key: state.key, note: state.note, quantity: request.quantity });\n}\n"
+          },
+          {
+            "id": "goal",
+            "pin": "sha256:4fecefa23daacdac76149abb1da58ad6e0e117c2653ec8d86add9cb56c4eac63",
+            "text": "Retain the old typed business decline without confusing it with newer applied state or restoring rights."
+          },
+          {
+            "id": "old-programme",
+            "pin": "sha256:8573053b43fef7ac2d4aa5c3b5e76d0e5aad5642d386d536d6a067ecc3821b82",
+            "text": "bagaev component-form/2;\ncomponent StockItem operation set_quantity {\n  record StockKey { code: Text };\n  record StockVersion { value: Int64 };\n  record Stock { key: StockKey, quantity: Int64, note: Text };\n  record SetStock { item: StockKey, expected: StockVersion, quantity: Int64 };\n  record StockError { reason: Text };\n  variant StockOutcome { Decline: StockError, Propose: Stock };\n  state Stock identity key;\n  request SetStock identity item revision expected: StockVersion;\n  replace quantity;\n  outcome StockOutcome error StockError;\n  entry apply;\n  fn apply(state: Stock, request: SetStock) -> StockOutcome =\n    if request.quantity < 0\n    then StockOutcome.Decline(StockError { reason: \"negative-quantity\" })\n    else StockOutcome.Propose(Stock { key: state.key, note: state.note, quantity: request.quantity });\n}\n"
+          },
+          {
+            "id": "pending-operation",
+            "pin": "sha256:d4743bf13c713c3da4b3a41f96ae788e4145d1ff53343480dba10f625c9745ab",
+            "text": "{\"packet\":{\"deadline\":100,\"epoch\":1,\"key\":{\"domain\":\"owner\",\"id\":\"A\",\"resource\":\"stock/g1\"},\"request\":{\"expected\":{\"value\":7},\"item\":{\"code\":\"sku1\"},\"quantity\":-1},\"source\":\"057ed3a68e036bbc8a02b4dd32a2aed7931f7cd02b7514354971aa5c5201a308\"},\"programme_pin\":\"sha256:057ed3a68e036bbc8a02b4dd32a2aed7931f7cd02b7514354971aa5c5201a308\",\"programme_source\":\"old-programme\",\"run_id\":\"original\",\"schema\":\"owned-outcome-pending/2\"}"
+          },
+          {
+            "id": "receiving-contract",
+            "pin": "sha256:f3e206035f87f4774b3aca41ffef5b7384eeaf2105a39acae9a88e3c7b84b036",
+            "text": "actual-entry-consumer: The actual component entry is exercised.\nmanual-tags-preserved: Manual tags and identity remain unchanged.\nold-run-binding: An old run and its operation retain their source.\noperation-recovery: Old terminal receipt is observed without another write.\ntypes-and-imports: Source, nominal types and receiving policy are checked.\n"
+          }
+        ],
+        "obligations": [
+          {
+            "id": "actual-entry-consumer",
+            "text": "The actual component entry is exercised.",
+            "refs": [
+              {
+                "source": "receiving-contract",
+                "pin": "sha256:f3e206035f87f4774b3aca41ffef5b7384eeaf2105a39acae9a88e3c7b84b036",
+                "start": 0,
+                "end": 64
+              }
+            ],
+            "pin": "sha256:2216b66db42fc24769a1710a1b8780d6ecf9e5eda177bf0a261ba1566bc6bf98"
+          },
+          {
+            "id": "manual-tags-preserved",
+            "text": "Manual tags and identity remain unchanged.",
+            "refs": [
+              {
+                "source": "receiving-contract",
+                "pin": "sha256:f3e206035f87f4774b3aca41ffef5b7384eeaf2105a39acae9a88e3c7b84b036",
+                "start": 64,
+                "end": 130
+              }
+            ],
+            "pin": "sha256:3113beeccc40e80670cecd4e2a38690a08ec07ff0808276f0ebdccbd9135cc28"
+          },
+          {
+            "id": "old-run-binding",
+            "text": "An old run and its operation retain their source.",
+            "refs": [
+              {
+                "source": "receiving-contract",
+                "pin": "sha256:f3e206035f87f4774b3aca41ffef5b7384eeaf2105a39acae9a88e3c7b84b036",
+                "start": 130,
+                "end": 197
+              }
+            ],
+            "pin": "sha256:a9e9fba7393ba8b054545826497baf5dc9c663b6db5820695888b51f49b0eb09"
+          },
+          {
+            "id": "operation-recovery",
+            "text": "Old terminal receipt is observed without another write.",
+            "refs": [
+              {
+                "source": "receiving-contract",
+                "pin": "sha256:f3e206035f87f4774b3aca41ffef5b7384eeaf2105a39acae9a88e3c7b84b036",
+                "start": 197,
+                "end": 273
+              }
+            ],
+            "pin": "sha256:e774923d92a513881eb79d752678037c789f6e6930289d67501957dbb623c785"
+          },
+          {
+            "id": "types-and-imports",
+            "text": "Source, nominal types and receiving policy are checked.",
+            "refs": [
+              {
+                "source": "receiving-contract",
+                "pin": "sha256:f3e206035f87f4774b3aca41ffef5b7384eeaf2105a39acae9a88e3c7b84b036",
+                "start": 273,
+                "end": 348
+              }
+            ],
+            "pin": "sha256:353b6e82f6039d27405d5e175e3b401325ff0c0f50c5d200d6ffcc5ab797fd36"
+          }
+        ],
+        "unknowns": [
+          {
+            "id": "authority",
+            "text": "Current observation permission must be supplied independently; context restores no rights.",
+            "refs": []
+          },
+          {
+            "id": "production-runtime",
+            "text": "Production durability and authentication are not established by this fixture.",
+            "refs": []
+          }
+        ],
+        "open_effects": [],
+        "candidates": [],
+        "candidate_set": "sha256:d5cca013e9a35eeea1cfb1935230ebd6a52171bf09ea3b9b22c7d97a676aab35",
+        "metadata": {
+          "representation": "canonical-json/1",
+          "model_profile": null,
+          "codec": "component-form/2"
+        }
+      },
+      "expectation": {
+        "schema": "component-expectation/2",
+        "axes": {
+          "semantic": "bagaev-component-source/2",
+          "ir": "bagaev-component-source/2",
+          "form": "component-form/2",
+          "envelope": "component-context/2",
+          "evidence": "probe-evidence/1"
+        },
+        "snapshot": "sha256:8c571078e26436c58a71ee1f4b246fd8af760ca79bc7af3f58831aaaaaed573f",
+        "candidate_set": "sha256:d5cca013e9a35eeea1cfb1935230ebd6a52171bf09ea3b9b22c7d97a676aab35",
+        "sources": [
+          {
+            "id": "current-programme",
+            "pin": "sha256:32ec0bb6ce88e14bee0f26a44fef98361329869fdf9f373bb4b3e1bb93ff9422"
+          },
+          {
+            "id": "goal",
+            "pin": "sha256:4fecefa23daacdac76149abb1da58ad6e0e117c2653ec8d86add9cb56c4eac63"
+          },
+          {
+            "id": "old-programme",
+            "pin": "sha256:8573053b43fef7ac2d4aa5c3b5e76d0e5aad5642d386d536d6a067ecc3821b82"
+          },
+          {
+            "id": "pending-operation",
+            "pin": "sha256:d4743bf13c713c3da4b3a41f96ae788e4145d1ff53343480dba10f625c9745ab"
+          },
+          {
+            "id": "receiving-contract",
+            "pin": "sha256:f3e206035f87f4774b3aca41ffef5b7384eeaf2105a39acae9a88e3c7b84b036"
+          }
+        ],
+        "obligations": [
+          {
+            "id": "actual-entry-consumer",
+            "pin": "sha256:2216b66db42fc24769a1710a1b8780d6ecf9e5eda177bf0a261ba1566bc6bf98"
+          },
+          {
+            "id": "manual-tags-preserved",
+            "pin": "sha256:3113beeccc40e80670cecd4e2a38690a08ec07ff0808276f0ebdccbd9135cc28"
+          },
+          {
+            "id": "old-run-binding",
+            "pin": "sha256:a9e9fba7393ba8b054545826497baf5dc9c663b6db5820695888b51f49b0eb09"
+          },
+          {
+            "id": "operation-recovery",
+            "pin": "sha256:e774923d92a513881eb79d752678037c789f6e6930289d67501957dbb623c785"
+          },
+          {
+            "id": "types-and-imports",
+            "pin": "sha256:353b6e82f6039d27405d5e175e3b401325ff0c0f50c5d200d6ffcc5ab797fd36"
+          }
+        ],
+        "baseline": {
+          "component": {
+            "entry": "apply",
+            "error_type": "StockError",
+            "identity_binding": {
+              "request": "item",
+              "state": "key"
+            },
+            "name": "StockItem",
+            "operation": "set_quantity",
+            "outcome_type": "StockOutcome",
+            "replace_fields": [
+              "quantity"
+            ],
+            "request_type": "SetStock",
+            "revision_binding": "expected",
+            "revision_type": "StockVersion",
+            "state_type": "Stock"
+          },
+          "program": {
+            "entry": "apply",
+            "functions": {
+              "apply": {
+                "body": [
+                  "if",
+                  [
+                    "call",
+                    "is_negative",
+                    [
+                      "field",
+                      [
+                        "arg",
+                        "request"
+                      ],
+                      "quantity"
+                    ]
+                  ],
+                  [
+                    "variant",
+                    "StockOutcome",
+                    "Decline",
+                    [
+                      "record",
+                      "StockError",
+                      [
+                        "text",
+                        "negative-quantity"
+                      ]
+                    ]
+                  ],
+                  [
+                    "variant",
+                    "StockOutcome",
+                    "Propose",
+                    [
+                      "record",
+                      "Stock",
+                      [
+                        "field",
+                        [
+                          "arg",
+                          "state"
+                        ],
+                        "key"
+                      ],
+                      [
+                        "field",
+                        [
+                          "arg",
+                          "state"
+                        ],
+                        "note"
+                      ],
+                      [
+                        "field",
+                        [
+                          "arg",
+                          "request"
+                        ],
+                        "quantity"
+                      ]
+                    ]
+                  ]
+                ],
+                "params": [
+                  [
+                    "state",
+                    "Stock"
+                  ],
+                  [
+                    "request",
+                    "SetStock"
+                  ]
+                ],
+                "result": "StockOutcome"
+              },
+              "is_negative": {
+                "body": [
+                  "lt",
+                  [
+                    "arg",
+                    "quantity"
+                  ],
+                  [
+                    "int",
+                    0
+                  ]
+                ],
+                "params": [
+                  [
+                    "quantity",
+                    "Int64"
+                  ]
+                ],
+                "result": "Bool"
+              }
+            },
+            "lists": {},
+            "records": {
+              "SetStock": {
+                "expected": "StockVersion",
+                "item": "StockKey",
+                "quantity": "Int64"
+              },
+              "Stock": {
+                "key": "StockKey",
+                "note": "Text",
+                "quantity": "Int64"
+              },
+              "StockError": {
+                "reason": "Text"
+              },
+              "StockKey": {
+                "code": "Text"
+              },
+              "StockVersion": {
+                "value": "Int64"
+              }
+            },
+            "schema": "bagaev-typed-record/10",
+            "variants": {
+              "StockOutcome": {
+                "Decline": "StockError",
+                "Propose": "Stock"
+              }
+            }
+          },
+          "schema": "bagaev-component-source/2"
+        },
+        "programme_sources": [
+          {
+            "id": "current-programme",
+            "pin": "sha256:8c571078e26436c58a71ee1f4b246fd8af760ca79bc7af3f58831aaaaaed573f",
+            "role": "baseline"
+          },
+          {
+            "id": "old-programme",
+            "pin": "sha256:057ed3a68e036bbc8a02b4dd32a2aed7931f7cd02b7514354971aa5c5201a308",
+            "role": "dependency"
+          }
+        ],
+        "unknowns": [
+          {
+            "id": "authority",
+            "pin": "sha256:10e076561e85e65d2c9dbe1188fcf6d8c281c8a02f4fceae84785902a126b40a"
+          },
+          {
+            "id": "production-runtime",
+            "pin": "sha256:ee8ff38eb4f3716538dd5a20d6a9be8fd936e30f8c0219aa4d45cb5f497a8694"
+          }
+        ],
+        "open_effects": [
+          {
+            "id": "old-A",
+            "pin": "sha256:060805c0094a4b41d03262234503326b960be3e6a808b24418c80720b1f5e06e"
+          }
+        ]
+      },
+      "checker": "actual",
+      "legacy": false,
+      "expected": {
+        "error": "CTX_MISSING",
+        "location": "/open_effects"
+      }
+    },
+    {
+      "id": "MISSING-UNKNOWN",
+      "context": {
+        "schema": "component-context/2",
+        "axes": {
+          "semantic": "bagaev-component-source/2",
+          "ir": "bagaev-component-source/2",
+          "form": "component-form/2",
+          "envelope": "component-context/2",
+          "evidence": "probe-evidence/1"
+        },
+        "snapshot": "sha256:8c571078e26436c58a71ee1f4b246fd8af760ca79bc7af3f58831aaaaaed573f",
+        "sources": [
+          {
+            "id": "current-programme",
+            "pin": "sha256:32ec0bb6ce88e14bee0f26a44fef98361329869fdf9f373bb4b3e1bb93ff9422",
+            "text": "bagaev component-form/2;\ncomponent StockItem operation set_quantity {\n  record StockKey { code: Text };\n  record StockVersion { value: Int64 };\n  record Stock { key: StockKey, quantity: Int64, note: Text };\n  record SetStock { item: StockKey, expected: StockVersion, quantity: Int64 };\n  record StockError { reason: Text };\n  variant StockOutcome { Decline: StockError, Propose: Stock };\n  state Stock identity key;\n  request SetStock identity item revision expected: StockVersion;\n  replace quantity;\n  outcome StockOutcome error StockError;\n  entry apply;\n  fn is_negative(quantity: Int64) -> Bool = quantity < 0;\n  fn apply(state: Stock, request: SetStock) -> StockOutcome =\n    if is_negative(request.quantity)\n    then StockOutcome.Decline(StockError { reason: \"negative-quantity\" })\n    else StockOutcome.Propose(Stock { key: state.key, note: state.note, quantity: request.quantity });\n}\n"
+          },
+          {
+            "id": "goal",
+            "pin": "sha256:4fecefa23daacdac76149abb1da58ad6e0e117c2653ec8d86add9cb56c4eac63",
+            "text": "Retain the old typed business decline without confusing it with newer applied state or restoring rights."
+          },
+          {
+            "id": "old-programme",
+            "pin": "sha256:8573053b43fef7ac2d4aa5c3b5e76d0e5aad5642d386d536d6a067ecc3821b82",
+            "text": "bagaev component-form/2;\ncomponent StockItem operation set_quantity {\n  record StockKey { code: Text };\n  record StockVersion { value: Int64 };\n  record Stock { key: StockKey, quantity: Int64, note: Text };\n  record SetStock { item: StockKey, expected: StockVersion, quantity: Int64 };\n  record StockError { reason: Text };\n  variant StockOutcome { Decline: StockError, Propose: Stock };\n  state Stock identity key;\n  request SetStock identity item revision expected: StockVersion;\n  replace quantity;\n  outcome StockOutcome error StockError;\n  entry apply;\n  fn apply(state: Stock, request: SetStock) -> StockOutcome =\n    if request.quantity < 0\n    then StockOutcome.Decline(StockError { reason: \"negative-quantity\" })\n    else StockOutcome.Propose(Stock { key: state.key, note: state.note, quantity: request.quantity });\n}\n"
+          },
+          {
+            "id": "pending-operation",
+            "pin": "sha256:d4743bf13c713c3da4b3a41f96ae788e4145d1ff53343480dba10f625c9745ab",
+            "text": "{\"packet\":{\"deadline\":100,\"epoch\":1,\"key\":{\"domain\":\"owner\",\"id\":\"A\",\"resource\":\"stock/g1\"},\"request\":{\"expected\":{\"value\":7},\"item\":{\"code\":\"sku1\"},\"quantity\":-1},\"source\":\"057ed3a68e036bbc8a02b4dd32a2aed7931f7cd02b7514354971aa5c5201a308\"},\"programme_pin\":\"sha256:057ed3a68e036bbc8a02b4dd32a2aed7931f7cd02b7514354971aa5c5201a308\",\"programme_source\":\"old-programme\",\"run_id\":\"original\",\"schema\":\"owned-outcome-pending/2\"}"
+          },
+          {
+            "id": "receiving-contract",
+            "pin": "sha256:f3e206035f87f4774b3aca41ffef5b7384eeaf2105a39acae9a88e3c7b84b036",
+            "text": "actual-entry-consumer: The actual component entry is exercised.\nmanual-tags-preserved: Manual tags and identity remain unchanged.\nold-run-binding: An old run and its operation retain their source.\noperation-recovery: Old terminal receipt is observed without another write.\ntypes-and-imports: Source, nominal types and receiving policy are checked.\n"
+          }
+        ],
+        "obligations": [
+          {
+            "id": "actual-entry-consumer",
+            "text": "The actual component entry is exercised.",
+            "refs": [
+              {
+                "source": "receiving-contract",
+                "pin": "sha256:f3e206035f87f4774b3aca41ffef5b7384eeaf2105a39acae9a88e3c7b84b036",
+                "start": 0,
+                "end": 64
+              }
+            ],
+            "pin": "sha256:2216b66db42fc24769a1710a1b8780d6ecf9e5eda177bf0a261ba1566bc6bf98"
+          },
+          {
+            "id": "manual-tags-preserved",
+            "text": "Manual tags and identity remain unchanged.",
+            "refs": [
+              {
+                "source": "receiving-contract",
+                "pin": "sha256:f3e206035f87f4774b3aca41ffef5b7384eeaf2105a39acae9a88e3c7b84b036",
+                "start": 64,
+                "end": 130
+              }
+            ],
+            "pin": "sha256:3113beeccc40e80670cecd4e2a38690a08ec07ff0808276f0ebdccbd9135cc28"
+          },
+          {
+            "id": "old-run-binding",
+            "text": "An old run and its operation retain their source.",
+            "refs": [
+              {
+                "source": "receiving-contract",
+                "pin": "sha256:f3e206035f87f4774b3aca41ffef5b7384eeaf2105a39acae9a88e3c7b84b036",
+                "start": 130,
+                "end": 197
+              }
+            ],
+            "pin": "sha256:a9e9fba7393ba8b054545826497baf5dc9c663b6db5820695888b51f49b0eb09"
+          },
+          {
+            "id": "operation-recovery",
+            "text": "Old terminal receipt is observed without another write.",
+            "refs": [
+              {
+                "source": "receiving-contract",
+                "pin": "sha256:f3e206035f87f4774b3aca41ffef5b7384eeaf2105a39acae9a88e3c7b84b036",
+                "start": 197,
+                "end": 273
+              }
+            ],
+            "pin": "sha256:e774923d92a513881eb79d752678037c789f6e6930289d67501957dbb623c785"
+          },
+          {
+            "id": "types-and-imports",
+            "text": "Source, nominal types and receiving policy are checked.",
+            "refs": [
+              {
+                "source": "receiving-contract",
+                "pin": "sha256:f3e206035f87f4774b3aca41ffef5b7384eeaf2105a39acae9a88e3c7b84b036",
+                "start": 273,
+                "end": 348
+              }
+            ],
+            "pin": "sha256:353b6e82f6039d27405d5e175e3b401325ff0c0f50c5d200d6ffcc5ab797fd36"
+          }
+        ],
+        "unknowns": [],
+        "open_effects": [
+          {
+            "id": "old-A",
+            "text": "Old A may have a terminal business decline under S1; preserve exact intent until current observation is permitted.",
+            "refs": [
+              {
+                "source": "pending-operation",
+                "pin": "sha256:d4743bf13c713c3da4b3a41f96ae788e4145d1ff53343480dba10f625c9745ab",
+                "start": 0,
+                "end": 421
+              }
+            ]
+          }
+        ],
+        "candidates": [],
+        "candidate_set": "sha256:d5cca013e9a35eeea1cfb1935230ebd6a52171bf09ea3b9b22c7d97a676aab35",
+        "metadata": {
+          "representation": "canonical-json/1",
+          "model_profile": null,
+          "codec": "component-form/2"
+        }
+      },
+      "expectation": {
+        "schema": "component-expectation/2",
+        "axes": {
+          "semantic": "bagaev-component-source/2",
+          "ir": "bagaev-component-source/2",
+          "form": "component-form/2",
+          "envelope": "component-context/2",
+          "evidence": "probe-evidence/1"
+        },
+        "snapshot": "sha256:8c571078e26436c58a71ee1f4b246fd8af760ca79bc7af3f58831aaaaaed573f",
+        "candidate_set": "sha256:d5cca013e9a35eeea1cfb1935230ebd6a52171bf09ea3b9b22c7d97a676aab35",
+        "sources": [
+          {
+            "id": "current-programme",
+            "pin": "sha256:32ec0bb6ce88e14bee0f26a44fef98361329869fdf9f373bb4b3e1bb93ff9422"
+          },
+          {
+            "id": "goal",
+            "pin": "sha256:4fecefa23daacdac76149abb1da58ad6e0e117c2653ec8d86add9cb56c4eac63"
+          },
+          {
+            "id": "old-programme",
+            "pin": "sha256:8573053b43fef7ac2d4aa5c3b5e76d0e5aad5642d386d536d6a067ecc3821b82"
+          },
+          {
+            "id": "pending-operation",
+            "pin": "sha256:d4743bf13c713c3da4b3a41f96ae788e4145d1ff53343480dba10f625c9745ab"
+          },
+          {
+            "id": "receiving-contract",
+            "pin": "sha256:f3e206035f87f4774b3aca41ffef5b7384eeaf2105a39acae9a88e3c7b84b036"
+          }
+        ],
+        "obligations": [
+          {
+            "id": "actual-entry-consumer",
+            "pin": "sha256:2216b66db42fc24769a1710a1b8780d6ecf9e5eda177bf0a261ba1566bc6bf98"
+          },
+          {
+            "id": "manual-tags-preserved",
+            "pin": "sha256:3113beeccc40e80670cecd4e2a38690a08ec07ff0808276f0ebdccbd9135cc28"
+          },
+          {
+            "id": "old-run-binding",
+            "pin": "sha256:a9e9fba7393ba8b054545826497baf5dc9c663b6db5820695888b51f49b0eb09"
+          },
+          {
+            "id": "operation-recovery",
+            "pin": "sha256:e774923d92a513881eb79d752678037c789f6e6930289d67501957dbb623c785"
+          },
+          {
+            "id": "types-and-imports",
+            "pin": "sha256:353b6e82f6039d27405d5e175e3b401325ff0c0f50c5d200d6ffcc5ab797fd36"
+          }
+        ],
+        "baseline": {
+          "component": {
+            "entry": "apply",
+            "error_type": "StockError",
+            "identity_binding": {
+              "request": "item",
+              "state": "key"
+            },
+            "name": "StockItem",
+            "operation": "set_quantity",
+            "outcome_type": "StockOutcome",
+            "replace_fields": [
+              "quantity"
+            ],
+            "request_type": "SetStock",
+            "revision_binding": "expected",
+            "revision_type": "StockVersion",
+            "state_type": "Stock"
+          },
+          "program": {
+            "entry": "apply",
+            "functions": {
+              "apply": {
+                "body": [
+                  "if",
+                  [
+                    "call",
+                    "is_negative",
+                    [
+                      "field",
+                      [
+                        "arg",
+                        "request"
+                      ],
+                      "quantity"
+                    ]
+                  ],
+                  [
+                    "variant",
+                    "StockOutcome",
+                    "Decline",
+                    [
+                      "record",
+                      "StockError",
+                      [
+                        "text",
+                        "negative-quantity"
+                      ]
+                    ]
+                  ],
+                  [
+                    "variant",
+                    "StockOutcome",
+                    "Propose",
+                    [
+                      "record",
+                      "Stock",
+                      [
+                        "field",
+                        [
+                          "arg",
+                          "state"
+                        ],
+                        "key"
+                      ],
+                      [
+                        "field",
+                        [
+                          "arg",
+                          "state"
+                        ],
+                        "note"
+                      ],
+                      [
+                        "field",
+                        [
+                          "arg",
+                          "request"
+                        ],
+                        "quantity"
+                      ]
+                    ]
+                  ]
+                ],
+                "params": [
+                  [
+                    "state",
+                    "Stock"
+                  ],
+                  [
+                    "request",
+                    "SetStock"
+                  ]
+                ],
+                "result": "StockOutcome"
+              },
+              "is_negative": {
+                "body": [
+                  "lt",
+                  [
+                    "arg",
+                    "quantity"
+                  ],
+                  [
+                    "int",
+                    0
+                  ]
+                ],
+                "params": [
+                  [
+                    "quantity",
+                    "Int64"
+                  ]
+                ],
+                "result": "Bool"
+              }
+            },
+            "lists": {},
+            "records": {
+              "SetStock": {
+                "expected": "StockVersion",
+                "item": "StockKey",
+                "quantity": "Int64"
+              },
+              "Stock": {
+                "key": "StockKey",
+                "note": "Text",
+                "quantity": "Int64"
+              },
+              "StockError": {
+                "reason": "Text"
+              },
+              "StockKey": {
+                "code": "Text"
+              },
+              "StockVersion": {
+                "value": "Int64"
+              }
+            },
+            "schema": "bagaev-typed-record/10",
+            "variants": {
+              "StockOutcome": {
+                "Decline": "StockError",
+                "Propose": "Stock"
+              }
+            }
+          },
+          "schema": "bagaev-component-source/2"
+        },
+        "programme_sources": [
+          {
+            "id": "current-programme",
+            "pin": "sha256:8c571078e26436c58a71ee1f4b246fd8af760ca79bc7af3f58831aaaaaed573f",
+            "role": "baseline"
+          },
+          {
+            "id": "old-programme",
+            "pin": "sha256:057ed3a68e036bbc8a02b4dd32a2aed7931f7cd02b7514354971aa5c5201a308",
+            "role": "dependency"
+          }
+        ],
+        "unknowns": [
+          {
+            "id": "authority",
+            "pin": "sha256:10e076561e85e65d2c9dbe1188fcf6d8c281c8a02f4fceae84785902a126b40a"
+          },
+          {
+            "id": "production-runtime",
+            "pin": "sha256:ee8ff38eb4f3716538dd5a20d6a9be8fd936e30f8c0219aa4d45cb5f497a8694"
+          }
+        ],
+        "open_effects": [
+          {
+            "id": "old-A",
+            "pin": "sha256:060805c0094a4b41d03262234503326b960be3e6a808b24418c80720b1f5e06e"
+          }
+        ]
+      },
+      "checker": "actual",
+      "legacy": false,
+      "expected": {
+        "error": "CTX_MISSING",
+        "location": "/unknowns"
+      }
+    },
+    {
+      "id": "WRONG-VERSION",
+      "context": {
+        "schema": "component-context/1",
+        "axes": {
+          "semantic": "bagaev-component-source/2",
+          "ir": "bagaev-component-source/2",
+          "form": "component-form/2",
+          "envelope": "component-context/2",
+          "evidence": "probe-evidence/1"
+        },
+        "snapshot": "sha256:8c571078e26436c58a71ee1f4b246fd8af760ca79bc7af3f58831aaaaaed573f",
+        "sources": [
+          {
+            "id": "current-programme",
+            "pin": "sha256:32ec0bb6ce88e14bee0f26a44fef98361329869fdf9f373bb4b3e1bb93ff9422",
+            "text": "bagaev component-form/2;\ncomponent StockItem operation set_quantity {\n  record StockKey { code: Text };\n  record StockVersion { value: Int64 };\n  record Stock { key: StockKey, quantity: Int64, note: Text };\n  record SetStock { item: StockKey, expected: StockVersion, quantity: Int64 };\n  record StockError { reason: Text };\n  variant StockOutcome { Decline: StockError, Propose: Stock };\n  state Stock identity key;\n  request SetStock identity item revision expected: StockVersion;\n  replace quantity;\n  outcome StockOutcome error StockError;\n  entry apply;\n  fn is_negative(quantity: Int64) -> Bool = quantity < 0;\n  fn apply(state: Stock, request: SetStock) -> StockOutcome =\n    if is_negative(request.quantity)\n    then StockOutcome.Decline(StockError { reason: \"negative-quantity\" })\n    else StockOutcome.Propose(Stock { key: state.key, note: state.note, quantity: request.quantity });\n}\n"
+          },
+          {
+            "id": "goal",
+            "pin": "sha256:4fecefa23daacdac76149abb1da58ad6e0e117c2653ec8d86add9cb56c4eac63",
+            "text": "Retain the old typed business decline without confusing it with newer applied state or restoring rights."
+          },
+          {
+            "id": "old-programme",
+            "pin": "sha256:8573053b43fef7ac2d4aa5c3b5e76d0e5aad5642d386d536d6a067ecc3821b82",
+            "text": "bagaev component-form/2;\ncomponent StockItem operation set_quantity {\n  record StockKey { code: Text };\n  record StockVersion { value: Int64 };\n  record Stock { key: StockKey, quantity: Int64, note: Text };\n  record SetStock { item: StockKey, expected: StockVersion, quantity: Int64 };\n  record StockError { reason: Text };\n  variant StockOutcome { Decline: StockError, Propose: Stock };\n  state Stock identity key;\n  request SetStock identity item revision expected: StockVersion;\n  replace quantity;\n  outcome StockOutcome error StockError;\n  entry apply;\n  fn apply(state: Stock, request: SetStock) -> StockOutcome =\n    if request.quantity < 0\n    then StockOutcome.Decline(StockError { reason: \"negative-quantity\" })\n    else StockOutcome.Propose(Stock { key: state.key, note: state.note, quantity: request.quantity });\n}\n"
+          },
+          {
+            "id": "pending-operation",
+            "pin": "sha256:d4743bf13c713c3da4b3a41f96ae788e4145d1ff53343480dba10f625c9745ab",
+            "text": "{\"packet\":{\"deadline\":100,\"epoch\":1,\"key\":{\"domain\":\"owner\",\"id\":\"A\",\"resource\":\"stock/g1\"},\"request\":{\"expected\":{\"value\":7},\"item\":{\"code\":\"sku1\"},\"quantity\":-1},\"source\":\"057ed3a68e036bbc8a02b4dd32a2aed7931f7cd02b7514354971aa5c5201a308\"},\"programme_pin\":\"sha256:057ed3a68e036bbc8a02b4dd32a2aed7931f7cd02b7514354971aa5c5201a308\",\"programme_source\":\"old-programme\",\"run_id\":\"original\",\"schema\":\"owned-outcome-pending/2\"}"
+          },
+          {
+            "id": "receiving-contract",
+            "pin": "sha256:f3e206035f87f4774b3aca41ffef5b7384eeaf2105a39acae9a88e3c7b84b036",
+            "text": "actual-entry-consumer: The actual component entry is exercised.\nmanual-tags-preserved: Manual tags and identity remain unchanged.\nold-run-binding: An old run and its operation retain their source.\noperation-recovery: Old terminal receipt is observed without another write.\ntypes-and-imports: Source, nominal types and receiving policy are checked.\n"
+          }
+        ],
+        "obligations": [
+          {
+            "id": "actual-entry-consumer",
+            "text": "The actual component entry is exercised.",
+            "refs": [
+              {
+                "source": "receiving-contract",
+                "pin": "sha256:f3e206035f87f4774b3aca41ffef5b7384eeaf2105a39acae9a88e3c7b84b036",
+                "start": 0,
+                "end": 64
+              }
+            ],
+            "pin": "sha256:2216b66db42fc24769a1710a1b8780d6ecf9e5eda177bf0a261ba1566bc6bf98"
+          },
+          {
+            "id": "manual-tags-preserved",
+            "text": "Manual tags and identity remain unchanged.",
+            "refs": [
+              {
+                "source": "receiving-contract",
+                "pin": "sha256:f3e206035f87f4774b3aca41ffef5b7384eeaf2105a39acae9a88e3c7b84b036",
+                "start": 64,
+                "end": 130
+              }
+            ],
+            "pin": "sha256:3113beeccc40e80670cecd4e2a38690a08ec07ff0808276f0ebdccbd9135cc28"
+          },
+          {
+            "id": "old-run-binding",
+            "text": "An old run and its operation retain their source.",
+            "refs": [
+              {
+                "source": "receiving-contract",
+                "pin": "sha256:f3e206035f87f4774b3aca41ffef5b7384eeaf2105a39acae9a88e3c7b84b036",
+                "start": 130,
+                "end": 197
+              }
+            ],
+            "pin": "sha256:a9e9fba7393ba8b054545826497baf5dc9c663b6db5820695888b51f49b0eb09"
+          },
+          {
+            "id": "operation-recovery",
+            "text": "Old terminal receipt is observed without another write.",
+            "refs": [
+              {
+                "source": "receiving-contract",
+                "pin": "sha256:f3e206035f87f4774b3aca41ffef5b7384eeaf2105a39acae9a88e3c7b84b036",
+                "start": 197,
+                "end": 273
+              }
+            ],
+            "pin": "sha256:e774923d92a513881eb79d752678037c789f6e6930289d67501957dbb623c785"
+          },
+          {
+            "id": "types-and-imports",
+            "text": "Source, nominal types and receiving policy are checked.",
+            "refs": [
+              {
+                "source": "receiving-contract",
+                "pin": "sha256:f3e206035f87f4774b3aca41ffef5b7384eeaf2105a39acae9a88e3c7b84b036",
+                "start": 273,
+                "end": 348
+              }
+            ],
+            "pin": "sha256:353b6e82f6039d27405d5e175e3b401325ff0c0f50c5d200d6ffcc5ab797fd36"
+          }
+        ],
+        "unknowns": [
+          {
+            "id": "authority",
+            "text": "Current observation permission must be supplied independently; context restores no rights.",
+            "refs": []
+          },
+          {
+            "id": "production-runtime",
+            "text": "Production durability and authentication are not established by this fixture.",
+            "refs": []
+          }
+        ],
+        "open_effects": [
+          {
+            "id": "old-A",
+            "text": "Old A may have a terminal business decline under S1; preserve exact intent until current observation is permitted.",
+            "refs": [
+              {
+                "source": "pending-operation",
+                "pin": "sha256:d4743bf13c713c3da4b3a41f96ae788e4145d1ff53343480dba10f625c9745ab",
+                "start": 0,
+                "end": 421
+              }
+            ]
+          }
+        ],
+        "candidates": [],
+        "candidate_set": "sha256:d5cca013e9a35eeea1cfb1935230ebd6a52171bf09ea3b9b22c7d97a676aab35",
+        "metadata": {
+          "representation": "canonical-json/1",
+          "model_profile": null,
+          "codec": "component-form/2"
+        }
+      },
+      "expectation": {
+        "schema": "component-expectation/2",
+        "axes": {
+          "semantic": "bagaev-component-source/2",
+          "ir": "bagaev-component-source/2",
+          "form": "component-form/2",
+          "envelope": "component-context/2",
+          "evidence": "probe-evidence/1"
+        },
+        "snapshot": "sha256:8c571078e26436c58a71ee1f4b246fd8af760ca79bc7af3f58831aaaaaed573f",
+        "candidate_set": "sha256:d5cca013e9a35eeea1cfb1935230ebd6a52171bf09ea3b9b22c7d97a676aab35",
+        "sources": [
+          {
+            "id": "current-programme",
+            "pin": "sha256:32ec0bb6ce88e14bee0f26a44fef98361329869fdf9f373bb4b3e1bb93ff9422"
+          },
+          {
+            "id": "goal",
+            "pin": "sha256:4fecefa23daacdac76149abb1da58ad6e0e117c2653ec8d86add9cb56c4eac63"
+          },
+          {
+            "id": "old-programme",
+            "pin": "sha256:8573053b43fef7ac2d4aa5c3b5e76d0e5aad5642d386d536d6a067ecc3821b82"
+          },
+          {
+            "id": "pending-operation",
+            "pin": "sha256:d4743bf13c713c3da4b3a41f96ae788e4145d1ff53343480dba10f625c9745ab"
+          },
+          {
+            "id": "receiving-contract",
+            "pin": "sha256:f3e206035f87f4774b3aca41ffef5b7384eeaf2105a39acae9a88e3c7b84b036"
+          }
+        ],
+        "obligations": [
+          {
+            "id": "actual-entry-consumer",
+            "pin": "sha256:2216b66db42fc24769a1710a1b8780d6ecf9e5eda177bf0a261ba1566bc6bf98"
+          },
+          {
+            "id": "manual-tags-preserved",
+            "pin": "sha256:3113beeccc40e80670cecd4e2a38690a08ec07ff0808276f0ebdccbd9135cc28"
+          },
+          {
+            "id": "old-run-binding",
+            "pin": "sha256:a9e9fba7393ba8b054545826497baf5dc9c663b6db5820695888b51f49b0eb09"
+          },
+          {
+            "id": "operation-recovery",
+            "pin": "sha256:e774923d92a513881eb79d752678037c789f6e6930289d67501957dbb623c785"
+          },
+          {
+            "id": "types-and-imports",
+            "pin": "sha256:353b6e82f6039d27405d5e175e3b401325ff0c0f50c5d200d6ffcc5ab797fd36"
+          }
+        ],
+        "baseline": {
+          "component": {
+            "entry": "apply",
+            "error_type": "StockError",
+            "identity_binding": {
+              "request": "item",
+              "state": "key"
+            },
+            "name": "StockItem",
+            "operation": "set_quantity",
+            "outcome_type": "StockOutcome",
+            "replace_fields": [
+              "quantity"
+            ],
+            "request_type": "SetStock",
+            "revision_binding": "expected",
+            "revision_type": "StockVersion",
+            "state_type": "Stock"
+          },
+          "program": {
+            "entry": "apply",
+            "functions": {
+              "apply": {
+                "body": [
+                  "if",
+                  [
+                    "call",
+                    "is_negative",
+                    [
+                      "field",
+                      [
+                        "arg",
+                        "request"
+                      ],
+                      "quantity"
+                    ]
+                  ],
+                  [
+                    "variant",
+                    "StockOutcome",
+                    "Decline",
+                    [
+                      "record",
+                      "StockError",
+                      [
+                        "text",
+                        "negative-quantity"
+                      ]
+                    ]
+                  ],
+                  [
+                    "variant",
+                    "StockOutcome",
+                    "Propose",
+                    [
+                      "record",
+                      "Stock",
+                      [
+                        "field",
+                        [
+                          "arg",
+                          "state"
+                        ],
+                        "key"
+                      ],
+                      [
+                        "field",
+                        [
+                          "arg",
+                          "state"
+                        ],
+                        "note"
+                      ],
+                      [
+                        "field",
+                        [
+                          "arg",
+                          "request"
+                        ],
+                        "quantity"
+                      ]
+                    ]
+                  ]
+                ],
+                "params": [
+                  [
+                    "state",
+                    "Stock"
+                  ],
+                  [
+                    "request",
+                    "SetStock"
+                  ]
+                ],
+                "result": "StockOutcome"
+              },
+              "is_negative": {
+                "body": [
+                  "lt",
+                  [
+                    "arg",
+                    "quantity"
+                  ],
+                  [
+                    "int",
+                    0
+                  ]
+                ],
+                "params": [
+                  [
+                    "quantity",
+                    "Int64"
+                  ]
+                ],
+                "result": "Bool"
+              }
+            },
+            "lists": {},
+            "records": {
+              "SetStock": {
+                "expected": "StockVersion",
+                "item": "StockKey",
+                "quantity": "Int64"
+              },
+              "Stock": {
+                "key": "StockKey",
+                "note": "Text",
+                "quantity": "Int64"
+              },
+              "StockError": {
+                "reason": "Text"
+              },
+              "StockKey": {
+                "code": "Text"
+              },
+              "StockVersion": {
+                "value": "Int64"
+              }
+            },
+            "schema": "bagaev-typed-record/10",
+            "variants": {
+              "StockOutcome": {
+                "Decline": "StockError",
+                "Propose": "Stock"
+              }
+            }
+          },
+          "schema": "bagaev-component-source/2"
+        },
+        "programme_sources": [
+          {
+            "id": "current-programme",
+            "pin": "sha256:8c571078e26436c58a71ee1f4b246fd8af760ca79bc7af3f58831aaaaaed573f",
+            "role": "baseline"
+          },
+          {
+            "id": "old-programme",
+            "pin": "sha256:057ed3a68e036bbc8a02b4dd32a2aed7931f7cd02b7514354971aa5c5201a308",
+            "role": "dependency"
+          }
+        ],
+        "unknowns": [
+          {
+            "id": "authority",
+            "pin": "sha256:10e076561e85e65d2c9dbe1188fcf6d8c281c8a02f4fceae84785902a126b40a"
+          },
+          {
+            "id": "production-runtime",
+            "pin": "sha256:ee8ff38eb4f3716538dd5a20d6a9be8fd936e30f8c0219aa4d45cb5f497a8694"
+          }
+        ],
+        "open_effects": [
+          {
+            "id": "old-A",
+            "pin": "sha256:060805c0094a4b41d03262234503326b960be3e6a808b24418c80720b1f5e06e"
+          }
+        ]
+      },
+      "checker": "actual",
+      "legacy": false,
+      "expected": {
+        "error": "CTX_VERSION",
+        "location": "/schema"
+      }
+    },
+    {
+      "id": "WRONG-SEMANTIC",
+      "context": {
+        "schema": "component-context/2",
+        "axes": {
+          "semantic": "bagaev-component-source/1",
+          "ir": "bagaev-component-source/2",
+          "form": "component-form/2",
+          "envelope": "component-context/2",
+          "evidence": "probe-evidence/1"
+        },
+        "snapshot": "sha256:8c571078e26436c58a71ee1f4b246fd8af760ca79bc7af3f58831aaaaaed573f",
+        "sources": [
+          {
+            "id": "current-programme",
+            "pin": "sha256:32ec0bb6ce88e14bee0f26a44fef98361329869fdf9f373bb4b3e1bb93ff9422",
+            "text": "bagaev component-form/2;\ncomponent StockItem operation set_quantity {\n  record StockKey { code: Text };\n  record StockVersion { value: Int64 };\n  record Stock { key: StockKey, quantity: Int64, note: Text };\n  record SetStock { item: StockKey, expected: StockVersion, quantity: Int64 };\n  record StockError { reason: Text };\n  variant StockOutcome { Decline: StockError, Propose: Stock };\n  state Stock identity key;\n  request SetStock identity item revision expected: StockVersion;\n  replace quantity;\n  outcome StockOutcome error StockError;\n  entry apply;\n  fn is_negative(quantity: Int64) -> Bool = quantity < 0;\n  fn apply(state: Stock, request: SetStock) -> StockOutcome =\n    if is_negative(request.quantity)\n    then StockOutcome.Decline(StockError { reason: \"negative-quantity\" })\n    else StockOutcome.Propose(Stock { key: state.key, note: state.note, quantity: request.quantity });\n}\n"
+          },
+          {
+            "id": "goal",
+            "pin": "sha256:4fecefa23daacdac76149abb1da58ad6e0e117c2653ec8d86add9cb56c4eac63",
+            "text": "Retain the old typed business decline without confusing it with newer applied state or restoring rights."
+          },
+          {
+            "id": "old-programme",
+            "pin": "sha256:8573053b43fef7ac2d4aa5c3b5e76d0e5aad5642d386d536d6a067ecc3821b82",
+            "text": "bagaev component-form/2;\ncomponent StockItem operation set_quantity {\n  record StockKey { code: Text };\n  record StockVersion { value: Int64 };\n  record Stock { key: StockKey, quantity: Int64, note: Text };\n  record SetStock { item: StockKey, expected: StockVersion, quantity: Int64 };\n  record StockError { reason: Text };\n  variant StockOutcome { Decline: StockError, Propose: Stock };\n  state Stock identity key;\n  request SetStock identity item revision expected: StockVersion;\n  replace quantity;\n  outcome StockOutcome error StockError;\n  entry apply;\n  fn apply(state: Stock, request: SetStock) -> StockOutcome =\n    if request.quantity < 0\n    then StockOutcome.Decline(StockError { reason: \"negative-quantity\" })\n    else StockOutcome.Propose(Stock { key: state.key, note: state.note, quantity: request.quantity });\n}\n"
+          },
+          {
+            "id": "pending-operation",
+            "pin": "sha256:d4743bf13c713c3da4b3a41f96ae788e4145d1ff53343480dba10f625c9745ab",
+            "text": "{\"packet\":{\"deadline\":100,\"epoch\":1,\"key\":{\"domain\":\"owner\",\"id\":\"A\",\"resource\":\"stock/g1\"},\"request\":{\"expected\":{\"value\":7},\"item\":{\"code\":\"sku1\"},\"quantity\":-1},\"source\":\"057ed3a68e036bbc8a02b4dd32a2aed7931f7cd02b7514354971aa5c5201a308\"},\"programme_pin\":\"sha256:057ed3a68e036bbc8a02b4dd32a2aed7931f7cd02b7514354971aa5c5201a308\",\"programme_source\":\"old-programme\",\"run_id\":\"original\",\"schema\":\"owned-outcome-pending/2\"}"
+          },
+          {
+            "id": "receiving-contract",
+            "pin": "sha256:f3e206035f87f4774b3aca41ffef5b7384eeaf2105a39acae9a88e3c7b84b036",
+            "text": "actual-entry-consumer: The actual component entry is exercised.\nmanual-tags-preserved: Manual tags and identity remain unchanged.\nold-run-binding: An old run and its operation retain their source.\noperation-recovery: Old terminal receipt is observed without another write.\ntypes-and-imports: Source, nominal types and receiving policy are checked.\n"
+          }
+        ],
+        "obligations": [
+          {
+            "id": "actual-entry-consumer",
+            "text": "The actual component entry is exercised.",
+            "refs": [
+              {
+                "source": "receiving-contract",
+                "pin": "sha256:f3e206035f87f4774b3aca41ffef5b7384eeaf2105a39acae9a88e3c7b84b036",
+                "start": 0,
+                "end": 64
+              }
+            ],
+            "pin": "sha256:2216b66db42fc24769a1710a1b8780d6ecf9e5eda177bf0a261ba1566bc6bf98"
+          },
+          {
+            "id": "manual-tags-preserved",
+            "text": "Manual tags and identity remain unchanged.",
+            "refs": [
+              {
+                "source": "receiving-contract",
+                "pin": "sha256:f3e206035f87f4774b3aca41ffef5b7384eeaf2105a39acae9a88e3c7b84b036",
+                "start": 64,
+                "end": 130
+              }
+            ],
+            "pin": "sha256:3113beeccc40e80670cecd4e2a38690a08ec07ff0808276f0ebdccbd9135cc28"
+          },
+          {
+            "id": "old-run-binding",
+            "text": "An old run and its operation retain their source.",
+            "refs": [
+              {
+                "source": "receiving-contract",
+                "pin": "sha256:f3e206035f87f4774b3aca41ffef5b7384eeaf2105a39acae9a88e3c7b84b036",
+                "start": 130,
+                "end": 197
+              }
+            ],
+            "pin": "sha256:a9e9fba7393ba8b054545826497baf5dc9c663b6db5820695888b51f49b0eb09"
+          },
+          {
+            "id": "operation-recovery",
+            "text": "Old terminal receipt is observed without another write.",
+            "refs": [
+              {
+                "source": "receiving-contract",
+                "pin": "sha256:f3e206035f87f4774b3aca41ffef5b7384eeaf2105a39acae9a88e3c7b84b036",
+                "start": 197,
+                "end": 273
+              }
+            ],
+            "pin": "sha256:e774923d92a513881eb79d752678037c789f6e6930289d67501957dbb623c785"
+          },
+          {
+            "id": "types-and-imports",
+            "text": "Source, nominal types and receiving policy are checked.",
+            "refs": [
+              {
+                "source": "receiving-contract",
+                "pin": "sha256:f3e206035f87f4774b3aca41ffef5b7384eeaf2105a39acae9a88e3c7b84b036",
+                "start": 273,
+                "end": 348
+              }
+            ],
+            "pin": "sha256:353b6e82f6039d27405d5e175e3b401325ff0c0f50c5d200d6ffcc5ab797fd36"
+          }
+        ],
+        "unknowns": [
+          {
+            "id": "authority",
+            "text": "Current observation permission must be supplied independently; context restores no rights.",
+            "refs": []
+          },
+          {
+            "id": "production-runtime",
+            "text": "Production durability and authentication are not established by this fixture.",
+            "refs": []
+          }
+        ],
+        "open_effects": [
+          {
+            "id": "old-A",
+            "text": "Old A may have a terminal business decline under S1; preserve exact intent until current observation is permitted.",
+            "refs": [
+              {
+                "source": "pending-operation",
+                "pin": "sha256:d4743bf13c713c3da4b3a41f96ae788e4145d1ff53343480dba10f625c9745ab",
+                "start": 0,
+                "end": 421
+              }
+            ]
+          }
+        ],
+        "candidates": [],
+        "candidate_set": "sha256:d5cca013e9a35eeea1cfb1935230ebd6a52171bf09ea3b9b22c7d97a676aab35",
+        "metadata": {
+          "representation": "canonical-json/1",
+          "model_profile": null,
+          "codec": "component-form/2"
+        }
+      },
+      "expectation": {
+        "schema": "component-expectation/2",
+        "axes": {
+          "semantic": "bagaev-component-source/2",
+          "ir": "bagaev-component-source/2",
+          "form": "component-form/2",
+          "envelope": "component-context/2",
+          "evidence": "probe-evidence/1"
+        },
+        "snapshot": "sha256:8c571078e26436c58a71ee1f4b246fd8af760ca79bc7af3f58831aaaaaed573f",
+        "candidate_set": "sha256:d5cca013e9a35eeea1cfb1935230ebd6a52171bf09ea3b9b22c7d97a676aab35",
+        "sources": [
+          {
+            "id": "current-programme",
+            "pin": "sha256:32ec0bb6ce88e14bee0f26a44fef98361329869fdf9f373bb4b3e1bb93ff9422"
+          },
+          {
+            "id": "goal",
+            "pin": "sha256:4fecefa23daacdac76149abb1da58ad6e0e117c2653ec8d86add9cb56c4eac63"
+          },
+          {
+            "id": "old-programme",
+            "pin": "sha256:8573053b43fef7ac2d4aa5c3b5e76d0e5aad5642d386d536d6a067ecc3821b82"
+          },
+          {
+            "id": "pending-operation",
+            "pin": "sha256:d4743bf13c713c3da4b3a41f96ae788e4145d1ff53343480dba10f625c9745ab"
+          },
+          {
+            "id": "receiving-contract",
+            "pin": "sha256:f3e206035f87f4774b3aca41ffef5b7384eeaf2105a39acae9a88e3c7b84b036"
+          }
+        ],
+        "obligations": [
+          {
+            "id": "actual-entry-consumer",
+            "pin": "sha256:2216b66db42fc24769a1710a1b8780d6ecf9e5eda177bf0a261ba1566bc6bf98"
+          },
+          {
+            "id": "manual-tags-preserved",
+            "pin": "sha256:3113beeccc40e80670cecd4e2a38690a08ec07ff0808276f0ebdccbd9135cc28"
+          },
+          {
+            "id": "old-run-binding",
+            "pin": "sha256:a9e9fba7393ba8b054545826497baf5dc9c663b6db5820695888b51f49b0eb09"
+          },
+          {
+            "id": "operation-recovery",
+            "pin": "sha256:e774923d92a513881eb79d752678037c789f6e6930289d67501957dbb623c785"
+          },
+          {
+            "id": "types-and-imports",
+            "pin": "sha256:353b6e82f6039d27405d5e175e3b401325ff0c0f50c5d200d6ffcc5ab797fd36"
+          }
+        ],
+        "baseline": {
+          "component": {
+            "entry": "apply",
+            "error_type": "StockError",
+            "identity_binding": {
+              "request": "item",
+              "state": "key"
+            },
+            "name": "StockItem",
+            "operation": "set_quantity",
+            "outcome_type": "StockOutcome",
+            "replace_fields": [
+              "quantity"
+            ],
+            "request_type": "SetStock",
+            "revision_binding": "expected",
+            "revision_type": "StockVersion",
+            "state_type": "Stock"
+          },
+          "program": {
+            "entry": "apply",
+            "functions": {
+              "apply": {
+                "body": [
+                  "if",
+                  [
+                    "call",
+                    "is_negative",
+                    [
+                      "field",
+                      [
+                        "arg",
+                        "request"
+                      ],
+                      "quantity"
+                    ]
+                  ],
+                  [
+                    "variant",
+                    "StockOutcome",
+                    "Decline",
+                    [
+                      "record",
+                      "StockError",
+                      [
+                        "text",
+                        "negative-quantity"
+                      ]
+                    ]
+                  ],
+                  [
+                    "variant",
+                    "StockOutcome",
+                    "Propose",
+                    [
+                      "record",
+                      "Stock",
+                      [
+                        "field",
+                        [
+                          "arg",
+                          "state"
+                        ],
+                        "key"
+                      ],
+                      [
+                        "field",
+                        [
+                          "arg",
+                          "state"
+                        ],
+                        "note"
+                      ],
+                      [
+                        "field",
+                        [
+                          "arg",
+                          "request"
+                        ],
+                        "quantity"
+                      ]
+                    ]
+                  ]
+                ],
+                "params": [
+                  [
+                    "state",
+                    "Stock"
+                  ],
+                  [
+                    "request",
+                    "SetStock"
+                  ]
+                ],
+                "result": "StockOutcome"
+              },
+              "is_negative": {
+                "body": [
+                  "lt",
+                  [
+                    "arg",
+                    "quantity"
+                  ],
+                  [
+                    "int",
+                    0
+                  ]
+                ],
+                "params": [
+                  [
+                    "quantity",
+                    "Int64"
+                  ]
+                ],
+                "result": "Bool"
+              }
+            },
+            "lists": {},
+            "records": {
+              "SetStock": {
+                "expected": "StockVersion",
+                "item": "StockKey",
+                "quantity": "Int64"
+              },
+              "Stock": {
+                "key": "StockKey",
+                "note": "Text",
+                "quantity": "Int64"
+              },
+              "StockError": {
+                "reason": "Text"
+              },
+              "StockKey": {
+                "code": "Text"
+              },
+              "StockVersion": {
+                "value": "Int64"
+              }
+            },
+            "schema": "bagaev-typed-record/10",
+            "variants": {
+              "StockOutcome": {
+                "Decline": "StockError",
+                "Propose": "Stock"
+              }
+            }
+          },
+          "schema": "bagaev-component-source/2"
+        },
+        "programme_sources": [
+          {
+            "id": "current-programme",
+            "pin": "sha256:8c571078e26436c58a71ee1f4b246fd8af760ca79bc7af3f58831aaaaaed573f",
+            "role": "baseline"
+          },
+          {
+            "id": "old-programme",
+            "pin": "sha256:057ed3a68e036bbc8a02b4dd32a2aed7931f7cd02b7514354971aa5c5201a308",
+            "role": "dependency"
+          }
+        ],
+        "unknowns": [
+          {
+            "id": "authority",
+            "pin": "sha256:10e076561e85e65d2c9dbe1188fcf6d8c281c8a02f4fceae84785902a126b40a"
+          },
+          {
+            "id": "production-runtime",
+            "pin": "sha256:ee8ff38eb4f3716538dd5a20d6a9be8fd936e30f8c0219aa4d45cb5f497a8694"
+          }
+        ],
+        "open_effects": [
+          {
+            "id": "old-A",
+            "pin": "sha256:060805c0094a4b41d03262234503326b960be3e6a808b24418c80720b1f5e06e"
+          }
+        ]
+      },
+      "checker": "actual",
+      "legacy": false,
+      "expected": {
+        "error": "CTX_VERSION",
+        "location": "/axes/semantic"
+      }
+    },
+    {
+      "id": "CHECKER-MISSING",
+      "context": {
+        "schema": "component-context/2",
+        "axes": {
+          "semantic": "bagaev-component-source/2",
+          "ir": "bagaev-component-source/2",
+          "form": "component-form/2",
+          "envelope": "component-context/2",
+          "evidence": "probe-evidence/1"
+        },
+        "snapshot": "sha256:8c571078e26436c58a71ee1f4b246fd8af760ca79bc7af3f58831aaaaaed573f",
+        "sources": [
+          {
+            "id": "current-programme",
+            "pin": "sha256:32ec0bb6ce88e14bee0f26a44fef98361329869fdf9f373bb4b3e1bb93ff9422",
+            "text": "bagaev component-form/2;\ncomponent StockItem operation set_quantity {\n  record StockKey { code: Text };\n  record StockVersion { value: Int64 };\n  record Stock { key: StockKey, quantity: Int64, note: Text };\n  record SetStock { item: StockKey, expected: StockVersion, quantity: Int64 };\n  record StockError { reason: Text };\n  variant StockOutcome { Decline: StockError, Propose: Stock };\n  state Stock identity key;\n  request SetStock identity item revision expected: StockVersion;\n  replace quantity;\n  outcome StockOutcome error StockError;\n  entry apply;\n  fn is_negative(quantity: Int64) -> Bool = quantity < 0;\n  fn apply(state: Stock, request: SetStock) -> StockOutcome =\n    if is_negative(request.quantity)\n    then StockOutcome.Decline(StockError { reason: \"negative-quantity\" })\n    else StockOutcome.Propose(Stock { key: state.key, note: state.note, quantity: request.quantity });\n}\n"
+          },
+          {
+            "id": "goal",
+            "pin": "sha256:4fecefa23daacdac76149abb1da58ad6e0e117c2653ec8d86add9cb56c4eac63",
+            "text": "Retain the old typed business decline without confusing it with newer applied state or restoring rights."
+          },
+          {
+            "id": "old-programme",
+            "pin": "sha256:8573053b43fef7ac2d4aa5c3b5e76d0e5aad5642d386d536d6a067ecc3821b82",
+            "text": "bagaev component-form/2;\ncomponent StockItem operation set_quantity {\n  record StockKey { code: Text };\n  record StockVersion { value: Int64 };\n  record Stock { key: StockKey, quantity: Int64, note: Text };\n  record SetStock { item: StockKey, expected: StockVersion, quantity: Int64 };\n  record StockError { reason: Text };\n  variant StockOutcome { Decline: StockError, Propose: Stock };\n  state Stock identity key;\n  request SetStock identity item revision expected: StockVersion;\n  replace quantity;\n  outcome StockOutcome error StockError;\n  entry apply;\n  fn apply(state: Stock, request: SetStock) -> StockOutcome =\n    if request.quantity < 0\n    then StockOutcome.Decline(StockError { reason: \"negative-quantity\" })\n    else StockOutcome.Propose(Stock { key: state.key, note: state.note, quantity: request.quantity });\n}\n"
+          },
+          {
+            "id": "pending-operation",
+            "pin": "sha256:d4743bf13c713c3da4b3a41f96ae788e4145d1ff53343480dba10f625c9745ab",
+            "text": "{\"packet\":{\"deadline\":100,\"epoch\":1,\"key\":{\"domain\":\"owner\",\"id\":\"A\",\"resource\":\"stock/g1\"},\"request\":{\"expected\":{\"value\":7},\"item\":{\"code\":\"sku1\"},\"quantity\":-1},\"source\":\"057ed3a68e036bbc8a02b4dd32a2aed7931f7cd02b7514354971aa5c5201a308\"},\"programme_pin\":\"sha256:057ed3a68e036bbc8a02b4dd32a2aed7931f7cd02b7514354971aa5c5201a308\",\"programme_source\":\"old-programme\",\"run_id\":\"original\",\"schema\":\"owned-outcome-pending/2\"}"
+          },
+          {
+            "id": "receiving-contract",
+            "pin": "sha256:f3e206035f87f4774b3aca41ffef5b7384eeaf2105a39acae9a88e3c7b84b036",
+            "text": "actual-entry-consumer: The actual component entry is exercised.\nmanual-tags-preserved: Manual tags and identity remain unchanged.\nold-run-binding: An old run and its operation retain their source.\noperation-recovery: Old terminal receipt is observed without another write.\ntypes-and-imports: Source, nominal types and receiving policy are checked.\n"
+          }
+        ],
+        "obligations": [
+          {
+            "id": "actual-entry-consumer",
+            "text": "The actual component entry is exercised.",
+            "refs": [
+              {
+                "source": "receiving-contract",
+                "pin": "sha256:f3e206035f87f4774b3aca41ffef5b7384eeaf2105a39acae9a88e3c7b84b036",
+                "start": 0,
+                "end": 64
+              }
+            ],
+            "pin": "sha256:2216b66db42fc24769a1710a1b8780d6ecf9e5eda177bf0a261ba1566bc6bf98"
+          },
+          {
+            "id": "manual-tags-preserved",
+            "text": "Manual tags and identity remain unchanged.",
+            "refs": [
+              {
+                "source": "receiving-contract",
+                "pin": "sha256:f3e206035f87f4774b3aca41ffef5b7384eeaf2105a39acae9a88e3c7b84b036",
+                "start": 64,
+                "end": 130
+              }
+            ],
+            "pin": "sha256:3113beeccc40e80670cecd4e2a38690a08ec07ff0808276f0ebdccbd9135cc28"
+          },
+          {
+            "id": "old-run-binding",
+            "text": "An old run and its operation retain their source.",
+            "refs": [
+              {
+                "source": "receiving-contract",
+                "pin": "sha256:f3e206035f87f4774b3aca41ffef5b7384eeaf2105a39acae9a88e3c7b84b036",
+                "start": 130,
+                "end": 197
+              }
+            ],
+            "pin": "sha256:a9e9fba7393ba8b054545826497baf5dc9c663b6db5820695888b51f49b0eb09"
+          },
+          {
+            "id": "operation-recovery",
+            "text": "Old terminal receipt is observed without another write.",
+            "refs": [
+              {
+                "source": "receiving-contract",
+                "pin": "sha256:f3e206035f87f4774b3aca41ffef5b7384eeaf2105a39acae9a88e3c7b84b036",
+                "start": 197,
+                "end": 273
+              }
+            ],
+            "pin": "sha256:e774923d92a513881eb79d752678037c789f6e6930289d67501957dbb623c785"
+          },
+          {
+            "id": "types-and-imports",
+            "text": "Source, nominal types and receiving policy are checked.",
+            "refs": [
+              {
+                "source": "receiving-contract",
+                "pin": "sha256:f3e206035f87f4774b3aca41ffef5b7384eeaf2105a39acae9a88e3c7b84b036",
+                "start": 273,
+                "end": 348
+              }
+            ],
+            "pin": "sha256:353b6e82f6039d27405d5e175e3b401325ff0c0f50c5d200d6ffcc5ab797fd36"
+          }
+        ],
+        "unknowns": [
+          {
+            "id": "authority",
+            "text": "Current observation permission must be supplied independently; context restores no rights.",
+            "refs": []
+          },
+          {
+            "id": "production-runtime",
+            "text": "Production durability and authentication are not established by this fixture.",
+            "refs": []
+          }
+        ],
+        "open_effects": [
+          {
+            "id": "old-A",
+            "text": "Old A may have a terminal business decline under S1; preserve exact intent until current observation is permitted.",
+            "refs": [
+              {
+                "source": "pending-operation",
+                "pin": "sha256:d4743bf13c713c3da4b3a41f96ae788e4145d1ff53343480dba10f625c9745ab",
+                "start": 0,
+                "end": 421
+              }
+            ]
+          }
+        ],
+        "candidates": [],
+        "candidate_set": "sha256:d5cca013e9a35eeea1cfb1935230ebd6a52171bf09ea3b9b22c7d97a676aab35",
+        "metadata": {
+          "representation": "canonical-json/1",
+          "model_profile": null,
+          "codec": "component-form/2"
+        }
+      },
+      "expectation": {
+        "schema": "component-expectation/2",
+        "axes": {
+          "semantic": "bagaev-component-source/2",
+          "ir": "bagaev-component-source/2",
+          "form": "component-form/2",
+          "envelope": "component-context/2",
+          "evidence": "probe-evidence/1"
+        },
+        "snapshot": "sha256:8c571078e26436c58a71ee1f4b246fd8af760ca79bc7af3f58831aaaaaed573f",
+        "candidate_set": "sha256:d5cca013e9a35eeea1cfb1935230ebd6a52171bf09ea3b9b22c7d97a676aab35",
+        "sources": [
+          {
+            "id": "current-programme",
+            "pin": "sha256:32ec0bb6ce88e14bee0f26a44fef98361329869fdf9f373bb4b3e1bb93ff9422"
+          },
+          {
+            "id": "goal",
+            "pin": "sha256:4fecefa23daacdac76149abb1da58ad6e0e117c2653ec8d86add9cb56c4eac63"
+          },
+          {
+            "id": "old-programme",
+            "pin": "sha256:8573053b43fef7ac2d4aa5c3b5e76d0e5aad5642d386d536d6a067ecc3821b82"
+          },
+          {
+            "id": "pending-operation",
+            "pin": "sha256:d4743bf13c713c3da4b3a41f96ae788e4145d1ff53343480dba10f625c9745ab"
+          },
+          {
+            "id": "receiving-contract",
+            "pin": "sha256:f3e206035f87f4774b3aca41ffef5b7384eeaf2105a39acae9a88e3c7b84b036"
+          }
+        ],
+        "obligations": [
+          {
+            "id": "actual-entry-consumer",
+            "pin": "sha256:2216b66db42fc24769a1710a1b8780d6ecf9e5eda177bf0a261ba1566bc6bf98"
+          },
+          {
+            "id": "manual-tags-preserved",
+            "pin": "sha256:3113beeccc40e80670cecd4e2a38690a08ec07ff0808276f0ebdccbd9135cc28"
+          },
+          {
+            "id": "old-run-binding",
+            "pin": "sha256:a9e9fba7393ba8b054545826497baf5dc9c663b6db5820695888b51f49b0eb09"
+          },
+          {
+            "id": "operation-recovery",
+            "pin": "sha256:e774923d92a513881eb79d752678037c789f6e6930289d67501957dbb623c785"
+          },
+          {
+            "id": "types-and-imports",
+            "pin": "sha256:353b6e82f6039d27405d5e175e3b401325ff0c0f50c5d200d6ffcc5ab797fd36"
+          }
+        ],
+        "baseline": {
+          "component": {
+            "entry": "apply",
+            "error_type": "StockError",
+            "identity_binding": {
+              "request": "item",
+              "state": "key"
+            },
+            "name": "StockItem",
+            "operation": "set_quantity",
+            "outcome_type": "StockOutcome",
+            "replace_fields": [
+              "quantity"
+            ],
+            "request_type": "SetStock",
+            "revision_binding": "expected",
+            "revision_type": "StockVersion",
+            "state_type": "Stock"
+          },
+          "program": {
+            "entry": "apply",
+            "functions": {
+              "apply": {
+                "body": [
+                  "if",
+                  [
+                    "call",
+                    "is_negative",
+                    [
+                      "field",
+                      [
+                        "arg",
+                        "request"
+                      ],
+                      "quantity"
+                    ]
+                  ],
+                  [
+                    "variant",
+                    "StockOutcome",
+                    "Decline",
+                    [
+                      "record",
+                      "StockError",
+                      [
+                        "text",
+                        "negative-quantity"
+                      ]
+                    ]
+                  ],
+                  [
+                    "variant",
+                    "StockOutcome",
+                    "Propose",
+                    [
+                      "record",
+                      "Stock",
+                      [
+                        "field",
+                        [
+                          "arg",
+                          "state"
+                        ],
+                        "key"
+                      ],
+                      [
+                        "field",
+                        [
+                          "arg",
+                          "state"
+                        ],
+                        "note"
+                      ],
+                      [
+                        "field",
+                        [
+                          "arg",
+                          "request"
+                        ],
+                        "quantity"
+                      ]
+                    ]
+                  ]
+                ],
+                "params": [
+                  [
+                    "state",
+                    "Stock"
+                  ],
+                  [
+                    "request",
+                    "SetStock"
+                  ]
+                ],
+                "result": "StockOutcome"
+              },
+              "is_negative": {
+                "body": [
+                  "lt",
+                  [
+                    "arg",
+                    "quantity"
+                  ],
+                  [
+                    "int",
+                    0
+                  ]
+                ],
+                "params": [
+                  [
+                    "quantity",
+                    "Int64"
+                  ]
+                ],
+                "result": "Bool"
+              }
+            },
+            "lists": {},
+            "records": {
+              "SetStock": {
+                "expected": "StockVersion",
+                "item": "StockKey",
+                "quantity": "Int64"
+              },
+              "Stock": {
+                "key": "StockKey",
+                "note": "Text",
+                "quantity": "Int64"
+              },
+              "StockError": {
+                "reason": "Text"
+              },
+              "StockKey": {
+                "code": "Text"
+              },
+              "StockVersion": {
+                "value": "Int64"
+              }
+            },
+            "schema": "bagaev-typed-record/10",
+            "variants": {
+              "StockOutcome": {
+                "Decline": "StockError",
+                "Propose": "Stock"
+              }
+            }
+          },
+          "schema": "bagaev-component-source/2"
+        },
+        "programme_sources": [
+          {
+            "id": "current-programme",
+            "pin": "sha256:8c571078e26436c58a71ee1f4b246fd8af760ca79bc7af3f58831aaaaaed573f",
+            "role": "baseline"
+          },
+          {
+            "id": "old-programme",
+            "pin": "sha256:057ed3a68e036bbc8a02b4dd32a2aed7931f7cd02b7514354971aa5c5201a308",
+            "role": "dependency"
+          }
+        ],
+        "unknowns": [
+          {
+            "id": "authority",
+            "pin": "sha256:10e076561e85e65d2c9dbe1188fcf6d8c281c8a02f4fceae84785902a126b40a"
+          },
+          {
+            "id": "production-runtime",
+            "pin": "sha256:ee8ff38eb4f3716538dd5a20d6a9be8fd936e30f8c0219aa4d45cb5f497a8694"
+          }
+        ],
+        "open_effects": [
+          {
+            "id": "old-A",
+            "pin": "sha256:060805c0094a4b41d03262234503326b960be3e6a808b24418c80720b1f5e06e"
+          }
+        ]
+      },
+      "checker": "missing",
+      "legacy": false,
+      "expected": {
+        "error": "ContextUnavailable"
+      }
+    },
+    {
+      "id": "CHECKER-SUBSTITUTE",
+      "context": {
+        "schema": "component-context/2",
+        "axes": {
+          "semantic": "bagaev-component-source/2",
+          "ir": "bagaev-component-source/2",
+          "form": "component-form/2",
+          "envelope": "component-context/2",
+          "evidence": "probe-evidence/1"
+        },
+        "snapshot": "sha256:8c571078e26436c58a71ee1f4b246fd8af760ca79bc7af3f58831aaaaaed573f",
+        "sources": [
+          {
+            "id": "current-programme",
+            "pin": "sha256:32ec0bb6ce88e14bee0f26a44fef98361329869fdf9f373bb4b3e1bb93ff9422",
+            "text": "bagaev component-form/2;\ncomponent StockItem operation set_quantity {\n  record StockKey { code: Text };\n  record StockVersion { value: Int64 };\n  record Stock { key: StockKey, quantity: Int64, note: Text };\n  record SetStock { item: StockKey, expected: StockVersion, quantity: Int64 };\n  record StockError { reason: Text };\n  variant StockOutcome { Decline: StockError, Propose: Stock };\n  state Stock identity key;\n  request SetStock identity item revision expected: StockVersion;\n  replace quantity;\n  outcome StockOutcome error StockError;\n  entry apply;\n  fn is_negative(quantity: Int64) -> Bool = quantity < 0;\n  fn apply(state: Stock, request: SetStock) -> StockOutcome =\n    if is_negative(request.quantity)\n    then StockOutcome.Decline(StockError { reason: \"negative-quantity\" })\n    else StockOutcome.Propose(Stock { key: state.key, note: state.note, quantity: request.quantity });\n}\n"
+          },
+          {
+            "id": "goal",
+            "pin": "sha256:4fecefa23daacdac76149abb1da58ad6e0e117c2653ec8d86add9cb56c4eac63",
+            "text": "Retain the old typed business decline without confusing it with newer applied state or restoring rights."
+          },
+          {
+            "id": "old-programme",
+            "pin": "sha256:8573053b43fef7ac2d4aa5c3b5e76d0e5aad5642d386d536d6a067ecc3821b82",
+            "text": "bagaev component-form/2;\ncomponent StockItem operation set_quantity {\n  record StockKey { code: Text };\n  record StockVersion { value: Int64 };\n  record Stock { key: StockKey, quantity: Int64, note: Text };\n  record SetStock { item: StockKey, expected: StockVersion, quantity: Int64 };\n  record StockError { reason: Text };\n  variant StockOutcome { Decline: StockError, Propose: Stock };\n  state Stock identity key;\n  request SetStock identity item revision expected: StockVersion;\n  replace quantity;\n  outcome StockOutcome error StockError;\n  entry apply;\n  fn apply(state: Stock, request: SetStock) -> StockOutcome =\n    if request.quantity < 0\n    then StockOutcome.Decline(StockError { reason: \"negative-quantity\" })\n    else StockOutcome.Propose(Stock { key: state.key, note: state.note, quantity: request.quantity });\n}\n"
+          },
+          {
+            "id": "pending-operation",
+            "pin": "sha256:d4743bf13c713c3da4b3a41f96ae788e4145d1ff53343480dba10f625c9745ab",
+            "text": "{\"packet\":{\"deadline\":100,\"epoch\":1,\"key\":{\"domain\":\"owner\",\"id\":\"A\",\"resource\":\"stock/g1\"},\"request\":{\"expected\":{\"value\":7},\"item\":{\"code\":\"sku1\"},\"quantity\":-1},\"source\":\"057ed3a68e036bbc8a02b4dd32a2aed7931f7cd02b7514354971aa5c5201a308\"},\"programme_pin\":\"sha256:057ed3a68e036bbc8a02b4dd32a2aed7931f7cd02b7514354971aa5c5201a308\",\"programme_source\":\"old-programme\",\"run_id\":\"original\",\"schema\":\"owned-outcome-pending/2\"}"
+          },
+          {
+            "id": "receiving-contract",
+            "pin": "sha256:f3e206035f87f4774b3aca41ffef5b7384eeaf2105a39acae9a88e3c7b84b036",
+            "text": "actual-entry-consumer: The actual component entry is exercised.\nmanual-tags-preserved: Manual tags and identity remain unchanged.\nold-run-binding: An old run and its operation retain their source.\noperation-recovery: Old terminal receipt is observed without another write.\ntypes-and-imports: Source, nominal types and receiving policy are checked.\n"
+          }
+        ],
+        "obligations": [
+          {
+            "id": "actual-entry-consumer",
+            "text": "The actual component entry is exercised.",
+            "refs": [
+              {
+                "source": "receiving-contract",
+                "pin": "sha256:f3e206035f87f4774b3aca41ffef5b7384eeaf2105a39acae9a88e3c7b84b036",
+                "start": 0,
+                "end": 64
+              }
+            ],
+            "pin": "sha256:2216b66db42fc24769a1710a1b8780d6ecf9e5eda177bf0a261ba1566bc6bf98"
+          },
+          {
+            "id": "manual-tags-preserved",
+            "text": "Manual tags and identity remain unchanged.",
+            "refs": [
+              {
+                "source": "receiving-contract",
+                "pin": "sha256:f3e206035f87f4774b3aca41ffef5b7384eeaf2105a39acae9a88e3c7b84b036",
+                "start": 64,
+                "end": 130
+              }
+            ],
+            "pin": "sha256:3113beeccc40e80670cecd4e2a38690a08ec07ff0808276f0ebdccbd9135cc28"
+          },
+          {
+            "id": "old-run-binding",
+            "text": "An old run and its operation retain their source.",
+            "refs": [
+              {
+                "source": "receiving-contract",
+                "pin": "sha256:f3e206035f87f4774b3aca41ffef5b7384eeaf2105a39acae9a88e3c7b84b036",
+                "start": 130,
+                "end": 197
+              }
+            ],
+            "pin": "sha256:a9e9fba7393ba8b054545826497baf5dc9c663b6db5820695888b51f49b0eb09"
+          },
+          {
+            "id": "operation-recovery",
+            "text": "Old terminal receipt is observed without another write.",
+            "refs": [
+              {
+                "source": "receiving-contract",
+                "pin": "sha256:f3e206035f87f4774b3aca41ffef5b7384eeaf2105a39acae9a88e3c7b84b036",
+                "start": 197,
+                "end": 273
+              }
+            ],
+            "pin": "sha256:e774923d92a513881eb79d752678037c789f6e6930289d67501957dbb623c785"
+          },
+          {
+            "id": "types-and-imports",
+            "text": "Source, nominal types and receiving policy are checked.",
+            "refs": [
+              {
+                "source": "receiving-contract",
+                "pin": "sha256:f3e206035f87f4774b3aca41ffef5b7384eeaf2105a39acae9a88e3c7b84b036",
+                "start": 273,
+                "end": 348
+              }
+            ],
+            "pin": "sha256:353b6e82f6039d27405d5e175e3b401325ff0c0f50c5d200d6ffcc5ab797fd36"
+          }
+        ],
+        "unknowns": [
+          {
+            "id": "authority",
+            "text": "Current observation permission must be supplied independently; context restores no rights.",
+            "refs": []
+          },
+          {
+            "id": "production-runtime",
+            "text": "Production durability and authentication are not established by this fixture.",
+            "refs": []
+          }
+        ],
+        "open_effects": [
+          {
+            "id": "old-A",
+            "text": "Old A may have a terminal business decline under S1; preserve exact intent until current observation is permitted.",
+            "refs": [
+              {
+                "source": "pending-operation",
+                "pin": "sha256:d4743bf13c713c3da4b3a41f96ae788e4145d1ff53343480dba10f625c9745ab",
+                "start": 0,
+                "end": 421
+              }
+            ]
+          }
+        ],
+        "candidates": [],
+        "candidate_set": "sha256:d5cca013e9a35eeea1cfb1935230ebd6a52171bf09ea3b9b22c7d97a676aab35",
+        "metadata": {
+          "representation": "canonical-json/1",
+          "model_profile": null,
+          "codec": "component-form/2"
+        }
+      },
+      "expectation": {
+        "schema": "component-expectation/2",
+        "axes": {
+          "semantic": "bagaev-component-source/2",
+          "ir": "bagaev-component-source/2",
+          "form": "component-form/2",
+          "envelope": "component-context/2",
+          "evidence": "probe-evidence/1"
+        },
+        "snapshot": "sha256:8c571078e26436c58a71ee1f4b246fd8af760ca79bc7af3f58831aaaaaed573f",
+        "candidate_set": "sha256:d5cca013e9a35eeea1cfb1935230ebd6a52171bf09ea3b9b22c7d97a676aab35",
+        "sources": [
+          {
+            "id": "current-programme",
+            "pin": "sha256:32ec0bb6ce88e14bee0f26a44fef98361329869fdf9f373bb4b3e1bb93ff9422"
+          },
+          {
+            "id": "goal",
+            "pin": "sha256:4fecefa23daacdac76149abb1da58ad6e0e117c2653ec8d86add9cb56c4eac63"
+          },
+          {
+            "id": "old-programme",
+            "pin": "sha256:8573053b43fef7ac2d4aa5c3b5e76d0e5aad5642d386d536d6a067ecc3821b82"
+          },
+          {
+            "id": "pending-operation",
+            "pin": "sha256:d4743bf13c713c3da4b3a41f96ae788e4145d1ff53343480dba10f625c9745ab"
+          },
+          {
+            "id": "receiving-contract",
+            "pin": "sha256:f3e206035f87f4774b3aca41ffef5b7384eeaf2105a39acae9a88e3c7b84b036"
+          }
+        ],
+        "obligations": [
+          {
+            "id": "actual-entry-consumer",
+            "pin": "sha256:2216b66db42fc24769a1710a1b8780d6ecf9e5eda177bf0a261ba1566bc6bf98"
+          },
+          {
+            "id": "manual-tags-preserved",
+            "pin": "sha256:3113beeccc40e80670cecd4e2a38690a08ec07ff0808276f0ebdccbd9135cc28"
+          },
+          {
+            "id": "old-run-binding",
+            "pin": "sha256:a9e9fba7393ba8b054545826497baf5dc9c663b6db5820695888b51f49b0eb09"
+          },
+          {
+            "id": "operation-recovery",
+            "pin": "sha256:e774923d92a513881eb79d752678037c789f6e6930289d67501957dbb623c785"
+          },
+          {
+            "id": "types-and-imports",
+            "pin": "sha256:353b6e82f6039d27405d5e175e3b401325ff0c0f50c5d200d6ffcc5ab797fd36"
+          }
+        ],
+        "baseline": {
+          "component": {
+            "entry": "apply",
+            "error_type": "StockError",
+            "identity_binding": {
+              "request": "item",
+              "state": "key"
+            },
+            "name": "StockItem",
+            "operation": "set_quantity",
+            "outcome_type": "StockOutcome",
+            "replace_fields": [
+              "quantity"
+            ],
+            "request_type": "SetStock",
+            "revision_binding": "expected",
+            "revision_type": "StockVersion",
+            "state_type": "Stock"
+          },
+          "program": {
+            "entry": "apply",
+            "functions": {
+              "apply": {
+                "body": [
+                  "if",
+                  [
+                    "call",
+                    "is_negative",
+                    [
+                      "field",
+                      [
+                        "arg",
+                        "request"
+                      ],
+                      "quantity"
+                    ]
+                  ],
+                  [
+                    "variant",
+                    "StockOutcome",
+                    "Decline",
+                    [
+                      "record",
+                      "StockError",
+                      [
+                        "text",
+                        "negative-quantity"
+                      ]
+                    ]
+                  ],
+                  [
+                    "variant",
+                    "StockOutcome",
+                    "Propose",
+                    [
+                      "record",
+                      "Stock",
+                      [
+                        "field",
+                        [
+                          "arg",
+                          "state"
+                        ],
+                        "key"
+                      ],
+                      [
+                        "field",
+                        [
+                          "arg",
+                          "state"
+                        ],
+                        "note"
+                      ],
+                      [
+                        "field",
+                        [
+                          "arg",
+                          "request"
+                        ],
+                        "quantity"
+                      ]
+                    ]
+                  ]
+                ],
+                "params": [
+                  [
+                    "state",
+                    "Stock"
+                  ],
+                  [
+                    "request",
+                    "SetStock"
+                  ]
+                ],
+                "result": "StockOutcome"
+              },
+              "is_negative": {
+                "body": [
+                  "lt",
+                  [
+                    "arg",
+                    "quantity"
+                  ],
+                  [
+                    "int",
+                    0
+                  ]
+                ],
+                "params": [
+                  [
+                    "quantity",
+                    "Int64"
+                  ]
+                ],
+                "result": "Bool"
+              }
+            },
+            "lists": {},
+            "records": {
+              "SetStock": {
+                "expected": "StockVersion",
+                "item": "StockKey",
+                "quantity": "Int64"
+              },
+              "Stock": {
+                "key": "StockKey",
+                "note": "Text",
+                "quantity": "Int64"
+              },
+              "StockError": {
+                "reason": "Text"
+              },
+              "StockKey": {
+                "code": "Text"
+              },
+              "StockVersion": {
+                "value": "Int64"
+              }
+            },
+            "schema": "bagaev-typed-record/10",
+            "variants": {
+              "StockOutcome": {
+                "Decline": "StockError",
+                "Propose": "Stock"
+              }
+            }
+          },
+          "schema": "bagaev-component-source/2"
+        },
+        "programme_sources": [
+          {
+            "id": "current-programme",
+            "pin": "sha256:8c571078e26436c58a71ee1f4b246fd8af760ca79bc7af3f58831aaaaaed573f",
+            "role": "baseline"
+          },
+          {
+            "id": "old-programme",
+            "pin": "sha256:057ed3a68e036bbc8a02b4dd32a2aed7931f7cd02b7514354971aa5c5201a308",
+            "role": "dependency"
+          }
+        ],
+        "unknowns": [
+          {
+            "id": "authority",
+            "pin": "sha256:10e076561e85e65d2c9dbe1188fcf6d8c281c8a02f4fceae84785902a126b40a"
+          },
+          {
+            "id": "production-runtime",
+            "pin": "sha256:ee8ff38eb4f3716538dd5a20d6a9be8fd936e30f8c0219aa4d45cb5f497a8694"
+          }
+        ],
+        "open_effects": [
+          {
+            "id": "old-A",
+            "pin": "sha256:060805c0094a4b41d03262234503326b960be3e6a808b24418c80720b1f5e06e"
+          }
+        ]
+      },
+      "checker": "substitute",
+      "legacy": false,
+      "expected": {
+        "error": "ContextUnavailable"
+      }
+    },
+    {
+      "id": "OLD-API-REFUSES",
+      "context": {
+        "schema": "component-context/2",
+        "axes": {
+          "semantic": "bagaev-component-source/2",
+          "ir": "bagaev-component-source/2",
+          "form": "component-form/2",
+          "envelope": "component-context/2",
+          "evidence": "probe-evidence/1"
+        },
+        "snapshot": "sha256:8c571078e26436c58a71ee1f4b246fd8af760ca79bc7af3f58831aaaaaed573f",
+        "sources": [
+          {
+            "id": "current-programme",
+            "pin": "sha256:32ec0bb6ce88e14bee0f26a44fef98361329869fdf9f373bb4b3e1bb93ff9422",
+            "text": "bagaev component-form/2;\ncomponent StockItem operation set_quantity {\n  record StockKey { code: Text };\n  record StockVersion { value: Int64 };\n  record Stock { key: StockKey, quantity: Int64, note: Text };\n  record SetStock { item: StockKey, expected: StockVersion, quantity: Int64 };\n  record StockError { reason: Text };\n  variant StockOutcome { Decline: StockError, Propose: Stock };\n  state Stock identity key;\n  request SetStock identity item revision expected: StockVersion;\n  replace quantity;\n  outcome StockOutcome error StockError;\n  entry apply;\n  fn is_negative(quantity: Int64) -> Bool = quantity < 0;\n  fn apply(state: Stock, request: SetStock) -> StockOutcome =\n    if is_negative(request.quantity)\n    then StockOutcome.Decline(StockError { reason: \"negative-quantity\" })\n    else StockOutcome.Propose(Stock { key: state.key, note: state.note, quantity: request.quantity });\n}\n"
+          },
+          {
+            "id": "goal",
+            "pin": "sha256:4fecefa23daacdac76149abb1da58ad6e0e117c2653ec8d86add9cb56c4eac63",
+            "text": "Retain the old typed business decline without confusing it with newer applied state or restoring rights."
+          },
+          {
+            "id": "old-programme",
+            "pin": "sha256:8573053b43fef7ac2d4aa5c3b5e76d0e5aad5642d386d536d6a067ecc3821b82",
+            "text": "bagaev component-form/2;\ncomponent StockItem operation set_quantity {\n  record StockKey { code: Text };\n  record StockVersion { value: Int64 };\n  record Stock { key: StockKey, quantity: Int64, note: Text };\n  record SetStock { item: StockKey, expected: StockVersion, quantity: Int64 };\n  record StockError { reason: Text };\n  variant StockOutcome { Decline: StockError, Propose: Stock };\n  state Stock identity key;\n  request SetStock identity item revision expected: StockVersion;\n  replace quantity;\n  outcome StockOutcome error StockError;\n  entry apply;\n  fn apply(state: Stock, request: SetStock) -> StockOutcome =\n    if request.quantity < 0\n    then StockOutcome.Decline(StockError { reason: \"negative-quantity\" })\n    else StockOutcome.Propose(Stock { key: state.key, note: state.note, quantity: request.quantity });\n}\n"
+          },
+          {
+            "id": "pending-operation",
+            "pin": "sha256:d4743bf13c713c3da4b3a41f96ae788e4145d1ff53343480dba10f625c9745ab",
+            "text": "{\"packet\":{\"deadline\":100,\"epoch\":1,\"key\":{\"domain\":\"owner\",\"id\":\"A\",\"resource\":\"stock/g1\"},\"request\":{\"expected\":{\"value\":7},\"item\":{\"code\":\"sku1\"},\"quantity\":-1},\"source\":\"057ed3a68e036bbc8a02b4dd32a2aed7931f7cd02b7514354971aa5c5201a308\"},\"programme_pin\":\"sha256:057ed3a68e036bbc8a02b4dd32a2aed7931f7cd02b7514354971aa5c5201a308\",\"programme_source\":\"old-programme\",\"run_id\":\"original\",\"schema\":\"owned-outcome-pending/2\"}"
+          },
+          {
+            "id": "receiving-contract",
+            "pin": "sha256:f3e206035f87f4774b3aca41ffef5b7384eeaf2105a39acae9a88e3c7b84b036",
+            "text": "actual-entry-consumer: The actual component entry is exercised.\nmanual-tags-preserved: Manual tags and identity remain unchanged.\nold-run-binding: An old run and its operation retain their source.\noperation-recovery: Old terminal receipt is observed without another write.\ntypes-and-imports: Source, nominal types and receiving policy are checked.\n"
+          }
+        ],
+        "obligations": [
+          {
+            "id": "actual-entry-consumer",
+            "text": "The actual component entry is exercised.",
+            "refs": [
+              {
+                "source": "receiving-contract",
+                "pin": "sha256:f3e206035f87f4774b3aca41ffef5b7384eeaf2105a39acae9a88e3c7b84b036",
+                "start": 0,
+                "end": 64
+              }
+            ],
+            "pin": "sha256:2216b66db42fc24769a1710a1b8780d6ecf9e5eda177bf0a261ba1566bc6bf98"
+          },
+          {
+            "id": "manual-tags-preserved",
+            "text": "Manual tags and identity remain unchanged.",
+            "refs": [
+              {
+                "source": "receiving-contract",
+                "pin": "sha256:f3e206035f87f4774b3aca41ffef5b7384eeaf2105a39acae9a88e3c7b84b036",
+                "start": 64,
+                "end": 130
+              }
+            ],
+            "pin": "sha256:3113beeccc40e80670cecd4e2a38690a08ec07ff0808276f0ebdccbd9135cc28"
+          },
+          {
+            "id": "old-run-binding",
+            "text": "An old run and its operation retain their source.",
+            "refs": [
+              {
+                "source": "receiving-contract",
+                "pin": "sha256:f3e206035f87f4774b3aca41ffef5b7384eeaf2105a39acae9a88e3c7b84b036",
+                "start": 130,
+                "end": 197
+              }
+            ],
+            "pin": "sha256:a9e9fba7393ba8b054545826497baf5dc9c663b6db5820695888b51f49b0eb09"
+          },
+          {
+            "id": "operation-recovery",
+            "text": "Old terminal receipt is observed without another write.",
+            "refs": [
+              {
+                "source": "receiving-contract",
+                "pin": "sha256:f3e206035f87f4774b3aca41ffef5b7384eeaf2105a39acae9a88e3c7b84b036",
+                "start": 197,
+                "end": 273
+              }
+            ],
+            "pin": "sha256:e774923d92a513881eb79d752678037c789f6e6930289d67501957dbb623c785"
+          },
+          {
+            "id": "types-and-imports",
+            "text": "Source, nominal types and receiving policy are checked.",
+            "refs": [
+              {
+                "source": "receiving-contract",
+                "pin": "sha256:f3e206035f87f4774b3aca41ffef5b7384eeaf2105a39acae9a88e3c7b84b036",
+                "start": 273,
+                "end": 348
+              }
+            ],
+            "pin": "sha256:353b6e82f6039d27405d5e175e3b401325ff0c0f50c5d200d6ffcc5ab797fd36"
+          }
+        ],
+        "unknowns": [
+          {
+            "id": "authority",
+            "text": "Current observation permission must be supplied independently; context restores no rights.",
+            "refs": []
+          },
+          {
+            "id": "production-runtime",
+            "text": "Production durability and authentication are not established by this fixture.",
+            "refs": []
+          }
+        ],
+        "open_effects": [
+          {
+            "id": "old-A",
+            "text": "Old A may have a terminal business decline under S1; preserve exact intent until current observation is permitted.",
+            "refs": [
+              {
+                "source": "pending-operation",
+                "pin": "sha256:d4743bf13c713c3da4b3a41f96ae788e4145d1ff53343480dba10f625c9745ab",
+                "start": 0,
+                "end": 421
+              }
+            ]
+          }
+        ],
+        "candidates": [],
+        "candidate_set": "sha256:d5cca013e9a35eeea1cfb1935230ebd6a52171bf09ea3b9b22c7d97a676aab35",
+        "metadata": {
+          "representation": "canonical-json/1",
+          "model_profile": null,
+          "codec": "component-form/2"
+        }
+      },
+      "expectation": {
+        "schema": "component-expectation/2",
+        "axes": {
+          "semantic": "bagaev-component-source/2",
+          "ir": "bagaev-component-source/2",
+          "form": "component-form/2",
+          "envelope": "component-context/2",
+          "evidence": "probe-evidence/1"
+        },
+        "snapshot": "sha256:8c571078e26436c58a71ee1f4b246fd8af760ca79bc7af3f58831aaaaaed573f",
+        "candidate_set": "sha256:d5cca013e9a35eeea1cfb1935230ebd6a52171bf09ea3b9b22c7d97a676aab35",
+        "sources": [
+          {
+            "id": "current-programme",
+            "pin": "sha256:32ec0bb6ce88e14bee0f26a44fef98361329869fdf9f373bb4b3e1bb93ff9422"
+          },
+          {
+            "id": "goal",
+            "pin": "sha256:4fecefa23daacdac76149abb1da58ad6e0e117c2653ec8d86add9cb56c4eac63"
+          },
+          {
+            "id": "old-programme",
+            "pin": "sha256:8573053b43fef7ac2d4aa5c3b5e76d0e5aad5642d386d536d6a067ecc3821b82"
+          },
+          {
+            "id": "pending-operation",
+            "pin": "sha256:d4743bf13c713c3da4b3a41f96ae788e4145d1ff53343480dba10f625c9745ab"
+          },
+          {
+            "id": "receiving-contract",
+            "pin": "sha256:f3e206035f87f4774b3aca41ffef5b7384eeaf2105a39acae9a88e3c7b84b036"
+          }
+        ],
+        "obligations": [
+          {
+            "id": "actual-entry-consumer",
+            "pin": "sha256:2216b66db42fc24769a1710a1b8780d6ecf9e5eda177bf0a261ba1566bc6bf98"
+          },
+          {
+            "id": "manual-tags-preserved",
+            "pin": "sha256:3113beeccc40e80670cecd4e2a38690a08ec07ff0808276f0ebdccbd9135cc28"
+          },
+          {
+            "id": "old-run-binding",
+            "pin": "sha256:a9e9fba7393ba8b054545826497baf5dc9c663b6db5820695888b51f49b0eb09"
+          },
+          {
+            "id": "operation-recovery",
+            "pin": "sha256:e774923d92a513881eb79d752678037c789f6e6930289d67501957dbb623c785"
+          },
+          {
+            "id": "types-and-imports",
+            "pin": "sha256:353b6e82f6039d27405d5e175e3b401325ff0c0f50c5d200d6ffcc5ab797fd36"
+          }
+        ],
+        "baseline": {
+          "component": {
+            "entry": "apply",
+            "error_type": "StockError",
+            "identity_binding": {
+              "request": "item",
+              "state": "key"
+            },
+            "name": "StockItem",
+            "operation": "set_quantity",
+            "outcome_type": "StockOutcome",
+            "replace_fields": [
+              "quantity"
+            ],
+            "request_type": "SetStock",
+            "revision_binding": "expected",
+            "revision_type": "StockVersion",
+            "state_type": "Stock"
+          },
+          "program": {
+            "entry": "apply",
+            "functions": {
+              "apply": {
+                "body": [
+                  "if",
+                  [
+                    "call",
+                    "is_negative",
+                    [
+                      "field",
+                      [
+                        "arg",
+                        "request"
+                      ],
+                      "quantity"
+                    ]
+                  ],
+                  [
+                    "variant",
+                    "StockOutcome",
+                    "Decline",
+                    [
+                      "record",
+                      "StockError",
+                      [
+                        "text",
+                        "negative-quantity"
+                      ]
+                    ]
+                  ],
+                  [
+                    "variant",
+                    "StockOutcome",
+                    "Propose",
+                    [
+                      "record",
+                      "Stock",
+                      [
+                        "field",
+                        [
+                          "arg",
+                          "state"
+                        ],
+                        "key"
+                      ],
+                      [
+                        "field",
+                        [
+                          "arg",
+                          "state"
+                        ],
+                        "note"
+                      ],
+                      [
+                        "field",
+                        [
+                          "arg",
+                          "request"
+                        ],
+                        "quantity"
+                      ]
+                    ]
+                  ]
+                ],
+                "params": [
+                  [
+                    "state",
+                    "Stock"
+                  ],
+                  [
+                    "request",
+                    "SetStock"
+                  ]
+                ],
+                "result": "StockOutcome"
+              },
+              "is_negative": {
+                "body": [
+                  "lt",
+                  [
+                    "arg",
+                    "quantity"
+                  ],
+                  [
+                    "int",
+                    0
+                  ]
+                ],
+                "params": [
+                  [
+                    "quantity",
+                    "Int64"
+                  ]
+                ],
+                "result": "Bool"
+              }
+            },
+            "lists": {},
+            "records": {
+              "SetStock": {
+                "expected": "StockVersion",
+                "item": "StockKey",
+                "quantity": "Int64"
+              },
+              "Stock": {
+                "key": "StockKey",
+                "note": "Text",
+                "quantity": "Int64"
+              },
+              "StockError": {
+                "reason": "Text"
+              },
+              "StockKey": {
+                "code": "Text"
+              },
+              "StockVersion": {
+                "value": "Int64"
+              }
+            },
+            "schema": "bagaev-typed-record/10",
+            "variants": {
+              "StockOutcome": {
+                "Decline": "StockError",
+                "Propose": "Stock"
+              }
+            }
+          },
+          "schema": "bagaev-component-source/2"
+        },
+        "programme_sources": [
+          {
+            "id": "current-programme",
+            "pin": "sha256:8c571078e26436c58a71ee1f4b246fd8af760ca79bc7af3f58831aaaaaed573f",
+            "role": "baseline"
+          },
+          {
+            "id": "old-programme",
+            "pin": "sha256:057ed3a68e036bbc8a02b4dd32a2aed7931f7cd02b7514354971aa5c5201a308",
+            "role": "dependency"
+          }
+        ],
+        "unknowns": [
+          {
+            "id": "authority",
+            "pin": "sha256:10e076561e85e65d2c9dbe1188fcf6d8c281c8a02f4fceae84785902a126b40a"
+          },
+          {
+            "id": "production-runtime",
+            "pin": "sha256:ee8ff38eb4f3716538dd5a20d6a9be8fd936e30f8c0219aa4d45cb5f497a8694"
+          }
+        ],
+        "open_effects": [
+          {
+            "id": "old-A",
+            "pin": "sha256:060805c0094a4b41d03262234503326b960be3e6a808b24418c80720b1f5e06e"
+          }
+        ]
+      },
+      "checker": "actual",
+      "legacy": true,
+      "expected": {
+        "error": "CTX_VERSION",
+        "location": "/schema"
+      }
+    },
+    {
+      "id": "BAD-BASELINE",
+      "context": {
+        "schema": "component-context/2",
+        "axes": {
+          "semantic": "bagaev-component-source/2",
+          "ir": "bagaev-component-source/2",
+          "form": "component-form/2",
+          "envelope": "component-context/2",
+          "evidence": "probe-evidence/1"
+        },
+        "snapshot": "sha256:8c571078e26436c58a71ee1f4b246fd8af760ca79bc7af3f58831aaaaaed573f",
+        "sources": [
+          {
+            "id": "current-programme",
+            "pin": "sha256:32ec0bb6ce88e14bee0f26a44fef98361329869fdf9f373bb4b3e1bb93ff9422",
+            "text": "bagaev component-form/2;\ncomponent StockItem operation set_quantity {\n  record StockKey { code: Text };\n  record StockVersion { value: Int64 };\n  record Stock { key: StockKey, quantity: Int64, note: Text };\n  record SetStock { item: StockKey, expected: StockVersion, quantity: Int64 };\n  record StockError { reason: Text };\n  variant StockOutcome { Decline: StockError, Propose: Stock };\n  state Stock identity key;\n  request SetStock identity item revision expected: StockVersion;\n  replace quantity;\n  outcome StockOutcome error StockError;\n  entry apply;\n  fn is_negative(quantity: Int64) -> Bool = quantity < 0;\n  fn apply(state: Stock, request: SetStock) -> StockOutcome =\n    if is_negative(request.quantity)\n    then StockOutcome.Decline(StockError { reason: \"negative-quantity\" })\n    else StockOutcome.Propose(Stock { key: state.key, note: state.note, quantity: request.quantity });\n}\n"
+          },
+          {
+            "id": "goal",
+            "pin": "sha256:4fecefa23daacdac76149abb1da58ad6e0e117c2653ec8d86add9cb56c4eac63",
+            "text": "Retain the old typed business decline without confusing it with newer applied state or restoring rights."
+          },
+          {
+            "id": "old-programme",
+            "pin": "sha256:8573053b43fef7ac2d4aa5c3b5e76d0e5aad5642d386d536d6a067ecc3821b82",
+            "text": "bagaev component-form/2;\ncomponent StockItem operation set_quantity {\n  record StockKey { code: Text };\n  record StockVersion { value: Int64 };\n  record Stock { key: StockKey, quantity: Int64, note: Text };\n  record SetStock { item: StockKey, expected: StockVersion, quantity: Int64 };\n  record StockError { reason: Text };\n  variant StockOutcome { Decline: StockError, Propose: Stock };\n  state Stock identity key;\n  request SetStock identity item revision expected: StockVersion;\n  replace quantity;\n  outcome StockOutcome error StockError;\n  entry apply;\n  fn apply(state: Stock, request: SetStock) -> StockOutcome =\n    if request.quantity < 0\n    then StockOutcome.Decline(StockError { reason: \"negative-quantity\" })\n    else StockOutcome.Propose(Stock { key: state.key, note: state.note, quantity: request.quantity });\n}\n"
+          },
+          {
+            "id": "pending-operation",
+            "pin": "sha256:d4743bf13c713c3da4b3a41f96ae788e4145d1ff53343480dba10f625c9745ab",
+            "text": "{\"packet\":{\"deadline\":100,\"epoch\":1,\"key\":{\"domain\":\"owner\",\"id\":\"A\",\"resource\":\"stock/g1\"},\"request\":{\"expected\":{\"value\":7},\"item\":{\"code\":\"sku1\"},\"quantity\":-1},\"source\":\"057ed3a68e036bbc8a02b4dd32a2aed7931f7cd02b7514354971aa5c5201a308\"},\"programme_pin\":\"sha256:057ed3a68e036bbc8a02b4dd32a2aed7931f7cd02b7514354971aa5c5201a308\",\"programme_source\":\"old-programme\",\"run_id\":\"original\",\"schema\":\"owned-outcome-pending/2\"}"
+          },
+          {
+            "id": "receiving-contract",
+            "pin": "sha256:f3e206035f87f4774b3aca41ffef5b7384eeaf2105a39acae9a88e3c7b84b036",
+            "text": "actual-entry-consumer: The actual component entry is exercised.\nmanual-tags-preserved: Manual tags and identity remain unchanged.\nold-run-binding: An old run and its operation retain their source.\noperation-recovery: Old terminal receipt is observed without another write.\ntypes-and-imports: Source, nominal types and receiving policy are checked.\n"
+          }
+        ],
+        "obligations": [
+          {
+            "id": "actual-entry-consumer",
+            "text": "The actual component entry is exercised.",
+            "refs": [
+              {
+                "source": "receiving-contract",
+                "pin": "sha256:f3e206035f87f4774b3aca41ffef5b7384eeaf2105a39acae9a88e3c7b84b036",
+                "start": 0,
+                "end": 64
+              }
+            ],
+            "pin": "sha256:2216b66db42fc24769a1710a1b8780d6ecf9e5eda177bf0a261ba1566bc6bf98"
+          },
+          {
+            "id": "manual-tags-preserved",
+            "text": "Manual tags and identity remain unchanged.",
+            "refs": [
+              {
+                "source": "receiving-contract",
+                "pin": "sha256:f3e206035f87f4774b3aca41ffef5b7384eeaf2105a39acae9a88e3c7b84b036",
+                "start": 64,
+                "end": 130
+              }
+            ],
+            "pin": "sha256:3113beeccc40e80670cecd4e2a38690a08ec07ff0808276f0ebdccbd9135cc28"
+          },
+          {
+            "id": "old-run-binding",
+            "text": "An old run and its operation retain their source.",
+            "refs": [
+              {
+                "source": "receiving-contract",
+                "pin": "sha256:f3e206035f87f4774b3aca41ffef5b7384eeaf2105a39acae9a88e3c7b84b036",
+                "start": 130,
+                "end": 197
+              }
+            ],
+            "pin": "sha256:a9e9fba7393ba8b054545826497baf5dc9c663b6db5820695888b51f49b0eb09"
+          },
+          {
+            "id": "operation-recovery",
+            "text": "Old terminal receipt is observed without another write.",
+            "refs": [
+              {
+                "source": "receiving-contract",
+                "pin": "sha256:f3e206035f87f4774b3aca41ffef5b7384eeaf2105a39acae9a88e3c7b84b036",
+                "start": 197,
+                "end": 273
+              }
+            ],
+            "pin": "sha256:e774923d92a513881eb79d752678037c789f6e6930289d67501957dbb623c785"
+          },
+          {
+            "id": "types-and-imports",
+            "text": "Source, nominal types and receiving policy are checked.",
+            "refs": [
+              {
+                "source": "receiving-contract",
+                "pin": "sha256:f3e206035f87f4774b3aca41ffef5b7384eeaf2105a39acae9a88e3c7b84b036",
+                "start": 273,
+                "end": 348
+              }
+            ],
+            "pin": "sha256:353b6e82f6039d27405d5e175e3b401325ff0c0f50c5d200d6ffcc5ab797fd36"
+          }
+        ],
+        "unknowns": [
+          {
+            "id": "authority",
+            "text": "Current observation permission must be supplied independently; context restores no rights.",
+            "refs": []
+          },
+          {
+            "id": "production-runtime",
+            "text": "Production durability and authentication are not established by this fixture.",
+            "refs": []
+          }
+        ],
+        "open_effects": [
+          {
+            "id": "old-A",
+            "text": "Old A may have a terminal business decline under S1; preserve exact intent until current observation is permitted.",
+            "refs": [
+              {
+                "source": "pending-operation",
+                "pin": "sha256:d4743bf13c713c3da4b3a41f96ae788e4145d1ff53343480dba10f625c9745ab",
+                "start": 0,
+                "end": 421
+              }
+            ]
+          }
+        ],
+        "candidates": [],
+        "candidate_set": "sha256:d5cca013e9a35eeea1cfb1935230ebd6a52171bf09ea3b9b22c7d97a676aab35",
+        "metadata": {
+          "representation": "canonical-json/1",
+          "model_profile": null,
+          "codec": "component-form/2"
+        }
+      },
+      "expectation": {
+        "schema": "component-expectation/2",
+        "axes": {
+          "semantic": "bagaev-component-source/2",
+          "ir": "bagaev-component-source/2",
+          "form": "component-form/2",
+          "envelope": "component-context/2",
+          "evidence": "probe-evidence/1"
+        },
+        "snapshot": "sha256:8c571078e26436c58a71ee1f4b246fd8af760ca79bc7af3f58831aaaaaed573f",
+        "candidate_set": "sha256:d5cca013e9a35eeea1cfb1935230ebd6a52171bf09ea3b9b22c7d97a676aab35",
+        "sources": [
+          {
+            "id": "current-programme",
+            "pin": "sha256:32ec0bb6ce88e14bee0f26a44fef98361329869fdf9f373bb4b3e1bb93ff9422"
+          },
+          {
+            "id": "goal",
+            "pin": "sha256:4fecefa23daacdac76149abb1da58ad6e0e117c2653ec8d86add9cb56c4eac63"
+          },
+          {
+            "id": "old-programme",
+            "pin": "sha256:8573053b43fef7ac2d4aa5c3b5e76d0e5aad5642d386d536d6a067ecc3821b82"
+          },
+          {
+            "id": "pending-operation",
+            "pin": "sha256:d4743bf13c713c3da4b3a41f96ae788e4145d1ff53343480dba10f625c9745ab"
+          },
+          {
+            "id": "receiving-contract",
+            "pin": "sha256:f3e206035f87f4774b3aca41ffef5b7384eeaf2105a39acae9a88e3c7b84b036"
+          }
+        ],
+        "obligations": [
+          {
+            "id": "actual-entry-consumer",
+            "pin": "sha256:2216b66db42fc24769a1710a1b8780d6ecf9e5eda177bf0a261ba1566bc6bf98"
+          },
+          {
+            "id": "manual-tags-preserved",
+            "pin": "sha256:3113beeccc40e80670cecd4e2a38690a08ec07ff0808276f0ebdccbd9135cc28"
+          },
+          {
+            "id": "old-run-binding",
+            "pin": "sha256:a9e9fba7393ba8b054545826497baf5dc9c663b6db5820695888b51f49b0eb09"
+          },
+          {
+            "id": "operation-recovery",
+            "pin": "sha256:e774923d92a513881eb79d752678037c789f6e6930289d67501957dbb623c785"
+          },
+          {
+            "id": "types-and-imports",
+            "pin": "sha256:353b6e82f6039d27405d5e175e3b401325ff0c0f50c5d200d6ffcc5ab797fd36"
+          }
+        ],
+        "baseline": {
+          "component": {
+            "entry": "apply",
+            "error_type": "StockError",
+            "identity_binding": {
+              "request": "item",
+              "state": "key"
+            },
+            "name": "StockItem",
+            "operation": "set_quantity",
+            "outcome_type": "StockOutcome",
+            "replace_fields": [
+              "quantity"
+            ],
+            "request_type": "SetStock",
+            "revision_binding": "expected",
+            "revision_type": "StockVersion",
+            "state_type": "Stock"
+          },
+          "program": {
+            "entry": "apply",
+            "functions": {
+              "apply": {
+                "body": [
+                  "arg",
+                  "missing"
+                ],
+                "params": [
+                  [
+                    "state",
+                    "Stock"
+                  ],
+                  [
+                    "request",
+                    "SetStock"
+                  ]
+                ],
+                "result": "StockOutcome"
+              },
+              "is_negative": {
+                "body": [
+                  "lt",
+                  [
+                    "arg",
+                    "quantity"
+                  ],
+                  [
+                    "int",
+                    0
+                  ]
+                ],
+                "params": [
+                  [
+                    "quantity",
+                    "Int64"
+                  ]
+                ],
+                "result": "Bool"
+              }
+            },
+            "lists": {},
+            "records": {
+              "SetStock": {
+                "expected": "StockVersion",
+                "item": "StockKey",
+                "quantity": "Int64"
+              },
+              "Stock": {
+                "key": "StockKey",
+                "note": "Text",
+                "quantity": "Int64"
+              },
+              "StockError": {
+                "reason": "Text"
+              },
+              "StockKey": {
+                "code": "Text"
+              },
+              "StockVersion": {
+                "value": "Int64"
+              }
+            },
+            "schema": "bagaev-typed-record/10",
+            "variants": {
+              "StockOutcome": {
+                "Decline": "StockError",
+                "Propose": "Stock"
+              }
+            }
+          },
+          "schema": "bagaev-component-source/2"
+        },
+        "programme_sources": [
+          {
+            "id": "current-programme",
+            "pin": "sha256:8c571078e26436c58a71ee1f4b246fd8af760ca79bc7af3f58831aaaaaed573f",
+            "role": "baseline"
+          },
+          {
+            "id": "old-programme",
+            "pin": "sha256:057ed3a68e036bbc8a02b4dd32a2aed7931f7cd02b7514354971aa5c5201a308",
+            "role": "dependency"
+          }
+        ],
+        "unknowns": [
+          {
+            "id": "authority",
+            "pin": "sha256:10e076561e85e65d2c9dbe1188fcf6d8c281c8a02f4fceae84785902a126b40a"
+          },
+          {
+            "id": "production-runtime",
+            "pin": "sha256:ee8ff38eb4f3716538dd5a20d6a9be8fd936e30f8c0219aa4d45cb5f497a8694"
+          }
+        ],
+        "open_effects": [
+          {
+            "id": "old-A",
+            "pin": "sha256:060805c0094a4b41d03262234503326b960be3e6a808b24418c80720b1f5e06e"
+          }
+        ]
+      },
+      "checker": "actual",
+      "legacy": false,
+      "expected": {
+        "error": "ComponentRefusal",
+        "code": "CS_CORE",
+        "location": "/baseline"
+      }
+    }
+  ],
+  "pending": {
+    "schema": "owned-outcome-pending/2",
+    "run_id": "original",
+    "programme_source": "old-programme",
+    "programme_pin": "sha256:057ed3a68e036bbc8a02b4dd32a2aed7931f7cd02b7514354971aa5c5201a308",
+    "packet": {
+      "key": {
+        "resource": "stock/g1",
+        "domain": "owner",
+        "id": "A"
+      },
+      "source": "057ed3a68e036bbc8a02b4dd32a2aed7931f7cd02b7514354971aa5c5201a308",
+      "request": {
+        "item": {
+          "code": "sku1"
+        },
+        "expected": {
+          "value": 7
+        },
+        "quantity": -1
+      },
+      "epoch": 1,
+      "deadline": 100
+    }
+  }
+}
