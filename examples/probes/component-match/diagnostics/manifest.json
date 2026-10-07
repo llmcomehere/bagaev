@@ -1,0 +1,11 @@
+{
+  "sha256": {
+    "cases.json": "fd278bd32b8c6443a25e29bb4cfb19a015ce6aa04222282afda9ec06cd2f8cf3"
+  },
+  "unchanged": {
+    "src/bagaev_component_match_form.py": "4565259c07582e166ca2cae923776a94e5520c84aceb54b634162dfdd0cab2df"
+  },
+  "dependencies": {
+    "tools/component_text.py": "3c4822282a1b0f51f143a3e6566732192e0a58079e1ce484a5b980db21c6b76e"
+  }
+}
