@@ -1,0 +1,557 @@
+{
+  "status": "FROZEN_BEFORE_CONNECTED_BRIDGE_IMPLEMENTATION",
+  "initial": {
+    "id": {
+      "value": "e1"
+    },
+    "manual": [
+      "family"
+    ],
+    "indexed": [
+      "old"
+    ]
+  },
+  "a": {
+    "key": {
+      "resource": "catalogue/g1",
+      "domain": "owner",
+      "id": "A"
+    },
+    "source": "f57aa73a733951b8321b89b4813bc27021ec2f49af34dc19989812925033bfbc",
+    "request": {
+      "id": {
+        "value": "e1"
+      },
+      "base": {
+        "value": 7
+      },
+      "tags": [
+        "new",
+        "new"
+      ]
+    },
+    "epoch": 1,
+    "deadline": 100
+  },
+  "b": {
+    "key": {
+      "resource": "catalogue/g1",
+      "domain": "owner",
+      "id": "B"
+    },
+    "source": "50902f5b21f6817783595b02f270abe8c3bd433270f13704d8ee0bde178f3a27",
+    "request": {
+      "id": {
+        "value": "e1"
+      },
+      "base": {
+        "value": 8
+      },
+      "tags": [
+        "next"
+      ]
+    },
+    "epoch": 1,
+    "deadline": 100
+  },
+  "a_receipt": {
+    "kind": "Applied",
+    "key": {
+      "resource": "catalogue/g1",
+      "domain": "owner",
+      "id": "A"
+    },
+    "intent": {
+      "source": "f57aa73a733951b8321b89b4813bc27021ec2f49af34dc19989812925033bfbc",
+      "request": {
+        "id": {
+          "value": "e1"
+        },
+        "base": {
+          "value": 7
+        },
+        "tags": [
+          "new",
+          "new"
+        ]
+      },
+      "epoch": 1,
+      "deadline": 100
+    },
+    "revision": 8,
+    "state": {
+      "id": {
+        "value": "e1"
+      },
+      "manual": [
+        "family"
+      ],
+      "indexed": [
+        "new"
+      ]
+    }
+  },
+  "b_receipt": {
+    "kind": "Applied",
+    "key": {
+      "resource": "catalogue/g1",
+      "domain": "owner",
+      "id": "B"
+    },
+    "intent": {
+      "source": "50902f5b21f6817783595b02f270abe8c3bd433270f13704d8ee0bde178f3a27",
+      "request": {
+        "id": {
+          "value": "e1"
+        },
+        "base": {
+          "value": 8
+        },
+        "tags": [
+          "next"
+        ]
+      },
+      "epoch": 1,
+      "deadline": 100
+    },
+    "revision": 9,
+    "state": {
+      "id": {
+        "value": "e1"
+      },
+      "manual": [
+        "family"
+      ],
+      "indexed": [
+        "next"
+      ]
+    }
+  },
+  "final": {
+    "state": {
+      "id": {
+        "value": "e1"
+      },
+      "manual": [
+        "family"
+      ],
+      "indexed": [
+        "next"
+      ]
+    },
+    "revision": 9,
+    "mutations": 2,
+    "terminal_rows": 2
+  },
+  "run_pins": {
+    "original": "f57aa73a733951b8321b89b4813bc27021ec2f49af34dc19989812925033bfbc",
+    "new": "50902f5b21f6817783595b02f270abe8c3bd433270f13704d8ee0bde178f3a27"
+  },
+  "application_source_order": [
+    "f57aa73a733951b8321b89b4813bc27021ec2f49af34dc19989812925033bfbc",
+    "50902f5b21f6817783595b02f270abe8c3bd433270f13704d8ee0bde178f3a27"
+  ],
+  "after_admission": {
+    "state": {
+      "id": {
+        "value": "e1"
+      },
+      "manual": [
+        "family"
+      ],
+      "indexed": [
+        "new"
+      ]
+    },
+    "revision": 8,
+    "mutations": 1,
+    "terminal_rows": 1
+  },
+  "pending": {
+    "schema": "owned-record-pending/1",
+    "run_id": "original",
+    "programme_source": "old-programme",
+    "programme_pin": "sha256:f57aa73a733951b8321b89b4813bc27021ec2f49af34dc19989812925033bfbc",
+    "packet": {
+      "key": {
+        "resource": "catalogue/g1",
+        "domain": "owner",
+        "id": "A"
+      },
+      "source": "f57aa73a733951b8321b89b4813bc27021ec2f49af34dc19989812925033bfbc",
+      "request": {
+        "id": {
+          "value": "e1"
+        },
+        "base": {
+          "value": 7
+        },
+        "tags": [
+          "new",
+          "new"
+        ]
+      },
+      "epoch": 1,
+      "deadline": 100
+    }
+  },
+  "pending_sha256": "ff96c667b47f085a1cc8a5c638f05db456fcee0605132fd7581423ce5b987fcd",
+  "context": {
+    "schema": "component-context/1",
+    "axes": {
+      "semantic": "bagaev-component-source/1",
+      "ir": "bagaev-component-source/1",
+      "form": "component-form/1",
+      "envelope": "component-context/1",
+      "evidence": "probe-evidence/1"
+    },
+    "snapshot": "sha256:50902f5b21f6817783595b02f270abe8c3bd433270f13704d8ee0bde178f3a27",
+    "sources": [
+      {
+        "id": "current-programme",
+        "pin": "sha256:de0f4f77994baf475490776660f59f45e1e6b44902bf9284ec2e2fd1a79a2527",
+        "text": "bagaev component-form/1;\ncomponent CatalogEntry operation reindex {\n  record EntryId { value: Text };\n  record CatalogRevision { value: Int64 };\n  record Entry { id: EntryId, indexed: TextList, manual: TextList };\n  record ReindexRequest { base: CatalogRevision, id: EntryId, tags: TextList };\n\n  state Entry identity id;\n  request ReindexRequest identity id revision base: CatalogRevision;\n  replace indexed;\n  entry main;\n\n  fn normalize(tags: TextList) -> TextList = list.unique(tags);\n  fn main(state: Entry, request: ReindexRequest) -> Entry =\n    Entry { id: state.id, indexed: normalize(request.tags), manual: state.manual };\n}\n"
+      },
+      {
+        "id": "goal",
+        "pin": "sha256:f1076759b433b419b1310921329a0c646714a262aa0be09b9acc684de8de87e6",
+        "text": "Reindex catalogue entries while preserving identity and manual tags; retain old unresolved operations across source changes."
+      },
+      {
+        "id": "old-programme",
+        "pin": "sha256:4099ce222efaace14406e1ef7ae944d9dacdb7138bc0f11044fdd01b7741b5c3",
+        "text": "bagaev component-form/1;\ncomponent CatalogEntry operation reindex {\n  record EntryId { value: Text };\n  record CatalogRevision { value: Int64 };\n  record Entry { id: EntryId, indexed: TextList, manual: TextList };\n  record ReindexRequest { base: CatalogRevision, id: EntryId, tags: TextList };\n\n  state Entry identity id;\n  request ReindexRequest identity id revision base: CatalogRevision;\n  replace indexed;\n  entry main;\n\n  fn main(state: Entry, request: ReindexRequest) -> Entry =\n    Entry { id: state.id, indexed: list.unique(request.tags), manual: state.manual };\n}\n"
+      },
+      {
+        "id": "pending-operation",
+        "pin": "sha256:ff96c667b47f085a1cc8a5c638f05db456fcee0605132fd7581423ce5b987fcd",
+        "text": "{\"packet\":{\"deadline\":100,\"epoch\":1,\"key\":{\"domain\":\"owner\",\"id\":\"A\",\"resource\":\"catalogue/g1\"},\"request\":{\"base\":{\"value\":7},\"id\":{\"value\":\"e1\"},\"tags\":[\"new\",\"new\"]},\"source\":\"f57aa73a733951b8321b89b4813bc27021ec2f49af34dc19989812925033bfbc\"},\"programme_pin\":\"sha256:f57aa73a733951b8321b89b4813bc27021ec2f49af34dc19989812925033bfbc\",\"programme_source\":\"old-programme\",\"run_id\":\"original\",\"schema\":\"owned-record-pending/1\"}"
+      },
+      {
+        "id": "receiving-contract",
+        "pin": "sha256:f3e206035f87f4774b3aca41ffef5b7384eeaf2105a39acae9a88e3c7b84b036",
+        "text": "actual-entry-consumer: The actual component entry is exercised.\nmanual-tags-preserved: Manual tags and identity remain unchanged.\nold-run-binding: An old run and its operation retain their source.\noperation-recovery: Old terminal receipt is observed without another write.\ntypes-and-imports: Source, nominal types and receiving policy are checked.\n"
+      }
+    ],
+    "obligations": [
+      {
+        "id": "actual-entry-consumer",
+        "text": "The actual component entry is exercised.",
+        "refs": [
+          {
+            "source": "receiving-contract",
+            "pin": "sha256:f3e206035f87f4774b3aca41ffef5b7384eeaf2105a39acae9a88e3c7b84b036",
+            "start": 0,
+            "end": 64
+          }
+        ],
+        "pin": "sha256:2216b66db42fc24769a1710a1b8780d6ecf9e5eda177bf0a261ba1566bc6bf98"
+      },
+      {
+        "id": "manual-tags-preserved",
+        "text": "Manual tags and identity remain unchanged.",
+        "refs": [
+          {
+            "source": "receiving-contract",
+            "pin": "sha256:f3e206035f87f4774b3aca41ffef5b7384eeaf2105a39acae9a88e3c7b84b036",
+            "start": 64,
+            "end": 130
+          }
+        ],
+        "pin": "sha256:3113beeccc40e80670cecd4e2a38690a08ec07ff0808276f0ebdccbd9135cc28"
+      },
+      {
+        "id": "old-run-binding",
+        "text": "An old run and its operation retain their source.",
+        "refs": [
+          {
+            "source": "receiving-contract",
+            "pin": "sha256:f3e206035f87f4774b3aca41ffef5b7384eeaf2105a39acae9a88e3c7b84b036",
+            "start": 130,
+            "end": 197
+          }
+        ],
+        "pin": "sha256:a9e9fba7393ba8b054545826497baf5dc9c663b6db5820695888b51f49b0eb09"
+      },
+      {
+        "id": "operation-recovery",
+        "text": "Old terminal receipt is observed without another write.",
+        "refs": [
+          {
+            "source": "receiving-contract",
+            "pin": "sha256:f3e206035f87f4774b3aca41ffef5b7384eeaf2105a39acae9a88e3c7b84b036",
+            "start": 197,
+            "end": 273
+          }
+        ],
+        "pin": "sha256:e774923d92a513881eb79d752678037c789f6e6930289d67501957dbb623c785"
+      },
+      {
+        "id": "types-and-imports",
+        "text": "Source, nominal types and receiving policy are checked.",
+        "refs": [
+          {
+            "source": "receiving-contract",
+            "pin": "sha256:f3e206035f87f4774b3aca41ffef5b7384eeaf2105a39acae9a88e3c7b84b036",
+            "start": 273,
+            "end": 348
+          }
+        ],
+        "pin": "sha256:353b6e82f6039d27405d5e175e3b401325ff0c0f50c5d200d6ffcc5ab797fd36"
+      }
+    ],
+    "unknowns": [
+      {
+        "id": "authority",
+        "text": "Current observation permission must be supplied independently; context restores no rights.",
+        "refs": []
+      },
+      {
+        "id": "production-runtime",
+        "text": "Production durability and authentication are not established by this fixture.",
+        "refs": []
+      }
+    ],
+    "open_effects": [
+      {
+        "id": "old-A",
+        "text": "Old A remains unresolved to the observer under S1; retain its exact key and intent.",
+        "refs": [
+          {
+            "source": "pending-operation",
+            "pin": "sha256:ff96c667b47f085a1cc8a5c638f05db456fcee0605132fd7581423ce5b987fcd",
+            "start": 0,
+            "end": 424
+          }
+        ]
+      }
+    ],
+    "candidates": [],
+    "candidate_set": "sha256:d5cca013e9a35eeea1cfb1935230ebd6a52171bf09ea3b9b22c7d97a676aab35",
+    "metadata": {
+      "representation": "canonical-json/1",
+      "model_profile": null,
+      "codec": "component-form/1"
+    }
+  },
+  "expectation": {
+    "schema": "component-expectation/1",
+    "axes": {
+      "semantic": "bagaev-component-source/1",
+      "ir": "bagaev-component-source/1",
+      "form": "component-form/1",
+      "envelope": "component-context/1",
+      "evidence": "probe-evidence/1"
+    },
+    "snapshot": "sha256:50902f5b21f6817783595b02f270abe8c3bd433270f13704d8ee0bde178f3a27",
+    "candidate_set": "sha256:d5cca013e9a35eeea1cfb1935230ebd6a52171bf09ea3b9b22c7d97a676aab35",
+    "sources": [
+      {
+        "id": "current-programme",
+        "pin": "sha256:de0f4f77994baf475490776660f59f45e1e6b44902bf9284ec2e2fd1a79a2527"
+      },
+      {
+        "id": "goal",
+        "pin": "sha256:f1076759b433b419b1310921329a0c646714a262aa0be09b9acc684de8de87e6"
+      },
+      {
+        "id": "old-programme",
+        "pin": "sha256:4099ce222efaace14406e1ef7ae944d9dacdb7138bc0f11044fdd01b7741b5c3"
+      },
+      {
+        "id": "pending-operation",
+        "pin": "sha256:ff96c667b47f085a1cc8a5c638f05db456fcee0605132fd7581423ce5b987fcd"
+      },
+      {
+        "id": "receiving-contract",
+        "pin": "sha256:f3e206035f87f4774b3aca41ffef5b7384eeaf2105a39acae9a88e3c7b84b036"
+      }
+    ],
+    "obligations": [
+      {
+        "id": "actual-entry-consumer",
+        "pin": "sha256:2216b66db42fc24769a1710a1b8780d6ecf9e5eda177bf0a261ba1566bc6bf98"
+      },
+      {
+        "id": "manual-tags-preserved",
+        "pin": "sha256:3113beeccc40e80670cecd4e2a38690a08ec07ff0808276f0ebdccbd9135cc28"
+      },
+      {
+        "id": "old-run-binding",
+        "pin": "sha256:a9e9fba7393ba8b054545826497baf5dc9c663b6db5820695888b51f49b0eb09"
+      },
+      {
+        "id": "operation-recovery",
+        "pin": "sha256:e774923d92a513881eb79d752678037c789f6e6930289d67501957dbb623c785"
+      },
+      {
+        "id": "types-and-imports",
+        "pin": "sha256:353b6e82f6039d27405d5e175e3b401325ff0c0f50c5d200d6ffcc5ab797fd36"
+      }
+    ],
+    "baseline": {
+      "schema": "bagaev-component-source/1",
+      "program": {
+        "schema": "bagaev-typed-record/10",
+        "records": {
+          "EntryId": {
+            "value": "Text"
+          },
+          "CatalogRevision": {
+            "value": "Int64"
+          },
+          "Entry": {
+            "id": "EntryId",
+            "indexed": "TextList",
+            "manual": "TextList"
+          },
+          "ReindexRequest": {
+            "base": "CatalogRevision",
+            "id": "EntryId",
+            "tags": "TextList"
+          }
+        },
+        "lists": {},
+        "variants": {},
+        "entry": "main",
+        "functions": {
+          "main": {
+            "params": [
+              [
+                "state",
+                "Entry"
+              ],
+              [
+                "request",
+                "ReindexRequest"
+              ]
+            ],
+            "result": "Entry",
+            "body": [
+              "record",
+              "Entry",
+              [
+                "field",
+                [
+                  "arg",
+                  "state"
+                ],
+                "id"
+              ],
+              [
+                "call",
+                "normalize",
+                [
+                  "field",
+                  [
+                    "arg",
+                    "request"
+                  ],
+                  "tags"
+                ]
+              ],
+              [
+                "field",
+                [
+                  "arg",
+                  "state"
+                ],
+                "manual"
+              ]
+            ]
+          },
+          "normalize": {
+            "params": [
+              [
+                "tags",
+                "TextList"
+              ]
+            ],
+            "result": "TextList",
+            "body": [
+              "list.unique",
+              [
+                "arg",
+                "tags"
+              ]
+            ]
+          }
+        }
+      },
+      "component": {
+        "name": "CatalogEntry",
+        "operation": "reindex",
+        "state_type": "Entry",
+        "request_type": "ReindexRequest",
+        "revision_type": "CatalogRevision",
+        "entry": "main",
+        "identity_binding": {
+          "state": "id",
+          "request": "id"
+        },
+        "revision_binding": "base",
+        "replace_fields": [
+          "indexed"
+        ]
+      }
+    },
+    "programme_sources": [
+      {
+        "id": "current-programme",
+        "pin": "sha256:50902f5b21f6817783595b02f270abe8c3bd433270f13704d8ee0bde178f3a27",
+        "role": "baseline"
+      },
+      {
+        "id": "old-programme",
+        "pin": "sha256:f57aa73a733951b8321b89b4813bc27021ec2f49af34dc19989812925033bfbc",
+        "role": "dependency"
+      }
+    ],
+    "unknowns": [
+      {
+        "id": "authority",
+        "pin": "sha256:10e076561e85e65d2c9dbe1188fcf6d8c281c8a02f4fceae84785902a126b40a"
+      },
+      {
+        "id": "production-runtime",
+        "pin": "sha256:ee8ff38eb4f3716538dd5a20d6a9be8fd936e30f8c0219aa4d45cb5f497a8694"
+      }
+    ],
+    "open_effects": [
+      {
+        "id": "old-A",
+        "pin": "sha256:6ad9f41128b4d5bc872ff627990ecd0060b2625ee2e76d0a845dd8c2c94ad485"
+      }
+    ]
+  },
+  "inspection": {
+    "schema": "component-context-inspection/1",
+    "snapshot": "sha256:50902f5b21f6817783595b02f270abe8c3bd433270f13704d8ee0bde178f3a27",
+    "candidate_set": "sha256:d5cca013e9a35eeea1cfb1935230ebd6a52171bf09ea3b9b22c7d97a676aab35",
+    "unknowns": [
+      "authority",
+      "production-runtime"
+    ],
+    "open_effects": [
+      "old-A"
+    ],
+    "programme_sources": [
+      {
+        "id": "current-programme",
+        "pin": "sha256:50902f5b21f6817783595b02f270abe8c3bd433270f13704d8ee0bde178f3a27",
+        "role": "baseline"
+      },
+      {
+        "id": "old-programme",
+        "pin": "sha256:f57aa73a733951b8321b89b4813bc27021ec2f49af34dc19989812925033bfbc",
+        "role": "dependency"
+      }
+    ],
+    "admission": false,
+    "model_calls": 0
+  },
+  "denied_observation": {
+    "status": "AccessDenied"
+  },
+  "scope": "The qualification trace uses controlled admission receipts as a premise; the later live trace uses only newly validated observations. No authenticity/production authority claim."
+}
