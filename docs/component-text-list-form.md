@@ -98,3 +98,5 @@ measurement.
 
 The [TagBox example](tag-box.md) connects actual TextList business rules to typed
 outcomes and retained receipts, including a distinct aggregate-byte failure.
+
+For a fixed literal-count accumulator, see [counted fold](component-fold-form.md).
