@@ -12,6 +12,7 @@ established application stack. Its cost and error-rate advantages are unproven.
 | Explore a small pure computation and exact-base structural change | Start with the L0 example below. No provider account or package installation is needed. |
 | Explore reusable definitions, a catalog application and a saved development handoff | Use the existing [integrated beta guide](beta.md), [application contract](application.md) and [CLI walkthrough](toolchain.md). This remains the documented local Linux/CPython experimental profile. |
 | Select records in a bounded pure computation | Use the separate [pure filtering profile](pure-filter.md), explicit L2/2 source and `src.bagaev_filter` CLI. For saved revisions, explicitly choose the separate [filter workflow](filter-saved-workflow.md); the old /1 receiver does not accept /2. |
+| Model a typed stateful operation with business refusal, exact operation replay and persisted continuation | Follow the [stateful component example](stateful-components.md). This is the separate experimental typed component/2 profile, not pure L2/2 or a production runtime. |
 | Investigate typed native components or a proposed language mechanism | Pick one explicitly versioned probe from the [context map](context.md). Probe versions are not interchangeable or a single production runtime. |
 
 For simple tag sorting alone, ordinary Python's `sorted(set(tags))` is shorter.

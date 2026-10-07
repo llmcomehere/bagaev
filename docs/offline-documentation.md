@@ -21,8 +21,9 @@ neither follows links nor executes examples, source programs or tests.
 
 The fixed input list is README, the task chooser, pure filtering guide, queue
 change example, integrated beta guide, toolchain contract, L2 contract, explicit
-filter saved-workflow guide, shared Store contract and LICENSE. These ten sources
-produce eleven HTML pages including the README entry alias, plus the index.
+filter saved-workflow guide, shared Store contract, stateful component guide,
+typed outcome/composition/persistence contracts and LICENSE. These fourteen sources
+produce fifteen HTML pages including the README entry alias, plus the index.
 Each source receives an HTML page. The entry aliases the README view;
 `index.json` records titles, paths, the supplied revision and actual SHA-256
 hashes of source bytes. The license is displayed as escaped plain text.

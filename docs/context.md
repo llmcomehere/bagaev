@@ -25,6 +25,7 @@ instructions](../AGENTS.md) and authority boundaries always apply.
 | [Toolchain](toolchain.md) | L2 CLI commands, JSON observations, file transport/effects, generated artifact identity and verification, and clean-checkout walkthrough. |
 | [Filter saved workflow](filter-saved-workflow.md) | Explicit pure /2 receiver, policy/evidence/receipt identities and opt-in CLI; no old-store migration or implicit authority. |
 | [Local store](store.md) | Immutable L2 revisions, receiver admission, operation receipts, continuation, canonical exchange and explicit backup restore. |
+| [Stateful component example](stateful-components.md) | Worked typed Propose/Decline meaning, run/source pins and G/H/R navigation. The linked outcome and persistence contracts remain authoritative. |
 | [Model proposals](model.md) | Pure provider-neutral packets, Python/L2 named edits, public continuation and bounded accounting. |
 | [Catalog application](application.md) and [oracle](../examples/beta/catalog-cases.json) | Synthetic application semantics and frozen exact observations for four selected behaviors. |
 | [Frozen P0](p0.md) and [oracle](p0-cases.json) | Frozen historical protocol and exact fixture observations. |
