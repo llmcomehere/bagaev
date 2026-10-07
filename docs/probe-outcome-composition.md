@@ -72,3 +72,5 @@ fixtures. Use the previously admitted bounded execution environment.
 
 No new performance or model-cost measurement is implied. These checks do not prove
 crash recovery, multi-process atomicity, authentication or arbitrary-program correctness.
+
+A separate [owned persistence experiment](probe-outcome-persistence.md) composes durable images and caller continuation under explicit finite host premises.
