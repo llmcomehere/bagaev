@@ -1,0 +1,570 @@
+{
+  "schema": "queue-order-cases/1",
+  "cases": [
+    {
+      "id": "empty",
+      "input": {
+        "jobs": []
+      },
+      "v0": {
+        "kind": "ok",
+        "order": []
+      },
+      "v1": {
+        "kind": "ok",
+        "order": []
+      }
+    },
+    {
+      "id": "single",
+      "input": {
+        "jobs": [
+          {
+            "id": "job",
+            "urgent": false
+          }
+        ]
+      },
+      "v0": {
+        "kind": "ok",
+        "order": [
+          "job"
+        ]
+      },
+      "v1": {
+        "kind": "ok",
+        "order": [
+          "job"
+        ]
+      }
+    },
+    {
+      "id": "urgency",
+      "input": {
+        "jobs": [
+          {
+            "id": "a",
+            "urgent": false,
+            "priority": 0
+          },
+          {
+            "id": "b",
+            "urgent": true,
+            "priority": 9
+          }
+        ]
+      },
+      "v0": {
+        "kind": "ok",
+        "order": [
+          "b",
+          "a"
+        ]
+      },
+      "v1": {
+        "kind": "ok",
+        "order": [
+          "b",
+          "a"
+        ]
+      }
+    },
+    {
+      "id": "priority",
+      "input": {
+        "jobs": [
+          {
+            "id": "a",
+            "urgent": true,
+            "priority": 9
+          },
+          {
+            "id": "b",
+            "urgent": true,
+            "priority": 0
+          }
+        ]
+      },
+      "v0": {
+        "kind": "ok",
+        "order": [
+          "b",
+          "a"
+        ]
+      },
+      "v1": {
+        "kind": "ok",
+        "order": [
+          "b",
+          "a"
+        ]
+      }
+    },
+    {
+      "id": "missing-change",
+      "input": {
+        "jobs": [
+          {
+            "id": "a",
+            "urgent": true
+          },
+          {
+            "id": "b",
+            "urgent": true,
+            "priority": 0
+          }
+        ]
+      },
+      "v0": {
+        "kind": "ok",
+        "order": [
+          "a",
+          "b"
+        ]
+      },
+      "v1": {
+        "kind": "ok",
+        "order": [
+          "b",
+          "a"
+        ]
+      }
+    },
+    {
+      "id": "urgent-missing",
+      "input": {
+        "jobs": [
+          {
+            "id": "a",
+            "urgent": false,
+            "priority": 0
+          },
+          {
+            "id": "b",
+            "urgent": true
+          }
+        ]
+      },
+      "v0": {
+        "kind": "ok",
+        "order": [
+          "b",
+          "a"
+        ]
+      },
+      "v1": {
+        "kind": "ok",
+        "order": [
+          "b",
+          "a"
+        ]
+      }
+    },
+    {
+      "id": "tie",
+      "input": {
+        "jobs": [
+          {
+            "id": "b",
+            "urgent": false,
+            "priority": 2
+          },
+          {
+            "id": "a",
+            "urgent": false,
+            "priority": 2
+          }
+        ]
+      },
+      "v0": {
+        "kind": "ok",
+        "order": [
+          "a",
+          "b"
+        ]
+      },
+      "v1": {
+        "kind": "ok",
+        "order": [
+          "a",
+          "b"
+        ]
+      }
+    },
+    {
+      "id": "duplicate",
+      "input": {
+        "jobs": [
+          {
+            "id": "a",
+            "urgent": false
+          },
+          {
+            "id": "a",
+            "urgent": true
+          }
+        ]
+      },
+      "v0": {
+        "kind": "refusal",
+        "reason": "invalid-request"
+      },
+      "v1": {
+        "kind": "refusal",
+        "reason": "invalid-request"
+      }
+    },
+    {
+      "id": "bool-priority",
+      "input": {
+        "jobs": [
+          {
+            "id": "a",
+            "urgent": false,
+            "priority": true
+          }
+        ]
+      },
+      "v0": {
+        "kind": "refusal",
+        "reason": "invalid-request"
+      },
+      "v1": {
+        "kind": "refusal",
+        "reason": "invalid-request"
+      }
+    },
+    {
+      "id": "int-urgent",
+      "input": {
+        "jobs": [
+          {
+            "id": "a",
+            "urgent": 1
+          }
+        ]
+      },
+      "v0": {
+        "kind": "refusal",
+        "reason": "invalid-request"
+      },
+      "v1": {
+        "kind": "refusal",
+        "reason": "invalid-request"
+      }
+    },
+    {
+      "id": "unknown-root",
+      "input": {
+        "jobs": [],
+        "extra": 0
+      },
+      "v0": {
+        "kind": "refusal",
+        "reason": "invalid-request"
+      },
+      "v1": {
+        "kind": "refusal",
+        "reason": "invalid-request"
+      }
+    },
+    {
+      "id": "unknown-job",
+      "input": {
+        "jobs": [
+          {
+            "id": "a",
+            "urgent": false,
+            "extra": 0
+          }
+        ]
+      },
+      "v0": {
+        "kind": "refusal",
+        "reason": "invalid-request"
+      },
+      "v1": {
+        "kind": "refusal",
+        "reason": "invalid-request"
+      }
+    },
+    {
+      "id": "null-priority",
+      "input": {
+        "jobs": [
+          {
+            "id": "a",
+            "urgent": false,
+            "priority": null
+          }
+        ]
+      },
+      "v0": {
+        "kind": "refusal",
+        "reason": "invalid-request"
+      },
+      "v1": {
+        "kind": "refusal",
+        "reason": "invalid-request"
+      }
+    },
+    {
+      "id": "uppercase-id",
+      "input": {
+        "jobs": [
+          {
+            "id": "A",
+            "urgent": false
+          }
+        ]
+      },
+      "v0": {
+        "kind": "refusal",
+        "reason": "invalid-request"
+      },
+      "v1": {
+        "kind": "refusal",
+        "reason": "invalid-request"
+      }
+    },
+    {
+      "id": "too-many",
+      "input": {
+        "jobs": [
+          {
+            "id": "a",
+            "urgent": false
+          },
+          {
+            "id": "b",
+            "urgent": false
+          },
+          {
+            "id": "c",
+            "urgent": false
+          },
+          {
+            "id": "d",
+            "urgent": false
+          },
+          {
+            "id": "e",
+            "urgent": false
+          },
+          {
+            "id": "f",
+            "urgent": false
+          },
+          {
+            "id": "g",
+            "urgent": false
+          },
+          {
+            "id": "h",
+            "urgent": false
+          },
+          {
+            "id": "i",
+            "urgent": false
+          }
+        ]
+      },
+      "v0": {
+        "kind": "refusal",
+        "reason": "invalid-request"
+      },
+      "v1": {
+        "kind": "refusal",
+        "reason": "invalid-request"
+      }
+    },
+    {
+      "id": "missing-urgent",
+      "input": {
+        "jobs": [
+          {
+            "id": "a"
+          }
+        ]
+      },
+      "v0": {
+        "kind": "refusal",
+        "reason": "invalid-request"
+      },
+      "v1": {
+        "kind": "refusal",
+        "reason": "invalid-request"
+      }
+    },
+    {
+      "id": "priority-high",
+      "input": {
+        "jobs": [
+          {
+            "id": "a",
+            "urgent": false,
+            "priority": 10
+          }
+        ]
+      },
+      "v0": {
+        "kind": "refusal",
+        "reason": "invalid-request"
+      },
+      "v1": {
+        "kind": "refusal",
+        "reason": "invalid-request"
+      }
+    },
+    {
+      "id": "priority-negative",
+      "input": {
+        "jobs": [
+          {
+            "id": "a",
+            "urgent": false,
+            "priority": -1
+          }
+        ]
+      },
+      "v0": {
+        "kind": "refusal",
+        "reason": "invalid-request"
+      },
+      "v1": {
+        "kind": "refusal",
+        "reason": "invalid-request"
+      }
+    },
+    {
+      "id": "priority-float",
+      "input": {
+        "jobs": [
+          {
+            "id": "a",
+            "urgent": false,
+            "priority": 1.0
+          }
+        ]
+      },
+      "v0": {
+        "kind": "refusal",
+        "reason": "invalid-request"
+      },
+      "v1": {
+        "kind": "refusal",
+        "reason": "invalid-request"
+      }
+    },
+    {
+      "id": "jobs-object",
+      "input": {
+        "jobs": {}
+      },
+      "v0": {
+        "kind": "refusal",
+        "reason": "invalid-request"
+      },
+      "v1": {
+        "kind": "refusal",
+        "reason": "invalid-request"
+      }
+    },
+    {
+      "id": "root-array",
+      "input": [],
+      "v0": {
+        "kind": "refusal",
+        "reason": "invalid-request"
+      },
+      "v1": {
+        "kind": "refusal",
+        "reason": "invalid-request"
+      }
+    },
+    {
+      "id": "empty-id",
+      "input": {
+        "jobs": [
+          {
+            "id": "",
+            "urgent": false
+          }
+        ]
+      },
+      "v0": {
+        "kind": "refusal",
+        "reason": "invalid-request"
+      },
+      "v1": {
+        "kind": "refusal",
+        "reason": "invalid-request"
+      }
+    },
+    {
+      "id": "capacity-eight",
+      "input": {
+        "jobs": [
+          {
+            "id": "h",
+            "urgent": false
+          },
+          {
+            "id": "g",
+            "urgent": false
+          },
+          {
+            "id": "f",
+            "urgent": false
+          },
+          {
+            "id": "e",
+            "urgent": false
+          },
+          {
+            "id": "d",
+            "urgent": false
+          },
+          {
+            "id": "c",
+            "urgent": false
+          },
+          {
+            "id": "b",
+            "urgent": false
+          },
+          {
+            "id": "a",
+            "urgent": false
+          }
+        ]
+      },
+      "v0": {
+        "kind": "ok",
+        "order": [
+          "a",
+          "b",
+          "c",
+          "d",
+          "e",
+          "f",
+          "g",
+          "h"
+        ]
+      },
+      "v1": {
+        "kind": "ok",
+        "order": [
+          "a",
+          "b",
+          "c",
+          "d",
+          "e",
+          "f",
+          "g",
+          "h"
+        ]
+      }
+    }
+  ]
+}
