@@ -1,0 +1,9 @@
+{
+  "sha256": {
+    "policy.json": "79022bf43360571d6ddc2d7be9775f073c499f6273e8053e143f3c7a13552d7f",
+    "queue-refactor.json": "a1bd8fdf7c23e8cf9d1329a15c5862d82a7db114dd8fe6b9948875189bdb2018",
+    "queue-refactor.patch": "7e75ec4badfcd09b19bf4fcde8a0e7f5f7d5a62750210dd51969dcbd944951cf",
+    "expectations.json": "34bf521325e0d94af445d6eae14c6c1c4166cb5b2f8c4211829e5b7c45964f5f"
+  },
+  "original_queue_sha256": "d08da50bd3d9b80eead8f2b018c7961696c037e1840dfd90701d8588be83d4fa"
+}

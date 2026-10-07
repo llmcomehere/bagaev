@@ -21,8 +21,9 @@ instructions](../AGENTS.md) and authority boundaries always apply.
 | [L0](l0.md) | Normative L0 semantics and bounds. |
 | [L1 proposal](l1-proposal.md) | Bounded CPython backend and selected-case contract. |
 | [L2](l2.md) and [language oracle](../examples/l2/oracle.json) | Structured pure language, pinned definitions, transactional changes, and independent language expectations. |
-| [Pure filtering profile](pure-filter.md) | Separate experimental L2/2 stable record selection, explicit pure CLI and artifact identities. No Store support or implicit conversion from L2/1. |
+| [Pure filtering profile](pure-filter.md) | Separate experimental L2/2 stable record selection, explicit pure CLI and artifact identities. Saved revisions use the separately selected filter workflow; no implicit /1 conversion. |
 | [Toolchain](toolchain.md) | L2 CLI commands, JSON observations, file transport/effects, generated artifact identity and verification, and clean-checkout walkthrough. |
+| [Filter saved workflow](filter-saved-workflow.md) | Explicit pure /2 receiver, policy/evidence/receipt identities and opt-in CLI; no old-store migration or implicit authority. |
 | [Local store](store.md) | Immutable L2 revisions, receiver admission, operation receipts, continuation, canonical exchange and explicit backup restore. |
 | [Model proposals](model.md) | Pure provider-neutral packets, Python/L2 named edits, public continuation and bounded accounting. |
 | [Catalog application](application.md) and [oracle](../examples/beta/catalog-cases.json) | Synthetic application semantics and frozen exact observations for four selected behaviors. |

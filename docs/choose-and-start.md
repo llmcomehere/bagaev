@@ -11,7 +11,7 @@ established application stack. Its cost and error-rate advantages are unproven.
 | Deliver a production web service, mobile app, GPU workload or unrestricted system integration | Use a suitable established stack. Those are not accepted bagaev profiles. |
 | Explore a small pure computation and exact-base structural change | Start with the L0 example below. No provider account or package installation is needed. |
 | Explore reusable definitions, a catalog application and a saved development handoff | Use the existing [integrated beta guide](beta.md), [application contract](application.md) and [CLI walkthrough](toolchain.md). This remains the documented local Linux/CPython experimental profile. |
-| Select records in a bounded pure computation | Use the separate [pure filtering profile](pure-filter.md), explicit L2/2 source and `src.bagaev_filter` CLI. It has no Store or saved-handoff path; use the /1 integrated route above when that capability is required. |
+| Select records in a bounded pure computation | Use the separate [pure filtering profile](pure-filter.md), explicit L2/2 source and `src.bagaev_filter` CLI. For saved revisions, explicitly choose the separate [filter workflow](filter-saved-workflow.md); the old /1 receiver does not accept /2. |
 | Investigate typed native components or a proposed language mechanism | Pick one explicitly versioned probe from the [context map](context.md). Probe versions are not interchangeable or a single production runtime. |
 
 For simple tag sorting alone, ordinary Python's `sorted(set(tags))` is shorter.
@@ -65,7 +65,7 @@ results and an ordinary Python comparator. It needs no new language mechanism.
 
 To select only open records as well, the separate [pure filtering
 profile](pure-filter.md) has an explicit `/2` source and CLI. It preserves the old
-`/1` interfaces and has no Store or production-runtime acceptance.
+`/1` interfaces. A separately selected [saved workflow](filter-saved-workflow.md) now provides bounded local continuation; production-runtime acceptance remains open.
 
 - Change the actual task requirement before changing the program; retain an expected
   result independently of the proposed implementation.
