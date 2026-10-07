@@ -1,0 +1,9 @@
+{
+  "sha256": {
+    "cases.json": "2d3d109b7f91af681687f8ded1e33b5e91ac085d09bce91e7c8825f9a0196b9e"
+  },
+  "unchanged": {
+    "src/bagaev_component_arithmetic_form.py": "730aa8af95d8e01cbccdd47fbfe9adc3dbc39019e20edd05133825a62fccd8d5",
+    "tools/component_text.py": "a5112fdd29807be5d565234c754b27109b1a8a4fe46682b4cff23fd7b1af8dbf"
+  }
+}

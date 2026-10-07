@@ -84,3 +84,9 @@ not a new native backend, model study, production acceptance or performance clai
 The [explicit edit/3 route](component-arithmetic-edits.md) carries this readable
 notation through the existing source/2 compatibility and policy checks. A
 checked draft remains separate from qualification and live admission.
+
+## Locate a refused source
+
+The [optional diagnostic command](component-diagnostics.md) reports lexical or
+parser-context spans while retaining the existing refusal code. It does not
+replace semantic checking or change the converter output.
