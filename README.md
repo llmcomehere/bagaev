@@ -76,6 +76,8 @@ For a readable stateful formula, follow [write, diagnose and change a component]
 
 For a composed business rule with retained results, follow the [stock adjustment example](docs/stock-adjustment.md): readable match, actual typed execution, declines, applied revisions and receipt reconstruction.
 
+The [typed tag collection](docs/tag-box.md) demonstrates readable TextList rules, retained outcomes and the boundary between a business decline and an uncommitted computation failure.
+
 ## What exists today
 
 - **Typed stateful operations and continuation:** the [worked component guide](docs/stateful-components.md) connects readable Propose/Decline outcomes, source-pinned runs and bounded persisted receipts. Business refusal, unobserved result and applied state remain distinct; this is an experimental single-writer profile.

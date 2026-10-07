@@ -93,3 +93,8 @@ requires separately reviewed reader/reference paths and hashes and a fresh
 output directory. These finite same-maintainer observations are not independent
 reproduction, complete language acceptance, a native-backend change or a cost
 measurement.
+
+## Use the calls in a component
+
+The [TagBox example](tag-box.md) connects actual TextList business rules to typed
+outcomes and retained receipts, including a distinct aggregate-byte failure.
