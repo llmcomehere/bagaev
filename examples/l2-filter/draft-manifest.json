@@ -1,0 +1,7 @@
+{
+  "sha256": {
+    "draft-cases.json": "10605b7fc7bd6a12df64e786f861dfe75f2396a5553ee8bb8f3eb490307d347a",
+    "queue-draft.json": "8788671a99107c80147c294f543bcf8822619e07ffd3a958c4e616b1df325ae0"
+  },
+  "previous_queue_artifact_sha256": "78beb538f73172814a57f9d2d937c0eed74c59fcba9bf09c8eb93f0d878cc7e0"
+}

@@ -1,0 +1,353 @@
+{
+  "valid": [
+    {
+      "id": "literal",
+      "draft": {
+        "schema": "bagaev-l2-draft/2",
+        "entry": "main",
+        "definitions": {
+          "main": {
+            "params": [
+              "x"
+            ],
+            "body": 7
+          }
+        }
+      },
+      "expected": {
+        "schema": "bagaev-l2/2",
+        "entry": "main",
+        "definitions": {
+          "main": {
+            "params": [
+              "x"
+            ],
+            "body": 7
+          }
+        },
+        "pins": {
+          "main": "sha256:5fe606d7dad3bb11c2d119c013ee00343566bd68a44b4f70e465728df5441138"
+        }
+      },
+      "expected_digest": "sha256:cdb0746f3fa7b7522fd0f28039ca9a3f3c36906f5e699ef946bc0009c91d24e2"
+    },
+    {
+      "id": "filter",
+      "draft": {
+        "schema": "bagaev-l2-draft/2",
+        "entry": "main",
+        "definitions": {
+          "main": {
+            "params": [
+              "x"
+            ],
+            "body": [
+              "filter",
+              [
+                "var",
+                "x"
+              ],
+              "i",
+              true
+            ]
+          }
+        }
+      },
+      "expected": {
+        "schema": "bagaev-l2/2",
+        "entry": "main",
+        "definitions": {
+          "main": {
+            "params": [
+              "x"
+            ],
+            "body": [
+              "filter",
+              [
+                "var",
+                "x"
+              ],
+              "i",
+              true
+            ]
+          }
+        },
+        "pins": {
+          "main": "sha256:e04298ee5f0aa912ba11101c797f03dcee966259197abcb8ae76330533667088"
+        }
+      },
+      "expected_digest": "sha256:78c566b62764604a4b8cfff73e54d6215cb9aac0642a9cf8d00ebf5d5b877bcb"
+    },
+    {
+      "id": "call",
+      "draft": {
+        "schema": "bagaev-l2-draft/2",
+        "entry": "main",
+        "definitions": {
+          "leaf": {
+            "params": [
+              "v"
+            ],
+            "body": [
+              "var",
+              "v"
+            ]
+          },
+          "main": {
+            "params": [
+              "x"
+            ],
+            "body": [
+              "call",
+              "leaf",
+              [
+                "var",
+                "x"
+              ]
+            ]
+          }
+        }
+      },
+      "expected": {
+        "schema": "bagaev-l2/2",
+        "entry": "main",
+        "definitions": {
+          "leaf": {
+            "params": [
+              "v"
+            ],
+            "body": [
+              "var",
+              "v"
+            ]
+          },
+          "main": {
+            "params": [
+              "x"
+            ],
+            "body": [
+              "call",
+              "leaf",
+              [
+                "var",
+                "x"
+              ]
+            ]
+          }
+        },
+        "pins": {
+          "leaf": "sha256:766e0f3fc84d3f28fe687eec4705e48f830795316daca4077c29fe06211eb4b2",
+          "main": "sha256:b985fc9ece7ba0c1bf46815638b18b1d80a68514f5686a3610f56fe3fb37f05f"
+        }
+      },
+      "expected_digest": "sha256:c48a4ef4fad08d958c8bca19f3494877fc133926eb22e401572e698af3501a77"
+    },
+    {
+      "id": "unreachable-valid",
+      "draft": {
+        "schema": "bagaev-l2-draft/2",
+        "entry": "main",
+        "definitions": {
+          "main": {
+            "params": [
+              "x"
+            ],
+            "body": false
+          },
+          "unused": {
+            "params": [],
+            "body": 0
+          }
+        }
+      },
+      "expected": {
+        "schema": "bagaev-l2/2",
+        "entry": "main",
+        "definitions": {
+          "main": {
+            "params": [
+              "x"
+            ],
+            "body": false
+          },
+          "unused": {
+            "params": [],
+            "body": 0
+          }
+        },
+        "pins": {
+          "main": "sha256:8c4021f04b5108654cc94063c9cf09a54571b02b30aa96c86f30dbbcd2d481a0",
+          "unused": "sha256:fec4607347832b44ef122bc8d05d8adacc7c80a2b7caac1e689237ca5bdb86d6"
+        }
+      },
+      "expected_digest": "sha256:749146bacec6a722aafe6e8f50b49ffcde4b0293553ab559bfaafa05f4b8845e"
+    }
+  ],
+  "refusals": [
+    {
+      "id": "foreign-schema",
+      "draft": {
+        "schema": "bagaev-l2/1",
+        "entry": "main",
+        "definitions": {
+          "main": {
+            "params": [
+              "x"
+            ],
+            "body": 7
+          }
+        }
+      },
+      "error": "L2_PROGRAM"
+    },
+    {
+      "id": "provided-pins",
+      "draft": {
+        "schema": "bagaev-l2-draft/2",
+        "entry": "main",
+        "definitions": {
+          "main": {
+            "params": [
+              "x"
+            ],
+            "body": 7
+          }
+        },
+        "pins": {}
+      },
+      "error": "L2_PROGRAM"
+    },
+    {
+      "id": "extra",
+      "draft": {
+        "schema": "bagaev-l2-draft/2",
+        "entry": "main",
+        "definitions": {
+          "main": {
+            "params": [
+              "x"
+            ],
+            "body": 7
+          }
+        },
+        "other": 0
+      },
+      "error": "L2_PROGRAM"
+    },
+    {
+      "id": "missing-definitions",
+      "draft": {
+        "schema": "bagaev-l2-draft/2",
+        "entry": "main"
+      },
+      "error": "L2_PROGRAM"
+    },
+    {
+      "id": "unbound",
+      "draft": {
+        "schema": "bagaev-l2-draft/2",
+        "entry": "main",
+        "definitions": {
+          "main": {
+            "params": [
+              "x"
+            ],
+            "body": [
+              "var",
+              "missing"
+            ]
+          }
+        }
+      },
+      "error": "L2_REFERENCE"
+    },
+    {
+      "id": "missing-call",
+      "draft": {
+        "schema": "bagaev-l2-draft/2",
+        "entry": "main",
+        "definitions": {
+          "main": {
+            "params": [
+              "x"
+            ],
+            "body": [
+              "call",
+              "absent"
+            ]
+          }
+        }
+      },
+      "error": "L2_REFERENCE"
+    },
+    {
+      "id": "cycle",
+      "draft": {
+        "schema": "bagaev-l2-draft/2",
+        "entry": "main",
+        "definitions": {
+          "main": {
+            "params": [
+              "x"
+            ],
+            "body": [
+              "call",
+              "main",
+              [
+                "var",
+                "x"
+              ]
+            ]
+          }
+        }
+      },
+      "error": "L2_CYCLE"
+    },
+    {
+      "id": "bad-arity",
+      "draft": {
+        "schema": "bagaev-l2-draft/2",
+        "entry": "main",
+        "definitions": {
+          "main": {
+            "params": [
+              "x"
+            ],
+            "body": [
+              "filter",
+              [
+                "var",
+                "x"
+              ],
+              "i"
+            ]
+          }
+        }
+      },
+      "error": "L2_PROGRAM"
+    },
+    {
+      "id": "unreachable-bad",
+      "draft": {
+        "schema": "bagaev-l2-draft/2",
+        "entry": "main",
+        "definitions": {
+          "main": {
+            "params": [
+              "x"
+            ],
+            "body": 0
+          },
+          "unused": {
+            "params": [],
+            "body": [
+              "var",
+              "missing"
+            ]
+          }
+        }
+      },
+      "error": "L2_REFERENCE"
+    }
+  ]
+}
