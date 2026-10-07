@@ -36,3 +36,5 @@ checks, not measurement of performance, model usefulness or adoption.
 The new form reserves `fold` and `with`; earlier form readers retain their
 original identifier rules. Supplemental checks cover four core refusals,
 fourteen existing form5 graphs, version gates and six file-CLI operations.
+
+The [TagBox budget example](tag-box-budget.md) uses the fold in a retained-receipt path and preserves computation-work refusals.

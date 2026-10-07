@@ -1,0 +1,25 @@
+bagaev component-form/6;
+component TagBoxBudget operation add_budgeted_tag {
+  record TagKey { code: Text };
+  record TagRevision { value: Int64 };
+  record TagState { key: TagKey, tags: TextList };
+  record AddTag { item: TagKey, expected: TagRevision, tag: Text };
+  record TagError { reason: Text };
+  variant TagOutcome { Decline: TagError, Propose: TagState };
+  state TagState identity key;
+  request AddTag identity item revision expected: TagRevision;
+  replace tags;
+  outcome TagOutcome error TagError;
+  entry apply;
+  fn apply(state: TagState, request: AddTag) -> TagOutcome =
+    if text.scalars(request.tag) < 1 then TagOutcome.Decline(TagError { reason: "empty-tag" })
+    else if list.contains(state.tags, request.tag) then TagOutcome.Decline(TagError { reason: "already-present" })
+    else if list.len(state.tags) < 64 then
+      if byte_count(state.tags) + text.bytes(request.tag) < 4097 then
+        TagOutcome.Propose(TagState { key: state.key, tags: list.unique(list.push(state.tags, request.tag)) })
+      else TagOutcome.Decline(TagError { reason: "byte-capacity" })
+    else TagOutcome.Decline(TagError { reason: "tag-capacity" });
+  fn byte_count(tags: TextList) -> Int64 =
+    fold (64, 0) with (idx, total) in
+      if idx < list.len(tags) then total + text.bytes(list.at(tags, idx)) else total;
+}

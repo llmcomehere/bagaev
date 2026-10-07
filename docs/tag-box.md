@@ -78,3 +78,5 @@ The existing fixed-source, trusted callbacks/filesystem and single-writer SQLite
 assumptions remain. This does not test process or power-loss recovery, perform
 new-source admission, implement production authentication or measure cost/speed.
 The original TextList/typed-core/owner implementations are unchanged.
+
+For a separate explicit byte preflight, see [TagBox budget](tag-box-budget.md).
