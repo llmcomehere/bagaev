@@ -26,7 +26,8 @@ def main():
             assert ordinary(argument,revision)==expected
             assert l2.evaluate(program,argument)==expected
             assert namespace['evaluate'](argument)==expected
-            assert argument==before
+            # Preserve JSON scalar tags: True, 1 and 1.0 must not compare equal.
+            assert json.dumps(argument,sort_keys=True,separators=(',',':'),allow_nan=False)==json.dumps(before,sort_keys=True,separators=(',',':'),allow_nan=False)
             count+=1
     try:l2.apply_patch(updated,patch)
     except l2.L2Error as error:assert error.code=='L2_STALE'
