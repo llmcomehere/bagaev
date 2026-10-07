@@ -64,3 +64,9 @@ acceptance scope was changed to pass that case.
 The portable component_match_diagnostic_checks.py driver records these bounded
 observations. They do not establish semantic conformance, execution admission,
 independent reproduction or an efficiency result.
+
+## Semantic expression context
+
+For an existing semantic JSON expression pointer, use the separate
+[source-bound location helper](component-expression-locations.md). It maps exact
+expressions in form/4 and does not replace the checker or guess a guilty token.
