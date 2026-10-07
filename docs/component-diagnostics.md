@@ -43,3 +43,24 @@ literal overflow, unavailable lowering spans and token bounds. Two supplemental
 oversized-encoding cases retain the original refusal priority. The portable
 component_diagnostic_checks.py driver also exercises the file command and
 transport refusals. Original source and converter bytes remain unchanged.
+
+## Explicit match-form diagnostics
+
+The command's default remains form 3. Explicit `--form 4` selects the fixed
+bagaev_component_match_diagnostics API for match-bearing component-form/4.
+It returns the same diagnostic schema with form:component-form/4. There is no
+header autodetection and the form/3 API remains unchanged.
+
+Fifteen earlier cases were adapted only for the version header and source hash.
+Five match-specific observations cover valid matching, missing colon/binder,
+duplicate alternatives and an incomplete but syntactically valid match. The
+last case still requires the real core checker. All twenty observations passed,
+along with the original fifteen default-form cases and encoding/transport checks.
+One initial expected binder span selected the preceding arm's identical token
+sequence. Its coordinate was corrected to the intended Propose arm; the original
+failed expectation is retained in development evidence. No product behavior or
+acceptance scope was changed to pass that case.
+
+The portable component_match_diagnostic_checks.py driver records these bounded
+observations. They do not establish semantic conformance, execution admission,
+independent reproduction or an efficiency result.

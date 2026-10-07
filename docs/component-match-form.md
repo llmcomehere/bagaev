@@ -45,9 +45,9 @@ Form 3 rejects the new header; form 4 rejects the form 3 header. The file conver
 selects only a fixed codec from its explicit 2/3/4 choice. It continues to report
 semantic_check:false and execution_admission:false and refuses existing outputs.
 
-The optional diagnostic command still accepts only form 3. The existing detached
-edit/3 route also still accepts only form 3. This slice does not silently extend
-those versioned contracts. Prepare source/2 data and use its established checker;
+The optional diagnostic command defaults to form 3; explicit --form 4 selects
+the fixed match diagnostic API. The existing detached edit/3 route still accepts
+only form 3. No header autodetection extends those versioned contracts. Prepare source/2 data and use its established checker;
 no live admission follows from conversion.
 
 ## Bounded evidence
