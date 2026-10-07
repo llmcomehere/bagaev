@@ -1,0 +1,950 @@
+{
+  "source": {
+    "component": {
+      "entry": "apply",
+      "error_type": "StockError",
+      "identity_binding": {
+        "request": "item",
+        "state": "key"
+      },
+      "name": "StockItem",
+      "operation": "adjust_quantity",
+      "outcome_type": "StockOutcome",
+      "replace_fields": [
+        "quantity"
+      ],
+      "request_type": "AdjustStock",
+      "revision_binding": "expected",
+      "revision_type": "StockVersion",
+      "state_type": "Stock"
+    },
+    "program": {
+      "entry": "apply",
+      "functions": {
+        "apply": {
+          "body": [
+            "match",
+            [
+              "call",
+              "raw_adjust",
+              [
+                "arg",
+                "state"
+              ],
+              [
+                "arg",
+                "request"
+              ]
+            ],
+            [
+              [
+                "Decline",
+                "error",
+                [
+                  "variant",
+                  "StockOutcome",
+                  "Decline",
+                  [
+                    "use",
+                    "error"
+                  ]
+                ]
+              ],
+              [
+                "Propose",
+                "proposed",
+                [
+                  "if",
+                  [
+                    "lt",
+                    [
+                      "int",
+                      100
+                    ],
+                    [
+                      "field",
+                      [
+                        "use",
+                        "proposed"
+                      ],
+                      "quantity"
+                    ]
+                  ],
+                  [
+                    "variant",
+                    "StockOutcome",
+                    "Decline",
+                    [
+                      "record",
+                      "StockError",
+                      [
+                        "text",
+                        "capacity-exceeded"
+                      ]
+                    ]
+                  ],
+                  [
+                    "variant",
+                    "StockOutcome",
+                    "Propose",
+                    [
+                      "use",
+                      "proposed"
+                    ]
+                  ]
+                ]
+              ]
+            ]
+          ],
+          "params": [
+            [
+              "state",
+              "Stock"
+            ],
+            [
+              "request",
+              "AdjustStock"
+            ]
+          ],
+          "result": "StockOutcome"
+        },
+        "raw_adjust": {
+          "body": [
+            "let",
+            "next",
+            [
+              "add",
+              [
+                "field",
+                [
+                  "arg",
+                  "state"
+                ],
+                "quantity"
+              ],
+              [
+                "field",
+                [
+                  "arg",
+                  "request"
+                ],
+                "delta"
+              ]
+            ],
+            [
+              "if",
+              [
+                "lt",
+                [
+                  "use",
+                  "next"
+                ],
+                [
+                  "int",
+                  0
+                ]
+              ],
+              [
+                "variant",
+                "StockOutcome",
+                "Decline",
+                [
+                  "record",
+                  "StockError",
+                  [
+                    "text",
+                    "negative-quantity"
+                  ]
+                ]
+              ],
+              [
+                "variant",
+                "StockOutcome",
+                "Propose",
+                [
+                  "record",
+                  "Stock",
+                  [
+                    "field",
+                    [
+                      "arg",
+                      "state"
+                    ],
+                    "key"
+                  ],
+                  [
+                    "field",
+                    [
+                      "arg",
+                      "state"
+                    ],
+                    "note"
+                  ],
+                  [
+                    "use",
+                    "next"
+                  ]
+                ]
+              ]
+            ]
+          ],
+          "params": [
+            [
+              "state",
+              "Stock"
+            ],
+            [
+              "request",
+              "AdjustStock"
+            ]
+          ],
+          "result": "StockOutcome"
+        }
+      },
+      "lists": {},
+      "records": {
+        "AdjustStock": {
+          "delta": "Int64",
+          "expected": "StockVersion",
+          "item": "StockKey"
+        },
+        "Stock": {
+          "key": "StockKey",
+          "note": "Text",
+          "quantity": "Int64"
+        },
+        "StockError": {
+          "reason": "Text"
+        },
+        "StockKey": {
+          "code": "Text"
+        },
+        "StockVersion": {
+          "value": "Int64"
+        }
+      },
+      "schema": "bagaev-typed-record/10",
+      "variants": {
+        "StockOutcome": {
+          "Decline": "StockError",
+          "Propose": "Stock"
+        }
+      }
+    },
+    "schema": "bagaev-component-source/2"
+  },
+  "config": {
+    "policy": {
+      "schema": "bagaev-component-policy/2",
+      "component": "StockItem",
+      "operation": "adjust_quantity",
+      "state_type": "Stock",
+      "request_type": "AdjustStock",
+      "revision_type": "StockVersion",
+      "identity_binding": {
+        "state": "key",
+        "request": "item"
+      },
+      "revision_binding": "expected",
+      "replace_fields": [
+        "quantity"
+      ],
+      "records": {
+        "StockKey": {
+          "code": "Text"
+        },
+        "StockVersion": {
+          "value": "Int64"
+        },
+        "Stock": {
+          "key": "StockKey",
+          "quantity": "Int64",
+          "note": "Text"
+        },
+        "StockError": {
+          "reason": "Text"
+        },
+        "AdjustStock": {
+          "item": "StockKey",
+          "expected": "StockVersion",
+          "delta": "Int64"
+        }
+      },
+      "outcome_type": "StockOutcome",
+      "error_type": "StockError"
+    },
+    "sources": [
+      {
+        "component": {
+          "entry": "apply",
+          "error_type": "StockError",
+          "identity_binding": {
+            "request": "item",
+            "state": "key"
+          },
+          "name": "StockItem",
+          "operation": "adjust_quantity",
+          "outcome_type": "StockOutcome",
+          "replace_fields": [
+            "quantity"
+          ],
+          "request_type": "AdjustStock",
+          "revision_binding": "expected",
+          "revision_type": "StockVersion",
+          "state_type": "Stock"
+        },
+        "program": {
+          "entry": "apply",
+          "functions": {
+            "apply": {
+              "body": [
+                "match",
+                [
+                  "call",
+                  "raw_adjust",
+                  [
+                    "arg",
+                    "state"
+                  ],
+                  [
+                    "arg",
+                    "request"
+                  ]
+                ],
+                [
+                  [
+                    "Decline",
+                    "error",
+                    [
+                      "variant",
+                      "StockOutcome",
+                      "Decline",
+                      [
+                        "use",
+                        "error"
+                      ]
+                    ]
+                  ],
+                  [
+                    "Propose",
+                    "proposed",
+                    [
+                      "if",
+                      [
+                        "lt",
+                        [
+                          "int",
+                          100
+                        ],
+                        [
+                          "field",
+                          [
+                            "use",
+                            "proposed"
+                          ],
+                          "quantity"
+                        ]
+                      ],
+                      [
+                        "variant",
+                        "StockOutcome",
+                        "Decline",
+                        [
+                          "record",
+                          "StockError",
+                          [
+                            "text",
+                            "capacity-exceeded"
+                          ]
+                        ]
+                      ],
+                      [
+                        "variant",
+                        "StockOutcome",
+                        "Propose",
+                        [
+                          "use",
+                          "proposed"
+                        ]
+                      ]
+                    ]
+                  ]
+                ]
+              ],
+              "params": [
+                [
+                  "state",
+                  "Stock"
+                ],
+                [
+                  "request",
+                  "AdjustStock"
+                ]
+              ],
+              "result": "StockOutcome"
+            },
+            "raw_adjust": {
+              "body": [
+                "let",
+                "next",
+                [
+                  "add",
+                  [
+                    "field",
+                    [
+                      "arg",
+                      "state"
+                    ],
+                    "quantity"
+                  ],
+                  [
+                    "field",
+                    [
+                      "arg",
+                      "request"
+                    ],
+                    "delta"
+                  ]
+                ],
+                [
+                  "if",
+                  [
+                    "lt",
+                    [
+                      "use",
+                      "next"
+                    ],
+                    [
+                      "int",
+                      0
+                    ]
+                  ],
+                  [
+                    "variant",
+                    "StockOutcome",
+                    "Decline",
+                    [
+                      "record",
+                      "StockError",
+                      [
+                        "text",
+                        "negative-quantity"
+                      ]
+                    ]
+                  ],
+                  [
+                    "variant",
+                    "StockOutcome",
+                    "Propose",
+                    [
+                      "record",
+                      "Stock",
+                      [
+                        "field",
+                        [
+                          "arg",
+                          "state"
+                        ],
+                        "key"
+                      ],
+                      [
+                        "field",
+                        [
+                          "arg",
+                          "state"
+                        ],
+                        "note"
+                      ],
+                      [
+                        "use",
+                        "next"
+                      ]
+                    ]
+                  ]
+                ]
+              ],
+              "params": [
+                [
+                  "state",
+                  "Stock"
+                ],
+                [
+                  "request",
+                  "AdjustStock"
+                ]
+              ],
+              "result": "StockOutcome"
+            }
+          },
+          "lists": {},
+          "records": {
+            "AdjustStock": {
+              "delta": "Int64",
+              "expected": "StockVersion",
+              "item": "StockKey"
+            },
+            "Stock": {
+              "key": "StockKey",
+              "note": "Text",
+              "quantity": "Int64"
+            },
+            "StockError": {
+              "reason": "Text"
+            },
+            "StockKey": {
+              "code": "Text"
+            },
+            "StockVersion": {
+              "value": "Int64"
+            }
+          },
+          "schema": "bagaev-typed-record/10",
+          "variants": {
+            "StockOutcome": {
+              "Decline": "StockError",
+              "Propose": "Stock"
+            }
+          }
+        },
+        "schema": "bagaev-component-source/2"
+      }
+    ],
+    "origin": {
+      "revision": 7,
+      "state": {
+        "key": {
+          "code": "sku1"
+        },
+        "note": "kept",
+        "quantity": 10
+      }
+    },
+    "resource": "stock/g1",
+    "clock_domain": "fixture-clock1"
+  },
+  "conditions": {
+    "cancel": true,
+    "epoch": 1,
+    "observe": true,
+    "submit": true,
+    "tick": 1,
+    "write": true
+  },
+  "packets": {
+    "A": {
+      "key": {
+        "domain": "owner",
+        "id": "A",
+        "resource": "stock/g1"
+      },
+      "source": "7a7c11b9ef2fa15317dcc299e90d01b87cc5fb38c3063cacab09eb1da895968f",
+      "request": {
+        "item": {
+          "code": "sku1"
+        },
+        "expected": {
+          "value": 7
+        },
+        "delta": -20
+      },
+      "epoch": 1,
+      "deadline": 100
+    },
+    "B": {
+      "key": {
+        "domain": "owner",
+        "id": "B",
+        "resource": "stock/g1"
+      },
+      "source": "7a7c11b9ef2fa15317dcc299e90d01b87cc5fb38c3063cacab09eb1da895968f",
+      "request": {
+        "item": {
+          "code": "sku1"
+        },
+        "expected": {
+          "value": 7
+        },
+        "delta": 3
+      },
+      "epoch": 1,
+      "deadline": 100
+    },
+    "C": {
+      "key": {
+        "domain": "owner",
+        "id": "C",
+        "resource": "stock/g1"
+      },
+      "source": "7a7c11b9ef2fa15317dcc299e90d01b87cc5fb38c3063cacab09eb1da895968f",
+      "request": {
+        "item": {
+          "code": "sku1"
+        },
+        "expected": {
+          "value": 8
+        },
+        "delta": 100
+      },
+      "epoch": 1,
+      "deadline": 100
+    },
+    "D": {
+      "key": {
+        "domain": "owner",
+        "id": "D",
+        "resource": "stock/g1"
+      },
+      "source": "7a7c11b9ef2fa15317dcc299e90d01b87cc5fb38c3063cacab09eb1da895968f",
+      "request": {
+        "item": {
+          "code": "sku1"
+        },
+        "expected": {
+          "value": 8
+        },
+        "delta": -13
+      },
+      "epoch": 1,
+      "deadline": 100
+    },
+    "E": {
+      "key": {
+        "domain": "owner",
+        "id": "E",
+        "resource": "stock/g1"
+      },
+      "source": "7a7c11b9ef2fa15317dcc299e90d01b87cc5fb38c3063cacab09eb1da895968f",
+      "request": {
+        "item": {
+          "code": "sku1"
+        },
+        "expected": {
+          "value": 9
+        },
+        "delta": 7
+      },
+      "epoch": 1,
+      "deadline": 100
+    },
+    "F": {
+      "key": {
+        "domain": "owner",
+        "id": "F",
+        "resource": "stock/g1"
+      },
+      "source": "7a7c11b9ef2fa15317dcc299e90d01b87cc5fb38c3063cacab09eb1da895968f",
+      "request": {
+        "item": {
+          "code": "sku1"
+        },
+        "expected": {
+          "value": 10
+        },
+        "delta": 1
+      },
+      "epoch": 1,
+      "deadline": 100
+    }
+  },
+  "receipts": {
+    "A": {
+      "kind": "Declined",
+      "key": {
+        "domain": "owner",
+        "id": "A",
+        "resource": "stock/g1"
+      },
+      "intent": {
+        "source": "7a7c11b9ef2fa15317dcc299e90d01b87cc5fb38c3063cacab09eb1da895968f",
+        "request": {
+          "item": {
+            "code": "sku1"
+          },
+          "expected": {
+            "value": 7
+          },
+          "delta": -20
+        },
+        "epoch": 1,
+        "deadline": 100
+      },
+      "revision": 7,
+      "error": {
+        "reason": "negative-quantity"
+      }
+    },
+    "B": {
+      "kind": "Applied",
+      "key": {
+        "domain": "owner",
+        "id": "B",
+        "resource": "stock/g1"
+      },
+      "intent": {
+        "source": "7a7c11b9ef2fa15317dcc299e90d01b87cc5fb38c3063cacab09eb1da895968f",
+        "request": {
+          "item": {
+            "code": "sku1"
+          },
+          "expected": {
+            "value": 7
+          },
+          "delta": 3
+        },
+        "epoch": 1,
+        "deadline": 100
+      },
+      "revision": 8,
+      "state": {
+        "key": {
+          "code": "sku1"
+        },
+        "note": "kept",
+        "quantity": 13
+      }
+    },
+    "C": {
+      "kind": "Declined",
+      "key": {
+        "domain": "owner",
+        "id": "C",
+        "resource": "stock/g1"
+      },
+      "intent": {
+        "source": "7a7c11b9ef2fa15317dcc299e90d01b87cc5fb38c3063cacab09eb1da895968f",
+        "request": {
+          "item": {
+            "code": "sku1"
+          },
+          "expected": {
+            "value": 8
+          },
+          "delta": 100
+        },
+        "epoch": 1,
+        "deadline": 100
+      },
+      "revision": 8,
+      "error": {
+        "reason": "capacity-exceeded"
+      }
+    },
+    "D": {
+      "kind": "Applied",
+      "key": {
+        "domain": "owner",
+        "id": "D",
+        "resource": "stock/g1"
+      },
+      "intent": {
+        "source": "7a7c11b9ef2fa15317dcc299e90d01b87cc5fb38c3063cacab09eb1da895968f",
+        "request": {
+          "item": {
+            "code": "sku1"
+          },
+          "expected": {
+            "value": 8
+          },
+          "delta": -13
+        },
+        "epoch": 1,
+        "deadline": 100
+      },
+      "revision": 9,
+      "state": {
+        "key": {
+          "code": "sku1"
+        },
+        "note": "kept",
+        "quantity": 0
+      }
+    },
+    "E": {
+      "kind": "Applied",
+      "key": {
+        "domain": "owner",
+        "id": "E",
+        "resource": "stock/g1"
+      },
+      "intent": {
+        "source": "7a7c11b9ef2fa15317dcc299e90d01b87cc5fb38c3063cacab09eb1da895968f",
+        "request": {
+          "item": {
+            "code": "sku1"
+          },
+          "expected": {
+            "value": 9
+          },
+          "delta": 7
+        },
+        "epoch": 1,
+        "deadline": 100
+      },
+      "revision": 10,
+      "state": {
+        "key": {
+          "code": "sku1"
+        },
+        "note": "kept",
+        "quantity": 7
+      }
+    }
+  },
+  "steps": [
+    {
+      "packet": "A",
+      "answer": {
+        "kind": "Declined",
+        "key": {
+          "domain": "owner",
+          "id": "A",
+          "resource": "stock/g1"
+        },
+        "intent": {
+          "source": "7a7c11b9ef2fa15317dcc299e90d01b87cc5fb38c3063cacab09eb1da895968f",
+          "request": {
+            "item": {
+              "code": "sku1"
+            },
+            "expected": {
+              "value": 7
+            },
+            "delta": -20
+          },
+          "epoch": 1,
+          "deadline": 100
+        },
+        "revision": 7,
+        "error": {
+          "reason": "negative-quantity"
+        }
+      },
+      "generation": 1,
+      "revision": 7,
+      "quantity": 10,
+      "mutations": 0,
+      "application_evaluations": 1
+    },
+    {
+      "packet": "B",
+      "answer": {
+        "kind": "Applied",
+        "key": {
+          "domain": "owner",
+          "id": "B",
+          "resource": "stock/g1"
+        },
+        "intent": {
+          "source": "7a7c11b9ef2fa15317dcc299e90d01b87cc5fb38c3063cacab09eb1da895968f",
+          "request": {
+            "item": {
+              "code": "sku1"
+            },
+            "expected": {
+              "value": 7
+            },
+            "delta": 3
+          },
+          "epoch": 1,
+          "deadline": 100
+        },
+        "revision": 8,
+        "state": {
+          "key": {
+            "code": "sku1"
+          },
+          "note": "kept",
+          "quantity": 13
+        }
+      },
+      "generation": 2,
+      "revision": 8,
+      "quantity": 13,
+      "mutations": 1,
+      "application_evaluations": 2
+    },
+    {
+      "packet": "C",
+      "answer": {
+        "kind": "Declined",
+        "key": {
+          "domain": "owner",
+          "id": "C",
+          "resource": "stock/g1"
+        },
+        "intent": {
+          "source": "7a7c11b9ef2fa15317dcc299e90d01b87cc5fb38c3063cacab09eb1da895968f",
+          "request": {
+            "item": {
+              "code": "sku1"
+            },
+            "expected": {
+              "value": 8
+            },
+            "delta": 100
+          },
+          "epoch": 1,
+          "deadline": 100
+        },
+        "revision": 8,
+        "error": {
+          "reason": "capacity-exceeded"
+        }
+      },
+      "generation": 3,
+      "revision": 8,
+      "quantity": 13,
+      "mutations": 1,
+      "application_evaluations": 3
+    },
+    {
+      "packet": "D",
+      "answer": {
+        "kind": "Applied",
+        "key": {
+          "domain": "owner",
+          "id": "D",
+          "resource": "stock/g1"
+        },
+        "intent": {
+          "source": "7a7c11b9ef2fa15317dcc299e90d01b87cc5fb38c3063cacab09eb1da895968f",
+          "request": {
+            "item": {
+              "code": "sku1"
+            },
+            "expected": {
+              "value": 8
+            },
+            "delta": -13
+          },
+          "epoch": 1,
+          "deadline": 100
+        },
+        "revision": 9,
+        "state": {
+          "key": {
+            "code": "sku1"
+          },
+          "note": "kept",
+          "quantity": 0
+        }
+      },
+      "generation": 4,
+      "revision": 9,
+      "quantity": 0,
+      "mutations": 2,
+      "application_evaluations": 4
+    },
+    {
+      "packet": "E",
+      "answer": {
+        "status": "OutcomeUnknown"
+      },
+      "generation": 5,
+      "revision": 10,
+      "quantity": 7,
+      "mutations": 3,
+      "application_evaluations": 5
+    }
+  ]
+}

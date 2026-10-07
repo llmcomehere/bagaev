@@ -1,0 +1,26 @@
+bagaev component-form/4;
+component StockItem operation adjust_quantity {
+  record StockKey { code: Text };
+  record StockVersion { value: Int64 };
+  record Stock { key: StockKey, quantity: Int64, note: Text };
+  record AdjustStock { item: StockKey, expected: StockVersion, delta: Int64 };
+  record StockError { reason: Text };
+  variant StockOutcome { Decline: StockError, Propose: Stock };
+  state Stock identity key;
+  request AdjustStock identity item revision expected: StockVersion;
+  replace quantity;
+  outcome StockOutcome error StockError;
+  entry apply;
+  fn raw_adjust(state: Stock, request: AdjustStock) -> StockOutcome =
+    let next = state.quantity + request.delta in
+    if next < 0
+    then StockOutcome.Decline(StockError { reason: "negative-quantity" })
+    else StockOutcome.Propose(Stock { key: state.key, note: state.note, quantity: next });
+  fn apply(state: Stock, request: AdjustStock) -> StockOutcome =
+    match (raw_adjust(state, request)) {
+      Decline(error): StockOutcome.Decline(error);
+      Propose(proposed): if 100 < proposed.quantity
+        then StockOutcome.Decline(StockError { reason: "capacity-exceeded" })
+        else StockOutcome.Propose(proposed);
+    };
+}
