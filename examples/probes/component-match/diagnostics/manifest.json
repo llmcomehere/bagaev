@@ -6,6 +6,6 @@
     "src/bagaev_component_match_form.py": "4565259c07582e166ca2cae923776a94e5520c84aceb54b634162dfdd0cab2df"
   },
   "dependencies": {
-    "tools/component_text.py": "3c4822282a1b0f51f143a3e6566732192e0a58079e1ce484a5b980db21c6b76e"
+    "tools/component_text.py": "271ecedd2ff53109a4a3652e315248ed100c7c3d564ead284874cd0fd701f895"
   }
 }
