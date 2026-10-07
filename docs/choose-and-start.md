@@ -58,6 +58,10 @@ add a new platform-compatibility guarantee beyond the repository's tested profil
 
 ## Decide what to try next
 
+For a different small application, try [changing a support-queue ordering
+rule](example-queue-change.md): existing L2, a one-definition patch, fixed expected
+results and an ordinary Python comparator. It needs no new language mechanism.
+
 - Change the actual task requirement before changing the program; retain an expected
   result independently of the proposed implementation.
 - Stay within the selected [L0 semantics](l0.md), or deliberately choose the existing

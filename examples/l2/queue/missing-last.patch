@@ -1,0 +1,70 @@
+{
+  "add": {},
+  "base": "sha256:c2d439391fcb6f0a1b7b1f8960216fb61439f5d15db05c2363974635eb3be74a",
+  "replace": {
+    "key": {
+      "body": [
+        "array",
+        [
+          "if",
+          [
+            "get",
+            [
+              "var",
+              "j"
+            ],
+            "urgent"
+          ],
+          0,
+          1
+        ],
+        [
+          "if",
+          [
+            "has",
+            [
+              "var",
+              "j"
+            ],
+            "priority"
+          ],
+          0,
+          1
+        ],
+        [
+          "if",
+          [
+            "has",
+            [
+              "var",
+              "j"
+            ],
+            "priority"
+          ],
+          [
+            "get",
+            [
+              "var",
+              "j"
+            ],
+            "priority"
+          ],
+          0
+        ],
+        [
+          "get",
+          [
+            "var",
+            "j"
+          ],
+          "id"
+        ]
+      ],
+      "params": [
+        "j"
+      ]
+    }
+  },
+  "schema": "bagaev-l2-patch/1",
+  "target": "sha256:dbb15bb5db432d43a87b6d4ed58e8649002c19d8abc7dacea48282e89ebede95"
+}
