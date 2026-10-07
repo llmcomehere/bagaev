@@ -1,0 +1,11 @@
+{
+  "sha256": {
+    "bridge.json": "4709eb867b0f2471f319556709f93a13a5fd7ec0144fd58b3b1f2e8bcb87a8f6",
+    "envelope.json": "8f788909f87b607bbe17d148f61d51eb5880aa8d3956e6b9f718ad9b53c377f1",
+    "cuts.json": "b670c07cc973eab4289ddc61fcce2278dba931ad833544741f5e88394c3cc279",
+    "continuation.json": "ad8427cb54fe8652e1a497225fee956cf8743039f7d8052168f92296ab8bd7a4",
+    "errors.json": "e90eef877e0090c8408ff677fbe69543e367d1db930244a07dac998d1296bb04",
+    "observation.json": "edfd1bc0d5367e4be323922ebc867a8c49a3fae7d08311d95f3afbe48fadfed8",
+    "retained-view.json": "4972050baf217a8c36ab2404eff98feb530f3af7807635a41b60d7c5d95d7be4"
+  }
+}
