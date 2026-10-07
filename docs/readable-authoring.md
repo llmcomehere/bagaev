@@ -19,7 +19,7 @@ change only a header to migrate a saved source or receipt.
 | Arithmetic and local `let` | 3 | `--form 3` | edit/3; diagnostics default to 3 |
 | Variant `match` | 4 | `--form 4` | edit/4; diagnostics `--form 4`; pinned expression locations |
 | Text and TextList operations | 5 | `--form 5` | no implicit extension of older edit/diagnostic/location APIs |
-| Fixed literal-count accumulator | 6 | `--form 6` | same explicit API boundaries as form5 |
+| Fixed literal-count accumulator | 6 | `--form 6` | diagnostics `--form 6`; older edit/location APIs remain version-bound |
 
 Use the [TextList guide](component-text-list-form.md) for fixed pure calls and
 [fold guide](component-fold-form.md) for counts 0–1024. These later forms retain

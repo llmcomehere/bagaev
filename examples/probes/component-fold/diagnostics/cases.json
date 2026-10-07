@@ -1,0 +1,609 @@
+{
+  "cases": [
+    {
+      "id": "valid",
+      "input": {
+        "text": "bagaev component-form/6;\ncomponent StockItem operation adjust_quantity {\n  record StockKey { code: Text };\n  record StockVersion { value: Int64 };\n  record Stock { key: StockKey, quantity: Int64, note: Text };\n  record AdjustStock { item: StockKey, expected: StockVersion, delta: Int64 };\n  record StockError { reason: Text };\n  variant StockOutcome { Decline: StockError, Propose: Stock };\n  state Stock identity key;\n  request AdjustStock identity item revision expected: StockVersion;\n  replace quantity;\n  outcome StockOutcome error StockError;\n  entry apply;\n  fn apply(state: Stock, request: AdjustStock) -> StockOutcome =\n    let next = state.quantity + request.delta in\n    if next < 0\n    then StockOutcome.Decline(StockError { reason: \"negative-quantity\" })\n    else StockOutcome.Propose(Stock { key: state.key, note: state.note, quantity: next });\n}\n"
+      },
+      "expected": {
+        "schema": "component-form-diagnostic/1",
+        "form": "component-form/6",
+        "valid_form": true,
+        "source_sha256": "eceb3bbc447bf904161f9cc61034f9eb5a587a509beccb5459817f2d6e532989",
+        "semantic_check": false,
+        "execution_admission": false,
+        "error": null
+      }
+    },
+    {
+      "id": "version",
+      "input": {
+        "text": "bagaev component-form/2;\ncomponent StockItem operation adjust_quantity {\n  record StockKey { code: Text };\n  record StockVersion { value: Int64 };\n  record Stock { key: StockKey, quantity: Int64, note: Text };\n  record AdjustStock { item: StockKey, expected: StockVersion, delta: Int64 };\n  record StockError { reason: Text };\n  variant StockOutcome { Decline: StockError, Propose: Stock };\n  state Stock identity key;\n  request AdjustStock identity item revision expected: StockVersion;\n  replace quantity;\n  outcome StockOutcome error StockError;\n  entry apply;\n  fn apply(state: Stock, request: AdjustStock) -> StockOutcome =\n    let next = state.quantity + request.delta in\n    if next < 0\n    then StockOutcome.Decline(StockError { reason: \"negative-quantity\" })\n    else StockOutcome.Propose(Stock { key: state.key, note: state.note, quantity: next });\n}\n"
+      },
+      "expected": {
+        "schema": "component-form-diagnostic/1",
+        "form": "component-form/6",
+        "valid_form": false,
+        "source_sha256": "e2b7395b204cf44ace5f9f349e139e6d6fa68d1a9bcccb818d451a889374fb20",
+        "semantic_check": false,
+        "execution_admission": false,
+        "error": {
+          "code": "FORM_VERSION",
+          "phase": "header",
+          "span": {
+            "kind": "token",
+            "start_byte": 22,
+            "end_byte": 23,
+            "start_line": 1,
+            "start_column": 23,
+            "end_line": 1,
+            "end_column": 24
+          }
+        }
+      }
+    },
+    {
+      "id": "bad-character",
+      "input": {
+        "text": "bagaev component-form/6;\ncomponent StockItem operation adjust_quantity {\n  record StockKey { code: Text };\n  record StockVersion { value: Int64 };\n  record Stock { key: StockKey, quantity: Int64, note: Text };\n  record AdjustStock { item: StockKey, expected: StockVersion, delta: Int64 };\n  record StockError { reason: Text };\n  variant StockOutcome { Decline: StockError, Propose: Stock };\n  state Stock identity key;\n  request AdjustStock identity item revision expected: StockVersion;\n  replace quantity;\n  outcome StockOutcome error StockError;\n  entry apply;\n  fn apply(state: Stock, request: AdjustStock) -> StockOutcome =\n    let next = state.quantity + @ in\n    if next < 0\n    then StockOutcome.Decline(StockError { reason: \"negative-quantity\" })\n    else StockOutcome.Propose(Stock { key: state.key, note: state.note, quantity: next });\n}\n"
+      },
+      "expected": {
+        "schema": "component-form-diagnostic/1",
+        "form": "component-form/6",
+        "valid_form": false,
+        "source_sha256": "a95facbfc36010eb31565ca211f4f31c6c9aa16a3c1fee22e77e417b55a77891",
+        "semantic_check": false,
+        "execution_admission": false,
+        "error": {
+          "code": "FORM_SYNTAX",
+          "phase": "lexical",
+          "span": {
+            "kind": "token",
+            "start_byte": 661,
+            "end_byte": 662,
+            "start_line": 15,
+            "start_column": 33,
+            "end_line": 15,
+            "end_column": 34
+          }
+        }
+      }
+    },
+    {
+      "id": "unicode-character",
+      "input": {
+        "text": "bagaev component-form/6;\ncomponent StockItem operation adjust_quantity {\n  record StockKey { code: Text };\n  record StockVersion { value: Int64 };\n  record Stock { key: StockKey, quantity: Int64, note: Text };\n  record AdjustStock { item: StockKey, expected: StockVersion, delta: Int64 };\n  record StockError { reason: Text };\n  variant StockOutcome { Decline: StockError, Propose: Stock };\n  state Stock identity key;\n  request AdjustStock identity item revision expected: StockVersion;\n  replace quantity;\n  outcome StockOutcome error StockError;\n  entry apply;\n  fn apply(state: Stock, request: AdjustStock) -> StockOutcome =\n    let next = state.quantity + request.delta in\n    if next < 0\n    then StockOutcome.Decline(StockError { reason: \"ошибка\" })\n    else StockOutcome.Propose(Stock { key: state.key, note: state.note, quantity: 🧪 });\n}\n"
+      },
+      "expected": {
+        "schema": "component-form-diagnostic/1",
+        "form": "component-form/6",
+        "valid_form": false,
+        "source_sha256": "ecbffc92a575fb228fcea9e87d105823d64fcac059c74210f5b40f23574bf99c",
+        "semantic_check": false,
+        "execution_admission": false,
+        "error": {
+          "code": "FORM_SYNTAX",
+          "phase": "lexical",
+          "span": {
+            "kind": "token",
+            "start_byte": 845,
+            "end_byte": 849,
+            "start_line": 18,
+            "start_column": 83,
+            "end_line": 18,
+            "end_column": 84
+          }
+        }
+      }
+    },
+    {
+      "id": "missing-semicolon",
+      "input": {
+        "text": "bagaev component-form/6;\ncomponent StockItem operation adjust_quantity {\n  record StockKey { code: Text };\n  record StockVersion { value: Int64 };\n  record Stock { key: StockKey, quantity: Int64, note: Text };\n  record AdjustStock { item: StockKey, expected: StockVersion, delta: Int64 };\n  record StockError { reason: Text }\n  variant StockOutcome { Decline: StockError, Propose: Stock };\n  state Stock identity key;\n  request AdjustStock identity item revision expected: StockVersion;\n  replace quantity;\n  outcome StockOutcome error StockError;\n  entry apply;\n  fn apply(state: Stock, request: AdjustStock) -> StockOutcome =\n    let next = state.quantity + request.delta in\n    if next < 0\n    then StockOutcome.Decline(StockError { reason: \"negative-quantity\" })\n    else StockOutcome.Propose(Stock { key: state.key, note: state.note, quantity: next });\n}\n"
+      },
+      "expected": {
+        "schema": "component-form-diagnostic/1",
+        "form": "component-form/6",
+        "valid_form": false,
+        "source_sha256": "bc8330ea077877394fda570af503e1608935340108c8ea6f96b90cc6b898a73f",
+        "semantic_check": false,
+        "execution_admission": false,
+        "error": {
+          "code": "FORM_SYNTAX",
+          "phase": "parsing",
+          "span": {
+            "kind": "context",
+            "start_byte": 324,
+            "end_byte": 335,
+            "start_line": 7,
+            "start_column": 36,
+            "end_line": 8,
+            "end_column": 10
+          }
+        }
+      }
+    },
+    {
+      "id": "double-plus",
+      "input": {
+        "text": "bagaev component-form/6;\ncomponent StockItem operation adjust_quantity {\n  record StockKey { code: Text };\n  record StockVersion { value: Int64 };\n  record Stock { key: StockKey, quantity: Int64, note: Text };\n  record AdjustStock { item: StockKey, expected: StockVersion, delta: Int64 };\n  record StockError { reason: Text };\n  variant StockOutcome { Decline: StockError, Propose: Stock };\n  state Stock identity key;\n  request AdjustStock identity item revision expected: StockVersion;\n  replace quantity;\n  outcome StockOutcome error StockError;\n  entry apply;\n  fn apply(state: Stock, request: AdjustStock) -> StockOutcome =\n    let next = state.quantity ++ request.delta in\n    if next < 0\n    then StockOutcome.Decline(StockError { reason: \"negative-quantity\" })\n    else StockOutcome.Propose(Stock { key: state.key, note: state.note, quantity: next });\n}\n"
+      },
+      "expected": {
+        "schema": "component-form-diagnostic/1",
+        "form": "component-form/6",
+        "valid_form": false,
+        "source_sha256": "07efec5b5b85f187d7c466342cf47d996d57bb2040b11854a4414ce3184ccd2e",
+        "semantic_check": false,
+        "execution_admission": false,
+        "error": {
+          "code": "FORM_SYNTAX",
+          "phase": "parsing",
+          "span": {
+            "kind": "context",
+            "start_byte": 660,
+            "end_byte": 669,
+            "start_line": 15,
+            "start_column": 32,
+            "end_line": 15,
+            "end_column": 41
+          }
+        }
+      }
+    },
+    {
+      "id": "chained-comparison",
+      "input": {
+        "text": "bagaev component-form/6;\ncomponent StockItem operation adjust_quantity {\n  record StockKey { code: Text };\n  record StockVersion { value: Int64 };\n  record Stock { key: StockKey, quantity: Int64, note: Text };\n  record AdjustStock { item: StockKey, expected: StockVersion, delta: Int64 };\n  record StockError { reason: Text };\n  variant StockOutcome { Decline: StockError, Propose: Stock };\n  state Stock identity key;\n  request AdjustStock identity item revision expected: StockVersion;\n  replace quantity;\n  outcome StockOutcome error StockError;\n  entry apply;\n  fn apply(state: Stock, request: AdjustStock) -> StockOutcome =\n    let next = state.quantity + request.delta in\n    if next < 0 < 1\n    then StockOutcome.Decline(StockError { reason: \"negative-quantity\" })\n    else StockOutcome.Propose(Stock { key: state.key, note: state.note, quantity: next });\n}\n"
+      },
+      "expected": {
+        "schema": "component-form-diagnostic/1",
+        "form": "component-form/6",
+        "valid_form": false,
+        "source_sha256": "c5ce0c2f7015e43f2eb4fc55d2069172b30e71c63165d15aa6df3ff1a770d7b9",
+        "semantic_check": false,
+        "execution_admission": false,
+        "error": {
+          "code": "FORM_SYNTAX",
+          "phase": "parsing",
+          "span": {
+            "kind": "context",
+            "start_byte": 692,
+            "end_byte": 695,
+            "start_line": 16,
+            "start_column": 15,
+            "end_line": 16,
+            "end_column": 18
+          }
+        }
+      }
+    },
+    {
+      "id": "missing-brace",
+      "input": {
+        "text": "bagaev component-form/6;\ncomponent StockItem operation adjust_quantity {\n  record StockKey { code: Text };\n  record StockVersion { value: Int64 };\n  record Stock { key: StockKey, quantity: Int64, note: Text };\n  record AdjustStock { item: StockKey, expected: StockVersion, delta: Int64 };\n  record StockError { reason: Text };\n  variant StockOutcome { Decline: StockError, Propose: Stock };\n  state Stock identity key;\n  request AdjustStock identity item revision expected: StockVersion;\n  replace quantity;\n  outcome StockOutcome error StockError;\n  entry apply;\n  fn apply(state: Stock, request: AdjustStock) -> StockOutcome =\n    let next = state.quantity + request.delta in\n    if next < 0\n    then StockOutcome.Decline(StockError { reason: \"negative-quantity\" })\n    else StockOutcome.Propose(Stock { key: state.key, note: state.note, quantity: next });\n"
+      },
+      "expected": {
+        "schema": "component-form-diagnostic/1",
+        "form": "component-form/6",
+        "valid_form": false,
+        "source_sha256": "03156d0b0724096f50d7fbf1d00ae5f8109d07f87507d6bd77f9887b97bcc976",
+        "semantic_check": false,
+        "execution_admission": false,
+        "error": {
+          "code": "FORM_SYNTAX",
+          "phase": "parsing",
+          "span": {
+            "kind": "context",
+            "start_byte": 857,
+            "end_byte": 859,
+            "start_line": 18,
+            "start_column": 90,
+            "end_line": 19,
+            "end_column": 1
+          }
+        }
+      }
+    },
+    {
+      "id": "integer-bound",
+      "input": {
+        "text": "bagaev component-form/6;\ncomponent StockItem operation adjust_quantity {\n  record StockKey { code: Text };\n  record StockVersion { value: Int64 };\n  record Stock { key: StockKey, quantity: Int64, note: Text };\n  record AdjustStock { item: StockKey, expected: StockVersion, delta: Int64 };\n  record StockError { reason: Text };\n  variant StockOutcome { Decline: StockError, Propose: Stock };\n  state Stock identity key;\n  request AdjustStock identity item revision expected: StockVersion;\n  replace quantity;\n  outcome StockOutcome error StockError;\n  entry apply;\n  fn apply(state: Stock, request: AdjustStock) -> StockOutcome =\n    let next = state.quantity + request.delta in\n    if next < 9223372036854775808\n    then StockOutcome.Decline(StockError { reason: \"negative-quantity\" })\n    else StockOutcome.Propose(Stock { key: state.key, note: state.note, quantity: next });\n}\n"
+      },
+      "expected": {
+        "schema": "component-form-diagnostic/1",
+        "form": "component-form/6",
+        "valid_form": false,
+        "source_sha256": "663034c54e58218a2c7a132e8445e9f7eaf1bd8ba884d8d7f9af8dc070583784",
+        "semantic_check": false,
+        "execution_admission": false,
+        "error": {
+          "code": "FORM_LITERAL",
+          "phase": "parsing",
+          "span": {
+            "kind": "context",
+            "start_byte": 692,
+            "end_byte": 720,
+            "start_line": 16,
+            "start_column": 15,
+            "end_line": 17,
+            "end_column": 9
+          }
+        }
+      }
+    },
+    {
+      "id": "lowering-reference",
+      "input": {
+        "text": "bagaev component-form/6;\ncomponent StockItem operation adjust_quantity {\n  record StockKey { code: Text };\n  record StockVersion { value: Int64 };\n  record Stock { key: StockKey, quantity: Int64, note: Text };\n  record AdjustStock { item: StockKey, expected: StockVersion, delta: Int64 };\n  record StockError { reason: Text };\n  variant StockOutcome { Decline: StockError, Propose: Stock };\n  state Stock identity key;\n  request AdjustStock identity item revision expected: StockVersion;\n  replace quantity;\n  outcome StockOutcome error StockError;\n  entry apply;\n  fn apply(state: Stock, request: AdjustStock) -> StockOutcome =\n    let next = state.quantity + request.delta in\n    if next < 0\n    then Missing.Decline(StockError { reason: \"negative-quantity\" })\n    else StockOutcome.Propose(Stock { key: state.key, note: state.note, quantity: next });\n}\n"
+      },
+      "expected": {
+        "schema": "component-form-diagnostic/1",
+        "form": "component-form/6",
+        "valid_form": false,
+        "source_sha256": "ac482eaa9eb3e5e2913bbf4f967b16920cd8f967aa7e48a9e35b7804884ddaba",
+        "semantic_check": false,
+        "execution_admission": false,
+        "error": {
+          "code": "FORM_REFERENCE",
+          "phase": "lowering",
+          "span": null
+        }
+      }
+    },
+    {
+      "id": "header",
+      "input": {
+        "text": "not bagaev"
+      },
+      "expected": {
+        "schema": "component-form-diagnostic/1",
+        "form": "component-form/6",
+        "valid_form": false,
+        "source_sha256": "2796e5c8f06d30bdb25bd314e3e1376bbc38a72c792717e4ecf4a07372390ab9",
+        "semantic_check": false,
+        "execution_admission": false,
+        "error": {
+          "code": "FORM_SYNTAX",
+          "phase": "header",
+          "span": null
+        }
+      }
+    },
+    {
+      "id": "nonstring",
+      "input": {
+        "value": null
+      },
+      "expected": {
+        "schema": "component-form-diagnostic/1",
+        "form": "component-form/6",
+        "valid_form": false,
+        "source_sha256": null,
+        "semantic_check": false,
+        "execution_admission": false,
+        "error": {
+          "code": "FORM_SYNTAX",
+          "phase": "transport",
+          "span": null
+        }
+      }
+    },
+    {
+      "id": "invalid-utf8",
+      "input": {
+        "hex": "ff"
+      },
+      "expected": {
+        "schema": "component-form-diagnostic/1",
+        "form": "component-form/6",
+        "valid_form": false,
+        "source_sha256": "a8100ae6aa1940d0b663bb31cd466142ebbdbd5187131b92d93818987832eb89",
+        "semantic_check": false,
+        "execution_admission": false,
+        "error": {
+          "code": "FORM_SYNTAX",
+          "phase": "transport",
+          "span": null
+        }
+      }
+    },
+    {
+      "id": "oversize",
+      "input": {
+        "repeat": " ",
+        "count": 1048577
+      },
+      "expected": {
+        "schema": "component-form-diagnostic/1",
+        "form": "component-form/6",
+        "valid_form": false,
+        "source_sha256": null,
+        "semantic_check": false,
+        "execution_admission": false,
+        "error": {
+          "code": "FORM_BOUNDS",
+          "phase": "transport",
+          "span": null
+        }
+      }
+    },
+    {
+      "id": "token-bound-before-parse",
+      "input": {
+        "prefix": "bagaev component-form/6; ",
+        "repeat": "x ",
+        "count": 32769
+      },
+      "expected": {
+        "schema": "component-form-diagnostic/1",
+        "form": "component-form/6",
+        "valid_form": false,
+        "source_sha256": "33cd359bb824b40e7c0319b9b192a8fe057315d246f868785017ec12eb6c6d68",
+        "semantic_check": false,
+        "execution_admission": false,
+        "error": {
+          "code": "FORM_BOUNDS",
+          "phase": "lexical",
+          "span": {
+            "kind": "token",
+            "start_byte": 65561,
+            "end_byte": 65562,
+            "start_line": 1,
+            "start_column": 65562,
+            "end_line": 1,
+            "end_column": 65563
+          }
+        }
+      }
+    },
+    {
+      "id": "match-valid",
+      "input": {
+        "text": "bagaev component-form/6;\ncomponent StockItem operation adjust_quantity {\n  record StockKey { code: Text };\n  record StockVersion { value: Int64 };\n  record Stock { key: StockKey, quantity: Int64, note: Text };\n  record AdjustStock { item: StockKey, expected: StockVersion, delta: Int64 };\n  record StockError { reason: Text };\n  variant StockOutcome { Decline: StockError, Propose: Stock };\n  state Stock identity key;\n  request AdjustStock identity item revision expected: StockVersion;\n  replace quantity;\n  outcome StockOutcome error StockError;\n  entry apply;\n  fn apply(state: Stock, request: AdjustStock) -> StockOutcome =\n    let next = state.quantity + request.delta in\n    if next < 0\n    then StockOutcome.Decline(StockError { reason: \"negative-quantity\" })\n    else StockOutcome.Propose(Stock { key: state.key, note: state.note, quantity: next });\n  fn quantity(value: StockOutcome) -> Int64 = match (value) { Decline(error): -1; Propose(stock): stock.quantity; };\n}\n"
+      },
+      "expected": {
+        "schema": "component-form-diagnostic/1",
+        "form": "component-form/6",
+        "valid_form": true,
+        "source_sha256": "0106fc43f08911caf0973ece6527ef770f91ae95f2f026b661ed8954aaa31d76",
+        "semantic_check": false,
+        "execution_admission": false,
+        "error": null
+      }
+    },
+    {
+      "id": "match-colon",
+      "input": {
+        "text": "bagaev component-form/6;\ncomponent StockItem operation adjust_quantity {\n  record StockKey { code: Text };\n  record StockVersion { value: Int64 };\n  record Stock { key: StockKey, quantity: Int64, note: Text };\n  record AdjustStock { item: StockKey, expected: StockVersion, delta: Int64 };\n  record StockError { reason: Text };\n  variant StockOutcome { Decline: StockError, Propose: Stock };\n  state Stock identity key;\n  request AdjustStock identity item revision expected: StockVersion;\n  replace quantity;\n  outcome StockOutcome error StockError;\n  entry apply;\n  fn apply(state: Stock, request: AdjustStock) -> StockOutcome =\n    let next = state.quantity + request.delta in\n    if next < 0\n    then StockOutcome.Decline(StockError { reason: \"negative-quantity\" })\n    else StockOutcome.Propose(Stock { key: state.key, note: state.note, quantity: next });\n  fn quantity(value: StockOutcome) -> Int64 = match (value) { Decline(error): -1; Propose(stock) stock.quantity; };\n}\n"
+      },
+      "expected": {
+        "schema": "component-form-diagnostic/1",
+        "form": "component-form/6",
+        "valid_form": false,
+        "source_sha256": "4784d44a16c15fb1e6bfd965d3068cc2f1688dad7e206c18344db092be297e52",
+        "semantic_check": false,
+        "execution_admission": false,
+        "error": {
+          "code": "FORM_SYNTAX",
+          "phase": "parsing",
+          "span": {
+            "kind": "context",
+            "start_byte": 954,
+            "end_byte": 961,
+            "start_line": 19,
+            "start_column": 96,
+            "end_line": 19,
+            "end_column": 103
+          }
+        }
+      }
+    },
+    {
+      "id": "match-binder",
+      "input": {
+        "text": "bagaev component-form/6;\ncomponent StockItem operation adjust_quantity {\n  record StockKey { code: Text };\n  record StockVersion { value: Int64 };\n  record Stock { key: StockKey, quantity: Int64, note: Text };\n  record AdjustStock { item: StockKey, expected: StockVersion, delta: Int64 };\n  record StockError { reason: Text };\n  variant StockOutcome { Decline: StockError, Propose: Stock };\n  state Stock identity key;\n  request AdjustStock identity item revision expected: StockVersion;\n  replace quantity;\n  outcome StockOutcome error StockError;\n  entry apply;\n  fn apply(state: Stock, request: AdjustStock) -> StockOutcome =\n    let next = state.quantity + request.delta in\n    if next < 0\n    then StockOutcome.Decline(StockError { reason: \"negative-quantity\" })\n    else StockOutcome.Propose(Stock { key: state.key, note: state.note, quantity: next });\n  fn quantity(value: StockOutcome) -> Int64 = match (value) { Decline(error): -1; Propose(): stock.quantity; };\n}\n"
+      },
+      "expected": {
+        "schema": "component-form-diagnostic/1",
+        "form": "component-form/6",
+        "valid_form": false,
+        "source_sha256": "ac0bfa70c9eb12ca4f10b7b9a4665c543b842931af6c22c7108075857e588f96",
+        "semantic_check": false,
+        "execution_admission": false,
+        "error": {
+          "code": "FORM_SYNTAX",
+          "phase": "parsing",
+          "span": {
+            "kind": "context",
+            "start_byte": 949,
+            "end_byte": 951,
+            "start_line": 19,
+            "start_column": 91,
+            "end_line": 19,
+            "end_column": 93
+          }
+        }
+      }
+    },
+    {
+      "id": "match-duplicate",
+      "input": {
+        "text": "bagaev component-form/6;\ncomponent StockItem operation adjust_quantity {\n  record StockKey { code: Text };\n  record StockVersion { value: Int64 };\n  record Stock { key: StockKey, quantity: Int64, note: Text };\n  record AdjustStock { item: StockKey, expected: StockVersion, delta: Int64 };\n  record StockError { reason: Text };\n  variant StockOutcome { Decline: StockError, Propose: Stock };\n  state Stock identity key;\n  request AdjustStock identity item revision expected: StockVersion;\n  replace quantity;\n  outcome StockOutcome error StockError;\n  entry apply;\n  fn apply(state: Stock, request: AdjustStock) -> StockOutcome =\n    let next = state.quantity + request.delta in\n    if next < 0\n    then StockOutcome.Decline(StockError { reason: \"negative-quantity\" })\n    else StockOutcome.Propose(Stock { key: state.key, note: state.note, quantity: next });\n  fn quantity(value: StockOutcome) -> Int64 = match (value) { Propose(error): -1; Propose(stock): stock.quantity; };\n}\n"
+      },
+      "expected": {
+        "schema": "component-form-diagnostic/1",
+        "form": "component-form/6",
+        "valid_form": false,
+        "source_sha256": "374139ff46e6822491bf9cc0e58dcab0b8de4c47b65a2cf97872e927082b50ab",
+        "semantic_check": false,
+        "execution_admission": false,
+        "error": {
+          "code": "FORM_DUPLICATE",
+          "phase": "parsing",
+          "span": {
+            "kind": "context",
+            "start_byte": 941,
+            "end_byte": 949,
+            "start_line": 19,
+            "start_column": 83,
+            "end_line": 19,
+            "end_column": 91
+          }
+        }
+      }
+    },
+    {
+      "id": "incomplete-still-syntax-valid",
+      "input": {
+        "text": "bagaev component-form/6;\ncomponent StockItem operation adjust_quantity {\n  record StockKey { code: Text };\n  record StockVersion { value: Int64 };\n  record Stock { key: StockKey, quantity: Int64, note: Text };\n  record AdjustStock { item: StockKey, expected: StockVersion, delta: Int64 };\n  record StockError { reason: Text };\n  variant StockOutcome { Decline: StockError, Propose: Stock };\n  state Stock identity key;\n  request AdjustStock identity item revision expected: StockVersion;\n  replace quantity;\n  outcome StockOutcome error StockError;\n  entry apply;\n  fn apply(state: Stock, request: AdjustStock) -> StockOutcome =\n    let next = state.quantity + request.delta in\n    if next < 0\n    then StockOutcome.Decline(StockError { reason: \"negative-quantity\" })\n    else StockOutcome.Propose(Stock { key: state.key, note: state.note, quantity: next });\n  fn quantity(value: StockOutcome) -> Int64 = match (value) {  Propose(stock): stock.quantity; };\n}\n"
+      },
+      "expected": {
+        "schema": "component-form-diagnostic/1",
+        "form": "component-form/6",
+        "valid_form": true,
+        "source_sha256": "15ff92db1681b5fc9a2dfad6c12033b8b53d084a6d3c6b97fb77a0e8d1ca1095",
+        "semantic_check": false,
+        "execution_admission": false,
+        "error": null
+      }
+    },
+    {
+      "id": "fold-valid",
+      "input": {
+        "text": "bagaev component-form/6;\ncomponent StockItem operation adjust_quantity {\n  record StockKey { code: Text };\n  record StockVersion { value: Int64 };\n  record Stock { key: StockKey, quantity: Int64, note: Text };\n  record AdjustStock { item: StockKey, expected: StockVersion, delta: Int64 };\n  record StockError { reason: Text };\n  variant StockOutcome { Decline: StockError, Propose: Stock };\n  state Stock identity key;\n  request AdjustStock identity item revision expected: StockVersion;\n  replace quantity;\n  outcome StockOutcome error StockError;\n  entry apply;\n  fn apply(state: Stock, request: AdjustStock) -> StockOutcome =\n    let next = state.quantity + request.delta in\n    if next < 0\n    then StockOutcome.Decline(StockError { reason: \"negative-quantity\" })\n    else StockOutcome.Propose(Stock { key: state.key, note: state.note, quantity: next });\n fn calc() -> Int64 = fold (0, 7) with (idx, acc) in acc + idx;\n}\n"
+      },
+      "expected": {
+        "schema": "component-form-diagnostic/1",
+        "form": "component-form/6",
+        "valid_form": true,
+        "source_sha256": "f48e4fead5b44b99f6fc85237c960e8d9b0d7964aae67aebad58950b88c4116f",
+        "semantic_check": false,
+        "execution_admission": false,
+        "error": null
+      }
+    },
+    {
+      "id": "fold-bound",
+      "input": {
+        "text": "bagaev component-form/6;\ncomponent StockItem operation adjust_quantity {\n  record StockKey { code: Text };\n  record StockVersion { value: Int64 };\n  record Stock { key: StockKey, quantity: Int64, note: Text };\n  record AdjustStock { item: StockKey, expected: StockVersion, delta: Int64 };\n  record StockError { reason: Text };\n  variant StockOutcome { Decline: StockError, Propose: Stock };\n  state Stock identity key;\n  request AdjustStock identity item revision expected: StockVersion;\n  replace quantity;\n  outcome StockOutcome error StockError;\n  entry apply;\n  fn apply(state: Stock, request: AdjustStock) -> StockOutcome =\n    let next = state.quantity + request.delta in\n    if next < 0\n    then StockOutcome.Decline(StockError { reason: \"negative-quantity\" })\n    else StockOutcome.Propose(Stock { key: state.key, note: state.note, quantity: next });\n fn calc() -> Int64 = fold (1025, 7) with (idx, acc) in acc + idx;\n}\n"
+      },
+      "expected": {
+        "schema": "component-form-diagnostic/1",
+        "form": "component-form/6",
+        "valid_form": false,
+        "source_sha256": "da863c4aea1a23d3eee532071c2030a276f4335fbb212e6eaca234d9fe01b336",
+        "semantic_check": false,
+        "execution_admission": false,
+        "error": {
+          "code": "FORM_BOUNDS",
+          "phase": "parsing",
+          "span": {
+            "kind": "context",
+            "start_byte": 887,
+            "end_byte": 892,
+            "start_line": 19,
+            "start_column": 29,
+            "end_line": 19,
+            "end_column": 34
+          }
+        }
+      }
+    },
+    {
+      "id": "fold-dynamic",
+      "input": {
+        "text": "bagaev component-form/6;\ncomponent StockItem operation adjust_quantity {\n  record StockKey { code: Text };\n  record StockVersion { value: Int64 };\n  record Stock { key: StockKey, quantity: Int64, note: Text };\n  record AdjustStock { item: StockKey, expected: StockVersion, delta: Int64 };\n  record StockError { reason: Text };\n  variant StockOutcome { Decline: StockError, Propose: Stock };\n  state Stock identity key;\n  request AdjustStock identity item revision expected: StockVersion;\n  replace quantity;\n  outcome StockOutcome error StockError;\n  entry apply;\n  fn apply(state: Stock, request: AdjustStock) -> StockOutcome =\n    let next = state.quantity + request.delta in\n    if next < 0\n    then StockOutcome.Decline(StockError { reason: \"negative-quantity\" })\n    else StockOutcome.Propose(Stock { key: state.key, note: state.note, quantity: next });\n fn calc() -> Int64 = fold (1 + 1, 7) with (idx, acc) in acc + idx;\n}\n"
+      },
+      "expected": {
+        "schema": "component-form-diagnostic/1",
+        "form": "component-form/6",
+        "valid_form": false,
+        "source_sha256": "fad7a0cf36b212e8f32d1af541f5333c579bc83adfdaf0eb5f206fc38a71a5cf",
+        "semantic_check": false,
+        "execution_admission": false,
+        "error": {
+          "code": "FORM_SYNTAX",
+          "phase": "parsing",
+          "span": {
+            "kind": "context",
+            "start_byte": 887,
+            "end_byte": 890,
+            "start_line": 19,
+            "start_column": 29,
+            "end_line": 19,
+            "end_column": 32
+          }
+        }
+      }
+    },
+    {
+      "id": "fold-duplicate",
+      "input": {
+        "text": "bagaev component-form/6;\ncomponent StockItem operation adjust_quantity {\n  record StockKey { code: Text };\n  record StockVersion { value: Int64 };\n  record Stock { key: StockKey, quantity: Int64, note: Text };\n  record AdjustStock { item: StockKey, expected: StockVersion, delta: Int64 };\n  record StockError { reason: Text };\n  variant StockOutcome { Decline: StockError, Propose: Stock };\n  state Stock identity key;\n  request AdjustStock identity item revision expected: StockVersion;\n  replace quantity;\n  outcome StockOutcome error StockError;\n  entry apply;\n  fn apply(state: Stock, request: AdjustStock) -> StockOutcome =\n    let next = state.quantity + request.delta in\n    if next < 0\n    then StockOutcome.Decline(StockError { reason: \"negative-quantity\" })\n    else StockOutcome.Propose(Stock { key: state.key, note: state.note, quantity: next });\n fn calc() -> Int64 = fold (0, 7) with (acc, acc) in acc + idx;\n}\n"
+      },
+      "expected": {
+        "schema": "component-form-diagnostic/1",
+        "form": "component-form/6",
+        "valid_form": false,
+        "source_sha256": "11dc51564ca2266d842585e414b64dcc3cd482180c9a327feec542ed4c6843b6",
+        "semantic_check": false,
+        "execution_admission": false,
+        "error": {
+          "code": "FORM_DUPLICATE",
+          "phase": "parsing",
+          "span": {
+            "kind": "context",
+            "start_byte": 904,
+            "end_byte": 908,
+            "start_line": 19,
+            "start_column": 46,
+            "end_line": 19,
+            "end_column": 50
+          }
+        }
+      }
+    },
+    {
+      "id": "fold-missing-with",
+      "input": {
+        "text": "bagaev component-form/6;\ncomponent StockItem operation adjust_quantity {\n  record StockKey { code: Text };\n  record StockVersion { value: Int64 };\n  record Stock { key: StockKey, quantity: Int64, note: Text };\n  record AdjustStock { item: StockKey, expected: StockVersion, delta: Int64 };\n  record StockError { reason: Text };\n  variant StockOutcome { Decline: StockError, Propose: Stock };\n  state Stock identity key;\n  request AdjustStock identity item revision expected: StockVersion;\n  replace quantity;\n  outcome StockOutcome error StockError;\n  entry apply;\n  fn apply(state: Stock, request: AdjustStock) -> StockOutcome =\n    let next = state.quantity + request.delta in\n    if next < 0\n    then StockOutcome.Decline(StockError { reason: \"negative-quantity\" })\n    else StockOutcome.Propose(Stock { key: state.key, note: state.note, quantity: next });\n fn calc() -> Int64 = fold (0, 7) (idx, acc) in acc + idx;\n}\n"
+      },
+      "expected": {
+        "schema": "component-form-diagnostic/1",
+        "form": "component-form/6",
+        "valid_form": false,
+        "source_sha256": "3c37de12f6d638dac56c2bb430f0929a3684b399ff42250529526211f1490195",
+        "semantic_check": false,
+        "execution_admission": false,
+        "error": {
+          "code": "FORM_SYNTAX",
+          "phase": "parsing",
+          "span": {
+            "kind": "context",
+            "start_byte": 891,
+            "end_byte": 894,
+            "start_line": 19,
+            "start_column": 33,
+            "end_line": 19,
+            "end_column": 36
+          }
+        }
+      }
+    },
+    {
+      "id": "fold-type-unchecked",
+      "input": {
+        "text": "bagaev component-form/6;\ncomponent StockItem operation adjust_quantity {\n  record StockKey { code: Text };\n  record StockVersion { value: Int64 };\n  record Stock { key: StockKey, quantity: Int64, note: Text };\n  record AdjustStock { item: StockKey, expected: StockVersion, delta: Int64 };\n  record StockError { reason: Text };\n  variant StockOutcome { Decline: StockError, Propose: Stock };\n  state Stock identity key;\n  request AdjustStock identity item revision expected: StockVersion;\n  replace quantity;\n  outcome StockOutcome error StockError;\n  entry apply;\n  fn apply(state: Stock, request: AdjustStock) -> StockOutcome =\n    let next = state.quantity + request.delta in\n    if next < 0\n    then StockOutcome.Decline(StockError { reason: \"negative-quantity\" })\n    else StockOutcome.Propose(Stock { key: state.key, note: state.note, quantity: next });\n fn calc() -> Int64 = fold (0, 7) with (idx, acc) in true;\n}\n"
+      },
+      "expected": {
+        "schema": "component-form-diagnostic/1",
+        "form": "component-form/6",
+        "valid_form": true,
+        "source_sha256": "973e4de968810727274c5e5c96c3bfbb92fc42aa866bb9b530a53f586354f5e5",
+        "semantic_check": false,
+        "execution_admission": false,
+        "error": null
+      }
+    }
+  ]
+}

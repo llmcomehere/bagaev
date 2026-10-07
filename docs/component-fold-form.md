@@ -22,7 +22,8 @@ its append-before-dedup path total for all admitted states.
 
 Use `python tools/component_text.py decode INPUT --form 6 --output OUTPUT`.
 Encoding uses the same explicit selector. Default form2 and forms3–5 are
-unchanged. The existing diagnostic, edit and location APIs remain version-bound.
+unchanged. Diagnostics now have an explicit `--form 6` route; older edit and location APIs
+remain version-bound. See the [diagnostic guide](component-diagnostics.md).
 Conversion is data-only and does not supply semantic admission or execution.
 
 The [contract and frozen cases](../examples/probes/component-fold/CONTRACT.md)

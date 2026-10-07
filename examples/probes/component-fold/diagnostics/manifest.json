@@ -1,0 +1,12 @@
+{
+  "sha256": {
+    "cases.json": "73b742cd63b7ec569c7ca996f7660821fafb0081f2fa22bf30fdc8480c0f1fdf",
+    "CONTRACT.md": "e1d4807282e20188482efc9cf39d637128b024922792b453a6f906323321e31c"
+  },
+  "unchanged": {
+    "src/bagaev_component_fold_form.py": "0501c375b9a784e488962c517a5eed630b832d469c6d85b63277332845dba818"
+  },
+  "dependencies": {
+    "tools/component_diagnose.py": "9b6488cbd6930dd3e964ea25d0f736d03330e68c15d38503364414df6d2f43f7"
+  }
+}
