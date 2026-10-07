@@ -1,0 +1,938 @@
+{
+  "original": "bagaev component-form/6;\ncomponent TagBoxBudget operation add_budgeted_tag {\n  record TagKey { code: Text };\n  record TagRevision { value: Int64 };\n  record TagState { key: TagKey, tags: TextList };\n  record AddTag { item: TagKey, expected: TagRevision, tag: Text };\n  record TagError { reason: Text };\n  variant TagOutcome { Decline: TagError, Propose: TagState };\n  state TagState identity key;\n  request AddTag identity item revision expected: TagRevision;\n  replace tags;\n  outcome TagOutcome error TagError;\n  entry apply;\n  fn apply(state: TagState, request: AddTag) -> TagOutcome =\n    if text.scalars(request.tag) < 1 then TagOutcome.Decline(TagError { reason: \"empty-tag\" })\n    else if list.contains(state.tags, request.tag) then TagOutcome.Decline(TagError { reason: \"already-present\" })\n    else if list.len(state.tags) < 64 then\n      if byte_count(state.tags) + text.bytes(request.tag) < 4097 then\n        TagOutcome.Propose(TagState { key: state.key, tags: list.unique(list.push(state.tags, request.tag)) })\n      else TagOutcome.Decline(TagError { reason: \"byte-capacity\" })\n    else TagOutcome.Decline(TagError { reason: \"tag-capacity\" });\n  fn byte_count(tags: TextList) -> Int64 =\n    fold (64, 0) with (idx, total) in\n      if idx < list.len(tags) then total + text.bytes(list.at(tags, idx)) else total;\n}\n",
+  "policy": {
+    "schema": "bagaev-component-policy/2",
+    "component": "TagBoxBudget",
+    "records": {
+      "TagKey": {
+        "code": "Text"
+      },
+      "TagRevision": {
+        "value": "Int64"
+      },
+      "TagState": {
+        "key": "TagKey",
+        "tags": "TextList"
+      },
+      "AddTag": {
+        "item": "TagKey",
+        "expected": "TagRevision",
+        "tag": "Text"
+      },
+      "TagError": {
+        "reason": "Text"
+      }
+    },
+    "operation": "add_budgeted_tag",
+    "state_type": "TagState",
+    "request_type": "AddTag",
+    "revision_type": "TagRevision",
+    "identity_binding": {
+      "state": "key",
+      "request": "item"
+    },
+    "revision_binding": "expected",
+    "replace_fields": [
+      "tags"
+    ],
+    "outcome_type": "TagOutcome",
+    "error_type": "TagError"
+  },
+  "cases": [
+    {
+      "id": "helper",
+      "frame": {
+        "schema": "component-edit/6",
+        "form": "component-form/6",
+        "base": "72fa93e8225115cf1eb59d9deba56ea92e70af7c63bb8028793c532e14fb1632",
+        "target": "0ea4d085bfc884dcc1de7698a516071f7dc16ff56def72922212c9de4e1d57eb",
+        "candidate_id": null,
+        "source": "bagaev component-form/6;\ncomponent TagBoxBudget operation add_budgeted_tag {\n  record AddTag { expected: TagRevision, item: TagKey, tag: Text };\n  record TagError { reason: Text };\n  record TagKey { code: Text };\n  record TagRevision { value: Int64 };\n  record TagState { key: TagKey, tags: TextList };\n  variant TagOutcome { Decline: TagError, Propose: TagState };\n\n  state TagState identity key;\n  request AddTag identity item revision expected: TagRevision;\n  replace tags;\n  outcome TagOutcome error TagError;\n  entry apply;\n\n  fn apply(state: TagState, request: AddTag) -> TagOutcome = if ((text.scalars(request.tag) < 1)) then (TagOutcome.Decline(TagError { reason: \"empty-tag\" })) else (if (list.contains(state.tags, request.tag)) then (TagOutcome.Decline(TagError { reason: \"already-present\" })) else (if ((list.len(state.tags) < 64)) then (if (((byte_count(state.tags) + text.bytes(request.tag)) < 4097)) then (TagOutcome.Propose(TagState { key: state.key, tags: list.unique(list.push(state.tags, request.tag)) })) else (TagOutcome.Decline(TagError { reason: \"byte-capacity\" }))) else (TagOutcome.Decline(TagError { reason: \"tag-capacity\" }))));\n  fn byte_count(tags: TextList) -> Int64 = fold (64, (0)) with (idx, total) in (if ((idx < list.len(tags))) then ((total + tag_bytes(list.at(tags, idx)))) else (total));\n  fn tag_bytes(tag: Text) -> Int64 = text.bytes(tag);\n}\n"
+      },
+      "checker": "actual",
+      "expected": {
+        "schema": "component-draft/2",
+        "status": "draft",
+        "base": "72fa93e8225115cf1eb59d9deba56ea92e70af7c63bb8028793c532e14fb1632",
+        "target": "0ea4d085bfc884dcc1de7698a516071f7dc16ff56def72922212c9de4e1d57eb",
+        "component": {
+          "schema": "bagaev-component-source/2",
+          "component": {
+            "name": "TagBoxBudget",
+            "operation": "add_budgeted_tag",
+            "state_type": "TagState",
+            "request_type": "AddTag",
+            "revision_type": "TagRevision",
+            "entry": "apply",
+            "identity_binding": {
+              "state": "key",
+              "request": "item"
+            },
+            "revision_binding": "expected",
+            "replace_fields": [
+              "tags"
+            ],
+            "outcome_type": "TagOutcome",
+            "error_type": "TagError"
+          },
+          "program": {
+            "schema": "bagaev-typed-record/10",
+            "records": {
+              "TagKey": {
+                "code": "Text"
+              },
+              "TagRevision": {
+                "value": "Int64"
+              },
+              "TagState": {
+                "key": "TagKey",
+                "tags": "TextList"
+              },
+              "AddTag": {
+                "item": "TagKey",
+                "expected": "TagRevision",
+                "tag": "Text"
+              },
+              "TagError": {
+                "reason": "Text"
+              }
+            },
+            "lists": {},
+            "variants": {
+              "TagOutcome": {
+                "Decline": "TagError",
+                "Propose": "TagState"
+              }
+            },
+            "entry": "apply",
+            "functions": {
+              "apply": {
+                "params": [
+                  [
+                    "state",
+                    "TagState"
+                  ],
+                  [
+                    "request",
+                    "AddTag"
+                  ]
+                ],
+                "result": "TagOutcome",
+                "body": [
+                  "if",
+                  [
+                    "lt",
+                    [
+                      "text.scalars",
+                      [
+                        "field",
+                        [
+                          "arg",
+                          "request"
+                        ],
+                        "tag"
+                      ]
+                    ],
+                    [
+                      "int",
+                      1
+                    ]
+                  ],
+                  [
+                    "variant",
+                    "TagOutcome",
+                    "Decline",
+                    [
+                      "record",
+                      "TagError",
+                      [
+                        "text",
+                        "empty-tag"
+                      ]
+                    ]
+                  ],
+                  [
+                    "if",
+                    [
+                      "list.contains",
+                      [
+                        "field",
+                        [
+                          "arg",
+                          "state"
+                        ],
+                        "tags"
+                      ],
+                      [
+                        "field",
+                        [
+                          "arg",
+                          "request"
+                        ],
+                        "tag"
+                      ]
+                    ],
+                    [
+                      "variant",
+                      "TagOutcome",
+                      "Decline",
+                      [
+                        "record",
+                        "TagError",
+                        [
+                          "text",
+                          "already-present"
+                        ]
+                      ]
+                    ],
+                    [
+                      "if",
+                      [
+                        "lt",
+                        [
+                          "list.len",
+                          [
+                            "field",
+                            [
+                              "arg",
+                              "state"
+                            ],
+                            "tags"
+                          ]
+                        ],
+                        [
+                          "int",
+                          64
+                        ]
+                      ],
+                      [
+                        "if",
+                        [
+                          "lt",
+                          [
+                            "add",
+                            [
+                              "call",
+                              "byte_count",
+                              [
+                                "field",
+                                [
+                                  "arg",
+                                  "state"
+                                ],
+                                "tags"
+                              ]
+                            ],
+                            [
+                              "text.bytes",
+                              [
+                                "field",
+                                [
+                                  "arg",
+                                  "request"
+                                ],
+                                "tag"
+                              ]
+                            ]
+                          ],
+                          [
+                            "int",
+                            4097
+                          ]
+                        ],
+                        [
+                          "variant",
+                          "TagOutcome",
+                          "Propose",
+                          [
+                            "record",
+                            "TagState",
+                            [
+                              "field",
+                              [
+                                "arg",
+                                "state"
+                              ],
+                              "key"
+                            ],
+                            [
+                              "list.unique",
+                              [
+                                "list.push",
+                                [
+                                  "field",
+                                  [
+                                    "arg",
+                                    "state"
+                                  ],
+                                  "tags"
+                                ],
+                                [
+                                  "field",
+                                  [
+                                    "arg",
+                                    "request"
+                                  ],
+                                  "tag"
+                                ]
+                              ]
+                            ]
+                          ]
+                        ],
+                        [
+                          "variant",
+                          "TagOutcome",
+                          "Decline",
+                          [
+                            "record",
+                            "TagError",
+                            [
+                              "text",
+                              "byte-capacity"
+                            ]
+                          ]
+                        ]
+                      ],
+                      [
+                        "variant",
+                        "TagOutcome",
+                        "Decline",
+                        [
+                          "record",
+                          "TagError",
+                          [
+                            "text",
+                            "tag-capacity"
+                          ]
+                        ]
+                      ]
+                    ]
+                  ]
+                ]
+              },
+              "byte_count": {
+                "params": [
+                  [
+                    "tags",
+                    "TextList"
+                  ]
+                ],
+                "result": "Int64",
+                "body": [
+                  "loop",
+                  64,
+                  "idx",
+                  "total",
+                  [
+                    "int",
+                    0
+                  ],
+                  [
+                    "if",
+                    [
+                      "lt",
+                      [
+                        "use",
+                        "idx"
+                      ],
+                      [
+                        "list.len",
+                        [
+                          "arg",
+                          "tags"
+                        ]
+                      ]
+                    ],
+                    [
+                      "add",
+                      [
+                        "use",
+                        "total"
+                      ],
+                      [
+                        "call",
+                        "tag_bytes",
+                        [
+                          "list.at",
+                          [
+                            "arg",
+                            "tags"
+                          ],
+                          [
+                            "use",
+                            "idx"
+                          ]
+                        ]
+                      ]
+                    ],
+                    [
+                      "use",
+                      "total"
+                    ]
+                  ]
+                ]
+              },
+              "tag_bytes": {
+                "params": [
+                  [
+                    "tag",
+                    "Text"
+                  ]
+                ],
+                "result": "Int64",
+                "body": [
+                  "text.bytes",
+                  [
+                    "arg",
+                    "tag"
+                  ]
+                ]
+              }
+            }
+          }
+        },
+        "delta": {
+          "add": [
+            "tag_bytes"
+          ],
+          "replace": [
+            "byte_count"
+          ]
+        },
+        "execution_admission": false
+      }
+    },
+    {
+      "id": "schema",
+      "frame": {
+        "schema": "component-edit/4",
+        "form": "component-form/6",
+        "base": "72fa93e8225115cf1eb59d9deba56ea92e70af7c63bb8028793c532e14fb1632",
+        "target": "0ea4d085bfc884dcc1de7698a516071f7dc16ff56def72922212c9de4e1d57eb",
+        "candidate_id": null,
+        "source": "bagaev component-form/6;\ncomponent TagBoxBudget operation add_budgeted_tag {\n  record AddTag { expected: TagRevision, item: TagKey, tag: Text };\n  record TagError { reason: Text };\n  record TagKey { code: Text };\n  record TagRevision { value: Int64 };\n  record TagState { key: TagKey, tags: TextList };\n  variant TagOutcome { Decline: TagError, Propose: TagState };\n\n  state TagState identity key;\n  request AddTag identity item revision expected: TagRevision;\n  replace tags;\n  outcome TagOutcome error TagError;\n  entry apply;\n\n  fn apply(state: TagState, request: AddTag) -> TagOutcome = if ((text.scalars(request.tag) < 1)) then (TagOutcome.Decline(TagError { reason: \"empty-tag\" })) else (if (list.contains(state.tags, request.tag)) then (TagOutcome.Decline(TagError { reason: \"already-present\" })) else (if ((list.len(state.tags) < 64)) then (if (((byte_count(state.tags) + text.bytes(request.tag)) < 4097)) then (TagOutcome.Propose(TagState { key: state.key, tags: list.unique(list.push(state.tags, request.tag)) })) else (TagOutcome.Decline(TagError { reason: \"byte-capacity\" }))) else (TagOutcome.Decline(TagError { reason: \"tag-capacity\" }))));\n  fn byte_count(tags: TextList) -> Int64 = fold (64, (0)) with (idx, total) in (if ((idx < list.len(tags))) then ((total + tag_bytes(list.at(tags, idx)))) else (total));\n  fn tag_bytes(tag: Text) -> Int64 = text.bytes(tag);\n}\n"
+      },
+      "checker": "actual",
+      "expected": {
+        "error": "EDIT_VERSION"
+      }
+    },
+    {
+      "id": "form",
+      "frame": {
+        "schema": "component-edit/6",
+        "form": "component-form/4",
+        "base": "72fa93e8225115cf1eb59d9deba56ea92e70af7c63bb8028793c532e14fb1632",
+        "target": "0ea4d085bfc884dcc1de7698a516071f7dc16ff56def72922212c9de4e1d57eb",
+        "candidate_id": null,
+        "source": "bagaev component-form/6;\ncomponent TagBoxBudget operation add_budgeted_tag {\n  record AddTag { expected: TagRevision, item: TagKey, tag: Text };\n  record TagError { reason: Text };\n  record TagKey { code: Text };\n  record TagRevision { value: Int64 };\n  record TagState { key: TagKey, tags: TextList };\n  variant TagOutcome { Decline: TagError, Propose: TagState };\n\n  state TagState identity key;\n  request AddTag identity item revision expected: TagRevision;\n  replace tags;\n  outcome TagOutcome error TagError;\n  entry apply;\n\n  fn apply(state: TagState, request: AddTag) -> TagOutcome = if ((text.scalars(request.tag) < 1)) then (TagOutcome.Decline(TagError { reason: \"empty-tag\" })) else (if (list.contains(state.tags, request.tag)) then (TagOutcome.Decline(TagError { reason: \"already-present\" })) else (if ((list.len(state.tags) < 64)) then (if (((byte_count(state.tags) + text.bytes(request.tag)) < 4097)) then (TagOutcome.Propose(TagState { key: state.key, tags: list.unique(list.push(state.tags, request.tag)) })) else (TagOutcome.Decline(TagError { reason: \"byte-capacity\" }))) else (TagOutcome.Decline(TagError { reason: \"tag-capacity\" }))));\n  fn byte_count(tags: TextList) -> Int64 = fold (64, (0)) with (idx, total) in (if ((idx < list.len(tags))) then ((total + tag_bytes(list.at(tags, idx)))) else (total));\n  fn tag_bytes(tag: Text) -> Int64 = text.bytes(tag);\n}\n"
+      },
+      "checker": "actual",
+      "expected": {
+        "error": "EDIT_VERSION"
+      }
+    },
+    {
+      "id": "base",
+      "frame": {
+        "schema": "component-edit/6",
+        "form": "component-form/6",
+        "base": "0000000000000000000000000000000000000000000000000000000000000000",
+        "target": "0ea4d085bfc884dcc1de7698a516071f7dc16ff56def72922212c9de4e1d57eb",
+        "candidate_id": null,
+        "source": "bagaev component-form/6;\ncomponent TagBoxBudget operation add_budgeted_tag {\n  record AddTag { expected: TagRevision, item: TagKey, tag: Text };\n  record TagError { reason: Text };\n  record TagKey { code: Text };\n  record TagRevision { value: Int64 };\n  record TagState { key: TagKey, tags: TextList };\n  variant TagOutcome { Decline: TagError, Propose: TagState };\n\n  state TagState identity key;\n  request AddTag identity item revision expected: TagRevision;\n  replace tags;\n  outcome TagOutcome error TagError;\n  entry apply;\n\n  fn apply(state: TagState, request: AddTag) -> TagOutcome = if ((text.scalars(request.tag) < 1)) then (TagOutcome.Decline(TagError { reason: \"empty-tag\" })) else (if (list.contains(state.tags, request.tag)) then (TagOutcome.Decline(TagError { reason: \"already-present\" })) else (if ((list.len(state.tags) < 64)) then (if (((byte_count(state.tags) + text.bytes(request.tag)) < 4097)) then (TagOutcome.Propose(TagState { key: state.key, tags: list.unique(list.push(state.tags, request.tag)) })) else (TagOutcome.Decline(TagError { reason: \"byte-capacity\" }))) else (TagOutcome.Decline(TagError { reason: \"tag-capacity\" }))));\n  fn byte_count(tags: TextList) -> Int64 = fold (64, (0)) with (idx, total) in (if ((idx < list.len(tags))) then ((total + tag_bytes(list.at(tags, idx)))) else (total));\n  fn tag_bytes(tag: Text) -> Int64 = text.bytes(tag);\n}\n"
+      },
+      "checker": "actual",
+      "expected": {
+        "error": "EDIT_BASE"
+      }
+    },
+    {
+      "id": "target",
+      "frame": {
+        "schema": "component-edit/6",
+        "form": "component-form/6",
+        "base": "72fa93e8225115cf1eb59d9deba56ea92e70af7c63bb8028793c532e14fb1632",
+        "target": "0000000000000000000000000000000000000000000000000000000000000000",
+        "candidate_id": null,
+        "source": "bagaev component-form/6;\ncomponent TagBoxBudget operation add_budgeted_tag {\n  record AddTag { expected: TagRevision, item: TagKey, tag: Text };\n  record TagError { reason: Text };\n  record TagKey { code: Text };\n  record TagRevision { value: Int64 };\n  record TagState { key: TagKey, tags: TextList };\n  variant TagOutcome { Decline: TagError, Propose: TagState };\n\n  state TagState identity key;\n  request AddTag identity item revision expected: TagRevision;\n  replace tags;\n  outcome TagOutcome error TagError;\n  entry apply;\n\n  fn apply(state: TagState, request: AddTag) -> TagOutcome = if ((text.scalars(request.tag) < 1)) then (TagOutcome.Decline(TagError { reason: \"empty-tag\" })) else (if (list.contains(state.tags, request.tag)) then (TagOutcome.Decline(TagError { reason: \"already-present\" })) else (if ((list.len(state.tags) < 64)) then (if (((byte_count(state.tags) + text.bytes(request.tag)) < 4097)) then (TagOutcome.Propose(TagState { key: state.key, tags: list.unique(list.push(state.tags, request.tag)) })) else (TagOutcome.Decline(TagError { reason: \"byte-capacity\" }))) else (TagOutcome.Decline(TagError { reason: \"tag-capacity\" }))));\n  fn byte_count(tags: TextList) -> Int64 = fold (64, (0)) with (idx, total) in (if ((idx < list.len(tags))) then ((total + tag_bytes(list.at(tags, idx)))) else (total));\n  fn tag_bytes(tag: Text) -> Int64 = text.bytes(tag);\n}\n"
+      },
+      "checker": "actual",
+      "expected": {
+        "error": "EDIT_TARGET"
+      }
+    },
+    {
+      "id": "candidate_id",
+      "frame": {
+        "schema": "component-edit/6",
+        "form": "component-form/6",
+        "base": "72fa93e8225115cf1eb59d9deba56ea92e70af7c63bb8028793c532e14fb1632",
+        "target": "0ea4d085bfc884dcc1de7698a516071f7dc16ff56def72922212c9de4e1d57eb",
+        "candidate_id": "missing",
+        "source": "bagaev component-form/6;\ncomponent TagBoxBudget operation add_budgeted_tag {\n  record AddTag { expected: TagRevision, item: TagKey, tag: Text };\n  record TagError { reason: Text };\n  record TagKey { code: Text };\n  record TagRevision { value: Int64 };\n  record TagState { key: TagKey, tags: TextList };\n  variant TagOutcome { Decline: TagError, Propose: TagState };\n\n  state TagState identity key;\n  request AddTag identity item revision expected: TagRevision;\n  replace tags;\n  outcome TagOutcome error TagError;\n  entry apply;\n\n  fn apply(state: TagState, request: AddTag) -> TagOutcome = if ((text.scalars(request.tag) < 1)) then (TagOutcome.Decline(TagError { reason: \"empty-tag\" })) else (if (list.contains(state.tags, request.tag)) then (TagOutcome.Decline(TagError { reason: \"already-present\" })) else (if ((list.len(state.tags) < 64)) then (if (((byte_count(state.tags) + text.bytes(request.tag)) < 4097)) then (TagOutcome.Propose(TagState { key: state.key, tags: list.unique(list.push(state.tags, request.tag)) })) else (TagOutcome.Decline(TagError { reason: \"byte-capacity\" }))) else (TagOutcome.Decline(TagError { reason: \"tag-capacity\" }))));\n  fn byte_count(tags: TextList) -> Int64 = fold (64, (0)) with (idx, total) in (if ((idx < list.len(tags))) then ((total + tag_bytes(list.at(tags, idx)))) else (total));\n  fn tag_bytes(tag: Text) -> Int64 = text.bytes(tag);\n}\n"
+      },
+      "checker": "actual",
+      "expected": {
+        "error": "EDIT_CANDIDATE"
+      }
+    },
+    {
+      "id": "no-checker",
+      "frame": {
+        "schema": "component-edit/6",
+        "form": "component-form/6",
+        "base": "72fa93e8225115cf1eb59d9deba56ea92e70af7c63bb8028793c532e14fb1632",
+        "target": "0ea4d085bfc884dcc1de7698a516071f7dc16ff56def72922212c9de4e1d57eb",
+        "candidate_id": null,
+        "source": "bagaev component-form/6;\ncomponent TagBoxBudget operation add_budgeted_tag {\n  record AddTag { expected: TagRevision, item: TagKey, tag: Text };\n  record TagError { reason: Text };\n  record TagKey { code: Text };\n  record TagRevision { value: Int64 };\n  record TagState { key: TagKey, tags: TextList };\n  variant TagOutcome { Decline: TagError, Propose: TagState };\n\n  state TagState identity key;\n  request AddTag identity item revision expected: TagRevision;\n  replace tags;\n  outcome TagOutcome error TagError;\n  entry apply;\n\n  fn apply(state: TagState, request: AddTag) -> TagOutcome = if ((text.scalars(request.tag) < 1)) then (TagOutcome.Decline(TagError { reason: \"empty-tag\" })) else (if (list.contains(state.tags, request.tag)) then (TagOutcome.Decline(TagError { reason: \"already-present\" })) else (if ((list.len(state.tags) < 64)) then (if (((byte_count(state.tags) + text.bytes(request.tag)) < 4097)) then (TagOutcome.Propose(TagState { key: state.key, tags: list.unique(list.push(state.tags, request.tag)) })) else (TagOutcome.Decline(TagError { reason: \"byte-capacity\" }))) else (TagOutcome.Decline(TagError { reason: \"tag-capacity\" }))));\n  fn byte_count(tags: TextList) -> Int64 = fold (64, (0)) with (idx, total) in (if ((idx < list.len(tags))) then ((total + tag_bytes(list.at(tags, idx)))) else (total));\n  fn tag_bytes(tag: Text) -> Int64 = text.bytes(tag);\n}\n"
+      },
+      "checker": "missing",
+      "expected": {
+        "error": "CheckerUnavailable"
+      }
+    },
+    {
+      "id": "substitution",
+      "frame": {
+        "schema": "component-edit/6",
+        "form": "component-form/6",
+        "base": "72fa93e8225115cf1eb59d9deba56ea92e70af7c63bb8028793c532e14fb1632",
+        "target": "0ea4d085bfc884dcc1de7698a516071f7dc16ff56def72922212c9de4e1d57eb",
+        "candidate_id": null,
+        "source": "bagaev component-form/6;\ncomponent TagBoxBudget operation add_budgeted_tag {\n  record AddTag { expected: TagRevision, item: TagKey, tag: Text };\n  record TagError { reason: Text };\n  record TagKey { code: Text };\n  record TagRevision { value: Int64 };\n  record TagState { key: TagKey, tags: TextList };\n  variant TagOutcome { Decline: TagError, Propose: TagState };\n\n  state TagState identity key;\n  request AddTag identity item revision expected: TagRevision;\n  replace tags;\n  outcome TagOutcome error TagError;\n  entry apply;\n\n  fn apply(state: TagState, request: AddTag) -> TagOutcome = if ((text.scalars(request.tag) < 1)) then (TagOutcome.Decline(TagError { reason: \"empty-tag\" })) else (if (list.contains(state.tags, request.tag)) then (TagOutcome.Decline(TagError { reason: \"already-present\" })) else (if ((list.len(state.tags) < 64)) then (if (((byte_count(state.tags) + text.bytes(request.tag)) < 4097)) then (TagOutcome.Propose(TagState { key: state.key, tags: list.unique(list.push(state.tags, request.tag)) })) else (TagOutcome.Decline(TagError { reason: \"byte-capacity\" }))) else (TagOutcome.Decline(TagError { reason: \"tag-capacity\" }))));\n  fn byte_count(tags: TextList) -> Int64 = fold (64, (0)) with (idx, total) in (if ((idx < list.len(tags))) then ((total + tag_bytes(list.at(tags, idx)))) else (total));\n  fn tag_bytes(tag: Text) -> Int64 = text.bytes(tag);\n}\n"
+      },
+      "checker": "substitute",
+      "expected": {
+        "error": "CheckerUnavailable"
+      }
+    },
+    {
+      "id": "no-change",
+      "frame": {
+        "schema": "component-edit/6",
+        "form": "component-form/6",
+        "base": "72fa93e8225115cf1eb59d9deba56ea92e70af7c63bb8028793c532e14fb1632",
+        "target": "72fa93e8225115cf1eb59d9deba56ea92e70af7c63bb8028793c532e14fb1632",
+        "candidate_id": null,
+        "source": "bagaev component-form/6;\ncomponent TagBoxBudget operation add_budgeted_tag {\n  record AddTag { expected: TagRevision, item: TagKey, tag: Text };\n  record TagError { reason: Text };\n  record TagKey { code: Text };\n  record TagRevision { value: Int64 };\n  record TagState { key: TagKey, tags: TextList };\n  variant TagOutcome { Decline: TagError, Propose: TagState };\n\n  state TagState identity key;\n  request AddTag identity item revision expected: TagRevision;\n  replace tags;\n  outcome TagOutcome error TagError;\n  entry apply;\n\n  fn apply(state: TagState, request: AddTag) -> TagOutcome = if ((text.scalars(request.tag) < 1)) then (TagOutcome.Decline(TagError { reason: \"empty-tag\" })) else (if (list.contains(state.tags, request.tag)) then (TagOutcome.Decline(TagError { reason: \"already-present\" })) else (if ((list.len(state.tags) < 64)) then (if (((byte_count(state.tags) + text.bytes(request.tag)) < 4097)) then (TagOutcome.Propose(TagState { key: state.key, tags: list.unique(list.push(state.tags, request.tag)) })) else (TagOutcome.Decline(TagError { reason: \"byte-capacity\" }))) else (TagOutcome.Decline(TagError { reason: \"tag-capacity\" }))));\n  fn byte_count(tags: TextList) -> Int64 = fold (64, (0)) with (idx, total) in (if ((idx < list.len(tags))) then ((total + text.bytes(list.at(tags, idx)))) else (total));\n}\n"
+      },
+      "checker": "actual",
+      "expected": {
+        "error": "EDIT_NO_CHANGE"
+      }
+    },
+    {
+      "id": "signature",
+      "frame": {
+        "schema": "component-edit/6",
+        "form": "component-form/6",
+        "base": "72fa93e8225115cf1eb59d9deba56ea92e70af7c63bb8028793c532e14fb1632",
+        "target": "b82956ccac00f9d0a803a7d1a91d3a021ae1d330f7f3fa907727aa4e22a6dfe2",
+        "candidate_id": null,
+        "source": "bagaev component-form/6;\ncomponent TagBoxBudget operation add_budgeted_tag {\n  record AddTag { expected: TagRevision, item: TagKey, tag: Text };\n  record TagError { reason: Text };\n  record TagKey { code: Text };\n  record TagRevision { value: Int64 };\n  record TagState { key: TagKey, tags: TextList };\n  variant TagOutcome { Decline: TagError, Propose: TagState };\n\n  state TagState identity key;\n  request AddTag identity item revision expected: TagRevision;\n  replace tags;\n  outcome TagOutcome error TagError;\n  entry apply;\n\n  fn apply(state: TagState, request: AddTag) -> TagOutcome = if ((text.scalars(request.tag) < 1)) then (TagOutcome.Decline(TagError { reason: \"empty-tag\" })) else (if (list.contains(state.tags, request.tag)) then (TagOutcome.Decline(TagError { reason: \"already-present\" })) else (if ((list.len(state.tags) < 64)) then (if (((byte_count(state.tags) + text.bytes(request.tag)) < 4097)) then (TagOutcome.Propose(TagState { key: state.key, tags: list.unique(list.push(state.tags, request.tag)) })) else (TagOutcome.Decline(TagError { reason: \"byte-capacity\" }))) else (TagOutcome.Decline(TagError { reason: \"tag-capacity\" }))));\n  fn byte_count(tags: TextList) -> Bool = fold (64, (0)) with (idx, total) in (if ((idx < list.len(tags))) then ((total + tag_bytes(list.at(tags, idx)))) else (total));\n  fn tag_bytes(tag: Text) -> Int64 = text.bytes(tag);\n}\n"
+      },
+      "checker": "actual",
+      "expected": {
+        "error": "EDIT_SIGNATURE"
+      }
+    },
+    {
+      "id": "wrong-body-type",
+      "frame": {
+        "schema": "component-edit/6",
+        "form": "component-form/6",
+        "base": "72fa93e8225115cf1eb59d9deba56ea92e70af7c63bb8028793c532e14fb1632",
+        "target": "39f8f053cab1c57641fd2dedd1f844265a89d520dfbe487eec810bf92cbb5ba4",
+        "candidate_id": null,
+        "source": "bagaev component-form/6;\ncomponent TagBoxBudget operation add_budgeted_tag {\n  record AddTag { expected: TagRevision, item: TagKey, tag: Text };\n  record TagError { reason: Text };\n  record TagKey { code: Text };\n  record TagRevision { value: Int64 };\n  record TagState { key: TagKey, tags: TextList };\n  variant TagOutcome { Decline: TagError, Propose: TagState };\n\n  state TagState identity key;\n  request AddTag identity item revision expected: TagRevision;\n  replace tags;\n  outcome TagOutcome error TagError;\n  entry apply;\n\n  fn apply(state: TagState, request: AddTag) -> TagOutcome = if ((text.scalars(request.tag) < 1)) then (TagOutcome.Decline(TagError { reason: \"empty-tag\" })) else (if (list.contains(state.tags, request.tag)) then (TagOutcome.Decline(TagError { reason: \"already-present\" })) else (if ((list.len(state.tags) < 64)) then (if (((byte_count(state.tags) + text.bytes(request.tag)) < 4097)) then (TagOutcome.Propose(TagState { key: state.key, tags: list.unique(list.push(state.tags, request.tag)) })) else (TagOutcome.Decline(TagError { reason: \"byte-capacity\" }))) else (TagOutcome.Decline(TagError { reason: \"tag-capacity\" }))));\n  fn byte_count(tags: TextList) -> Int64 = fold (64, (0)) with (idx, total) in (if ((idx < list.len(tags))) then ((total + tag_bytes(list.at(tags, idx)))) else (total));\n  fn tag_bytes(tag: Text) -> Int64 = true;\n}\n"
+      },
+      "checker": "actual",
+      "expected": {
+        "error": "ComponentRefused",
+        "stage": "candidate",
+        "reason": "CS_CORE"
+      }
+    },
+    {
+      "id": "scope",
+      "frame": {
+        "schema": "component-edit/6",
+        "form": "component-form/6",
+        "base": "72fa93e8225115cf1eb59d9deba56ea92e70af7c63bb8028793c532e14fb1632",
+        "target": "a6ec1e4bfd097cb56ef4b844f5c37f295f5c285961510137c130c38ddc1b3880",
+        "candidate_id": null,
+        "source": "bagaev component-form/6;\ncomponent TagBoxBudget operation other {\n  record AddTag { expected: TagRevision, item: TagKey, tag: Text };\n  record TagError { reason: Text };\n  record TagKey { code: Text };\n  record TagRevision { value: Int64 };\n  record TagState { key: TagKey, tags: TextList };\n  variant TagOutcome { Decline: TagError, Propose: TagState };\n\n  state TagState identity key;\n  request AddTag identity item revision expected: TagRevision;\n  replace tags;\n  outcome TagOutcome error TagError;\n  entry apply;\n\n  fn apply(state: TagState, request: AddTag) -> TagOutcome = if ((text.scalars(request.tag) < 1)) then (TagOutcome.Decline(TagError { reason: \"empty-tag\" })) else (if (list.contains(state.tags, request.tag)) then (TagOutcome.Decline(TagError { reason: \"already-present\" })) else (if ((list.len(state.tags) < 64)) then (if (((byte_count(state.tags) + text.bytes(request.tag)) < 4097)) then (TagOutcome.Propose(TagState { key: state.key, tags: list.unique(list.push(state.tags, request.tag)) })) else (TagOutcome.Decline(TagError { reason: \"byte-capacity\" }))) else (TagOutcome.Decline(TagError { reason: \"tag-capacity\" }))));\n  fn byte_count(tags: TextList) -> Int64 = fold (64, (0)) with (idx, total) in (if ((idx < list.len(tags))) then ((total + tag_bytes(list.at(tags, idx)))) else (total));\n  fn tag_bytes(tag: Text) -> Int64 = text.bytes(tag);\n}\n"
+      },
+      "checker": "actual",
+      "expected": {
+        "error": "EDIT_SCOPE"
+      }
+    },
+    {
+      "id": "business-wrong",
+      "frame": {
+        "schema": "component-edit/6",
+        "form": "component-form/6",
+        "base": "72fa93e8225115cf1eb59d9deba56ea92e70af7c63bb8028793c532e14fb1632",
+        "target": "25eca340aba14ddceae26afbcb65676ed6cadd731d1430f56c35699e498601a2",
+        "candidate_id": null,
+        "source": "bagaev component-form/6;\ncomponent TagBoxBudget operation add_budgeted_tag {\n  record AddTag { expected: TagRevision, item: TagKey, tag: Text };\n  record TagError { reason: Text };\n  record TagKey { code: Text };\n  record TagRevision { value: Int64 };\n  record TagState { key: TagKey, tags: TextList };\n  variant TagOutcome { Decline: TagError, Propose: TagState };\n\n  state TagState identity key;\n  request AddTag identity item revision expected: TagRevision;\n  replace tags;\n  outcome TagOutcome error TagError;\n  entry apply;\n\n  fn apply(state: TagState, request: AddTag) -> TagOutcome = if ((text.scalars(request.tag) < 1)) then (TagOutcome.Decline(TagError { reason: \"empty-tag\" })) else (if (list.contains(state.tags, request.tag)) then (TagOutcome.Decline(TagError { reason: \"already-present\" })) else (if ((list.len(state.tags) < 64)) then (if (((byte_count(state.tags) + text.bytes(request.tag)) < 4097)) then (TagOutcome.Propose(TagState { key: state.key, tags: list.unique(list.push(state.tags, request.tag)) })) else (TagOutcome.Decline(TagError { reason: \"byte-capacity\" }))) else (TagOutcome.Decline(TagError { reason: \"tag-capacity\" }))));\n  fn byte_count(tags: TextList) -> Int64 = fold (64, (0)) with (idx, total) in (if ((idx < list.len(tags))) then ((total + tag_bytes(list.at(tags, idx)))) else (total));\n  fn tag_bytes(tag: Text) -> Int64 = 0;\n}\n"
+      },
+      "checker": "actual",
+      "expected": {
+        "schema": "component-draft/2",
+        "status": "draft",
+        "base": "72fa93e8225115cf1eb59d9deba56ea92e70af7c63bb8028793c532e14fb1632",
+        "target": "25eca340aba14ddceae26afbcb65676ed6cadd731d1430f56c35699e498601a2",
+        "component": {
+          "schema": "bagaev-component-source/2",
+          "component": {
+            "name": "TagBoxBudget",
+            "operation": "add_budgeted_tag",
+            "state_type": "TagState",
+            "request_type": "AddTag",
+            "revision_type": "TagRevision",
+            "entry": "apply",
+            "identity_binding": {
+              "state": "key",
+              "request": "item"
+            },
+            "revision_binding": "expected",
+            "replace_fields": [
+              "tags"
+            ],
+            "outcome_type": "TagOutcome",
+            "error_type": "TagError"
+          },
+          "program": {
+            "schema": "bagaev-typed-record/10",
+            "records": {
+              "TagKey": {
+                "code": "Text"
+              },
+              "TagRevision": {
+                "value": "Int64"
+              },
+              "TagState": {
+                "key": "TagKey",
+                "tags": "TextList"
+              },
+              "AddTag": {
+                "item": "TagKey",
+                "expected": "TagRevision",
+                "tag": "Text"
+              },
+              "TagError": {
+                "reason": "Text"
+              }
+            },
+            "lists": {},
+            "variants": {
+              "TagOutcome": {
+                "Decline": "TagError",
+                "Propose": "TagState"
+              }
+            },
+            "entry": "apply",
+            "functions": {
+              "apply": {
+                "params": [
+                  [
+                    "state",
+                    "TagState"
+                  ],
+                  [
+                    "request",
+                    "AddTag"
+                  ]
+                ],
+                "result": "TagOutcome",
+                "body": [
+                  "if",
+                  [
+                    "lt",
+                    [
+                      "text.scalars",
+                      [
+                        "field",
+                        [
+                          "arg",
+                          "request"
+                        ],
+                        "tag"
+                      ]
+                    ],
+                    [
+                      "int",
+                      1
+                    ]
+                  ],
+                  [
+                    "variant",
+                    "TagOutcome",
+                    "Decline",
+                    [
+                      "record",
+                      "TagError",
+                      [
+                        "text",
+                        "empty-tag"
+                      ]
+                    ]
+                  ],
+                  [
+                    "if",
+                    [
+                      "list.contains",
+                      [
+                        "field",
+                        [
+                          "arg",
+                          "state"
+                        ],
+                        "tags"
+                      ],
+                      [
+                        "field",
+                        [
+                          "arg",
+                          "request"
+                        ],
+                        "tag"
+                      ]
+                    ],
+                    [
+                      "variant",
+                      "TagOutcome",
+                      "Decline",
+                      [
+                        "record",
+                        "TagError",
+                        [
+                          "text",
+                          "already-present"
+                        ]
+                      ]
+                    ],
+                    [
+                      "if",
+                      [
+                        "lt",
+                        [
+                          "list.len",
+                          [
+                            "field",
+                            [
+                              "arg",
+                              "state"
+                            ],
+                            "tags"
+                          ]
+                        ],
+                        [
+                          "int",
+                          64
+                        ]
+                      ],
+                      [
+                        "if",
+                        [
+                          "lt",
+                          [
+                            "add",
+                            [
+                              "call",
+                              "byte_count",
+                              [
+                                "field",
+                                [
+                                  "arg",
+                                  "state"
+                                ],
+                                "tags"
+                              ]
+                            ],
+                            [
+                              "text.bytes",
+                              [
+                                "field",
+                                [
+                                  "arg",
+                                  "request"
+                                ],
+                                "tag"
+                              ]
+                            ]
+                          ],
+                          [
+                            "int",
+                            4097
+                          ]
+                        ],
+                        [
+                          "variant",
+                          "TagOutcome",
+                          "Propose",
+                          [
+                            "record",
+                            "TagState",
+                            [
+                              "field",
+                              [
+                                "arg",
+                                "state"
+                              ],
+                              "key"
+                            ],
+                            [
+                              "list.unique",
+                              [
+                                "list.push",
+                                [
+                                  "field",
+                                  [
+                                    "arg",
+                                    "state"
+                                  ],
+                                  "tags"
+                                ],
+                                [
+                                  "field",
+                                  [
+                                    "arg",
+                                    "request"
+                                  ],
+                                  "tag"
+                                ]
+                              ]
+                            ]
+                          ]
+                        ],
+                        [
+                          "variant",
+                          "TagOutcome",
+                          "Decline",
+                          [
+                            "record",
+                            "TagError",
+                            [
+                              "text",
+                              "byte-capacity"
+                            ]
+                          ]
+                        ]
+                      ],
+                      [
+                        "variant",
+                        "TagOutcome",
+                        "Decline",
+                        [
+                          "record",
+                          "TagError",
+                          [
+                            "text",
+                            "tag-capacity"
+                          ]
+                        ]
+                      ]
+                    ]
+                  ]
+                ]
+              },
+              "byte_count": {
+                "params": [
+                  [
+                    "tags",
+                    "TextList"
+                  ]
+                ],
+                "result": "Int64",
+                "body": [
+                  "loop",
+                  64,
+                  "idx",
+                  "total",
+                  [
+                    "int",
+                    0
+                  ],
+                  [
+                    "if",
+                    [
+                      "lt",
+                      [
+                        "use",
+                        "idx"
+                      ],
+                      [
+                        "list.len",
+                        [
+                          "arg",
+                          "tags"
+                        ]
+                      ]
+                    ],
+                    [
+                      "add",
+                      [
+                        "use",
+                        "total"
+                      ],
+                      [
+                        "call",
+                        "tag_bytes",
+                        [
+                          "list.at",
+                          [
+                            "arg",
+                            "tags"
+                          ],
+                          [
+                            "use",
+                            "idx"
+                          ]
+                        ]
+                      ]
+                    ],
+                    [
+                      "use",
+                      "total"
+                    ]
+                  ]
+                ]
+              },
+              "tag_bytes": {
+                "params": [
+                  [
+                    "tag",
+                    "Text"
+                  ]
+                ],
+                "result": "Int64",
+                "body": [
+                  "int",
+                  0
+                ]
+              }
+            }
+          }
+        },
+        "delta": {
+          "add": [
+            "tag_bytes"
+          ],
+          "replace": [
+            "byte_count"
+          ]
+        },
+        "execution_admission": false
+      }
+    }
+  ],
+  "argument": [
+    "é",
+    "a"
+  ],
+  "expected_quantity": 3
+}
