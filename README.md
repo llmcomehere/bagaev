@@ -74,6 +74,8 @@ untrusted code. No model account is needed for this example.
 
 ## What exists today
 
+- **Typed stateful operations and continuation:** the [worked component guide](docs/stateful-components.md) connects readable Propose/Decline outcomes, source-pinned runs and bounded persisted receipts. Business refusal, unobserved result and applied state remain distinct; this is an experimental single-writer profile.
+
 - **Source admission and old runs:** [programme composition](docs/probe-component-programmes.md) starts with only S1, admits a checked S2 after receiver-bound obligations and current checks, and reconstructs an old S1 observation without repinning its run. Qualification and live simulation remain separate.
 - **Source-driven owned record:** a [generic serial receiver model](docs/probe-component-owner.md) uses the checked component bindings for both catalogue tags and a stock record. Pure computation is actual reference execution; state and authority remain in-memory simulation.
 - **Explicit component context:** [inspection and continuation](docs/probe-component-context.md) bind current and pending programme sources, required unknowns and open effects. The first connected demonstration reconstructs explicit data at WC17; it does not restore authority or establish durable recovery.
