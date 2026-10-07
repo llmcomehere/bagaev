@@ -52,6 +52,10 @@ indeterminate result is useful evidence for changing direction.
 
 ## Start with one real change
 
+Unsure whether this task fits bagaev? Start with
+[choose a route and finish one change](docs/choose-and-start.md): a short scope
+guide and one complete runnable example, including the patched result.
+
 The [tag program](examples/l0/tag_list.json) returns its input unchanged.
 The [structural patch](examples/l0/tag_unique_sorted.patch) adds `list.unique`
 and replaces the result node with `list.sort`, preserving that node's identity:
