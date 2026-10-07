@@ -23,8 +23,8 @@ class OfflineDocsTests(unittest.TestCase):
  def test_deterministic_and_provenance(self):
   with tempfile.TemporaryDirectory() as d:
    p=Path(d);root=p/'source';self.fixture(root);B.build(root,p/'one',REV);B.build(root,p/'two',REV)
-   a={f.relative_to(p/'one').as_posix():f.read_bytes() for f in (p/'one').rglob('*') if f.is_file()};b={f.relative_to(p/'two').as_posix():f.read_bytes() for f in (p/'two').rglob('*') if f.is_file()};self.assertEqual(a,b);self.assertEqual(len(a),16)
-   m=json.loads(a['index.json']);self.assertEqual(len(m['sources']),14)
+   a={f.relative_to(p/'one').as_posix():f.read_bytes() for f in (p/'one').rglob('*') if f.is_file()};b={f.relative_to(p/'two').as_posix():f.read_bytes() for f in (p/'two').rglob('*') if f.is_file()};self.assertEqual(a,b);self.assertEqual(len(a),24)
+   m=json.loads(a['index.json']);self.assertEqual(len(m['sources']),22)
    for r in m['sources']:
     self.assertEqual(r['sha256'],hashlib.sha256((root/r['source']).read_bytes()).hexdigest());self.assertIn('/'+REV+'/',r['source_url']);self.assertIn(r['page'],a)
  def test_saved_workflow_local_routes(self):
@@ -36,6 +36,9 @@ class OfflineDocsTests(unittest.TestCase):
   self.assertEqual(B.link('stateful-components.md','docs/choose-and-start.md',REV),'stateful-components.html')
   for name in ('probe-component-outcomes','probe-outcome-composition','probe-outcome-persistence'):
    self.assertEqual(B.link(name+'.md','docs/stateful-components.md',REV),name+'.html')
+ def test_readable_language_local_routes(self):
+  for name in ('component-text-cli', 'component-arithmetic-form', 'component-arithmetic-edits', 'component-diagnostics', 'readable-authoring', 'component-match-form', 'component-match-edits', 'stock-adjustment'):
+   self.assertEqual(B.link(name+'.md','docs/readable-authoring.md',REV),name+'.html')
  def test_inert_code_and_raw_html(self):
   code='<script>alert("x")</script> & [link](javascript:x)\n';body,title=B.render('# Example\n\n```text\n'+code+'```\n\n<img src=x onerror=alert(1)>\n','README.md',REV);parser=Tags();parser.feed(body);self.assertNotIn('script',parser.tags);self.assertNotIn('img',parser.tags);self.assertEqual(''.join(parser.code),code)
  def test_link_routes(self):
