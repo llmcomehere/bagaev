@@ -20,6 +20,7 @@ change only a header to migrate a saved source or receipt.
 | Variant `match` | 4 | `--form 4` | edit/4; diagnostics `--form 4`; pinned expression locations |
 | Text and TextList operations | 5 | `--form 5` | no implicit extension of older edit/diagnostic/location APIs |
 | Fixed literal-count accumulator | 6 | `--form 6` | edit/6; diagnostics `--form 6`; location API remains form4 |
+| Pure named record-list helpers | 7 | `--form 7` | owned record-list state remains refused; older diagnostic/edit/location APIs remain version-bound |
 
 Use the [TextList guide](component-text-list-form.md) for fixed pure calls and
 [fold guide](component-fold-form.md) for counts 0–1024. These later forms retain
@@ -34,6 +35,8 @@ semantic error's source context, use the separately pinned
 support form5/6 by guessing their version.
 
 For fold-bearing source changes, use the explicit [edit/6 receiver](component-fold-edits.md).
+
+For bounded pure record collections, see [form7 record-list helpers](component-record-list-form.md).
 
 ## Keep the evidence levels separate
 
