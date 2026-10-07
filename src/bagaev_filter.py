@@ -12,14 +12,18 @@ def parser():
     p=transport._Parser(prog='bagaev-filter',description='Explicit experimental pure L2/2 profile')
     p.add_argument('--version',action='version',version=VERSION)
     commands=p.add_subparsers(dest='command',required=True,parser_class=transport._Parser)
-    for name in ('check','run','compile','patch'):
+    for name in ('check','run','compile','patch','prepare'):
         c=commands.add_parser(name);c.add_argument('program')
         if name=='run':c.add_argument('--input',required=True);c.add_argument('--artifact')
         if name=='patch':c.add_argument('patch')
-        if name in ('compile','patch'):c.add_argument('--output',required=True)
+        if name in ('compile','patch','prepare'):c.add_argument('--output',required=True)
     return p
 
 def execute(a):
+    if a.command=='prepare':
+        prepared=language.prepare_program(transport._read(a.program,transport.TEXT_LIMIT,'L2_BOUNDS'))
+        transport._write_new(a.output,prepared.canonical)
+        return {'source':prepared.digest,'bytes':len(prepared.canonical)}
     program=language.check_program(transport._read(a.program,transport.TEXT_LIMIT,'L2_BOUNDS'))
     if a.command=='check':
         value=language.program_value(program)

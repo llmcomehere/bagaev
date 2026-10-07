@@ -11,6 +11,7 @@ import json
 import re
 
 PROGRAM_SCHEMA = "bagaev-l2/2"
+DRAFT_SCHEMA = "bagaev-l2-draft/2"
 PATCH_SCHEMA = "bagaev-l2-patch/2"
 INT_MIN, INT_MAX = -(1 << 63), (1 << 63) - 1
 BYTE_LIMIT = 1048576
@@ -386,6 +387,22 @@ def _check(program, repin=False):
     value = {**program, "pins": pins}
     data = _canonical(value)
     return CheckedProgram(data), value
+
+
+def prepare_program(draft):
+    """Explicit data-only authoring: validate an unpinned /2 draft and derive pins.
+
+    This does not repair a checked program or grant execution authority.
+    """
+    if type(draft) in (str, bytes):
+        draft = _parse(draft)
+    _fields(draft, ("schema", "entry", "definitions"))
+    _need(type(draft["schema"]) is str and draft["schema"] == DRAFT_SCHEMA)
+    program = {"schema": PROGRAM_SCHEMA, "entry": draft["entry"],
+               "definitions": draft["definitions"], "pins": {}}
+    prepared = _check(program, repin=True)[0]
+    # The prepared file must also fit the ordinary program text interface.
+    return check_program(prepared.canonical)
 
 
 def check_program(program):

@@ -45,6 +45,35 @@ these charges are not CPU measurements. The existing source depth and value
 bounds remain. CLI input transport retains its additional byte/nesting limits;
 it is narrower than the borrowed-value library API.
 
+## Prepare a program explicitly
+
+When authoring a new pure program, provide a draft with exactly `schema`, `entry`
+and `definitions`, using `schema: "bagaev-l2-draft/2"`. Omit `pins` entirely.
+The explicit preparation operation validates every definition and dependency,
+including unreachable definitions, then derives the `/2` pins. It does not run
+expressions, repair invalid source or grant execution authority.
+
+After source review under the same authorized local bounds:
+
+```console
+python3 -B -S -m src.bagaev_filter prepare examples/l2-filter/queue-draft.json --output prepared-queue.json
+python3 -B -S -m src.bagaev_filter check prepared-queue.json
+python3 -B -S -m src.bagaev_filter run prepared-queue.json --input examples/l2-filter/queue-input.json
+```
+
+The last result is `{"kind":"ok","order":["b"]}`. The prepared program is byte-equal
+to the canonical checked `queue.json`. The library equivalent is
+`bagaev_l2_filter.prepare_program(draft)`, returning an immutable checked snapshot.
+It accepts a draft value or bounded JSON text and leaves the input unchanged.
+Both the draft text and prepared program file must fit the ordinary 1 MiB limit.
+The output filename must be new. A malformed draft creates no output.
+
+Existing `check` and `run` still require a pinned program and reject incorrect or
+missing pins. They never invoke preparation as a fallback. A supplied `pins`
+field, unknown draft field or foreign schema is refused. This operation does not
+convert `/1` sources or add a Store path. It handles deterministic authoring work;
+it does not establish authenticity or model advantage.
+
 ## Run an open queue
 
 The application retains the existing queue ordering with missing priorities last
@@ -75,7 +104,7 @@ python3 -B -S -m src.bagaev_filter patch examples/l2-filter/queue-base.json exam
 ```
 
 That output must be new. Stale or foreign-profile patches refuse without creating
-it. The CLI exposes only `check`, `run`, `compile`, `patch`, help and version. There
+it. The CLI exposes only `prepare`, `check`, `run`, `compile`, `patch`, help and version. There
 is no Store command, implicit cache, network call or migration. `-B` suppresses
 bytecode writes but is not isolation. Expected errors emit one JSON observation
 and exit 2; successful commands exit 0. Unexpected host failures exit 1 with
@@ -111,3 +140,12 @@ proof against arbitrary bugs. Ordinary Python can filter this queue directly.
 No model-selection uplift, performance, token or whole-job cost advantage is
 established. The benefit to investigate is keeping a needed transformation inside
 a checked language application; the extra version and maintenance burden remain.
+
+The optional `l2_filter_draft_checks.py` driver checks four independently frozen
+complete prepared programs through value/text/bytes input, nine invalid drafts,
+three text refusals, unchanged checking strictness, 18 CLI calls (13 expected
+refusals), the queue draft and unchanged existing queue artifact bytes. Two
+additional bounded checks established refusal when derived pins push prepared
+text beyond 1 MiB and successful preparation of syntax whose explicit later
+execution refuses: preparation does not evaluate the program. These supplements
+are distinct from the original four exact prepared-output fixtures.
