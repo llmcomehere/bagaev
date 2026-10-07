@@ -23,8 +23,9 @@ _NUMBER = re.compile(r"-?(?:0|[1-9][0-9]*)(?:\.[0-9]+)?(?:[eE][+-]?[0-9]+)?", re
 class L2Error(ValueError):
     """The code, rather than message wording, is the stable observation."""
 
-    def __init__(self, code: str):
+    def __init__(self, code: str, location=None):
         self.code = code
+        self.location = None if location is None else dict(location)
         super().__init__(code)
 
 
@@ -220,6 +221,23 @@ def _metadata_strings(values):
     _need(len(values) == len(set(values)))
 
 
+def _reference_location(definition, path):
+    parts, size = [], 0
+    while path is not None:
+        path, component = path
+        token = str(component).replace("~", "~0").replace("/", "~1")
+        size += 1 + len(token.encode("utf-8"))
+        if size > 4096:
+            return {"definition": definition, "expression": None, "truncated": True}
+        parts.append(token)
+    return {"definition": definition, "expression": "/" + "/".join(reversed(parts))}
+
+
+def _require_reference(condition, definition, path):
+    if not condition:
+        raise L2Error("L2_REFERENCE", _reference_location(definition, path))
+
+
 def _syntax(program):
     """All syntax first, then references; an explicit stack preserves that order."""
     definitions = program["definitions"]
@@ -243,9 +261,9 @@ def _syntax(program):
             _identifier(param)
         _need(len(params) == len(set(params)))
         graph[name] = set()
-        pending = [(definition["body"], frozenset(params), 1)]
+        pending = [(definition["body"], frozenset(params), 1, (None, "body"))]
         while pending:
-            expr, scope, depth = pending.pop()
+            expr, scope, depth, path = pending.pop()
             count += 1
             _need(depth <= 64 and count <= 8192, "L2_BOUNDS")
             if type(expr) is not list:
@@ -267,28 +285,28 @@ def _syntax(program):
                 _export(expr[1], "L2_PROGRAM")
             elif op == "var":
                 _identifier(expr[1])
-                references.append(expr[1] in scope)
+                references.append((expr[1] in scope, name, path))
             elif op == "call":
                 _identifier(expr[1])
                 graph[name].add(expr[1])
-                references.append((expr[1], len(expr) - 2))
-                children = [(e, scope) for e in expr[2:]]
+                references.append(((expr[1], len(expr) - 2), name, path))
+                children = [(e, scope, (path, i)) for i, e in enumerate(expr[2:], 2)]
             elif op == "let":
                 bindings = expr[1]
                 _need(type(bindings) is list)
                 _need(1 <= len(bindings) <= 32, "L2_BOUNDS")
                 local = scope
-                for pair in bindings:
+                for binding_index, pair in enumerate(bindings):
                     _need(type(pair) is list and len(pair) == 2)
                     _identifier(pair[0])
                     _need(pair[0] not in local)
-                    children.append((pair[1], local))
+                    children.append((pair[1], local, (((path, 1), binding_index), 1)))
                     local = local | {pair[0]}
-                children.append((expr[2], local))
+                children.append((expr[2], local, (path, 2)))
             elif op in ("map", "all", "any", "sort.by", "filter"):
                 _identifier(expr[2])
                 _need(expr[2] not in scope)
-                children = [(expr[1], scope), (expr[3], scope | {expr[2]})]
+                children = [(expr[1], scope, (path, 1)), (expr[3], scope | {expr[2]}, (path, 3))]
             elif op in ("object", "set"):
                 fields = expr[-1]
                 _need(type(fields) is dict)
@@ -296,10 +314,10 @@ def _syntax(program):
                 _need(all(type(k) is str for k in fields))
                 for key in sorted(fields):
                     _string(key)
-                children = ([(expr[1], scope)] if op == "set" else [])
-                children += [(fields[k], scope) for k in sorted(fields)]
+                children = ([(expr[1], scope, (path, 1))] if op == "set" else [])
+                children += [(fields[k], scope, ((path, len(expr) - 1), k)) for k in sorted(fields)]
             elif op in ("get", "has", "shape", "int.range", "text", "array.bound"):
-                children = [(expr[1], scope)]
+                children = [(expr[1], scope, (path, 1))]
                 if op in ("get", "has"):
                     _string(expr[2])
                 elif op == "shape":
@@ -326,19 +344,20 @@ def _syntax(program):
                                   and previous < pair[0] <= pair[1] <= 127)
                             previous = pair[1]
             else:
-                children = [(e, scope) for e in expr[1:]]
-            pending.extend((e, local, depth + 1) for e, local in reversed(children))
+                children = [(e, scope, (path, i)) for i, e in enumerate(expr[1:], 1)]
+            pending.extend((e, local, depth + 1, child_path)
+                           for e, local, child_path in reversed(children))
     _need(type(program["pins"]) is dict)
     _json_tree(program)
     _need(program["entry"] in definitions, "L2_REFERENCE")
     _need(len(definitions[program["entry"]]["params"]) == 1, "L2_REFERENCE")
-    for reference in references:
+    for reference, owner, path in references:
         if type(reference) is bool:
-            _need(reference, "L2_REFERENCE")
+            _require_reference(reference, owner, path)
         else:
             target, arity = reference
-            _need(target in definitions and len(definitions[target]["params"]) == arity,
-                  "L2_REFERENCE")
+            _require_reference(target in definitions and len(definitions[target]["params"]) == arity,
+                               owner, path)
     order, remaining = [], dict(graph)
     while remaining:
         ready = sorted(k for k, deps in remaining.items() if not deps.intersection(remaining))

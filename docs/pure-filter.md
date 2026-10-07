@@ -74,6 +74,35 @@ field, unknown draft field or foreign schema is refused. This operation does not
 convert `/1` sources or add a Store path. It handles deterministic authoring work;
 it does not establish authenticity or model advantage.
 
+## Locate a reference refusal
+
+For an unbound variable, missing called definition or wrong call arity, the `/2`
+checker now supplies a supplemental source location with `L2_REFERENCE`:
+
+```json
+{"definition":"main","expression":"/body/3"}
+```
+
+The expression path is rooted at the definition's body and uses JSON Pointer
+escaping (`~0` for `~`, `~1` for `/`). `prepare` and `check` CLI observations expose
+it in `error.location`; the library exposes `L2Error.location`. It identifies a
+source expression, never a local filename or runtime permission.
+
+Complete syntax checking still precedes reference errors, including unselected
+and unreachable code. Error codes and first-error selection are unchanged.
+This slice does not promise locations for every error: entry, syntax, cycle,
+transport and other failures can still have null location. If an escaped pointer
+would exceed 4096 UTF-8 bytes, location contains `expression:null` and
+`truncated:true` rather than a misleading partial path. The checker retains
+shared path components and constructs text only for the selected failure.
+
+The portable `l2_filter_reference_location_checks.py` driver covers eleven
+frozen refusal/location expectations through the API and 22 actual `prepare`/`check` CLI refusals, plus four
+supplementary pointer-bound cases. It also checks literal data is not treated as
+a variable reference and metadata does not alias the supplied draft. Existing
+filter/draft checks retain their source, pin and artifact expectations. These
+checks do not establish fewer model mistakes or complete diagnostic coverage.
+
 ## Run an open queue
 
 The application retains the existing queue ordering with missing priorities last
