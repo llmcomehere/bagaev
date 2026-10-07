@@ -24,7 +24,8 @@ change example, integrated beta guide, toolchain contract, L2 contract, explicit
 filter saved-workflow guide, shared Store contract, stateful component guide,
 typed outcome/composition/persistence contracts, file conversion, arithmetic and
 match forms/edits, optional diagnostics, connected readable authoring, the stock
-adjustment example and LICENSE. These twenty-two sources produce twenty-three
+adjustment example, pinned expression locations, TextList, TagBox, counted fold,
+TagBox byte preflight and LICENSE. These twenty-seven sources produce twenty-eight
 HTML pages including the README entry alias, plus the index.
 Each source receives an HTML page. The entry aliases the README view;
 `index.json` records titles, paths, the supplied revision and actual SHA-256
