@@ -58,3 +58,5 @@ Portable `pure_record_form_checks.py` uses explicit reviewed reference/reader
 paths and hashes and a new absolute output directory; `pure_record_cli_checks.py`
 needs only a new absolute output directory. These are bounded conformance checks,
 not independent reproduction, performance measurement or admission.
+
+A complete application-oriented example is [pure entry reindexing](pure-reindex-entry.md).
