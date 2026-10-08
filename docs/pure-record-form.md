@@ -86,3 +86,5 @@ not independent reproduction, performance measurement or admission.
 A complete application-oriented example is [pure entry reindexing](pure-reindex-entry.md).
 
 Use [pure syntax diagnostics](record-diagnostics.md) for source-position context without execution.
+
+For exact-base function-body changes and helper extraction, see [detached pure drafts](pure-record-drafts.md).
