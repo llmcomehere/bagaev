@@ -84,3 +84,5 @@ needs only a new absolute output directory. These are bounded conformance checks
 not independent reproduction, performance measurement or admission.
 
 A complete application-oriented example is [pure entry reindexing](pure-reindex-entry.md).
+
+Use [pure syntax diagnostics](record-diagnostics.md) for source-position context without execution.
