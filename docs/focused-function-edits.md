@@ -37,3 +37,6 @@ adding helpers or changing several function bodies together, use the existing
 [full detached draft](catalog-edit-workflow.md) instead.
 
 Use [direct caller/callee context](function-context.md) when signatures around a focused fragment are useful; it does not replace semantic checking.
+
+A [pinned draft exporter](record-draft-export.md) produces source for explicit
+invocation preparation without manual envelope extraction or execution.

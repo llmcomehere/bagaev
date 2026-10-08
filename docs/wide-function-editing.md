@@ -35,3 +35,6 @@ Fragment byte counts are not token-cost or model-preference measurements.
 
 [Diagnostics and formatting](wide-authoring.md) separately support explicit form5.
 Whole-program draft tools retain their earlier version limits.
+
+A [pinned draft exporter](record-draft-export.md) produces source for explicit
+invocation preparation without manual envelope extraction or execution.
