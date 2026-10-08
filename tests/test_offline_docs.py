@@ -39,6 +39,12 @@ class OfflineDocsTests(unittest.TestCase):
  def test_readable_language_local_routes(self):
   for name in ('component-text-cli', 'component-arithmetic-form', 'component-arithmetic-edits', 'component-diagnostics', 'readable-authoring', 'component-match-form', 'component-match-edits', 'stock-adjustment', 'component-expression-locations', 'component-text-list-form', 'tag-box', 'component-fold-form', 'tag-box-budget', 'component-record-list-form', 'pure-record-form', 'pure-reindex-entry', 'pure-batch-reindex', 'record-diagnostics'):
    self.assertEqual(B.link(name+'.md','docs/readable-authoring.md',REV),name+'.html')
+ def test_documented_counts_match_selection(self):
+  text=(P/'docs/offline-documentation.md').read_text()
+  n=len(B.SOURCES)
+  self.assertIn(f'contains {n} reviewed documentation sources',text)
+  self.assertIn(f'{n} sources produce {n+1} HTML pages',text)
+  self.assertIn(f'index.json: {n+2} files in total',text)
  def test_current_pure_routes(self):
   self.assertEqual(len(B.SOURCES),67);self.assertEqual(len(set(B.SOURCES)),67)
   for name in ('pure-record-drafts', 'pure-change-workflow', 'pure-option-form', 'pure-optional-fields', 'pure-json-form', 'catalog-edit-workflow', 'focused-function-edits', 'function-context', 'record-formatting', 'record-wide-profile', 'catalog-wide', 'wide-function-editing', 'wide-authoring', 'record-draft-export', 'record-capabilities', 'pure-inventory-reservation', 'inventory-focused-change', 'offline-documentation', 'application'):
