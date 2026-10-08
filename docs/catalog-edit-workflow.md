@@ -28,3 +28,5 @@ identity, two file CLI calls, stale-base refusal,99reference calls and preserved
 source/input bytes. Existing form1 diagnostic/draft suites are retained as
 compatibility controls. Business refusal remains a complete application payload,
 not a successful language refusal. No native or production acceptance is added.
+
+For replacing a single existing body, [focused function fragments](focused-function-edits.md) avoid resending unrelated bodies.
