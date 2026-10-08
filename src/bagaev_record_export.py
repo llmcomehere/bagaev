@@ -64,5 +64,6 @@ def export_source_preserving_layout(original, packet, *, base_sha256, target_sha
     new_start, new_end = body_range(canonical)
     output = raw[:start] + canonical[new_start:new_end] + raw[end:]
     need(len(output) <= wide.form.old.BYTE_LIMIT, 'EXPORT_BOUNDS')
-    need(wide.form.decode(output) == after and digest(after) == target_sha256, 'EXPORT_LAYOUT')
+    decoded = wide.form.decode(output)
+    need(decoded == after and digest(decoded) == target_sha256, 'EXPORT_LAYOUT')
     return output
