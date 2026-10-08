@@ -1,0 +1,61 @@
+{
+  "schema": "bagaev-typed-record-invocation/11",
+  "program": {
+    "schema": "bagaev-typed-record/11",
+    "records": {},
+    "lists": {},
+    "variants": {},
+    "entry": "main",
+    "functions": {
+      "main": {
+        "params": [],
+        "result": "Int64",
+        "body": [
+          "loop",
+          16,
+          "i0",
+          "a0",
+          [
+            "int",
+            0
+          ],
+          [
+            "loop",
+            16,
+            "i1",
+            "a1",
+            [
+              "int",
+              0
+            ],
+            [
+              "loop",
+              16,
+              "i2",
+              "a2",
+              [
+                "int",
+                0
+              ],
+              [
+                "loop",
+                16,
+                "i3",
+                "a3",
+                [
+                  "int",
+                  0
+                ],
+                [
+                  "int",
+                  0
+                ]
+              ]
+            ]
+          ]
+        ]
+      }
+    }
+  },
+  "arguments": []
+}

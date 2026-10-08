@@ -1,0 +1,37 @@
+{
+  "schema": "bagaev-typed-record-invocation/11",
+  "program": {
+    "schema": "bagaev-typed-record/11",
+    "records": {
+      "Item": {
+        "n": "Int64"
+      }
+    },
+    "lists": {
+      "Items": {
+        "element": "Item",
+        "capacity": 16
+      }
+    },
+    "variants": {},
+    "functions": {
+      "main": {
+        "params": [],
+        "result": "Item",
+        "body": [
+          "records.at",
+          [
+            "records.list",
+            "Items"
+          ],
+          [
+            "int",
+            0
+          ]
+        ]
+      }
+    },
+    "entry": "main"
+  },
+  "arguments": []
+}

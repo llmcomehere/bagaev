@@ -1,0 +1,36 @@
+{
+  "status": "PASSED",
+  "cases": 5,
+  "native_calls": 20,
+  "reference_calls": 5,
+  "fresh_process_handoff": true,
+  "durable_store": false,
+  "measurement": false,
+  "observations": {
+    "normalize": {
+      "work": 40212,
+      "wire_sha256": "b6b7c9822db457adc760f03cce005847d184fbdfafd28a127f03bd1a9094d6a2",
+      "wire_bytes": 5479
+    },
+    "reindex-last": {
+      "work": 37665,
+      "wire_sha256": "93b2074d85dcdd4917d2ca706d2e7de1a2c44f092aae79349f4170d9b761b18d",
+      "wire_bytes": 5479
+    },
+    "clear-first": {
+      "work": 37191,
+      "wire_sha256": "a23ea8ff4162ce1c65751c0cae74ad8644d7970408af3d9436d653597ef5fa1a",
+      "wire_bytes": 5413
+    },
+    "origin-refusal": {
+      "work": 24869,
+      "wire_sha256": "2a67cb44ad307a333abff3ed891bacef9eca148edb1dce13a65d5ca3e9ef36b4",
+      "wire_bytes": 215
+    },
+    "resume-last-success": {
+      "work": 36614,
+      "wire_sha256": "d2f6bd3adca165d61f7b52df19d8ed23baa45ed203f69824abf70038f446b31e",
+      "wire_bytes": 5413
+    }
+  }
+}

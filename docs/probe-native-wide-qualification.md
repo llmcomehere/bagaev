@@ -66,3 +66,10 @@ the invocation file and fill 90 or 165, retaining complete stdout and stderr.
 Use check-native on each output and check-reference on the reference11 output.
 Do not treat this description, generated source, or captured packet as permission
 to execute code or install a toolchain.
+
+## Subsequent bounded edges
+
+[Owned-state handoff and failure edges](probe-native-wide-followthrough.md)
+subsequently exercised five fresh-process application steps and five exact
+language failures, including the work limit. Those selected observations do not
+close full native coverage or introduce persistence semantics.
