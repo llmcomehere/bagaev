@@ -1,0 +1,176 @@
+{
+  "positive": [
+    {
+      "id": "missing",
+      "source": "bagaev record-form/2; program { entry calc; fn calc() -> Int64 = option.or(none.int(), 7); }",
+      "program": {
+        "schema": "bagaev-typed-record/10",
+        "records": {},
+        "lists": {},
+        "variants": {},
+        "entry": "calc",
+        "functions": {
+          "calc": {
+            "params": [],
+            "result": "Int64",
+            "body": [
+              "option.or",
+              [
+                "none.int"
+              ],
+              [
+                "int",
+                7
+              ]
+            ]
+          }
+        }
+      },
+      "value": 7,
+      "value_type": "Int64"
+    },
+    {
+      "id": "zero-lazy",
+      "source": "bagaev record-form/2; program { entry calc; fn calc() -> Int64 = option.or(some.int(0), 9223372036854775807 + 1); }",
+      "program": {
+        "schema": "bagaev-typed-record/10",
+        "records": {},
+        "lists": {},
+        "variants": {},
+        "entry": "calc",
+        "functions": {
+          "calc": {
+            "params": [],
+            "result": "Int64",
+            "body": [
+              "option.or",
+              [
+                "some.int",
+                [
+                  "int",
+                  0
+                ]
+              ],
+              [
+                "add",
+                [
+                  "int",
+                  9223372036854775807
+                ],
+                [
+                  "int",
+                  1
+                ]
+              ]
+            ]
+          }
+        }
+      },
+      "value": 0,
+      "value_type": "Int64"
+    },
+    {
+      "id": "minimum",
+      "source": "bagaev record-form/2; program { entry calc; fn calc() -> Int64 = option.or(some.int(-9223372036854775808), 1); }",
+      "program": {
+        "schema": "bagaev-typed-record/10",
+        "records": {},
+        "lists": {},
+        "variants": {},
+        "entry": "calc",
+        "functions": {
+          "calc": {
+            "params": [],
+            "result": "Int64",
+            "body": [
+              "option.or",
+              [
+                "some.int",
+                [
+                  "int",
+                  -9223372036854775808
+                ]
+              ],
+              [
+                "int",
+                1
+              ]
+            ]
+          }
+        }
+      },
+      "value": -9223372036854775808,
+      "value_type": "Int64"
+    },
+    {
+      "id": "absent",
+      "source": "bagaev record-form/2; program { entry calc; fn calc() -> Bool = option.is_some(none.int()); }",
+      "program": {
+        "schema": "bagaev-typed-record/10",
+        "records": {},
+        "lists": {},
+        "variants": {},
+        "entry": "calc",
+        "functions": {
+          "calc": {
+            "params": [],
+            "result": "Bool",
+            "body": [
+              "option.is_some",
+              [
+                "none.int"
+              ]
+            ]
+          }
+        }
+      },
+      "value": false,
+      "value_type": "Bool"
+    },
+    {
+      "id": "present",
+      "source": "bagaev record-form/2; program { entry calc; fn calc() -> Bool = option.is_some(some.int(0)); }",
+      "program": {
+        "schema": "bagaev-typed-record/10",
+        "records": {},
+        "lists": {},
+        "variants": {},
+        "entry": "calc",
+        "functions": {
+          "calc": {
+            "params": [],
+            "result": "Bool",
+            "body": [
+              "option.is_some",
+              [
+                "some.int",
+                [
+                  "int",
+                  0
+                ]
+              ]
+            ]
+          }
+        }
+      },
+      "value": true,
+      "value_type": "Bool"
+    }
+  ],
+  "syntax": [
+    {
+      "source": "bagaev record-form/2; program { entry calc; fn calc() -> Int64 = option.or(none.int(1), 7); }",
+      "code": "FORM_SYNTAX"
+    },
+    {
+      "source": "bagaev record-form/2; program { entry calc; fn calc() -> Int64 = option.or(none.int()); }",
+      "code": "FORM_SYNTAX"
+    },
+    {
+      "source": "bagaev record-form/3; program { entry calc; fn calc() -> Int64 = option.or(none.int(), 7); }",
+      "code": "FORM_VERSION"
+    }
+  ],
+  "wrong_type": "bagaev record-form/2; program { entry calc; fn calc() -> OptionInt64 = some.int(true); }",
+  "wrong_reason": "RR_TYPE"
+}
