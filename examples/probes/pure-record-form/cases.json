@@ -1,0 +1,315 @@
+{
+  "positive": [
+    {
+      "id": "arithmetic",
+      "source": "bagaev record-form/1;\nprogram {\n  entry calc;\n  fn calc() -> Int64 = 2 + 3 * 4;\n}\n",
+      "expected": {
+        "schema": "bagaev-typed-record/10",
+        "records": {},
+        "lists": {},
+        "variants": {},
+        "entry": "calc",
+        "functions": {
+          "calc": {
+            "params": [],
+            "result": "Int64",
+            "body": [
+              "add",
+              [
+                "int",
+                2
+              ],
+              [
+                "mul",
+                [
+                  "int",
+                  3
+                ],
+                [
+                  "int",
+                  4
+                ]
+              ]
+            ]
+          }
+        }
+      },
+      "value_type": "Int64",
+      "value": 14
+    },
+    {
+      "id": "record",
+      "source": "bagaev record-form/1;\nprogram {\n  record Item { value: Int64 };\n  entry calc;\n  fn calc() -> Int64 = let item = Item { value: 7 } in item.value;\n}\n",
+      "expected": {
+        "schema": "bagaev-typed-record/10",
+        "records": {
+          "Item": {
+            "value": "Int64"
+          }
+        },
+        "lists": {},
+        "variants": {},
+        "entry": "calc",
+        "functions": {
+          "calc": {
+            "params": [],
+            "result": "Int64",
+            "body": [
+              "let",
+              "item",
+              [
+                "record",
+                "Item",
+                [
+                  "int",
+                  7
+                ]
+              ],
+              [
+                "field",
+                [
+                  "use",
+                  "item"
+                ],
+                "value"
+              ]
+            ]
+          }
+        }
+      },
+      "value_type": "Int64",
+      "value": 7
+    },
+    {
+      "id": "fold",
+      "source": "bagaev record-form/1;\nprogram {\n  record Item { value: Int64 };\n  list Items of Item capacity 4;\n  entry calc;\n  fn calc() -> Int64 = let items = records.list(Items, Item { value: 3 }, Item { value: 1 }) in fold (4, 0) with (idx, total) in if idx < records.len(items) then let item = records.at(items, idx) in total + item.value else total;\n}\n",
+      "expected": {
+        "schema": "bagaev-typed-record/10",
+        "records": {
+          "Item": {
+            "value": "Int64"
+          }
+        },
+        "lists": {
+          "Items": {
+            "element": "Item",
+            "capacity": 4
+          }
+        },
+        "variants": {},
+        "entry": "calc",
+        "functions": {
+          "calc": {
+            "params": [],
+            "result": "Int64",
+            "body": [
+              "let",
+              "items",
+              [
+                "records.list",
+                "Items",
+                [
+                  "record",
+                  "Item",
+                  [
+                    "int",
+                    3
+                  ]
+                ],
+                [
+                  "record",
+                  "Item",
+                  [
+                    "int",
+                    1
+                  ]
+                ]
+              ],
+              [
+                "loop",
+                4,
+                "idx",
+                "total",
+                [
+                  "int",
+                  0
+                ],
+                [
+                  "if",
+                  [
+                    "lt",
+                    [
+                      "use",
+                      "idx"
+                    ],
+                    [
+                      "records.len",
+                      [
+                        "use",
+                        "items"
+                      ]
+                    ]
+                  ],
+                  [
+                    "let",
+                    "item",
+                    [
+                      "records.at",
+                      [
+                        "use",
+                        "items"
+                      ],
+                      [
+                        "use",
+                        "idx"
+                      ]
+                    ],
+                    [
+                      "add",
+                      [
+                        "use",
+                        "total"
+                      ],
+                      [
+                        "field",
+                        [
+                          "use",
+                          "item"
+                        ],
+                        "value"
+                      ]
+                    ]
+                  ],
+                  [
+                    "use",
+                    "total"
+                  ]
+                ]
+              ]
+            ]
+          }
+        }
+      },
+      "value_type": "Int64",
+      "value": 4
+    },
+    {
+      "id": "text",
+      "source": "bagaev record-form/1;\nprogram {\n  entry calc;\n  fn calc() -> Int64 = text.bytes(\"é🙂\");\n}\n",
+      "expected": {
+        "schema": "bagaev-typed-record/10",
+        "records": {},
+        "lists": {},
+        "variants": {},
+        "entry": "calc",
+        "functions": {
+          "calc": {
+            "params": [],
+            "result": "Int64",
+            "body": [
+              "text.bytes",
+              [
+                "text",
+                "é🙂"
+              ]
+            ]
+          }
+        }
+      },
+      "value_type": "Int64",
+      "value": 6
+    },
+    {
+      "id": "variant",
+      "source": "bagaev record-form/1;\nprogram {\n  variant Choice { Number: Int64, Flag: Bool };\n  entry calc;\n  fn calc() -> Int64 = match (Choice.Number(9)) { Number(number): number; Flag(flag): 0; };\n}\n",
+      "expected": {
+        "schema": "bagaev-typed-record/10",
+        "records": {},
+        "lists": {},
+        "variants": {
+          "Choice": {
+            "Number": "Int64",
+            "Flag": "Bool"
+          }
+        },
+        "entry": "calc",
+        "functions": {
+          "calc": {
+            "params": [],
+            "result": "Int64",
+            "body": [
+              "match",
+              [
+                "variant",
+                "Choice",
+                "Number",
+                [
+                  "int",
+                  9
+                ]
+              ],
+              [
+                [
+                  "Number",
+                  "number",
+                  [
+                    "use",
+                    "number"
+                  ]
+                ],
+                [
+                  "Flag",
+                  "flag",
+                  [
+                    "int",
+                    0
+                  ]
+                ]
+              ]
+            ]
+          }
+        }
+      },
+      "value_type": "Int64",
+      "value": 9
+    }
+  ],
+  "type_refusal": {
+    "source": "bagaev record-form/1;\nprogram {\n  entry calc;\n  fn calc() -> Int64 = true;\n}\n",
+    "expected": {
+      "schema": "bagaev-typed-record/10",
+      "records": {},
+      "lists": {},
+      "variants": {},
+      "entry": "calc",
+      "functions": {
+        "calc": {
+          "params": [],
+          "result": "Int64",
+          "body": [
+            "bool",
+            true
+          ]
+        }
+      }
+    },
+    "reason": "RR_TYPE"
+  },
+  "syntax": [
+    {
+      "id": "duplicate-entry",
+      "source": "bagaev record-form/1;\nprogram {\n  entry calc; entry calc;\n  fn calc() -> Int64 = 2 + 3 * 4;\n}\n",
+      "code": "FORM_DUPLICATE"
+    },
+    {
+      "id": "version",
+      "source": "bagaev record-form/2;\nprogram {\n  entry calc;\n  fn calc() -> Int64 = 2 + 3 * 4;\n}\n",
+      "code": "FORM_VERSION"
+    },
+    {
+      "id": "missing-entry",
+      "source": "bagaev record-form/1;\nprogram {\n  \n  fn calc() -> Int64 = 2 + 3 * 4;\n}\n",
+      "code": "FORM_SHAPE"
+    }
+  ]
+}
