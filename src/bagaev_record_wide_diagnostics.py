@@ -45,14 +45,11 @@ def diagnose(source):
  h=HEADER.match(text)
  if h is None:return result('FORM_SYNTAX','header')
  if h[1]!='5':return result('FORM_VERSION','header',_span(text,h.start(1),h.end(1),'token'))
- pos=h.end();spans=[]
- while pos<len(text):
-  if text[pos] in form.old.WS:pos+=1;continue
-  m=form.TOKEN.match(text,pos)
-  if m is None:return result('FORM_SYNTAX','lexical',_span(text,pos,pos+1,'token'))
-  spans.append((m.start(),m.end()))
-  if len(spans)>form.old.TOKEN_LIMIT:return result('FORM_BOUNDS','lexical',_span(text,m.start(),m.end(),'token'))
-  pos=m.end()
+ try:items=form._body_tokens(text,h.end())
+ except form.FormError as error:
+  start,end=error.source_range
+  return result(error.code,'lexical',_span(text,start,end,'token'))
+ spans=[(start,end) for _,start,end,comment in items if not comment]
  reader=_Reader(raw)
  try:reader.read()
  except (form.FormError,RecursionError) as error:

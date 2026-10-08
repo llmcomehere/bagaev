@@ -4,7 +4,7 @@ import bagaev_record_wide_form as form
 
 def format_source(source):
     before=form.decode(source)
-    tokens=form.Reader(source).tokens
+    tokens=[token for token,_,_,_ in form.Reader(source).token_items]
     lines=['bagaev record-form/5;'];line='';stack=[];size=len(lines[0])+1
     def flush():
         nonlocal line,size
@@ -14,6 +14,8 @@ def format_source(source):
             form.need(size<=form.old.BYTE_LIMIT,'FORM_BOUNDS')
             lines.append(text);line=''
     for token in tokens:
+        if token.startswith('//'):
+            flush();line=token;flush();continue
         if token=='}':
             flush()
             if stack and stack[-1]=='{':stack.pop()

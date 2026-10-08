@@ -218,3 +218,38 @@ frozen graphs retained their previous default bytes and matched named round-trip
 source-map and idempotence checks. Seven data CLI observations covered both views,
 wrong operation/form and existing-output preservation; three malformed callee
 contracts refused. No program, native code or model was executed for this view.
+
+## Line comments
+
+After the required `bagaev record-form/5;` header, `//` starts a line comment
+outside string literals, ending at LF or end of file. For example:
+
+```
+bagaev record-form/5;
+program {
+  // Return the difference; named arguments still follow declaration order.
+  fn main() -> Int64 = diff(b: 2, a: 9);
+  fn diff(a: Int64, b: Int64) -> Int64 = a - b;
+  entry main;
+}
+```
+
+Comments may appear between tokens or after the program. `//` inside a quoted
+Text value stays text. Comments before or inside the mandatory header and block
+comments are not supported. Raw comment control characters other than tab/CR
+are refused. All comment bytes count toward the existing source byte bound;
+semantic-token, graph and runtime bounds are unchanged. Earlier forms are unchanged.
+
+The reader, source-map ranges and lexical diagnostics share one tokenizer.
+Comments do not enter the program graph or its canonical pin. Exact source hashes
+and byte/line ranges still include the original layout. The token formatter
+retains comment text/order on standalone lines and may normalize trailing
+whitespace; canonical and named graph encoders omit comments because IR contains
+no comment data. Comments cannot supply execution authority or provenance.
+
+Seven frozen cases cover body/inline/inter-token/trailing/CRLF/Unicode comments,
+comment punctuation and slash-like string values. Graph, value ranges, comment
+retention and formatter idempotence were checked; prior comment-free formatter
+bytes and seven existing exact diagnostic observations remained unchanged.
+Twenty-five portable tests and 21 data CLI observations passed. No source program,
+native kernel or model was executed for lexical trivia.

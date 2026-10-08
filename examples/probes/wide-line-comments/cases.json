@@ -1,0 +1,37 @@
+[
+  {
+    "id": "leading-body",
+    "source": "bagaev record-form/5; // пояснение Ж\nprogram { fn main() -> Int64 = 1 + 2; entry main; }",
+    "plain": "bagaev record-form/5; program { fn main() -> Int64 = 1 + 2; entry main; }"
+  },
+  {
+    "id": "inline-expression",
+    "source": "bagaev record-form/5; program { fn main() -> Int64 = 1 // first operand\n + 2; entry main; }",
+    "plain": "bagaev record-form/5; program { fn main() -> Int64 = 1 + 2; entry main; }"
+  },
+  {
+    "id": "declaration-gap",
+    "source": "bagaev record-form/5; program { fn // function name\nmain() -> Int64 = 1 + 2; entry main; }",
+    "plain": "bagaev record-form/5; program { fn main() -> Int64 = 1 + 2; entry main; }"
+  },
+  {
+    "id": "trailing",
+    "source": "bagaev record-form/5; program { fn main() -> Int64 = 1 + 2; entry main; } // tail without LF",
+    "plain": "bagaev record-form/5; program { fn main() -> Int64 = 1 + 2; entry main; }"
+  },
+  {
+    "id": "comment-punctuation",
+    "source": "bagaev record-form/5; program { // } \" ; pretend tokens\n fn main() -> Int64 = 1 + 2; entry main; }",
+    "plain": "bagaev record-form/5; program { fn main() -> Int64 = 1 + 2; entry main; }"
+  },
+  {
+    "id": "crlf",
+    "source": "bagaev record-form/5; program { fn main() -> Int64 = 1 // windows\r\n + 2; entry main; }",
+    "plain": "bagaev record-form/5; program { fn main() -> Int64 = 1 + 2; entry main; }"
+  },
+  {
+    "id": "slash-string",
+    "source": "bagaev record-form/5; program { fn main() -> Text = \"https://example//a\"; // real comment\n entry main; }",
+    "plain": "bagaev record-form/5; program { fn main() -> Text = \"https://example//a\"; entry main; }"
+  }
+]
