@@ -1,0 +1,340 @@
+bagaev record-form/4;
+program {
+  record Entry {
+    date: OptionInt64 omit_none,
+    id: Text,
+    indexed_tags: TextList,
+    manual_tags: TextList,
+    title: Text
+  };
+  record Refusal {
+    kind: Text,
+    reason: Text
+  };
+  record State {
+    entries: Entries
+  };
+  record Success {
+    entry_ids: TextList,
+    kind: Text,
+    state: State
+  };
+  variant Result {
+    Error: Refusal,
+    Ok: Success
+  };
+  list Entries of Entry capacity 4;
+  entry main;
+  fn before(a: Entry, z: Entry, rev: Int64) -> Bool = if(option.is_some(record.field(a, "date")))
+  then(if(option.is_some(record.field(z, "date")))
+  then(if(int.eq(option.or(record.field(a, "date"), 0), option.or(record.field(z, "date"), 0)))
+  then(text.lt(record.field(a, "id"), record.field(z, "id")))
+  else((option.or(record.field(a, "date"), 0) < option.or(record.field(z, "date"), 0))))
+  else(int.eq(rev, 3)))
+  else(if(option.is_some(record.field(z, "date")))
+  then((rev < 3))
+  else(text.lt(record.field(a, "id"), record.field(z, "id"))));
+  fn dates_ok(x: Json) -> Bool = let size =(option.or(json.len(x), 0))
+  in(fold(4, (true)) with(i, ok)
+  in(if(ok)
+  then(if((i < size))
+  then(let date =(json.field(json.at(x, i), "date"))
+  in(if(text.eq(json.kind(date), "missing"))
+  then(true)
+  else(let n =(option.or(json.int(date), - 1))
+  in(if(int.le(0, n))
+  then(int.le(n, 31))
+  else(false)))))
+  else(true))
+  else(false)));
+  fn disjoint(a: TextList, z: TextList) -> Bool = fold(4, (true)) with(i, ok)
+  in(if(ok)
+  then(if(if((i < list.len(a)))
+  then(bool.not(list.contains(z, list.at(a, i))))
+  else(true))
+  then(true)
+  else(false))
+  else(false));
+  fn entries_ok(x: Json) -> Bool = let n =(option.or(json.len(x), - 1))
+  in(if(text.eq(json.kind(x), "array"))
+  then(if(int.le(n, 4))
+  then(if(fold(4, (true)) with(i, ok)
+  in(if(ok)
+  then(if(if((i < n))
+  then(entry_ok(json.at(x, i)))
+  else(true))
+  then(true)
+  else(false))
+  else(false)))
+  then(true)
+  else(false))
+  else(false))
+  else(false));
+  fn entry_ok(x: Json) -> Bool = if(text.eq(json.kind(x), "object"))
+  then(if(int.eq(option.or(json.len(x), - 1), if(bool.not(text.eq(json.kind(json.field(x, "date")), "missing")))
+  then(5)
+  else(4)))
+  then(if(id_ok(json.text_or(json.field(x, "id"), "")))
+  then(if(title_ok(json.text_or(json.field(x, "title"), "")))
+  then(if(tags_ok(json.field(x, "manual_tags")))
+  then(if(tags_ok(json.field(x, "indexed_tags")))
+  then(true)
+  else(false))
+  else(false))
+  else(false))
+  else(false))
+  else(false))
+  else(false);
+  fn id_at_rank(es: Entries, rev: Int64, rank: Int64) -> Text = fold(4, ("")) with(i, id)
+  in(if(if((i < records.len(es)))
+  then(if(int.eq(rank(es, records.at(es, i), rev), rank))
+  then(true)
+  else(false))
+  else(false))
+  then(record.field(records.at(es, i), "id"))
+  else(id));
+  fn id_ok(x: Text) -> Bool = let n =(text.bytes(x))
+  in(if((n < 1))
+  then(false)
+  else(if((8 < n))
+  then(false)
+  else(fold(8, (true)) with(i, ok)
+  in(if((i < n))
+  then(let b =(option.or(text.byte_at(x, i), - 1))
+  in(if(int.eq(i, 0))
+  then(if((b < 97))
+  then(false)
+  else(if((122 < b))
+  then(false)
+  else(ok)))
+  else(if((b < 97))
+  then(if((b < 48))
+  then(if(int.eq(b, 45))
+  then(ok)
+  else(false))
+  else(if(int.le(b, 57))
+  then(ok)
+  else(false)))
+  else(if(int.le(b, 122))
+  then(ok)
+  else(false)))))
+  else(ok)))));
+  fn ids_ordered(es: Entries) -> Bool = fold(4, (true)) with(i, ok)
+  in(if(ok)
+  then(if(if(if((0 < i))
+  then(if((i < records.len(es)))
+  then(true)
+  else(false))
+  else(false))
+  then(text.lt(record.field(records.at(es, (i - 1)), "id"), record.field(records.at(es, i), "id")))
+  else(true))
+  then(true)
+  else(false))
+  else(false));
+  fn ids_unique(es: Entries) -> Bool = fold(4, (true)) with(i, ok)
+  in(if(ok)
+  then(if(if((i < records.len(es)))
+  then(fold(4, (true)) with(j, good)
+  in(if(good)
+  then(if(if((j < i))
+  then(bool.not(text.eq(record.field(records.at(es, i), "id"), record.field(records.at(es, j), "id"))))
+  else(true))
+  then(true)
+  else(false))
+  else(false)))
+  else(true))
+  then(true)
+  else(false))
+  else(false));
+  fn main(x: Json) -> Result = if(if(text.eq(json.kind(x), "object"))
+  then(if(int.eq(option.or(json.len(x), - 1), 4))
+  then(if(text.eq(json.text_or(json.field(x, "interface"), ""), "catalog-application/2"))
+  then(if(let rev =(option.or(json.int(json.field(x, "behavior_revision")), - 1))
+  in(if(int.le(0, rev))
+  then(if(int.le(rev, 3))
+  then(true)
+  else(false))
+  else(false)))
+  then(if(text.eq(json.kind(json.field(x, "state")), "object"))
+  then(if(int.eq(option.or(json.len(json.field(x, "state")), - 1), 1))
+  then(if(entries_ok(json.field(json.field(x, "state"), "entries")))
+  then(if(reindex_ok(json.field(x, "reindex")))
+  then(true)
+  else(false))
+  else(false))
+  else(false))
+  else(false))
+  else(false))
+  else(false))
+  else(false))
+  else(false))
+  then(if(dates_ok(json.field(json.field(x, "state"), "entries")))
+  then(let entries =(read_entries(json.field(json.field(x, "state"), "entries")))
+  in(let revision =(option.or(json.int(json.field(x, "behavior_revision")), 0))
+  in(let target =(json.text_or(json.field(json.field(x, "reindex"), "entry_id"), ""))
+  in(let tags =(read_tags(json.field(json.field(x, "reindex"), "tags")))
+  in(if(ids_unique(entries))
+  then(if(ids_ordered(entries))
+  then(if(origins_ok(entries))
+  then(if(target_exists(entries, target))
+  then(if(if((revision < 2))
+  then(true)
+  else(target_ok(entries, target, tags)))
+  then(let updated =(transform_entries(entries, revision, target, tags))
+  in(Result.Ok(Success {
+    entry_ids: view(updated, revision),
+    kind: "success",
+    state: State {
+      entries: updated
+    }
+  })))
+  else(refuse("origin-collision")))
+  else(refuse("entry-not-found")))
+  else(refuse("origin-collision")))
+  else(refuse("entry-order")))
+  else(refuse("duplicate-entry-id")))))))
+  else(refuse("invalid-date")))
+  else(refuse("invalid-request"));
+  fn origins_ok(es: Entries) -> Bool = fold(4, (true)) with(i, ok)
+  in(if(ok)
+  then(if(if((i < records.len(es)))
+  then(disjoint(record.field(records.at(es, i), "manual_tags"), record.field(records.at(es, i), "indexed_tags")))
+  else(true))
+  then(true)
+  else(false))
+  else(false));
+  fn rank(es: Entries, e: Entry, rev: Int64) -> Int64 = fold(4, (0)) with(i, rank)
+  in(if(if((i < records.len(es)))
+  then(if(before(records.at(es, i), e, rev))
+  then(true)
+  else(false))
+  else(false))
+  then((rank + 1))
+  else(rank));
+  fn read_entries(x: Json) -> Entries = if(int.eq(option.or(json.len(x), 0), 0))
+  then(records.list(Entries))
+  else(if(int.eq(option.or(json.len(x), 0), 1))
+  then(records.list(Entries, read_entry(json.at(x, 0))))
+  else(if(int.eq(option.or(json.len(x), 0), 2))
+  then(records.list(Entries, read_entry(json.at(x, 0)), read_entry(json.at(x, 1))))
+  else(if(int.eq(option.or(json.len(x), 0), 3))
+  then(records.list(Entries, read_entry(json.at(x, 0)), read_entry(json.at(x, 1)), read_entry(json.at(x, 2))))
+  else(records.list(Entries, read_entry(json.at(x, 0)), read_entry(json.at(x, 1)), read_entry(json.at(x, 2)), read_entry(json.at(x, 3)))))));
+  fn read_entry(x: Json) -> Entry = Entry {
+    date: json.int(json.field(x, "date")),
+    id: json.text_or(json.field(x, "id"), ""),
+    indexed_tags: read_tags(json.field(x, "indexed_tags")),
+    manual_tags: read_tags(json.field(x, "manual_tags")),
+    title: json.text_or(json.field(x, "title"), "")
+  };
+  fn read_tags(x: Json) -> TextList = if(int.eq(option.or(json.len(x), 0), 0))
+  then(list.text())
+  else(if(int.eq(option.or(json.len(x), 0), 1))
+  then(list.text(json.text_or(json.at(x, 0), "")))
+  else(if(int.eq(option.or(json.len(x), 0), 2))
+  then(list.text(json.text_or(json.at(x, 0), ""), json.text_or(json.at(x, 1), "")))
+  else(if(int.eq(option.or(json.len(x), 0), 3))
+  then(list.text(json.text_or(json.at(x, 0), ""), json.text_or(json.at(x, 1), ""), json.text_or(json.at(x, 2), "")))
+  else(list.text(json.text_or(json.at(x, 0), ""), json.text_or(json.at(x, 1), ""), json.text_or(json.at(x, 2), ""), json.text_or(json.at(x, 3), ""))))));
+  fn refuse(reason: Text) -> Result = Result.Error(Refusal {
+    kind: "refusal",
+    reason: reason
+  });
+  fn reindex_ok(x: Json) -> Bool = if(text.eq(json.kind(x), "null"))
+  then(true)
+  else(if(text.eq(json.kind(x), "object"))
+  then(if(int.eq(option.or(json.len(x), - 1), 2))
+  then(if(id_ok(json.text_or(json.field(x, "entry_id"), "")))
+  then(if(tags_ok(json.field(x, "tags")))
+  then(true)
+  else(false))
+  else(false))
+  else(false))
+  else(false));
+  fn tags_ok(x: Json) -> Bool = let n =(option.or(json.len(x), - 1))
+  in(if(text.eq(json.kind(x), "array"))
+  then(if(int.le(n, 4))
+  then(if(fold(4, (true)) with(i, ok)
+  in(if(ok)
+  then(if(if((i < n))
+  then(id_ok(json.text_or(json.at(x, i), "")))
+  else(true))
+  then(true)
+  else(false))
+  else(false)))
+  then(true)
+  else(false))
+  else(false))
+  else(false));
+  fn target_exists(es: Entries, target: Text) -> Bool = if(text.eq(target, ""))
+  then(true)
+  else(fold(4, (false)) with(i, found)
+  in(if(found)
+  then(true)
+  else(if((i < records.len(es)))
+  then(text.eq(record.field(records.at(es, i), "id"), target))
+  else(false))));
+  fn target_ok(es: Entries, target: Text, tags: TextList) -> Bool = fold(4, (true)) with(i, ok)
+  in(if(ok)
+  then(if(if((i < records.len(es)))
+  then(if(text.eq(record.field(records.at(es, i), "id"), target))
+  then(disjoint(record.field(records.at(es, i), "manual_tags"), tags))
+  else(true))
+  else(true))
+  then(true)
+  else(false))
+  else(false));
+  fn title_ok(x: Text) -> Bool = let n =(text.bytes(x))
+  in(if((n < 1))
+  then(false)
+  else(if((16 < n))
+  then(false)
+  else(fold(16, (true)) with(i, ok)
+  in(if((i < n))
+  then(let b =(option.or(text.byte_at(x, i), - 1))
+  in(if((b < 32))
+  then(false)
+  else(if((126 < b))
+  then(false)
+  else(ok))))
+  else(ok)))));
+  fn transform_entries(es: Entries, rev: Int64, target: Text, tags: TextList) -> Entries = if(int.eq(records.len(es), 0))
+  then(records.list(Entries))
+  else(if(int.eq(records.len(es), 1))
+  then(records.list(Entries, transform_entry(records.at(es, 0), rev, target, tags)))
+  else(if(int.eq(records.len(es), 2))
+  then(records.list(Entries, transform_entry(records.at(es, 0), rev, target, tags), transform_entry(records.at(es, 1), rev, target, tags)))
+  else(if(int.eq(records.len(es), 3))
+  then(records.list(Entries, transform_entry(records.at(es, 0), rev, target, tags), transform_entry(records.at(es, 1), rev, target, tags), transform_entry(records.at(es, 2), rev, target, tags)))
+  else(records.list(Entries, transform_entry(records.at(es, 0), rev, target, tags), transform_entry(records.at(es, 1), rev, target, tags), transform_entry(records.at(es, 2), rev, target, tags), transform_entry(records.at(es, 3), rev, target, tags))))));
+  fn transform_entry(e: Entry, rev: Int64, target: Text, tags: TextList) -> Entry = let manual =(if(if(text.eq(record.field(e, "id"), target))
+  then(if((rev < 2))
+  then(true)
+  else(false))
+  else(false))
+  then(list.text())
+  else(record.field(e, "manual_tags")))
+  in(let indexed =(if(text.eq(record.field(e, "id"), target))
+  then(tags)
+  else(record.field(e, "indexed_tags")))
+  in(Entry {
+    date: record.field(e, "date"),
+    id: record.field(e, "id"),
+    indexed_tags: if((0 < rev))
+    then(list.unique(indexed))
+    else(indexed),
+    manual_tags: if((0 < rev))
+    then(list.unique(manual))
+    else(manual),
+    title: record.field(e, "title")
+  }));
+  fn view(es: Entries, rev: Int64) -> TextList = if(int.eq(records.len(es), 0))
+  then(list.text())
+  else(if(int.eq(records.len(es), 1))
+  then(list.text(id_at_rank(es, rev, 0)))
+  else(if(int.eq(records.len(es), 2))
+  then(list.text(id_at_rank(es, rev, 0), id_at_rank(es, rev, 1)))
+  else(if(int.eq(records.len(es), 3))
+  then(list.text(id_at_rank(es, rev, 0), id_at_rank(es, rev, 1), id_at_rank(es, rev, 2)))
+  else(list.text(id_at_rank(es, rev, 0), id_at_rank(es, rev, 1), id_at_rank(es, rev, 2), id_at_rank(es, rev, 3))))));
+}

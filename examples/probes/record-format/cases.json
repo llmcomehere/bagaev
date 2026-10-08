@@ -1,0 +1,12 @@
+[
+  {
+    "id": "text",
+    "source": "bagaev record-form/4; program { entry calc; fn calc() -> Text = \"a;{}, then é\"; }",
+    "expected": "bagaev record-form/4;\nprogram {\n  entry calc;\n  fn calc() -> Text = \"a;{}, then é\";\n}\n"
+  },
+  {
+    "id": "let",
+    "source": "bagaev record-form/4; program { entry calc; fn calc() -> Int64 = let n = 1 in if true then n else 0; }",
+    "expected": "bagaev record-form/4;\nprogram {\n  entry calc;\n  fn calc() -> Int64 = let n = 1\n  in if true\n  then n\n  else 0;\n}\n"
+  }
+]
