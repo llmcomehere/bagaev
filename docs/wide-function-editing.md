@@ -33,5 +33,5 @@ passed. The unchanged form4 check also passed all99 responses, seven refusals
 and four CLI operations. These are bounded same-maintainer observations.
 Fragment byte counts are not token-cost or model-preference measurements.
 
-Whole-program draft, diagnostic and formatting tools retain their existing
-explicit version limits; this change extends only focused function editing.
+[Diagnostics and formatting](wide-authoring.md) separately support explicit form5.
+Whole-program draft tools retain their earlier version limits.

@@ -1,0 +1,78 @@
+[
+  {
+    "id": "valid",
+    "source": "bagaev record-form/5;\nprogram { entry calc; fn calc() -> Int64 = 1; }\n",
+    "code": null
+  },
+  {
+    "id": "type-unchecked",
+    "source": "bagaev record-form/5;\nprogram { entry calc; fn calc() -> Int64 = true; }\n",
+    "code": null
+  },
+  {
+    "id": "version",
+    "source": "bagaev record-form/9;\nprogram { entry calc; fn calc() -> Int64 = 1; }\n",
+    "code": "FORM_VERSION",
+    "phase": "header",
+    "span": {
+      "kind": "token",
+      "start_byte": 19,
+      "end_byte": 20,
+      "start_line": 1,
+      "start_column": 20,
+      "end_line": 1,
+      "end_column": 21
+    }
+  },
+  {
+    "id": "header",
+    "source": "bagaev component-form/1;\nprogram { entry calc; fn calc() -> Int64 = 1; }\n",
+    "code": "FORM_SYNTAX",
+    "phase": "header"
+  },
+  {
+    "id": "lexical",
+    "source": "bagaev record-form/5;\nprogram { entry calc; fn calc() -> Int64 = @; }\n",
+    "code": "FORM_SYNTAX",
+    "phase": "lexical",
+    "span": {
+      "kind": "token",
+      "start_byte": 65,
+      "end_byte": 66,
+      "start_line": 2,
+      "start_column": 44,
+      "end_line": 2,
+      "end_column": 45
+    }
+  },
+  {
+    "id": "unicode-lexical",
+    "source": "bagaev record-form/5;\nprogram { entry calc; fn calc() -> Int64 = text.bytes(\"\u00e9\") @; }\n",
+    "code": "FORM_SYNTAX",
+    "phase": "lexical",
+    "span": {
+      "kind": "token",
+      "start_byte": 82,
+      "end_byte": 83,
+      "start_line": 2,
+      "start_column": 60,
+      "end_line": 2,
+      "end_column": 61
+    }
+  },
+  {
+    "id": "semicolon",
+    "source": "bagaev record-form/5;\nprogram { entry calc; fn calc() -> Int64 = 1 }\n",
+    "code": "FORM_SYNTAX",
+    "phase": "parsing",
+    "span": {
+      "kind": "context",
+      "start_byte": 65,
+      "end_byte": 68,
+      "start_line": 2,
+      "start_column": 44,
+      "end_line": 2,
+      "end_column": 47
+    }
+  }
+]

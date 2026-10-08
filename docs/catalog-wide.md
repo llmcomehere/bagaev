@@ -24,7 +24,8 @@ This is a pure returned value, with no durable storage, native ABI or component
 ownership extension. Profile 11's work and shape limits remain in force: a
 schema-valid request is not promised to fit every runtime budget. No limits or
 execution controls are raised by this example. Focused edits require [explicit form5 selection](wide-function-editing.md);
-other diagnostic, whole-program draft and formatting tools retain their version limits.
+[diagnostics and formatting](wide-authoring.md) also require explicit form5.
+Whole-program drafts retain their earlier version limits.
 
 ## Evidence and reproduction
 
