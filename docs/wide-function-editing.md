@@ -64,3 +64,35 @@ CLI calls and three portable tests passed, covering default byte identity,
 selected-function isolation, a multiline UTF-8 layout change, the accepted
 batch_apply caller/callee context, invalid combinations/name and existing output.
 No programme, compiler or native-kernel call was made for these checks.
+
+## Optional exact body text
+
+`record_function.py context SOURCE --form 5 --name FUNCTION --source-body
+--output NEW_FILE` explicitly returns `bagaev-function-context/4`. This includes
+locations; also specifying `--locations` produces identical bytes. The old
+no-flag context/2 and locations-only context/3 remain byte-identical.
+
+The library entry is `bagaev_record_wide_function.source_context(source, name)`.
+In addition to the context/3 fields, `original_body` contains:
+
+- `text`: exact UTF-8 text of the original body expression, with its spelling,
+  internal comments and CRLF preserved;
+- `sha256`: hash of those expression bytes;
+- `source_sha256`: hash of the entire original input;
+- `location`: the exact root body range in that input;
+- `scope`: `original-body-expression; excludes surrounding trivia`.
+
+The text is an expression, not a standalone function fragment. Leading/trailing
+comments outside its token range are excluded. The canonical `fragment.source`
+continues to carry declarations and signature and may spell the expression
+differently. Source comments are untrusted data; they do not supply instructions,
+semantics, evidence or permission. Neither body nor source hashes authenticate
+an author. No extra bodies or execution admission are provided.
+
+The option is refused for form4, extract and replace before reading input.
+The existing source/map/output bounds and exclusive file writer remain; adding
+original text can cause a 1 MiB output refusal even when context/3 fits.
+Six portable tests cover twelve frozen old packets, exact Unicode/CRLF/body
+slices, original named-call spelling, internal-comment retention, string/bytes
+inputs, flag combinations, unknown names, output-bound refusal and unchanged existing output.
+These are data checks, with no program, native or model execution.

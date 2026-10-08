@@ -69,3 +69,27 @@ def located_context(source, name):
     packet['source_locations'] = mapping
     packet['location_source'] = 'original-full-input; not fragment.source'
     return packet
+
+
+def source_context(source, name):
+    """Explicit original expression text, including internal untrusted comments."""
+    import hashlib
+    packet = located_context(source, name)
+    pointer = '/program/functions/' + name + '/body'
+    roots = [item for item in packet['source_locations']['locations']
+             if item['program_pointer'] == pointer]
+    need(len(roots) == 1 and roots[0]['precision'] == 'exact-expression', 'FUNCTION_MAP')
+    location = roots[0]
+    raw = source.encode('utf8') if type(source) is str else source
+    start, end = location['start_byte'], location['end_byte']
+    need(0 <= start < end <= len(raw), 'FUNCTION_MAP')
+    body = raw[start:end]
+    packet['schema'] = 'bagaev-function-context/4'
+    packet['original_body'] = {
+        'text': body.decode('utf8'),
+        'sha256': hashlib.sha256(body).hexdigest(),
+        'source_sha256': packet['source_locations']['source_sha256'],
+        'location': copy.deepcopy(location),
+        'scope': 'original-body-expression; excludes surrounding trivia',
+    }
+    return packet
