@@ -49,3 +49,5 @@ computed record. The new record.field spelling resolves that representation gap;
 no graph or expected response was rewritten. Original refusal evidence was kept.
 
 For explicit form4 syntax diagnostics and exact-base helper extraction, see the [catalogue change workflow](catalog-edit-workflow.md).
+
+A [formatted view](record-formatting.md) adds line breaks without changing the catalogue graph or canonical program identity.
