@@ -23,6 +23,11 @@ class Reader(prior.Reader):
    self.take();need(value=='OptionInt64','FORM_PROFILE');return {'type':'OptionInt64','omit_none':True}
   return value
  def atom(self,depth):
+  if self.tokens[self.pos:self.pos+4]==['records','.','list','(']:
+   need(depth<=old.DEPTH_LIMIT,'FORM_BOUNDS');self.take();self.take();self.take();self.take();name=self.ident();values=[]
+   while self.peek()==',':
+    self.take();values.append(self.expression(depth+1));need(len(values)<=16,'FORM_BOUNDS')
+   self.take(')');return ('recordlist',name,values)
   if self.pos+3<len(self.tokens) and self.tokens[self.pos+1]=='.' and self.tokens[self.pos+3]=='(':
    operation=self.tokens[self.pos]+'.'+self.tokens[self.pos+2]
    if operation in INTRINSICS and operation not in prior.INTRINSICS:

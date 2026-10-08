@@ -1,0 +1,10 @@
+{
+  "status": "REPRODUCED_BEFORE_FIX",
+  "failures": {
+    "encode": "FORM_BOUNDS",
+    "decode": "FORM_BOUNDS"
+  },
+  "literal_items": 16,
+  "programme_evaluations": 0,
+  "note": "First reproduction harness expected encode to return before decode; encode itself performs a roundtrip and already refuses."
+}

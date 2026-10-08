@@ -56,8 +56,9 @@ These are conformance/regression observations, not performance measurements.
 
 The old catalogue application contract itself still allows four entries. This
 profile enables larger pure functions; it does not rewrite that contract or its
-frozen 99-case oracle. Native exporters, adapters and execution controls are
-unchanged. Independent reproduction and broader acceptance remain open.
+frozen 99-case oracle. The initial reference-profile change did not alter native exporters, adapters
+or execution controls. Later separately versioned native stages are linked below.
+Independent reproduction and broader acceptance remain open.
 
 A separate [sixteen-entry catalogue](catalog-wide.md) now exercises this profile
 without changing the old application contract.
@@ -66,7 +67,8 @@ without changing the old application contract.
 creates pinned detached single-function replacements.
 
 [Data-only LLVM preparation](probe-native-wide-emitter.md) is a separate initial
-native stage. Generated profile11 code has not yet been qualified by execution.
+native stage. Its initial checks did not execute generated code; subsequent
+selected native qualification is linked below.
 
 ## Subsequent selected native execution
 
@@ -80,3 +82,28 @@ native coverage or performance.
 For a Json-only entry that needs to inspect fractional or large JSON numbers,
 use the separately selected [lossless Json preparation](json-argument-prepare.md)
 route. The original typed-argument preparer remains strict and unchanged.
+
+
+## Form5 record-list literal boundary correction
+
+The explicit form5 reader now accepts up to sixteen items in a records.list
+constructor, still subject to the declared list capacity. It previously inherited
+the older reader's hard four-item parsing limit: a valid capacity 16 literal could
+not decode, and encoding the same graph also failed its roundtrip check.
+Only the form5 reader's constructor branch changes. Older codecs, runtime work,
+profile bounds and native semantics remain unchanged.
+
+Eight pre-frozen boundary cases cover counts 0/4/5/16, zero capacity, count 17 and
+declared-capacity overflow. Three data tests check exact graphs, roundtrip,
+formatting/idempotence and unchanged form4 behavior. The accepted sixteen-item
+sum source now encodes/decodes to its existing exact graph. Five literal-list
+invocations and that sum passed six fresh preparation/reference calls with full
+values and logical work; the sum remains 120 at work 610. Existing native results
+for the identical sum graph are prior evidence, not new native execution.
+
+Existing form5 graph, diagnostic and formatter suites also passed unchanged.
+The [before-fix observation](../examples/probes/wide-record-literals/reproduction.json)
+is retained alongside the [literal cases](../examples/probes/wide-record-literals/cases.json).
+The initial reproduction harness assumed encoding would return before decoding;
+the encoder itself performs a roundtrip and already refused. No oracle was
+changed to conceal that behavior.
