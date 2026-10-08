@@ -30,3 +30,5 @@ convertible but refused RR_TYPE by the core. Three syntax/arity refusals, six ol
 version refusals and five explicit form2 file calls passed. The earlier converter
 suite remains applicable to default1. No runtime, native ABI, performance or
 model-choice claim follows from this representation extension.
+
+For a missing record field distinct from explicit null, use the explicit [record-form/3 optional-field representation](pure-optional-fields.md).

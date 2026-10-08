@@ -1,0 +1,342 @@
+{
+  "cases": [
+    {
+      "id": "missing",
+      "source": "bagaev record-form/3; program { record Entry { id: Int64, date: OptionInt64 omit_none }; entry calc; fn calc(e: Entry) -> Entry = e; }",
+      "program": {
+        "schema": "bagaev-typed-record/10",
+        "records": {
+          "Entry": {
+            "id": "Int64",
+            "date": {
+              "type": "OptionInt64",
+              "omit_none": true
+            }
+          }
+        },
+        "lists": {},
+        "variants": {},
+        "entry": "calc",
+        "functions": {
+          "calc": {
+            "params": [
+              [
+                "e",
+                "Entry"
+              ]
+            ],
+            "result": "Entry",
+            "body": [
+              "arg",
+              "e"
+            ]
+          }
+        }
+      },
+      "arguments": [
+        {
+          "id": 1
+        }
+      ],
+      "value": {
+        "id": 1
+      }
+    },
+    {
+      "id": "zero",
+      "source": "bagaev record-form/3; program { record Entry { id: Int64, date: OptionInt64 omit_none }; entry calc; fn calc(e: Entry) -> Entry = e; }",
+      "program": {
+        "schema": "bagaev-typed-record/10",
+        "records": {
+          "Entry": {
+            "id": "Int64",
+            "date": {
+              "type": "OptionInt64",
+              "omit_none": true
+            }
+          }
+        },
+        "lists": {},
+        "variants": {},
+        "entry": "calc",
+        "functions": {
+          "calc": {
+            "params": [
+              [
+                "e",
+                "Entry"
+              ]
+            ],
+            "result": "Entry",
+            "body": [
+              "arg",
+              "e"
+            ]
+          }
+        }
+      },
+      "arguments": [
+        {
+          "id": 2,
+          "date": 0
+        }
+      ],
+      "value": {
+        "id": 2,
+        "date": 0
+      }
+    },
+    {
+      "id": "present",
+      "source": "bagaev record-form/3; program { record Entry { id: Int64, date: OptionInt64 omit_none }; entry calc; fn calc(e: Entry) -> Entry = e; }",
+      "program": {
+        "schema": "bagaev-typed-record/10",
+        "records": {
+          "Entry": {
+            "id": "Int64",
+            "date": {
+              "type": "OptionInt64",
+              "omit_none": true
+            }
+          }
+        },
+        "lists": {},
+        "variants": {},
+        "entry": "calc",
+        "functions": {
+          "calc": {
+            "params": [
+              [
+                "e",
+                "Entry"
+              ]
+            ],
+            "result": "Entry",
+            "body": [
+              "arg",
+              "e"
+            ]
+          }
+        }
+      },
+      "arguments": [
+        {
+          "id": 3,
+          "date": 20261008
+        }
+      ],
+      "value": {
+        "id": 3,
+        "date": 20261008
+      }
+    },
+    {
+      "id": "null",
+      "source": "bagaev record-form/3; program { record Entry { id: Int64, date: OptionInt64 omit_none }; entry calc; fn calc(e: Entry) -> Entry = e; }",
+      "program": {
+        "schema": "bagaev-typed-record/10",
+        "records": {
+          "Entry": {
+            "id": "Int64",
+            "date": {
+              "type": "OptionInt64",
+              "omit_none": true
+            }
+          }
+        },
+        "lists": {},
+        "variants": {},
+        "entry": "calc",
+        "functions": {
+          "calc": {
+            "params": [
+              [
+                "e",
+                "Entry"
+              ]
+            ],
+            "result": "Entry",
+            "body": [
+              "arg",
+              "e"
+            ]
+          }
+        }
+      },
+      "arguments": [
+        {
+          "id": 4,
+          "date": null
+        }
+      ],
+      "reason": "RR_ARGUMENT"
+    },
+    {
+      "id": "clear",
+      "source": "bagaev record-form/3; program { record Entry { id: Int64, date: OptionInt64 omit_none }; entry calc; fn calc(e: Entry) -> Entry = Entry { id: e.id, date: none.int() }; }",
+      "program": {
+        "schema": "bagaev-typed-record/10",
+        "records": {
+          "Entry": {
+            "id": "Int64",
+            "date": {
+              "type": "OptionInt64",
+              "omit_none": true
+            }
+          }
+        },
+        "lists": {},
+        "variants": {},
+        "entry": "calc",
+        "functions": {
+          "calc": {
+            "params": [
+              [
+                "e",
+                "Entry"
+              ]
+            ],
+            "result": "Entry",
+            "body": [
+              "record",
+              "Entry",
+              [
+                "none.int"
+              ],
+              [
+                "field",
+                [
+                  "arg",
+                  "e"
+                ],
+                "id"
+              ]
+            ]
+          }
+        }
+      },
+      "arguments": [
+        {
+          "id": 5,
+          "date": 7
+        }
+      ],
+      "value": {
+        "id": 5
+      }
+    },
+    {
+      "id": "default-missing",
+      "source": "bagaev record-form/3; program { record Entry { id: Int64, date: OptionInt64 omit_none }; entry calc; fn calc(e: Entry) -> Int64 = option.or(e.date, 9); }",
+      "program": {
+        "schema": "bagaev-typed-record/10",
+        "records": {
+          "Entry": {
+            "id": "Int64",
+            "date": {
+              "type": "OptionInt64",
+              "omit_none": true
+            }
+          }
+        },
+        "lists": {},
+        "variants": {},
+        "entry": "calc",
+        "functions": {
+          "calc": {
+            "params": [
+              [
+                "e",
+                "Entry"
+              ]
+            ],
+            "result": "Int64",
+            "body": [
+              "option.or",
+              [
+                "field",
+                [
+                  "arg",
+                  "e"
+                ],
+                "date"
+              ],
+              [
+                "int",
+                9
+              ]
+            ]
+          }
+        }
+      },
+      "arguments": [
+        {
+          "id": 1
+        }
+      ],
+      "value": 9
+    },
+    {
+      "id": "default-zero",
+      "source": "bagaev record-form/3; program { record Entry { id: Int64, date: OptionInt64 omit_none }; entry calc; fn calc(e: Entry) -> Int64 = option.or(e.date, 9); }",
+      "program": {
+        "schema": "bagaev-typed-record/10",
+        "records": {
+          "Entry": {
+            "id": "Int64",
+            "date": {
+              "type": "OptionInt64",
+              "omit_none": true
+            }
+          }
+        },
+        "lists": {},
+        "variants": {},
+        "entry": "calc",
+        "functions": {
+          "calc": {
+            "params": [
+              [
+                "e",
+                "Entry"
+              ]
+            ],
+            "result": "Int64",
+            "body": [
+              "option.or",
+              [
+                "field",
+                [
+                  "arg",
+                  "e"
+                ],
+                "date"
+              ],
+              [
+                "int",
+                9
+              ]
+            ]
+          }
+        }
+      },
+      "arguments": [
+        {
+          "id": 1,
+          "date": 0
+        }
+      ],
+      "value": 0
+    }
+  ],
+  "syntax": [
+    {
+      "source": "bagaev record-form/3; program { record Entry { id: Int64, date: Int64 omit_none }; entry calc; fn calc(e: Entry) -> Entry = e; }",
+      "code": "FORM_PROFILE"
+    },
+    {
+      "source": "bagaev record-form/3; program { record Entry { id: Int64, omit_none: OptionInt64 }; entry calc; fn calc(e: Entry) -> Entry = e; }",
+      "code": "FORM_SYNTAX"
+    }
+  ]
+}
