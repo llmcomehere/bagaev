@@ -1,0 +1,3957 @@
+[
+  {
+    "id": "sixteen-set",
+    "request": {
+      "interface": "catalog-application/3",
+      "behavior_revision": 3,
+      "state": {
+        "entries": [
+          {
+            "id": "a",
+            "title": "A",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 15
+          },
+          {
+            "id": "b",
+            "title": "B",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "c",
+            "title": "C",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 13
+          },
+          {
+            "id": "d",
+            "title": "D",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "e",
+            "title": "E",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 11
+          },
+          {
+            "id": "f",
+            "title": "F",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "g",
+            "title": "G",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 9
+          },
+          {
+            "id": "h",
+            "title": "H",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "i",
+            "title": "I",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 7
+          },
+          {
+            "id": "j",
+            "title": "J",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "k",
+            "title": "K",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 5
+          },
+          {
+            "id": "l",
+            "title": "L",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "m",
+            "title": "M",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 3
+          },
+          {
+            "id": "n",
+            "title": "N",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "o",
+            "title": "O",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 1
+          },
+          {
+            "id": "p",
+            "title": "P",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          }
+        ]
+      },
+      "reindex": null
+    },
+    "expected": {
+      "kind": "success",
+      "state": {
+        "entries": [
+          {
+            "id": "a",
+            "title": "A",
+            "manual_tags": [
+              "m"
+            ],
+            "indexed_tags": [
+              "a",
+              "z"
+            ],
+            "date": 15
+          },
+          {
+            "id": "b",
+            "title": "B",
+            "manual_tags": [
+              "m"
+            ],
+            "indexed_tags": [
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "c",
+            "title": "C",
+            "manual_tags": [
+              "m"
+            ],
+            "indexed_tags": [
+              "a",
+              "z"
+            ],
+            "date": 13
+          },
+          {
+            "id": "d",
+            "title": "D",
+            "manual_tags": [
+              "m"
+            ],
+            "indexed_tags": [
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "e",
+            "title": "E",
+            "manual_tags": [
+              "m"
+            ],
+            "indexed_tags": [
+              "a",
+              "z"
+            ],
+            "date": 11
+          },
+          {
+            "id": "f",
+            "title": "F",
+            "manual_tags": [
+              "m"
+            ],
+            "indexed_tags": [
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "g",
+            "title": "G",
+            "manual_tags": [
+              "m"
+            ],
+            "indexed_tags": [
+              "a",
+              "z"
+            ],
+            "date": 9
+          },
+          {
+            "id": "h",
+            "title": "H",
+            "manual_tags": [
+              "m"
+            ],
+            "indexed_tags": [
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "i",
+            "title": "I",
+            "manual_tags": [
+              "m"
+            ],
+            "indexed_tags": [
+              "a",
+              "z"
+            ],
+            "date": 7
+          },
+          {
+            "id": "j",
+            "title": "J",
+            "manual_tags": [
+              "m"
+            ],
+            "indexed_tags": [
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "k",
+            "title": "K",
+            "manual_tags": [
+              "m"
+            ],
+            "indexed_tags": [
+              "a",
+              "z"
+            ],
+            "date": 5
+          },
+          {
+            "id": "l",
+            "title": "L",
+            "manual_tags": [
+              "m"
+            ],
+            "indexed_tags": [
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "m",
+            "title": "M",
+            "manual_tags": [
+              "m"
+            ],
+            "indexed_tags": [
+              "a",
+              "z"
+            ],
+            "date": 3
+          },
+          {
+            "id": "n",
+            "title": "N",
+            "manual_tags": [
+              "m"
+            ],
+            "indexed_tags": [
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "o",
+            "title": "O",
+            "manual_tags": [
+              "m"
+            ],
+            "indexed_tags": [
+              "a",
+              "z"
+            ],
+            "date": 1
+          },
+          {
+            "id": "p",
+            "title": "P",
+            "manual_tags": [
+              "m"
+            ],
+            "indexed_tags": [
+              "a",
+              "z"
+            ]
+          }
+        ]
+      },
+      "entry_ids": [
+        "o",
+        "m",
+        "k",
+        "i",
+        "g",
+        "e",
+        "c",
+        "a",
+        "b",
+        "d",
+        "f",
+        "h",
+        "j",
+        "l",
+        "n",
+        "p"
+      ]
+    }
+  },
+  {
+    "id": "sixteen-list",
+    "request": {
+      "interface": "catalog-application/3",
+      "behavior_revision": 0,
+      "state": {
+        "entries": [
+          {
+            "id": "a",
+            "title": "A",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 15
+          },
+          {
+            "id": "b",
+            "title": "B",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "c",
+            "title": "C",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 13
+          },
+          {
+            "id": "d",
+            "title": "D",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "e",
+            "title": "E",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 11
+          },
+          {
+            "id": "f",
+            "title": "F",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "g",
+            "title": "G",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 9
+          },
+          {
+            "id": "h",
+            "title": "H",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "i",
+            "title": "I",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 7
+          },
+          {
+            "id": "j",
+            "title": "J",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "k",
+            "title": "K",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 5
+          },
+          {
+            "id": "l",
+            "title": "L",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "m",
+            "title": "M",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 3
+          },
+          {
+            "id": "n",
+            "title": "N",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "o",
+            "title": "O",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 1
+          },
+          {
+            "id": "p",
+            "title": "P",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          }
+        ]
+      },
+      "reindex": null
+    },
+    "expected": {
+      "kind": "success",
+      "state": {
+        "entries": [
+          {
+            "id": "a",
+            "title": "A",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 15
+          },
+          {
+            "id": "b",
+            "title": "B",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "c",
+            "title": "C",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 13
+          },
+          {
+            "id": "d",
+            "title": "D",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "e",
+            "title": "E",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 11
+          },
+          {
+            "id": "f",
+            "title": "F",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "g",
+            "title": "G",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 9
+          },
+          {
+            "id": "h",
+            "title": "H",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "i",
+            "title": "I",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 7
+          },
+          {
+            "id": "j",
+            "title": "J",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "k",
+            "title": "K",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 5
+          },
+          {
+            "id": "l",
+            "title": "L",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "m",
+            "title": "M",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 3
+          },
+          {
+            "id": "n",
+            "title": "N",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "o",
+            "title": "O",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 1
+          },
+          {
+            "id": "p",
+            "title": "P",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          }
+        ]
+      },
+      "entry_ids": [
+        "b",
+        "d",
+        "f",
+        "h",
+        "j",
+        "l",
+        "n",
+        "p",
+        "o",
+        "m",
+        "k",
+        "i",
+        "g",
+        "e",
+        "c",
+        "a"
+      ]
+    }
+  },
+  {
+    "id": "reindex-last",
+    "request": {
+      "interface": "catalog-application/3",
+      "behavior_revision": 3,
+      "state": {
+        "entries": [
+          {
+            "id": "a",
+            "title": "A",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 15
+          },
+          {
+            "id": "b",
+            "title": "B",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "c",
+            "title": "C",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 13
+          },
+          {
+            "id": "d",
+            "title": "D",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "e",
+            "title": "E",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 11
+          },
+          {
+            "id": "f",
+            "title": "F",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "g",
+            "title": "G",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 9
+          },
+          {
+            "id": "h",
+            "title": "H",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "i",
+            "title": "I",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 7
+          },
+          {
+            "id": "j",
+            "title": "J",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "k",
+            "title": "K",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 5
+          },
+          {
+            "id": "l",
+            "title": "L",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "m",
+            "title": "M",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 3
+          },
+          {
+            "id": "n",
+            "title": "N",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "o",
+            "title": "O",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 1
+          },
+          {
+            "id": "p",
+            "title": "P",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          }
+        ]
+      },
+      "reindex": {
+        "entry_id": "p",
+        "tags": [
+          "r",
+          "q",
+          "r"
+        ]
+      }
+    },
+    "expected": {
+      "kind": "success",
+      "state": {
+        "entries": [
+          {
+            "id": "a",
+            "title": "A",
+            "manual_tags": [
+              "m"
+            ],
+            "indexed_tags": [
+              "a",
+              "z"
+            ],
+            "date": 15
+          },
+          {
+            "id": "b",
+            "title": "B",
+            "manual_tags": [
+              "m"
+            ],
+            "indexed_tags": [
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "c",
+            "title": "C",
+            "manual_tags": [
+              "m"
+            ],
+            "indexed_tags": [
+              "a",
+              "z"
+            ],
+            "date": 13
+          },
+          {
+            "id": "d",
+            "title": "D",
+            "manual_tags": [
+              "m"
+            ],
+            "indexed_tags": [
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "e",
+            "title": "E",
+            "manual_tags": [
+              "m"
+            ],
+            "indexed_tags": [
+              "a",
+              "z"
+            ],
+            "date": 11
+          },
+          {
+            "id": "f",
+            "title": "F",
+            "manual_tags": [
+              "m"
+            ],
+            "indexed_tags": [
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "g",
+            "title": "G",
+            "manual_tags": [
+              "m"
+            ],
+            "indexed_tags": [
+              "a",
+              "z"
+            ],
+            "date": 9
+          },
+          {
+            "id": "h",
+            "title": "H",
+            "manual_tags": [
+              "m"
+            ],
+            "indexed_tags": [
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "i",
+            "title": "I",
+            "manual_tags": [
+              "m"
+            ],
+            "indexed_tags": [
+              "a",
+              "z"
+            ],
+            "date": 7
+          },
+          {
+            "id": "j",
+            "title": "J",
+            "manual_tags": [
+              "m"
+            ],
+            "indexed_tags": [
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "k",
+            "title": "K",
+            "manual_tags": [
+              "m"
+            ],
+            "indexed_tags": [
+              "a",
+              "z"
+            ],
+            "date": 5
+          },
+          {
+            "id": "l",
+            "title": "L",
+            "manual_tags": [
+              "m"
+            ],
+            "indexed_tags": [
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "m",
+            "title": "M",
+            "manual_tags": [
+              "m"
+            ],
+            "indexed_tags": [
+              "a",
+              "z"
+            ],
+            "date": 3
+          },
+          {
+            "id": "n",
+            "title": "N",
+            "manual_tags": [
+              "m"
+            ],
+            "indexed_tags": [
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "o",
+            "title": "O",
+            "manual_tags": [
+              "m"
+            ],
+            "indexed_tags": [
+              "a",
+              "z"
+            ],
+            "date": 1
+          },
+          {
+            "id": "p",
+            "title": "P",
+            "manual_tags": [
+              "m"
+            ],
+            "indexed_tags": [
+              "q",
+              "r"
+            ]
+          }
+        ]
+      },
+      "entry_ids": [
+        "o",
+        "m",
+        "k",
+        "i",
+        "g",
+        "e",
+        "c",
+        "a",
+        "b",
+        "d",
+        "f",
+        "h",
+        "j",
+        "l",
+        "n",
+        "p"
+      ]
+    }
+  },
+  {
+    "id": "clear-first",
+    "request": {
+      "interface": "catalog-application/3",
+      "behavior_revision": 3,
+      "state": {
+        "entries": [
+          {
+            "id": "a",
+            "title": "A",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 15
+          },
+          {
+            "id": "b",
+            "title": "B",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "c",
+            "title": "C",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 13
+          },
+          {
+            "id": "d",
+            "title": "D",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "e",
+            "title": "E",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 11
+          },
+          {
+            "id": "f",
+            "title": "F",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "g",
+            "title": "G",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 9
+          },
+          {
+            "id": "h",
+            "title": "H",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "i",
+            "title": "I",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 7
+          },
+          {
+            "id": "j",
+            "title": "J",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "k",
+            "title": "K",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 5
+          },
+          {
+            "id": "l",
+            "title": "L",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "m",
+            "title": "M",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 3
+          },
+          {
+            "id": "n",
+            "title": "N",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "o",
+            "title": "O",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 1
+          },
+          {
+            "id": "p",
+            "title": "P",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          }
+        ]
+      },
+      "reindex": {
+        "entry_id": "a",
+        "tags": []
+      }
+    },
+    "expected": {
+      "kind": "success",
+      "state": {
+        "entries": [
+          {
+            "id": "a",
+            "title": "A",
+            "manual_tags": [
+              "m"
+            ],
+            "indexed_tags": [],
+            "date": 15
+          },
+          {
+            "id": "b",
+            "title": "B",
+            "manual_tags": [
+              "m"
+            ],
+            "indexed_tags": [
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "c",
+            "title": "C",
+            "manual_tags": [
+              "m"
+            ],
+            "indexed_tags": [
+              "a",
+              "z"
+            ],
+            "date": 13
+          },
+          {
+            "id": "d",
+            "title": "D",
+            "manual_tags": [
+              "m"
+            ],
+            "indexed_tags": [
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "e",
+            "title": "E",
+            "manual_tags": [
+              "m"
+            ],
+            "indexed_tags": [
+              "a",
+              "z"
+            ],
+            "date": 11
+          },
+          {
+            "id": "f",
+            "title": "F",
+            "manual_tags": [
+              "m"
+            ],
+            "indexed_tags": [
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "g",
+            "title": "G",
+            "manual_tags": [
+              "m"
+            ],
+            "indexed_tags": [
+              "a",
+              "z"
+            ],
+            "date": 9
+          },
+          {
+            "id": "h",
+            "title": "H",
+            "manual_tags": [
+              "m"
+            ],
+            "indexed_tags": [
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "i",
+            "title": "I",
+            "manual_tags": [
+              "m"
+            ],
+            "indexed_tags": [
+              "a",
+              "z"
+            ],
+            "date": 7
+          },
+          {
+            "id": "j",
+            "title": "J",
+            "manual_tags": [
+              "m"
+            ],
+            "indexed_tags": [
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "k",
+            "title": "K",
+            "manual_tags": [
+              "m"
+            ],
+            "indexed_tags": [
+              "a",
+              "z"
+            ],
+            "date": 5
+          },
+          {
+            "id": "l",
+            "title": "L",
+            "manual_tags": [
+              "m"
+            ],
+            "indexed_tags": [
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "m",
+            "title": "M",
+            "manual_tags": [
+              "m"
+            ],
+            "indexed_tags": [
+              "a",
+              "z"
+            ],
+            "date": 3
+          },
+          {
+            "id": "n",
+            "title": "N",
+            "manual_tags": [
+              "m"
+            ],
+            "indexed_tags": [
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "o",
+            "title": "O",
+            "manual_tags": [
+              "m"
+            ],
+            "indexed_tags": [
+              "a",
+              "z"
+            ],
+            "date": 1
+          },
+          {
+            "id": "p",
+            "title": "P",
+            "manual_tags": [
+              "m"
+            ],
+            "indexed_tags": [
+              "a",
+              "z"
+            ]
+          }
+        ]
+      },
+      "entry_ids": [
+        "o",
+        "m",
+        "k",
+        "i",
+        "g",
+        "e",
+        "c",
+        "a",
+        "b",
+        "d",
+        "f",
+        "h",
+        "j",
+        "l",
+        "n",
+        "p"
+      ]
+    }
+  },
+  {
+    "id": "empty",
+    "request": {
+      "interface": "catalog-application/3",
+      "behavior_revision": 3,
+      "state": {
+        "entries": []
+      },
+      "reindex": null
+    },
+    "expected": {
+      "kind": "success",
+      "state": {
+        "entries": []
+      },
+      "entry_ids": []
+    }
+  },
+  {
+    "id": "zero-before-missing",
+    "request": {
+      "interface": "catalog-application/3",
+      "behavior_revision": 3,
+      "state": {
+        "entries": [
+          {
+            "id": "a",
+            "title": "A",
+            "manual_tags": [],
+            "indexed_tags": []
+          },
+          {
+            "id": "b",
+            "title": "B",
+            "manual_tags": [],
+            "indexed_tags": [],
+            "date": 0
+          }
+        ]
+      },
+      "reindex": null
+    },
+    "expected": {
+      "kind": "success",
+      "state": {
+        "entries": [
+          {
+            "id": "a",
+            "title": "A",
+            "manual_tags": [],
+            "indexed_tags": []
+          },
+          {
+            "id": "b",
+            "title": "B",
+            "manual_tags": [],
+            "indexed_tags": [],
+            "date": 0
+          }
+        ]
+      },
+      "entry_ids": [
+        "b",
+        "a"
+      ]
+    }
+  },
+  {
+    "id": "capacity17",
+    "request": {
+      "interface": "catalog-application/3",
+      "behavior_revision": 3,
+      "state": {
+        "entries": [
+          {
+            "id": "a",
+            "title": "A",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 15
+          },
+          {
+            "id": "b",
+            "title": "B",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "c",
+            "title": "C",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 13
+          },
+          {
+            "id": "d",
+            "title": "D",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "e",
+            "title": "E",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 11
+          },
+          {
+            "id": "f",
+            "title": "F",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "g",
+            "title": "G",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 9
+          },
+          {
+            "id": "h",
+            "title": "H",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "i",
+            "title": "I",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 7
+          },
+          {
+            "id": "j",
+            "title": "J",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "k",
+            "title": "K",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 5
+          },
+          {
+            "id": "l",
+            "title": "L",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "m",
+            "title": "M",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 3
+          },
+          {
+            "id": "n",
+            "title": "N",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "o",
+            "title": "O",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 1
+          },
+          {
+            "id": "p",
+            "title": "P",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "q",
+            "title": "Q",
+            "manual_tags": [],
+            "indexed_tags": []
+          }
+        ]
+      },
+      "reindex": null
+    },
+    "expected": {
+      "kind": "refusal",
+      "reason": "invalid-request"
+    }
+  },
+  {
+    "id": "duplicate",
+    "request": {
+      "interface": "catalog-application/3",
+      "behavior_revision": 3,
+      "state": {
+        "entries": [
+          {
+            "id": "a",
+            "title": "A",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 15
+          },
+          {
+            "id": "b",
+            "title": "B",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "c",
+            "title": "C",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 13
+          },
+          {
+            "id": "d",
+            "title": "D",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "e",
+            "title": "E",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 11
+          },
+          {
+            "id": "f",
+            "title": "F",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "g",
+            "title": "G",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 9
+          },
+          {
+            "id": "h",
+            "title": "H",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "i",
+            "title": "I",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 7
+          },
+          {
+            "id": "j",
+            "title": "J",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "k",
+            "title": "K",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 5
+          },
+          {
+            "id": "l",
+            "title": "L",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "m",
+            "title": "M",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 3
+          },
+          {
+            "id": "n",
+            "title": "N",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "o",
+            "title": "O",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 1
+          },
+          {
+            "id": "a",
+            "title": "P",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          }
+        ]
+      },
+      "reindex": null
+    },
+    "expected": {
+      "kind": "refusal",
+      "reason": "duplicate-entry-id"
+    }
+  },
+  {
+    "id": "order",
+    "request": {
+      "interface": "catalog-application/3",
+      "behavior_revision": 3,
+      "state": {
+        "entries": [
+          {
+            "id": "p",
+            "title": "P",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "o",
+            "title": "O",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 1
+          },
+          {
+            "id": "n",
+            "title": "N",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "m",
+            "title": "M",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 3
+          },
+          {
+            "id": "l",
+            "title": "L",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "k",
+            "title": "K",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 5
+          },
+          {
+            "id": "j",
+            "title": "J",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "i",
+            "title": "I",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 7
+          },
+          {
+            "id": "h",
+            "title": "H",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "g",
+            "title": "G",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 9
+          },
+          {
+            "id": "f",
+            "title": "F",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "e",
+            "title": "E",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 11
+          },
+          {
+            "id": "d",
+            "title": "D",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "c",
+            "title": "C",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 13
+          },
+          {
+            "id": "b",
+            "title": "B",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "a",
+            "title": "A",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 15
+          }
+        ]
+      },
+      "reindex": null
+    },
+    "expected": {
+      "kind": "refusal",
+      "reason": "entry-order"
+    }
+  },
+  {
+    "id": "origin",
+    "request": {
+      "interface": "catalog-application/3",
+      "behavior_revision": 3,
+      "state": {
+        "entries": [
+          {
+            "id": "a",
+            "title": "A",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 15
+          },
+          {
+            "id": "b",
+            "title": "B",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "c",
+            "title": "C",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 13
+          },
+          {
+            "id": "d",
+            "title": "D",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "e",
+            "title": "E",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 11
+          },
+          {
+            "id": "f",
+            "title": "F",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "g",
+            "title": "G",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 9
+          },
+          {
+            "id": "h",
+            "title": "H",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "i",
+            "title": "I",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 7
+          },
+          {
+            "id": "j",
+            "title": "J",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "k",
+            "title": "K",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 5
+          },
+          {
+            "id": "l",
+            "title": "L",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "m",
+            "title": "M",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 3
+          },
+          {
+            "id": "n",
+            "title": "N",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "o",
+            "title": "O",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 1
+          },
+          {
+            "id": "p",
+            "title": "P",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "m"
+            ]
+          }
+        ]
+      },
+      "reindex": null
+    },
+    "expected": {
+      "kind": "refusal",
+      "reason": "origin-collision"
+    }
+  },
+  {
+    "id": "date",
+    "request": {
+      "interface": "catalog-application/3",
+      "behavior_revision": 3,
+      "state": {
+        "entries": [
+          {
+            "id": "a",
+            "title": "A",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 15
+          },
+          {
+            "id": "b",
+            "title": "B",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "c",
+            "title": "C",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 13
+          },
+          {
+            "id": "d",
+            "title": "D",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "e",
+            "title": "E",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 11
+          },
+          {
+            "id": "f",
+            "title": "F",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "g",
+            "title": "G",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 9
+          },
+          {
+            "id": "h",
+            "title": "H",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "i",
+            "title": "I",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 7
+          },
+          {
+            "id": "j",
+            "title": "J",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "k",
+            "title": "K",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 5
+          },
+          {
+            "id": "l",
+            "title": "L",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "m",
+            "title": "M",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 3
+          },
+          {
+            "id": "n",
+            "title": "N",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "o",
+            "title": "O",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 1
+          },
+          {
+            "id": "p",
+            "title": "P",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": null
+          }
+        ]
+      },
+      "reindex": null
+    },
+    "expected": {
+      "kind": "refusal",
+      "reason": "invalid-date"
+    }
+  },
+  {
+    "id": "missing-target",
+    "request": {
+      "interface": "catalog-application/3",
+      "behavior_revision": 3,
+      "state": {
+        "entries": [
+          {
+            "id": "a",
+            "title": "A",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 15
+          },
+          {
+            "id": "b",
+            "title": "B",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "c",
+            "title": "C",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 13
+          },
+          {
+            "id": "d",
+            "title": "D",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "e",
+            "title": "E",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 11
+          },
+          {
+            "id": "f",
+            "title": "F",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "g",
+            "title": "G",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 9
+          },
+          {
+            "id": "h",
+            "title": "H",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "i",
+            "title": "I",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 7
+          },
+          {
+            "id": "j",
+            "title": "J",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "k",
+            "title": "K",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 5
+          },
+          {
+            "id": "l",
+            "title": "L",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "m",
+            "title": "M",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 3
+          },
+          {
+            "id": "n",
+            "title": "N",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "o",
+            "title": "O",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 1
+          },
+          {
+            "id": "p",
+            "title": "P",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          }
+        ]
+      },
+      "reindex": {
+        "entry_id": "q",
+        "tags": []
+      }
+    },
+    "expected": {
+      "kind": "refusal",
+      "reason": "entry-not-found"
+    }
+  },
+  {
+    "id": "selected-origin",
+    "request": {
+      "interface": "catalog-application/3",
+      "behavior_revision": 3,
+      "state": {
+        "entries": [
+          {
+            "id": "a",
+            "title": "A",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 15
+          },
+          {
+            "id": "b",
+            "title": "B",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "c",
+            "title": "C",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 13
+          },
+          {
+            "id": "d",
+            "title": "D",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "e",
+            "title": "E",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 11
+          },
+          {
+            "id": "f",
+            "title": "F",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "g",
+            "title": "G",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 9
+          },
+          {
+            "id": "h",
+            "title": "H",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "i",
+            "title": "I",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 7
+          },
+          {
+            "id": "j",
+            "title": "J",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "k",
+            "title": "K",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 5
+          },
+          {
+            "id": "l",
+            "title": "L",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "m",
+            "title": "M",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 3
+          },
+          {
+            "id": "n",
+            "title": "N",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "o",
+            "title": "O",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 1
+          },
+          {
+            "id": "p",
+            "title": "P",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          }
+        ]
+      },
+      "reindex": {
+        "entry_id": "p",
+        "tags": [
+          "m"
+        ]
+      }
+    },
+    "expected": {
+      "kind": "refusal",
+      "reason": "origin-collision"
+    }
+  },
+  {
+    "id": "old-interface",
+    "request": {
+      "interface": "catalog-application/2",
+      "behavior_revision": 3,
+      "state": {
+        "entries": [
+          {
+            "id": "a",
+            "title": "A",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 15
+          },
+          {
+            "id": "b",
+            "title": "B",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "c",
+            "title": "C",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 13
+          },
+          {
+            "id": "d",
+            "title": "D",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "e",
+            "title": "E",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 11
+          },
+          {
+            "id": "f",
+            "title": "F",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "g",
+            "title": "G",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 9
+          },
+          {
+            "id": "h",
+            "title": "H",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "i",
+            "title": "I",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 7
+          },
+          {
+            "id": "j",
+            "title": "J",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "k",
+            "title": "K",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 5
+          },
+          {
+            "id": "l",
+            "title": "L",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "m",
+            "title": "M",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 3
+          },
+          {
+            "id": "n",
+            "title": "N",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "o",
+            "title": "O",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 1
+          },
+          {
+            "id": "p",
+            "title": "P",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          }
+        ]
+      },
+      "reindex": null
+    },
+    "expected": {
+      "kind": "refusal",
+      "reason": "invalid-request"
+    }
+  },
+  {
+    "id": "shape-before-date",
+    "request": {
+      "interface": "catalog-application/3",
+      "behavior_revision": 3,
+      "state": {
+        "entries": [
+          {
+            "id": "a",
+            "title": "A",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": null
+          },
+          {
+            "id": "b",
+            "title": "B",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "c",
+            "title": "C",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 13
+          },
+          {
+            "id": "d",
+            "title": "D",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "e",
+            "title": "E",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 11
+          },
+          {
+            "id": "f",
+            "title": "F",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "g",
+            "title": "G",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 9
+          },
+          {
+            "id": "h",
+            "title": "H",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "i",
+            "title": "I",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 7
+          },
+          {
+            "id": "j",
+            "title": "J",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "k",
+            "title": "K",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 5
+          },
+          {
+            "id": "l",
+            "title": "L",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "m",
+            "title": "M",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 3
+          },
+          {
+            "id": "n",
+            "title": "N",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          },
+          {
+            "id": "o",
+            "title": "O",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ],
+            "date": 1
+          },
+          {
+            "id": "p",
+            "title": "",
+            "manual_tags": [
+              "m",
+              "m"
+            ],
+            "indexed_tags": [
+              "z",
+              "a",
+              "z"
+            ]
+          }
+        ]
+      },
+      "reindex": null
+    },
+    "expected": {
+      "kind": "refusal",
+      "reason": "invalid-request"
+    }
+  }
+]

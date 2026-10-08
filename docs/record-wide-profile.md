@@ -58,3 +58,6 @@ The old catalogue application contract itself still allows four entries. This
 profile enables larger pure functions; it does not rewrite that contract or its
 frozen 99-case oracle. Native exporters, adapters and execution controls are
 unchanged. Independent reproduction and broader acceptance remain open.
+
+A separate [sixteen-entry catalogue](catalog-wide.md) now exercises this profile
+without changing the old application contract.
