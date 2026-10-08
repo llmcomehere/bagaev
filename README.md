@@ -9,6 +9,12 @@ explicit contracts, durable revisions and a checked continuation workflow.
 This is an experimental platform, not a production platform.
 Lower total cost and fewer errors remain hypotheses.
 
+The [ordered inventory batch](docs/inventory-batch.md) demonstrates four pure
+reservations with rollback in returned data and native selected-case parity.
+For form5 debugging, the [checked node inspector](docs/native-source-locations.md)
+and [readable source map](docs/record-source-map.md) join by programme pin and
+JSON pointer. These tools do not execute programmes or authenticate native output.
+
 ## Why a language for change?
 
 A program change can be tiny while the work around it grows: rediscovering what
