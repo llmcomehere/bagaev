@@ -35,3 +35,5 @@ The portable probe covers the full responses, seven scope/pin refusals, four CLI
 calls, detached output and unchanged source/input/existing output bytes. For
 adding helpers or changing several function bodies together, use the existing
 [full detached draft](catalog-edit-workflow.md) instead.
+
+Use [direct caller/callee context](function-context.md) when signatures around a focused fragment are useful; it does not replace semantic checking.
