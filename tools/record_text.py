@@ -102,14 +102,33 @@ def write_output(value, raw):
 
 def convert(argv):
     parser = Parser(add_help=False, allow_abbrev=False)
-    parser.add_argument("operation", choices=("decode", "encode"))
+    parser.add_argument("operation", choices=("decode", "encode", "prepare"))
     parser.add_argument("input")
     parser.add_argument("--output", required=True)
+    parser.add_argument("--arguments")
     args = parser.parse_args(argv)
+    if (args.operation == "prepare") != (args.arguments is not None):
+        raise Refusal("TOOL_USAGE")
     raw = read_input(args.input)
     codec = form
-    if args.operation == "decode":
+    if args.operation in ("decode", "prepare"):
         value = codec.decode(raw)
+        if args.operation == "prepare":
+            arguments = parse_json(read_input(args.arguments))
+            if type(arguments) is not list:
+                raise Refusal("RECORD_ARGUMENTS")
+            pending = [arguments]
+            while pending:
+                item = pending.pop()
+                if isinstance(item, str) and any(0xD800 <= ord(c) <= 0xDFFF for c in item):
+                    raise Refusal("RECORD_JSON")
+                if isinstance(item, list):
+                    pending.extend(item)
+                elif isinstance(item, dict):
+                    pending.extend(item.keys())
+                    pending.extend(item.values())
+            value = {"schema": "bagaev-typed-record-invocation/10",
+                     "program": value, "arguments": arguments}
         output = json.dumps(value, sort_keys=True, ensure_ascii=False,
                             separators=(",", ":"), allow_nan=False).encode("utf-8")
     else:
@@ -118,6 +137,7 @@ def convert(argv):
         raise Refusal("RECORD_BOUNDS")
     write_output(args.output, output)
     return {"operation": args.operation, "source_schema": "bagaev-typed-record/10",
+            **({"output_schema": "bagaev-typed-record-invocation/10"} if args.operation == "prepare" else {}),
             "output_bytes": len(output), "output_sha256": hashlib.sha256(output).hexdigest(),
             "semantic_check": False, "execution_admission": False}
 
