@@ -125,3 +125,7 @@ byte-identical. The previously blocked batch fragment also roundtripped exactly
 in local preparation; that does not claim acceptance or execution of the new
 batch policy. Grammar, programme semantics, old codecs and execution controls
 are unchanged. No new native execution or measurement was performed for this fix.
+
+An explicit [source-once Json reference API](prepared-json11-reference.md) reuses
+checked profile11 source across owned argument arrays. It is separate from the
+full-invocation and native paths and grants no native execution admission.
