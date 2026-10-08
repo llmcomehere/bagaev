@@ -10,12 +10,15 @@ def main(argv=None):
         p.add_argument('original');p.add_argument('candidate')
         p.add_argument('--base',required=True);p.add_argument('--target',required=True)
         p.add_argument('--output',required=True)
-        p.add_argument('--form',choices=('1','4'),default='1')
+        p.add_argument('--form',choices=('1','4','5'),default='1')
         a=p.parse_args(sys.argv[1:] if argv is None else argv)
         codec=edit
         if a.form=='4':
             import bagaev_record_json_draft
             codec=bagaev_record_json_draft
+        elif a.form=='5':
+            import bagaev_record_wide_draft
+            codec=bagaev_record_wide_draft
         v=codec.draft(transport.read_input(a.original),transport.read_input(a.candidate),base_sha256=a.base,target_sha256=a.target)
         raw=json.dumps(v,sort_keys=True,ensure_ascii=False,separators=(',',':')).encode('utf8')
         if len(raw)>transport.LIMIT:raise transport.Refusal('RECORD_BOUNDS')
