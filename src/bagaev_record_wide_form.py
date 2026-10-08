@@ -87,6 +87,9 @@ def encode(value):
     if type(v)is dict:
      need(defs is p['records'],'FORM_PROFILE');shape(v,['type','omit_none']);need(v['type']=='OptionInt64' and v['omit_none'] is True,'FORM_PROFILE')
     else:ident(v)
+ def operand(x):
+  rendered=expr(x)
+  return '('+rendered+')' if x[0] in ('loop','if','let','match') else rendered
  def expr(x):
   need(type(x)is list and x,'FORM_PROFILE');op=x[0];need(type(op)is str,'FORM_PROFILE')
   if op=='records.list':
@@ -97,7 +100,7 @@ def encode(value):
   if op=='bool' and len(x)==2:need(type(x[1])is bool,'FORM_PROFILE');return 'true' if x[1] else 'false'
   if op=='text' and len(x)==2:need(type(x[1])is str and not any(0xd800<=ord(c)<=0xdfff for c in x[1]),'FORM_PROFILE');return json.dumps(x[1],ensure_ascii=False)
   if op in ('arg','use') and len(x)==2:return ident(x[1])
-  if op in ('add','sub','mul') and len(x)==3:return '('+expr(x[1])+' '+{'add':'+','sub':'-','mul':'*'}[op]+' '+expr(x[2])+')'
+  if op in ('add','sub','mul') and len(x)==3:return '('+operand(x[1])+' '+{'add':'+','sub':'-','mul':'*'}[op]+' '+operand(x[2])+')'
   if op=='json.field':
    need(len(x)==3 and type(x[2])is str and not any(0xd800<=ord(c)<=0xdfff for c in x[2]),'FORM_PROFILE');need(len(x[2].encode('utf8'))<=64,'FORM_BOUNDS');return 'json.field('+expr(x[1])+', '+json.dumps(x[2],ensure_ascii=False)+')'
   if op in ('eq','le','not'):
@@ -113,7 +116,7 @@ def encode(value):
   if op=='field' and len(x)==3:return 'record.field('+expr(x[1])+', '+json.dumps(ident(x[2]))+')'
   if op=='list.unique' and len(x)==2:return 'list.unique('+expr(x[1])+')'
   if op=='call' and len(x)>=2:return ident(x[1])+'('+', '.join(expr(a) for a in x[2:])+')'
-  if op=='lt' and len(x)==3:return '('+expr(x[1])+' < '+expr(x[2])+')'
+  if op=='lt' and len(x)==3:return '('+operand(x[1])+' < '+operand(x[2])+')'
   if op=='if' and len(x)==4:return 'if ('+expr(x[1])+') then ('+expr(x[2])+') else ('+expr(x[3])+')'
   if op=='variant' and len(x)==4:
    n=ident(x[1]);alt=ident(x[2]);need(n+'.'+alt not in INTRINSICS,'FORM_PROFILE');need(n in p['variants'] and alt in p['variants'][n],'FORM_PROFILE');return n+'.'+alt+'('+expr(x[3])+')'

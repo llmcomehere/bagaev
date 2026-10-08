@@ -1,0 +1,269 @@
+[
+  {
+    "id": "loop-left-add",
+    "program": {
+      "schema": "bagaev-typed-record/11",
+      "records": {},
+      "lists": {},
+      "variants": {},
+      "entry": "main",
+      "functions": {
+        "main": {
+          "params": [],
+          "result": "Int64",
+          "body": [
+            "add",
+            [
+              "loop",
+              2,
+              "i",
+              "s",
+              [
+                "int",
+                0
+              ],
+              [
+                "add",
+                [
+                  "use",
+                  "s"
+                ],
+                [
+                  "int",
+                  1
+                ]
+              ]
+            ],
+            [
+              "int",
+              10
+            ]
+          ]
+        }
+      }
+    },
+    "value": 12,
+    "before_fix": "FORM_PROFILE"
+  },
+  {
+    "id": "loop-right-add",
+    "program": {
+      "schema": "bagaev-typed-record/11",
+      "records": {},
+      "lists": {},
+      "variants": {},
+      "entry": "main",
+      "functions": {
+        "main": {
+          "params": [],
+          "result": "Int64",
+          "body": [
+            "add",
+            [
+              "int",
+              10
+            ],
+            [
+              "loop",
+              2,
+              "i",
+              "s",
+              [
+                "int",
+                0
+              ],
+              [
+                "add",
+                [
+                  "use",
+                  "s"
+                ],
+                [
+                  "int",
+                  1
+                ]
+              ]
+            ]
+          ]
+        }
+      }
+    },
+    "value": 12,
+    "before_fix": "FORM_SYNTAX"
+  },
+  {
+    "id": "if-left-add",
+    "program": {
+      "schema": "bagaev-typed-record/11",
+      "records": {},
+      "lists": {},
+      "variants": {},
+      "entry": "main",
+      "functions": {
+        "main": {
+          "params": [],
+          "result": "Int64",
+          "body": [
+            "add",
+            [
+              "if",
+              [
+                "bool",
+                true
+              ],
+              [
+                "int",
+                2
+              ],
+              [
+                "int",
+                3
+              ]
+            ],
+            [
+              "int",
+              4
+            ]
+          ]
+        }
+      }
+    },
+    "value": 6,
+    "before_fix": "FORM_PROFILE"
+  },
+  {
+    "id": "if-right-add",
+    "program": {
+      "schema": "bagaev-typed-record/11",
+      "records": {},
+      "lists": {},
+      "variants": {},
+      "entry": "main",
+      "functions": {
+        "main": {
+          "params": [],
+          "result": "Int64",
+          "body": [
+            "add",
+            [
+              "int",
+              4
+            ],
+            [
+              "if",
+              [
+                "bool",
+                true
+              ],
+              [
+                "int",
+                2
+              ],
+              [
+                "int",
+                3
+              ]
+            ]
+          ]
+        }
+      }
+    },
+    "value": 6,
+    "before_fix": "FORM_SYNTAX"
+  },
+  {
+    "id": "let-left-mul",
+    "program": {
+      "schema": "bagaev-typed-record/11",
+      "records": {},
+      "lists": {},
+      "variants": {},
+      "entry": "main",
+      "functions": {
+        "main": {
+          "params": [],
+          "result": "Int64",
+          "body": [
+            "mul",
+            [
+              "let",
+              "x",
+              [
+                "int",
+                2
+              ],
+              [
+                "add",
+                [
+                  "use",
+                  "x"
+                ],
+                [
+                  "int",
+                  1
+                ]
+              ]
+            ],
+            [
+              "int",
+              3
+            ]
+          ]
+        }
+      }
+    },
+    "value": 9,
+    "before_fix": "FORM_PROFILE"
+  },
+  {
+    "id": "match-left-lt",
+    "program": {
+      "schema": "bagaev-typed-record/11",
+      "records": {},
+      "lists": {},
+      "variants": {
+        "V": {
+          "N": "Int64"
+        }
+      },
+      "entry": "main",
+      "functions": {
+        "main": {
+          "params": [],
+          "result": "Bool",
+          "body": [
+            "lt",
+            [
+              "match",
+              [
+                "variant",
+                "V",
+                "N",
+                [
+                  "int",
+                  2
+                ]
+              ],
+              [
+                [
+                  "N",
+                  "n",
+                  [
+                    "use",
+                    "n"
+                  ]
+                ]
+              ]
+            ],
+            [
+              "int",
+              3
+            ]
+          ]
+        }
+      }
+    },
+    "value": true,
+    "before_fix": "FORM_SYNTAX"
+  }
+]
