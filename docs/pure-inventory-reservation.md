@@ -63,3 +63,9 @@ example remains unchanged.
 
 The [focused business-change walkthrough](inventory-focused-change.md) adds a
 five-unit reservation limit while preserving this original example and oracle.
+
+## Separate Json request and native route
+
+The [inventory Json wrapper](inventory-json.md) preserves these business
+functions and adds an explicit shape-checked request envelope. Its selected
+reference/native observations do not change this typed example's contract.

@@ -1,0 +1,202 @@
+{
+  "status": "PASSED",
+  "cases": 32,
+  "native_calls": 128,
+  "full_values_and_work": true,
+  "identical_wire_across_builds_and_fills": true,
+  "measurement": false,
+  "observations": [
+    {
+      "case": "partial",
+      "work": 1564,
+      "wire_bytes": 419,
+      "wire_sha256": "168b8d147bc5446afefeee41398fcd9f1623fb1564ff24621fedf57775421e91"
+    },
+    {
+      "case": "exact",
+      "work": 1564,
+      "wire_bytes": 419,
+      "wire_sha256": "3f73ac020917305354772582e492715c3aa3178c38ae640b7c646df41add4ebd"
+    },
+    {
+      "case": "max-int",
+      "work": 1311,
+      "wire_bytes": 322,
+      "wire_sha256": "3817e2e50aa8f7953056824baa664d8ccf7c5f87e041bad001a0960d46ede2d5"
+    },
+    {
+      "case": "unicode",
+      "work": 1283,
+      "wire_bytes": 344,
+      "wire_sha256": "7f479f4993594a674c4e50e5bdcf45ecc02b5a276ce5d31aa1ee791c7504c7f0"
+    },
+    {
+      "case": "sixteen-last",
+      "work": 9460,
+      "wire_bytes": 1777,
+      "wire_sha256": "250e9ddf4a385d44fd38f5428187b149a642bb1ac81373607063b8349e77b346"
+    },
+    {
+      "case": "zero",
+      "work": 822,
+      "wire_bytes": 143,
+      "wire_sha256": "cb11ccf6cd2ee73aa8313629d305491c0f2caf89629f6563f4405ff5c0263d59"
+    },
+    {
+      "case": "negative",
+      "work": 824,
+      "wire_bytes": 143,
+      "wire_sha256": "9b42e235a5843da00cbf28d2c6ba766f26d25efe11f71a43e4d875a67694bded"
+    },
+    {
+      "case": "min-int",
+      "work": 860,
+      "wire_bytes": 143,
+      "wire_sha256": "745f006516534882f9b5a9367058050115f056a4c02edd523ae4a8f12ec6523e"
+    },
+    {
+      "case": "request-empty",
+      "work": 831,
+      "wire_bytes": 143,
+      "wire_sha256": "f1589bd8a2ae0d3faa41d91942bb1b671334b084969b1760edd2e70ff863ad27"
+    },
+    {
+      "case": "request-long",
+      "work": 867,
+      "wire_bytes": 143,
+      "wire_sha256": "2c7000a57db3c3b0f77b7d2b7b36f048aecaaa08e5f7cadf40af18414e92b7c5"
+    },
+    {
+      "case": "stock-negative",
+      "work": 901,
+      "wire_bytes": 141,
+      "wire_sha256": "3be2a8d78225121e71971b4d7663fd025c7976b60d0500336abd71c5a531a079"
+    },
+    {
+      "case": "stock-empty-sku",
+      "work": 794,
+      "wire_bytes": 141,
+      "wire_sha256": "01d6fb16ce55646b49b2570dc76dd1ab9d8011d65944569140ca23aa18bfff92"
+    },
+    {
+      "case": "nonadjacent-duplicate",
+      "work": 1128,
+      "wire_bytes": 141,
+      "wire_sha256": "80b033acffa3d20811182174bb999860107addddcbbda334c04021b1d9c2c0dd"
+    },
+    {
+      "case": "empty",
+      "work": 840,
+      "wire_bytes": 137,
+      "wire_sha256": "c920bff60dae6a77d0174c973be140906df2b7c4ff7532f9d8e92e354f12f067"
+    },
+    {
+      "case": "missing",
+      "work": 1433,
+      "wire_bytes": 137,
+      "wire_sha256": "61a8a0fdc36ac000ef44530e6faa584f90c247d5c1d25c56075b3116b7493dbc"
+    },
+    {
+      "case": "insufficient",
+      "work": 1449,
+      "wire_bytes": 146,
+      "wire_sha256": "8e3ab95794f8a503ef2eef646f10a65fd851c396b05f4728b1e47fd79c4ab763"
+    },
+    {
+      "case": "request-first",
+      "work": 708,
+      "wire_bytes": 143,
+      "wire_sha256": "e993fa6521a5550a3d854615433326e8a4383240e0db2eefc9005016e4756797"
+    },
+    {
+      "case": "stock-before-missing",
+      "work": 787,
+      "wire_bytes": 141,
+      "wire_sha256": "b7a517aeb5a5aa245e3e4ffa171f9adb0e06a7eb0976104658b758f29bad1ef6"
+    },
+    {
+      "case": "seventeen",
+      "work": 227,
+      "wire_bytes": 141,
+      "wire_sha256": "c94b349cd2fa682800cdd918d3a380b0fb58e9f115ba16a31cba755532460cbf"
+    },
+    {
+      "case": "wrong-interface",
+      "work": 170,
+      "wire_bytes": 141,
+      "wire_sha256": "e67d9f7156cce6d15d6c1a861a5304741f90d62e19d2b9c209f4d733031c79f5"
+    },
+    {
+      "case": "extra-key",
+      "work": 48,
+      "wire_bytes": 141,
+      "wire_sha256": "b50091ec9ee294a2f6c2fdd59cbb2a509f4317229efb5306211ef2da5f764cfb"
+    },
+    {
+      "case": "missing-sku",
+      "work": 48,
+      "wire_bytes": 141,
+      "wire_sha256": "b50091ec9ee294a2f6c2fdd59cbb2a509f4317229efb5306211ef2da5f764cfb"
+    },
+    {
+      "case": "boolean-amount",
+      "work": 530,
+      "wire_bytes": 141,
+      "wire_sha256": "50b6cef9db5862fbe57745caf7f3e5b7d3572fd1026eea7ea93363fdb193a5a7"
+    },
+    {
+      "case": "fraction-amount",
+      "work": 530,
+      "wire_bytes": 141,
+      "wire_sha256": "50b6cef9db5862fbe57745caf7f3e5b7d3572fd1026eea7ea93363fdb193a5a7"
+    },
+    {
+      "case": "large-amount",
+      "work": 549,
+      "wire_bytes": 141,
+      "wire_sha256": "316a7dce6278244bfb97894db831f56cc11144ef64cb98e2a89eec53ef67fd3a"
+    },
+    {
+      "case": "nontext-sku",
+      "work": 499,
+      "wire_bytes": 141,
+      "wire_sha256": "1257fe053856fe295cba6e5d1e89434bc0711d78a8a1eb4bf3eaaeab81a1782e"
+    },
+    {
+      "case": "stock-object",
+      "work": 220,
+      "wire_bytes": 141,
+      "wire_sha256": "9465c2a716f9bde2a53c11cfea7bd9a1f301a9d40c862ef9f7dd3f5b059603c1"
+    },
+    {
+      "case": "item-extra",
+      "work": 313,
+      "wire_bytes": 141,
+      "wire_sha256": "3cc589a20b2793a6dbf6e57b03cad8190565ab3bc3e9f8ecd897714fe6e3fd28"
+    },
+    {
+      "case": "item-missing",
+      "work": 313,
+      "wire_bytes": 141,
+      "wire_sha256": "3cc589a20b2793a6dbf6e57b03cad8190565ab3bc3e9f8ecd897714fe6e3fd28"
+    },
+    {
+      "case": "item-bool-count",
+      "work": 348,
+      "wire_bytes": 141,
+      "wire_sha256": "47105cc42959dca638808b5360c283edd452a05b49cbc7d7d2da4bbf3ff4e509"
+    },
+    {
+      "case": "shape-before-business",
+      "work": 313,
+      "wire_bytes": 141,
+      "wire_sha256": "3cc589a20b2793a6dbf6e57b03cad8190565ab3bc3e9f8ecd897714fe6e3fd28"
+    },
+    {
+      "case": "root-null",
+      "work": 40,
+      "wire_bytes": 141,
+      "wire_sha256": "802c928502009534ec16e430474e8edaeb267555e50dd4d0319b4a5835ecd722"
+    }
+  ]
+}
