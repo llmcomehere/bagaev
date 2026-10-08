@@ -1,0 +1,50 @@
+bagaev record-form/5;
+program {
+  record Item { sku: Text, available: Int64 };
+  list Stock of Item capacity 16;
+  record Receipt { stock: Stock, sku: Text, amount: Int64 };
+  variant Outcome { Rejected: Text, Reserved: Receipt };
+  entry reserve;
+  fn sku_ok(sku: Text) -> Bool =
+    if 0 < text.bytes(sku) then int.le(text.bytes(sku), 32) else false;
+  fn unique_at(stock: Stock, index: Int64) -> Bool =
+    fold (16, true) with (j, ok) in
+      if ok then
+        if j < records.len(stock) then
+          if int.eq(j, index) then true
+          else bool.not(text.eq(record.field(records.at(stock, index), "sku"), record.field(records.at(stock, j), "sku")))
+        else true
+      else false;
+  fn stock_ok(stock: Stock) -> Bool =
+    fold (16, true) with (i, ok) in
+      if ok then
+        if i < records.len(stock) then
+          let item = records.at(stock, i) in
+          if item.available < 0 then false
+          else if sku_ok(item.sku) then unique_at(stock, i) else false
+        else true
+      else false;
+  fn find(stock: Stock, sku: Text) -> Int64 =
+    fold (16, -1) with (i, found) in
+      if i < records.len(stock) then
+        if text.eq(record.field(records.at(stock, i), "sku"), sku) then i else found
+      else found;
+  fn decrement(stock: Stock, index: Int64, amount: Int64) -> Stock =
+    fold (16, records.list(Stock)) with (i, result) in
+      if i < records.len(stock) then
+        let item = records.at(stock, i) in
+        records.push(result, if int.eq(i, index)
+          then Item { sku: item.sku, available: item.available - amount }
+          else item)
+      else result;
+  fn reserve(stock: Stock, sku: Text, amount: Int64) -> Outcome =
+    if amount < 1 then Outcome.Rejected("invalid-request")
+    else if bool.not(sku_ok(sku)) then Outcome.Rejected("invalid-request")
+    else if 5 < amount then Outcome.Rejected("order-limit")
+    else if bool.not(stock_ok(stock)) then Outcome.Rejected("invalid-stock")
+    else let index = find(stock, sku) in
+      if index < 0 then Outcome.Rejected("not-found")
+      else if record.field(records.at(stock, index), "available") < amount
+        then Outcome.Rejected("insufficient-stock")
+      else Outcome.Reserved(Receipt { stock: decrement(stock, index, amount), sku: sku, amount: amount });
+}
