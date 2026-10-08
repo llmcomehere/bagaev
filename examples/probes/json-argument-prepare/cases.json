@@ -1,0 +1,67 @@
+[
+  {
+    "id": "fraction",
+    "arguments_ascii": "[1.5]",
+    "ok": true
+  },
+  {
+    "id": "bigint",
+    "arguments_ascii": "[9223372036854775808]",
+    "ok": true
+  },
+  {
+    "id": "exponent",
+    "arguments_ascii": "[-1.2300e+400]",
+    "ok": true
+  },
+  {
+    "id": "negative-zero",
+    "arguments_ascii": "[-0]",
+    "ok": true
+  },
+  {
+    "id": "nested",
+    "arguments_ascii": "[{\"x\":[1.00e-2,true,null]}]",
+    "ok": true
+  },
+  {
+    "id": "whitespace",
+    "arguments_ascii": " \n[ 1.0 ]\t",
+    "ok": true
+  },
+  {
+    "id": "not-array",
+    "arguments_ascii": "{}",
+    "ok": false
+  },
+  {
+    "id": "duplicate",
+    "arguments_ascii": "[{\"x\":1,\"x\":2}]",
+    "ok": false
+  },
+  {
+    "id": "nan",
+    "arguments_ascii": "[NaN]",
+    "ok": false
+  },
+  {
+    "id": "infinity",
+    "arguments_ascii": "[Infinity]",
+    "ok": false
+  },
+  {
+    "id": "trailing",
+    "arguments_ascii": "[1]{}",
+    "ok": false
+  },
+  {
+    "id": "surrogate",
+    "arguments_ascii": "[\"\\ud800\"]",
+    "ok": false
+  },
+  {
+    "id": "arity",
+    "arguments_ascii": "[]",
+    "ok": false
+  }
+]
