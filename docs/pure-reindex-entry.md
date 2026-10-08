@@ -41,3 +41,5 @@ boundary before storing results. The owned-record-list restriction in component/
 is unchanged. Valid-sized lists can still exceed the finite sorting work budget;
 the refusal case returns no partial value. No cost or performance advantage is
 claimed by these correctness observations.
+
+For multiple entries, see [bounded pure batch reindexing](pure-batch-reindex.md).
