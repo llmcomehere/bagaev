@@ -44,3 +44,6 @@ output graph/exporter and exact-kernel adapter must be paired and checked before
 native execution results can be claimed. Existing /10 adapters must not be
 reused with the new binding or symbol. Existing pure reference /11 observations
 remain separate evidence.
+
+A [separate profile11 owned output boundary](probe-native-wide-wire.md) is now
+qualified with initialized data only. It does not complete kernel execution.
