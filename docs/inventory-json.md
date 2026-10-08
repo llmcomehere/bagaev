@@ -67,3 +67,10 @@ For readable-source preparation that preserves fractional or large numeric
 arguments until this application's shape check, use the explicit
 [lossless Json-only preparation route](json-argument-prepare.md). The original
 typed preparer refuses those numeric tokens earlier by design.
+
+## Focused policy change
+
+The [one-function native change walkthrough](inventory-json-focused-change.md)
+adds a per-order limit through pinned context, detached draft, export, explicit
+Json preparation and separately admitted native execution. This original
+example remains unchanged.

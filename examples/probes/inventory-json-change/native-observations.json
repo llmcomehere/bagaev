@@ -1,0 +1,232 @@
+{
+  "status": "PASSED",
+  "cases": 37,
+  "native_calls": 148,
+  "full_values_and_work": true,
+  "identical_wire_across_builds_and_fills": true,
+  "measurement": false,
+  "observations": [
+    {
+      "case": "partial",
+      "work": 1568,
+      "wire_bytes": 419,
+      "wire_sha256": "bee66ebffa58a75a2da8bfa619ad0919dd1a7b3d49ffb013a2b3db80c9633517"
+    },
+    {
+      "case": "exact",
+      "work": 1568,
+      "wire_bytes": 419,
+      "wire_sha256": "fd7c274cbf35ebc39eefde0dbc5fc83386f81417c2ed0bacea13a6a52a33dac4"
+    },
+    {
+      "case": "max-int",
+      "work": 791,
+      "wire_bytes": 139,
+      "wire_sha256": "0764e5a038844adee2e137b26b94685a3384b6458122da9b764f9c0fe1d8e46d"
+    },
+    {
+      "case": "unicode",
+      "work": 1287,
+      "wire_bytes": 344,
+      "wire_sha256": "e78bab6ec5b98083f078335e0ac9863678f348f29ca6edc9b8409a7a0ad7e139"
+    },
+    {
+      "case": "sixteen-last",
+      "work": 2550,
+      "wire_bytes": 139,
+      "wire_sha256": "4a237b8aaa128b07cb83e34683f7af6780fafee3c78c4a9aab6df4901ef8f93b"
+    },
+    {
+      "case": "zero",
+      "work": 822,
+      "wire_bytes": 143,
+      "wire_sha256": "3731f31606e17dccc0db3dbd2ddd882ba97706cfdbd38ba0cf5458959e14097e"
+    },
+    {
+      "case": "negative",
+      "work": 824,
+      "wire_bytes": 143,
+      "wire_sha256": "bf1fe6f9857b09b30ba511999e32a0ed25ce4100bb7f7aa80c83af786da7c56f"
+    },
+    {
+      "case": "min-int",
+      "work": 860,
+      "wire_bytes": 143,
+      "wire_sha256": "ccc8d4dfd49f72527a84a0d815ec03264593cd21935605ea7e348b421c74bf15"
+    },
+    {
+      "case": "request-empty",
+      "work": 831,
+      "wire_bytes": 143,
+      "wire_sha256": "6cc6520d4f2d70d204cb98d4628f80e9684483a88aac0e64645304b712050f9d"
+    },
+    {
+      "case": "request-long",
+      "work": 867,
+      "wire_bytes": 143,
+      "wire_sha256": "1a3570a99095bd24d0782ed0a85af7a48ca84b317aa103eb1bbf0835b38f3a1e"
+    },
+    {
+      "case": "stock-negative",
+      "work": 905,
+      "wire_bytes": 141,
+      "wire_sha256": "461a2fc9f48cf8f5af78915adc843d840d4514c88a7db7fbc492674b7e4edbe0"
+    },
+    {
+      "case": "stock-empty-sku",
+      "work": 798,
+      "wire_bytes": 141,
+      "wire_sha256": "8131da0a302757d4eb3473456255f7a06a55213ee9a9ccf37efc20e0249fcc28"
+    },
+    {
+      "case": "nonadjacent-duplicate",
+      "work": 1132,
+      "wire_bytes": 141,
+      "wire_sha256": "6f02ea514ce0562e4d7b1f95b3ebc04e859c4e18557aea2a9a2edd20a0242ba1"
+    },
+    {
+      "case": "empty",
+      "work": 844,
+      "wire_bytes": 137,
+      "wire_sha256": "45ce4224a826e41aecf242f5d58b7d247c8e97c9ec37aca09d6a132ac5001103"
+    },
+    {
+      "case": "missing",
+      "work": 1437,
+      "wire_bytes": 137,
+      "wire_sha256": "f8d1e660c28f1fe857c5f2f604cfdd51e2df8181499046cc2dcb5ffe5beff2b8"
+    },
+    {
+      "case": "insufficient",
+      "work": 1453,
+      "wire_bytes": 146,
+      "wire_sha256": "35c654f3546908ae8bed3e76f91d362bf09573a06cea0adabaaadf0fcc6efb4f"
+    },
+    {
+      "case": "request-first",
+      "work": 708,
+      "wire_bytes": 143,
+      "wire_sha256": "87fde5422ddd76e823ca720ad589c2b497e971cbe99c28c224d9160acc657a61"
+    },
+    {
+      "case": "stock-before-missing",
+      "work": 791,
+      "wire_bytes": 141,
+      "wire_sha256": "72af54e5495a89d13218367bb21835ed55617af2e8a17116c7e4a98abb5c2491"
+    },
+    {
+      "case": "seventeen",
+      "work": 227,
+      "wire_bytes": 141,
+      "wire_sha256": "9be946b2d29262e7d610f77fc5b5dde91ea34a67a8c01e639626f11c2cd1a44b"
+    },
+    {
+      "case": "cap-exact",
+      "work": 1568,
+      "wire_bytes": 419,
+      "wire_sha256": "c03f8e3c15d0a75cd1c6022f610c1e7e27447ad08441d3712fcf6e44ad0b3661"
+    },
+    {
+      "case": "cap-above",
+      "work": 835,
+      "wire_bytes": 139,
+      "wire_sha256": "bfa4ea7593650be20b7218334096aecc1324641037f6420fa02ccacf3a91adca"
+    },
+    {
+      "case": "bad-request-before-cap",
+      "work": 831,
+      "wire_bytes": 143,
+      "wire_sha256": "6cc6520d4f2d70d204cb98d4628f80e9684483a88aac0e64645304b712050f9d"
+    },
+    {
+      "case": "cap-before-stock",
+      "work": 721,
+      "wire_bytes": 139,
+      "wire_sha256": "7dfdb4570bc01aeb6565b73d36de19bbe296be11c0ea8e3bee76a8859a64da7e"
+    },
+    {
+      "case": "cap-before-missing",
+      "work": 835,
+      "wire_bytes": 139,
+      "wire_sha256": "bfa4ea7593650be20b7218334096aecc1324641037f6420fa02ccacf3a91adca"
+    },
+    {
+      "case": "wrong-interface",
+      "work": 170,
+      "wire_bytes": 141,
+      "wire_sha256": "cc2256278f5ca50fc69e7b8993e6943736eb26f9e8d75918597df2619bffd0eb"
+    },
+    {
+      "case": "extra-key",
+      "work": 48,
+      "wire_bytes": 141,
+      "wire_sha256": "ee129de7519796d35764d80e2e2584159a8d929cde0487c04836544df496cf9f"
+    },
+    {
+      "case": "missing-sku",
+      "work": 48,
+      "wire_bytes": 141,
+      "wire_sha256": "ee129de7519796d35764d80e2e2584159a8d929cde0487c04836544df496cf9f"
+    },
+    {
+      "case": "boolean-amount",
+      "work": 530,
+      "wire_bytes": 141,
+      "wire_sha256": "14a5af57af994f2121d4a3091716b89db0329a418f4bf24e09faf350e48fabd7"
+    },
+    {
+      "case": "fraction-amount",
+      "work": 530,
+      "wire_bytes": 141,
+      "wire_sha256": "14a5af57af994f2121d4a3091716b89db0329a418f4bf24e09faf350e48fabd7"
+    },
+    {
+      "case": "large-amount",
+      "work": 549,
+      "wire_bytes": 141,
+      "wire_sha256": "1038738d691a16990930ee6a1f4e28d6ff5107fe0549f847cb8206d387ad45cf"
+    },
+    {
+      "case": "nontext-sku",
+      "work": 499,
+      "wire_bytes": 141,
+      "wire_sha256": "b7ef05c06960f86ea627e3e74c447afd42953ac9b5298d8882c6cfaad06531f7"
+    },
+    {
+      "case": "stock-object",
+      "work": 220,
+      "wire_bytes": 141,
+      "wire_sha256": "93ccb2acb1f9514b8c09e1d11543be72950d71a8c167adb65aa854f633133504"
+    },
+    {
+      "case": "item-extra",
+      "work": 313,
+      "wire_bytes": 141,
+      "wire_sha256": "d33a8b49ac5a3dd70ffcb2ca8da044e460e2639885f5ed41de6bee3da43c879c"
+    },
+    {
+      "case": "item-missing",
+      "work": 313,
+      "wire_bytes": 141,
+      "wire_sha256": "d33a8b49ac5a3dd70ffcb2ca8da044e460e2639885f5ed41de6bee3da43c879c"
+    },
+    {
+      "case": "item-bool-count",
+      "work": 348,
+      "wire_bytes": 141,
+      "wire_sha256": "ce72a608edcabdda302e46400812bc5f9de7d3f1488ef1d61085ddc9fff387d9"
+    },
+    {
+      "case": "shape-before-business",
+      "work": 313,
+      "wire_bytes": 141,
+      "wire_sha256": "d33a8b49ac5a3dd70ffcb2ca8da044e460e2639885f5ed41de6bee3da43c879c"
+    },
+    {
+      "case": "root-null",
+      "work": 40,
+      "wire_bytes": 141,
+      "wire_sha256": "9ad5af51a6347c0e54d3276d6124686d5b1c2cc346c79941c7503dc6fe116c02"
+    }
+  ]
+}

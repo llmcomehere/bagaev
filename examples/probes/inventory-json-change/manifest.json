@@ -1,0 +1,12 @@
+{
+  "sha256": {
+    "CONTRACT.md": "4411735e35b4a71d7b6e1f911660117bf9eae2e3e51c46804aec750bc6928daa",
+    "ReserveLimited.bagaev": "5fcb51a3978a116309d48476c283804e0138d415ba76b6e2ab17e0abf965ae3a",
+    "ReserveLimited.fragment.bagaev": "04d0a3641d63390332ed51ff135ae02caf640f5a4eb80cb1a8aa064bc44d1274",
+    "cases.json": "6d27223be6e619e83f0c35d9f4d86b9961edacc347533811adf0807b9e8252b7",
+    "native-observations.json": "e2f13ffc5642c13455d6fff7cd7e776e97a5dce4fb0e7d08d8db0b9577fafda2",
+    "native.binding.json": "623f49ce4714b1366dd2b77596dc9a04a1e38d2f71337e1a030229946a22e9c8",
+    "pins.json": "6d34973a0e5bf1f3ef5911655457eb2ab3f00b7e028ec5b237c045198c68c295",
+    "program.json": "4793143144a349ed5aebdca07d8626862bdbd750c374e003e9f8d3baa82acf94"
+  }
+}
