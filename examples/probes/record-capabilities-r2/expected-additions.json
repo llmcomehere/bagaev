@@ -1,0 +1,66 @@
+{
+  "4": {
+    "schema": "bagaev-record-capabilities/2",
+    "argument_routes": {
+      "record_text.py": "strict Int64 numeric transport; typed or Json arguments",
+      "record_json_prepare.py": {
+        "entry_parameters": "all Json or zero parameters",
+        "argument_shape": "one JSON array with exact entry arity",
+        "numeric_lexemes": "preserved byte-for-byte without conversion",
+        "input_bytes": 1048576,
+        "invocation_bytes": 1048576,
+        "argument_depth": 128,
+        "duplicate_keys": "refused",
+        "unpaired_surrogates": "refused",
+        "non_json_numbers": "refused",
+        "execution_admission": false
+      }
+    },
+    "native_preparation": {
+      "emitter_source": "examples/probes/backend/rust/json_native_emit10.rs",
+      "module_schema": "bagaev-json-view10-llvm-module/1",
+      "binding_schema": "bagaev-json-view10-llvm-binding/1",
+      "success_wire": "BCMPRES3",
+      "target": "x86_64-unknown-linux-gnu",
+      "entry_parameters": "all Json or zero parameters",
+      "result_excludes": [
+        "Json"
+      ],
+      "compiler_invoked": false,
+      "execution_admission": false,
+      "coverage": "selected conformance only; not a general acceptance guarantee"
+    }
+  },
+  "5": {
+    "schema": "bagaev-record-capabilities/2",
+    "argument_routes": {
+      "record_text.py": "strict Int64 numeric transport; typed or Json arguments",
+      "record_json_prepare.py": {
+        "entry_parameters": "all Json or zero parameters",
+        "argument_shape": "one JSON array with exact entry arity",
+        "numeric_lexemes": "preserved byte-for-byte without conversion",
+        "input_bytes": 1048576,
+        "invocation_bytes": 1048576,
+        "argument_depth": 128,
+        "duplicate_keys": "refused",
+        "unpaired_surrogates": "refused",
+        "non_json_numbers": "refused",
+        "execution_admission": false
+      }
+    },
+    "native_preparation": {
+      "emitter_source": "examples/probes/backend/rust/json_native_emit11.rs",
+      "module_schema": "bagaev-json-view11-llvm-module/1",
+      "binding_schema": "bagaev-json-view11-llvm-binding/1",
+      "success_wire": "BCMPRES4",
+      "target": "x86_64-unknown-linux-gnu",
+      "entry_parameters": "all Json or zero parameters",
+      "result_excludes": [
+        "Json"
+      ],
+      "compiler_invoked": false,
+      "execution_admission": false,
+      "coverage": "selected conformance only; not a general acceptance guarantee"
+    }
+  }
+}

@@ -36,3 +36,31 @@ def describe(version):
         'semantic_check': False,
         'execution_admission': False,
         'guide': 'docs/record-capabilities.md'}
+
+
+def describe_v2(version):
+    """Explicit additive discovery revision; default describe() remains unchanged."""
+    value = describe(version)
+    profile = 11 if version == '5' else 10
+    value['schema'] = 'bagaev-record-capabilities/2'
+    value['data_tools']['record_json_prepare.py'] = ['lossless-json-entry-invocation']
+    value['argument_routes'] = {
+        'record_text.py': 'strict Int64 numeric transport; typed or Json arguments',
+        'record_json_prepare.py': {
+            'entry_parameters': 'all Json or zero parameters',
+            'argument_shape': 'one JSON array with exact entry arity',
+            'numeric_lexemes': 'preserved byte-for-byte without conversion',
+            'input_bytes': 1048576, 'invocation_bytes': 1048576,
+            'argument_depth': 128, 'duplicate_keys': 'refused',
+            'unpaired_surrogates': 'refused', 'non_json_numbers': 'refused',
+            'execution_admission': False}}
+    value['native_preparation'] = {
+        'emitter_source': 'examples/probes/backend/rust/json_native_emit' + str(profile) + '.rs',
+        'module_schema': 'bagaev-json-view' + str(profile) + '-llvm-module/1',
+        'binding_schema': 'bagaev-json-view' + str(profile) + '-llvm-binding/1',
+        'success_wire': 'BCMPRES4' if version == '5' else 'BCMPRES3',
+        'target': 'x86_64-unknown-linux-gnu',
+        'entry_parameters': 'all Json or zero parameters', 'result_excludes': ['Json'],
+        'compiler_invoked': False, 'execution_admission': False,
+        'coverage': 'selected conformance only; not a general acceptance guarantee'}
+    return value
