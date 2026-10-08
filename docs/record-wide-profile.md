@@ -194,3 +194,27 @@ A reversed-text pair of failing arguments still failed at the declared first
 argument with the same work count. Eight syntax refusals and old-form rejection
 were checked; portable tests additionally cover eight/nine argument boundaries.
 No new native or model execution was needed for this exact lowering.
+
+### Opt-in named-call encoding
+
+The codec's `encode_named(program)` returns an alternate graph-to-source view
+with declaration parameter labels on user-function calls. `encode(program)`
+remains the same canonical positional encoder. The command-line selection is:
+
+```
+python tools/record_text.py encode program.json --form 5 --named-calls --output named.bagaev
+```
+
+The flag is valid only for form5 `encode`; other operations/forms refuse it
+before input access or output creation. Known unambiguous declarations and exact
+argument arity are required. Zero-argument calls remain `f()`, and intrinsics
+remain positional. The complete output is decoded and compared to the original
+graph before the existing exclusive output writer is used. Explicit named-mode
+receipts add `named_calls:true`; default receipts and outputs are unchanged.
+
+This is an opt-in source view. The existing token formatter already preserves
+named labels supplied in source; it is not replaced by this encoder. Eight
+frozen graphs retained their previous default bytes and matched named round-trip,
+source-map and idempotence checks. Seven data CLI observations covered both views,
+wrong operation/form and existing-output preservation; three malformed callee
+contracts refused. No program, native code or model was executed for this view.

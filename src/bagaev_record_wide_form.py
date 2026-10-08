@@ -86,6 +86,10 @@ def decode(source):
  try:return Reader(source).read()
  except RecursionError:raise FormError('FORM_BOUNDS') from None
 def encode(value):
+ return _encode(value,False)
+def encode_named(value):
+ return _encode(value,True)
+def _encode(value,named_calls):
  bounded(value)
  def shape(v,keys):need(type(v)is dict and set(v)==set(keys),'FORM_PROFILE')
  def ident(v):need(type(v)is str and old.IDENT.fullmatch(v) is not None and v not in RESERVED,'FORM_PROFILE');return v
@@ -130,7 +134,13 @@ def encode(value):
   if op=='let' and len(x)==4:return 'let '+ident(x[1])+' = ('+expr(x[2])+') in ('+expr(x[3])+')'
   if op=='field' and len(x)==3:return 'record.field('+expr(x[1])+', '+json.dumps(ident(x[2]))+')'
   if op=='list.unique' and len(x)==2:return 'list.unique('+expr(x[1])+')'
-  if op=='call' and len(x)>=2:return ident(x[1])+'('+', '.join(expr(a) for a in x[2:])+')'
+  if op=='call' and len(x)>=2:
+   name=ident(x[1])
+   if not named_calls:return name+'('+', '.join(expr(a) for a in x[2:])+')'
+   need(name in p['functions'],'FORM_PROFILE');callee=p['functions'][name];shape(callee,['params','result','body']);params=callee['params'];need(type(params)is list and len(params)<=8,'FORM_PROFILE');labels=[]
+   for pair in params:need(type(pair)is list and len(pair)==2,'FORM_PROFILE');labels.append(ident(pair[0]));ident(pair[1])
+   need(len(set(labels))==len(labels) and len(x)==len(labels)+2,'FORM_PROFILE')
+   return name+'('+', '.join(label+': '+expr(a) for label,a in zip(labels,x[2:]))+')'
   if op=='lt' and len(x)==3:return '('+operand(x[1])+' < '+operand(x[2])+')'
   if op=='if' and len(x)==4:return 'if ('+expr(x[1])+') then ('+expr(x[2])+') else ('+expr(x[3])+')'
   if op=='variant' and len(x)==4:
