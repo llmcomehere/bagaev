@@ -1,0 +1,7 @@
+bagaev record-form/5;
+program {
+ entry main;
+ fn foo() -> Int64 = text.bytes("ёж");
+ fn foo_more() -> Int64 = 1;
+ fn main() -> Int64 = foo() + foo_more();
+}
