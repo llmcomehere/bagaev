@@ -43,3 +43,32 @@ The portable Python test verifies capture framing and fixture/source hashes.
 It does not execute native code. These are conformance observations, not timing,
 memory, safety proof, model quality or adoption measurements. CI source checks
 are separate from the bounded native runs described here.
+
+## Reused scratch and retained results
+
+A subsequent bounded qualification reused the same guarded scratch addresses
+for the entire forward/reverse case sequence, refilling the buffers before each
+call. The input source bytes were overwritten and released after preparation.
+Callback entry checked zeroed work/output metadata and arena used counters.
+All returned byte vectors were retained; after overwriting and releasing scratch,
+argument bytes and the prepared source, their hashes were checked again.
+
+This made 576 business calls across eight processes, with exact prior wire
+matches. Four already qualified runtime failures (add overflow, subtract
+underflow, empty index and push seventeenth) were each repeated twice under both
+optimizations and prefills, adding 32 calls. Their complete 32-byte failure
+outputs, including work and node location, matched the frozen observations.
+Work-limit failure is not included in this native replay. The production
+adapter was unchanged. This is bounded conformance, not a memory-safety proof.
+
+The data-only `tests/probes/backend/prepared_native11_reuse.rs.in` template
+preserves the qualification checks. Fill the existing source/binding/backend
+markers, `EXPECTED_CALLS` (64/80 for the business sequences, 2 for a repeated
+failure), and a declaration of `EXPECTED_FAILURE` as an empty byte slice for
+success or the frozen 32-byte failure. Input is the argument-array JSONL file;
+output is a sequence of little-endian u32 lengths and owned wire bytes. Rendering
+or inspecting this template does not authorize compiling or executing it.
+
+The final published template was rendered and replayed for all 24 processes
+(608 additional calls); every output capture was byte-identical to the first
+reuse qualification. These repeated calls add no new semantic cases.

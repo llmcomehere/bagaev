@@ -1,0 +1,210 @@
+{
+  "native_calls": 576,
+  "source_preparations": 8,
+  "runs": [
+    {
+      "policy": "original",
+      "optimization": "O0",
+      "prefill": 90,
+      "calls": 64,
+      "frames_sha256": "11677002e4e7ee8efe6fafa75edf7a1b6b087323a4d3d8b0a2576c9a4ae90482",
+      "exact_full_invocation_wires": true
+    },
+    {
+      "policy": "original",
+      "optimization": "O0",
+      "prefill": 165,
+      "calls": 64,
+      "frames_sha256": "11677002e4e7ee8efe6fafa75edf7a1b6b087323a4d3d8b0a2576c9a4ae90482",
+      "exact_full_invocation_wires": true
+    },
+    {
+      "policy": "original",
+      "optimization": "O2",
+      "prefill": 90,
+      "calls": 64,
+      "frames_sha256": "11677002e4e7ee8efe6fafa75edf7a1b6b087323a4d3d8b0a2576c9a4ae90482",
+      "exact_full_invocation_wires": true
+    },
+    {
+      "policy": "original",
+      "optimization": "O2",
+      "prefill": 165,
+      "calls": 64,
+      "frames_sha256": "11677002e4e7ee8efe6fafa75edf7a1b6b087323a4d3d8b0a2576c9a4ae90482",
+      "exact_full_invocation_wires": true
+    },
+    {
+      "policy": "total10",
+      "optimization": "O0",
+      "prefill": 90,
+      "calls": 80,
+      "frames_sha256": "2191573eb430f0126a76a4aa83dfb5c2b8c9d8998d451a29a5e2f060f2600abf",
+      "exact_full_invocation_wires": true
+    },
+    {
+      "policy": "total10",
+      "optimization": "O0",
+      "prefill": 165,
+      "calls": 80,
+      "frames_sha256": "2191573eb430f0126a76a4aa83dfb5c2b8c9d8998d451a29a5e2f060f2600abf",
+      "exact_full_invocation_wires": true
+    },
+    {
+      "policy": "total10",
+      "optimization": "O2",
+      "prefill": 90,
+      "calls": 80,
+      "frames_sha256": "2191573eb430f0126a76a4aa83dfb5c2b8c9d8998d451a29a5e2f060f2600abf",
+      "exact_full_invocation_wires": true
+    },
+    {
+      "policy": "total10",
+      "optimization": "O2",
+      "prefill": 165,
+      "calls": 80,
+      "frames_sha256": "2191573eb430f0126a76a4aa83dfb5c2b8c9d8998d451a29a5e2f060f2600abf",
+      "exact_full_invocation_wires": true
+    }
+  ],
+  "measurement": false,
+  "storage": "same guarded scratch addresses; forward then reverse; owned outputs checked after releasing scratch/source/arguments",
+  "failure_runs": [
+    {
+      "id": "add-overflow",
+      "optimization": "O0",
+      "prefill": 90,
+      "calls": 2,
+      "frames_sha256": "fd3d9c53bc5434be434d1b1f4ee477386b96ef3dfb51cf6853386a417c15b1b2",
+      "wire_hex": "0100000000000000000000000000000003000000000000000900000001000000"
+    },
+    {
+      "id": "add-overflow",
+      "optimization": "O0",
+      "prefill": 165,
+      "calls": 2,
+      "frames_sha256": "fd3d9c53bc5434be434d1b1f4ee477386b96ef3dfb51cf6853386a417c15b1b2",
+      "wire_hex": "0100000000000000000000000000000003000000000000000900000001000000"
+    },
+    {
+      "id": "add-overflow",
+      "optimization": "O2",
+      "prefill": 90,
+      "calls": 2,
+      "frames_sha256": "fd3d9c53bc5434be434d1b1f4ee477386b96ef3dfb51cf6853386a417c15b1b2",
+      "wire_hex": "0100000000000000000000000000000003000000000000000900000001000000"
+    },
+    {
+      "id": "add-overflow",
+      "optimization": "O2",
+      "prefill": 165,
+      "calls": 2,
+      "frames_sha256": "fd3d9c53bc5434be434d1b1f4ee477386b96ef3dfb51cf6853386a417c15b1b2",
+      "wire_hex": "0100000000000000000000000000000003000000000000000900000001000000"
+    },
+    {
+      "id": "subtract-underflow",
+      "optimization": "O0",
+      "prefill": 90,
+      "calls": 2,
+      "frames_sha256": "fd3d9c53bc5434be434d1b1f4ee477386b96ef3dfb51cf6853386a417c15b1b2",
+      "wire_hex": "0100000000000000000000000000000003000000000000000900000001000000"
+    },
+    {
+      "id": "subtract-underflow",
+      "optimization": "O0",
+      "prefill": 165,
+      "calls": 2,
+      "frames_sha256": "fd3d9c53bc5434be434d1b1f4ee477386b96ef3dfb51cf6853386a417c15b1b2",
+      "wire_hex": "0100000000000000000000000000000003000000000000000900000001000000"
+    },
+    {
+      "id": "subtract-underflow",
+      "optimization": "O2",
+      "prefill": 90,
+      "calls": 2,
+      "frames_sha256": "fd3d9c53bc5434be434d1b1f4ee477386b96ef3dfb51cf6853386a417c15b1b2",
+      "wire_hex": "0100000000000000000000000000000003000000000000000900000001000000"
+    },
+    {
+      "id": "subtract-underflow",
+      "optimization": "O2",
+      "prefill": 165,
+      "calls": 2,
+      "frames_sha256": "fd3d9c53bc5434be434d1b1f4ee477386b96ef3dfb51cf6853386a417c15b1b2",
+      "wire_hex": "0100000000000000000000000000000003000000000000000900000001000000"
+    },
+    {
+      "id": "empty-index",
+      "optimization": "O0",
+      "prefill": 90,
+      "calls": 2,
+      "frames_sha256": "494755214cd0c65f5b0d6cd2522249b44ecc9c5308fc517a645fc1068963899d",
+      "wire_hex": "0500000000000000000000000000000003000000000000000c00000001000000"
+    },
+    {
+      "id": "empty-index",
+      "optimization": "O0",
+      "prefill": 165,
+      "calls": 2,
+      "frames_sha256": "494755214cd0c65f5b0d6cd2522249b44ecc9c5308fc517a645fc1068963899d",
+      "wire_hex": "0500000000000000000000000000000003000000000000000c00000001000000"
+    },
+    {
+      "id": "empty-index",
+      "optimization": "O2",
+      "prefill": 90,
+      "calls": 2,
+      "frames_sha256": "494755214cd0c65f5b0d6cd2522249b44ecc9c5308fc517a645fc1068963899d",
+      "wire_hex": "0500000000000000000000000000000003000000000000000c00000001000000"
+    },
+    {
+      "id": "empty-index",
+      "optimization": "O2",
+      "prefill": 165,
+      "calls": 2,
+      "frames_sha256": "494755214cd0c65f5b0d6cd2522249b44ecc9c5308fc517a645fc1068963899d",
+      "wire_hex": "0500000000000000000000000000000003000000000000000c00000001000000"
+    },
+    {
+      "id": "push-seventeenth",
+      "optimization": "O0",
+      "prefill": 90,
+      "calls": 2,
+      "frames_sha256": "4c5d80098462c942b36693897a4e24dc8f0bcda23e821e272c08fe6d671663dd",
+      "wire_hex": "0800000000000000000000000000000035000000000000000f00000001000000"
+    },
+    {
+      "id": "push-seventeenth",
+      "optimization": "O0",
+      "prefill": 165,
+      "calls": 2,
+      "frames_sha256": "4c5d80098462c942b36693897a4e24dc8f0bcda23e821e272c08fe6d671663dd",
+      "wire_hex": "0800000000000000000000000000000035000000000000000f00000001000000"
+    },
+    {
+      "id": "push-seventeenth",
+      "optimization": "O2",
+      "prefill": 90,
+      "calls": 2,
+      "frames_sha256": "4c5d80098462c942b36693897a4e24dc8f0bcda23e821e272c08fe6d671663dd",
+      "wire_hex": "0800000000000000000000000000000035000000000000000f00000001000000"
+    },
+    {
+      "id": "push-seventeenth",
+      "optimization": "O2",
+      "prefill": 165,
+      "calls": 2,
+      "frames_sha256": "4c5d80098462c942b36693897a4e24dc8f0bcda23e821e272c08fe6d671663dd",
+      "wire_hex": "0800000000000000000000000000000035000000000000000f00000001000000"
+    }
+  ],
+  "failure_calls": 32,
+  "total_native_calls": 608,
+  "final_template_replay": {
+    "calls": 608,
+    "processes": 24,
+    "all_frames_equal_first_run": true,
+    "template_sha256": "2d9cc4397b8ecba623b2cf0b6770ffd8ef711219ff1c38aeca1669bc007e609b"
+  }
+}
