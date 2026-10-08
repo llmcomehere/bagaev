@@ -64,3 +64,37 @@ def describe_v2(version):
         'compiler_invoked': False, 'execution_admission': False,
         'coverage': 'selected conformance only; not a general acceptance guarantee'}
     return value
+
+
+def describe_v3(version):
+    """Explicit discovery of layout-bound debugging data, without execution."""
+    value = describe_v2(version)
+    value['schema'] = 'bagaev-record-capabilities/3'
+    value['source_debugging'] = {'supported': version == '5'}
+    if version == '5':
+        value['data_tools']['record_source_map.py'] = ['pinned-expression-source-map']
+        value['source_debugging'].update({
+            'checked_inspector_source': 'examples/probes/backend/rust/json_source_locations11.rs',
+            'checked_report_schema': 'bagaev-native-source-locations/1',
+            'map_tool': 'tools/record_source_map.py',
+            'map_schema': 'bagaev-record-source-map/1',
+            'receipt_schema': 'bagaev-record-source-map-receipt/1',
+            'required_flags': ['--form', '--program-pin', '--output'],
+            'optional_flags': ['--source-sha256', '--pointer'],
+            'form_flag_value': '5',
+            'program_pin_format': 'sha256: followed by 64 lowercase hex digits',
+            'source_sha256_format': '64 lowercase hex digits over exact UTF-8 bytes',
+            'join': 'require map program_pin == checked report source_pin, then match program_pointer',
+            'pointer_prefix': '/program/functions/',
+            'node_ids': 'only from separately checked inspector, never map entry order',
+            'byte_ranges': 'half-open UTF-8 offsets',
+            'line_columns': 'one-based Unicode scalars; LF starts a line; CR and tab count as scalars',
+            'precision': ['exact-expression', 'enclosing-expression'],
+            'map_bounds': {'nodes': 2048, 'output_bytes': 1048576},
+            'map_semantic_check': False,
+            'native_output_authenticated': False,
+            'execution_admission': False,
+            'guide': 'docs/record-source-map.md'})
+    else:
+        value['source_debugging']['reason'] = 'combined checked-node/readable-map path is explicit form5 only; no automatic upgrade'
+    return value
