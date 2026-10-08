@@ -80,3 +80,7 @@ values. The portable data test reconstructs each single-site change and verifies
 its digest and captured mismatch; it does not run those programmes. These five
 controls demonstrate sensitivity to named mistakes, not arbitrary mutation
 coverage, native-backend sensitivity or universal correctness.
+
+The separate [one-function batch-total change](inventory-batch-change.md) adds a
+synthetic total-ten policy through pinned context, replacement, export and
+reference/native checks, preserving this original programme and its oracle.

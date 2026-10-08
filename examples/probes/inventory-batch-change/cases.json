@@ -1,0 +1,1770 @@
+[
+  {
+    "id": "empty",
+    "request": {
+      "interface": "inventory-batch/1",
+      "stock": [
+        {
+          "sku": "a",
+          "available": 10
+        },
+        {
+          "sku": "b",
+          "available": 3
+        }
+      ],
+      "requests": []
+    },
+    "value": {
+      "case": "BatchCommitted",
+      "value": {
+        "stock": [
+          {
+            "sku": "a",
+            "available": 10
+          },
+          {
+            "sku": "b",
+            "available": 3
+          }
+        ],
+        "receipts": []
+      }
+    }
+  },
+  {
+    "id": "empty-stock",
+    "request": {
+      "interface": "inventory-batch/1",
+      "stock": [],
+      "requests": []
+    },
+    "value": {
+      "case": "BatchCommitted",
+      "value": {
+        "stock": [],
+        "receipts": []
+      }
+    }
+  },
+  {
+    "id": "one",
+    "request": {
+      "interface": "inventory-batch/1",
+      "stock": [
+        {
+          "sku": "a",
+          "available": 10
+        },
+        {
+          "sku": "b",
+          "available": 3
+        }
+      ],
+      "requests": [
+        {
+          "sku": "a",
+          "amount": 4
+        }
+      ]
+    },
+    "value": {
+      "case": "BatchCommitted",
+      "value": {
+        "stock": [
+          {
+            "sku": "a",
+            "available": 6
+          },
+          {
+            "sku": "b",
+            "available": 3
+          }
+        ],
+        "receipts": [
+          {
+            "stock": [
+              {
+                "sku": "a",
+                "available": 6
+              },
+              {
+                "sku": "b",
+                "available": 3
+              }
+            ],
+            "sku": "a",
+            "amount": 4
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "sequential",
+    "request": {
+      "interface": "inventory-batch/1",
+      "stock": [
+        {
+          "sku": "a",
+          "available": 10
+        },
+        {
+          "sku": "b",
+          "available": 3
+        }
+      ],
+      "requests": [
+        {
+          "sku": "a",
+          "amount": 4
+        },
+        {
+          "sku": "a",
+          "amount": 5
+        }
+      ]
+    },
+    "value": {
+      "case": "BatchCommitted",
+      "value": {
+        "stock": [
+          {
+            "sku": "a",
+            "available": 1
+          },
+          {
+            "sku": "b",
+            "available": 3
+          }
+        ],
+        "receipts": [
+          {
+            "stock": [
+              {
+                "sku": "a",
+                "available": 6
+              },
+              {
+                "sku": "b",
+                "available": 3
+              }
+            ],
+            "sku": "a",
+            "amount": 4
+          },
+          {
+            "stock": [
+              {
+                "sku": "a",
+                "available": 1
+              },
+              {
+                "sku": "b",
+                "available": 3
+              }
+            ],
+            "sku": "a",
+            "amount": 5
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "exhaust",
+    "request": {
+      "interface": "inventory-batch/1",
+      "stock": [
+        {
+          "sku": "a",
+          "available": 10
+        },
+        {
+          "sku": "b",
+          "available": 3
+        }
+      ],
+      "requests": [
+        {
+          "sku": "a",
+          "amount": 5
+        },
+        {
+          "sku": "a",
+          "amount": 5
+        }
+      ]
+    },
+    "value": {
+      "case": "BatchCommitted",
+      "value": {
+        "stock": [
+          {
+            "sku": "a",
+            "available": 0
+          },
+          {
+            "sku": "b",
+            "available": 3
+          }
+        ],
+        "receipts": [
+          {
+            "stock": [
+              {
+                "sku": "a",
+                "available": 5
+              },
+              {
+                "sku": "b",
+                "available": 3
+              }
+            ],
+            "sku": "a",
+            "amount": 5
+          },
+          {
+            "stock": [
+              {
+                "sku": "a",
+                "available": 0
+              },
+              {
+                "sku": "b",
+                "available": 3
+              }
+            ],
+            "sku": "a",
+            "amount": 5
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "rollback-second",
+    "request": {
+      "interface": "inventory-batch/1",
+      "stock": [
+        {
+          "sku": "a",
+          "available": 6
+        },
+        {
+          "sku": "b",
+          "available": 3
+        }
+      ],
+      "requests": [
+        {
+          "sku": "a",
+          "amount": 4
+        },
+        {
+          "sku": "a",
+          "amount": 3
+        }
+      ]
+    },
+    "value": {
+      "case": "BatchRejected",
+      "value": {
+        "step": 1,
+        "reason": "insufficient-stock",
+        "stock": [
+          {
+            "sku": "a",
+            "available": 6
+          },
+          {
+            "sku": "b",
+            "available": 3
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "first-insufficient",
+    "request": {
+      "interface": "inventory-batch/1",
+      "stock": [
+        {
+          "sku": "a",
+          "available": 10
+        },
+        {
+          "sku": "b",
+          "available": 3
+        }
+      ],
+      "requests": [
+        {
+          "sku": "b",
+          "amount": 4
+        }
+      ]
+    },
+    "value": {
+      "case": "BatchRejected",
+      "value": {
+        "step": 0,
+        "reason": "insufficient-stock",
+        "stock": [
+          {
+            "sku": "a",
+            "available": 10
+          },
+          {
+            "sku": "b",
+            "available": 3
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "later-not-found",
+    "request": {
+      "interface": "inventory-batch/1",
+      "stock": [
+        {
+          "sku": "a",
+          "available": 10
+        },
+        {
+          "sku": "b",
+          "available": 3
+        }
+      ],
+      "requests": [
+        {
+          "sku": "a",
+          "amount": 4
+        },
+        {
+          "sku": "missing",
+          "amount": 1
+        }
+      ]
+    },
+    "value": {
+      "case": "BatchRejected",
+      "value": {
+        "step": 1,
+        "reason": "not-found",
+        "stock": [
+          {
+            "sku": "a",
+            "available": 10
+          },
+          {
+            "sku": "b",
+            "available": 3
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "first-cap",
+    "request": {
+      "interface": "inventory-batch/1",
+      "stock": [
+        {
+          "sku": "a",
+          "available": 10
+        },
+        {
+          "sku": "b",
+          "available": 3
+        }
+      ],
+      "requests": [
+        {
+          "sku": "a",
+          "amount": 6
+        }
+      ]
+    },
+    "value": {
+      "case": "BatchRejected",
+      "value": {
+        "step": 0,
+        "reason": "order-limit",
+        "stock": [
+          {
+            "sku": "a",
+            "available": 10
+          },
+          {
+            "sku": "b",
+            "available": 3
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "later-cap",
+    "request": {
+      "interface": "inventory-batch/1",
+      "stock": [
+        {
+          "sku": "a",
+          "available": 10
+        },
+        {
+          "sku": "b",
+          "available": 3
+        }
+      ],
+      "requests": [
+        {
+          "sku": "a",
+          "amount": 4
+        },
+        {
+          "sku": "a",
+          "amount": 6
+        }
+      ]
+    },
+    "value": {
+      "case": "BatchRejected",
+      "value": {
+        "step": 1,
+        "reason": "order-limit",
+        "stock": [
+          {
+            "sku": "a",
+            "available": 10
+          },
+          {
+            "sku": "b",
+            "available": 3
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "amount-zero",
+    "request": {
+      "interface": "inventory-batch/1",
+      "stock": [
+        {
+          "sku": "a",
+          "available": 10
+        },
+        {
+          "sku": "b",
+          "available": 3
+        }
+      ],
+      "requests": [
+        {
+          "sku": "a",
+          "amount": 0
+        }
+      ]
+    },
+    "value": {
+      "case": "BatchRejected",
+      "value": {
+        "step": 0,
+        "reason": "invalid-request",
+        "stock": [
+          {
+            "sku": "a",
+            "available": 10
+          },
+          {
+            "sku": "b",
+            "available": 3
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "amount-negative",
+    "request": {
+      "interface": "inventory-batch/1",
+      "stock": [
+        {
+          "sku": "a",
+          "available": 10
+        },
+        {
+          "sku": "b",
+          "available": 3
+        }
+      ],
+      "requests": [
+        {
+          "sku": "a",
+          "amount": -1
+        }
+      ]
+    },
+    "value": {
+      "case": "BatchRejected",
+      "value": {
+        "step": 0,
+        "reason": "invalid-request",
+        "stock": [
+          {
+            "sku": "a",
+            "available": 10
+          },
+          {
+            "sku": "b",
+            "available": 3
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "empty-sku",
+    "request": {
+      "interface": "inventory-batch/1",
+      "stock": [
+        {
+          "sku": "a",
+          "available": 10
+        },
+        {
+          "sku": "b",
+          "available": 3
+        }
+      ],
+      "requests": [
+        {
+          "sku": "",
+          "amount": 1
+        }
+      ]
+    },
+    "value": {
+      "case": "BatchRejected",
+      "value": {
+        "step": 0,
+        "reason": "invalid-request",
+        "stock": [
+          {
+            "sku": "a",
+            "available": 10
+          },
+          {
+            "sku": "b",
+            "available": 3
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "long-sku",
+    "request": {
+      "interface": "inventory-batch/1",
+      "stock": [
+        {
+          "sku": "a",
+          "available": 10
+        },
+        {
+          "sku": "b",
+          "available": 3
+        }
+      ],
+      "requests": [
+        {
+          "sku": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+          "amount": 1
+        }
+      ]
+    },
+    "value": {
+      "case": "BatchRejected",
+      "value": {
+        "step": 0,
+        "reason": "invalid-request",
+        "stock": [
+          {
+            "sku": "a",
+            "available": 10
+          },
+          {
+            "sku": "b",
+            "available": 3
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "duplicate",
+    "request": {
+      "interface": "inventory-batch/1",
+      "stock": [
+        {
+          "sku": "a",
+          "available": 2
+        },
+        {
+          "sku": "a",
+          "available": 3
+        }
+      ],
+      "requests": [
+        {
+          "sku": "a",
+          "amount": 1
+        }
+      ]
+    },
+    "value": {
+      "case": "BatchRejected",
+      "value": {
+        "step": 0,
+        "reason": "invalid-stock",
+        "stock": [
+          {
+            "sku": "a",
+            "available": 2
+          },
+          {
+            "sku": "a",
+            "available": 3
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "empty-invalid-stock",
+    "request": {
+      "interface": "inventory-batch/1",
+      "stock": [
+        {
+          "sku": "a",
+          "available": 2
+        },
+        {
+          "sku": "a",
+          "available": 3
+        }
+      ],
+      "requests": []
+    },
+    "value": {
+      "case": "BatchRejected",
+      "value": {
+        "step": -1,
+        "reason": "invalid-stock",
+        "stock": [
+          {
+            "sku": "a",
+            "available": 2
+          },
+          {
+            "sku": "a",
+            "available": 3
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "negative-stock",
+    "request": {
+      "interface": "inventory-batch/1",
+      "stock": [
+        {
+          "sku": "a",
+          "available": -1
+        },
+        {
+          "sku": "b",
+          "available": 3
+        }
+      ],
+      "requests": [
+        {
+          "sku": "a",
+          "amount": 1
+        }
+      ]
+    },
+    "value": {
+      "case": "BatchRejected",
+      "value": {
+        "step": 0,
+        "reason": "invalid-stock",
+        "stock": [
+          {
+            "sku": "a",
+            "available": -1
+          },
+          {
+            "sku": "b",
+            "available": 3
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "cap-before-stock",
+    "request": {
+      "interface": "inventory-batch/1",
+      "stock": [
+        {
+          "sku": "a",
+          "available": -1
+        },
+        {
+          "sku": "b",
+          "available": 3
+        }
+      ],
+      "requests": [
+        {
+          "sku": "a",
+          "amount": 6
+        }
+      ]
+    },
+    "value": {
+      "case": "BatchRejected",
+      "value": {
+        "step": 0,
+        "reason": "order-limit",
+        "stock": [
+          {
+            "sku": "a",
+            "available": -1
+          },
+          {
+            "sku": "b",
+            "available": 3
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "four-orders",
+    "request": {
+      "interface": "inventory-batch/1",
+      "stock": [
+        {
+          "sku": "a",
+          "available": 10
+        },
+        {
+          "sku": "b",
+          "available": 3
+        }
+      ],
+      "requests": [
+        {
+          "sku": "a",
+          "amount": 1
+        },
+        {
+          "sku": "b",
+          "amount": 1
+        },
+        {
+          "sku": "a",
+          "amount": 1
+        },
+        {
+          "sku": "b",
+          "amount": 1
+        }
+      ]
+    },
+    "value": {
+      "case": "BatchCommitted",
+      "value": {
+        "stock": [
+          {
+            "sku": "a",
+            "available": 8
+          },
+          {
+            "sku": "b",
+            "available": 1
+          }
+        ],
+        "receipts": [
+          {
+            "stock": [
+              {
+                "sku": "a",
+                "available": 9
+              },
+              {
+                "sku": "b",
+                "available": 3
+              }
+            ],
+            "sku": "a",
+            "amount": 1
+          },
+          {
+            "stock": [
+              {
+                "sku": "a",
+                "available": 9
+              },
+              {
+                "sku": "b",
+                "available": 2
+              }
+            ],
+            "sku": "b",
+            "amount": 1
+          },
+          {
+            "stock": [
+              {
+                "sku": "a",
+                "available": 8
+              },
+              {
+                "sku": "b",
+                "available": 2
+              }
+            ],
+            "sku": "a",
+            "amount": 1
+          },
+          {
+            "stock": [
+              {
+                "sku": "a",
+                "available": 8
+              },
+              {
+                "sku": "b",
+                "available": 1
+              }
+            ],
+            "sku": "b",
+            "amount": 1
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "sixteen-long-four",
+    "request": {
+      "interface": "inventory-batch/1",
+      "stock": [
+        {
+          "sku": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx00",
+          "available": 20
+        },
+        {
+          "sku": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx01",
+          "available": 20
+        },
+        {
+          "sku": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx02",
+          "available": 20
+        },
+        {
+          "sku": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx03",
+          "available": 20
+        },
+        {
+          "sku": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx04",
+          "available": 20
+        },
+        {
+          "sku": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx05",
+          "available": 20
+        },
+        {
+          "sku": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx06",
+          "available": 20
+        },
+        {
+          "sku": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx07",
+          "available": 20
+        },
+        {
+          "sku": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx08",
+          "available": 20
+        },
+        {
+          "sku": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx09",
+          "available": 20
+        },
+        {
+          "sku": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx10",
+          "available": 20
+        },
+        {
+          "sku": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx11",
+          "available": 20
+        },
+        {
+          "sku": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx12",
+          "available": 20
+        },
+        {
+          "sku": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx13",
+          "available": 20
+        },
+        {
+          "sku": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx14",
+          "available": 20
+        },
+        {
+          "sku": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx15",
+          "available": 20
+        }
+      ],
+      "requests": [
+        {
+          "sku": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx15",
+          "amount": 5
+        },
+        {
+          "sku": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx15",
+          "amount": 5
+        },
+        {
+          "sku": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx15",
+          "amount": 5
+        },
+        {
+          "sku": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx15",
+          "amount": 5
+        }
+      ]
+    },
+    "value": {
+      "case": "BatchRejected",
+      "value": {
+        "step": 2,
+        "reason": "batch-limit",
+        "stock": [
+          {
+            "sku": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx00",
+            "available": 20
+          },
+          {
+            "sku": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx01",
+            "available": 20
+          },
+          {
+            "sku": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx02",
+            "available": 20
+          },
+          {
+            "sku": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx03",
+            "available": 20
+          },
+          {
+            "sku": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx04",
+            "available": 20
+          },
+          {
+            "sku": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx05",
+            "available": 20
+          },
+          {
+            "sku": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx06",
+            "available": 20
+          },
+          {
+            "sku": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx07",
+            "available": 20
+          },
+          {
+            "sku": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx08",
+            "available": 20
+          },
+          {
+            "sku": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx09",
+            "available": 20
+          },
+          {
+            "sku": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx10",
+            "available": 20
+          },
+          {
+            "sku": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx11",
+            "available": 20
+          },
+          {
+            "sku": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx12",
+            "available": 20
+          },
+          {
+            "sku": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx13",
+            "available": 20
+          },
+          {
+            "sku": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx14",
+            "available": 20
+          },
+          {
+            "sku": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx15",
+            "available": 20
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "fifth-request",
+    "request": {
+      "interface": "inventory-batch/1",
+      "stock": [
+        {
+          "sku": "a",
+          "available": 10
+        },
+        {
+          "sku": "b",
+          "available": 3
+        }
+      ],
+      "requests": [
+        {
+          "sku": "a",
+          "amount": 1
+        },
+        {
+          "sku": "a",
+          "amount": 1
+        },
+        {
+          "sku": "a",
+          "amount": 1
+        },
+        {
+          "sku": "a",
+          "amount": 1
+        },
+        {
+          "sku": "a",
+          "amount": 1
+        }
+      ]
+    },
+    "value": {
+      "case": "BatchRejected",
+      "value": {
+        "step": -1,
+        "reason": "request-shape",
+        "stock": []
+      }
+    }
+  },
+  {
+    "id": "later-malformed-takes-precedence",
+    "request": {
+      "interface": "inventory-batch/1",
+      "stock": [
+        {
+          "sku": "a",
+          "available": 10
+        },
+        {
+          "sku": "b",
+          "available": 3
+        }
+      ],
+      "requests": [
+        {
+          "sku": "a",
+          "amount": 6
+        },
+        {
+          "sku": "a"
+        }
+      ]
+    },
+    "value": {
+      "case": "BatchRejected",
+      "value": {
+        "step": -1,
+        "reason": "request-shape",
+        "stock": []
+      }
+    }
+  },
+  {
+    "id": "fractional-amount",
+    "request": {
+      "interface": "inventory-batch/1",
+      "stock": [
+        {
+          "sku": "a",
+          "available": 10
+        },
+        {
+          "sku": "b",
+          "available": 3
+        }
+      ],
+      "requests": [
+        {
+          "sku": "a",
+          "amount": 1.5
+        }
+      ]
+    },
+    "value": {
+      "case": "BatchRejected",
+      "value": {
+        "step": -1,
+        "reason": "request-shape",
+        "stock": []
+      }
+    }
+  },
+  {
+    "id": "too-large-int",
+    "request": {
+      "interface": "inventory-batch/1",
+      "stock": [
+        {
+          "sku": "a",
+          "available": 10
+        },
+        {
+          "sku": "b",
+          "available": 3
+        }
+      ],
+      "requests": [
+        {
+          "sku": "a",
+          "amount": 9223372036854775808
+        }
+      ]
+    },
+    "value": {
+      "case": "BatchRejected",
+      "value": {
+        "step": -1,
+        "reason": "request-shape",
+        "stock": []
+      }
+    }
+  },
+  {
+    "id": "boolean-amount",
+    "request": {
+      "interface": "inventory-batch/1",
+      "stock": [
+        {
+          "sku": "a",
+          "available": 10
+        },
+        {
+          "sku": "b",
+          "available": 3
+        }
+      ],
+      "requests": [
+        {
+          "sku": "a",
+          "amount": true
+        }
+      ]
+    },
+    "value": {
+      "case": "BatchRejected",
+      "value": {
+        "step": -1,
+        "reason": "request-shape",
+        "stock": []
+      }
+    }
+  },
+  {
+    "id": "extra-request-key",
+    "request": {
+      "interface": "inventory-batch/1",
+      "stock": [
+        {
+          "sku": "a",
+          "available": 10
+        },
+        {
+          "sku": "b",
+          "available": 3
+        }
+      ],
+      "requests": [
+        {
+          "sku": "a",
+          "amount": 1,
+          "extra": 0
+        }
+      ]
+    },
+    "value": {
+      "case": "BatchRejected",
+      "value": {
+        "step": -1,
+        "reason": "request-shape",
+        "stock": []
+      }
+    }
+  },
+  {
+    "id": "extra-envelope-key",
+    "request": {
+      "interface": "inventory-batch/1",
+      "stock": [
+        {
+          "sku": "a",
+          "available": 10
+        },
+        {
+          "sku": "b",
+          "available": 3
+        }
+      ],
+      "requests": [],
+      "extra": 0
+    },
+    "value": {
+      "case": "BatchRejected",
+      "value": {
+        "step": -1,
+        "reason": "request-shape",
+        "stock": []
+      }
+    }
+  },
+  {
+    "id": "missing-envelope-key",
+    "request": {
+      "interface": "inventory-batch/1",
+      "stock": [
+        {
+          "sku": "a",
+          "available": 10
+        },
+        {
+          "sku": "b",
+          "available": 3
+        }
+      ]
+    },
+    "value": {
+      "case": "BatchRejected",
+      "value": {
+        "step": -1,
+        "reason": "request-shape",
+        "stock": []
+      }
+    }
+  },
+  {
+    "id": "wrong-interface",
+    "request": {
+      "interface": "inventory-batch/2",
+      "stock": [
+        {
+          "sku": "a",
+          "available": 10
+        },
+        {
+          "sku": "b",
+          "available": 3
+        }
+      ],
+      "requests": []
+    },
+    "value": {
+      "case": "BatchRejected",
+      "value": {
+        "step": -1,
+        "reason": "request-shape",
+        "stock": []
+      }
+    }
+  },
+  {
+    "id": "not-object",
+    "request": [],
+    "value": {
+      "case": "BatchRejected",
+      "value": {
+        "step": -1,
+        "reason": "request-shape",
+        "stock": []
+      }
+    }
+  },
+  {
+    "id": "seventeen-stock",
+    "request": {
+      "interface": "inventory-batch/1",
+      "stock": [
+        {
+          "sku": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx00",
+          "available": 20
+        },
+        {
+          "sku": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx01",
+          "available": 20
+        },
+        {
+          "sku": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx02",
+          "available": 20
+        },
+        {
+          "sku": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx03",
+          "available": 20
+        },
+        {
+          "sku": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx04",
+          "available": 20
+        },
+        {
+          "sku": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx05",
+          "available": 20
+        },
+        {
+          "sku": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx06",
+          "available": 20
+        },
+        {
+          "sku": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx07",
+          "available": 20
+        },
+        {
+          "sku": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx08",
+          "available": 20
+        },
+        {
+          "sku": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx09",
+          "available": 20
+        },
+        {
+          "sku": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx10",
+          "available": 20
+        },
+        {
+          "sku": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx11",
+          "available": 20
+        },
+        {
+          "sku": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx12",
+          "available": 20
+        },
+        {
+          "sku": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx13",
+          "available": 20
+        },
+        {
+          "sku": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx14",
+          "available": 20
+        },
+        {
+          "sku": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx15",
+          "available": 20
+        },
+        {
+          "sku": "extra",
+          "available": 1
+        }
+      ],
+      "requests": []
+    },
+    "value": {
+      "case": "BatchRejected",
+      "value": {
+        "step": -1,
+        "reason": "request-shape",
+        "stock": []
+      }
+    }
+  },
+  {
+    "id": "stock-extra-key",
+    "request": {
+      "interface": "inventory-batch/1",
+      "stock": [
+        {
+          "sku": "a",
+          "available": 1,
+          "extra": 0
+        }
+      ],
+      "requests": []
+    },
+    "value": {
+      "case": "BatchRejected",
+      "value": {
+        "step": -1,
+        "reason": "request-shape",
+        "stock": []
+      }
+    }
+  },
+  {
+    "id": "total-nine",
+    "request": {
+      "interface": "inventory-batch/1",
+      "stock": [
+        {
+          "sku": "a",
+          "available": 12
+        }
+      ],
+      "requests": [
+        {
+          "sku": "a",
+          "amount": 4
+        },
+        {
+          "sku": "a",
+          "amount": 5
+        }
+      ]
+    },
+    "value": {
+      "case": "BatchCommitted",
+      "value": {
+        "stock": [
+          {
+            "sku": "a",
+            "available": 3
+          }
+        ],
+        "receipts": [
+          {
+            "stock": [
+              {
+                "sku": "a",
+                "available": 8
+              }
+            ],
+            "sku": "a",
+            "amount": 4
+          },
+          {
+            "stock": [
+              {
+                "sku": "a",
+                "available": 3
+              }
+            ],
+            "sku": "a",
+            "amount": 5
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "total-ten",
+    "request": {
+      "interface": "inventory-batch/1",
+      "stock": [
+        {
+          "sku": "a",
+          "available": 12
+        }
+      ],
+      "requests": [
+        {
+          "sku": "a",
+          "amount": 5
+        },
+        {
+          "sku": "a",
+          "amount": 5
+        }
+      ]
+    },
+    "value": {
+      "case": "BatchCommitted",
+      "value": {
+        "stock": [
+          {
+            "sku": "a",
+            "available": 2
+          }
+        ],
+        "receipts": [
+          {
+            "stock": [
+              {
+                "sku": "a",
+                "available": 7
+              }
+            ],
+            "sku": "a",
+            "amount": 5
+          },
+          {
+            "stock": [
+              {
+                "sku": "a",
+                "available": 2
+              }
+            ],
+            "sku": "a",
+            "amount": 5
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "total-eleven",
+    "request": {
+      "interface": "inventory-batch/1",
+      "stock": [
+        {
+          "sku": "a",
+          "available": 12
+        }
+      ],
+      "requests": [
+        {
+          "sku": "a",
+          "amount": 4
+        },
+        {
+          "sku": "a",
+          "amount": 4
+        },
+        {
+          "sku": "a",
+          "amount": 3
+        }
+      ]
+    },
+    "value": {
+      "case": "BatchRejected",
+      "value": {
+        "step": 2,
+        "reason": "batch-limit",
+        "stock": [
+          {
+            "sku": "a",
+            "available": 12
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "limit-fourth",
+    "request": {
+      "interface": "inventory-batch/1",
+      "stock": [
+        {
+          "sku": "a",
+          "available": 20
+        }
+      ],
+      "requests": [
+        {
+          "sku": "a",
+          "amount": 3
+        },
+        {
+          "sku": "a",
+          "amount": 3
+        },
+        {
+          "sku": "a",
+          "amount": 3
+        },
+        {
+          "sku": "a",
+          "amount": 2
+        }
+      ]
+    },
+    "value": {
+      "case": "BatchRejected",
+      "value": {
+        "step": 3,
+        "reason": "batch-limit",
+        "stock": [
+          {
+            "sku": "a",
+            "available": 20
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "business-before-limit",
+    "request": {
+      "interface": "inventory-batch/1",
+      "stock": [
+        {
+          "sku": "a",
+          "available": 10
+        }
+      ],
+      "requests": [
+        {
+          "sku": "a",
+          "amount": 5
+        },
+        {
+          "sku": "a",
+          "amount": 5
+        },
+        {
+          "sku": "a",
+          "amount": 1
+        }
+      ]
+    },
+    "value": {
+      "case": "BatchRejected",
+      "value": {
+        "step": 2,
+        "reason": "insufficient-stock",
+        "stock": [
+          {
+            "sku": "a",
+            "available": 10
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "shape-before-limit",
+    "request": {
+      "interface": "inventory-batch/1",
+      "stock": [
+        {
+          "sku": "a",
+          "available": 20
+        }
+      ],
+      "requests": [
+        {
+          "sku": "a",
+          "amount": 5
+        },
+        {
+          "sku": "a",
+          "amount": 5
+        },
+        {
+          "sku": "a",
+          "amount": 1.5
+        }
+      ]
+    },
+    "value": {
+      "case": "BatchRejected",
+      "value": {
+        "step": -1,
+        "reason": "request-shape",
+        "stock": []
+      }
+    }
+  },
+  {
+    "id": "individual-cap-before-limit",
+    "request": {
+      "interface": "inventory-batch/1",
+      "stock": [
+        {
+          "sku": "a",
+          "available": 20
+        }
+      ],
+      "requests": [
+        {
+          "sku": "a",
+          "amount": 4
+        },
+        {
+          "sku": "a",
+          "amount": 4
+        },
+        {
+          "sku": "a",
+          "amount": 2
+        },
+        {
+          "sku": "a",
+          "amount": 6
+        }
+      ]
+    },
+    "value": {
+      "case": "BatchRejected",
+      "value": {
+        "step": 3,
+        "reason": "order-limit",
+        "stock": [
+          {
+            "sku": "a",
+            "available": 20
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "invalid-request-before-limit",
+    "request": {
+      "interface": "inventory-batch/1",
+      "stock": [
+        {
+          "sku": "a",
+          "available": 20
+        }
+      ],
+      "requests": [
+        {
+          "sku": "a",
+          "amount": 5
+        },
+        {
+          "sku": "a",
+          "amount": 5
+        },
+        {
+          "sku": "a",
+          "amount": 0
+        }
+      ]
+    },
+    "value": {
+      "case": "BatchRejected",
+      "value": {
+        "step": 2,
+        "reason": "invalid-request",
+        "stock": [
+          {
+            "sku": "a",
+            "available": 20
+          }
+        ]
+      }
+    }
+  }
+]
