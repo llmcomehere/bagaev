@@ -69,3 +69,18 @@ and three API refusals, including deterministic fresh results. The unchanged
 legacy check passed its five CLI calls and six API/CLI refusals. Default output
 for both forms also matched the preceding accepted implementation byte-for-byte
 in four additional CLI calls. No programme/runtime or model calls occurred.
+
+## Explicit revision 3: source debugging
+
+`python tools/record_capabilities.py --form 5 --revision 3` adds discovery of the
+[checked node inspector](native-source-locations.md) and the
+[layout-bound readable source map](record-source-map.md). It states required and
+optional flags, identity formats, pointer joining, scalar/byte coordinates,
+coarse versus exact ranges and additional map bounds. It does not claim that a
+compiled inspector is available, authenticate native output or grant execution.
+
+Form4 revision3 explicitly reports this combined path unsupported and retains
+its typed-record/10 identity. It never upgrades to form5. The default revision1
+and explicit revision2 responses remain byte-for-byte unchanged for both forms.
+Eleven fresh data-only CLI calls and three portable tests passed. No programme
+or native-kernel execution or performance measurement is involved.
