@@ -34,6 +34,11 @@ It performs no real inventory or database effect. The separate [Json envelope](i
 can follow the existing native profile. Its [one-function policy change](inventory-json-focused-change.md)
 connects context, pinned draft, export, lossless Json preparation and separately
 admitted native execution. Native qualification remains selected and bounded.
+A separate [ordered batch](inventory-batch.md) composes four reservations with
+original-stock return on failure and ordered receipt snapshots. This is a pure
+returned value, not an external transaction. To inspect a form5 failure location,
+join the [checked node report](native-source-locations.md) with the
+[pinned readable source map](record-source-map.md); coarse ranges are labelled.
 
 
 ## Start with readable typed source
