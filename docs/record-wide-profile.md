@@ -129,3 +129,35 @@ are unchanged. No new native execution or measurement was performed for this fix
 An explicit [source-once Json reference API](prepared-json11-reference.md) reuses
 checked profile11 source across owned argument arrays. It is separate from the
 full-invocation and native paths and grants no native execution admission.
+
+## Lazy Boolean authoring in form5
+
+Use `bool.and(left, right)` or `bool.or(left, right)` when combining conditions.
+These are short-circuit surface forms, not eager ordinary function calls:
+
+```
+bagaev record-form/5;
+program {
+  fn main(x: Int64) -> Bool = bool.and(0 < x, x < 10);
+  entry main;
+}
+```
+
+`bool.and(a,b)` lowers exactly to `if a then b else false`;
+`bool.or(a,b)` lowers exactly to `if a then true else b`. The right branch is
+therefore evaluated only when needed. Both branches must still type-check:
+`bool.and(false,7)` is rejected as invalid IR even though the right branch would
+be skipped. Arity is exactly two. Earlier forms do not accept these spellings.
+
+No IR operator, runtime rule, native ABI or resource budget was added. Canonical
+encoding deliberately keeps the existing `if` spelling, so formatting may expand
+the shorthand while preserving the exact graph and program pin. In the readable
+source map, the generated Boolean literal has an enclosing call range, never a
+fabricated exact token range.
+
+Fourteen frozen graphs cover both truth tables, nesting, skipped/executed right
+side overflow and the skipped type error. Twenty-eight bounded reference calls
+matched shorthand and explicit-if outputs including work/refusal metadata. Four
+arity and two old-form refusals were checked. Fourteen portable tests covering
+this feature and existing source maps/control operands/list literals passed.
+No generated native code or model was run for this syntax addition.

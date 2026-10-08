@@ -1,0 +1,204 @@
+{
+  "reference_calls": 28,
+  "native_calls": 0,
+  "measurement": false,
+  "cases_sha256": "22861ab71912ac44ae997f83fd172e3bd9755294f41cd69ee630a823a5467cb4",
+  "observations": [
+    {
+      "id": "and-false-false",
+      "source_sha256": "12cd717dbc40fb6b994e4d4c2075687e246a44366b4b0f9c4e6b19e622a2c305",
+      "program_pin": "sha256:ecb0beafea8d52290c1695b0742dd269f38df08bf616c4adf89581e6008a46c7",
+      "reference": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-record-result/11",
+        "status": "success",
+        "value": false,
+        "value_type": "Bool",
+        "work": 3
+      }
+    },
+    {
+      "id": "and-false-true",
+      "source_sha256": "b0ae390182eba4108d84dd66ef9a88ea809f28535c52ac8801bd3ec43fffdf10",
+      "program_pin": "sha256:2de1181d7f503809c0290f9240b8e05881c090a39a44284e9d5e9ab690ead607",
+      "reference": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-record-result/11",
+        "status": "success",
+        "value": false,
+        "value_type": "Bool",
+        "work": 3
+      }
+    },
+    {
+      "id": "and-true-false",
+      "source_sha256": "e134351dd139dd2c1b85b0c71831817508ea9672abdbf80fb729acab7e5ea264",
+      "program_pin": "sha256:0dd833416a3ffc34dcdc41f31bfaae382d95ef49e22f91f24660444dc14a93e3",
+      "reference": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-record-result/11",
+        "status": "success",
+        "value": false,
+        "value_type": "Bool",
+        "work": 3
+      }
+    },
+    {
+      "id": "and-true-true",
+      "source_sha256": "638918267f443b118a40b95a84d3cb4e47ba51cdadeaf6699226fa4b526ad8cf",
+      "program_pin": "sha256:41fdb2103545d553dfa3f9a12daaf735a5b2b647a263d20d56d92435d9ca298d",
+      "reference": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-record-result/11",
+        "status": "success",
+        "value": true,
+        "value_type": "Bool",
+        "work": 3
+      }
+    },
+    {
+      "id": "or-false-false",
+      "source_sha256": "4f3857d4148299d4822e02bc665aaa53ba10eeab0fd95869c309dd7209341689",
+      "program_pin": "sha256:2de1181d7f503809c0290f9240b8e05881c090a39a44284e9d5e9ab690ead607",
+      "reference": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-record-result/11",
+        "status": "success",
+        "value": false,
+        "value_type": "Bool",
+        "work": 3
+      }
+    },
+    {
+      "id": "or-false-true",
+      "source_sha256": "a82f5970c9b3de516e8dc9c37132a696da4773f814dbc4516bb0b1af1df7a6b5",
+      "program_pin": "sha256:bacfb7c49327d4034528fb188330947eac5350ab2bd1471d261b4beeefdac703",
+      "reference": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-record-result/11",
+        "status": "success",
+        "value": true,
+        "value_type": "Bool",
+        "work": 3
+      }
+    },
+    {
+      "id": "or-true-false",
+      "source_sha256": "c1630b5326ab135657d05ed661677493a6a75d264e69ab3f4254b58f806651b8",
+      "program_pin": "sha256:41fdb2103545d553dfa3f9a12daaf735a5b2b647a263d20d56d92435d9ca298d",
+      "reference": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-record-result/11",
+        "status": "success",
+        "value": true,
+        "value_type": "Bool",
+        "work": 3
+      }
+    },
+    {
+      "id": "or-true-true",
+      "source_sha256": "dcdc21be6f6381818b70ae3d91dc2abc933ee67048f302ee0aceb2f73b00baf9",
+      "program_pin": "sha256:65405f9fb812780da4daeda7d75e2ab05a19f683501aa5e7eac68c69507084e4",
+      "reference": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-record-result/11",
+        "status": "success",
+        "value": true,
+        "value_type": "Bool",
+        "work": 3
+      }
+    },
+    {
+      "id": "and-overflow-false",
+      "source_sha256": "026d82c712d5b1796e4f836f41170ddc978a263dcc4261ec1a2e6aa7e02a8e2a",
+      "program_pin": "sha256:4bba90390da6f4e8004d1e07e9a617f4b786603077cabaffb1f991314cf125a9",
+      "reference": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-record-result/11",
+        "status": "success",
+        "value": false,
+        "value_type": "Bool",
+        "work": 3
+      }
+    },
+    {
+      "id": "or-overflow-true",
+      "source_sha256": "f53bb11764515239ab9b9f0e0bab22c02b16e749ed28c23bfd2ec28c4efb8e1b",
+      "program_pin": "sha256:693599d7fd6da79d254f3779d97cae03b8539fd75ea4d9a312d323fbd3b4c60e",
+      "reference": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-record-result/11",
+        "status": "success",
+        "value": true,
+        "value_type": "Bool",
+        "work": 3
+      }
+    },
+    {
+      "id": "and-overflow-true",
+      "source_sha256": "28b0bc9b57a178d7ec9e7be02c28457c0f8793d539b5256fe7fa1bcea3eec0e0",
+      "program_pin": "sha256:87e8b24efb6a7204de588456f052a98d55a208e436fb9fc9318aaf6b5f938480",
+      "reference": {
+        "location": "/program/functions/main/body/2/1",
+        "reason": "RR_OVERFLOW",
+        "schema": "bagaev-typed-record-result/11",
+        "status": "integer-overflow",
+        "value": null,
+        "value_type": null,
+        "work": 6
+      }
+    },
+    {
+      "id": "or-overflow-false",
+      "source_sha256": "428953c9398c553ceadb34300d808781540f07dcee68391e353585f9a9d77ab7",
+      "program_pin": "sha256:f51737508281437bfa16d74699b93055d14355036ce16b5f9f78401dc2df07c7",
+      "reference": {
+        "location": "/program/functions/main/body/3/1",
+        "reason": "RR_OVERFLOW",
+        "schema": "bagaev-typed-record-result/11",
+        "status": "integer-overflow",
+        "value": null,
+        "value_type": null,
+        "work": 6
+      }
+    },
+    {
+      "id": "nested",
+      "source_sha256": "7ba06258d84b9218582a604698150cef223d77a693f6d841283c93d348434e7b",
+      "program_pin": "sha256:708a4018d052892510cb89bd41e1c9dda1a85a5152fc460e6197789a6e8f3a4a",
+      "reference": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-record-result/11",
+        "status": "success",
+        "value": true,
+        "value_type": "Bool",
+        "work": 6
+      }
+    },
+    {
+      "id": "skipped-type-error",
+      "source_sha256": "2d0f7d15187404d9201bd9caed44dcc49f5ee582cc39186fab0791e67c5c24a5",
+      "program_pin": "sha256:cfa9252e4be46193ae5c6de2dcf96fcc86c9ab9464aaaca7944dc7d55400ed6b",
+      "reference": {
+        "location": "/program/functions/main/body/3",
+        "reason": "RR_TYPE",
+        "schema": "bagaev-typed-record-result/11",
+        "status": "invalid-ir",
+        "value": null,
+        "value_type": null,
+        "work": 0
+      }
+    }
+  ]
+}

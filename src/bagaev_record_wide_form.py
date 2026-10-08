@@ -3,7 +3,7 @@ import json,re
 import bagaev_component_record_list_form as prior
 old=prior.old
 FormError=prior.FormError;need=prior.need;bounded=prior.bounded
-TOKEN=prior.TOKEN;RESERVED=prior.RESERVED|{'omit_none'};INTRINSICS={**prior.INTRINSICS,'none.int':0,'some.int':1,'option.is_some':1,'option.or':2,'json.kind':1,'json.len':1,'json.int':1,'json.is_text':1,'json.at':2,'json.text_or':2,'json.field':2,'record.field':2,'text.byte_at':2,'int.eq':2,'int.le':2,'bool.not':1}
+TOKEN=prior.TOKEN;RESERVED=prior.RESERVED|{'omit_none'};INTRINSICS={**prior.INTRINSICS,'none.int':0,'some.int':1,'option.is_some':1,'option.or':2,'json.kind':1,'json.len':1,'json.int':1,'json.is_text':1,'json.at':2,'json.text_or':2,'json.field':2,'record.field':2,'text.byte_at':2,'int.eq':2,'int.le':2,'bool.not':1,'bool.and':2,'bool.or':2}
 class Reader(prior.Reader):
  def __init__(self,source):
   need(type(source) in (str,bytes),'FORM_SYNTAX')
@@ -40,6 +40,10 @@ class Reader(prior.Reader):
     self.take(')');need(len(args)==INTRINSICS[operation]);return ('builtin',{'int.eq':'eq','int.le':'le','bool.not':'not'}.get(operation,operation),args)
   return super().atom(depth)
  def lower(self,node,scope=frozenset(),depth=1):
+  if node[0]=='builtin' and node[1] in ('bool.and','bool.or'):
+   need(depth<=old.DEPTH_LIMIT,'FORM_BOUNDS');args=node[2];need(len(args)==2,'FORM_PROFILE');child=lambda x:self.lower(x,scope,depth+1)
+   left=child(args[0]);right=child(args[1]);literal=child(('bool',node[1]=='bool.or'))
+   return ['if',left,right,literal] if node[1]=='bool.and' else ['if',left,literal,right]
   if node[0]=='builtin' and node[1] in ('json.field','record.field'):
    need(depth<=old.DEPTH_LIMIT,'FORM_BOUNDS');args=node[2];need(len(args)==2 and args[1][0]=='text','FORM_PROFILE');key=args[1][1];need(len(key.encode('utf8'))<=64,'FORM_BOUNDS');return ['field' if node[1]=='record.field' else 'json.field',self.lower(args[0],scope,depth+1),key]
   return super().lower(node,scope,depth)
