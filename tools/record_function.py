@@ -1,15 +1,18 @@
 #!/usr/bin/env python3
-"""Fixed data-only form4 function fragment/export replacement tool."""
+"""Explicit data-only form4/form5 function fragment/export replacement tool."""
 import json,sys
 import record_text as transport
-import bagaev_record_function as edit
+import bagaev_record_function as default_edit
+import bagaev_record_wide_function as wide_edit
 
 def main(argv=None):
+    edit=default_edit
     try:
         p=transport.Parser(add_help=False,allow_abbrev=False)
         p.add_argument('operation',choices=('extract','context','replace'));p.add_argument('input')
-        p.add_argument('--name');p.add_argument('--replacement');p.add_argument('--base');p.add_argument('--function-pin');p.add_argument('--output',required=True)
+        p.add_argument('--form',choices=('4','5'),default='4');p.add_argument('--name');p.add_argument('--replacement');p.add_argument('--base');p.add_argument('--function-pin');p.add_argument('--output',required=True)
         a=p.parse_args(sys.argv[1:] if argv is None else argv)
+        edit=wide_edit if a.form=='5' else default_edit
         if a.operation in ('extract','context'):
             if a.name is None or any(x is not None for x in (a.replacement,a.base,a.function_pin)):raise transport.Refusal('TOOL_USAGE')
             source=transport.read_input(a.input)

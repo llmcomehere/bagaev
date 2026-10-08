@@ -61,3 +61,6 @@ unchanged. Independent reproduction and broader acceptance remain open.
 
 A separate [sixteen-entry catalogue](catalog-wide.md) now exercises this profile
 without changing the old application contract.
+
+[Focused form5 editing](wide-function-editing.md) exports direct context and
+creates pinned detached single-function replacements.
