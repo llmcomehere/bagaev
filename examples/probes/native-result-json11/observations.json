@@ -1,0 +1,504 @@
+{
+  "status": "PASSED",
+  "data_projection_calls": 72,
+  "malformed_refusals": [
+    {
+      "id": "short",
+      "error": "Wire(Refusal { reason: \"WIRE_SIZE\", index: 63 })"
+    },
+    {
+      "id": "failure",
+      "error": "Wire(Refusal { reason: \"WIRE_SIZE\", index: 32 })"
+    },
+    {
+      "id": "trailing",
+      "error": "Wire(Refusal { reason: \"WIRE_SIZE\", index: 387 })"
+    },
+    {
+      "id": "magic",
+      "error": "Wire(Refusal { reason: \"WIRE_MAGIC\", index: 0 })"
+    },
+    {
+      "id": "count-zero",
+      "error": "Wire(Refusal { reason: \"WIRE_COUNT\", index: 8 })"
+    },
+    {
+      "id": "count-large",
+      "error": "Wire(Refusal { reason: \"WIRE_COUNT\", index: 8 })"
+    },
+    {
+      "id": "pool-large",
+      "error": "Wire(Refusal { reason: \"WIRE_BYTES\", index: 12 })"
+    },
+    {
+      "id": "work-large",
+      "error": "Wire(Refusal { reason: \"WIRE_WORK\", index: 16 })"
+    },
+    {
+      "id": "binding",
+      "error": "Wire(Refusal { reason: \"WIRE_BINDING\", index: 24 })"
+    },
+    {
+      "id": "reserved",
+      "error": "Wire(Refusal { reason: \"WIRE_RESERVED\", index: 56 })"
+    },
+    {
+      "id": "tag",
+      "error": "Wire(Refusal { reason: \"WIRE_TYPE\", index: 0 })"
+    },
+    {
+      "id": "nominal",
+      "error": "Wire(Refusal { reason: \"WIRE_TYPE\", index: 0 })"
+    },
+    {
+      "id": "end",
+      "error": "Wire(Refusal { reason: \"WIRE_SHAPE\", index: 0 })"
+    },
+    {
+      "id": "children",
+      "error": "Wire(Refusal { reason: \"WIRE_SHAPE\", index: 0 })"
+    }
+  ],
+  "native_calls": 0,
+  "measurement": false,
+  "observations": [
+    {
+      "policy": "inventory-batch",
+      "id": "empty",
+      "json_sha256": "1ce9ac44af9b84befdf8e3d3d6955b34130cf55b6a2698482a025246180b66d5",
+      "full_value_work_binding": true
+    },
+    {
+      "policy": "inventory-batch",
+      "id": "empty-stock",
+      "json_sha256": "71f87f7d178cc90a5fa2b3ffcf3eff527fe036e3389bb3ae9c8d7ebbc507c5c1",
+      "full_value_work_binding": true
+    },
+    {
+      "policy": "inventory-batch",
+      "id": "one",
+      "json_sha256": "5b8332f96899461d617fefb7155f2dd92626b62f306c55440b0b2e1bfdb7802d",
+      "full_value_work_binding": true
+    },
+    {
+      "policy": "inventory-batch",
+      "id": "sequential",
+      "json_sha256": "4070e2dac87ae02f27cf0a8b7aed4ca106b0e1cae916bcf08c3731eaa1095cda",
+      "full_value_work_binding": true
+    },
+    {
+      "policy": "inventory-batch",
+      "id": "exhaust",
+      "json_sha256": "f2c2a441c839373418ae2b03cc2e9fa6e6526008690eada9ff02ca6e208cbd48",
+      "full_value_work_binding": true
+    },
+    {
+      "policy": "inventory-batch",
+      "id": "rollback-second",
+      "json_sha256": "e0f55bfc93097c5a25c7f2727886e5f33db3e54b4e15f457d37cddd4c37c8d87",
+      "full_value_work_binding": true
+    },
+    {
+      "policy": "inventory-batch",
+      "id": "first-insufficient",
+      "json_sha256": "69fa3d0ebdd6ba24a63603de7082ea6bf84f38656d4d1c7ef389bc597de3d1a5",
+      "full_value_work_binding": true
+    },
+    {
+      "policy": "inventory-batch",
+      "id": "later-not-found",
+      "json_sha256": "904c366d3a0ab1487ca719688cdfb387ea054ca3cc4298ec33fbd71fb162150c",
+      "full_value_work_binding": true
+    },
+    {
+      "policy": "inventory-batch",
+      "id": "first-cap",
+      "json_sha256": "a9777f99537e0934e0c93b35fb80feb42ca143633de35141ffa29947f5aebce9",
+      "full_value_work_binding": true
+    },
+    {
+      "policy": "inventory-batch",
+      "id": "later-cap",
+      "json_sha256": "6c57b9e8f5d9d885b7f37f6bd36b4b28587c8daa773fe044f344fc3a4e0fcd1d",
+      "full_value_work_binding": true
+    },
+    {
+      "policy": "inventory-batch",
+      "id": "amount-zero",
+      "json_sha256": "b2b05f5e98a6444b8ee06b77164c1db6563b627d225cc9f938149fc51ff41204",
+      "full_value_work_binding": true
+    },
+    {
+      "policy": "inventory-batch",
+      "id": "amount-negative",
+      "json_sha256": "5ae63e7edd9468b38e397c94b06f35be5f8f01f0193f6defdef1fa2748c1abfa",
+      "full_value_work_binding": true
+    },
+    {
+      "policy": "inventory-batch",
+      "id": "empty-sku",
+      "json_sha256": "fe5e9168509f8c949193d6ff46de89d7b35f8b578d0a3749618252fbe32edbda",
+      "full_value_work_binding": true
+    },
+    {
+      "policy": "inventory-batch",
+      "id": "long-sku",
+      "json_sha256": "842e29a1df2f21ac33fbb9ef5634ac437dfad28c710bef9fec87ef562871e1cf",
+      "full_value_work_binding": true
+    },
+    {
+      "policy": "inventory-batch",
+      "id": "duplicate",
+      "json_sha256": "58d99331d8ee7555bf975ca6bbc23504471b9886859a103b4c7238c5c9feb369",
+      "full_value_work_binding": true
+    },
+    {
+      "policy": "inventory-batch",
+      "id": "empty-invalid-stock",
+      "json_sha256": "966bbdd4ff9ae958ddfc27685a51f37324b8652fad66fdaa2406b417eec6a055",
+      "full_value_work_binding": true
+    },
+    {
+      "policy": "inventory-batch",
+      "id": "negative-stock",
+      "json_sha256": "fdb5215b80feb55c08cc20988bf0e3d52725673f24e7b9f0ed455830e8ff0d8d",
+      "full_value_work_binding": true
+    },
+    {
+      "policy": "inventory-batch",
+      "id": "cap-before-stock",
+      "json_sha256": "78ac08f0f81513766717dd4b5669ee480467f025ff4adb3c0be372a1f7842cae",
+      "full_value_work_binding": true
+    },
+    {
+      "policy": "inventory-batch",
+      "id": "four-orders",
+      "json_sha256": "e2eccf8debce9cf89a3821510d47433b149ab0dcba31ca4802f74ee27b812a23",
+      "full_value_work_binding": true
+    },
+    {
+      "policy": "inventory-batch",
+      "id": "sixteen-long-four",
+      "json_sha256": "6a89959e6da22221e07aaec9333d0df2c22ee4ba59170f634bec52e2b892eb0b",
+      "full_value_work_binding": true
+    },
+    {
+      "policy": "inventory-batch",
+      "id": "fifth-request",
+      "json_sha256": "90686fd849f491ddfa8d43b4c85e21fc153e5f3a22c9da2b06d563858e69aa03",
+      "full_value_work_binding": true
+    },
+    {
+      "policy": "inventory-batch",
+      "id": "later-malformed-takes-precedence",
+      "json_sha256": "19150be370cdb68efd66df79c4105effd490b76480a4faee09fbb1c19cabf568",
+      "full_value_work_binding": true
+    },
+    {
+      "policy": "inventory-batch",
+      "id": "fractional-amount",
+      "json_sha256": "c9ed28af31ca535c1ff66a38df73d265ac2c0cc95d065d1a59c1151ab0dce65a",
+      "full_value_work_binding": true
+    },
+    {
+      "policy": "inventory-batch",
+      "id": "too-large-int",
+      "json_sha256": "872864b6ef3a52b14bd11bf44d14511f2e807106f50743b51dbd633255028b1f",
+      "full_value_work_binding": true
+    },
+    {
+      "policy": "inventory-batch",
+      "id": "boolean-amount",
+      "json_sha256": "c9ed28af31ca535c1ff66a38df73d265ac2c0cc95d065d1a59c1151ab0dce65a",
+      "full_value_work_binding": true
+    },
+    {
+      "policy": "inventory-batch",
+      "id": "extra-request-key",
+      "json_sha256": "ba9621a7679597bb707603ba5641e80512121ed06cd99274caa088035bfebb81",
+      "full_value_work_binding": true
+    },
+    {
+      "policy": "inventory-batch",
+      "id": "extra-envelope-key",
+      "json_sha256": "a7ad95d185c7ea9bc7d62c149ee4ad13358cd7bb450c971e2168b1ef3a95ddbf",
+      "full_value_work_binding": true
+    },
+    {
+      "policy": "inventory-batch",
+      "id": "missing-envelope-key",
+      "json_sha256": "a7ad95d185c7ea9bc7d62c149ee4ad13358cd7bb450c971e2168b1ef3a95ddbf",
+      "full_value_work_binding": true
+    },
+    {
+      "policy": "inventory-batch",
+      "id": "wrong-interface",
+      "json_sha256": "74fe4585f6bd3be2683f74208e9e00bacf0cc8e5e1a9cf387ed6a5c0a7379027",
+      "full_value_work_binding": true
+    },
+    {
+      "policy": "inventory-batch",
+      "id": "not-object",
+      "json_sha256": "d268665e905d31223f07595fbd131cf4172d320ee475b7bd608d5135ebb92cae",
+      "full_value_work_binding": true
+    },
+    {
+      "policy": "inventory-batch",
+      "id": "seventeen-stock",
+      "json_sha256": "8aa4d8c9904a7886d703a099fb829829b5ca326f87cdae54b52f1337618e31ac",
+      "full_value_work_binding": true
+    },
+    {
+      "policy": "inventory-batch",
+      "id": "stock-extra-key",
+      "json_sha256": "63f5a61411c483bcc9a0cdf6a837e7f9cd7fe43c29e7eedeb4aa019b5c805929",
+      "full_value_work_binding": true
+    },
+    {
+      "policy": "inventory-batch-change",
+      "id": "empty",
+      "json_sha256": "4d40650f2597b93b4326a8548201c4e17591bacbedb48a61dd979d45d94cc64f",
+      "full_value_work_binding": true
+    },
+    {
+      "policy": "inventory-batch-change",
+      "id": "empty-stock",
+      "json_sha256": "5058d9766c0db029ada00cb5186be1f6fd4b5e5cc962601320391581ab9997cd",
+      "full_value_work_binding": true
+    },
+    {
+      "policy": "inventory-batch-change",
+      "id": "one",
+      "json_sha256": "829640274e33a5719f2854622468dd9e369efbe3b0801cf760ac0b5155e591d4",
+      "full_value_work_binding": true
+    },
+    {
+      "policy": "inventory-batch-change",
+      "id": "sequential",
+      "json_sha256": "d92f30211542e27a46bc8d80f44736ec917404db245452c22d4eca9e8d499917",
+      "full_value_work_binding": true
+    },
+    {
+      "policy": "inventory-batch-change",
+      "id": "exhaust",
+      "json_sha256": "78a1c4d6859615539bb2cf9c901a06151f550ec7c8efcef67416d2346b0405cb",
+      "full_value_work_binding": true
+    },
+    {
+      "policy": "inventory-batch-change",
+      "id": "rollback-second",
+      "json_sha256": "febc662ad56aed8a585e9b859cd7356cbb5e7ddf85881c2e61b363893f4f9e8a",
+      "full_value_work_binding": true
+    },
+    {
+      "policy": "inventory-batch-change",
+      "id": "first-insufficient",
+      "json_sha256": "24b683036e879c2b9c803c2ec36c9946064f76a9129104c4296965f76003154d",
+      "full_value_work_binding": true
+    },
+    {
+      "policy": "inventory-batch-change",
+      "id": "later-not-found",
+      "json_sha256": "21e64b09213ae43438cce716d77aa4909f345f38c9e41f10536997277937e150",
+      "full_value_work_binding": true
+    },
+    {
+      "policy": "inventory-batch-change",
+      "id": "first-cap",
+      "json_sha256": "d848c250757db916a22d4e455f286bc1bc45dc3ad4b194d88c34720a8e83a369",
+      "full_value_work_binding": true
+    },
+    {
+      "policy": "inventory-batch-change",
+      "id": "later-cap",
+      "json_sha256": "bf9b0dc39dd60236c7850b81a2d6bacb8f2878ffe9ac3d8b22a95676721704c1",
+      "full_value_work_binding": true
+    },
+    {
+      "policy": "inventory-batch-change",
+      "id": "amount-zero",
+      "json_sha256": "90631b61a9fe9e29d7222ebd240dc05dcfd81f5701e9b4ac7bbbd8bb4670a9d3",
+      "full_value_work_binding": true
+    },
+    {
+      "policy": "inventory-batch-change",
+      "id": "amount-negative",
+      "json_sha256": "add666f0c11b4b6786f59aab07773be7455d3271893daf28c0ff7095ba77f476",
+      "full_value_work_binding": true
+    },
+    {
+      "policy": "inventory-batch-change",
+      "id": "empty-sku",
+      "json_sha256": "8b4b249b61516232bb54dc6272acca2b68c2269bb50d2613ddbfaf9cbbafb5ad",
+      "full_value_work_binding": true
+    },
+    {
+      "policy": "inventory-batch-change",
+      "id": "long-sku",
+      "json_sha256": "38b6d75592db49e5774bee26bc7481f3a3442feb30914476cfeda922738edaf0",
+      "full_value_work_binding": true
+    },
+    {
+      "policy": "inventory-batch-change",
+      "id": "duplicate",
+      "json_sha256": "06290e74e56be3eaca96b3dcb06c1ce4438c32bb2b68a3ceb930527fcbb107cb",
+      "full_value_work_binding": true
+    },
+    {
+      "policy": "inventory-batch-change",
+      "id": "empty-invalid-stock",
+      "json_sha256": "37005acc0231f0249b3264c24a25f6fbef9808df9571927063d3d25802672be9",
+      "full_value_work_binding": true
+    },
+    {
+      "policy": "inventory-batch-change",
+      "id": "negative-stock",
+      "json_sha256": "e0188f058fcc3cac77300884fbc3ed0c6baf1f30c712210cf6255053acfbf43d",
+      "full_value_work_binding": true
+    },
+    {
+      "policy": "inventory-batch-change",
+      "id": "cap-before-stock",
+      "json_sha256": "c727078c35426f1dfa281a26b2cdbb74db124e51236d65eab76c519bedd7a926",
+      "full_value_work_binding": true
+    },
+    {
+      "policy": "inventory-batch-change",
+      "id": "four-orders",
+      "json_sha256": "961b0df25f50803e9a0bc918933c7c751c14855e0679d39fb8074bb8e8c23099",
+      "full_value_work_binding": true
+    },
+    {
+      "policy": "inventory-batch-change",
+      "id": "sixteen-long-four",
+      "json_sha256": "76a4a532d4166bc1fe8533dbb85e80df36899049247484837357413f41056e3e",
+      "full_value_work_binding": true
+    },
+    {
+      "policy": "inventory-batch-change",
+      "id": "fifth-request",
+      "json_sha256": "a1b7e295ee1d882ab0e6f50c3b2bec33f606301712b7a070a9ec237125581ee1",
+      "full_value_work_binding": true
+    },
+    {
+      "policy": "inventory-batch-change",
+      "id": "later-malformed-takes-precedence",
+      "json_sha256": "f9299b0fb54f9f77ac4b579d1b475e9c3e5d9451680a84ecbfb11750553cbe67",
+      "full_value_work_binding": true
+    },
+    {
+      "policy": "inventory-batch-change",
+      "id": "fractional-amount",
+      "json_sha256": "fd8b8ef7d0cbf8e4a12e6af5735b88eba4ec6140eca5119d7df60646393ec3ee",
+      "full_value_work_binding": true
+    },
+    {
+      "policy": "inventory-batch-change",
+      "id": "too-large-int",
+      "json_sha256": "a6f97f8c230befc4cd895b163eb30daa04fc30cf30b3c7b554d5217cd5abd668",
+      "full_value_work_binding": true
+    },
+    {
+      "policy": "inventory-batch-change",
+      "id": "boolean-amount",
+      "json_sha256": "fd8b8ef7d0cbf8e4a12e6af5735b88eba4ec6140eca5119d7df60646393ec3ee",
+      "full_value_work_binding": true
+    },
+    {
+      "policy": "inventory-batch-change",
+      "id": "extra-request-key",
+      "json_sha256": "78f66291b34f2c82bb375570cbed44a14f5c4f8853e70b528844a753ef46765f",
+      "full_value_work_binding": true
+    },
+    {
+      "policy": "inventory-batch-change",
+      "id": "extra-envelope-key",
+      "json_sha256": "8829600d2e14644a5f93364cb883254eb5a167914b6b7d07ba5c385c39db8b60",
+      "full_value_work_binding": true
+    },
+    {
+      "policy": "inventory-batch-change",
+      "id": "missing-envelope-key",
+      "json_sha256": "8829600d2e14644a5f93364cb883254eb5a167914b6b7d07ba5c385c39db8b60",
+      "full_value_work_binding": true
+    },
+    {
+      "policy": "inventory-batch-change",
+      "id": "wrong-interface",
+      "json_sha256": "b40450f291ce20c8b6624d8897ada02085ad7d388f5b73dd4985ff096095f093",
+      "full_value_work_binding": true
+    },
+    {
+      "policy": "inventory-batch-change",
+      "id": "not-object",
+      "json_sha256": "b5b35b1932618ed4a80a579b25e509e21671b4e2397eb1534ef6eaf28ca3c1a4",
+      "full_value_work_binding": true
+    },
+    {
+      "policy": "inventory-batch-change",
+      "id": "seventeen-stock",
+      "json_sha256": "48783b3d0da5dbd54293135e96e1d2515795772806bb69c9a4d80669c225e921",
+      "full_value_work_binding": true
+    },
+    {
+      "policy": "inventory-batch-change",
+      "id": "stock-extra-key",
+      "json_sha256": "5e0890d40cbebebe698e7e1fd6e30215cc33ab49705de245b600cb7298b34657",
+      "full_value_work_binding": true
+    },
+    {
+      "policy": "inventory-batch-change",
+      "id": "total-nine",
+      "json_sha256": "289a56e545ff95f0dc1af46982211def7192cdc73b8036d96ac78b29c418be3f",
+      "full_value_work_binding": true
+    },
+    {
+      "policy": "inventory-batch-change",
+      "id": "total-ten",
+      "json_sha256": "ee89c4f086b71807562d045919edbb9d243e5264a9eaf87f260d92ece7cf5218",
+      "full_value_work_binding": true
+    },
+    {
+      "policy": "inventory-batch-change",
+      "id": "total-eleven",
+      "json_sha256": "b484415969ebeea252a1d4155b0c9069de3888943e05a2a14749a85b7edad747",
+      "full_value_work_binding": true
+    },
+    {
+      "policy": "inventory-batch-change",
+      "id": "limit-fourth",
+      "json_sha256": "2956e6f17b46170e43d82bc2c8f5a9fcaad5bcccd09913303cfeb6623b38ef4a",
+      "full_value_work_binding": true
+    },
+    {
+      "policy": "inventory-batch-change",
+      "id": "business-before-limit",
+      "json_sha256": "d33dc090d4c8a0aba6a9f9ee5f340eebdc19df5c46be644520dd2f54d039d98b",
+      "full_value_work_binding": true
+    },
+    {
+      "policy": "inventory-batch-change",
+      "id": "shape-before-limit",
+      "json_sha256": "3f46898db8c42aae157bd1975b9f4a3f626ffe2314d63c136e38a17be81e1855",
+      "full_value_work_binding": true
+    },
+    {
+      "policy": "inventory-batch-change",
+      "id": "individual-cap-before-limit",
+      "json_sha256": "608730d5c43188161a8c50f66ee1025067d63762e87b69d9786fab05ac70875d",
+      "full_value_work_binding": true
+    },
+    {
+      "policy": "inventory-batch-change",
+      "id": "invalid-request-before-limit",
+      "json_sha256": "5e27b7d0f0a8ba1bfcf13b43e59818fc8bbb0322bcaf505b55d6f734afa11197",
+      "full_value_work_binding": true
+    }
+  ],
+  "rust_tests": 4,
+  "text_refusals": 3,
+  "files": {
+    "examples/probes/backend/rust/native_result_json_v11.rs": "d4e947e65eb7c312f95b09670d753e33222734a3fbfa8865f980101e9fac5b37",
+    "examples/probes/backend/rust/native_result_json11_tests.rs": "9656d41121f522e616eaa0bf0a85e9d779649a93da9b8e24b7bede3a9d28e423"
+  }
+}
