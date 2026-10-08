@@ -1,0 +1,60 @@
+bagaev record-form/5;
+program {
+  record BatchError { reason: Text, step: Int64, stock: Stock };
+  record BatchReceipt { receipts: Receipts, stock: Stock };
+  record Item { available: Int64, sku: Text };
+  record Receipt { amount: Int64, sku: Text, stock: Stock };
+  variant BatchOutcome { BatchCommitted: BatchReceipt, BatchRejected: BatchError };
+  variant Outcome { Rejected: Text, Reserved: Receipt };
+  list Receipts of Receipt capacity 4;
+  list Stock of Item capacity 16;
+
+  entry batch_apply;
+
+  fn batch_apply(original: Stock, orders: Json) -> BatchOutcome = let size =(option.or(json.len(orders), 0))
+  in
+  // Authored body note retained by contextual export.
+  (if(int.eq(size, 0))
+  then(if(stock_ok(stock: original))
+  then(BatchOutcome.BatchCommitted(BatchReceipt {
+    receipts: records.list(Receipts),
+    stock: original
+  }))
+  else(BatchOutcome.BatchRejected(BatchError {
+    reason: "invalid-stock",
+    step: - 1,
+    stock: original
+  })))
+  else(fold(4, (BatchOutcome.BatchCommitted(BatchReceipt {
+    receipts: records.list(Receipts),
+    stock: original
+  }))) with(i, state)
+  in(match(state) {
+    BatchRejected(error): BatchOutcome.BatchRejected(error);
+    BatchCommitted(done): if((i < size))
+    then(let order =(json.at(orders, i))
+    in(match(if(int.eq(i, 0))
+    then(reserve(stock: record.field(done, "stock"), sku: json.text_or(json.field(order, "sku"), ""), amount: option.or(json.int(json.field(order, "amount")), 0)))
+    else(reserve_valid_stock(stock: record.field(done, "stock"), sku: json.text_or(json.field(order, "sku"), ""), amount: option.or(json.int(json.field(order, "amount")), 0)))) {
+      Rejected(reason): BatchOutcome.BatchRejected(BatchError {
+        reason: reason,
+        step: i,
+        stock: original
+      });
+      Reserved(receipt): if((10 <((fold(4, (0)) with(j, total)
+      in(if((j < records.len(record.field(done, "receipts"))))
+      then((total + record.field(records.at(record.field(done, "receipts"), j), "amount")))
+      else(total))) + record.field(receipt, "amount"))))
+      then(BatchOutcome.BatchRejected(BatchError {
+        reason: "batch-limit",
+        step: i,
+        stock: original
+      }))
+      else(BatchOutcome.BatchCommitted(BatchReceipt {
+        receipts: records.push(record.field(done, "receipts"), receipt),
+        stock: record.field(receipt, "stock")
+      }));
+    }))
+    else(BatchOutcome.BatchCommitted(done));
+  })));
+}

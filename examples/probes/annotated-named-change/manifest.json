@@ -1,0 +1,15 @@
+{
+  "base": "d6b56f365d222f52d015ac336cd2f85bf2626c0148ce7f3fadf2bd243a2f4f66",
+  "function": "7f22256c03ea16556738c8e69ce619424335150087f2784b14f6cdc298bd6696",
+  "target": "b4755a73e1090e2b4ed563f42c29250dc759c5b1224d3c5765a239cb6584351e",
+  "source_sha256": "91973a5772e163c6fb84856814d4dfa2ed4536fbbe03a0eca5105a61098e44f3",
+  "fragment_sha256": "e09f0e52f2d83c15dedb514a3d76663031f8d2b89951d645bc599b03656509f3",
+  "expected_source_sha256": "fcf17f10df79354ba4882172bf56edc379d723f81a9e35b7b45bfc7549965e49",
+  "context_sha256": "723242009e116e977fa0c448a0f11923710e9140226e4dd1636410788be2d3ca",
+  "draft_sha256": "d54134ba952bd71e39da2fe2f0bb80ccbf83ff37a1870c703e9e854aace05ef9",
+  "inspection_sha256": "e0e2986b530f580ed230f76be8c3c541d50f2889bc909d31d36f8b9dfee17307",
+  "data_cli_calls": 4,
+  "program_evaluations": 0,
+  "preserved_scope": "outside-changed-function-body",
+  "replacement_scope": "body-expression"
+}
