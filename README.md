@@ -15,6 +15,13 @@ For form5 debugging, the [checked node inspector](docs/native-source-locations.m
 and [readable source map](docs/record-source-map.md) join by programme pin and
 JSON pointer. These tools do not execute programmes or authenticate native output.
 
+For repeated Json calls, the explicit [prepared reference](docs/prepared-json11-reference.md)
+and [prepared native interface](docs/prepared-json11-native.md) retain checked
+source while inputs change. Native kernels still need separate admission.
+The [data-only result reader](docs/native-result-json11.md) converts bound success
+bytes into ordinary JSON without executing code. Source consistency does not
+prove execution origin; speed and cost advantages remain unestablished here.
+
 ## Why a language for change?
 
 A program change can be tiny while the work around it grows: rediscovering what
