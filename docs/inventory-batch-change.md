@@ -52,3 +52,7 @@ check the frozen oracle, exact replacement and captured wire data. Re-reading
 those captures is not new native execution. No model, speed, memory, allocation
 or cost measurement was made. Same-maintainer bounded conformance does not
 establish independent reproduction or production acceptance.
+
+An [ordinary native Rust baseline](inventory-native-baseline.md) implements both
+policies against the same frozen values. Its shared JSON parser and different
+CLI boundary are explicit; conformance alone is not a performance comparison.

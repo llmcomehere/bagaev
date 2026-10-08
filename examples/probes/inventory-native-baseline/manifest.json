@@ -1,0 +1,19 @@
+{
+  "schema": "ordinary-inventory-native-conformance/1",
+  "source_sha256": "9d523efd4d527991e2d0a9abea57ff60220716b898494b37186aec04aa5a7970",
+  "shared_transport": {
+    "path": "examples/probes/backend/rust/transport.rs",
+    "sha256": "bc968e3734e5c2bb58d7de69c2af93fd81f43a6ee43fd8784c24af3ad16ca8d2"
+  },
+  "policies": {
+    "original": 32,
+    "total10": 40
+  },
+  "ordinary_native_conformance_calls": 144,
+  "repeat_calls": 2,
+  "refusals": 16,
+  "rust_tests": 2,
+  "bagaev_calls": 0,
+  "measurement": false,
+  "scope": "Owned ordinary Rust business logic, shared JSON transport, distinct CLI/ABI boundary; no equal-boundary performance inference."
+}
