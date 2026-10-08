@@ -1,0 +1,1 @@
+Supplemental catalogue caller expectation omitted tags_ok. Independent static inspection of accepted program.json confirms calls from entry_ok, reindex_ok and tags_ok. Corrected only this expected list; implementation and synthetic match/unresolved-call cases unchanged. Original expectation/manifest and failed run retained.

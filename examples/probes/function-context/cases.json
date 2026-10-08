@@ -1,0 +1,18 @@
+{
+  "source": "bagaev record-form/4; program { variant Choice { call: Int64 }; entry main; fn main(x: Choice) -> Int64 = match (x) { call(bound): helper(bound); }; fn helper(n: Int64) -> Int64 = if true then n else absent(n); fn unrelated() -> Int64 = 0; }",
+  "helper_callers": [
+    "main"
+  ],
+  "helper_callees": [
+    "absent"
+  ],
+  "main_callers": [],
+  "main_callees": [
+    "helper"
+  ],
+  "catalog_id_ok_callers": [
+    "entry_ok",
+    "reindex_ok",
+    "tags_ok"
+  ]
+}

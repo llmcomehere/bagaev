@@ -7,12 +7,13 @@ import bagaev_record_function as edit
 def main(argv=None):
     try:
         p=transport.Parser(add_help=False,allow_abbrev=False)
-        p.add_argument('operation',choices=('extract','replace'));p.add_argument('input')
+        p.add_argument('operation',choices=('extract','context','replace'));p.add_argument('input')
         p.add_argument('--name');p.add_argument('--replacement');p.add_argument('--base');p.add_argument('--function-pin');p.add_argument('--output',required=True)
         a=p.parse_args(sys.argv[1:] if argv is None else argv)
-        if a.operation=='extract':
+        if a.operation in ('extract','context'):
             if a.name is None or any(x is not None for x in (a.replacement,a.base,a.function_pin)):raise transport.Refusal('TOOL_USAGE')
-            value=edit.fragment(transport.read_input(a.input),a.name)
+            source=transport.read_input(a.input)
+            value=edit.fragment(source,a.name) if a.operation=='extract' else edit.context(source,a.name)
         else:
             if a.name is not None or any(x is None for x in (a.replacement,a.base,a.function_pin)):raise transport.Refusal('TOOL_USAGE')
             value=edit.replace(transport.read_input(a.input),transport.read_input(a.replacement),base_sha256=a.base,function_sha256=a.function_pin)
