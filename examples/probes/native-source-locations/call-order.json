@@ -1,0 +1,36 @@
+{
+  "schema": "bagaev-typed-record-invocation/11",
+  "program": {
+    "schema": "bagaev-typed-record/11",
+    "records": {},
+    "lists": {},
+    "variants": {},
+    "entry": "main",
+    "functions": {
+      "main": {
+        "params": [],
+        "result": "Int64",
+        "body": [
+          "add",
+          [
+            "call",
+            "a"
+          ],
+          [
+            "int",
+            1
+          ]
+        ]
+      },
+      "a": {
+        "params": [],
+        "result": "Int64",
+        "body": [
+          "int",
+          7
+        ]
+      }
+    }
+  },
+  "arguments": []
+}
