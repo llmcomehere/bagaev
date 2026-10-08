@@ -60,3 +60,6 @@ returned stock into a later computation; evaluating again on the old input gives
 the old-input result. Durable operations require the separate stateful component
 route and its acceptance conditions. The older scalar stock-adjustment component
 example remains unchanged.
+
+The [focused business-change walkthrough](inventory-focused-change.md) adds a
+five-unit reservation limit while preserving this original example and oracle.

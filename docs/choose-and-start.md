@@ -109,3 +109,6 @@ profile](pure-filter.md) has an explicit `/2` source and CLI. It preserves the o
   the number of mechanisms, checks or pull requests.
 
 For a connected typed pure edit, follow [one complete readable change](pure-change-workflow.md): inspect source identity, extract a helper, prepare a detached draft and verify explicit input.
+
+For an observable single-function business change with a complete pinned handoff,
+see the [inventory limit change](inventory-focused-change.md).

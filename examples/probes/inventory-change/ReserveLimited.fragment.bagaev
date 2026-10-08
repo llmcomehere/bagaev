@@ -1,0 +1,18 @@
+bagaev record-form/5;
+program {
+  record Item { sku: Text, available: Int64 };
+  list Stock of Item capacity 16;
+  record Receipt { stock: Stock, sku: Text, amount: Int64 };
+  variant Outcome { Rejected: Text, Reserved: Receipt };
+  entry reserve;
+  fn reserve(stock: Stock, sku: Text, amount: Int64) -> Outcome =
+    if amount < 1 then Outcome.Rejected("invalid-request")
+    else if bool.not(sku_ok(sku)) then Outcome.Rejected("invalid-request")
+    else if 5 < amount then Outcome.Rejected("order-limit")
+    else if bool.not(stock_ok(stock)) then Outcome.Rejected("invalid-stock")
+    else let index = find(stock, sku) in
+      if index < 0 then Outcome.Rejected("not-found")
+      else if record.field(records.at(stock, index), "available") < amount
+        then Outcome.Rejected("insufficient-stock")
+      else Outcome.Reserved(Receipt { stock: decrement(stock, index, amount), sku: sku, amount: amount });
+}

@@ -1,0 +1,9 @@
+{
+  "sha256": {
+    "cases.json": "bfda1a515fec77e4fc62e0c5ee56decd5f9c793c4003ce6b05d083bd210fabb4",
+    "CONTRACT.md": "bfa88eb1cc8281856693bcc500c9c0c907f5a445a87ded4085c8c6bb5031c74b",
+    "ReserveLimited.fragment.bagaev": "04d0a3641d63390332ed51ff135ae02caf640f5a4eb80cb1a8aa064bc44d1274",
+    "ReserveLimited.bagaev": "8df61c88b2150258a560e019ed4920e3aa8fb393708a9c1f720aa9ae961d7005",
+    "pins.json": "769e22df3b9e5be8468455624706f2d261662b1531face63289c1ee2bd935e23"
+  }
+}
