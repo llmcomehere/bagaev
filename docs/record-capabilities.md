@@ -84,3 +84,22 @@ its typed-record/10 identity. It never upgrades to form5. The default revision1
 and explicit revision2 responses remain byte-for-byte unchanged for both forms.
 Eleven fresh data-only CLI calls and three portable tests passed. No programme
 or native-kernel execution or performance measurement is involved.
+
+## Revision4: lazy forms and prepared/result consumers
+
+Select `--revision 4` explicitly for current form5 lazy Boolean spellings,
+prepared reference/native API names, and the source-pinned native success JSON
+reader. `profile11_extensions` identifies these paths and their guides; the
+native call remains unsafe and requires separate exact-kernel admission. The
+result reader executes no code and does not authenticate execution origin.
+For form4, that profile11 section is unavailable without upgrading the source;
+this does not disable or deny the separately documented prepared profile10 APIs.
+
+Compatibility correction: adding lazy spellings initially leaked their names
+into revisions1–3 through a dynamically inherited list. Revision4 restores the
+original captured bytes for all prior form4/form5 revisions and both defaults;
+only explicit revision4 advertises the new spellings. The default is still1.
+Frozen prior-output hashes were not updated to accommodate the regression.
+Sixteen data-only CLI observations checked eight prior/default packets, repeated
+revision4 responses for both forms, and four refusals. No program or kernel was
+executed, and this metadata conveys no execution authority or performance claim.
