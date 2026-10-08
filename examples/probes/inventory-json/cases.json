@@ -1,0 +1,888 @@
+[
+  {
+    "id": "partial",
+    "request": {
+      "interface": "inventory-reserve/1",
+      "stock": [
+        {
+          "sku": "a",
+          "available": 10
+        },
+        {
+          "sku": "b",
+          "available": 3
+        }
+      ],
+      "sku": "a",
+      "amount": 4
+    },
+    "value": {
+      "case": "Reserved",
+      "value": {
+        "stock": [
+          {
+            "sku": "a",
+            "available": 6
+          },
+          {
+            "sku": "b",
+            "available": 3
+          }
+        ],
+        "sku": "a",
+        "amount": 4
+      }
+    }
+  },
+  {
+    "id": "exact",
+    "request": {
+      "interface": "inventory-reserve/1",
+      "stock": [
+        {
+          "sku": "a",
+          "available": 10
+        },
+        {
+          "sku": "b",
+          "available": 3
+        }
+      ],
+      "sku": "b",
+      "amount": 3
+    },
+    "value": {
+      "case": "Reserved",
+      "value": {
+        "stock": [
+          {
+            "sku": "a",
+            "available": 10
+          },
+          {
+            "sku": "b",
+            "available": 0
+          }
+        ],
+        "sku": "b",
+        "amount": 3
+      }
+    }
+  },
+  {
+    "id": "max-int",
+    "request": {
+      "interface": "inventory-reserve/1",
+      "stock": [
+        {
+          "sku": "a",
+          "available": 9223372036854775807
+        }
+      ],
+      "sku": "a",
+      "amount": 9223372036854775807
+    },
+    "value": {
+      "case": "Reserved",
+      "value": {
+        "stock": [
+          {
+            "sku": "a",
+            "available": 0
+          }
+        ],
+        "sku": "a",
+        "amount": 9223372036854775807
+      }
+    }
+  },
+  {
+    "id": "unicode",
+    "request": {
+      "interface": "inventory-reserve/1",
+      "stock": [
+        {
+          "sku": "яблоко",
+          "available": 5
+        }
+      ],
+      "sku": "яблоко",
+      "amount": 2
+    },
+    "value": {
+      "case": "Reserved",
+      "value": {
+        "stock": [
+          {
+            "sku": "яблоко",
+            "available": 3
+          }
+        ],
+        "sku": "яблоко",
+        "amount": 2
+      }
+    }
+  },
+  {
+    "id": "sixteen-last",
+    "request": {
+      "interface": "inventory-reserve/1",
+      "stock": [
+        {
+          "sku": "a",
+          "available": 1
+        },
+        {
+          "sku": "b",
+          "available": 2
+        },
+        {
+          "sku": "c",
+          "available": 3
+        },
+        {
+          "sku": "d",
+          "available": 4
+        },
+        {
+          "sku": "e",
+          "available": 5
+        },
+        {
+          "sku": "f",
+          "available": 6
+        },
+        {
+          "sku": "g",
+          "available": 7
+        },
+        {
+          "sku": "h",
+          "available": 8
+        },
+        {
+          "sku": "i",
+          "available": 9
+        },
+        {
+          "sku": "j",
+          "available": 10
+        },
+        {
+          "sku": "k",
+          "available": 11
+        },
+        {
+          "sku": "l",
+          "available": 12
+        },
+        {
+          "sku": "m",
+          "available": 13
+        },
+        {
+          "sku": "n",
+          "available": 14
+        },
+        {
+          "sku": "o",
+          "available": 15
+        },
+        {
+          "sku": "p",
+          "available": 16
+        }
+      ],
+      "sku": "p",
+      "amount": 16
+    },
+    "value": {
+      "case": "Reserved",
+      "value": {
+        "stock": [
+          {
+            "sku": "a",
+            "available": 1
+          },
+          {
+            "sku": "b",
+            "available": 2
+          },
+          {
+            "sku": "c",
+            "available": 3
+          },
+          {
+            "sku": "d",
+            "available": 4
+          },
+          {
+            "sku": "e",
+            "available": 5
+          },
+          {
+            "sku": "f",
+            "available": 6
+          },
+          {
+            "sku": "g",
+            "available": 7
+          },
+          {
+            "sku": "h",
+            "available": 8
+          },
+          {
+            "sku": "i",
+            "available": 9
+          },
+          {
+            "sku": "j",
+            "available": 10
+          },
+          {
+            "sku": "k",
+            "available": 11
+          },
+          {
+            "sku": "l",
+            "available": 12
+          },
+          {
+            "sku": "m",
+            "available": 13
+          },
+          {
+            "sku": "n",
+            "available": 14
+          },
+          {
+            "sku": "o",
+            "available": 15
+          },
+          {
+            "sku": "p",
+            "available": 0
+          }
+        ],
+        "sku": "p",
+        "amount": 16
+      }
+    }
+  },
+  {
+    "id": "zero",
+    "request": {
+      "interface": "inventory-reserve/1",
+      "stock": [
+        {
+          "sku": "a",
+          "available": 10
+        },
+        {
+          "sku": "b",
+          "available": 3
+        }
+      ],
+      "sku": "a",
+      "amount": 0
+    },
+    "value": {
+      "case": "Rejected",
+      "value": "invalid-request"
+    }
+  },
+  {
+    "id": "negative",
+    "request": {
+      "interface": "inventory-reserve/1",
+      "stock": [
+        {
+          "sku": "a",
+          "available": 10
+        },
+        {
+          "sku": "b",
+          "available": 3
+        }
+      ],
+      "sku": "a",
+      "amount": -1
+    },
+    "value": {
+      "case": "Rejected",
+      "value": "invalid-request"
+    }
+  },
+  {
+    "id": "min-int",
+    "request": {
+      "interface": "inventory-reserve/1",
+      "stock": [
+        {
+          "sku": "a",
+          "available": 10
+        },
+        {
+          "sku": "b",
+          "available": 3
+        }
+      ],
+      "sku": "a",
+      "amount": -9223372036854775808
+    },
+    "value": {
+      "case": "Rejected",
+      "value": "invalid-request"
+    }
+  },
+  {
+    "id": "request-empty",
+    "request": {
+      "interface": "inventory-reserve/1",
+      "stock": [
+        {
+          "sku": "a",
+          "available": 10
+        },
+        {
+          "sku": "b",
+          "available": 3
+        }
+      ],
+      "sku": "",
+      "amount": 1
+    },
+    "value": {
+      "case": "Rejected",
+      "value": "invalid-request"
+    }
+  },
+  {
+    "id": "request-long",
+    "request": {
+      "interface": "inventory-reserve/1",
+      "stock": [
+        {
+          "sku": "a",
+          "available": 10
+        },
+        {
+          "sku": "b",
+          "available": 3
+        }
+      ],
+      "sku": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+      "amount": 1
+    },
+    "value": {
+      "case": "Rejected",
+      "value": "invalid-request"
+    }
+  },
+  {
+    "id": "stock-negative",
+    "request": {
+      "interface": "inventory-reserve/1",
+      "stock": [
+        {
+          "sku": "a",
+          "available": -1
+        },
+        {
+          "sku": "b",
+          "available": 3
+        }
+      ],
+      "sku": "b",
+      "amount": 1
+    },
+    "value": {
+      "case": "Rejected",
+      "value": "invalid-stock"
+    }
+  },
+  {
+    "id": "stock-empty-sku",
+    "request": {
+      "interface": "inventory-reserve/1",
+      "stock": [
+        {
+          "sku": "",
+          "available": 3
+        }
+      ],
+      "sku": "a",
+      "amount": 1
+    },
+    "value": {
+      "case": "Rejected",
+      "value": "invalid-stock"
+    }
+  },
+  {
+    "id": "nonadjacent-duplicate",
+    "request": {
+      "interface": "inventory-reserve/1",
+      "stock": [
+        {
+          "sku": "a",
+          "available": 2
+        },
+        {
+          "sku": "b",
+          "available": 3
+        },
+        {
+          "sku": "a",
+          "available": 4
+        }
+      ],
+      "sku": "a",
+      "amount": 1
+    },
+    "value": {
+      "case": "Rejected",
+      "value": "invalid-stock"
+    }
+  },
+  {
+    "id": "empty",
+    "request": {
+      "interface": "inventory-reserve/1",
+      "stock": [],
+      "sku": "a",
+      "amount": 1
+    },
+    "value": {
+      "case": "Rejected",
+      "value": "not-found"
+    }
+  },
+  {
+    "id": "missing",
+    "request": {
+      "interface": "inventory-reserve/1",
+      "stock": [
+        {
+          "sku": "a",
+          "available": 10
+        },
+        {
+          "sku": "b",
+          "available": 3
+        }
+      ],
+      "sku": "c",
+      "amount": 1
+    },
+    "value": {
+      "case": "Rejected",
+      "value": "not-found"
+    }
+  },
+  {
+    "id": "insufficient",
+    "request": {
+      "interface": "inventory-reserve/1",
+      "stock": [
+        {
+          "sku": "a",
+          "available": 10
+        },
+        {
+          "sku": "b",
+          "available": 3
+        }
+      ],
+      "sku": "b",
+      "amount": 4
+    },
+    "value": {
+      "case": "Rejected",
+      "value": "insufficient-stock"
+    }
+  },
+  {
+    "id": "request-first",
+    "request": {
+      "interface": "inventory-reserve/1",
+      "stock": [
+        {
+          "sku": "a",
+          "available": -1
+        }
+      ],
+      "sku": "a",
+      "amount": 0
+    },
+    "value": {
+      "case": "Rejected",
+      "value": "invalid-request"
+    }
+  },
+  {
+    "id": "stock-before-missing",
+    "request": {
+      "interface": "inventory-reserve/1",
+      "stock": [
+        {
+          "sku": "a",
+          "available": -1
+        }
+      ],
+      "sku": "z",
+      "amount": 1
+    },
+    "value": {
+      "case": "Rejected",
+      "value": "invalid-stock"
+    }
+  },
+  {
+    "id": "seventeen",
+    "request": {
+      "interface": "inventory-reserve/1",
+      "stock": [
+        {
+          "sku": "a",
+          "available": 1
+        },
+        {
+          "sku": "b",
+          "available": 1
+        },
+        {
+          "sku": "c",
+          "available": 1
+        },
+        {
+          "sku": "d",
+          "available": 1
+        },
+        {
+          "sku": "e",
+          "available": 1
+        },
+        {
+          "sku": "f",
+          "available": 1
+        },
+        {
+          "sku": "g",
+          "available": 1
+        },
+        {
+          "sku": "h",
+          "available": 1
+        },
+        {
+          "sku": "i",
+          "available": 1
+        },
+        {
+          "sku": "j",
+          "available": 1
+        },
+        {
+          "sku": "k",
+          "available": 1
+        },
+        {
+          "sku": "l",
+          "available": 1
+        },
+        {
+          "sku": "m",
+          "available": 1
+        },
+        {
+          "sku": "n",
+          "available": 1
+        },
+        {
+          "sku": "o",
+          "available": 1
+        },
+        {
+          "sku": "p",
+          "available": 1
+        },
+        {
+          "sku": "q",
+          "available": 1
+        }
+      ],
+      "sku": "a",
+      "amount": 1
+    },
+    "value": {
+      "case": "Rejected",
+      "value": "request-shape"
+    }
+  },
+  {
+    "id": "wrong-interface",
+    "request": {
+      "interface": "inventory-reserve/0",
+      "stock": [
+        {
+          "sku": "a",
+          "available": 10
+        },
+        {
+          "sku": "b",
+          "available": 3
+        }
+      ],
+      "sku": "a",
+      "amount": 4
+    },
+    "value": {
+      "case": "Rejected",
+      "value": "request-shape"
+    }
+  },
+  {
+    "id": "extra-key",
+    "request": {
+      "interface": "inventory-reserve/1",
+      "stock": [
+        {
+          "sku": "a",
+          "available": 10
+        },
+        {
+          "sku": "b",
+          "available": 3
+        }
+      ],
+      "sku": "a",
+      "amount": 4,
+      "extra": 0
+    },
+    "value": {
+      "case": "Rejected",
+      "value": "request-shape"
+    }
+  },
+  {
+    "id": "missing-sku",
+    "request": {
+      "interface": "inventory-reserve/1",
+      "stock": [
+        {
+          "sku": "a",
+          "available": 10
+        },
+        {
+          "sku": "b",
+          "available": 3
+        }
+      ],
+      "amount": 4
+    },
+    "value": {
+      "case": "Rejected",
+      "value": "request-shape"
+    }
+  },
+  {
+    "id": "boolean-amount",
+    "request": {
+      "interface": "inventory-reserve/1",
+      "stock": [
+        {
+          "sku": "a",
+          "available": 10
+        },
+        {
+          "sku": "b",
+          "available": 3
+        }
+      ],
+      "sku": "a",
+      "amount": true
+    },
+    "value": {
+      "case": "Rejected",
+      "value": "request-shape"
+    }
+  },
+  {
+    "id": "fraction-amount",
+    "request": {
+      "interface": "inventory-reserve/1",
+      "stock": [
+        {
+          "sku": "a",
+          "available": 10
+        },
+        {
+          "sku": "b",
+          "available": 3
+        }
+      ],
+      "sku": "a",
+      "amount": 1.5
+    },
+    "value": {
+      "case": "Rejected",
+      "value": "request-shape"
+    }
+  },
+  {
+    "id": "large-amount",
+    "request": {
+      "interface": "inventory-reserve/1",
+      "stock": [
+        {
+          "sku": "a",
+          "available": 10
+        },
+        {
+          "sku": "b",
+          "available": 3
+        }
+      ],
+      "sku": "a",
+      "amount": 9223372036854775808
+    },
+    "value": {
+      "case": "Rejected",
+      "value": "request-shape"
+    }
+  },
+  {
+    "id": "nontext-sku",
+    "request": {
+      "interface": "inventory-reserve/1",
+      "stock": [
+        {
+          "sku": "a",
+          "available": 10
+        },
+        {
+          "sku": "b",
+          "available": 3
+        }
+      ],
+      "sku": 7,
+      "amount": 4
+    },
+    "value": {
+      "case": "Rejected",
+      "value": "request-shape"
+    }
+  },
+  {
+    "id": "stock-object",
+    "request": {
+      "interface": "inventory-reserve/1",
+      "stock": {},
+      "sku": "a",
+      "amount": 4
+    },
+    "value": {
+      "case": "Rejected",
+      "value": "request-shape"
+    }
+  },
+  {
+    "id": "item-extra",
+    "request": {
+      "interface": "inventory-reserve/1",
+      "stock": [
+        {
+          "sku": "a",
+          "available": 10,
+          "extra": 1
+        },
+        {
+          "sku": "b",
+          "available": 3
+        }
+      ],
+      "sku": "a",
+      "amount": 4
+    },
+    "value": {
+      "case": "Rejected",
+      "value": "request-shape"
+    }
+  },
+  {
+    "id": "item-missing",
+    "request": {
+      "interface": "inventory-reserve/1",
+      "stock": [
+        {
+          "available": 10
+        },
+        {
+          "sku": "b",
+          "available": 3
+        }
+      ],
+      "sku": "a",
+      "amount": 4
+    },
+    "value": {
+      "case": "Rejected",
+      "value": "request-shape"
+    }
+  },
+  {
+    "id": "item-bool-count",
+    "request": {
+      "interface": "inventory-reserve/1",
+      "stock": [
+        {
+          "sku": "a",
+          "available": false
+        },
+        {
+          "sku": "b",
+          "available": 3
+        }
+      ],
+      "sku": "a",
+      "amount": 4
+    },
+    "value": {
+      "case": "Rejected",
+      "value": "request-shape"
+    }
+  },
+  {
+    "id": "shape-before-business",
+    "request": {
+      "interface": "inventory-reserve/1",
+      "stock": [
+        {
+          "sku": "a",
+          "available": 10,
+          "extra": 1
+        },
+        {
+          "sku": "b",
+          "available": 3
+        }
+      ],
+      "sku": "a",
+      "amount": 0
+    },
+    "value": {
+      "case": "Rejected",
+      "value": "request-shape"
+    }
+  },
+  {
+    "id": "root-null",
+    "request": null,
+    "value": {
+      "case": "Rejected",
+      "value": "request-shape"
+    }
+  }
+]
