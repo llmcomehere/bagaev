@@ -238,3 +238,5 @@ The [nominal-domain parity control](docs/probe-nominal-domains.md) demonstrates 
 The [direct ordinary Rust catalogue](docs/probe-ordinary-catalog.md) implements the same frozen workload without the language interpreter, providing a qualified comparison path before any new measurements.
 
 The [equal application-boundary observations](docs/probe-equal-application-boundary.md) compare complete owned output across ordinary Rust and prepared reference/native paths. The ordinary baseline is faster in the three resolvable cases; no universal advantage is claimed.
+
+For a complete readable typed pure path, use [single-entry reindexing](docs/pure-reindex-entry.md), [bounded batch reindexing](docs/pure-batch-reindex.md), [invocation preparation](docs/pure-record-form.md#prepare-explicit-arguments-for-execution) and [syntax diagnostics](docs/record-diagnostics.md).

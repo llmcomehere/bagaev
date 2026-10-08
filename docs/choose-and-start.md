@@ -12,6 +12,7 @@ established application stack. Its cost and error-rate advantages are unproven.
 | Explore a small pure computation and exact-base structural change | Start with the L0 example below. No provider account or package installation is needed. |
 | Explore reusable definitions, a catalog application and a saved development handoff | Use the existing [integrated beta guide](beta.md), [application contract](application.md) and [CLI walkthrough](toolchain.md). This remains the documented local Linux/CPython experimental profile. |
 | Select records in a bounded pure computation | Use the separate [pure filtering profile](pure-filter.md), explicit L2/2 source and `src.bagaev_filter` CLI. For saved revisions, explicitly choose the separate [filter workflow](filter-saved-workflow.md); the old /1 receiver does not accept /2. |
+| Write a readable typed pure function over records, tags or a small record list | Use [record-form/1](pure-record-form.md), [single-entry reindexing](pure-reindex-entry.md) or [batch reindexing](pure-batch-reindex.md). Prepare explicit arguments with the data-only tool; a separately reviewed typed reference executes the invocation. |
 | Model a typed stateful operation with business refusal, exact operation replay and persisted continuation | Follow the [stateful component example](stateful-components.md). This is the separate experimental typed component/2 profile, not pure L2/2 or a production runtime. |
 | Investigate typed native components or a proposed language mechanism | Pick one explicitly versioned probe from the [context map](context.md). Probe versions are not interchangeable or a single production runtime. |
 
@@ -19,6 +20,26 @@ For simple tag sorting alone, ordinary Python's `sorted(set(tags))` is shorter.
 The reason to try the example is its explicit program identity and checked change,
 not evidence that this task needs a new language. Decide from the whole job,
 including setup, correction, review and future changes.
+
+## Start with readable typed source
+
+For a typed pure task, choose the smallest relevant example. The single-entry
+example preserves human-maintained tags while replacing computed ones; the batch
+example preserves record order for a list of at most four entries.
+
+1. Copy the readable example and write the expected result for your own inputs.
+2. Use [syntax diagnostics](record-diagnostics.md) for spelling and parser context.
+   `valid_form` does not check types.
+3. Put the arguments in a JSON array and run `record_text.py prepare` as described
+   in [the pure-form guide](pure-record-form.md). This produces invocation data,
+   not an executed result.
+4. Evaluate with the separately reviewed typed-record/10 reference under your
+   authorized execution profile, using `run --input invocation.json`.
+5. Compare the complete result, and handle explicit type, bound and work refusals.
+
+No component identity, owner or revision is needed for a pure value. For durable
+state, choose the stateful route explicitly. Do not treat a four-entry example
+as an unrestricted catalogue, or a successful fixed test as model adoption.
 
 ## Finish one change
 
