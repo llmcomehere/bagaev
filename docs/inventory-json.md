@@ -62,3 +62,8 @@ The portable check pass used 164 data-only CLI calls: 128 existing native
 captures, 32 requests, one byte-identical harness and three intentional refusals.
 Four source/data tests and static documentation checks passed. This pass did
 not run another native kernel.
+
+For readable-source preparation that preserves fractional or large numeric
+arguments until this application's shape check, use the explicit
+[lossless Json-only preparation route](json-argument-prepare.md). The original
+typed preparer refuses those numeric tokens earlier by design.

@@ -74,3 +74,9 @@ The [generated-kernel qualification](probe-native-wide-qualification.md) records
 a later bounded execution of two fixed profile11 kernels. Earlier unrun-stage
 statements above retain their historical scope; this does not claim complete
 native coverage or performance.
+
+## Json numeric argument transport
+
+For a Json-only entry that needs to inspect fractional or large JSON numbers,
+use the separately selected [lossless Json preparation](json-argument-prepare.md)
+route. The original typed-argument preparer remains strict and unchanged.
