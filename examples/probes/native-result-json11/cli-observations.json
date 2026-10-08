@@ -1,0 +1,100 @@
+{
+  "calls": 15,
+  "successes": 4,
+  "refusals": 11,
+  "native_calls": 0,
+  "measurement": false,
+  "observations": [
+    {
+      "id": "inventory-batch-0",
+      "returncode": 0,
+      "stdout_sha256": "fd051653c54e0fea8c22813245abcef1bc51bbbd39f24df289129212a0d55946",
+      "stderr": ""
+    },
+    {
+      "id": "inventory-batch-2",
+      "returncode": 0,
+      "stdout_sha256": "67542d05cec488ff50da5b9f8b62e3e4823daae593b331fe411148824951a7dd",
+      "stderr": ""
+    },
+    {
+      "id": "inventory-batch-change-32",
+      "returncode": 0,
+      "stdout_sha256": "c6888115dccd11ee31688fdae055bb08e750cccaa2794410e088894e658dbc63",
+      "stderr": ""
+    },
+    {
+      "id": "help",
+      "returncode": 0,
+      "stdout_sha256": "b1400fe3decc34fe9a4b9ee4be08ab32ee24a5996be2a55f28e174a33f14bbec",
+      "stderr": ""
+    },
+    {
+      "id": "wrong-pin",
+      "returncode": 2,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "{\"status\":\"refused\",\"reason\":\"SOURCE_PIN_MISMATCH\"}\n"
+    },
+    {
+      "id": "bad-pin",
+      "returncode": 2,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "{\"status\":\"refused\",\"reason\":\"SOURCE_PIN_FORMAT\"}\n"
+    },
+    {
+      "id": "duplicate",
+      "returncode": 2,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "{\"status\":\"refused\",\"reason\":\"ARGUMENTS\"}\n"
+    },
+    {
+      "id": "unknown",
+      "returncode": 2,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "{\"status\":\"refused\",\"reason\":\"ARGUMENTS\"}\n"
+    },
+    {
+      "id": "missing",
+      "returncode": 2,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "{\"status\":\"refused\",\"reason\":\"ARGUMENTS\"}\n"
+    },
+    {
+      "id": "malformed-wire",
+      "returncode": 2,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "{\"status\":\"refused\",\"reason\":\"RESULT_REFUSED\"}\n"
+    },
+    {
+      "id": "unbound-failure",
+      "returncode": 2,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "{\"status\":\"refused\",\"reason\":\"RESULT_REFUSED\"}\n"
+    },
+    {
+      "id": "directory",
+      "returncode": 2,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "{\"status\":\"refused\",\"reason\":\"SOURCE_FILE\"}\n"
+    },
+    {
+      "id": "symlink",
+      "returncode": 2,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "{\"status\":\"refused\",\"reason\":\"SOURCE_FILE\"}\n"
+    },
+    {
+      "id": "source-size",
+      "returncode": 2,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "{\"status\":\"refused\",\"reason\":\"SOURCE_FILE\"}\n"
+    },
+    {
+      "id": "wire-size",
+      "returncode": 2,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "{\"status\":\"refused\",\"reason\":\"WIRE_FILE\"}\n"
+    }
+  ],
+  "source_sha256": "1c9cef2260b6b9b403513e357e5d2c5f9f2af3f6464c47784d4c4a07a4a63dd1"
+}
