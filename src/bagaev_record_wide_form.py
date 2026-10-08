@@ -61,9 +61,11 @@ class Reader(prior.Reader):
       self.take(',')
     self.take(')');need(len(args)==INTRINSICS[operation]);return ('builtin',{'int.eq':'eq','int.le':'le','bool.not':'not'}.get(operation,operation),args)
   return super().atom(depth)
+ def _named_parameters(self,name):
+  need(name in self.functions,'FORM_REFERENCE');return [p[0] for p in self.functions[name]['params']]
  def lower(self,node,scope=frozenset(),depth=1):
   if node[0]=='namedcall':
-   need(depth<=old.DEPTH_LIMIT,'FORM_BOUNDS');name=node[1];need(name in self.functions,'FORM_REFERENCE');params=[p[0] for p in self.functions[name]['params']]
+   need(depth<=old.DEPTH_LIMIT,'FORM_BOUNDS');name=node[1];params=self._named_parameters(name)
    need(len(set(params))==len(params),'FORM_DUPLICATE');need(set(node[2])==set(params),'FORM_ARGUMENTS')
    return ['call',name,*[self.lower(node[2][p],scope,depth+1) for p in params]]
   if node[0]=='builtin' and node[1] in ('bool.and','bool.or'):

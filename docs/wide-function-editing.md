@@ -96,3 +96,30 @@ Six portable tests cover twelve frozen old packets, exact Unicode/CRLF/body
 slices, original named-call spelling, internal-comment retention, string/bytes
 inputs, flag combinations, unknown names, output-bound refusal and unchanged existing output.
 These are data checks, with no program, native or model execution.
+
+## Pinned callee declarations for replacement data
+
+The explicit library API `replace_in_context(source, replacement,
+base_sha256=..., function_sha256=...)` resolves named calls in a replacement
+fragment against the pinned original program's parameter declarations. This
+addresses the standalone fragment's lack of external callee declarations.
+The original base is checked before the replacement is parsed. No caller-supplied
+signature packet, external lookup or other function body is inserted.
+
+Locally declared parameters take precedence. Missing callees, duplicate/missing/
+extra argument labels and mixed syntax remain refusals. Lowering follows the
+callee's declaration order, including nested calls and caller locals. Existing
+single-function scope, unchanged declarations/signature, old-function pin and
+no-op checks still apply. The resulting canonical positional fragment is passed
+to the unchanged replacement validator; the draft remains unadmitted data.
+
+This is a library-only opt-in. `replace`, standalone form5 decoding, the CLI and
+fragment-layout export keep their prior behavior and do not silently gain callee
+context. Their standalone named external-call limitation remains until explicitly
+selected integration is provided. No recursion or call is executed by this API.
+
+Four literal named/positional cases produced byte-identical frozen draft packets:
+reordered arguments, nested calls, a let-local and a self-call as data. Four
+portable tests also cover old-mode refusals, invalid labels, scope/signature/
+base/function-pin errors and changed declaration order under a new base pin.
+These data checks establish no runtime/type or model-choice result.

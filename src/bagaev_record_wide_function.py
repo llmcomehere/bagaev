@@ -93,3 +93,26 @@ def source_context(source, name):
         'scope': 'original-body-expression; excludes surrounding trivia',
     }
     return packet
+
+
+def replace_in_context(source, replacement, *, base_sha256, function_sha256):
+    """Explicitly resolve named replacement calls from pinned original declarations."""
+    program = form.decode(source)
+    need(type(base_sha256) is str and digest(program) == base_sha256, 'FUNCTION_BASE')
+    # Copy only parameter names. No original body is injected into the fragment.
+    signatures = {name: tuple(p[0] for p in f['params'])
+                  for name, f in program['functions'].items()}
+    class ContextReader(form.Reader):
+        def _named_parameters(self, name):
+            if name in self.functions:
+                return super()._named_parameters(name)
+            form.need(name in signatures, 'FORM_REFERENCE')
+            return signatures[name]
+    try:
+        part = ContextReader(replacement).read()
+    except RecursionError:
+        raise form.FormError('FORM_BOUNDS') from None
+    # Reuse the unchanged single-function scope, signature and old-function pin
+    # checks; the canonical positional fragment needs no outside declarations.
+    return replace(source, form.encode(part), base_sha256=base_sha256,
+                   function_sha256=function_sha256)
