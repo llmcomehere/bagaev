@@ -92,3 +92,34 @@ compile a kernel, admit an artifact or change real inventory. The public replay
 test repeated all four commands and compared every captured artifact hash and
 source byte. Existing runtime/native observations belong to the unchanged
 program graphs and are not counted again for this walkthrough.
+
+## Retain an authored named-call body
+
+The [named fragment](../examples/probes/annotated-named-change/BatchLimited.named.fragment.bagaev)
+and [expected output](../examples/probes/annotated-named-change/BatchLimited.named.bagaev)
+provide an alternate source view of the **same** original-to-total10 change.
+Its internal note and named-call spelling survive; the complete draft hash is
+identical to the preceding positional walkthrough. The [manifest](../examples/probes/annotated-named-change/manifest.json)
+pins all four outputs. There is no new application policy or runtime observation.
+
+Use the same `SOURCE`, `BASE`, `FUNCTION`, `TARGET` and `SOURCE_SHA` values above,
+and a new output directory:
+
+```sh
+mkdir named-demo-output
+FRAGMENT=examples/probes/annotated-named-change/BatchLimited.named.fragment.bagaev
+python tools/record_function.py context "$SOURCE" --form 5 --name batch_apply --source-body --output named-demo-output/context.json
+python tools/record_function.py replace "$SOURCE" --form 5 --callee-context --replacement "$FRAGMENT" --base "$BASE" --function-pin "$FUNCTION" --output named-demo-output/draft.json
+python tools/record_export.py "$SOURCE" --form 5 --draft named-demo-output/draft.json --base "$BASE" --target "$TARGET" --preserve-layout --source-sha256 "$SOURCE_SHA" --replacement-source "$FRAGMENT" --callee-context --output named-demo-output/BatchLimited.named.bagaev
+python tools/record_text.py inspect named-demo-output/BatchLimited.named.bagaev --form 5 --output named-demo-output/inspection.json
+```
+
+The first packet includes the old exact expression text. The second uses only
+pinned original parameter declarations for named external calls. The third
+validates that the authored fragment reconstructs that exact draft and keeps
+all bytes outside the changed expression. Internal source comments remain
+untrusted data. The complete inspected target must still equal `TARGET`.
+
+Two portable tests repeated the four commands, matched every captured artifact
+hash, checked target graph/outside bytes and preserved both input files. These
+are data-tool observations, not new runtime/native/model calls or measurements.
