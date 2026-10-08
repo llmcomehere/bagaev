@@ -74,6 +74,12 @@ untrusted code. No model account is needed for this example.
 
 For a pure readable typed function without component metadata, use the [record-form/1 guide](docs/pure-record-form.md).
 
+For a complete Json-entry business change, the [inventory policy walkthrough](docs/inventory-json-focused-change.md)
+carries one pinned function replacement through source export and selected native
+execution. It preserves the original example and makes shape/business refusals
+explicit. This is bounded correctness evidence, not a model or performance gain.
+
+
 For a readable stateful formula, follow [write, diagnose and change a component](docs/readable-authoring.md): an explicit form2–7 choice map, syntax context, JSON conversion and a detached checked helper extraction.
 
 For a composed business rule with retained results, follow the [stock adjustment example](docs/stock-adjustment.md): readable match, actual typed execution, declines, applied revisions and receipt reconstruction.
