@@ -47,3 +47,5 @@ not new independent cases, native AOT measurements or proof of model preference.
 An initial encoding exposed the old form's inability to spell projection from a
 computed record. The new record.field spelling resolves that representation gap;
 no graph or expected response was rewritten. Original refusal evidence was kept.
+
+For explicit form4 syntax diagnostics and exact-base helper extraction, see the [catalogue change workflow](catalog-edit-workflow.md).
