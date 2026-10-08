@@ -1,0 +1,64 @@
+#[path="{{BACKEND}}/transport.rs"]pub mod transport;
+#[path="{{BACKEND}}/check.rs"]pub mod check;
+#[path="{{BACKEND}}/ir.rs"]pub mod ir;
+#[path="{{BACKEND}}/canonical.rs"]pub mod canonical;
+#[path="{{BACKEND}}/sha256.rs"]pub mod sha256;
+#[path="{{BACKEND}}/record_ir.rs"]pub mod record_ir;
+#[path="{{BACKEND}}/option_int.rs"]pub mod option_int;
+#[path="{{BACKEND}}/text_value.rs"]pub mod text_value;
+#[path="{{BACKEND}}/text_list.rs"]pub mod text_list;
+#[path="{{BACKEND}}/typed_record.rs"]pub mod typed_record;
+#[path="{{BACKEND}}/text_inspection.rs"]pub mod text_inspection;
+#[path="{{BACKEND}}/int_projection.rs"]pub mod int_projection;
+#[path="{{BACKEND}}/record_value.rs"]pub mod record_value;
+#[path="{{BACKEND}}/type_graph.rs"]pub mod type_graph;
+#[path="{{BACKEND}}/json_view.rs"]pub mod json_view;
+#[path="{{BACKEND}}/variant_admission_v11.rs"]pub mod variant_admission_v11;
+#[path="{{BACKEND}}/list_callframe.rs"]pub mod list_callframe;
+#[path="{{BACKEND}}/list_native_adapter.rs"]pub mod list_native_adapter;
+#[path="{{BACKEND}}/json_native_input.rs"]pub mod json_native_input;
+#[path="{{BACKEND}}/json_native_invocation.rs"]pub mod json_native_invocation;
+#[path="{{BACKEND}}/json_native_adapter_v11.rs"]pub mod json_native_adapter_v11;
+#[path="{{BACKEND}}/composite_export_v11.rs"]pub mod composite_export_v11;
+#[path="{{BACKEND}}/composite_native_cells.rs"]pub mod composite_native_cells;
+#[path="{{BACKEND}}/composite_result_decode_v11.rs"]pub mod composite_result_decode_v11;
+{{SOURCE}}
+{{DESCRIPTION}}
+{{BINDING}}
+{{ARG_COUNT}}
+use std::io::Write;use std::sync::atomic::{AtomicU8,AtomicU64,Ordering};static FILL:AtomicU8=AtomicU8::new(0);static USED:AtomicU64=AtomicU64::new(0);static TEXT_USED:AtomicU64=AtomicU64::new(0);use json_native_adapter_v11::{NativeValue,NativeText,KernelOutput,Cells,Arena};use json_native_input::Node;
+extern "C"{fn bagaev_json_view11_kernel(v:*const NativeValue,a:*mut Arena,c:*mut Cells,o:*mut KernelOutput);}
+fn words(v:NativeValue)->(i64,usize,u64,u64){(v.scalar,v.bytes as usize,v.len,v.scalars)}
+unsafe fn snapshot(root:*const Node)->Vec<u8>{let mut out=Vec::new();let mut pending=vec![root];let mut seen=0;while let Some(p)=pending.pop(){seen+=1;assert!(seen<=16384);let n=unsafe{&*p};for x in [n.kind,n.count,n.int_charge,n.int_valid,n.int_payload as u64,n.text as usize as u64,n.text_bytes,n.text_scalars,n.entries as usize as u64,n.reserved]{out.extend_from_slice(&x.to_le_bytes());}if !n.text.is_null(){out.extend_from_slice(unsafe{std::slice::from_raw_parts(n.text,n.text_bytes as usize)});}if n.count>0{let entries=unsafe{std::slice::from_raw_parts(n.entries,n.count as usize)};for e in entries{for x in [e.key as usize as u64,e.key_bytes,e.child as usize as u64]{out.extend_from_slice(&x.to_le_bytes());}if !e.key.is_null(){out.extend_from_slice(unsafe{std::slice::from_raw_parts(e.key,e.key_bytes as usize)});}pending.push(e.child);}}}out}
+
+static CALLS:AtomicU64=AtomicU64::new(0);
+unsafe extern "C" fn measured(v:*const NativeValue,a:*mut Arena,c:*mut Cells,o:*mut KernelOutput){
+ let f=FILL.load(Ordering::SeqCst);let u=u64::from_le_bytes([f;8]);let q=u32::from_le_bytes([f;4]);
+ let mut out=KernelOutput{meta:composite_export_v11::Output{status:q,value_type:q,value:u as i64,work:u,reason:q,location:q},value:NativeValue{scalar:u as i64,bytes:u as usize as *const u8,len:u,scalars:u}};
+ let before:Vec<Vec<u8>>=(0..ARG_COUNT).map(|i|unsafe{snapshot((*v.add(i)).bytes.cast())}).collect();
+ CALLS.fetch_add(1,Ordering::SeqCst);unsafe{bagaev_json_view11_kernel(v,a,c,&mut out);o.write(out);}
+ for (i,expected) in before.iter().enumerate(){assert_eq!(&unsafe{snapshot((*v.add(i)).bytes.cast())},expected);}
+ USED.store(unsafe{(*c).used},Ordering::SeqCst);TEXT_USED.store(unsafe{(*a).used},Ordering::SeqCst);
+}
+
+extern "C"{static bagaev_probe_binding_length:u64;static bagaev_probe_binding:u8;}
+fn main(){
+ use std::io::Read;
+ let args:Vec<_>=std::env::args().collect();assert_eq!(args.len(),3);
+ assert!(std::fs::symlink_metadata(&args[1]).unwrap().file_type().is_file());
+ let mut raw=Vec::new();std::fs::File::open(&args[1]).unwrap().take(1048577).read_to_end(&mut raw).unwrap();assert!(raw.len()<=1048576);
+ let checked=typed_record::checked_json_invocation_v11(&raw).unwrap();assert_eq!(checked.program().canonical_bytes(),SOURCE);assert_eq!(checked.json_arguments().len(),ARG_COUNT);
+ unsafe{assert_eq!(bagaev_probe_binding_length,DESCRIPTION.len() as u64);assert_eq!(std::slice::from_raw_parts(std::ptr::addr_of!(bagaev_probe_binding),DESCRIPTION.len()),DESCRIPTION);}
+ drop(checked);let fill:u8=args[2].parse().unwrap();assert!(fill==90||fill==165);FILL.store(fill,Ordering::SeqCst);
+ let bytes={
+  let u=u64::from_le_bytes([fill;8]);let dirty=NativeValue{scalar:u as i64,bytes:u as usize as *const u8,len:u,scalars:u};let guard=NativeValue{scalar:17,bytes:std::ptr::null(),len:19,scalars:23};let mut cells=vec![dirty;65538];cells[0]=guard;cells[65537]=guard;
+  let dirtytext=NativeText{bytes:u as usize as *const u8,len:u,scalars:u};let tg=NativeText{bytes:std::ptr::null(),len:31,scalars:37};let mut text=vec![dirtytext;65538];text[0]=tg;text[65537]=tg;
+  let owned=unsafe{json_native_adapter_v11::evaluate(&raw,&mut text[1..65537],&mut cells[1..65537],&BINDING,measured)}.unwrap();assert_eq!(CALLS.load(Ordering::SeqCst),1);
+  assert_eq!((owned.meta.status,owned.meta.reason,owned.meta.location),(0,0,0));
+  let used=USED.load(Ordering::SeqCst) as usize;let tu=TEXT_USED.load(Ordering::SeqCst) as usize;assert!(used<=65536&&tu<=65536);
+  for i in [0,65537]{assert_eq!(words(cells[i]),words(guard));assert_eq!((text[i].bytes,text[i].len,text[i].scalars),(tg.bytes,tg.len,tg.scalars));}
+  for v in &cells[1+used..65537]{assert_eq!(words(*v),words(dirty));}
+  for v in &text[1+tu..65537]{assert_eq!((v.bytes,v.len,v.scalars),(dirtytext.bytes,dirtytext.len,dirtytext.scalars));}
+  owned.bytes
+ };drop(raw);assert_eq!(&bytes[..8],b"BCMPRES4");std::io::stdout().write_all(&bytes).unwrap();
+}

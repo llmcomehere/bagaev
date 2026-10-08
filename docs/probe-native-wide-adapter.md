@@ -37,3 +37,10 @@ and run under the existing bounded profile. This establishes the selected adapte
 and ownership observations only. No generated LLVM kernel was compiled or called;
 full native semantic qualification, performance and independent reproduction
 remain open. The LLVM preparation and owned-wire checks are separate evidence.
+
+## Subsequent selected native execution
+
+The [generated-kernel qualification](probe-native-wide-qualification.md) records
+a later bounded execution of two fixed profile11 kernels. Earlier unrun-stage
+statements above retain their historical scope; this does not claim complete
+native coverage or performance.
