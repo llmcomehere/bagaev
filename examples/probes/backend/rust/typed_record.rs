@@ -47,7 +47,7 @@ pub struct CheckedSource {
     functions: Vec<Function>, nodes: Vec<Node>, entry: usize,
     canonical: Vec<u8>, identity: String,
 }
-impl RecordDefinition {pub fn name(&self)->&str{&self.name} pub fn fields(&self)->&[(String,Type)]{&self.fields}}
+impl RecordDefinition {pub fn omits_none(&self,name:&str)->bool{self.optional.iter().any(|field|field==name)} pub fn name(&self)->&str{&self.name} pub fn fields(&self)->&[(String,Type)]{&self.fields}}
 impl CheckedSource {
     pub fn profile(&self)->u8{self.profile}
     pub fn variant_definitions(&self)->&[VariantDefinition]{&self.variants}

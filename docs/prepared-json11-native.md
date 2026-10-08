@@ -72,3 +72,7 @@ or inspecting this template does not authorize compiling or executing it.
 The final published template was rendered and replayed for all 24 processes
 (608 additional calls); every output capture was byte-identical to the first
 reuse qualification. These repeated calls add no new semantic cases.
+
+Consumers can use the separate [data-only JSON projection](native-result-json11.md)
+to read validated success bytes without executing a kernel or hand-decoding the
+nominal result tree. Unbound failure packets require a different provenance path.
