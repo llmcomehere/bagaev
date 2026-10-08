@@ -84,3 +84,23 @@ coverage, native-backend sensitivity or universal correctness.
 The separate [one-function batch-total change](inventory-batch-change.md) adds a
 synthetic total-ten policy through pinned context, replacement, export and
 reference/native checks, preserving this original programme and its oracle.
+
+## Same program with shorter guards
+
+[Batch.lazy.bagaev](../examples/probes/inventory-batch/Batch.lazy.bagaev) is a
+separate readable view. Only `sku_ok` and `item_shape` use the lazy form5 spelling:
+
+```
+fn sku_ok(sku: Text) -> Bool =
+  bool.and(0 < text.bytes(sku), int.le(text.bytes(sku), 32));
+```
+
+The two complete source files decode to exactly the same checked-program input
+and canonical pin
+`sha256:d6b56f365d222f52d015ac336cd2f85bf2626c0148ce7f3fadf2bd243a2f4f66`.
+The original source, frozen outcomes and native captures remain unchanged.
+Canonical formatting expands the shorthand back to `if`; this is not a second
+runtime implementation. Generated Boolean literals keep enclosing source ranges.
+Two portable data tests verify full graph/pin/canonical equality and all four
+new synthetic literal ranges. No new runtime, native or performance observations
+are claimed for an identical lowered program.
