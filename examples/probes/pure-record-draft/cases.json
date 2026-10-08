@@ -1,0 +1,110 @@
+{
+  "base": "bagaev record-form/1; program { entry calc; fn calc(x: Int64) -> Int64 = x + 1; }",
+  "helper": "bagaev record-form/1; program { entry calc; fn calc(x: Int64) -> Int64 = plus_one(x); fn plus_one(y: Int64) -> Int64 = y + 1; }",
+  "base_program": {
+    "schema": "bagaev-typed-record/10",
+    "records": {},
+    "lists": {},
+    "variants": {},
+    "entry": "calc",
+    "functions": {
+      "calc": {
+        "params": [
+          [
+            "x",
+            "Int64"
+          ]
+        ],
+        "result": "Int64",
+        "body": [
+          "add",
+          [
+            "arg",
+            "x"
+          ],
+          [
+            "int",
+            1
+          ]
+        ]
+      }
+    }
+  },
+  "helper_program": {
+    "schema": "bagaev-typed-record/10",
+    "records": {},
+    "lists": {},
+    "variants": {},
+    "entry": "calc",
+    "functions": {
+      "calc": {
+        "params": [
+          [
+            "x",
+            "Int64"
+          ]
+        ],
+        "result": "Int64",
+        "body": [
+          "call",
+          "plus_one",
+          [
+            "arg",
+            "x"
+          ]
+        ]
+      },
+      "plus_one": {
+        "params": [
+          [
+            "y",
+            "Int64"
+          ]
+        ],
+        "result": "Int64",
+        "body": [
+          "add",
+          [
+            "arg",
+            "y"
+          ],
+          [
+            "int",
+            1
+          ]
+        ]
+      }
+    }
+  },
+  "argument": 7,
+  "expected": 8,
+  "wrong": "bagaev record-form/1; program { entry calc; fn calc(x: Int64) -> Int64 = 0; }",
+  "wrong_value": 0,
+  "refusals": [
+    {
+      "id": "no-change",
+      "candidate": "bagaev record-form/1; program { entry calc; fn calc(x: Int64) -> Int64 = x + 1; }",
+      "code": "DRAFT_NO_CHANGE"
+    },
+    {
+      "id": "signature",
+      "candidate": "bagaev record-form/1; program { entry calc; fn calc(x: Bool) -> Int64 = x + 1; }",
+      "code": "DRAFT_SIGNATURE"
+    },
+    {
+      "id": "entry",
+      "candidate": "bagaev record-form/1; program { entry other; fn calc(x: Int64) -> Int64 = x + 1; }",
+      "code": "DRAFT_SCOPE"
+    },
+    {
+      "id": "type",
+      "candidate": "bagaev record-form/1; program { record Extra { n: Int64 }; entry calc; fn calc(x: Int64) -> Int64 = x + 1; }",
+      "code": "DRAFT_SCOPE"
+    },
+    {
+      "id": "remove",
+      "candidate": "bagaev record-form/1; program { entry calc; }",
+      "code": "DRAFT_SCOPE"
+    }
+  ]
+}
