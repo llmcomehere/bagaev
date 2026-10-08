@@ -22,13 +22,19 @@ not evidence that this task needs a new language. Decide from the whole job,
 including setup, correction, review and future changes.
 
 For current pure form4/form5 tooling, inspect the [machine-readable capability
-report](record-capabilities.md) before selecting schemas and bounds. The separate
+report](record-capabilities.md) before selecting schemas and bounds. Use explicit
+--revision 2 for the current Json preparation and native-data routes; the default
+revision 1 remains unchanged. The separate
 [sixteen-entry catalogue](catalog-wide.md) has [diagnostic/formatting support](wide-authoring.md),
 [focused changes](wide-function-editing.md) and a [draft-to-source handoff](record-draft-export.md).
 
 A [pure inventory reservation](pure-inventory-reservation.md) example shows typed
 business refusals, full returned stock and guarded arithmetic on sixteen items.
-It performs no real inventory or database effect.
+It performs no real inventory or database effect. The separate [Json envelope](inventory-json.md)
+can follow the existing native profile. Its [one-function policy change](inventory-json-focused-change.md)
+connects context, pinned draft, export, lossless Json preparation and separately
+admitted native execution. Native qualification remains selected and bounded.
+
 
 ## Start with readable typed source
 
