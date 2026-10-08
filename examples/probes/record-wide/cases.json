@@ -1,0 +1,628 @@
+[
+  {
+    "id": "len16",
+    "program": {
+      "schema": "bagaev-typed-record/11",
+      "records": {
+        "Item": {
+          "n": "Int64"
+        }
+      },
+      "lists": {
+        "Items": {
+          "element": "Item",
+          "capacity": 16
+        }
+      },
+      "variants": {},
+      "entry": "main",
+      "functions": {
+        "main": {
+          "params": [
+            [
+              "xs",
+              "Items"
+            ]
+          ],
+          "result": "Int64",
+          "body": [
+            "records.len",
+            [
+              "arg",
+              "xs"
+            ]
+          ]
+        }
+      }
+    },
+    "arguments": [
+      [
+        {
+          "n": 0
+        },
+        {
+          "n": 1
+        },
+        {
+          "n": 2
+        },
+        {
+          "n": 3
+        },
+        {
+          "n": 4
+        },
+        {
+          "n": 5
+        },
+        {
+          "n": 6
+        },
+        {
+          "n": 7
+        },
+        {
+          "n": 8
+        },
+        {
+          "n": 9
+        },
+        {
+          "n": 10
+        },
+        {
+          "n": 11
+        },
+        {
+          "n": 12
+        },
+        {
+          "n": 13
+        },
+        {
+          "n": 14
+        },
+        {
+          "n": 15
+        }
+      ]
+    ],
+    "value": 16
+  },
+  {
+    "id": "sum16",
+    "program": {
+      "schema": "bagaev-typed-record/11",
+      "records": {
+        "Item": {
+          "n": "Int64"
+        }
+      },
+      "lists": {
+        "Items": {
+          "element": "Item",
+          "capacity": 16
+        }
+      },
+      "variants": {},
+      "entry": "main",
+      "functions": {
+        "main": {
+          "params": [
+            [
+              "xs",
+              "Items"
+            ]
+          ],
+          "result": "Int64",
+          "body": [
+            "loop",
+            16,
+            "i",
+            "sum",
+            [
+              "int",
+              0
+            ],
+            [
+              "add",
+              [
+                "use",
+                "sum"
+              ],
+              [
+                "field",
+                [
+                  "records.at",
+                  [
+                    "arg",
+                    "xs"
+                  ],
+                  [
+                    "use",
+                    "i"
+                  ]
+                ],
+                "n"
+              ]
+            ]
+          ]
+        }
+      }
+    },
+    "arguments": [
+      [
+        {
+          "n": 0
+        },
+        {
+          "n": 1
+        },
+        {
+          "n": 2
+        },
+        {
+          "n": 3
+        },
+        {
+          "n": 4
+        },
+        {
+          "n": 5
+        },
+        {
+          "n": 6
+        },
+        {
+          "n": 7
+        },
+        {
+          "n": 8
+        },
+        {
+          "n": 9
+        },
+        {
+          "n": 10
+        },
+        {
+          "n": 11
+        },
+        {
+          "n": 12
+        },
+        {
+          "n": 13
+        },
+        {
+          "n": 14
+        },
+        {
+          "n": 15
+        }
+      ]
+    ],
+    "value": 120
+  },
+  {
+    "id": "push15",
+    "program": {
+      "schema": "bagaev-typed-record/11",
+      "records": {
+        "Item": {
+          "n": "Int64"
+        }
+      },
+      "lists": {
+        "Items": {
+          "element": "Item",
+          "capacity": 16
+        }
+      },
+      "variants": {},
+      "entry": "main",
+      "functions": {
+        "main": {
+          "params": [
+            [
+              "xs",
+              "Items"
+            ]
+          ],
+          "result": "Items",
+          "body": [
+            "records.push",
+            [
+              "arg",
+              "xs"
+            ],
+            [
+              "record",
+              "Item",
+              [
+                "int",
+                99
+              ]
+            ]
+          ]
+        }
+      }
+    },
+    "arguments": [
+      [
+        {
+          "n": 0
+        },
+        {
+          "n": 1
+        },
+        {
+          "n": 2
+        },
+        {
+          "n": 3
+        },
+        {
+          "n": 4
+        },
+        {
+          "n": 5
+        },
+        {
+          "n": 6
+        },
+        {
+          "n": 7
+        },
+        {
+          "n": 8
+        },
+        {
+          "n": 9
+        },
+        {
+          "n": 10
+        },
+        {
+          "n": 11
+        },
+        {
+          "n": 12
+        },
+        {
+          "n": 13
+        },
+        {
+          "n": 14
+        }
+      ]
+    ],
+    "value": [
+      {
+        "n": 0
+      },
+      {
+        "n": 1
+      },
+      {
+        "n": 2
+      },
+      {
+        "n": 3
+      },
+      {
+        "n": 4
+      },
+      {
+        "n": 5
+      },
+      {
+        "n": 6
+      },
+      {
+        "n": 7
+      },
+      {
+        "n": 8
+      },
+      {
+        "n": 9
+      },
+      {
+        "n": 10
+      },
+      {
+        "n": 11
+      },
+      {
+        "n": 12
+      },
+      {
+        "n": 13
+      },
+      {
+        "n": 14
+      },
+      {
+        "n": 99
+      }
+    ]
+  },
+  {
+    "id": "push16",
+    "program": {
+      "schema": "bagaev-typed-record/11",
+      "records": {
+        "Item": {
+          "n": "Int64"
+        }
+      },
+      "lists": {
+        "Items": {
+          "element": "Item",
+          "capacity": 16
+        }
+      },
+      "variants": {},
+      "entry": "main",
+      "functions": {
+        "main": {
+          "params": [
+            [
+              "xs",
+              "Items"
+            ]
+          ],
+          "result": "Items",
+          "body": [
+            "records.push",
+            [
+              "arg",
+              "xs"
+            ],
+            [
+              "record",
+              "Item",
+              [
+                "int",
+                99
+              ]
+            ]
+          ]
+        }
+      }
+    },
+    "arguments": [
+      [
+        {
+          "n": 0
+        },
+        {
+          "n": 1
+        },
+        {
+          "n": 2
+        },
+        {
+          "n": 3
+        },
+        {
+          "n": 4
+        },
+        {
+          "n": 5
+        },
+        {
+          "n": 6
+        },
+        {
+          "n": 7
+        },
+        {
+          "n": 8
+        },
+        {
+          "n": 9
+        },
+        {
+          "n": 10
+        },
+        {
+          "n": 11
+        },
+        {
+          "n": 12
+        },
+        {
+          "n": 13
+        },
+        {
+          "n": 14
+        },
+        {
+          "n": 15
+        }
+      ]
+    ],
+    "reason": "RR_RECORD_LIST_ITEMS"
+  },
+  {
+    "id": "cap17",
+    "program": {
+      "schema": "bagaev-typed-record/11",
+      "records": {
+        "Item": {
+          "n": "Int64"
+        }
+      },
+      "lists": {
+        "Items": {
+          "element": "Item",
+          "capacity": 17
+        }
+      },
+      "variants": {},
+      "entry": "main",
+      "functions": {
+        "main": {
+          "params": [
+            [
+              "xs",
+              "Items"
+            ]
+          ],
+          "result": "Int64",
+          "body": [
+            "records.len",
+            [
+              "arg",
+              "xs"
+            ]
+          ]
+        }
+      }
+    },
+    "arguments": [
+      []
+    ],
+    "reason": "RR_BOUNDS"
+  },
+  {
+    "id": "argument17",
+    "program": {
+      "schema": "bagaev-typed-record/11",
+      "records": {
+        "Item": {
+          "n": "Int64"
+        }
+      },
+      "lists": {
+        "Items": {
+          "element": "Item",
+          "capacity": 16
+        }
+      },
+      "variants": {},
+      "entry": "main",
+      "functions": {
+        "main": {
+          "params": [
+            [
+              "xs",
+              "Items"
+            ]
+          ],
+          "result": "Int64",
+          "body": [
+            "records.len",
+            [
+              "arg",
+              "xs"
+            ]
+          ]
+        }
+      }
+    },
+    "arguments": [
+      [
+        {
+          "n": 0
+        },
+        {
+          "n": 1
+        },
+        {
+          "n": 2
+        },
+        {
+          "n": 3
+        },
+        {
+          "n": 4
+        },
+        {
+          "n": 5
+        },
+        {
+          "n": 6
+        },
+        {
+          "n": 7
+        },
+        {
+          "n": 8
+        },
+        {
+          "n": 9
+        },
+        {
+          "n": 10
+        },
+        {
+          "n": 11
+        },
+        {
+          "n": 12
+        },
+        {
+          "n": 13
+        },
+        {
+          "n": 14
+        },
+        {
+          "n": 15
+        },
+        {
+          "n": 16
+        }
+      ]
+    ],
+    "reason": "RR_ARGUMENT"
+  },
+  {
+    "id": "expansion",
+    "program": {
+      "schema": "bagaev-typed-record/11",
+      "records": {
+        "Item": {
+          "f0": "TextList",
+          "f1": "TextList",
+          "f2": "TextList",
+          "f3": "TextList",
+          "f4": "TextList",
+          "f5": "TextList",
+          "f6": "TextList",
+          "f7": "TextList"
+        }
+      },
+      "lists": {
+        "Items": {
+          "element": "Item",
+          "capacity": 16
+        }
+      },
+      "variants": {},
+      "entry": "main",
+      "functions": {
+        "main": {
+          "params": [
+            [
+              "xs",
+              "Items"
+            ]
+          ],
+          "result": "Int64",
+          "body": [
+            "int",
+            0
+          ]
+        }
+      }
+    },
+    "arguments": [
+      []
+    ],
+    "reason": "RR_BOUNDS"
+  }
+]

@@ -51,3 +51,5 @@ no graph or expected response was rewritten. Original refusal evidence was kept.
 For explicit form4 syntax diagnostics and exact-base helper extraction, see the [catalogue change workflow](catalog-edit-workflow.md).
 
 A [formatted view](record-formatting.md) adds line breaks without changing the catalogue graph or canonical program identity.
+
+A separately selected [pure profile11 / record-form5](record-wide-profile.md) admits record-list capacities up to16; it does not change this catalogue contract.
