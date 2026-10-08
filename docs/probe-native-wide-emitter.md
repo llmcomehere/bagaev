@@ -47,3 +47,10 @@ remain separate evidence.
 
 A [separate profile11 owned output boundary](probe-native-wide-wire.md) is now
 qualified with initialized data only. It does not complete kernel execution.
+
+## Subsequent selected native execution
+
+The [generated-kernel qualification](probe-native-wide-qualification.md) records
+a later bounded execution of two fixed profile11 kernels. Earlier unrun-stage
+statements above retain their historical scope; this does not claim complete
+native coverage or performance.

@@ -67,3 +67,10 @@ creates pinned detached single-function replacements.
 
 [Data-only LLVM preparation](probe-native-wide-emitter.md) is a separate initial
 native stage. Generated profile11 code has not yet been qualified by execution.
+
+## Subsequent selected native execution
+
+The [generated-kernel qualification](probe-native-wide-qualification.md) records
+a later bounded execution of two fixed profile11 kernels. Earlier unrun-stage
+statements above retain their historical scope; this does not claim complete
+native coverage or performance.
