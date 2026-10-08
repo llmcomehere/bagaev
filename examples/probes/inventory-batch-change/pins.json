@@ -1,0 +1,6 @@
+{
+  "base": "d6b56f365d222f52d015ac336cd2f85bf2626c0148ce7f3fadf2bd243a2f4f66",
+  "function": "7f22256c03ea16556738c8e69ce619424335150087f2784b14f6cdc298bd6696",
+  "target": "b4755a73e1090e2b4ed563f42c29250dc759c5b1224d3c5765a239cb6584351e",
+  "changed_function": "batch_apply"
+}
