@@ -1,0 +1,7 @@
+{
+  "sha256": {
+    "invocation.json": "c2f4f4a7f23e8055082f71b1a3cd6262385a4d52197c1e54a79528211d576145",
+    "expected-wire.hex": "95f6fbe9a2a95829fa171993a0897cef48bb92534bab22768eb42d31a19be1a7",
+    "CONTRACT.md": "732451dedd7b741fff14195312a81f4431a3a7de156cd7ae3a835f5b668e2f04"
+  }
+}
