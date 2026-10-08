@@ -1,0 +1,602 @@
+[
+  {
+    "id": "partial",
+    "arguments": [
+      [
+        {
+          "sku": "a",
+          "available": 10
+        },
+        {
+          "sku": "b",
+          "available": 3
+        }
+      ],
+      "a",
+      4
+    ],
+    "value": {
+      "case": "Reserved",
+      "value": {
+        "stock": [
+          {
+            "sku": "a",
+            "available": 6
+          },
+          {
+            "sku": "b",
+            "available": 3
+          }
+        ],
+        "sku": "a",
+        "amount": 4
+      }
+    }
+  },
+  {
+    "id": "exact",
+    "arguments": [
+      [
+        {
+          "sku": "a",
+          "available": 10
+        },
+        {
+          "sku": "b",
+          "available": 3
+        }
+      ],
+      "b",
+      3
+    ],
+    "value": {
+      "case": "Reserved",
+      "value": {
+        "stock": [
+          {
+            "sku": "a",
+            "available": 10
+          },
+          {
+            "sku": "b",
+            "available": 0
+          }
+        ],
+        "sku": "b",
+        "amount": 3
+      }
+    }
+  },
+  {
+    "id": "max-int",
+    "arguments": [
+      [
+        {
+          "sku": "a",
+          "available": 9223372036854775807
+        }
+      ],
+      "a",
+      9223372036854775807
+    ],
+    "value": {
+      "case": "Reserved",
+      "value": {
+        "stock": [
+          {
+            "sku": "a",
+            "available": 0
+          }
+        ],
+        "sku": "a",
+        "amount": 9223372036854775807
+      }
+    }
+  },
+  {
+    "id": "unicode",
+    "arguments": [
+      [
+        {
+          "sku": "яблоко",
+          "available": 5
+        }
+      ],
+      "яблоко",
+      2
+    ],
+    "value": {
+      "case": "Reserved",
+      "value": {
+        "stock": [
+          {
+            "sku": "яблоко",
+            "available": 3
+          }
+        ],
+        "sku": "яблоко",
+        "amount": 2
+      }
+    }
+  },
+  {
+    "id": "sixteen-last",
+    "arguments": [
+      [
+        {
+          "sku": "a",
+          "available": 1
+        },
+        {
+          "sku": "b",
+          "available": 2
+        },
+        {
+          "sku": "c",
+          "available": 3
+        },
+        {
+          "sku": "d",
+          "available": 4
+        },
+        {
+          "sku": "e",
+          "available": 5
+        },
+        {
+          "sku": "f",
+          "available": 6
+        },
+        {
+          "sku": "g",
+          "available": 7
+        },
+        {
+          "sku": "h",
+          "available": 8
+        },
+        {
+          "sku": "i",
+          "available": 9
+        },
+        {
+          "sku": "j",
+          "available": 10
+        },
+        {
+          "sku": "k",
+          "available": 11
+        },
+        {
+          "sku": "l",
+          "available": 12
+        },
+        {
+          "sku": "m",
+          "available": 13
+        },
+        {
+          "sku": "n",
+          "available": 14
+        },
+        {
+          "sku": "o",
+          "available": 15
+        },
+        {
+          "sku": "p",
+          "available": 16
+        }
+      ],
+      "p",
+      16
+    ],
+    "value": {
+      "case": "Reserved",
+      "value": {
+        "stock": [
+          {
+            "sku": "a",
+            "available": 1
+          },
+          {
+            "sku": "b",
+            "available": 2
+          },
+          {
+            "sku": "c",
+            "available": 3
+          },
+          {
+            "sku": "d",
+            "available": 4
+          },
+          {
+            "sku": "e",
+            "available": 5
+          },
+          {
+            "sku": "f",
+            "available": 6
+          },
+          {
+            "sku": "g",
+            "available": 7
+          },
+          {
+            "sku": "h",
+            "available": 8
+          },
+          {
+            "sku": "i",
+            "available": 9
+          },
+          {
+            "sku": "j",
+            "available": 10
+          },
+          {
+            "sku": "k",
+            "available": 11
+          },
+          {
+            "sku": "l",
+            "available": 12
+          },
+          {
+            "sku": "m",
+            "available": 13
+          },
+          {
+            "sku": "n",
+            "available": 14
+          },
+          {
+            "sku": "o",
+            "available": 15
+          },
+          {
+            "sku": "p",
+            "available": 0
+          }
+        ],
+        "sku": "p",
+        "amount": 16
+      }
+    }
+  },
+  {
+    "id": "zero",
+    "arguments": [
+      [
+        {
+          "sku": "a",
+          "available": 10
+        },
+        {
+          "sku": "b",
+          "available": 3
+        }
+      ],
+      "a",
+      0
+    ],
+    "value": {
+      "case": "Rejected",
+      "value": "invalid-request"
+    }
+  },
+  {
+    "id": "negative",
+    "arguments": [
+      [
+        {
+          "sku": "a",
+          "available": 10
+        },
+        {
+          "sku": "b",
+          "available": 3
+        }
+      ],
+      "a",
+      -1
+    ],
+    "value": {
+      "case": "Rejected",
+      "value": "invalid-request"
+    }
+  },
+  {
+    "id": "min-int",
+    "arguments": [
+      [
+        {
+          "sku": "a",
+          "available": 10
+        },
+        {
+          "sku": "b",
+          "available": 3
+        }
+      ],
+      "a",
+      -9223372036854775808
+    ],
+    "value": {
+      "case": "Rejected",
+      "value": "invalid-request"
+    }
+  },
+  {
+    "id": "request-empty",
+    "arguments": [
+      [
+        {
+          "sku": "a",
+          "available": 10
+        },
+        {
+          "sku": "b",
+          "available": 3
+        }
+      ],
+      "",
+      1
+    ],
+    "value": {
+      "case": "Rejected",
+      "value": "invalid-request"
+    }
+  },
+  {
+    "id": "request-long",
+    "arguments": [
+      [
+        {
+          "sku": "a",
+          "available": 10
+        },
+        {
+          "sku": "b",
+          "available": 3
+        }
+      ],
+      "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+      1
+    ],
+    "value": {
+      "case": "Rejected",
+      "value": "invalid-request"
+    }
+  },
+  {
+    "id": "stock-negative",
+    "arguments": [
+      [
+        {
+          "sku": "a",
+          "available": -1
+        },
+        {
+          "sku": "b",
+          "available": 3
+        }
+      ],
+      "b",
+      1
+    ],
+    "value": {
+      "case": "Rejected",
+      "value": "invalid-stock"
+    }
+  },
+  {
+    "id": "stock-empty-sku",
+    "arguments": [
+      [
+        {
+          "sku": "",
+          "available": 3
+        }
+      ],
+      "a",
+      1
+    ],
+    "value": {
+      "case": "Rejected",
+      "value": "invalid-stock"
+    }
+  },
+  {
+    "id": "nonadjacent-duplicate",
+    "arguments": [
+      [
+        {
+          "sku": "a",
+          "available": 2
+        },
+        {
+          "sku": "b",
+          "available": 3
+        },
+        {
+          "sku": "a",
+          "available": 4
+        }
+      ],
+      "a",
+      1
+    ],
+    "value": {
+      "case": "Rejected",
+      "value": "invalid-stock"
+    }
+  },
+  {
+    "id": "empty",
+    "arguments": [
+      [],
+      "a",
+      1
+    ],
+    "value": {
+      "case": "Rejected",
+      "value": "not-found"
+    }
+  },
+  {
+    "id": "missing",
+    "arguments": [
+      [
+        {
+          "sku": "a",
+          "available": 10
+        },
+        {
+          "sku": "b",
+          "available": 3
+        }
+      ],
+      "c",
+      1
+    ],
+    "value": {
+      "case": "Rejected",
+      "value": "not-found"
+    }
+  },
+  {
+    "id": "insufficient",
+    "arguments": [
+      [
+        {
+          "sku": "a",
+          "available": 10
+        },
+        {
+          "sku": "b",
+          "available": 3
+        }
+      ],
+      "b",
+      4
+    ],
+    "value": {
+      "case": "Rejected",
+      "value": "insufficient-stock"
+    }
+  },
+  {
+    "id": "request-first",
+    "arguments": [
+      [
+        {
+          "sku": "a",
+          "available": -1
+        }
+      ],
+      "a",
+      0
+    ],
+    "value": {
+      "case": "Rejected",
+      "value": "invalid-request"
+    }
+  },
+  {
+    "id": "stock-before-missing",
+    "arguments": [
+      [
+        {
+          "sku": "a",
+          "available": -1
+        }
+      ],
+      "z",
+      1
+    ],
+    "value": {
+      "case": "Rejected",
+      "value": "invalid-stock"
+    }
+  },
+  {
+    "id": "seventeen",
+    "arguments": [
+      [
+        {
+          "sku": "a",
+          "available": 1
+        },
+        {
+          "sku": "b",
+          "available": 1
+        },
+        {
+          "sku": "c",
+          "available": 1
+        },
+        {
+          "sku": "d",
+          "available": 1
+        },
+        {
+          "sku": "e",
+          "available": 1
+        },
+        {
+          "sku": "f",
+          "available": 1
+        },
+        {
+          "sku": "g",
+          "available": 1
+        },
+        {
+          "sku": "h",
+          "available": 1
+        },
+        {
+          "sku": "i",
+          "available": 1
+        },
+        {
+          "sku": "j",
+          "available": 1
+        },
+        {
+          "sku": "k",
+          "available": 1
+        },
+        {
+          "sku": "l",
+          "available": 1
+        },
+        {
+          "sku": "m",
+          "available": 1
+        },
+        {
+          "sku": "n",
+          "available": 1
+        },
+        {
+          "sku": "o",
+          "available": 1
+        },
+        {
+          "sku": "p",
+          "available": 1
+        },
+        {
+          "sku": "q",
+          "available": 1
+        }
+      ],
+      "a",
+      1
+    ],
+    "reason": "RR_ARGUMENT"
+  }
+]

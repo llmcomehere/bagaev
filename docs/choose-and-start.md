@@ -26,6 +26,10 @@ report](record-capabilities.md) before selecting schemas and bounds. The separat
 [sixteen-entry catalogue](catalog-wide.md) has [diagnostic/formatting support](wide-authoring.md),
 [focused changes](wide-function-editing.md) and a [draft-to-source handoff](record-draft-export.md).
 
+A [pure inventory reservation](pure-inventory-reservation.md) example shows typed
+business refusals, full returned stock and guarded arithmetic on sixteen items.
+It performs no real inventory or database effect.
+
 ## Start with readable typed source
 
 For a typed pure task, choose the smallest relevant example. The single-entry

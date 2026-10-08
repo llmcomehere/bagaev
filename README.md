@@ -246,3 +246,6 @@ readable application/3 example while preserving the old four-entry contract.
 
 [Machine-readable pure-profile discovery](docs/record-capabilities.md) reports
 explicit form4/form5 schemas, bounds and source-tool routes without execution.
+
+[Pure inventory reservation](docs/pure-inventory-reservation.md) is a complete
+readable example with ordered business refusals and immutable stock results.
