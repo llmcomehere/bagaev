@@ -59,3 +59,7 @@ The [Rust tests](../examples/probes/backend/rust/prepared_json11_tests.rs) and
 [contract](../examples/probes/prepared-json11/CONTRACT.md) record the bounded scope.
 No generated-native calls or timing, memory, allocation, model or cost measurement
 was made. This does not prove arbitrary-input equivalence or performance gains.
+
+The separate [prepared native boundary](prepared-json11-native.md) reuses these
+owned handles for explicitly admitted profile 11 kernels. Its unsafe calling
+contract and native conformance observations are documented separately.

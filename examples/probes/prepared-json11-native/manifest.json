@@ -1,0 +1,84 @@
+{
+  "native_calls": 288,
+  "source_preparations": 8,
+  "runs": [
+    {
+      "policy": "original",
+      "optimization": "O0",
+      "prefill": 90,
+      "calls": 32,
+      "frames_sha256": "07e5a2fdfe4b629d942c4212c68c955ab80846190fcb06834d28477d41ba80b0",
+      "exact_full_invocation_wires": true
+    },
+    {
+      "policy": "original",
+      "optimization": "O0",
+      "prefill": 165,
+      "calls": 32,
+      "frames_sha256": "07e5a2fdfe4b629d942c4212c68c955ab80846190fcb06834d28477d41ba80b0",
+      "exact_full_invocation_wires": true
+    },
+    {
+      "policy": "original",
+      "optimization": "O2",
+      "prefill": 90,
+      "calls": 32,
+      "frames_sha256": "07e5a2fdfe4b629d942c4212c68c955ab80846190fcb06834d28477d41ba80b0",
+      "exact_full_invocation_wires": true
+    },
+    {
+      "policy": "original",
+      "optimization": "O2",
+      "prefill": 165,
+      "calls": 32,
+      "frames_sha256": "07e5a2fdfe4b629d942c4212c68c955ab80846190fcb06834d28477d41ba80b0",
+      "exact_full_invocation_wires": true
+    },
+    {
+      "policy": "total10",
+      "optimization": "O0",
+      "prefill": 90,
+      "calls": 40,
+      "frames_sha256": "86219decd4c92b252b77d8a75a4edaee6ba511ae8301d1aa75c7515943650141",
+      "exact_full_invocation_wires": true
+    },
+    {
+      "policy": "total10",
+      "optimization": "O0",
+      "prefill": 165,
+      "calls": 40,
+      "frames_sha256": "86219decd4c92b252b77d8a75a4edaee6ba511ae8301d1aa75c7515943650141",
+      "exact_full_invocation_wires": true
+    },
+    {
+      "policy": "total10",
+      "optimization": "O2",
+      "prefill": 90,
+      "calls": 40,
+      "frames_sha256": "86219decd4c92b252b77d8a75a4edaee6ba511ae8301d1aa75c7515943650141",
+      "exact_full_invocation_wires": true
+    },
+    {
+      "policy": "total10",
+      "optimization": "O2",
+      "prefill": 165,
+      "calls": 40,
+      "frames_sha256": "86219decd4c92b252b77d8a75a4edaee6ba511ae8301d1aa75c7515943650141",
+      "exact_full_invocation_wires": true
+    }
+  ],
+  "measurement": false,
+  "files": {
+    "examples/probes/backend/rust/prepared_json_native_v11.rs": "603e99ecb556d4f3d1394a20327fd9e7e253f5edcfdb3332906d0313249020b3",
+    "examples/probes/backend/rust/prepared_json_native11_tests.rs": "197a98acda1be38e7955193c1cd7512b92e5bf40d011de5b37f975a202e9854d",
+    "examples/probes/prepared-json11/original.arguments.jsonl": "6ae578467ea0b02e871ebf5dfaec117662cd7871e5a355212b5dee7b3fe8f033",
+    "examples/probes/prepared-json11/total10.arguments.jsonl": "83b79743fead970ae8cf6163f85dfcb2e15833209b39cca53da49f271668d3e7"
+  },
+  "admission_tests": {
+    "rust_tests": 3,
+    "preparation_refusals": 3,
+    "per_call_refusals": 6,
+    "refused_call_dispatches": 0,
+    "owned_primitive_dispatches": 1
+  }
+}
