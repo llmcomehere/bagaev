@@ -107,3 +107,21 @@ is retained alongside the [literal cases](../examples/probes/wide-record-literal
 The initial reproduction harness assumed encoding would return before decoding;
 the encoder itself performs a roundtrip and already refused. No oracle was
 changed to conceal that behavior.
+
+## Control-expression operand grouping
+
+The form5 encoder now groups `fold`, `if`, `let` and `match` when they appear as
+operands of arithmetic or `<`. A real focused batch-policy edit exposed the bug:
+`fold(...) ... in (...) + value` put the addition inside the fold body instead
+of outside it. The encoder's final graph-roundtrip check correctly refused;
+that check remains intact. Right-hand control expressions could instead refuse
+syntax because they were emitted where an atom was required.
+
+Six [graphs frozen before the correction](../examples/probes/wide-control-operands/cases.json)
+cover loop/if on either addition side, let in multiplication and match in a
+comparison. They now roundtrip exactly. Six fresh reference calls matched the
+literal results 12,12,6,6,9,true. Two existing default context packets remained
+byte-identical. The previously blocked batch fragment also roundtripped exactly
+in local preparation; that does not claim acceptance or execution of the new
+batch policy. Grammar, programme semantics, old codecs and execution controls
+are unchanged. No new native execution or measurement was performed for this fix.
