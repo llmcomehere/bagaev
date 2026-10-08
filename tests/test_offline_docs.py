@@ -23,8 +23,8 @@ class OfflineDocsTests(unittest.TestCase):
  def test_deterministic_and_provenance(self):
   with tempfile.TemporaryDirectory() as d:
    p=Path(d);root=p/'source';self.fixture(root);B.build(root,p/'one',REV);B.build(root,p/'two',REV)
-   a={f.relative_to(p/'one').as_posix():f.read_bytes() for f in (p/'one').rglob('*') if f.is_file()};b={f.relative_to(p/'two').as_posix():f.read_bytes() for f in (p/'two').rglob('*') if f.is_file()};self.assertEqual(a,b);self.assertEqual(len(a),34)
-   m=json.loads(a['index.json']);self.assertEqual(len(m['sources']),32)
+   a={f.relative_to(p/'one').as_posix():f.read_bytes() for f in (p/'one').rglob('*') if f.is_file()};b={f.relative_to(p/'two').as_posix():f.read_bytes() for f in (p/'two').rglob('*') if f.is_file()};self.assertEqual(a,b);self.assertEqual(len(a),len(B.SOURCES)+2)
+   m=json.loads(a['index.json']);self.assertEqual(len(m['sources']),len(B.SOURCES))
    for r in m['sources']:
     self.assertEqual(r['sha256'],hashlib.sha256((root/r['source']).read_bytes()).hexdigest());self.assertIn('/'+REV+'/',r['source_url']);self.assertIn(r['page'],a)
  def test_saved_workflow_local_routes(self):
@@ -39,6 +39,10 @@ class OfflineDocsTests(unittest.TestCase):
  def test_readable_language_local_routes(self):
   for name in ('component-text-cli', 'component-arithmetic-form', 'component-arithmetic-edits', 'component-diagnostics', 'readable-authoring', 'component-match-form', 'component-match-edits', 'stock-adjustment', 'component-expression-locations', 'component-text-list-form', 'tag-box', 'component-fold-form', 'tag-box-budget', 'component-record-list-form', 'pure-record-form', 'pure-reindex-entry', 'pure-batch-reindex', 'record-diagnostics'):
    self.assertEqual(B.link(name+'.md','docs/readable-authoring.md',REV),name+'.html')
+ def test_current_pure_routes(self):
+  self.assertEqual(len(B.SOURCES),51);self.assertEqual(len(set(B.SOURCES)),51)
+  for name in ('pure-record-drafts', 'pure-change-workflow', 'pure-option-form', 'pure-optional-fields', 'pure-json-form', 'catalog-edit-workflow', 'focused-function-edits', 'function-context', 'record-formatting', 'record-wide-profile', 'catalog-wide', 'wide-function-editing', 'wide-authoring', 'record-draft-export', 'record-capabilities', 'pure-inventory-reservation', 'inventory-focused-change', 'offline-documentation', 'application'):
+   self.assertEqual(B.link(name+'.md','docs/choose-and-start.md',REV),name+'.html')
  def test_inert_code_and_raw_html(self):
   code='<script>alert("x")</script> & [link](javascript:x)\n';body,title=B.render('# Example\n\n```text\n'+code+'```\n\n<img src=x onerror=alert(1)>\n','README.md',REV);parser=Tags();parser.feed(body);self.assertNotIn('script',parser.tags);self.assertNotIn('img',parser.tags);self.assertEqual(''.join(parser.code),code)
  def test_link_routes(self):
