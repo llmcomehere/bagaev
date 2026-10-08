@@ -1,0 +1,1 @@
+Initial data qualification compared canonical prefixed SHA256 identities to bare hex and failed before claiming a pass. Existing sha256.rs returns sha256: followed by hex; original binding retained. Corrected checker comparison only; emitter and contract/inputs unchanged. Native compilation/execution remain NOT_RUN.

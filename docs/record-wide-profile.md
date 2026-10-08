@@ -64,3 +64,6 @@ without changing the old application contract.
 
 [Focused form5 editing](wide-function-editing.md) exports direct context and
 creates pinned detached single-function replacements.
+
+[Data-only LLVM preparation](probe-native-wide-emitter.md) is a separate initial
+native stage. Generated profile11 code has not yet been qualified by execution.
