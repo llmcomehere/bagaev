@@ -3,11 +3,8 @@ from array import array
 from bisect import bisect_right
 import hashlib
 import json
-import re
 import bagaev_record_wide_form as form
 from bagaev_record_draft import digest
-
-HEADER = re.compile(r'\A[ \t\r\n]*bagaev[ \t\r\n]+record-form/([A-Za-z0-9_]+)[ \t\r\n]*;')
 
 
 class _Node(tuple):
@@ -21,20 +18,8 @@ class _Node(tuple):
 class _Reader(form.Reader):
     def __init__(self, source):
         super().__init__(source)
-        text = source.decode('utf8') if type(source) is bytes else source
-        self.ranges = []
-        tokens = []
-        pos = HEADER.match(text).end()
-        while pos < len(text):
-            if text[pos] in form.old.WS:
-                pos += 1
-                continue
-            match = form.TOKEN.match(text, pos)
-            form.need(match is not None, 'SPAN_TOKENS')
-            tokens.append(match[0])
-            self.ranges.append((pos, match.end()))
-            pos = match.end()
-        form.need(tokens == self.tokens, 'SPAN_TOKENS')
+        self.ranges = [(start,end) for _,start,end,comment in self.token_items if not comment]
+        form.need(len(self.ranges) == len(self.tokens), 'SPAN_TOKENS')
         self.locations = {}
         self.parents = []
 

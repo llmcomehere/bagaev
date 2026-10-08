@@ -4,6 +4,23 @@ import bagaev_component_record_list_form as prior
 old=prior.old
 FormError=prior.FormError;need=prior.need;bounded=prior.bounded
 TOKEN=prior.TOKEN;RESERVED=prior.RESERVED|{'omit_none'};INTRINSICS={**prior.INTRINSICS,'none.int':0,'some.int':1,'option.is_some':1,'option.or':2,'json.kind':1,'json.len':1,'json.int':1,'json.is_text':1,'json.at':2,'json.text_or':2,'json.field':2,'record.field':2,'text.byte_at':2,'int.eq':2,'int.le':2,'bool.not':1,'bool.and':2,'bool.or':2}
+def _token_error(code,start,end):
+ error=FormError(code);error.source_range=(start,end);raise error
+def _body_tokens(text,pos):
+ items=[];count=0
+ while pos<len(text):
+  if text[pos] in old.WS:pos+=1;continue
+  if text.startswith('//',pos):
+   end=text.find('\n',pos);end=len(text) if end<0 else end;comment=text[pos:end]
+   for i,c in enumerate(comment):
+    if ord(c)<32 and c not in '\t\r':_token_error('FORM_SYNTAX',pos+i,pos+i+1)
+   items.append((comment,pos,end,True));pos=end;continue
+  m=TOKEN.match(text,pos)
+  if m is None:_token_error('FORM_SYNTAX',pos,pos+1)
+  count+=1
+  if count>old.TOKEN_LIMIT:_token_error('FORM_BOUNDS',pos,m.end())
+  items.append((m[0],pos,m.end(),False));pos=m.end()
+ return items
 class Reader(prior.Reader):
  def __init__(self,source):
   need(type(source) in (str,bytes),'FORM_SYNTAX')
@@ -11,9 +28,7 @@ class Reader(prior.Reader):
   except UnicodeError:raise FormError('FORM_SYNTAX') from None
   need(len(raw)<=old.BYTE_LIMIT,'FORM_BOUNDS');need(not text.startswith('\ufeff'))
   h=re.match(r'\A[ \t\r\n]*bagaev[ \t\r\n]+record-form/([A-Za-z0-9_]+)[ \t\r\n]*;',text);need(h is not None);need(h[1]=='5','FORM_VERSION');pos=h.end();self.tokens=[]
-  while pos<len(text):
-   if text[pos] in old.WS:pos+=1;continue
-   m=TOKEN.match(text,pos);need(m is not None);self.tokens.append(m[0]);need(len(self.tokens)<=old.TOKEN_LIMIT,'FORM_BOUNDS');pos=m.end()
+  self.token_items=_body_tokens(text,pos);self.tokens=[token for token,_,_,comment in self.token_items if not comment]
   self.pos=0;self.records={};self.functions={};self.variants={};self.clauses={};self.lists={}
  def ident(self):
   value=super().ident();need(value!='omit_none');return value
