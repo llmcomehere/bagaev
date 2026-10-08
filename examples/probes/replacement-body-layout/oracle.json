@@ -1,0 +1,7 @@
+{
+ "original":"bagaev record-form/5;\nprogram {\n// unchanged module\n entry main;\n fn main() -> Int64 =\n // unchanged leading note\n 1 + 2;\n}\n",
+ "replacement":"bagaev record-form/5;\r\nprogram { entry main; fn main() -> Int64 =\r\n // excluded leading note\r\n 3 + // новый комментарий\r\n 4; // excluded trailing note\r\n}\r\n",
+ "expected":"bagaev record-form/5;\nprogram {\n// unchanged module\n entry main;\n fn main() -> Int64 =\n // unchanged leading note\n 3 + // новый комментарий\r\n 4;\n}\n",
+ "old_body":["add",["int",1],["int",2]],
+ "new_body":["add",["int",3],["int",4]]
+}

@@ -67,3 +67,38 @@ def export_source_preserving_layout(original, packet, *, base_sha256, target_sha
     decoded = wide.form.decode(output)
     need(decoded == after and digest(decoded) == target_sha256, 'EXPORT_LAYOUT')
     return output
+
+
+def export_source_with_fragment_layout(original, packet, replacement, *, base_sha256,
+                                       target_sha256, source_sha256):
+    """Use an independently supplied matching fragment's exact expression bytes."""
+    import bagaev_record_wide_spans as spans
+    # Keep all prior packet, scope, source pin and target checks authoritative.
+    validated = export_source_preserving_layout(original, packet, base_sha256=base_sha256,
+                                                target_sha256=target_sha256, source_sha256=source_sha256)
+    raw = original.encode('utf8') if type(original) is str else original
+    need(type(replacement) in (str, bytes), 'EXPORT_LAYOUT')
+    try:
+        fragment = replacement.encode('utf8') if type(replacement) is str else replacement
+    except UnicodeError:
+        raise DraftError('EXPORT_LAYOUT') from None
+    before, part = wide.form.decode(raw), wide.form.decode(fragment)
+    name = part['entry']
+    need(name in before['functions'], 'EXPORT_SCOPE')
+    rebuilt = wide.replace(raw, fragment, base_sha256=base_sha256,
+                           function_sha256=digest(before['functions'][name]))
+    need(digest(rebuilt) == digest(packet), 'EXPORT_FRAGMENT')
+    pointer = '/program/functions/' + name + '/body'
+    def body_range(source):
+        rows = [row for row in spans.source_map(source)['locations'] if row['program_pointer'] == pointer]
+        need(len(rows) == 1 and rows[0]['precision'] == 'exact-expression', 'EXPORT_LAYOUT')
+        start, end = rows[0]['start_byte'], rows[0]['end_byte']
+        need(0 <= start < end <= len(source), 'EXPORT_LAYOUT')
+        return start, end
+    start, end = body_range(raw)
+    new_start, new_end = body_range(fragment)
+    output = raw[:start] + fragment[new_start:new_end] + raw[end:]
+    need(len(output) <= wide.form.old.BYTE_LIMIT, 'EXPORT_BOUNDS')
+    decoded = wide.form.decode(output)
+    need(decoded == wide.form.decode(validated) and digest(decoded) == target_sha256, 'EXPORT_LAYOUT')
+    return output
