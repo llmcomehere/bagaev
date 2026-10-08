@@ -1,0 +1,7 @@
+bagaev record-form/1;
+program {
+  record Entry { id: Int64, manual: TextList, indexed: TextList };
+  entry reindex_entry;
+  fn reindex_entry(entry: Entry, tags: TextList) -> Entry =
+    Entry { id: entry.id, manual: entry.manual, indexed: list.unique(tags) };
+}

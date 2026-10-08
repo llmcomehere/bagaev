@@ -1,0 +1,8 @@
+{
+  "schema": "pure-reindex-example/1",
+  "sha256": {
+    "CONTRACT.md": "b712a761700905005ca7c52204f40ba4db17ccebb77dd654a10bce79a7ca42a4",
+    "ReindexEntry.bagaev": "b6cd8d485caa2ed25f069fa223f42fe44b2a9b78b268a70f93d1fd7801ebbe4c",
+    "cases.json": "c318c69a8b60b02f74db1799576ba8e0f7df3507d017725984d55eb422f0c112"
+  }
+}
