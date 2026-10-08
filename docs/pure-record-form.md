@@ -30,7 +30,7 @@ python3 -B tools/record_text.py decode input.bagaev --output program.json
 python3 -B tools/record_text.py encode program.json --output canonical.bagaev
 ```
 
-Both outputs must be new. The fixed tool accepts decode/encode, input and
+Both outputs must be new. The fixed tool accepts decode/encode/inspect, input and
 --output, with no profile autodetection or source execution. Inputs are regular
 non-symlink files, limited to 1 MiB; JSON rejects duplicate keys and unsupported
 numeric/structural input. Exclusive creation preserves existing outputs. Expected
@@ -88,3 +88,5 @@ A complete application-oriented example is [pure entry reindexing](pure-reindex-
 Use [pure syntax diagnostics](record-diagnostics.md) for source-position context without execution.
 
 For exact-base function-body changes and helper extraction, see [detached pure drafts](pure-record-drafts.md).
+
+For source pins and a connected edit-to-result example, follow [one complete pure change](pure-change-workflow.md).

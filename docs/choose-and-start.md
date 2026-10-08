@@ -98,3 +98,5 @@ profile](pure-filter.md) has an explicit `/2` source and CLI. It preserves the o
 - Bring a concrete missing capability or unnecessarily difficult step to an Issue.
   Useful adoption evidence is a task completed with understandable tradeoffs, not
   the number of mechanisms, checks or pull requests.
+
+For a connected typed pure edit, follow [one complete readable change](pure-change-workflow.md): inspect source identity, extract a helper, prepare a detached draft and verify explicit input.

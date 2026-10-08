@@ -102,7 +102,7 @@ def write_output(value, raw):
 
 def convert(argv):
     parser = Parser(add_help=False, allow_abbrev=False)
-    parser.add_argument("operation", choices=("decode", "encode", "prepare"))
+    parser.add_argument("operation", choices=("decode", "encode", "prepare", "inspect"))
     parser.add_argument("input")
     parser.add_argument("--output", required=True)
     parser.add_argument("--arguments")
@@ -111,7 +111,7 @@ def convert(argv):
         raise Refusal("TOOL_USAGE")
     raw = read_input(args.input)
     codec = form
-    if args.operation in ("decode", "prepare"):
+    if args.operation in ("decode", "prepare", "inspect"):
         value = codec.decode(raw)
         if args.operation == "prepare":
             arguments = parse_json(read_input(args.arguments))
@@ -129,6 +129,17 @@ def convert(argv):
                     pending.extend(item.values())
             value = {"schema": "bagaev-typed-record-invocation/10",
                      "program": value, "arguments": arguments}
+        if args.operation == "inspect":
+            canonical = json.dumps(value, sort_keys=True, ensure_ascii=False,
+                                   separators=(",", ":"), allow_nan=False).encode("utf8")
+            value = {"schema": "bagaev-record-inspection/1",
+                     "source_sha256": hashlib.sha256(raw).hexdigest(),
+                     "program_sha256": hashlib.sha256(canonical).hexdigest(),
+                     "entry": value["entry"],
+                     "functions": [{"name": name, "params": f["params"], "result": f["result"]}
+                                   for name, f in sorted(value["functions"].items())],
+                     "types": {name: len(value[name]) for name in ("records", "lists", "variants")},
+                     "semantic_check": False, "execution_admission": False}
         output = json.dumps(value, sort_keys=True, ensure_ascii=False,
                             separators=(",", ":"), allow_nan=False).encode("utf-8")
     else:
