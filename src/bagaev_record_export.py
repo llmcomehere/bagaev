@@ -102,3 +102,43 @@ def export_source_with_fragment_layout(original, packet, replacement, *, base_sh
     decoded = wide.form.decode(output)
     need(decoded == wide.form.decode(validated) and digest(decoded) == target_sha256, 'EXPORT_LAYOUT')
     return output
+
+
+def export_source_with_contextual_fragment_layout(original, packet, replacement, *, base_sha256,
+                                                  target_sha256, source_sha256):
+    """Explicit pinned-callee lowering plus exact authored expression splice."""
+    import bagaev_record_wide_spans as spans
+    validated = export_source_preserving_layout(original, packet, base_sha256=base_sha256,
+                                                target_sha256=target_sha256, source_sha256=source_sha256)
+    raw = original.encode('utf8') if type(original) is str else original
+    need(type(replacement) in (str, bytes), 'EXPORT_LAYOUT')
+    try:
+        fragment = replacement.encode('utf8') if type(replacement) is str else replacement
+    except UnicodeError:
+        raise DraftError('EXPORT_LAYOUT') from None
+    before, after = wide.form.decode(raw), wide.form.decode(validated)
+    changed = [name for name in before['functions'] if before['functions'][name] != after['functions'][name]]
+    need(len(changed) == 1, 'EXPORT_SCOPE')
+    name = changed[0]
+    rebuilt = wide.replace_in_context(raw, fragment, base_sha256=base_sha256,
+                                      function_sha256=digest(before['functions'][name]))
+    need(digest(rebuilt) == digest(packet), 'EXPORT_FRAGMENT')
+    try:
+        part = wide._context_reader(wide.form.Reader, before)(fragment).read()
+    except RecursionError:
+        raise wide.form.FormError('FORM_BOUNDS') from None
+    mapped = spans._source_map(fragment, part, wide._context_reader(spans._Reader, before))
+    pointer = '/program/functions/' + name + '/body'
+    def body_range(mapping, source):
+        rows = [row for row in mapping['locations'] if row['program_pointer'] == pointer]
+        need(len(rows) == 1 and rows[0]['precision'] == 'exact-expression', 'EXPORT_LAYOUT')
+        start, end = rows[0]['start_byte'], rows[0]['end_byte']
+        need(0 <= start < end <= len(source), 'EXPORT_LAYOUT')
+        return start, end
+    start, end = body_range(spans.source_map(raw), raw)
+    new_start, new_end = body_range(mapped, fragment)
+    output = raw[:start] + fragment[new_start:new_end] + raw[end:]
+    need(len(output) <= wide.form.old.BYTE_LIMIT, 'EXPORT_BOUNDS')
+    decoded = wide.form.decode(output)
+    need(decoded == after and digest(decoded) == target_sha256, 'EXPORT_LAYOUT')
+    return output

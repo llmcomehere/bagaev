@@ -95,19 +95,24 @@ def source_context(source, name):
     return packet
 
 
-def replace_in_context(source, replacement, *, base_sha256, function_sha256):
-    """Explicitly resolve named replacement calls from pinned original declarations."""
-    program = form.decode(source)
-    need(type(base_sha256) is str and digest(program) == base_sha256, 'FUNCTION_BASE')
+def _context_reader(reader_type, program):
     # Copy only parameter names. No original body is injected into the fragment.
     signatures = {name: tuple(p[0] for p in f['params'])
                   for name, f in program['functions'].items()}
-    class ContextReader(form.Reader):
+    class ContextReader(reader_type):
         def _named_parameters(self, name):
             if name in self.functions:
                 return super()._named_parameters(name)
             form.need(name in signatures, 'FORM_REFERENCE')
             return signatures[name]
+    return ContextReader
+
+
+def replace_in_context(source, replacement, *, base_sha256, function_sha256):
+    """Explicitly resolve named replacement calls from pinned original declarations."""
+    program = form.decode(source)
+    need(type(base_sha256) is str and digest(program) == base_sha256, 'FUNCTION_BASE')
+    ContextReader = _context_reader(form.Reader, program)
     try:
         part = ContextReader(replacement).read()
     except RecursionError:

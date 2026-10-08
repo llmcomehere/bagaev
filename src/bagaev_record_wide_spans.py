@@ -56,9 +56,12 @@ class _Reader(form.Reader):
 
 def source_map(source):
     """Return layout-bound expression ranges, not semantic/native validation."""
-    expected = form.decode(source)
+    return _source_map(source, form.decode(source), _Reader)
+
+
+def _source_map(source, expected, reader_type):
     try:
-        reader = _Reader(source)
+        reader = reader_type(source)
         graph = reader.read()
     except RecursionError:
         raise form.FormError('FORM_BOUNDS') from None
