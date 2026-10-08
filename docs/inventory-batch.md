@@ -62,3 +62,21 @@ change, not a new runtime rule or increased work limit.
 No speed, allocation, model-choice or cost measurement was performed. These are
 bounded same-maintainer conformance observations, not independent reproduction
 or full production acceptance. Other inputs can still refuse for profile limits.
+
+## Concrete semantic controls
+
+Five one-site mutants and existing frozen witnesses were selected before the
+mutated programmes were created: skipping first stock validation, returning
+tentative stock on rollback, reversing request order, discarding prior receipts,
+and validating only the first request shape. Each remained a valid checked
+profile11 programme and completed normally with `status: success`, but returned
+a full value different from its preselected frozen outcome. All five were
+detected in five fresh reference calls; no native call or oracle change occurred.
+
+The [contract](../examples/probes/inventory-batch-controls/CONTRACT.md) and
+[observations](../examples/probes/inventory-batch-controls/observations.json)
+record exact subtrees, programme digests, expected values and observed wrong
+values. The portable data test reconstructs each single-site change and verifies
+its digest and captured mismatch; it does not run those programmes. These five
+controls demonstrate sensitivity to named mistakes, not arbitrary mutation
+coverage, native-backend sensitivity or universal correctness.
