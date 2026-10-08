@@ -1,0 +1,156 @@
+[
+  {
+    "id": "precedence",
+    "source": "bagaev record-form/5;\nprogram {  entry main; fn main() -> Int64 = 1 + 2 * 3; }\n",
+    "expected": {
+      "": [
+        "1 + 2 * 3",
+        "exact-expression"
+      ],
+      "/1": [
+        "1",
+        "exact-expression"
+      ],
+      "/2": [
+        "2 * 3",
+        "exact-expression"
+      ],
+      "/2/1": [
+        "2",
+        "exact-expression"
+      ],
+      "/2/2": [
+        "3",
+        "exact-expression"
+      ]
+    }
+  },
+  {
+    "id": "chain",
+    "source": "bagaev record-form/5;\nprogram {  entry main; fn main() -> Int64 = 1 + 2 + 3; }\n",
+    "expected": {
+      "": [
+        "1 + 2 + 3",
+        "exact-expression"
+      ],
+      "/1": [
+        "1 + 2 + 3",
+        "enclosing-expression"
+      ],
+      "/1/1": [
+        "1",
+        "exact-expression"
+      ],
+      "/1/2": [
+        "2",
+        "exact-expression"
+      ],
+      "/2": [
+        "3",
+        "exact-expression"
+      ]
+    }
+  },
+  {
+    "id": "repeat",
+    "source": "bagaev record-form/5;\nprogram {  entry main; fn main() -> Int64 = 7 + 7; }\n",
+    "expected": {
+      "": [
+        "7 + 7",
+        "exact-expression"
+      ],
+      "/1": [
+        "7",
+        "exact-expression",
+        0
+      ],
+      "/2": [
+        "7",
+        "exact-expression",
+        1
+      ]
+    }
+  },
+  {
+    "id": "parentheses",
+    "source": "bagaev record-form/5;\nprogram {  entry main; fn main() -> Int64 = (1 + 2); }\n",
+    "expected": {
+      "": [
+        "(1 + 2)",
+        "exact-expression"
+      ],
+      "/1": [
+        "1",
+        "exact-expression"
+      ],
+      "/2": [
+        "2",
+        "exact-expression"
+      ]
+    }
+  },
+  {
+    "id": "unicode",
+    "source": "bagaev record-form/5;\nprogram {  entry main; fn main() -> Int64 = text.bytes(\"ёж\"); }\n",
+    "expected": {
+      "": [
+        "text.bytes(\"ёж\")",
+        "exact-expression"
+      ],
+      "/1": [
+        "\"ёж\"",
+        "exact-expression"
+      ]
+    }
+  },
+  {
+    "id": "record-order",
+    "source": "bagaev record-form/5;\nprogram { record Pair { a: Int64, z: Int64 }; entry main; fn main() -> Pair = Pair { z: 9, a: 1 }; }\n",
+    "expected": {
+      "": [
+        "Pair { z: 9, a: 1 }",
+        "exact-expression"
+      ],
+      "/2": [
+        "1",
+        "exact-expression"
+      ],
+      "/3": [
+        "9",
+        "exact-expression"
+      ]
+    }
+  },
+  {
+    "id": "field-chain",
+    "source": "bagaev record-form/5;\nprogram { record A { n: Int64 }; record R { a: A }; entry main; fn main(r: R) -> Int64 = r.a.n; }\n",
+    "expected": {
+      "": [
+        "r.a.n",
+        "exact-expression"
+      ],
+      "/1": [
+        "r.a.n",
+        "enclosing-expression"
+      ],
+      "/1/1": [
+        "r.a.n",
+        "enclosing-expression"
+      ]
+    }
+  },
+  {
+    "id": "json-key",
+    "source": "bagaev record-form/5;\nprogram {  entry main; fn main(j: Json) -> Json = json.field(j, \"a\"); }\n",
+    "expected": {
+      "": [
+        "json.field(j, \"a\")",
+        "exact-expression"
+      ],
+      "/1": [
+        "j",
+        "exact-expression"
+      ]
+    }
+  }
+]

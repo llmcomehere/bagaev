@@ -63,3 +63,7 @@ itself grants no execution authority.
 
 The portable run repeated the same 31-call suite; repetition adds no independent
 cases. Existing frontend, reference and native emitter behavior is unchanged.
+
+A separate [readable form5 source map](record-source-map.md) maps those programme
+pointers to byte and line/column ranges after matching programme pins. It labels
+coarse enclosing-expression ranges explicitly and does not perform semantic checks.
