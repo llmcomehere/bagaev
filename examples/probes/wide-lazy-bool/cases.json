@@ -1,0 +1,366 @@
+[
+  {
+    "id": "and-false-false",
+    "expression": "bool.and(false, false)",
+    "body": [
+      "if",
+      [
+        "bool",
+        false
+      ],
+      [
+        "bool",
+        false
+      ],
+      [
+        "bool",
+        false
+      ]
+    ],
+    "value": false,
+    "status": "success"
+  },
+  {
+    "id": "and-false-true",
+    "expression": "bool.and(false, true)",
+    "body": [
+      "if",
+      [
+        "bool",
+        false
+      ],
+      [
+        "bool",
+        true
+      ],
+      [
+        "bool",
+        false
+      ]
+    ],
+    "value": false,
+    "status": "success"
+  },
+  {
+    "id": "and-true-false",
+    "expression": "bool.and(true, false)",
+    "body": [
+      "if",
+      [
+        "bool",
+        true
+      ],
+      [
+        "bool",
+        false
+      ],
+      [
+        "bool",
+        false
+      ]
+    ],
+    "value": false,
+    "status": "success"
+  },
+  {
+    "id": "and-true-true",
+    "expression": "bool.and(true, true)",
+    "body": [
+      "if",
+      [
+        "bool",
+        true
+      ],
+      [
+        "bool",
+        true
+      ],
+      [
+        "bool",
+        false
+      ]
+    ],
+    "value": true,
+    "status": "success"
+  },
+  {
+    "id": "or-false-false",
+    "expression": "bool.or(false, false)",
+    "body": [
+      "if",
+      [
+        "bool",
+        false
+      ],
+      [
+        "bool",
+        true
+      ],
+      [
+        "bool",
+        false
+      ]
+    ],
+    "value": false,
+    "status": "success"
+  },
+  {
+    "id": "or-false-true",
+    "expression": "bool.or(false, true)",
+    "body": [
+      "if",
+      [
+        "bool",
+        false
+      ],
+      [
+        "bool",
+        true
+      ],
+      [
+        "bool",
+        true
+      ]
+    ],
+    "value": true,
+    "status": "success"
+  },
+  {
+    "id": "or-true-false",
+    "expression": "bool.or(true, false)",
+    "body": [
+      "if",
+      [
+        "bool",
+        true
+      ],
+      [
+        "bool",
+        true
+      ],
+      [
+        "bool",
+        false
+      ]
+    ],
+    "value": true,
+    "status": "success"
+  },
+  {
+    "id": "or-true-true",
+    "expression": "bool.or(true, true)",
+    "body": [
+      "if",
+      [
+        "bool",
+        true
+      ],
+      [
+        "bool",
+        true
+      ],
+      [
+        "bool",
+        true
+      ]
+    ],
+    "value": true,
+    "status": "success"
+  },
+  {
+    "id": "and-overflow-false",
+    "expression": "bool.and(false, (9223372036854775807 + 1) < 0)",
+    "body": [
+      "if",
+      [
+        "bool",
+        false
+      ],
+      [
+        "lt",
+        [
+          "add",
+          [
+            "int",
+            9223372036854775807
+          ],
+          [
+            "int",
+            1
+          ]
+        ],
+        [
+          "int",
+          0
+        ]
+      ],
+      [
+        "bool",
+        false
+      ]
+    ],
+    "value": false,
+    "status": "success"
+  },
+  {
+    "id": "or-overflow-true",
+    "expression": "bool.or(true, (9223372036854775807 + 1) < 0)",
+    "body": [
+      "if",
+      [
+        "bool",
+        true
+      ],
+      [
+        "bool",
+        true
+      ],
+      [
+        "lt",
+        [
+          "add",
+          [
+            "int",
+            9223372036854775807
+          ],
+          [
+            "int",
+            1
+          ]
+        ],
+        [
+          "int",
+          0
+        ]
+      ]
+    ],
+    "value": true,
+    "status": "success"
+  },
+  {
+    "id": "and-overflow-true",
+    "expression": "bool.and(true, (9223372036854775807 + 1) < 0)",
+    "body": [
+      "if",
+      [
+        "bool",
+        true
+      ],
+      [
+        "lt",
+        [
+          "add",
+          [
+            "int",
+            9223372036854775807
+          ],
+          [
+            "int",
+            1
+          ]
+        ],
+        [
+          "int",
+          0
+        ]
+      ],
+      [
+        "bool",
+        false
+      ]
+    ],
+    "value": null,
+    "status": "overflow"
+  },
+  {
+    "id": "or-overflow-false",
+    "expression": "bool.or(false, (9223372036854775807 + 1) < 0)",
+    "body": [
+      "if",
+      [
+        "bool",
+        false
+      ],
+      [
+        "bool",
+        true
+      ],
+      [
+        "lt",
+        [
+          "add",
+          [
+            "int",
+            9223372036854775807
+          ],
+          [
+            "int",
+            1
+          ]
+        ],
+        [
+          "int",
+          0
+        ]
+      ]
+    ],
+    "value": null,
+    "status": "overflow"
+  },
+  {
+    "id": "nested",
+    "expression": "bool.and(bool.or(false, true), bool.not(false))",
+    "body": [
+      "if",
+      [
+        "if",
+        [
+          "bool",
+          false
+        ],
+        [
+          "bool",
+          true
+        ],
+        [
+          "bool",
+          true
+        ]
+      ],
+      [
+        "not",
+        [
+          "bool",
+          false
+        ]
+      ],
+      [
+        "bool",
+        false
+      ]
+    ],
+    "value": true,
+    "status": "success"
+  },
+  {
+    "id": "skipped-type-error",
+    "expression": "bool.and(false, 7)",
+    "body": [
+      "if",
+      [
+        "bool",
+        false
+      ],
+      [
+        "int",
+        7
+      ],
+      [
+        "bool",
+        false
+      ]
+    ],
+    "value": null,
+    "status": "refused"
+  }
+]
