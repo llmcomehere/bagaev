@@ -107,7 +107,10 @@ def convert(argv):
     parser.add_argument("--output", required=True)
     parser.add_argument("--arguments")
     parser.add_argument("--form", choices=("1", "2", "3", "4", "5"), default="1")
+    parser.add_argument("--named-calls", action="store_true")
     args = parser.parse_args(argv)
+    if args.named_calls and (args.operation != "encode" or args.form != "5"):
+        raise Refusal("TOOL_USAGE")
     if (args.operation == "prepare") != (args.arguments is not None):
         raise Refusal("TOOL_USAGE")
     raw = read_input(args.input)
@@ -157,11 +160,12 @@ def convert(argv):
         output = json.dumps(value, sort_keys=True, ensure_ascii=False,
                             separators=(",", ":"), allow_nan=False).encode("utf-8")
     else:
-        output = codec.encode(parse_json(raw))
+        output = (codec.encode_named if args.named_calls else codec.encode)(parse_json(raw))
     if len(output) > LIMIT:
         raise Refusal("RECORD_BOUNDS")
     write_output(args.output, output)
     return {"operation": args.operation, "source_schema": "bagaev-typed-record/" + profile,
+            **({"named_calls": True} if args.named_calls else {}),
             **({"output_schema": "bagaev-typed-record-invocation/" + profile} if args.operation == "prepare" else {}),
             "output_bytes": len(output), "output_sha256": hashlib.sha256(output).hexdigest(),
             "semantic_check": False, "execution_admission": False}

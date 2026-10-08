@@ -1,0 +1,58 @@
+{
+  "status": "PASSED",
+  "graphs": 8,
+  "data_cli_calls": 7,
+  "encoder_refusals": 3,
+  "default_bytes_unchanged": true,
+  "program_evaluations": 0,
+  "observations": [
+    {
+      "id": "inventory-batch",
+      "default_sha256": "0e4343b8129471908bb7ae9c4cd9ff5f9d3c1af4569a4e55153fd764ef20c06e",
+      "named_sha256": "fabbf39c12a89545d523471f2114d6b560f5d5096689f7a39fdd67c625bea0ec",
+      "program_pin": "sha256:d6b56f365d222f52d015ac336cd2f85bf2626c0148ce7f3fadf2bd243a2f4f66"
+    },
+    {
+      "id": "inventory-batch-change",
+      "default_sha256": "8caccd806134b0a96cf10492e3aac5ac14a18212f0e2cb4303feea7187dc8e88",
+      "named_sha256": "d0965e4616069382f70bb40135a5901a362faffed73fa3ad92d6c6adf405157d",
+      "program_pin": "sha256:b4755a73e1090e2b4ed563f42c29250dc759c5b1224d3c5765a239cb6584351e"
+    },
+    {
+      "id": "reverse",
+      "default_sha256": "f497dee7f5dd26a4703ab456e6183c461774f545099b4a16ac5f6c8479364378",
+      "named_sha256": "9689a4fe92591dfd48f7170664c99c745976366ff988379c2cd133b9bf68d4f2",
+      "program_pin": "sha256:4b06b0e37962bc356d91c82b5e35aca0ec0aa4e6f724475bba9953e110611fcd"
+    },
+    {
+      "id": "declaration",
+      "default_sha256": "f497dee7f5dd26a4703ab456e6183c461774f545099b4a16ac5f6c8479364378",
+      "named_sha256": "9689a4fe92591dfd48f7170664c99c745976366ff988379c2cd133b9bf68d4f2",
+      "program_pin": "sha256:4b06b0e37962bc356d91c82b5e35aca0ec0aa4e6f724475bba9953e110611fcd"
+    },
+    {
+      "id": "nested",
+      "default_sha256": "2c53e4c5cfdfba08d306d386ad50336d94a8bdc51111229805bacec953222d90",
+      "named_sha256": "b99ab1bd49627c2ef4c3fc48df29c53f1037fac17bb67c61b1f5ab5433e9e979",
+      "program_pin": "sha256:8de4880c65414e4dd310c323bc40b933fbe6e04d9d4a1eb96f933a1415c11a4e"
+    },
+    {
+      "id": "let-local",
+      "default_sha256": "da44fc2bc483c32621afda4441de231239cb0cd29d4e3661c23bb81ecb81b463",
+      "named_sha256": "b302432a0db64337940f5c484aeb4a0621defc11bfb39fa1c59c6732899ed431",
+      "program_pin": "sha256:ac977e72641dfb349957ad96337fbe399409f2fbba1310cd8d68bf7b2f083910"
+    },
+    {
+      "id": "fold-local",
+      "default_sha256": "cc55e76c5fd3215502315ed5b279165fe9b579ed4eb24f75b6fccd736badfa94",
+      "named_sha256": "772ec6a34a98c1ac46848398466b9bbb80dd0de7122326bf5153ebec196b7c82",
+      "program_pin": "sha256:326de2e00ee9c6e4af692de81edf0a7174b2eea0146fdaff158c8cee416dd262"
+    },
+    {
+      "id": "declared-failure-order",
+      "default_sha256": "f659e236cbf05053b006eb7d4d90af26678f05248c1f8c466d972fec7d20e2ff",
+      "named_sha256": "4bf322d41cd577cee56dfdec410f690ea87d689ea32ffb7d8a23edace6ee1f1f",
+      "program_pin": "sha256:ce3b3de094851de85c8c54eb2425beab0d543fcaf1d85844c2d3f69b87cb3e4e"
+    }
+  ]
+}
