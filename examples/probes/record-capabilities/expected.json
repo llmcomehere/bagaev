@@ -1,0 +1,23 @@
+{
+  "4": {
+    "typed_profile": 10,
+    "record_list_capacity": 4
+  },
+  "5": {
+    "typed_profile": 11,
+    "record_list_capacity": 16
+  },
+  "parser": {
+    "bytes": 1048576,
+    "tokens": 32768,
+    "values": 10000,
+    "depth": 128
+  },
+  "runtime": {
+    "functions": 32,
+    "nodes": 2048,
+    "named_types": 8,
+    "expanded_shape": 4096,
+    "work": 65536
+  }
+}

@@ -243,3 +243,6 @@ For a complete readable typed pure path, use [single-entry reindexing](docs/pure
 
 The separate [sixteen-entry pure catalogue](docs/catalog-wide.md) provides a
 readable application/3 example while preserving the old four-entry contract.
+
+[Machine-readable pure-profile discovery](docs/record-capabilities.md) reports
+explicit form4/form5 schemas, bounds and source-tool routes without execution.
