@@ -1,0 +1,7 @@
+bagaev record-form/5;
+program {
+ record Item { n: Int64 };
+ list Items of Item capacity 16;
+ entry main;
+ fn main() -> Int64 = fold (16, 0) with (i, sum) in (sum + record.field(records.at(records.list(Items, Item { n: 0 }, Item { n: 1 }, Item { n: 2 }, Item { n: 3 }, Item { n: 4 }, Item { n: 5 }, Item { n: 6 }, Item { n: 7 }, Item { n: 8 }, Item { n: 9 }, Item { n: 10 }, Item { n: 11 }, Item { n: 12 }, Item { n: 13 }, Item { n: 14 }, Item { n: 15 }), i), "n"));
+}

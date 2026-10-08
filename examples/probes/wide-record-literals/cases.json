@@ -1,0 +1,138 @@
+[
+  {
+    "id": "empty",
+    "source": "bagaev record-form/5; program { record Item { n: Int64 }; list Items of Item capacity 16; entry main; fn main() -> Items = records.list(Items); }\n",
+    "ok": true,
+    "value": [],
+    "count": 0,
+    "capacity": 16
+  },
+  {
+    "id": "four",
+    "source": "bagaev record-form/5; program { record Item { n: Int64 }; list Items of Item capacity 16; entry main; fn main() -> Items = records.list(Items, Item { n: 0 }, Item { n: 1 }, Item { n: 2 }, Item { n: 3 }); }\n",
+    "ok": true,
+    "value": [
+      {
+        "n": 0
+      },
+      {
+        "n": 1
+      },
+      {
+        "n": 2
+      },
+      {
+        "n": 3
+      }
+    ],
+    "count": 4,
+    "capacity": 16
+  },
+  {
+    "id": "five",
+    "source": "bagaev record-form/5; program { record Item { n: Int64 }; list Items of Item capacity 16; entry main; fn main() -> Items = records.list(Items, Item { n: 0 }, Item { n: 1 }, Item { n: 2 }, Item { n: 3 }, Item { n: 4 }); }\n",
+    "ok": true,
+    "value": [
+      {
+        "n": 0
+      },
+      {
+        "n": 1
+      },
+      {
+        "n": 2
+      },
+      {
+        "n": 3
+      },
+      {
+        "n": 4
+      }
+    ],
+    "count": 5,
+    "capacity": 16
+  },
+  {
+    "id": "sixteen",
+    "source": "bagaev record-form/5; program { record Item { n: Int64 }; list Items of Item capacity 16; entry main; fn main() -> Items = records.list(Items, Item { n: 0 }, Item { n: 1 }, Item { n: 2 }, Item { n: 3 }, Item { n: 4 }, Item { n: 5 }, Item { n: 6 }, Item { n: 7 }, Item { n: 8 }, Item { n: 9 }, Item { n: 10 }, Item { n: 11 }, Item { n: 12 }, Item { n: 13 }, Item { n: 14 }, Item { n: 15 }); }\n",
+    "ok": true,
+    "value": [
+      {
+        "n": 0
+      },
+      {
+        "n": 1
+      },
+      {
+        "n": 2
+      },
+      {
+        "n": 3
+      },
+      {
+        "n": 4
+      },
+      {
+        "n": 5
+      },
+      {
+        "n": 6
+      },
+      {
+        "n": 7
+      },
+      {
+        "n": 8
+      },
+      {
+        "n": 9
+      },
+      {
+        "n": 10
+      },
+      {
+        "n": 11
+      },
+      {
+        "n": 12
+      },
+      {
+        "n": 13
+      },
+      {
+        "n": 14
+      },
+      {
+        "n": 15
+      }
+    ],
+    "count": 16,
+    "capacity": 16
+  },
+  {
+    "id": "zero-capacity",
+    "source": "bagaev record-form/5; program { record Item { n: Int64 }; list Items of Item capacity 0; entry main; fn main() -> Items = records.list(Items); }\n",
+    "ok": true,
+    "value": [],
+    "count": 0,
+    "capacity": 0
+  },
+  {
+    "id": "seventeen",
+    "source": "bagaev record-form/5; program { record Item { n: Int64 }; list Items of Item capacity 16; entry main; fn main() -> Items = records.list(Items, Item { n: 0 }, Item { n: 1 }, Item { n: 2 }, Item { n: 3 }, Item { n: 4 }, Item { n: 5 }, Item { n: 6 }, Item { n: 7 }, Item { n: 8 }, Item { n: 9 }, Item { n: 10 }, Item { n: 11 }, Item { n: 12 }, Item { n: 13 }, Item { n: 14 }, Item { n: 15 }, Item { n: 16 }); }\n",
+    "ok": false,
+    "reason": "FORM_BOUNDS"
+  },
+  {
+    "id": "declared-fifteen",
+    "source": "bagaev record-form/5; program { record Item { n: Int64 }; list Items of Item capacity 15; entry main; fn main() -> Items = records.list(Items, Item { n: 0 }, Item { n: 1 }, Item { n: 2 }, Item { n: 3 }, Item { n: 4 }, Item { n: 5 }, Item { n: 6 }, Item { n: 7 }, Item { n: 8 }, Item { n: 9 }, Item { n: 10 }, Item { n: 11 }, Item { n: 12 }, Item { n: 13 }, Item { n: 14 }, Item { n: 15 }); }\n",
+    "ok": false,
+    "reason": "FORM_BOUNDS"
+  },
+  {
+    "id": "declared-four",
+    "source": "bagaev record-form/5; program { record Item { n: Int64 }; list Items of Item capacity 4; entry main; fn main() -> Items = records.list(Items, Item { n: 0 }, Item { n: 1 }, Item { n: 2 }, Item { n: 3 }, Item { n: 4 }); }\n",
+    "ok": false,
+    "reason": "FORM_BOUNDS"
+  }
+]
