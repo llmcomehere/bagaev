@@ -1,0 +1,9 @@
+{
+ "original":"bagaev record-form/5; program { entry main; fn diff(a: Int64,b: Int64) -> Int64 = a-b; fn main(x: Int64) -> Int64 = diff(x,2); }",
+ "cases":[
+  {"id":"reordered","positional":"diff(9,4)","named":"diff(b:4,a:9)","body":["call","diff",["int",9],["int",4]]},
+  {"id":"nested","positional":"diff(diff(x,1),2)","named":"diff(b:2,a:diff(b:1,a:x))","body":["call","diff",["call","diff",["arg","x"],["int",1]],["int",2]]},
+  {"id":"let","positional":"let y = x+1 in diff(y,3)","named":"let y = x+1 in diff(b:3,a:y)","body":["let","y",["add",["arg","x"],["int",1]],["call","diff",["use","y"],["int",3]]]},
+  {"id":"self","positional":"main(diff(x,1))","named":"main(x:diff(b:1,a:x))","body":["call","main",["call","diff",["arg","x"],["int",1]]]}
+ ]
+}
