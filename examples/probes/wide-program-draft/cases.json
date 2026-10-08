@@ -1,0 +1,192 @@
+{
+  "1": {
+    "original": "bagaev record-form/1; program { entry main; fn main(x: Int64) -> Int64 = x+1; }",
+    "candidate": "bagaev record-form/1; program { entry main; fn plus_one(x: Int64) -> Int64 = x+1; fn main(x: Int64) -> Int64 = plus_one(x); }",
+    "base": "b36bd614c05b8b9a22935850fc4b2b1a0f80d7f12379c0da2f3a935114b5e1c6",
+    "target": "f8cb1ea4b12fb697f4745f99bdbb19e164f0b219493d9e8075c2c1211d17b25b",
+    "expected": {
+      "schema": "bagaev-typed-record/10",
+      "records": {},
+      "lists": {},
+      "variants": {},
+      "entry": "main",
+      "functions": {
+        "plus_one": {
+          "params": [
+            [
+              "x",
+              "Int64"
+            ]
+          ],
+          "result": "Int64",
+          "body": [
+            "add",
+            [
+              "arg",
+              "x"
+            ],
+            [
+              "int",
+              1
+            ]
+          ]
+        },
+        "main": {
+          "params": [
+            [
+              "x",
+              "Int64"
+            ]
+          ],
+          "result": "Int64",
+          "body": [
+            "call",
+            "plus_one",
+            [
+              "arg",
+              "x"
+            ]
+          ]
+        }
+      }
+    },
+    "packet_sha256": "141c48dcab65681c42232ef31a0253776566d6fb93d2021813938108858c5850",
+    "receipt": {
+      "base": "b36bd614c05b8b9a22935850fc4b2b1a0f80d7f12379c0da2f3a935114b5e1c6",
+      "delta": {
+        "add": [
+          "plus_one"
+        ],
+        "replace": [
+          "main"
+        ]
+      },
+      "execution_admission": false,
+      "ok": true,
+      "schema": "bagaev-record-draft-tool/1",
+      "semantic_check": false,
+      "target": "f8cb1ea4b12fb697f4745f99bdbb19e164f0b219493d9e8075c2c1211d17b25b"
+    }
+  },
+  "4": {
+    "original": "bagaev record-form/4; program { entry main; fn main(x: Int64) -> Int64 = x+1; }",
+    "candidate": "bagaev record-form/4; program { entry main; fn plus_one(x: Int64) -> Int64 = x+1; fn main(x: Int64) -> Int64 = plus_one(x); }",
+    "base": "b36bd614c05b8b9a22935850fc4b2b1a0f80d7f12379c0da2f3a935114b5e1c6",
+    "target": "f8cb1ea4b12fb697f4745f99bdbb19e164f0b219493d9e8075c2c1211d17b25b",
+    "expected": {
+      "schema": "bagaev-typed-record/10",
+      "records": {},
+      "lists": {},
+      "variants": {},
+      "entry": "main",
+      "functions": {
+        "plus_one": {
+          "params": [
+            [
+              "x",
+              "Int64"
+            ]
+          ],
+          "result": "Int64",
+          "body": [
+            "add",
+            [
+              "arg",
+              "x"
+            ],
+            [
+              "int",
+              1
+            ]
+          ]
+        },
+        "main": {
+          "params": [
+            [
+              "x",
+              "Int64"
+            ]
+          ],
+          "result": "Int64",
+          "body": [
+            "call",
+            "plus_one",
+            [
+              "arg",
+              "x"
+            ]
+          ]
+        }
+      }
+    },
+    "packet_sha256": "141c48dcab65681c42232ef31a0253776566d6fb93d2021813938108858c5850",
+    "receipt": {
+      "base": "b36bd614c05b8b9a22935850fc4b2b1a0f80d7f12379c0da2f3a935114b5e1c6",
+      "delta": {
+        "add": [
+          "plus_one"
+        ],
+        "replace": [
+          "main"
+        ]
+      },
+      "execution_admission": false,
+      "ok": true,
+      "schema": "bagaev-record-draft-tool/1",
+      "semantic_check": false,
+      "target": "f8cb1ea4b12fb697f4745f99bdbb19e164f0b219493d9e8075c2c1211d17b25b"
+    }
+  },
+  "5": {
+    "original": "bagaev record-form/5; program { entry main; fn main(x: Int64) -> Int64 = x+1; }",
+    "candidate": "bagaev record-form/5; program { entry main; fn plus_one(x: Int64) -> Int64 = x+1; fn main(x: Int64) -> Int64 = plus_one(x); }",
+    "base": "fc65a407abf49cceae685b39ea29194221a209dc9727eb0d8927f8cd5451ab52",
+    "target": "612633b2baf1d36add5e2a9c5a57b908c370c5c1b8c3dedab50ab9a8d06a922c",
+    "expected": {
+      "schema": "bagaev-typed-record/11",
+      "records": {},
+      "lists": {},
+      "variants": {},
+      "entry": "main",
+      "functions": {
+        "plus_one": {
+          "params": [
+            [
+              "x",
+              "Int64"
+            ]
+          ],
+          "result": "Int64",
+          "body": [
+            "add",
+            [
+              "arg",
+              "x"
+            ],
+            [
+              "int",
+              1
+            ]
+          ]
+        },
+        "main": {
+          "params": [
+            [
+              "x",
+              "Int64"
+            ]
+          ],
+          "result": "Int64",
+          "body": [
+            "call",
+            "plus_one",
+            [
+              "arg",
+              "x"
+            ]
+          ]
+        }
+      }
+    }
+  }
+}

@@ -34,7 +34,9 @@ and four CLI operations. These are bounded same-maintainer observations.
 Fragment byte counts are not token-cost or model-preference measurements.
 
 [Diagnostics and formatting](wide-authoring.md) separately support explicit form5.
-Whole-program draft tools retain their earlier version limits.
+For helper additions or multiple bodies, use the separate
+[whole-source form5 draft](pure-record-drafts.md#explicit-form5-whole-source-drafts)
+route; the focused exporter retains its single-body restriction.
 
 A [pinned draft exporter](record-draft-export.md) produces source for explicit
 invocation preparation without manual envelope extraction or execution.

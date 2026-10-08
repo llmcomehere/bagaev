@@ -34,9 +34,9 @@ checks passed unchanged. These checks made no runtime calls and do not establish
 independent reproduction or production readiness.
 
 The preparation tool already supports explicit form5 and writes invocation/11.
-The focused replacement tool supports form5 separately. Whole-program draft
-support remains limited to its existing versions; use the focused path when
-changing a single function in this profile.
+The focused replacement tool supports form5 separately. For helper additions
+or multiple body changes, explicit [whole-source form5 drafts](pure-record-drafts.md#explicit-form5-whole-source-drafts)
+retain the fixed entry, declarations and existing signatures.
 
 ## Explicit soft line width
 
