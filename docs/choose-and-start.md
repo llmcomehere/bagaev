@@ -23,7 +23,7 @@ including setup, correction, review and future changes.
 
 For current pure form4/form5 tooling, inspect the [machine-readable capability
 report](record-capabilities.md) before selecting schemas and bounds. Use explicit
---revision 2 for the current Json preparation and native-data routes; the default
+--revision 3 for Json preparation, native-data routes and source-map metadata; the default
 revision 1 remains unchanged. The separate
 [sixteen-entry catalogue](catalog-wide.md) has [diagnostic/formatting support](wide-authoring.md),
 [focused changes](wide-function-editing.md) and a [draft-to-source handoff](record-draft-export.md).
@@ -40,6 +40,14 @@ returned value, not an external transaction. To inspect a form5 failure location
 join the [checked node report](native-source-locations.md) with the
 [pinned readable source map](record-source-map.md); coarse ranges are labelled.
 
+
+The [batch policy edit](inventory-batch-change.md) changes only one function to
+limit the cumulative request total. An [ordinary native baseline](inventory-native-baseline.md)
+provides the same selected outcomes, without a speed-comparison claim.
+For repeated inputs, choose an explicit [prepared reference](prepared-json11-reference.md)
+or separately admitted [prepared native](prepared-json11-native.md) call.
+Read resulting success bytes through the [pinned JSON data reader](native-result-json11.md).
+This route has bounded conformance observations, not production or origin assurance.
 
 ## Start with readable typed source
 

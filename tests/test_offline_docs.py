@@ -40,11 +40,11 @@ class OfflineDocsTests(unittest.TestCase):
   for name in ('component-text-cli', 'component-arithmetic-form', 'component-arithmetic-edits', 'component-diagnostics', 'readable-authoring', 'component-match-form', 'component-match-edits', 'stock-adjustment', 'component-expression-locations', 'component-text-list-form', 'tag-box', 'component-fold-form', 'tag-box-budget', 'component-record-list-form', 'pure-record-form', 'pure-reindex-entry', 'pure-batch-reindex', 'record-diagnostics'):
    self.assertEqual(B.link(name+'.md','docs/readable-authoring.md',REV),name+'.html')
  def test_current_pure_routes(self):
-  self.assertEqual(len(B.SOURCES),62);self.assertEqual(len(set(B.SOURCES)),62)
+  self.assertEqual(len(B.SOURCES),67);self.assertEqual(len(set(B.SOURCES)),67)
   for name in ('pure-record-drafts', 'pure-change-workflow', 'pure-option-form', 'pure-optional-fields', 'pure-json-form', 'catalog-edit-workflow', 'focused-function-edits', 'function-context', 'record-formatting', 'record-wide-profile', 'catalog-wide', 'wide-function-editing', 'wide-authoring', 'record-draft-export', 'record-capabilities', 'pure-inventory-reservation', 'inventory-focused-change', 'offline-documentation', 'application'):
    self.assertEqual(B.link(name+'.md','docs/choose-and-start.md',REV),name+'.html')
  def test_current_json_native_routes(self):
-  for name in ('probe-native-wide-emitter', 'probe-native-wide-wire', 'probe-native-wide-adapter', 'probe-native-wide-qualification', 'probe-native-wide-followthrough', 'inventory-json', 'json-argument-prepare', 'inventory-json-focused-change', 'native-source-locations', 'record-source-map', 'inventory-batch'):
+  for name in ('probe-native-wide-emitter', 'probe-native-wide-wire', 'probe-native-wide-adapter', 'probe-native-wide-qualification', 'probe-native-wide-followthrough', 'inventory-json', 'json-argument-prepare', 'inventory-json-focused-change', 'native-source-locations', 'record-source-map', 'inventory-batch', 'inventory-batch-change', 'inventory-native-baseline', 'prepared-json11-reference', 'prepared-json11-native', 'native-result-json11'):
    self.assertEqual(B.link(name+'.md','docs/choose-and-start.md',REV),name+'.html')
  def test_inert_code_and_raw_html(self):
   code='<script>alert("x")</script> & [link](javascript:x)\n';body,title=B.render('# Example\n\n```text\n'+code+'```\n\n<img src=x onerror=alert(1)>\n','README.md',REV);parser=Tags();parser.feed(body);self.assertNotIn('script',parser.tags);self.assertNotIn('img',parser.tags);self.assertEqual(''.join(parser.code),code)
