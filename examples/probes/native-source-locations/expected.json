@@ -1,0 +1,91 @@
+[
+  {
+    "id": "add-overflow",
+    "node_count": 3,
+    "node": {
+      "id": 1,
+      "function": "main",
+      "program_pointer": "/program/functions/main/body",
+      "operation": "add",
+      "type_category": "Int64"
+    }
+  },
+  {
+    "id": "subtract-underflow",
+    "node_count": 3,
+    "node": {
+      "id": 1,
+      "function": "main",
+      "program_pointer": "/program/functions/main/body",
+      "operation": "sub",
+      "type_category": "Int64"
+    }
+  },
+  {
+    "id": "empty-index",
+    "node_count": 3,
+    "node": {
+      "id": 1,
+      "function": "main",
+      "program_pointer": "/program/functions/main/body",
+      "operation": "records.at",
+      "type_category": "Record"
+    }
+  },
+  {
+    "id": "push-seventeenth",
+    "node_count": 36,
+    "node": {
+      "id": 1,
+      "function": "main",
+      "program_pointer": "/program/functions/main/body",
+      "operation": "records.push",
+      "type_category": "RecordList"
+    }
+  },
+  {
+    "id": "work-limit",
+    "node_count": 9,
+    "node": {
+      "id": 7,
+      "function": "main",
+      "program_pointer": "/program/functions/main/body/5/5/5",
+      "operation": "loop",
+      "type_category": "Int64"
+    }
+  },
+  {
+    "id": "call-order",
+    "node_count": 4,
+    "nodes": [
+      {
+        "id": 1,
+        "function": "a",
+        "program_pointer": "/program/functions/a/body",
+        "operation": "int",
+        "type_category": "Int64"
+      },
+      {
+        "id": 2,
+        "function": "main",
+        "program_pointer": "/program/functions/main/body",
+        "operation": "add",
+        "type_category": "Int64"
+      },
+      {
+        "id": 3,
+        "function": "main",
+        "program_pointer": "/program/functions/main/body/1",
+        "operation": "call",
+        "type_category": "Int64"
+      },
+      {
+        "id": 4,
+        "function": "main",
+        "program_pointer": "/program/functions/main/body/2",
+        "operation": "int",
+        "type_category": "Int64"
+      }
+    ]
+  }
+]

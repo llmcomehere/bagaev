@@ -78,3 +78,7 @@ five byte-identical harness renderings and six intentional refusals through
 61 data-only CLI calls. Four additional packet tests passed. These checks did
 not perform another native run. Broader profile coverage and independent
 reproduction remain open.
+
+The [checked source-location reader](native-source-locations.md) can now map the
+selected profile11 failure node to its exact programme JSON pointer without
+rerunning the programme. It does not authenticate a native failure record.

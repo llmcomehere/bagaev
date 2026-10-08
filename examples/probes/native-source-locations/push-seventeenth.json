@@ -1,0 +1,169 @@
+{
+  "schema": "bagaev-typed-record-invocation/11",
+  "program": {
+    "schema": "bagaev-typed-record/11",
+    "records": {
+      "Item": {
+        "n": "Int64"
+      }
+    },
+    "lists": {
+      "Items": {
+        "element": "Item",
+        "capacity": 16
+      }
+    },
+    "variants": {},
+    "functions": {
+      "main": {
+        "params": [],
+        "result": "Items",
+        "body": [
+          "records.push",
+          [
+            "records.list",
+            "Items",
+            [
+              "record",
+              "Item",
+              [
+                "int",
+                0
+              ]
+            ],
+            [
+              "record",
+              "Item",
+              [
+                "int",
+                1
+              ]
+            ],
+            [
+              "record",
+              "Item",
+              [
+                "int",
+                2
+              ]
+            ],
+            [
+              "record",
+              "Item",
+              [
+                "int",
+                3
+              ]
+            ],
+            [
+              "record",
+              "Item",
+              [
+                "int",
+                4
+              ]
+            ],
+            [
+              "record",
+              "Item",
+              [
+                "int",
+                5
+              ]
+            ],
+            [
+              "record",
+              "Item",
+              [
+                "int",
+                6
+              ]
+            ],
+            [
+              "record",
+              "Item",
+              [
+                "int",
+                7
+              ]
+            ],
+            [
+              "record",
+              "Item",
+              [
+                "int",
+                8
+              ]
+            ],
+            [
+              "record",
+              "Item",
+              [
+                "int",
+                9
+              ]
+            ],
+            [
+              "record",
+              "Item",
+              [
+                "int",
+                10
+              ]
+            ],
+            [
+              "record",
+              "Item",
+              [
+                "int",
+                11
+              ]
+            ],
+            [
+              "record",
+              "Item",
+              [
+                "int",
+                12
+              ]
+            ],
+            [
+              "record",
+              "Item",
+              [
+                "int",
+                13
+              ]
+            ],
+            [
+              "record",
+              "Item",
+              [
+                "int",
+                14
+              ]
+            ],
+            [
+              "record",
+              "Item",
+              [
+                "int",
+                15
+              ]
+            ]
+          ],
+          [
+            "record",
+            "Item",
+            [
+              "int",
+              16
+            ]
+          ]
+        ]
+      }
+    },
+    "entry": "main"
+  },
+  "arguments": []
+}
