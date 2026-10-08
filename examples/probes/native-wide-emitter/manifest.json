@@ -1,0 +1,9 @@
+{
+  "sha256": {
+    "catalog-invocation.json": "429f14700589ad82a3aba9d85ef571d2632744bb364d3e37f17888eeb524060b",
+    "typed-argument-invocation.json": "a277fe4a720f992c6a6cb5e20ff1e1d79d55fad975c0e418d548ed369fc2b3e1",
+    "CONTRACT.md": "820c6922184591d8d11b6d4b9de9dc3a2377dcc68556695b38b7f3664f9423ad",
+    "sum-invocation.json": "a695187d2eec845be85494d2a61a71e7e4d605407eb35cb94ff78e7b314fffd9",
+    "CHECKER-CORRECTION.md": "90a8901a01b1e71dd36fe25ca55f2ed1285781a189ce98f3f323a2e3152cf329"
+  }
+}
