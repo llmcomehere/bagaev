@@ -74,3 +74,7 @@ The [one-function native change walkthrough](inventory-json-focused-change.md)
 adds a per-order limit through pinned context, detached draft, export, explicit
 Json preparation and separately admitted native execution. This original
 example remains unchanged.
+
+A separate [ordered batch example](inventory-batch.md) composes up to four
+reservations with pure returned-value rollback and per-step receipts. The
+single-request interface and its frozen expectations remain unchanged.
