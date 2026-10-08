@@ -49,3 +49,6 @@ These are own initialized-data export/decoder checks. No generated LLVM kernel
 was compiled or called. Native language conformance still requires the separately
 versioned exact-kernel adapter and compiler/runtime qualification. Independent
 reproduction, performance and production readiness are not established.
+
+The [explicit profile11 adapter](probe-native-wide-adapter.md) is separately
+qualified with controlled Rust callbacks; generated LLVM remains unexecuted.
