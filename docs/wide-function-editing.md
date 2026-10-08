@@ -38,3 +38,29 @@ Whole-program draft tools retain their earlier version limits.
 
 A [pinned draft exporter](record-draft-export.md) produces source for explicit
 invocation preparation without manual envelope extraction or execution.
+
+## Optional original-source locations
+
+For a focused edit, `record_function.py context SOURCE --form 5 --name FUNCTION
+--locations --output NEW_FILE` returns `bagaev-function-context/3`. Without the
+flag, the existing context/2 bytes remain unchanged. The flag is refused for
+other operations and for form4.
+
+The packet preserves the fragment, direct callers/callees and their signatures
+and pins, and adds `source_locations` from the [readable source map](record-source-map.md).
+Only the selected function's expression pointers are included; similarly prefixed
+function names are excluded. Its programme pin equals `sha256:` plus the
+fragment's base digest, and its source hash binds the exact full input layout.
+
+These ranges refer to the original full source, **not** the separately formatted
+`fragment.source`. The explicit `location_source` field states this distinction.
+Exact/coarse precision and Unicode-scalar column rules remain those of the map.
+The additional 2048-node/full-map and 1 MiB output bounds apply; this optional
+context can refuse where the old context alone would fit. Neither mode performs
+semantic checking or executes a programme. Existing no-overwrite transport remains.
+
+Two original no-flag outputs were frozen before implementation. Nine fresh data
+CLI calls and three portable tests passed, covering default byte identity,
+selected-function isolation, a multiline UTF-8 layout change, the accepted
+batch_apply caller/callee context, invalid combinations/name and existing output.
+No programme, compiler or native-kernel call was made for these checks.

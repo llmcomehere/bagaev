@@ -53,3 +53,19 @@ def context(source,name):
             'callees':[declaration(n) for n in sorted(calls[name])],
             'callers':[declaration(n) for n in sorted(functions) if name in calls[n]],
             'scope':'direct-syntactic-calls','semantic_check':False,'execution_admission':False}
+
+
+def located_context(source, name):
+    """Optional ranges refer to original full source, never fragment.source."""
+    import bagaev_record_wide_spans as spans
+    packet = context(source, name)
+    mapping = spans.source_map(source)
+    need(mapping['program_pin'] == 'sha256:' + packet['fragment']['base'], 'FUNCTION_MAP')
+    prefix = '/program/functions/' + name + '/body'
+    mapping['locations'] = [item for item in mapping['locations']
+                            if item['program_pointer'] == prefix or item['program_pointer'].startswith(prefix + '/')]
+    need(bool(mapping['locations']), 'FUNCTION_MAP')
+    packet['schema'] = 'bagaev-function-context/3'
+    packet['source_locations'] = mapping
+    packet['location_source'] = 'original-full-input; not fragment.source'
+    return packet
