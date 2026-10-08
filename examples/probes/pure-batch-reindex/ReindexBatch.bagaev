@@ -1,0 +1,13 @@
+bagaev record-form/1;
+program {
+  record Entry { id: Int64, manual: TextList, indexed: TextList };
+  list Entries of Entry capacity 4;
+  entry reindex_batch;
+  fn reindex_entry(entry: Entry, tags: TextList) -> Entry =
+    Entry { id: entry.id, manual: entry.manual, indexed: list.unique(tags) };
+  fn reindex_batch(entries: Entries, tags: TextList) -> Entries =
+    fold (4, records.list(Entries)) with (i, result) in
+      if (i < records.len(entries))
+      then records.push(result, reindex_entry(records.at(entries, i), tags))
+      else result;
+}
