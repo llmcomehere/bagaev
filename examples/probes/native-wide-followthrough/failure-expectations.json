@@ -1,0 +1,87 @@
+[
+  {
+    "id": "add-overflow",
+    "expected": {
+      "status": "integer-overflow",
+      "reason": "RR_OVERFLOW",
+      "location": "/program/functions/main/body",
+      "work": 3
+    },
+    "native_metadata": {
+      "status": 1,
+      "value_type": 0,
+      "value": 0,
+      "work": 3,
+      "reason": 9,
+      "location": 1
+    }
+  },
+  {
+    "id": "subtract-underflow",
+    "expected": {
+      "status": "integer-overflow",
+      "reason": "RR_OVERFLOW",
+      "location": "/program/functions/main/body",
+      "work": 3
+    },
+    "native_metadata": {
+      "status": 1,
+      "value_type": 0,
+      "value": 0,
+      "work": 3,
+      "reason": 9,
+      "location": 1
+    }
+  },
+  {
+    "id": "empty-index",
+    "expected": {
+      "status": "list-index",
+      "reason": "RR_INDEX",
+      "location": "/program/functions/main/body",
+      "work": 3
+    },
+    "native_metadata": {
+      "status": 5,
+      "value_type": 0,
+      "value": 0,
+      "work": 3,
+      "reason": 12,
+      "location": 1
+    }
+  },
+  {
+    "id": "push-seventeenth",
+    "expected": {
+      "status": "record-list-bound",
+      "reason": "RR_RECORD_LIST_ITEMS",
+      "location": "/program/functions/main/body",
+      "work": 53
+    },
+    "native_metadata": {
+      "status": 8,
+      "value_type": 0,
+      "value": 0,
+      "work": 53,
+      "reason": 15,
+      "location": 1
+    }
+  },
+  {
+    "id": "work-limit",
+    "expected": {
+      "status": "work-limit",
+      "reason": "RR_WORK",
+      "location": "/program/functions/main/body/5/5/5",
+      "work": 65536
+    },
+    "native_metadata": {
+      "status": 2,
+      "value_type": 0,
+      "value": 0,
+      "work": 65536,
+      "reason": 10,
+      "location": 7
+    }
+  }
+]
