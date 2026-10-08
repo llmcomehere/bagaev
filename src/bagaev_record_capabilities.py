@@ -19,7 +19,8 @@ def describe(version):
                              'functions': 32, 'nodes': 2048, 'named_types': 8,
                              'expanded_shape': 4096, 'work': 65536},
         'intrinsic_spellings': [{'name': name, 'arity': arity}
-                               for name, arity in sorted(codec.INTRINSICS.items())],
+                               for name, arity in sorted(codec.INTRINSICS.items())
+                               if name not in ('bool.and', 'bool.or')],
         'intrinsic_scope': 'named-call spellings only; operators and special syntax are not enumerated',
         'literal_arguments': {'json.field': [1], 'record.field': [1], 'records.list': [0]},
         'literal_argument_indexing': 'zero-based; records.list starts with a declared type name',
@@ -97,4 +98,48 @@ def describe_v3(version):
             'guide': 'docs/record-source-map.md'})
     else:
         value['source_debugging']['reason'] = 'combined checked-node/readable-map path is explicit form5 only; no automatic upgrade'
+    return value
+
+
+def describe_v4(version):
+    """Explicit discovery of lazy syntax and profile11 prepared/result APIs."""
+    value = describe_v3(version)
+    value['schema'] = 'bagaev-record-capabilities/4'
+    value['profile11_extensions'] = {'supported': version == '5'}
+    if version != '5':
+        value['profile11_extensions']['reason'] = 'explicit form5 only; does not describe or disable existing profile10 APIs'
+        return value
+    for name in ('bool.and', 'bool.or'):
+        value['intrinsic_spellings'].append({'name': name, 'arity': 2})
+    value['intrinsic_spellings'].sort(key=lambda item: item['name'])
+    value['intrinsic_scope'] = 'named-call spellings including explicit lazy Boolean surface forms; operators and other special syntax are not enumerated'
+    value['profile11_extensions'].update({
+        'lazy_boolean_forms': {
+            'bool.and': {'arity': 2, 'lowering': 'if left then right else false'},
+            'bool.or': {'arity': 2, 'lowering': 'if left then true else right'},
+            'both_branches_type_checked': True, 'canonical_spelling': 'if',
+            'synthetic_literal_range': 'enclosing-expression'},
+        'prepared_reference': {
+            'source': 'examples/probes/backend/rust/typed_record.rs',
+            'prepare_source': 'prepare_json_program_v11',
+            'prepare_arguments': 'prepare_json_arguments_v11',
+            'evaluate': 'evaluate_prepared_json_v11',
+            'entry_parameters': 'all Json or zero parameters',
+            'guide': 'docs/prepared-json11-reference.md'},
+        'prepared_native': {
+            'source': 'examples/probes/backend/rust/prepared_json_native_v11.rs',
+            'prepare_source': 'prepare', 'evaluate': 'evaluate',
+            'evaluation_unsafe': True, 'separate_exact_kernel_admission_required': True,
+            'actual_scratch_checked_per_call': True, 'result_owned': True,
+            'guide': 'docs/prepared-json11-native.md'},
+        'success_json_reader': {
+            'source': 'examples/probes/backend/rust/native_result_json11_main.rs',
+            'library': 'examples/probes/backend/rust/native_result_json_v11.rs',
+            'required_flags': ['--source', '--source-pin', '--wire'],
+            'wire': 'BCMPRES4', 'result_schema': 'bagaev-native-result/11',
+            'unbound_failure_packets': 'refused', 'source_or_kernel_execution': False,
+            'output_file_writes': False, 'origin_authenticated': False,
+            'guide': 'docs/native-result-json11.md'},
+        'execution_admission': False,
+        'performance_claim': False})
     return value

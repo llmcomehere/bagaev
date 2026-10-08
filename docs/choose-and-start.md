@@ -23,7 +23,7 @@ including setup, correction, review and future changes.
 
 For current pure form4/form5 tooling, inspect the [machine-readable capability
 report](record-capabilities.md) before selecting schemas and bounds. Use explicit
---revision 3 for Json preparation, native-data routes and source-map metadata; the default
+--revision 4 for Json preparation, source maps, lazy forms and prepared/result routes; the default
 revision 1 remains unchanged. The separate
 [sixteen-entry catalogue](catalog-wide.md) has [diagnostic/formatting support](wide-authoring.md),
 [focused changes](wide-function-editing.md) and a [draft-to-source handoff](record-draft-export.md).
