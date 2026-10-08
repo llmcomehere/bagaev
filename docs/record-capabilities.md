@@ -41,3 +41,31 @@ deterministic/detached API results, five CLI calls and six API/CLI refusals pass
 No runtime calls or model-choice measurements were made. The form5 codec's stale
 introductory docstring was also corrected to identify profile11; its behavior
 was not changed.
+
+## Explicit discovery revision 2
+
+Select the additive report explicitly:
+
+    python tools/record_capabilities.py --form 5 --revision 2
+
+It uses bagaev-record-capabilities/2. The default and explicit --revision 1
+retain the earlier report byte-for-byte. Existing error envelopes stay on
+bagaev-record-capabilities/1.
+
+Revision 2 additionally distinguishes the strict typed-argument route from
+[lossless Json-only preparation](json-argument-prepare.md), including exact
+arity, preserved numeric lexemes, frame/depth limits and refused syntax classes.
+It lists that new data tool without turning preparation into execution.
+
+The native-preparation section identifies the selected profile's checked emitter
+source, module/binding schemas, target and success-wire magic. Form4/profile10
+uses BCMPRES3; form5/profile11 uses BCMPRES4. Both require a zero-argument or
+Json-only entry and exclude Json results. These are eligibility requirements,
+not a promise of general native conformance. The report never compiles,
+discovers an executable, loads a kernel or supplies execution admission.
+
+Two frozen revision-2 additions passed 12 data CLI checks, four CLI refusals
+and three API refusals, including deterministic fresh results. The unchanged
+legacy check passed its five CLI calls and six API/CLI refusals. Default output
+for both forms also matched the preceding accepted implementation byte-for-byte
+in four additional CLI calls. No programme/runtime or model calls occurred.
