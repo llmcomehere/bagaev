@@ -19,14 +19,15 @@ neither follows links nor executes examples, source programs or tests.
 
 ## Sources and reproducibility
 
-The fixed input list is README, the task chooser, pure filtering guide, queue
-change example, integrated beta guide, toolchain contract, L2 contract, explicit
-filter saved-workflow guide, shared Store contract, stateful component guide,
-typed outcome/composition/persistence contracts, file conversion, arithmetic and
-match forms/edits, optional diagnostics, connected readable authoring, the stock
-adjustment example, pinned expression locations, TextList, TagBox, counted fold,
-TagBox byte preflight and LICENSE. These twenty-seven sources produce twenty-eight
-HTML pages including the README entry alias, plus the index.
+The fixed input list contains51 reviewed documentation sources, including the
+original32 entries and19 current pure-source/application guides. These add
+forms2–5, whole/focused changes, call context, formatting, the sixteen-entry
+catalogue, draft export, profile discovery, inventory reservation and its actual
+business-change handoff, this guide and the application contract. The previous
+text saying27 sources was stale; the preceding builder already selected32.
+The51 sources produce52 HTML pages including the README entry alias, plus
+index.json:53 files in total. Linked code/examples outside the selection remain
+revision-pinned GitHub links and are not copied into the offline package.
 Each source receives an HTML page. The entry aliases the README view;
 `index.json` records titles, paths, the supplied revision and actual SHA-256
 hashes of source bytes. The license is displayed as escaped plain text.
