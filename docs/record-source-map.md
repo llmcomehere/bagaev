@@ -59,3 +59,36 @@ Six fresh data-only calls to the accepted checked native inspector joined all
 failure-location fixtures and call ordering. No programme evaluation, native
 kernel invocation, model call or performance measurement was performed here.
 The [contract](../examples/probes/wide-source-spans/CONTRACT.md) records the scope.
+
+## Explicit file interface
+
+The separate `tools/record_source_map.py` command requires `--form 5`,
+`--program-pin sha256:<canonical-programme-digest>` and `--output NEW_FILE`:
+
+```sh
+python tools/record_source_map.py program.bagaev --form 5 \
+  --program-pin sha256:<canonical-programme-digest> --output source-map.json
+```
+
+Use the programme identity from the separately checked source report or an
+already pinned programme. `--source-sha256 <raw-source-digest>` additionally
+requires an exact layout; `--pointer /program/functions/main/body/2` selects one
+existing entry. Selection does not infer or validate native node IDs.
+
+The existing bounded regular-file reader and exclusive-create writer are reused
+unchanged. Inputs over 1 MiB and symlink inputs refuse. Existing output files are
+never replaced. Pin, layout, syntax and pointer refusals happen before output
+creation. This reuses the writer's existing I/O guarantees; it does not promise
+transactional recovery from a device failure during writing.
+
+Success prints a small `bagaev-record-source-map-receipt/1` JSON receipt with
+source/programme identities, output SHA256 and selected location count. Errors
+print `ok: false` with a stable code and exit 2. Missing/wrong explicit form is
+`TOOL_USAGE`; stale/malformed pins use `SOURCE_MAP_PIN` or `SOURCE_MAP_LAYOUT`;
+a missing selection uses `SOURCE_MAP_POINTER`. The saved map retains explicit
+false semantic-check and execution-admission flags.
+
+Fifteen fresh data-only process calls covered four successes and eleven refusals,
+including preservation of input and an existing output. Three portable file
+interface tests cover the same boundaries in-process. No programme evaluation
+or native kernel call is involved in either set.
