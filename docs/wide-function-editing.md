@@ -113,13 +113,26 @@ single-function scope, unchanged declarations/signature, old-function pin and
 no-op checks still apply. The resulting canonical positional fragment is passed
 to the unchanged replacement validator; the draft remains unadmitted data.
 
-This is a library-only opt-in. `replace`, standalone form5 decoding, the CLI and
-fragment-layout export keep their prior behavior and do not silently gain callee
-context. Their standalone named external-call limitation remains until explicitly
-selected integration is provided. No recursion or call is executed by this API.
+The library opt-in does not change `replace` or standalone form5 decoding.
+Default CLI and fragment-layout export modes do not silently gain callee context.
+The explicit CLI path below selects it. No recursion or call is executed by this API.
 
 Four literal named/positional cases produced byte-identical frozen draft packets:
 reordered arguments, nested calls, a let-local and a self-call as data. Four
 portable tests also cover old-mode refusals, invalid labels, scope/signature/
 base/function-pin errors and changed declaration order under a new base pin.
 These data checks establish no runtime/type or model-choice result.
+
+### Explicit contextual replacement CLI
+
+Add `--callee-context` to `record_function.py replace --form 5` with the usual
+original source, replacement, base/function pins and fresh output path. It calls
+`replace_in_context`. Other operations and form4 refuse the flag before input.
+The draft bytes equal the equivalent positional replacement; only the opt-in
+receipt adds `callee_context_base` with the checked original base hash.
+
+To retain that named fragment's exact expression spelling and internal comments,
+use the corresponding [contextual layout export](record-draft-export.md#explicit-contextual-layout-export).
+Four frozen reordered/nested/let/self draft packets and literal spliced outputs
+passed the two-tool path. Existing-output refusal leaves input and output files
+unchanged. This path reads and writes data and grants no program execution.

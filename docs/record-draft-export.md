@@ -96,7 +96,7 @@ refused before input. Existing input readers and no-overwrite output writer are
 unchanged. Only this opt-in receipt adds `replacement_source_sha256` (the entire
 fragment file) and `replacement_scope:"body-expression"`.
 
-A standalone single-function fragment still needs positional calls to external
+In the default fragment-layout mode, a standalone single-function fragment needs positional calls to external
 functions: named calls require declarations in that same source. A named self-call
 can be preserved as data, but this says nothing about its runtime admissibility.
 This option does not weaken signature or scope checks to accommodate missing
@@ -106,3 +106,29 @@ Six portable tests cover literal Unicode/CRLF spliced bytes, unchanged inputs,
 packet/pin/fragment refusals, declared named spelling as data, paired CLI flags,
 combined output bounds and existing-output preservation. Existing layout and
 annotated-walkthrough tests retain their frozen hashes. No program was executed.
+
+### Explicit contextual layout export
+
+For a fragment containing named external calls, add `--callee-context` alongside
+`--form 5 --preserve-layout --source-sha256 HEX --replacement-source FRAGMENT`.
+All are required together; malformed combinations refuse before file reads.
+The original program base/target pins and fresh output path remain required.
+
+The library API is `export_source_with_contextual_fragment_layout`. It validates
+the existing complete layout export, reconstructs the exact draft through
+`replace_in_context`, maps the fragment using only the pinned original parameter
+declarations, and splices exact expression bytes. No callee body is inserted into
+the fragment or changed in the original. The entire result is size-bounded and
+decoded against the target again. Its explicit receipt additionally records
+`callee_context_base`. Old modes, default maps and receipt fields remain unchanged.
+
+The internal contextual map is not a standalone public source-map report;
+ordinary source-map decoding still requires declarations in the input. Named
+argument ordering follows the pinned declaration order. Source comments and
+hashes retain their data-only status and do not authenticate or authorize code.
+
+Four portable tests cover four literal two-tool workflows, Unicode/CRLF interior
+comments, mismatched fragments and stale pins, invalid flag combinations before
+reads, complete output bounds and no-overwrite refusal. Existing source-map,
+context and annotated export tests retain their prior expectations. No program,
+kernel, model or performance measurement is involved.
