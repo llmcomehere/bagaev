@@ -19,14 +19,13 @@ neither follows links nor executes examples, source programs or tests.
 
 ## Sources and reproducibility
 
-The fixed input list contains 59 reviewed documentation sources. The previous
-51-source selection remains, with eight current Json/native guides added:
-wide emitter, owned wire, adapter, selected native qualification, state/failure
-followthrough, Json inventory, lossless argument preparation and the native
-one-function inventory change. The renderer and safety bounds are unchanged.
-The 59 sources produce 60 HTML pages including the README entry alias, plus
-index.json: 61 files in total. Linked code/examples outside the selection remain
-revision-pinned GitHub links and are not copied into the offline package.
+The fixed input list contains 67 reviewed documentation sources. It includes
+readable editing and source maps, batch changes and ordinary/native baselines,
+prepared reference/native calls and source-pinned result reading, alongside the
+existing language and saved-workflow guides. The renderer and safety bounds are
+unchanged. The 67 sources produce 68 HTML pages including the README entry alias,
+plus index.json: 69 files in total. Linked code/examples outside the selection
+remain revision-pinned GitHub links and are not copied into the offline package.
 Each source receives an HTML page. The entry aliases the README view;
 `index.json` records titles, paths, the supplied revision and actual SHA-256
 hashes of source bytes. The license is displayed as escaped plain text.
