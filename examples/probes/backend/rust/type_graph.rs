@@ -25,9 +25,15 @@ fn units(r:Ref,defs:&[Definition<'_>],memo:&mut[Option<u32>;8])->u32{
  }}
 }
 pub fn check<'a>(defs:&'a[Definition<'a>],entry:Ref)->Result<Checked<'a>,Refusal>{
+ check_limit(defs,entry,4)
+}
+pub fn check_wide<'a>(defs:&'a[Definition<'a>],entry:Ref)->Result<Checked<'a>,Refusal>{
+ check_limit(defs,entry,16)
+}
+fn check_limit<'a>(defs:&'a[Definition<'a>],entry:Ref,list_limit:u8)->Result<Checked<'a>,Refusal>{
  if defs.len()>8{return Err(Refusal{reason:"GRAPH_COUNT",index:8});}
  for (i,d) in defs.iter().enumerate(){
-  let bad=match d{Definition::Product(x)=>x.len()>8,Definition::Sum(x)=>x.is_empty()||x.len()>8,Definition::List{capacity,..}=>*capacity>4};
+  let bad=match d{Definition::Product(x)=>x.len()>8,Definition::Sum(x)=>x.is_empty()||x.len()>8,Definition::List{capacity,..}=>*capacity>list_limit};
   if bad{return Err(Refusal{reason:"GRAPH_ARITY",index:i});}
   for r in d.refs(){if let Ref::Named(j)=r{if usize::from(*j)>=defs.len(){return Err(Refusal{reason:"GRAPH_REF",index:i});}}}
  }

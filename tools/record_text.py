@@ -106,7 +106,7 @@ def convert(argv):
     parser.add_argument("input")
     parser.add_argument("--output", required=True)
     parser.add_argument("--arguments")
-    parser.add_argument("--form", choices=("1", "2", "3", "4"), default="1")
+    parser.add_argument("--form", choices=("1", "2", "3", "4", "5"), default="1")
     args = parser.parse_args(argv)
     if (args.operation == "prepare") != (args.arguments is not None):
         raise Refusal("TOOL_USAGE")
@@ -121,6 +121,10 @@ def convert(argv):
     elif args.form == "4":
         import bagaev_record_json_form
         codec = bagaev_record_json_form
+    elif args.form == "5":
+        import bagaev_record_wide_form
+        codec = bagaev_record_wide_form
+    profile = "11" if args.form == "5" else "10"
     if args.operation in ("decode", "prepare", "inspect"):
         value = codec.decode(raw)
         if args.operation == "prepare":
@@ -137,7 +141,7 @@ def convert(argv):
                 elif isinstance(item, dict):
                     pending.extend(item.keys())
                     pending.extend(item.values())
-            value = {"schema": "bagaev-typed-record-invocation/10",
+            value = {"schema": "bagaev-typed-record-invocation/" + profile,
                      "program": value, "arguments": arguments}
         if args.operation == "inspect":
             canonical = json.dumps(value, sort_keys=True, ensure_ascii=False,
@@ -157,8 +161,8 @@ def convert(argv):
     if len(output) > LIMIT:
         raise Refusal("RECORD_BOUNDS")
     write_output(args.output, output)
-    return {"operation": args.operation, "source_schema": "bagaev-typed-record/10",
-            **({"output_schema": "bagaev-typed-record-invocation/10"} if args.operation == "prepare" else {}),
+    return {"operation": args.operation, "source_schema": "bagaev-typed-record/" + profile,
+            **({"output_schema": "bagaev-typed-record-invocation/" + profile} if args.operation == "prepare" else {}),
             "output_bytes": len(output), "output_sha256": hashlib.sha256(output).hexdigest(),
             "semantic_check": False, "execution_admission": False}
 
