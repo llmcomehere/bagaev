@@ -3,19 +3,30 @@ import json
 import bagaev_record_wide_form as form
 
 def format_source(source):
+    return _format_source(source, None)
+
+def format_source_wrapped(source, *, width):
+    form.need(type(width) is int and 40 <= width <= 120, 'FORM_WIDTH')
+    return _format_source(source, width)
+
+def _format_source(source, width):
     before=form.decode(source)
     tokens=[token for token,_,_,_ in form.Reader(source).token_items]
     lines=['bagaev record-form/5;'];line='';stack=[];size=len(lines[0])+1
+    def indentation():
+        return 2 * (min(stack.count('{'),32) if width is None else min(len(stack),12))
     def flush():
         nonlocal line,size
         if line:
-            text='  '*min(stack.count('{'),32)+line.rstrip()
+            text=' '*indentation()+line.rstrip()
             size+=len(text.encode('utf8'))+1
             form.need(size<=form.old.BYTE_LIMIT,'FORM_BOUNDS')
             lines.append(text);line=''
     for token in tokens:
         if token.startswith('//'):
             flush();line=token;flush();continue
+        if width is not None and line and token not in (')','}', ';',',','.') and indentation()+len(line)+len(token)+1>width:
+            flush()
         if token=='}':
             flush()
             if stack and stack[-1]=='{':stack.pop()

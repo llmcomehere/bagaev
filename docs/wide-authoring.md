@@ -37,3 +37,27 @@ The preparation tool already supports explicit form5 and writes invocation/11.
 The focused replacement tool supports form5 separately. Whole-program draft
 support remains limited to its existing versions; use the focused path when
 changing a single function in this profile.
+
+## Explicit soft line width
+
+`record_format.py SOURCE --form 5 --width 80 --output NEW_FILE` selects an
+optional token-preserving wrapped view. The library entry is
+`format_source_wrapped(source, width=80)`. Width must be an integer from40 through120;
+the CLI refuses other values and form4 before reading input. Omit the option to
+retain the previous formatter bytes and receipt. The opt-in receipt adds
+`soft_width` only.
+
+This is a soft Unicode-character goal, not display-cell or byte width. Long
+quoted literals/comments are indivisible; closing punctuation and indentation
+can exceed the goal. Continuation indentation counts open braces/parentheses,
+capped at12levels. Comment text/order is retained with the existing trailing
+whitespace normalization. Output remains LF text within the existing1MiB limit.
+Token order, literals and parentheses are preserved; the complete decoded graph
+is checked again. No expression rewriting or execution is performed.
+
+Five portable tests cover old frozen bytes, widths40/80/120, exact token/comment
+and graph preservation, idempotence, Unicode/CRLF and long atomic text, input/output
+bounds, invalid usage before reads and exclusive output files. On the accepted
+named batch source, width80 produced243lines with maximum81characters and no
+lines over100, compared with186lines/max178/eight over100 in that input. These
+are presentation counts, not token-cost, model preference or speed measurements.
