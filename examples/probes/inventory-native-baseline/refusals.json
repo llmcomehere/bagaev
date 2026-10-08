@@ -1,0 +1,82 @@
+[
+  {
+    "id": "malformed",
+    "opt": 0,
+    "error": "BASELINE_TRANSPORT"
+  },
+  {
+    "id": "malformed",
+    "opt": 2,
+    "error": "BASELINE_TRANSPORT"
+  },
+  {
+    "id": "oversized",
+    "opt": 0,
+    "error": "BASELINE_TRANSPORT"
+  },
+  {
+    "id": "oversized",
+    "opt": 2,
+    "error": "BASELINE_TRANSPORT"
+  },
+  {
+    "id": "surrogate",
+    "opt": 0,
+    "error": "BASELINE_TEXT_PROFILE"
+  },
+  {
+    "id": "surrogate",
+    "opt": 2,
+    "error": "BASELINE_TEXT_PROFILE"
+  },
+  {
+    "id": "long-text",
+    "opt": 0,
+    "error": "BASELINE_TEXT_PROFILE"
+  },
+  {
+    "id": "long-text",
+    "opt": 2,
+    "error": "BASELINE_TEXT_PROFILE"
+  },
+  {
+    "id": "bad-selector",
+    "opt": 0,
+    "error": "BASELINE_USAGE"
+  },
+  {
+    "id": "bad-selector",
+    "opt": 2,
+    "error": "BASELINE_USAGE"
+  },
+  {
+    "id": "bad-utf8",
+    "opt": 0,
+    "error": "BASELINE_TRANSPORT"
+  },
+  {
+    "id": "bad-utf8",
+    "opt": 2,
+    "error": "BASELINE_TRANSPORT"
+  },
+  {
+    "id": "symlink",
+    "opt": 0,
+    "error": "BASELINE_INPUT"
+  },
+  {
+    "id": "symlink",
+    "opt": 2,
+    "error": "BASELINE_INPUT"
+  },
+  {
+    "id": "directory",
+    "opt": 0,
+    "error": "BASELINE_INPUT"
+  },
+  {
+    "id": "directory",
+    "opt": 2,
+    "error": "BASELINE_INPUT"
+  }
+]
