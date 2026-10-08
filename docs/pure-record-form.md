@@ -30,7 +30,7 @@ python3 -B tools/record_text.py decode input.bagaev --output program.json
 python3 -B tools/record_text.py encode program.json --output canonical.bagaev
 ```
 
-Both outputs must be new. The fixed tool accepts only decode/encode, input and
+Both outputs must be new. The fixed tool accepts decode/encode, input and
 --output, with no profile autodetection or source execution. Inputs are regular
 non-symlink files, limited to 1 MiB; JSON rejects duplicate keys and unsupported
 numeric/structural input. Exclusive creation preserves existing outputs. Expected
@@ -43,6 +43,30 @@ Use a separately reviewed typed-record/10 reference with an explicit invocation
 and arguments for actual checking/evaluation. No durable receiver is required
 merely to compute a pure value. This does not create a general native ABI or
 claim a compiled backend for the whole readable subset.
+
+## Prepare explicit arguments for execution
+
+```console
+python3 -B tools/record_text.py prepare ReindexEntry.bagaev --arguments arguments.json --output invocation.json
+```
+
+The arguments file is a JSON array, for example:
+
+```json
+[{"id":1,"manual":["family"],"indexed":["old"]},["new","new"]]
+```
+
+The output contains exactly `schema: bagaev-typed-record-invocation/10`, the decoded
+program and supplied argument data. A separately reviewed reference can consume
+it using `run --input invocation.json`. Preparation never launches that reference
+or accepts a path to an executable. The result continues to state that semantic
+checking and execution admission are false; only prepare adds its output schema.
+
+Both inputs obey the same regular-file, strict JSON and size rules. A non-array
+arguments file refuses RECORD_ARGUMENTS, invalid JSON/Unicode refuses RECORD_JSON,
+and oversized combined output refuses RECORD_BOUNDS before creation. Missing
+--arguments or supplying it to decode/encode refuses TOOL_USAGE. Argument types
+and arity remain the typed core's responsibility. Existing files are not replaced.
 
 ## Evidence
 
