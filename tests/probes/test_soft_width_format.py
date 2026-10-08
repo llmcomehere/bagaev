@@ -22,6 +22,12 @@ class SoftWidth(unittest.TestCase):
         fmt.form.decode(raw)
         with self.assertRaises(fmt.form.FormError) as err:fmt.format_source_wrapped(raw,width=80)
         self.assertEqual(err.exception.code,'FORM_BOUNDS')
+    def test_wrapped_indent_uses_line_start_depth(self):
+        source='bagaev record-form/5; program { entry main; fn main(x: Int64) -> Int64 = (if (x < 0) then (0) else (x)); }\n'
+        expected='bagaev record-form/5;\nprogram {\n  entry main;\n  fn main(x: Int64) -> Int64 =(if(x < 0)\n    then(0)\n    else(x));\n}\n'
+        out=fmt.format_source_wrapped(source,width=80)
+        self.assertEqual(out,expected.encode());self.assertEqual(fmt.format_source_wrapped(out,width=80),out)
+        self.assertEqual(self.tokens(source),self.tokens(out));self.assertEqual(fmt.form.decode(source),fmt.form.decode(out))
     def test_invalid_width(self):
         for width in (True,False,None,39,121,40.0,'80'):
             with self.assertRaises(fmt.form.FormError) as err:fmt.format_source_wrapped(b'invalid',width=width)

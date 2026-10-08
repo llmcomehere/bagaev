@@ -12,25 +12,26 @@ def format_source_wrapped(source, *, width):
 def _format_source(source, width):
     before=form.decode(source)
     tokens=[token for token,_,_,_ in form.Reader(source).token_items]
-    lines=['bagaev record-form/5;'];line='';stack=[];size=len(lines[0])+1
+    lines=['bagaev record-form/5;'];line='';stack=[];size=len(lines[0])+1;line_indent=0
     def indentation():
         return 2 * (min(stack.count('{'),32) if width is None else min(len(stack),12))
     def flush():
         nonlocal line,size
         if line:
-            text=' '*indentation()+line.rstrip()
+            text=' '*(indentation() if width is None else line_indent)+line.rstrip()
             size+=len(text.encode('utf8'))+1
             form.need(size<=form.old.BYTE_LIMIT,'FORM_BOUNDS')
             lines.append(text);line=''
     for token in tokens:
         if token.startswith('//'):
-            flush();line=token;flush();continue
-        if width is not None and line and token not in (')','}', ';',',','.') and indentation()+len(line)+len(token)+1>width:
+            flush();line_indent=indentation();line=token;flush();continue
+        if width is not None and line and token not in (')','}', ';',',','.') and line_indent+len(line)+len(token)+1>width:
             flush()
+        if not line:line_indent=indentation()
         if token=='}':
             flush()
             if stack and stack[-1]=='{':stack.pop()
-            line='}'
+            line_indent=indentation();line='}'
         elif token=='{':
             line+=(' ' if line else '')+'{'
             flush();stack.append('{')
@@ -49,6 +50,7 @@ def _format_source(source, width):
         elif token==':':line+=': '
         else:
             if token in ('then','else','in') and line:flush()
+            if not line:line_indent=indentation()
             if line and not line.endswith((' ','.','(',':')):line+=' '
             line+=token
     flush()
