@@ -1,0 +1,56 @@
+{
+  "status": "PASSED",
+  "layouts": 5,
+  "data_cli_calls": 9,
+  "library_refusals": [
+    "stale-source",
+    "stale-base",
+    "stale-target",
+    "altered-packet",
+    "two-functions",
+    "output-bounds"
+  ],
+  "program_evaluations": 0,
+  "observations": [
+    {
+      "id": "lf",
+      "input_sha256": "6663f2e1a381a1803e2c79af1f426dd51382ef5a215efddaa12c47f14304f065",
+      "output_sha256": "39eb37e63c48812aab43918ae4c5071e459870798df91525dde4702c99d33e14",
+      "base": "d6b56f365d222f52d015ac336cd2f85bf2626c0148ce7f3fadf2bd243a2f4f66",
+      "target": "b4755a73e1090e2b4ed563f42c29250dc759c5b1224d3c5765a239cb6584351e",
+      "prefix_suffix_identical": true
+    },
+    {
+      "id": "comments",
+      "input_sha256": "9463366167482964edbe555545e743f9cd60ecc6a7dafab51fdc5c519c5e086b",
+      "output_sha256": "23f00d56165e4ff005f8de845c102e42ec3901f61fc6787a46dad54a2c942d00",
+      "base": "d6b56f365d222f52d015ac336cd2f85bf2626c0148ce7f3fadf2bd243a2f4f66",
+      "target": "b4755a73e1090e2b4ed563f42c29250dc759c5b1224d3c5765a239cb6584351e",
+      "prefix_suffix_identical": true
+    },
+    {
+      "id": "crlf",
+      "input_sha256": "715d8398497fb2fcc22dbddd0f59ab42c6739ac58cfdf97999ecb1b1a4bc1cbe",
+      "output_sha256": "5fda67575eee305d4a8cc9a41ad394c962e0117043aec2e0aa8c2cc255af5914",
+      "base": "d6b56f365d222f52d015ac336cd2f85bf2626c0148ce7f3fadf2bd243a2f4f66",
+      "target": "b4755a73e1090e2b4ed563f42c29250dc759c5b1224d3c5765a239cb6584351e",
+      "prefix_suffix_identical": true
+    },
+    {
+      "id": "lazy",
+      "input_sha256": "ee4fd98c863192f3fa46dd9710f32b88a929eb585cee0ba1b5481184dcb6fd7e",
+      "output_sha256": "ccb4a0c646a9674f60f3c65e7851266d2df778f3b43b26c615c21cf0c712ff73",
+      "base": "d6b56f365d222f52d015ac336cd2f85bf2626c0148ce7f3fadf2bd243a2f4f66",
+      "target": "b4755a73e1090e2b4ed563f42c29250dc759c5b1224d3c5765a239cb6584351e",
+      "prefix_suffix_identical": true
+    },
+    {
+      "id": "named",
+      "input_sha256": "fabbf39c12a89545d523471f2114d6b560f5d5096689f7a39fdd67c625bea0ec",
+      "output_sha256": "1c0a47616d013e1dc142de7a046983ce497d1ee833ca764223af27c11411aca8",
+      "base": "d6b56f365d222f52d015ac336cd2f85bf2626c0148ce7f3fadf2bd243a2f4f66",
+      "target": "b4755a73e1090e2b4ed563f42c29250dc759c5b1224d3c5765a239cb6584351e",
+      "prefix_suffix_identical": true
+    }
+  ]
+}
