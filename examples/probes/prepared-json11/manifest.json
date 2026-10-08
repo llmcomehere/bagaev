@@ -1,0 +1,12 @@
+{
+  "original": {
+    "cases": 32,
+    "arguments_sha256": "6ae578467ea0b02e871ebf5dfaec117662cd7871e5a355212b5dee7b3fe8f033",
+    "oracle_sha256": "aeda80170902abf7201d42a7117c26ef47d8d1269a209e743a189164a1aff4e8"
+  },
+  "total10": {
+    "cases": 40,
+    "arguments_sha256": "83b79743fead970ae8cf6163f85dfcb2e15833209b39cca53da49f271668d3e7",
+    "oracle_sha256": "986ddffa275848e609ed3dfc69650b0b03b50d4bf63dee7e17ce80ef3f300e7b"
+  }
+}
