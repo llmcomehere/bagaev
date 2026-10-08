@@ -73,3 +73,36 @@ same target graph. Nine data CLI observations and six library refusals passed.
 The unchanged legacy export regression separately passed both forms, 16 refusals,
 five CLI calls and one existing reference case. No new target semantics, native
 execution or measurement is claimed by preserving source text.
+
+### Retain the replacement's authored expression
+
+Add `--replacement-source FRAGMENT` to the form5 `--preserve-layout` command
+when the replacement body should keep its authored spelling and internal
+comments. The fragment must independently reconstruct the exact validated draft:
+only the selected existing function, unchanged declarations/signature, and the
+same pinned target. A merely similar fragment is refused.
+
+The library entry is `export_source_with_fragment_layout`. It performs the
+existing complete layout-export validation, checks fragment reconstruction, then
+splices the fragment's exact root expression bytes into the original body range.
+Both ranges must be exact. The complete result is size-bounded and decoded again
+against the target. Every byte outside the original expression stays unchanged.
+Leading/trailing fragment trivia outside its expression range is excluded;
+interior comments, Unicode and CRLF survive. Fragment comments remain untrusted
+data and confer no execution authority.
+
+The extra flag without layout mode, paired source hash and explicit form5 is
+refused before input. Existing input readers and no-overwrite output writer are
+unchanged. Only this opt-in receipt adds `replacement_source_sha256` (the entire
+fragment file) and `replacement_scope:"body-expression"`.
+
+A standalone single-function fragment still needs positional calls to external
+functions: named calls require declarations in that same source. A named self-call
+can be preserved as data, but this says nothing about its runtime admissibility.
+This option does not weaken signature or scope checks to accommodate missing
+callee context.
+
+Six portable tests cover literal Unicode/CRLF spliced bytes, unchanged inputs,
+packet/pin/fragment refusals, declared named spelling as data, paired CLI flags,
+combined output bounds and existing-output preservation. Existing layout and
+annotated-walkthrough tests retain their frozen hashes. No program was executed.
