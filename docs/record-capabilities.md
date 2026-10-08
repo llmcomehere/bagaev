@@ -103,3 +103,21 @@ Frozen prior-output hashes were not updated to accommodate the regression.
 Sixteen data-only CLI observations checked eight prior/default packets, repeated
 revision4 responses for both forms, and four refusals. No program or kernel was
 executed, and this metadata conveys no execution authority or performance claim.
+
+## Revision5: readable editing
+
+`--revision 5` explicitly adds `readable_editing` for the accepted form5 editing
+path: named user calls and declaration-order evaluation, optional named encoding,
+line comments, context/2 versus located context/3 versus source-body context/4,
+and source-hash-pinned layout export. It links the public annotated change
+manifest and guides. Context text and comments remain untrusted data; source
+hashes are neither authentication nor execution permission.
+
+The report lists paired export flags and preservation scope without changing
+those tools. Form4 reports these extensions unsupported while retaining its
+existing editing capabilities and profile10 identity. Default/revisions1–4 are
+unchanged. Discovery is intentionally incomplete and is not a semantic checker.
+Four portable tests passed: eighteen data CLI calls cover ten frozen old/default
+packets, two fresh revision5 repeats per form and four refusals; implementation
+paths/flags and detached API values are also checked. No program, kernel,
+provider or performance measurement was involved.

@@ -143,3 +143,52 @@ def describe_v4(version):
         'execution_admission': False,
         'performance_claim': False})
     return value
+
+
+def describe_v5(version):
+    """Explicit discovery of accepted readable-editing options, never execution."""
+    value = describe_v4(version)
+    value['schema'] = 'bagaev-record-capabilities/5'
+    value['readable_editing'] = {'supported': version == '5'}
+    if version != '5':
+        value['readable_editing']['reason'] = 'these extensions require explicit form5; existing form4 editing remains available'
+        return value
+    value['readable_editing'].update({
+        'named_user_calls': {
+            'arguments': 'all named or all positional; exact declared parameter set',
+            'evaluation_order': 'parameter declaration order, not textual named-argument order',
+            'default_encoder': 'positional',
+            'named_encoder': {'tool': 'tools/record_text.py', 'operation': 'encode',
+                              'flags': ['--form', '5', '--named-calls'],
+                              'library': 'src/bagaev_record_wide_form.py', 'api': 'encode_named'},
+            'guide': 'docs/record-wide-profile.md'},
+        'line_comments': {'marker': '//', 'after_mandatory_header_only': True,
+                          'outside_quoted_strings_only': True,
+                          'graph_encoders_preserve_comments': False,
+                          'token_formatter_preserves_comments': True,
+                          'comments_are_untrusted_data': True},
+        'function_context': {
+            'tool': 'tools/record_function.py', 'operation': 'context',
+            'required_flags': ['--form', '--name', '--output'], 'form_flag_value': '5',
+            'default_schema': 'bagaev-function-context/2',
+            'locations': {'flag': '--locations', 'schema': 'bagaev-function-context/3'},
+            'source_body': {'flag': '--source-body', 'schema': 'bagaev-function-context/4',
+                            'includes_locations': True,
+                            'text_scope': 'exact original expression; surrounding trivia excluded',
+                            'body_sha256': True, 'full_source_sha256': True},
+            'guide': 'docs/wide-function-editing.md'},
+        'layout_export': {
+            'tool': 'tools/record_export.py',
+            'required_flags': ['--form', '--draft', '--base', '--target', '--preserve-layout', '--source-sha256', '--output'],
+            'form_flag_value': '5', 'source_sha256': 'SHA256 of exact original UTF-8 bytes',
+            'scope': 'one existing function body; unchanged signature and other declarations',
+            'preservation': 'all bytes outside changed expression',
+            'inside_body_comments': 'may be replaced',
+            'target_graph_revalidated': True,
+            'guide': 'docs/record-draft-export.md'},
+        'walkthrough': {'guide': 'docs/inventory-batch-change.md',
+                        'manifest': 'examples/probes/annotated-change/manifest.json'},
+        'output_files': 'new files only; existing outputs refused',
+        'output_bytes': 1048576, 'semantic_check': False,
+        'execution_admission': False, 'performance_claim': False})
+    return value
