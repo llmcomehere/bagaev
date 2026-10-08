@@ -1,0 +1,178 @@
+{
+  "status": "PASSED",
+  "reference_calls": 24,
+  "successful_data_lowerings": 12,
+  "syntax_refusals": 8,
+  "old_form_refusals": 1,
+  "native_calls": 0,
+  "observations": [
+    {
+      "id": "reverse",
+      "forward_declaration": false,
+      "reference": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-record-result/11",
+        "status": "success",
+        "value": 7,
+        "value_type": "Int64",
+        "work": 6
+      },
+      "program_pin": "sha256:4b06b0e37962bc356d91c82b5e35aca0ec0aa4e6f724475bba9953e110611fcd"
+    },
+    {
+      "id": "reverse",
+      "forward_declaration": true,
+      "reference": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-record-result/11",
+        "status": "success",
+        "value": 7,
+        "value_type": "Int64",
+        "work": 6
+      },
+      "program_pin": "sha256:4b06b0e37962bc356d91c82b5e35aca0ec0aa4e6f724475bba9953e110611fcd"
+    },
+    {
+      "id": "declaration",
+      "forward_declaration": false,
+      "reference": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-record-result/11",
+        "status": "success",
+        "value": 7,
+        "value_type": "Int64",
+        "work": 6
+      },
+      "program_pin": "sha256:4b06b0e37962bc356d91c82b5e35aca0ec0aa4e6f724475bba9953e110611fcd"
+    },
+    {
+      "id": "declaration",
+      "forward_declaration": true,
+      "reference": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-record-result/11",
+        "status": "success",
+        "value": 7,
+        "value_type": "Int64",
+        "work": 6
+      },
+      "program_pin": "sha256:4b06b0e37962bc356d91c82b5e35aca0ec0aa4e6f724475bba9953e110611fcd"
+    },
+    {
+      "id": "nested",
+      "forward_declaration": false,
+      "reference": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-record-result/11",
+        "status": "success",
+        "value": 6,
+        "value_type": "Int64",
+        "work": 11
+      },
+      "program_pin": "sha256:8de4880c65414e4dd310c323bc40b933fbe6e04d9d4a1eb96f933a1415c11a4e"
+    },
+    {
+      "id": "nested",
+      "forward_declaration": true,
+      "reference": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-record-result/11",
+        "status": "success",
+        "value": 6,
+        "value_type": "Int64",
+        "work": 11
+      },
+      "program_pin": "sha256:8de4880c65414e4dd310c323bc40b933fbe6e04d9d4a1eb96f933a1415c11a4e"
+    },
+    {
+      "id": "let-local",
+      "forward_declaration": false,
+      "reference": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-record-result/11",
+        "status": "success",
+        "value": 7,
+        "value_type": "Int64",
+        "work": 8
+      },
+      "program_pin": "sha256:ac977e72641dfb349957ad96337fbe399409f2fbba1310cd8d68bf7b2f083910"
+    },
+    {
+      "id": "let-local",
+      "forward_declaration": true,
+      "reference": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-record-result/11",
+        "status": "success",
+        "value": 7,
+        "value_type": "Int64",
+        "work": 8
+      },
+      "program_pin": "sha256:ac977e72641dfb349957ad96337fbe399409f2fbba1310cd8d68bf7b2f083910"
+    },
+    {
+      "id": "fold-local",
+      "forward_declaration": false,
+      "reference": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-record-result/11",
+        "status": "success",
+        "value": -1,
+        "value_type": "Int64",
+        "work": 14
+      },
+      "program_pin": "sha256:326de2e00ee9c6e4af692de81edf0a7174b2eea0146fdaff158c8cee416dd262"
+    },
+    {
+      "id": "fold-local",
+      "forward_declaration": true,
+      "reference": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-record-result/11",
+        "status": "success",
+        "value": -1,
+        "value_type": "Int64",
+        "work": 14
+      },
+      "program_pin": "sha256:326de2e00ee9c6e4af692de81edf0a7174b2eea0146fdaff158c8cee416dd262"
+    },
+    {
+      "id": "declared-failure-order",
+      "forward_declaration": false,
+      "reference": {
+        "location": "/program/functions/main/body/2",
+        "reason": "RR_OVERFLOW",
+        "schema": "bagaev-typed-record-result/11",
+        "status": "integer-overflow",
+        "value": null,
+        "value_type": null,
+        "work": 4
+      },
+      "program_pin": "sha256:ce3b3de094851de85c8c54eb2425beab0d543fcaf1d85844c2d3f69b87cb3e4e"
+    },
+    {
+      "id": "declared-failure-order",
+      "forward_declaration": true,
+      "reference": {
+        "location": "/program/functions/main/body/2",
+        "reason": "RR_OVERFLOW",
+        "schema": "bagaev-typed-record-result/11",
+        "status": "integer-overflow",
+        "value": null,
+        "value_type": null,
+        "work": 4
+      },
+      "program_pin": "sha256:ce3b3de094851de85c8c54eb2425beab0d543fcaf1d85844c2d3f69b87cb3e4e"
+    }
+  ]
+}

@@ -161,3 +161,36 @@ matched shorthand and explicit-if outputs including work/refusal metadata. Four
 arity and two old-form refusals were checked. Fourteen portable tests covering
 this feature and existing source maps/control operands/list literals passed.
 No generated native code or model was run for this syntax addition.
+
+## Named arguments for user functions
+
+Form5 also accepts fully named calls to declared user functions:
+
+```
+bagaev record-form/5;
+program {
+  fn main() -> Int64 = diff(b: 2, a: 9);
+  fn diff(a: Int64, b: Int64) -> Int64 = a - b;
+  entry main;
+}
+```
+
+This lowers to `diff(9,2)` and returns 7. Declaration-parameter order determines
+both the lowered argument order and runtime evaluation order, including which
+failing argument is encountered first. Textual named-argument order does not
+change evaluation order. Forward function declarations and local `let`/`fold`
+bindings are supported. Canonical formatting retains positional calls.
+
+Every argument in a call must be named, or every argument must be positional.
+Duplicate, unknown and missing names, unknown callees and ambiguous duplicate
+callee parameters are refused. At most eight arguments are accepted. Intrinsics
+and constructors retain their own positional syntax; older source forms are
+unchanged. Named calls add no IR operator, native ABI or runtime semantics.
+Source-map argument pointers follow each original value expression after reordering.
+
+Six frozen cases, each with both declaration orders, produced 24 bounded
+reference observations equal to explicit positional graphs and complete outputs.
+A reversed-text pair of failing arguments still failed at the declared first
+argument with the same work count. Eight syntax refusals and old-form rejection
+were checked; portable tests additionally cover eight/nine argument boundaries.
+No new native or model execution was needed for this exact lowering.
