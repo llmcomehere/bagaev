@@ -1,0 +1,413 @@
+[
+  {
+    "id": "skip-first-stock",
+    "case": "duplicate",
+    "pointer": "/functions/batch_apply/body/3/3/5/2/1/2/2/3/1/1",
+    "before": [
+      "eq",
+      [
+        "use",
+        "i"
+      ],
+      [
+        "int",
+        0
+      ]
+    ],
+    "after": [
+      "bool",
+      false
+    ],
+    "status": "DETECTED_WRONG_VALUE",
+    "result": {
+      "location": null,
+      "reason": null,
+      "schema": "bagaev-typed-record-result/11",
+      "status": "success",
+      "value": {
+        "case": "BatchCommitted",
+        "value": {
+          "receipts": [
+            {
+              "amount": 1,
+              "sku": "a",
+              "stock": [
+                {
+                  "available": 2,
+                  "sku": "a"
+                },
+                {
+                  "available": 2,
+                  "sku": "a"
+                }
+              ]
+            }
+          ],
+          "stock": [
+            {
+              "available": 2,
+              "sku": "a"
+            },
+            {
+              "available": 2,
+              "sku": "a"
+            }
+          ]
+        }
+      },
+      "value_type": "Variant:BatchOutcome",
+      "work": 1223
+    },
+    "expected_value": {
+      "case": "BatchRejected",
+      "value": {
+        "step": 0,
+        "reason": "invalid-stock",
+        "stock": [
+          {
+            "sku": "a",
+            "available": 2
+          },
+          {
+            "sku": "a",
+            "available": 3
+          }
+        ]
+      }
+    },
+    "mutant_program_sha256": "309e692a2b38078f45dd34cfa389fa6a4ab72ada096f97a25f514600bed367d2"
+  },
+  {
+    "id": "tentative-rollback",
+    "case": "rollback-second",
+    "pointer": "/functions/batch_apply/body/3/3/5/2/1/2/2/3/2/0/2/3/4",
+    "before": [
+      "arg",
+      "original"
+    ],
+    "after": [
+      "field",
+      [
+        "use",
+        "done"
+      ],
+      "stock"
+    ],
+    "status": "DETECTED_WRONG_VALUE",
+    "result": {
+      "location": null,
+      "reason": null,
+      "schema": "bagaev-typed-record-result/11",
+      "status": "success",
+      "value": {
+        "case": "BatchRejected",
+        "value": {
+          "reason": "insufficient-stock",
+          "step": 1,
+          "stock": [
+            {
+              "available": 2,
+              "sku": "a"
+            },
+            {
+              "available": 3,
+              "sku": "b"
+            }
+          ]
+        }
+      },
+      "value_type": "Variant:BatchOutcome",
+      "work": 1979
+    },
+    "expected_value": {
+      "case": "BatchRejected",
+      "value": {
+        "step": 1,
+        "reason": "insufficient-stock",
+        "stock": [
+          {
+            "sku": "a",
+            "available": 6
+          },
+          {
+            "sku": "b",
+            "available": 3
+          }
+        ]
+      }
+    },
+    "mutant_program_sha256": "cf2a06cd33cb0b93fea70eb7230e564e6d111230d21a6743fa4cf270b4d0e16c"
+  },
+  {
+    "id": "reverse-order",
+    "case": "sequential",
+    "pointer": "/functions/batch_apply/body/3/3/5/2/1/2/2/2/2",
+    "before": [
+      "use",
+      "i"
+    ],
+    "after": [
+      "sub",
+      [
+        "sub",
+        [
+          "use",
+          "size"
+        ],
+        [
+          "int",
+          1
+        ]
+      ],
+      [
+        "use",
+        "i"
+      ]
+    ],
+    "status": "DETECTED_WRONG_VALUE",
+    "result": {
+      "location": null,
+      "reason": null,
+      "schema": "bagaev-typed-record-result/11",
+      "status": "success",
+      "value": {
+        "case": "BatchCommitted",
+        "value": {
+          "receipts": [
+            {
+              "amount": 5,
+              "sku": "a",
+              "stock": [
+                {
+                  "available": 5,
+                  "sku": "a"
+                },
+                {
+                  "available": 3,
+                  "sku": "b"
+                }
+              ]
+            },
+            {
+              "amount": 4,
+              "sku": "a",
+              "stock": [
+                {
+                  "available": 1,
+                  "sku": "a"
+                },
+                {
+                  "available": 3,
+                  "sku": "b"
+                }
+              ]
+            }
+          ],
+          "stock": [
+            {
+              "available": 1,
+              "sku": "a"
+            },
+            {
+              "available": 3,
+              "sku": "b"
+            }
+          ]
+        }
+      },
+      "value_type": "Variant:BatchOutcome",
+      "work": 2116
+    },
+    "expected_value": {
+      "case": "BatchCommitted",
+      "value": {
+        "stock": [
+          {
+            "sku": "a",
+            "available": 1
+          },
+          {
+            "sku": "b",
+            "available": 3
+          }
+        ],
+        "receipts": [
+          {
+            "stock": [
+              {
+                "sku": "a",
+                "available": 6
+              },
+              {
+                "sku": "b",
+                "available": 3
+              }
+            ],
+            "sku": "a",
+            "amount": 4
+          },
+          {
+            "stock": [
+              {
+                "sku": "a",
+                "available": 1
+              },
+              {
+                "sku": "b",
+                "available": 3
+              }
+            ],
+            "sku": "a",
+            "amount": 5
+          }
+        ]
+      }
+    },
+    "mutant_program_sha256": "aa7001f77b04322267205a07a5f5fa53247aa5a6e28faf297640e2dea166ef66"
+  },
+  {
+    "id": "drop-prior-receipts",
+    "case": "sequential",
+    "pointer": "/functions/batch_apply/body/3/3/5/2/1/2/2/3/2/1/2/3/2/1",
+    "before": [
+      "field",
+      [
+        "use",
+        "done"
+      ],
+      "receipts"
+    ],
+    "after": [
+      "records.list",
+      "Receipts"
+    ],
+    "status": "DETECTED_WRONG_VALUE",
+    "result": {
+      "location": null,
+      "reason": null,
+      "schema": "bagaev-typed-record-result/11",
+      "status": "success",
+      "value": {
+        "case": "BatchCommitted",
+        "value": {
+          "receipts": [
+            {
+              "amount": 5,
+              "sku": "a",
+              "stock": [
+                {
+                  "available": 1,
+                  "sku": "a"
+                },
+                {
+                  "available": 3,
+                  "sku": "b"
+                }
+              ]
+            }
+          ],
+          "stock": [
+            {
+              "available": 1,
+              "sku": "a"
+            },
+            {
+              "available": 3,
+              "sku": "b"
+            }
+          ]
+        }
+      },
+      "value_type": "Variant:BatchOutcome",
+      "work": 2105
+    },
+    "expected_value": {
+      "case": "BatchCommitted",
+      "value": {
+        "stock": [
+          {
+            "sku": "a",
+            "available": 1
+          },
+          {
+            "sku": "b",
+            "available": 3
+          }
+        ],
+        "receipts": [
+          {
+            "stock": [
+              {
+                "sku": "a",
+                "available": 6
+              },
+              {
+                "sku": "b",
+                "available": 3
+              }
+            ],
+            "sku": "a",
+            "amount": 4
+          },
+          {
+            "stock": [
+              {
+                "sku": "a",
+                "available": 1
+              },
+              {
+                "sku": "b",
+                "available": 3
+              }
+            ],
+            "sku": "a",
+            "amount": 5
+          }
+        ]
+      }
+    },
+    "mutant_program_sha256": "d370d4d14524d30f2cf4b8838cd1e6c53667246305adcfd186816102c6102403"
+  },
+  {
+    "id": "first-shape-only",
+    "case": "later-malformed-takes-precedence",
+    "pointer": "/functions/orders_shape/body/2/3/2/1",
+    "before": 4,
+    "after": 1,
+    "status": "DETECTED_WRONG_VALUE",
+    "result": {
+      "location": null,
+      "reason": null,
+      "schema": "bagaev-typed-record-result/11",
+      "status": "success",
+      "value": {
+        "case": "BatchRejected",
+        "value": {
+          "reason": "order-limit",
+          "step": 0,
+          "stock": [
+            {
+              "available": 10,
+              "sku": "a"
+            },
+            {
+              "available": 3,
+              "sku": "b"
+            }
+          ]
+        }
+      },
+      "value_type": "Variant:BatchOutcome",
+      "work": 937
+    },
+    "expected_value": {
+      "case": "BatchRejected",
+      "value": {
+        "step": -1,
+        "reason": "request-shape",
+        "stock": []
+      }
+    },
+    "mutant_program_sha256": "597af7913598c7931a9f81a62a00f22cd789d5be00b92ea4db9484424b292089"
+  }
+]
