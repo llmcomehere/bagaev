@@ -7,6 +7,9 @@ All commands below are data preparation unless a separately reviewed checker
 or reference executable is explicitly selected. Review source and the
 [execution rules](../AGENTS.md) and use an authorized bounded profile first.
 
+For pure computation with no state owner, start with [pure typed programs](pure-record-form.md).
+The component routes below are for operations that need their explicit state boundary.
+
 ## Choose an explicit representation
 
 These are versioned readable representations of component-source/2, not different

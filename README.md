@@ -72,6 +72,8 @@ Read the [L0 semantics and CLI examples](docs/l0.md#library-and-cli) to inspect
 and try it. Review source and the [execution rules](AGENTS.md) before running
 untrusted code. No model account is needed for this example.
 
+For a pure readable typed function without component metadata, use the [record-form/1 guide](docs/pure-record-form.md).
+
 For a readable stateful formula, follow [write, diagnose and change a component](docs/readable-authoring.md): an explicit form2–7 choice map, syntax context, JSON conversion and a detached checked helper extraction.
 
 For a composed business rule with retained results, follow the [stock adjustment example](docs/stock-adjustment.md): readable match, actual typed execution, declines, applied revisions and receipt reconstruction.
