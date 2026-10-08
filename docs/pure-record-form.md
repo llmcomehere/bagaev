@@ -90,3 +90,5 @@ Use [pure syntax diagnostics](record-diagnostics.md) for source-position context
 For exact-base function-body changes and helper extraction, see [detached pure drafts](pure-record-drafts.md).
 
 For source pins and a connected edit-to-result example, follow [one complete pure change](pure-change-workflow.md).
+
+Optional integer syntax has an explicit separate [record-form/2](pure-option-form.md); select it deliberately. Form1 and its fixed tools remain unchanged.
