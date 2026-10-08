@@ -21,6 +21,11 @@ The reason to try the example is its explicit program identity and checked chang
 not evidence that this task needs a new language. Decide from the whole job,
 including setup, correction, review and future changes.
 
+For current pure form4/form5 tooling, inspect the [machine-readable capability
+report](record-capabilities.md) before selecting schemas and bounds. The separate
+[sixteen-entry catalogue](catalog-wide.md) has [diagnostic/formatting support](wide-authoring.md),
+[focused changes](wide-function-editing.md) and a [draft-to-source handoff](record-draft-export.md).
+
 ## Start with readable typed source
 
 For a typed pure task, choose the smallest relevant example. The single-entry

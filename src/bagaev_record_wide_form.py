@@ -1,4 +1,4 @@
-"""Data-only readable record-form/5 over the existing typed-record/10 subset."""
+"""Data-only readable record-form/5 over the separately selected typed-record/11 subset."""
 import json,re
 import bagaev_component_record_list_form as prior
 old=prior.old
