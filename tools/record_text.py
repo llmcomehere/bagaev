@@ -106,7 +106,7 @@ def convert(argv):
     parser.add_argument("input")
     parser.add_argument("--output", required=True)
     parser.add_argument("--arguments")
-    parser.add_argument("--form", choices=("1", "2"), default="1")
+    parser.add_argument("--form", choices=("1", "2", "3"), default="1")
     args = parser.parse_args(argv)
     if (args.operation == "prepare") != (args.arguments is not None):
         raise Refusal("TOOL_USAGE")
@@ -115,6 +115,9 @@ def convert(argv):
     if args.form == "2":
         import bagaev_record_option_form
         codec = bagaev_record_option_form
+    elif args.form == "3":
+        import bagaev_record_optional_fields_form
+        codec = bagaev_record_optional_fields_form
     if args.operation in ("decode", "prepare", "inspect"):
         value = codec.decode(raw)
         if args.operation == "prepare":
