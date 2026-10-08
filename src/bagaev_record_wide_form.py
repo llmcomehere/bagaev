@@ -23,6 +23,13 @@ class Reader(prior.Reader):
    self.take();need(value=='OptionInt64','FORM_PROFILE');return {'type':'OptionInt64','omit_none':True}
   return value
  def atom(self,depth):
+  if self.pos+3<len(self.tokens) and self.tokens[self.pos+1]=='(' and self.tokens[self.pos+3]==':':
+   need(depth<=old.DEPTH_LIMIT,'FORM_BOUNDS');name=self.ident();self.take('(');args={}
+   while True:
+    key=self.ident();need(key not in args,'FORM_DUPLICATE');self.take(':');args[key]=self.expression(depth+1);need(len(args)<=8,'FORM_BOUNDS')
+    if self.peek()!=',':break
+    self.take(',')
+   self.take(')');return ('namedcall',name,args)
   if self.tokens[self.pos:self.pos+4]==['records','.','list','(']:
    need(depth<=old.DEPTH_LIMIT,'FORM_BOUNDS');self.take();self.take();self.take();self.take();name=self.ident();values=[]
    while self.peek()==',':
@@ -40,6 +47,10 @@ class Reader(prior.Reader):
     self.take(')');need(len(args)==INTRINSICS[operation]);return ('builtin',{'int.eq':'eq','int.le':'le','bool.not':'not'}.get(operation,operation),args)
   return super().atom(depth)
  def lower(self,node,scope=frozenset(),depth=1):
+  if node[0]=='namedcall':
+   need(depth<=old.DEPTH_LIMIT,'FORM_BOUNDS');name=node[1];need(name in self.functions,'FORM_REFERENCE');params=[p[0] for p in self.functions[name]['params']]
+   need(len(set(params))==len(params),'FORM_DUPLICATE');need(set(node[2])==set(params),'FORM_ARGUMENTS')
+   return ['call',name,*[self.lower(node[2][p],scope,depth+1) for p in params]]
   if node[0]=='builtin' and node[1] in ('bool.and','bool.or'):
    need(depth<=old.DEPTH_LIMIT,'FORM_BOUNDS');args=node[2];need(len(args)==2,'FORM_PROFILE');child=lambda x:self.lower(x,scope,depth+1)
    left=child(args[0]);right=child(args[1]);literal=child(('bool',node[1]=='bool.or'))

@@ -1,0 +1,150 @@
+[
+  {
+    "id": "reverse",
+    "expression": "diff(b: 2, a: 9)",
+    "body": [
+      "call",
+      "diff",
+      [
+        "int",
+        9
+      ],
+      [
+        "int",
+        2
+      ]
+    ],
+    "value": 7,
+    "status": "success"
+  },
+  {
+    "id": "declaration",
+    "expression": "diff(a: 9, b: 2)",
+    "body": [
+      "call",
+      "diff",
+      [
+        "int",
+        9
+      ],
+      [
+        "int",
+        2
+      ]
+    ],
+    "value": 7,
+    "status": "success"
+  },
+  {
+    "id": "nested",
+    "expression": "diff(b: diff(b: 1, a: 4), a: 9)",
+    "body": [
+      "call",
+      "diff",
+      [
+        "int",
+        9
+      ],
+      [
+        "call",
+        "diff",
+        [
+          "int",
+          4
+        ],
+        [
+          "int",
+          1
+        ]
+      ]
+    ],
+    "value": 6,
+    "status": "success"
+  },
+  {
+    "id": "let-local",
+    "expression": "let x = 9 in diff(b: 2, a: x)",
+    "body": [
+      "let",
+      "x",
+      [
+        "int",
+        9
+      ],
+      [
+        "call",
+        "diff",
+        [
+          "use",
+          "x"
+        ],
+        [
+          "int",
+          2
+        ]
+      ]
+    ],
+    "value": 7,
+    "status": "success"
+  },
+  {
+    "id": "fold-local",
+    "expression": "fold (2, 0) with (i, acc) in diff(b: i, a: acc)",
+    "body": [
+      "loop",
+      2,
+      "i",
+      "acc",
+      [
+        "int",
+        0
+      ],
+      [
+        "call",
+        "diff",
+        [
+          "use",
+          "acc"
+        ],
+        [
+          "use",
+          "i"
+        ]
+      ]
+    ],
+    "value": -1,
+    "status": "success"
+  },
+  {
+    "id": "declared-failure-order",
+    "expression": "diff(b: -9223372036854775808 - 1, a: 9223372036854775807 + 1)",
+    "body": [
+      "call",
+      "diff",
+      [
+        "add",
+        [
+          "int",
+          9223372036854775807
+        ],
+        [
+          "int",
+          1
+        ]
+      ],
+      [
+        "sub",
+        [
+          "int",
+          -9223372036854775808
+        ],
+        [
+          "int",
+          1
+        ]
+      ]
+    ],
+    "value": null,
+    "status": "integer-overflow"
+  }
+]
