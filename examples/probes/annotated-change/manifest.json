@@ -1,0 +1,13 @@
+{
+  "base": "d6b56f365d222f52d015ac336cd2f85bf2626c0148ce7f3fadf2bd243a2f4f66",
+  "function": "7f22256c03ea16556738c8e69ce619424335150087f2784b14f6cdc298bd6696",
+  "target": "b4755a73e1090e2b4ed563f42c29250dc759c5b1224d3c5765a239cb6584351e",
+  "source_sha256": "91973a5772e163c6fb84856814d4dfa2ed4536fbbe03a0eca5105a61098e44f3",
+  "expected_source_sha256": "dfe5d20127c4acd7d36d14936913168ce704e6673dfe753ff6a995de57658d21",
+  "context_sha256": "75a426eba2827e1949746c619c8b00c14861d580d33ff24ac44a19a755e71d2f",
+  "draft_sha256": "d54134ba952bd71e39da2fe2f0bb80ccbf83ff37a1870c703e9e854aace05ef9",
+  "inspection_sha256": "370b4a566d307cce6304f73283db2958c0bdc5fb5ed082add3f3984f27e0964c",
+  "data_cli_calls": 4,
+  "program_evaluations": 0,
+  "preserved_scope": "outside-changed-function-body"
+}
