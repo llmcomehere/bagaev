@@ -1,0 +1,1088 @@
+[
+  {
+    "name": "full-active-before",
+    "side": "before",
+    "program": {
+      "schema": "bagaev-typed-record/11",
+      "records": {
+        "Item": {
+          "amount": "Int64",
+          "active": "Bool"
+        }
+      },
+      "lists": {
+        "Items": {
+          "element": "Item",
+          "capacity": 16
+        }
+      },
+      "variants": {},
+      "entry": "main",
+      "functions": {
+        "main": {
+          "params": [
+            [
+              "items",
+              "Items"
+            ]
+          ],
+          "result": "Int64",
+          "body": [
+            "loop",
+            16,
+            "i",
+            "sum",
+            [
+              "int",
+              0
+            ],
+            [
+              "if",
+              [
+                "lt",
+                [
+                  "use",
+                  "i"
+                ],
+                [
+                  "records.len",
+                  [
+                    "arg",
+                    "items"
+                  ]
+                ]
+              ],
+              [
+                "add",
+                [
+                  "use",
+                  "sum"
+                ],
+                [
+                  "field",
+                  [
+                    "records.at",
+                    [
+                      "arg",
+                      "items"
+                    ],
+                    [
+                      "use",
+                      "i"
+                    ]
+                  ],
+                  "amount"
+                ]
+              ],
+              [
+                "use",
+                "sum"
+              ]
+            ]
+          ]
+        }
+      }
+    },
+    "source": "bagaev record-form/5;\nprogram {\n  record Item { amount: Int64, active: Bool };\n  list Items of Item capacity 16;\n  entry main;\n  fn main(items: Items) -> Int64 =\n    fold (16, 0) with (i, sum) in\n      if i < records.len(items) then sum + record.field(records.at(items, i), \"amount\") else sum;\n}\n",
+    "arguments": [
+      [
+        {
+          "amount": 0,
+          "active": true
+        },
+        {
+          "amount": 1,
+          "active": true
+        },
+        {
+          "amount": 2,
+          "active": true
+        },
+        {
+          "amount": 3,
+          "active": true
+        },
+        {
+          "amount": 4,
+          "active": true
+        },
+        {
+          "amount": 5,
+          "active": true
+        },
+        {
+          "amount": 6,
+          "active": true
+        },
+        {
+          "amount": 7,
+          "active": true
+        },
+        {
+          "amount": 8,
+          "active": true
+        },
+        {
+          "amount": 9,
+          "active": true
+        },
+        {
+          "amount": 10,
+          "active": true
+        },
+        {
+          "amount": 11,
+          "active": true
+        },
+        {
+          "amount": 12,
+          "active": true
+        },
+        {
+          "amount": 13,
+          "active": true
+        },
+        {
+          "amount": 14,
+          "active": true
+        },
+        {
+          "amount": 15,
+          "active": true
+        }
+      ]
+    ],
+    "bounds": {
+      "items": {
+        "type": "Items",
+        "items": 16
+      }
+    },
+    "upper": 178,
+    "expected": {
+      "schema": "bagaev-typed-record-result/11",
+      "status": "success",
+      "value_type": "Int64",
+      "value": 120,
+      "work": 178,
+      "reason": null,
+      "location": null
+    }
+  },
+  {
+    "name": "full-active-after",
+    "side": "after",
+    "program": {
+      "schema": "bagaev-typed-record/11",
+      "records": {
+        "Item": {
+          "amount": "Int64",
+          "active": "Bool"
+        }
+      },
+      "lists": {
+        "Items": {
+          "element": "Item",
+          "capacity": 16
+        }
+      },
+      "variants": {},
+      "entry": "main",
+      "functions": {
+        "main": {
+          "params": [
+            [
+              "items",
+              "Items"
+            ]
+          ],
+          "result": "Int64",
+          "body": [
+            "loop",
+            16,
+            "i",
+            "sum",
+            [
+              "int",
+              0
+            ],
+            [
+              "if",
+              [
+                "lt",
+                [
+                  "use",
+                  "i"
+                ],
+                [
+                  "records.len",
+                  [
+                    "arg",
+                    "items"
+                  ]
+                ]
+              ],
+              [
+                "if",
+                [
+                  "field",
+                  [
+                    "records.at",
+                    [
+                      "arg",
+                      "items"
+                    ],
+                    [
+                      "use",
+                      "i"
+                    ]
+                  ],
+                  "active"
+                ],
+                [
+                  "add",
+                  [
+                    "use",
+                    "sum"
+                  ],
+                  [
+                    "field",
+                    [
+                      "records.at",
+                      [
+                        "arg",
+                        "items"
+                      ],
+                      [
+                        "use",
+                        "i"
+                      ]
+                    ],
+                    "amount"
+                  ]
+                ],
+                [
+                  "use",
+                  "sum"
+                ]
+              ],
+              [
+                "use",
+                "sum"
+              ]
+            ]
+          ]
+        }
+      }
+    },
+    "source": "bagaev record-form/5;\nprogram {\n  record Item { amount: Int64, active: Bool };\n  list Items of Item capacity 16;\n  entry main;\n  fn main(items: Items) -> Int64 =\n    fold (16, 0) with (i, sum) in\n      if i < records.len(items) then if record.field(records.at(items, i), \"active\") then sum + record.field(records.at(items, i), \"amount\") else sum else sum;\n}\n",
+    "arguments": [
+      [
+        {
+          "amount": 0,
+          "active": true
+        },
+        {
+          "amount": 1,
+          "active": true
+        },
+        {
+          "amount": 2,
+          "active": true
+        },
+        {
+          "amount": 3,
+          "active": true
+        },
+        {
+          "amount": 4,
+          "active": true
+        },
+        {
+          "amount": 5,
+          "active": true
+        },
+        {
+          "amount": 6,
+          "active": true
+        },
+        {
+          "amount": 7,
+          "active": true
+        },
+        {
+          "amount": 8,
+          "active": true
+        },
+        {
+          "amount": 9,
+          "active": true
+        },
+        {
+          "amount": 10,
+          "active": true
+        },
+        {
+          "amount": 11,
+          "active": true
+        },
+        {
+          "amount": 12,
+          "active": true
+        },
+        {
+          "amount": 13,
+          "active": true
+        },
+        {
+          "amount": 14,
+          "active": true
+        },
+        {
+          "amount": 15,
+          "active": true
+        }
+      ]
+    ],
+    "bounds": {
+      "items": {
+        "type": "Items",
+        "items": 16
+      }
+    },
+    "upper": 258,
+    "expected": {
+      "schema": "bagaev-typed-record-result/11",
+      "status": "success",
+      "value_type": "Int64",
+      "value": 120,
+      "work": 258,
+      "reason": null,
+      "location": null
+    }
+  },
+  {
+    "name": "alternating-before",
+    "side": "before",
+    "program": {
+      "schema": "bagaev-typed-record/11",
+      "records": {
+        "Item": {
+          "amount": "Int64",
+          "active": "Bool"
+        }
+      },
+      "lists": {
+        "Items": {
+          "element": "Item",
+          "capacity": 16
+        }
+      },
+      "variants": {},
+      "entry": "main",
+      "functions": {
+        "main": {
+          "params": [
+            [
+              "items",
+              "Items"
+            ]
+          ],
+          "result": "Int64",
+          "body": [
+            "loop",
+            16,
+            "i",
+            "sum",
+            [
+              "int",
+              0
+            ],
+            [
+              "if",
+              [
+                "lt",
+                [
+                  "use",
+                  "i"
+                ],
+                [
+                  "records.len",
+                  [
+                    "arg",
+                    "items"
+                  ]
+                ]
+              ],
+              [
+                "add",
+                [
+                  "use",
+                  "sum"
+                ],
+                [
+                  "field",
+                  [
+                    "records.at",
+                    [
+                      "arg",
+                      "items"
+                    ],
+                    [
+                      "use",
+                      "i"
+                    ]
+                  ],
+                  "amount"
+                ]
+              ],
+              [
+                "use",
+                "sum"
+              ]
+            ]
+          ]
+        }
+      }
+    },
+    "source": "bagaev record-form/5;\nprogram {\n  record Item { amount: Int64, active: Bool };\n  list Items of Item capacity 16;\n  entry main;\n  fn main(items: Items) -> Int64 =\n    fold (16, 0) with (i, sum) in\n      if i < records.len(items) then sum + record.field(records.at(items, i), \"amount\") else sum;\n}\n",
+    "arguments": [
+      [
+        {
+          "amount": 0,
+          "active": true
+        },
+        {
+          "amount": 1,
+          "active": false
+        },
+        {
+          "amount": 2,
+          "active": true
+        },
+        {
+          "amount": 3,
+          "active": false
+        },
+        {
+          "amount": 4,
+          "active": true
+        },
+        {
+          "amount": 5,
+          "active": false
+        },
+        {
+          "amount": 6,
+          "active": true
+        },
+        {
+          "amount": 7,
+          "active": false
+        },
+        {
+          "amount": 8,
+          "active": true
+        },
+        {
+          "amount": 9,
+          "active": false
+        },
+        {
+          "amount": 10,
+          "active": true
+        },
+        {
+          "amount": 11,
+          "active": false
+        },
+        {
+          "amount": 12,
+          "active": true
+        },
+        {
+          "amount": 13,
+          "active": false
+        },
+        {
+          "amount": 14,
+          "active": true
+        },
+        {
+          "amount": 15,
+          "active": false
+        }
+      ]
+    ],
+    "bounds": {
+      "items": {
+        "type": "Items",
+        "items": 16
+      }
+    },
+    "upper": 178,
+    "expected": {
+      "schema": "bagaev-typed-record-result/11",
+      "status": "success",
+      "value_type": "Int64",
+      "value": 120,
+      "work": 178,
+      "reason": null,
+      "location": null
+    }
+  },
+  {
+    "name": "alternating-after",
+    "side": "after",
+    "program": {
+      "schema": "bagaev-typed-record/11",
+      "records": {
+        "Item": {
+          "amount": "Int64",
+          "active": "Bool"
+        }
+      },
+      "lists": {
+        "Items": {
+          "element": "Item",
+          "capacity": 16
+        }
+      },
+      "variants": {},
+      "entry": "main",
+      "functions": {
+        "main": {
+          "params": [
+            [
+              "items",
+              "Items"
+            ]
+          ],
+          "result": "Int64",
+          "body": [
+            "loop",
+            16,
+            "i",
+            "sum",
+            [
+              "int",
+              0
+            ],
+            [
+              "if",
+              [
+                "lt",
+                [
+                  "use",
+                  "i"
+                ],
+                [
+                  "records.len",
+                  [
+                    "arg",
+                    "items"
+                  ]
+                ]
+              ],
+              [
+                "if",
+                [
+                  "field",
+                  [
+                    "records.at",
+                    [
+                      "arg",
+                      "items"
+                    ],
+                    [
+                      "use",
+                      "i"
+                    ]
+                  ],
+                  "active"
+                ],
+                [
+                  "add",
+                  [
+                    "use",
+                    "sum"
+                  ],
+                  [
+                    "field",
+                    [
+                      "records.at",
+                      [
+                        "arg",
+                        "items"
+                      ],
+                      [
+                        "use",
+                        "i"
+                      ]
+                    ],
+                    "amount"
+                  ]
+                ],
+                [
+                  "use",
+                  "sum"
+                ]
+              ],
+              [
+                "use",
+                "sum"
+              ]
+            ]
+          ]
+        }
+      }
+    },
+    "source": "bagaev record-form/5;\nprogram {\n  record Item { amount: Int64, active: Bool };\n  list Items of Item capacity 16;\n  entry main;\n  fn main(items: Items) -> Int64 =\n    fold (16, 0) with (i, sum) in\n      if i < records.len(items) then if record.field(records.at(items, i), \"active\") then sum + record.field(records.at(items, i), \"amount\") else sum else sum;\n}\n",
+    "arguments": [
+      [
+        {
+          "amount": 0,
+          "active": true
+        },
+        {
+          "amount": 1,
+          "active": false
+        },
+        {
+          "amount": 2,
+          "active": true
+        },
+        {
+          "amount": 3,
+          "active": false
+        },
+        {
+          "amount": 4,
+          "active": true
+        },
+        {
+          "amount": 5,
+          "active": false
+        },
+        {
+          "amount": 6,
+          "active": true
+        },
+        {
+          "amount": 7,
+          "active": false
+        },
+        {
+          "amount": 8,
+          "active": true
+        },
+        {
+          "amount": 9,
+          "active": false
+        },
+        {
+          "amount": 10,
+          "active": true
+        },
+        {
+          "amount": 11,
+          "active": false
+        },
+        {
+          "amount": 12,
+          "active": true
+        },
+        {
+          "amount": 13,
+          "active": false
+        },
+        {
+          "amount": 14,
+          "active": true
+        },
+        {
+          "amount": 15,
+          "active": false
+        }
+      ]
+    ],
+    "bounds": {
+      "items": {
+        "type": "Items",
+        "items": 16
+      }
+    },
+    "upper": 258,
+    "expected": {
+      "schema": "bagaev-typed-record-result/11",
+      "status": "success",
+      "value_type": "Int64",
+      "value": 56,
+      "work": 218,
+      "reason": null,
+      "location": null
+    }
+  },
+  {
+    "name": "full-inactive-overflow-before",
+    "side": "before",
+    "program": {
+      "schema": "bagaev-typed-record/11",
+      "records": {
+        "Item": {
+          "amount": "Int64",
+          "active": "Bool"
+        }
+      },
+      "lists": {
+        "Items": {
+          "element": "Item",
+          "capacity": 16
+        }
+      },
+      "variants": {},
+      "entry": "main",
+      "functions": {
+        "main": {
+          "params": [
+            [
+              "items",
+              "Items"
+            ]
+          ],
+          "result": "Int64",
+          "body": [
+            "loop",
+            16,
+            "i",
+            "sum",
+            [
+              "int",
+              0
+            ],
+            [
+              "if",
+              [
+                "lt",
+                [
+                  "use",
+                  "i"
+                ],
+                [
+                  "records.len",
+                  [
+                    "arg",
+                    "items"
+                  ]
+                ]
+              ],
+              [
+                "add",
+                [
+                  "use",
+                  "sum"
+                ],
+                [
+                  "field",
+                  [
+                    "records.at",
+                    [
+                      "arg",
+                      "items"
+                    ],
+                    [
+                      "use",
+                      "i"
+                    ]
+                  ],
+                  "amount"
+                ]
+              ],
+              [
+                "use",
+                "sum"
+              ]
+            ]
+          ]
+        }
+      }
+    },
+    "source": "bagaev record-form/5;\nprogram {\n  record Item { amount: Int64, active: Bool };\n  list Items of Item capacity 16;\n  entry main;\n  fn main(items: Items) -> Int64 =\n    fold (16, 0) with (i, sum) in\n      if i < records.len(items) then sum + record.field(records.at(items, i), \"amount\") else sum;\n}\n",
+    "arguments": [
+      [
+        {
+          "amount": 9223372036854775807,
+          "active": false
+        },
+        {
+          "amount": 9223372036854775807,
+          "active": false
+        },
+        {
+          "amount": 9223372036854775807,
+          "active": false
+        },
+        {
+          "amount": 9223372036854775807,
+          "active": false
+        },
+        {
+          "amount": 9223372036854775807,
+          "active": false
+        },
+        {
+          "amount": 9223372036854775807,
+          "active": false
+        },
+        {
+          "amount": 9223372036854775807,
+          "active": false
+        },
+        {
+          "amount": 9223372036854775807,
+          "active": false
+        },
+        {
+          "amount": 9223372036854775807,
+          "active": false
+        },
+        {
+          "amount": 9223372036854775807,
+          "active": false
+        },
+        {
+          "amount": 9223372036854775807,
+          "active": false
+        },
+        {
+          "amount": 9223372036854775807,
+          "active": false
+        },
+        {
+          "amount": 9223372036854775807,
+          "active": false
+        },
+        {
+          "amount": 9223372036854775807,
+          "active": false
+        },
+        {
+          "amount": 9223372036854775807,
+          "active": false
+        },
+        {
+          "amount": 9223372036854775807,
+          "active": false
+        }
+      ]
+    ],
+    "bounds": {
+      "items": {
+        "type": "Items",
+        "items": 16
+      }
+    },
+    "upper": 178,
+    "expected": {
+      "schema": "bagaev-typed-record-result/11",
+      "status": "integer-overflow",
+      "value_type": null,
+      "value": null,
+      "work": 24,
+      "reason": "RR_OVERFLOW",
+      "location": "/program/functions/main/body/5/2"
+    }
+  },
+  {
+    "name": "full-inactive-overflow-after",
+    "side": "after",
+    "program": {
+      "schema": "bagaev-typed-record/11",
+      "records": {
+        "Item": {
+          "amount": "Int64",
+          "active": "Bool"
+        }
+      },
+      "lists": {
+        "Items": {
+          "element": "Item",
+          "capacity": 16
+        }
+      },
+      "variants": {},
+      "entry": "main",
+      "functions": {
+        "main": {
+          "params": [
+            [
+              "items",
+              "Items"
+            ]
+          ],
+          "result": "Int64",
+          "body": [
+            "loop",
+            16,
+            "i",
+            "sum",
+            [
+              "int",
+              0
+            ],
+            [
+              "if",
+              [
+                "lt",
+                [
+                  "use",
+                  "i"
+                ],
+                [
+                  "records.len",
+                  [
+                    "arg",
+                    "items"
+                  ]
+                ]
+              ],
+              [
+                "if",
+                [
+                  "field",
+                  [
+                    "records.at",
+                    [
+                      "arg",
+                      "items"
+                    ],
+                    [
+                      "use",
+                      "i"
+                    ]
+                  ],
+                  "active"
+                ],
+                [
+                  "add",
+                  [
+                    "use",
+                    "sum"
+                  ],
+                  [
+                    "field",
+                    [
+                      "records.at",
+                      [
+                        "arg",
+                        "items"
+                      ],
+                      [
+                        "use",
+                        "i"
+                      ]
+                    ],
+                    "amount"
+                  ]
+                ],
+                [
+                  "use",
+                  "sum"
+                ]
+              ],
+              [
+                "use",
+                "sum"
+              ]
+            ]
+          ]
+        }
+      }
+    },
+    "source": "bagaev record-form/5;\nprogram {\n  record Item { amount: Int64, active: Bool };\n  list Items of Item capacity 16;\n  entry main;\n  fn main(items: Items) -> Int64 =\n    fold (16, 0) with (i, sum) in\n      if i < records.len(items) then if record.field(records.at(items, i), \"active\") then sum + record.field(records.at(items, i), \"amount\") else sum else sum;\n}\n",
+    "arguments": [
+      [
+        {
+          "amount": 9223372036854775807,
+          "active": false
+        },
+        {
+          "amount": 9223372036854775807,
+          "active": false
+        },
+        {
+          "amount": 9223372036854775807,
+          "active": false
+        },
+        {
+          "amount": 9223372036854775807,
+          "active": false
+        },
+        {
+          "amount": 9223372036854775807,
+          "active": false
+        },
+        {
+          "amount": 9223372036854775807,
+          "active": false
+        },
+        {
+          "amount": 9223372036854775807,
+          "active": false
+        },
+        {
+          "amount": 9223372036854775807,
+          "active": false
+        },
+        {
+          "amount": 9223372036854775807,
+          "active": false
+        },
+        {
+          "amount": 9223372036854775807,
+          "active": false
+        },
+        {
+          "amount": 9223372036854775807,
+          "active": false
+        },
+        {
+          "amount": 9223372036854775807,
+          "active": false
+        },
+        {
+          "amount": 9223372036854775807,
+          "active": false
+        },
+        {
+          "amount": 9223372036854775807,
+          "active": false
+        },
+        {
+          "amount": 9223372036854775807,
+          "active": false
+        },
+        {
+          "amount": 9223372036854775807,
+          "active": false
+        }
+      ]
+    ],
+    "bounds": {
+      "items": {
+        "type": "Items",
+        "items": 16
+      }
+    },
+    "upper": 258,
+    "expected": {
+      "schema": "bagaev-typed-record-result/11",
+      "status": "success",
+      "value_type": "Int64",
+      "value": 0,
+      "work": 178,
+      "reason": null,
+      "location": null
+    }
+  }
+]
