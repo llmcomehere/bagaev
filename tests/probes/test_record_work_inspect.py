@@ -48,4 +48,11 @@ class Inspect(unittest.TestCase):
         r=json.loads(self.out.read_bytes())['work_bound']
         self.assertEqual(r['status'],'UNKNOWN');self.assertNotIn('upper_work',r)
 
+    def test_missing_entry_refuses_without_output(self):
+        self.source.write_text(SOURCE.replace('entry summarize;', 'entry missing;'))
+        with self.assertRaises(record_text.Refusal) as caught:
+            record_text.convert(self.command()+['--bounds',str(self.bounds)])
+        self.assertEqual(caught.exception.code,'RECORD_ARGUMENTS')
+        self.assertFalse(self.out.exists())
+
 if __name__=='__main__':unittest.main()

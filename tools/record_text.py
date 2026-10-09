@@ -155,7 +155,9 @@ def convert(argv):
                 import bagaev_record_work
                 bounds_raw = read_input(args.bounds)
                 bounds = parse_json(bounds_raw)
-                entry = value['functions'][value['entry']]
+                entry = value['functions'].get(value['entry'])
+                if entry is None:
+                    raise Refusal("RECORD_ARGUMENTS")
                 params = dict(entry['params'])
                 if (type(bounds) is not dict or set(bounds) != set(params) or
                     any(type(shape) is not dict or shape.get('type') != params[name]
