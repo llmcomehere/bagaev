@@ -39,11 +39,11 @@ class Observation(unittest.TestCase):
         self.assertEqual(r['program_sha256'],q['program_sha256']);self.assertNotEqual(r['source_sha256'],q['source_sha256'])
         self.assertEqual(q['source_sha256'],hashlib.sha256(s.encode()).hexdigest());self.assertEqual((b,a),old)
 
-    def test_nominal_dimensions_are_unknown(self):
+    def test_scalar_nominal_dimensions_are_observed(self):
         d=ROOT/'examples/probes/record-work-helper-edit/Direct.bagaev'
         r=run(d.read_bytes(),{'items':{'type':'Items','items':16}},[[]])
         self.assertEqual(r['work_bound']['status'],'SUPPORTED')
-        self.assertEqual(r['argument_dimensions']['status'],'UNKNOWN')
+        self.assertEqual(r['argument_dimensions']['status'],'WITHIN')
         self.assertFalse(r['execution_admission'])
     def test_missing_entry(self):
         s=S.replace('entry main;','entry missing;')
