@@ -25,18 +25,19 @@ operands; their work bounds do not prove absence of integer overflow. A fitting
 work budget can still accompany an `RR_OVERFLOW` refusal.
 Conditionals add the condition's bound and the larger arm bound; both arms must
 be supported. Branch shapes join conservatively, without refining bounds from
-guards. Primitive-signature helper calls use fresh parameter/local scopes and
+guards. Supported-shape helper calls use fresh parameter/local scopes and
 charge each call separately; cycles or excessive expansion yield `UNKNOWN`.
 Literal-count loops are summarized only when a primitive accumulator's body
 shape stays within its initial maxima. The bound is one loop entry, initial
 work, and count times the body bound. Even zero-count loops require a supported
-invariant body. Growing shapes and nominal call/accumulator types remain
+invariant body. Growing shapes and nominal accumulator types remain
 unsupported; no body is executed or unrolled by this analysis.
 With declaration maps, nominal record-list input bounds use
 `{"type":"Items","items":N}` for a declared capacity up to 16. The supported
 element fields are Int64/Bool only. Length, index and scalar field projection
-retain nominal names; nested/Text fields and nominal calls/accumulators remain
-unsupported. A fitting work bound does not prove index validity.
+retain nominal names; helpers can accept/return these declared scalar record/list
+shapes without losing their identity or bounds. Nested/Text fields and nominal
+accumulators remain unsupported. A fitting work bound does not prove index validity.
 The [finite cardinality cases](../examples/probes/record-work-cardinality/cases.json)
 preserve 49 complete reference observations: all 17 lengths of one guarded sum,
 30 positive/negative overflow positions and two invalid indices. All matched
