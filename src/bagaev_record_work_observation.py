@@ -17,7 +17,7 @@ def observe_source(source,bounds,arguments,*,program_sha256):
     need(len(set(names))==len(names) and type(arguments) is list and len(arguments)==len(params),'WORK_ARGUMENTS')
     need(type(bounds) is dict and set(bounds)==set(names) and
          all(type(bounds[n]) is dict and bounds[n].get('type')==t for n,t in params),'WORK_ARGUMENTS')
-    dimensions=observe(bounds,dict(zip(names,arguments)))
+    dimensions=observe(bounds,dict(zip(names,arguments)),records=program['records'],lists=program['lists'])
     work=analyze(entry['body'],bounds,program['functions'],program['records'],program['lists'])
     if 'location' in work and work['location']['function'] is None:
         work['location']['function']=program['entry']

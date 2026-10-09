@@ -433,7 +433,7 @@ compares actual name-mapped Int64, Bool, Text and TextList values with declared
 maxima. It returns `WITHIN` or `EXCEEDS` for supported valid values,
 `INVALID_ARGUMENT` for invalid tags/value limits, and `UNKNOWN` for unsupported
 shapes or mismatched maps. All declarations are checked before values, in sorted
-name order. Nominal records/lists are not supported by this observer yet.
+name order. Without declaration maps, nominal records/lists remain unsupported.
 
 Successful observations retain canonical bounds/argument hashes and numeric
 dimension rows, without returning the argument values. Text bytes/scalars,
@@ -449,7 +449,7 @@ these two separate facts to an exact form5 graph pin and source hash. It maps a
 positional argument array using the declared entry parameter order, rejects
 bounds/name/type/count mismatches, then returns both conditional work analysis
 and actual-dimension observation. A `WITHIN` dimension result can coexist with
-`UNKNOWN` work; supported work can coexist with unsupported nominal dimensions.
+`UNKNOWN` work; unsupported argument shapes remain distinct from supported work.
 There is no combined success/admission verdict. Full program semantics and
 execution permission remain separate requirements. Seven data tests cover
 violated/applicable maxima, parameter order, invalid/unsupported observations,
@@ -479,3 +479,20 @@ CLI invocations also matched these frozen envelopes. None executes the source
 program. The conditional upper bound of3 in the exceeded case is inapplicable
 to its actual inputs; the dimension result preserves that fact. An output file
 and successful transport receipt are never a combined semantic acceptance.
+
+The dimension observer additionally accepts keyword-only `records` and `lists`
+declaration maps for named lists of scalar-only records. The source observation
+API supplies its pinned declarations. Supported lists have capacity0..16 and
+records have1..8 exact Int64/Bool fields; nested, optional, Text and standalone
+record argument shapes remain `UNKNOWN`. An actual length above the type's
+capacity or an invalid record field set/scalar is `INVALID_ARGUMENT`; valid
+values above the supplied item maximum are `EXCEEDS`. Integer fields reject
+booleans and out-of-range values. Declaration shapes precede actual values.
+
+Nominal dimension rows retain list type, element type, capacity and actual item
+count. Successful observations also retain a canonical declaration-map hash.
+Existing primitive observation envelopes are unchanged. Seven focused data
+tests cover applicability, exact field sets, scalar limits, unsupported shapes,
+precedence, pinned source binding and input preservation; the prior22 related
+tests, including complete frozen primitive outputs, also pass. No program is
+executed and no result grants semantic or execution admission.
