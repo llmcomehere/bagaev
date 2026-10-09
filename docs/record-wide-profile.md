@@ -337,3 +337,23 @@ not elapsed-time measurements. An excessive upper bound alone does not prove
 failure for arbitrary programs; this particular straight-line body has an
 independently enumerated exact charge sequence. Value equivalence does not
 establish resource-bounded observational equivalence or execution admission.
+
+### Data-only paired upper-bound comparison
+
+The pure [comparison API](../src/bagaev_record_work_compare.py) accepts original
+and candidate form5 source, one shared entry-bound map, and exact base/target
+program SHA-256 pins. It applies the existing whole-source function-draft scope:
+unchanged declarations and signatures, with added/replaced functions only.
+The receipt retains both exact source hashes, graph pins, the canonical JSON
+bounds hash, the function delta and both conditional analyses. This bounds hash
+is over canonical JSON data, unlike inspect's hash of the original bounds file.
+
+`upper_work_delta` is candidate upper bound minus original upper bound and is
+present only when both analyses are supported. It is not a difference in actual
+work, a speed measurement, or an equivalence verdict. Unsupported shapes remain
+`UNKNOWN`, including their function-relative locations. The receipt explicitly
+keeps semantic checking, execution admission and equivalence checking false.
+The API has no evaluator dispatch, filesystem effects or automatic optimizer.
+Seven data-only tests cover the arithmetic delta, equal bounds for different
+values, source/graph/bounds pins, draft refusals, unknown shapes, missing entry,
+input preservation and the two existing resource-aware edit specimens.
