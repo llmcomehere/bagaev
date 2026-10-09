@@ -139,3 +139,15 @@ measurements. Three data tests retain source pins, bounds and supplied-capture
 comparison axes without rerunning the programs. Equal failure reasons at
 changed locations do not count as identical failure observations. This finite
 slice establishes no all-input equivalence, native parity or production admission.
+
+Three full-capacity [boundary pairs](../examples/probes/record-active-total/boundary-cases.json)
+add six actual own-reference matches: sixteen active amounts 0–15 yield 120
+with work 178/258; alternating active even amounts yield 120/56 with work
+178/218. Sixteen inactive MAX_INT64 amounts overflow in the old program at
+work 24, while the active-only program returns 0 at work 178. These complete
+responses were frozen before execution; earlier fixture expectations are unchanged.
+Three further data tests reject seventeen records, missing/extra fields,
+Bool-as-Int64 and integer-as-Bool inputs, distinguish a valid sixteen-item input
+exceeding a declared bound of fifteen, and check the exact detached source draft.
+The draft replaces only `main`, preserves declarations, refuses stale pins and
+retains false semantic-check and execution-admission flags.
