@@ -1,0 +1,6 @@
+[
+ {"name":"ordered-positive-overflow","items":[{"amount":9223372036854775807,"active":true},{"amount":1,"active":true},{"amount":-1,"active":true}],"active_only":true,"expected":{"status":"integer-overflow","value":null,"failure_index":1}},
+ {"name":"skip-middle","items":[{"amount":9223372036854775807,"active":true},{"amount":1,"active":false},{"amount":-1,"active":true}],"active_only":true,"expected":{"status":"success","value":9223372036854775806,"failure_index":null}},
+ {"name":"ordered-negative-overflow","items":[{"amount":-9223372036854775808,"active":true},{"amount":-1,"active":true},{"amount":1,"active":true}],"active_only":true,"expected":{"status":"integer-overflow","value":null,"failure_index":1}},
+ {"name":"inactive-extremes","items":[{"amount":-9223372036854775808,"active":false},{"amount":9223372036854775807,"active":false}],"active_only":true,"expected":{"status":"success","value":0,"failure_index":null}}
+]
