@@ -496,3 +496,12 @@ tests cover applicability, exact field sets, scalar limits, unsupported shapes,
 precedence, pinned source binding and input preservation; the prior22 related
 tests, including complete frozen primitive outputs, also pass. No program is
 executed and no result grants semantic or execution admission.
+
+The [finite cardinality matrix](../examples/probes/record-argument-matrix/expected.json)
+covers every pair of actual item count and declared maximum from 0 through 16
+for one fixed scalar record/list declaration and deterministic values. All 289
+complete dimension envelopes match a frozen aggregate identity: 153 `WITHIN`
+and 136 `EXCEEDS`. Separate controls keep type-capacity violations and malformed
+records invalid even when they also exceed a declared maximum. Three data tests
+cover this matrix and its refusal boundaries. This is exhaustive for the stated
+count pairs, not for every record value or declaration; it executes no program.

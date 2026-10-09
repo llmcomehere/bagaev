@@ -1,0 +1,29 @@
+{
+  "schema": "bagaev-record-argument-matrix/1",
+  "records": {
+    "Item": {
+      "amount": "Int64",
+      "active": "Bool"
+    }
+  },
+  "lists": {
+    "Items": {
+      "element": "Item",
+      "capacity": 16
+    }
+  },
+  "actual_counts": [
+    0,
+    16
+  ],
+  "declared_maxima": [
+    0,
+    16
+  ],
+  "order": "actual-outer-maximum-inner",
+  "cases": 289,
+  "within": 153,
+  "exceeds": 136,
+  "complete_observations_sha256": "8e276b3154ae9e0159cc14a583a89172107c2e5c728e17110addacf79050f94b",
+  "program_executions": 0
+}
