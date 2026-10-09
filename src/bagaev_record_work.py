@@ -116,7 +116,19 @@ def analyze(expression, arguments, functions=None, records=None, lists=None):
             joined = (yv[0], max(yv[1], nv[1]), max(yv[2], nv[2]))
             return 1+condition+max(yes, no), joined
         if op == 'record' and 2 <= len(x) <= 10 and type(x[1]) is str:
-            return 1+sum(visit(v, scope, depth+1, arg_scope, stack, path+'/'+str(i), owner)[0] for i, v in enumerate(x[2:], 2)), ('Record', 0, 0)
+            fields = record_defs.get(x[1])
+            nominal = (type(fields) is dict and 1 <= len(fields) <= 8 and
+                       all(v in ('Int64', 'Bool') for v in fields.values()))
+            if nominal:
+                fields = record_fields(x[1])
+                if len(x)-2 != len(fields):
+                    raise Unknown('record-arity')
+            values = [visit(v, scope, depth+1, arg_scope, stack, path+'/'+str(i), owner)
+                      for i, v in enumerate(x[2:], 2)]
+            if nominal and any(value[0] != fields[name]
+                               for (_, value), name in zip(values, sorted(fields))):
+                raise Unknown('operand-type')
+            return 1+sum(cost for cost, _ in values), ('Record:'+x[1] if nominal else 'Record', 0, 0)
         if op in ('records.len', 'records.at') and len(x) == (2 if op == 'records.len' else 3):
             cost, value = visit(x[1], scope, depth+1, arg_scope, stack, path+'/1', owner)
             if not value[0].startswith('Records:'):
