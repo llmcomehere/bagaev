@@ -63,6 +63,14 @@ class Inspect(unittest.TestCase):
         self.assertEqual(result['location'], {'function':'main','pointer':''})
         self.assertNotIn('upper_work', result)
 
+    def test_literal_fold_has_conditional_work_bound(self):
+        self.source.write_text('bagaev record-form/5; program { entry main; fn main(xs: TextList) -> TextList = fold (2, (xs)) with (i, acc) in (list.unique(acc)); }')
+        self.bounds.write_text('{"xs":{"type":"TextList","items":3,"bytes":5}}')
+        record_text.convert(self.command()+['--bounds',str(self.bounds)])
+        result=json.loads(self.out.read_bytes())['work_bound']
+        self.assertEqual(result['upper_work'],84)
+        self.assertFalse(result['semantic_check']);self.assertFalse(result['execution_admission'])
+
     def test_helper_definitions_are_used(self):
         source='bagaev record-form/5; program { entry main; fn helper(x: TextList) -> TextList = list.unique(x); fn main(xs: TextList) -> TextList = helper(xs); }'
         self.source.write_text(source)

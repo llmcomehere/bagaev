@@ -82,6 +82,23 @@ def analyze(expression, arguments, functions=None):
             return 1+condition+max(yes, no), joined
         if op == 'record' and 2 <= len(x) <= 10 and type(x[1]) is str:
             return 1+sum(visit(v, scope, depth+1, arg_scope, stack, path+'/'+str(i), owner)[0] for i, v in enumerate(x[2:], 2)), ('Record', 0, 0)
+        if op == 'loop' and len(x) == 6:
+            iterations, index_name, accumulator_name = x[1:4]
+            if type(iterations) is not int or not 0 <= iterations <= 1024:
+                raise Unknown('loop-count')
+            if (type(index_name) is not str or type(accumulator_name) is not str or
+                index_name == accumulator_name or index_name in scope or accumulator_name in scope):
+                raise Unknown('loop-bindings')
+            initial_cost, initial = visit(x[4], scope, depth+1, arg_scope, stack, path+'/4', owner)
+            if initial[0] not in ('Int64', 'Bool', 'Text', 'TextList'):
+                raise Unknown('loop-invariant')
+            nested = dict(scope)
+            nested[index_name] = ('Int64', 0, 0)
+            nested[accumulator_name] = initial
+            body_cost, result = visit(x[5], nested, depth+1, arg_scope, stack, path+'/5', owner)
+            if result[0] != initial[0] or result[1] > initial[1] or result[2] > initial[2]:
+                raise Unknown('loop-invariant')
+            return 1+initial_cost+iterations*body_cost, initial
         if op == 'call' and 2 <= len(x) <= 10 and type(x[1]) is str:
             name = x[1]
             if name in stack:

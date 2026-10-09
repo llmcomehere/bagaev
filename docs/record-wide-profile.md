@@ -24,7 +24,11 @@ Conditionals add the condition's bound and the larger arm bound; both arms must
 be supported. Branch shapes join conservatively, without refining bounds from
 guards. Primitive-signature helper calls use fresh parameter/local scopes and
 charge each call separately; cycles or excessive expansion yield `UNKNOWN`.
-Nominal call signatures and loops remain unsupported.
+Literal-count loops are summarized only when a primitive accumulator's body
+shape stays within its initial maxima. The bound is one loop entry, initial
+work, and count times the body bound. Even zero-count loops require a supported
+invariant body. Growing shapes and nominal call/accumulator types remain
+unsupported; no body is executed or unrolled by this analysis.
 Expression refusals include a function name and body-relative JSON pointer;
 the analysis library uses a null function for its supplied root expression.
 These identify the unsupported expression, not a source character span.
