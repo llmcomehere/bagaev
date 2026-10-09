@@ -38,6 +38,10 @@ element fields are Int64/Bool only. Length, index and scalar field projection
 retain nominal names; helpers can accept/return these declared scalar record/list
 shapes without losing their identity or bounds. Nested/Text fields and nominal
 accumulators remain unsupported. A fitting work bound does not prove index validity.
+Declared scalar record constructors also retain nominal identity, with fields
+checked in sorted field-name order. Opaque non-scalar or undeclared constructors
+keep their earlier cost-only summary, which cannot support field projection or
+a nominal helper result.
 The [finite cardinality cases](../examples/probes/record-work-cardinality/cases.json)
 preserve 49 complete reference observations: all 17 lengths of one guarded sum,
 30 positive/negative overflow positions and two invalid indices. All matched
