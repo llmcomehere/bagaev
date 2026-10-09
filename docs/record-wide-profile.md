@@ -321,3 +321,19 @@ retention and formatter idempotence were checked; prior comment-free formatter
 bytes and seven existing exact diagnostic observations remained unchanged.
 Twenty-five portable tests and 21 data CLI observations passed. No source program,
 native kernel or model was executed for lexical trivia.
+
+### Value-preserving extraction can cross the work limit
+
+The [helper-limit pair](../examples/probes/record-work-helper-limit/cases.json)
+uses a 1024-iteration scalar loop. Its balanced addition body has 32 leaves
+and 31 additions: the accumulator plus 31 ones. The direct program returns
+31744 at 64514 logical work units. Extracting the rightmost literal into a
+zero-argument helper preserves the unbounded arithmetic value but adds one
+charge per iteration. Its upper bound is 65538; the observed profile11 result
+is `RR_WORK` at work 65536 and
+`/program/functions/main/body/5/2/2/2/2/2`. Two own-reference observations
+matched independently frozen complete envelopes. These are logical charges,
+not elapsed-time measurements. An excessive upper bound alone does not prove
+failure for arbitrary programs; this particular straight-line body has an
+independently enumerated exact charge sequence. Value equivalence does not
+establish resource-bounded observational equivalence or execution admission.
