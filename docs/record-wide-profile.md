@@ -505,3 +505,7 @@ and 136 `EXCEEDS`. Separate controls keep type-capacity violations and malformed
 records invalid even when they also exceed a declared maximum. Three data tests
 cover this matrix and its refusal boundaries. This is exhaustive for the stated
 count pairs, not for every record value or declaration; it executes no program.
+
+The [function-extraction walkthrough](record-work-walkthrough.md) connects
+these observations to existing exact sources and prior runtime captures,
+including same-dimension/different-value and comment-only identity controls.
