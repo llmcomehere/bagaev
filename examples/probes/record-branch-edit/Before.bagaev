@@ -1,0 +1,1 @@
+bagaev record-form/5; program { entry main; fn main(x: Int64, enabled: Bool) -> Int64 = if enabled then x + 1 else x; }

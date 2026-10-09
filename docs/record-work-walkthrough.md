@@ -47,3 +47,20 @@ identities separate. Successful file transport, a `WITHIN` dimension result,
 a supported work bound and an earlier captured runtime result are distinct
 facts. None alone establishes current execution permission, complete language
 conformance, equivalence of all inputs, performance or cost benefit.
+
+## Equal cost can hide a changed branch
+
+The [branch-edit cases](../examples/probes/record-branch-edit/cases.json) change
+only an enabled branch from `x + 1` to `x + 2`, retaining `x` otherwise.
+Both programs have conditional upper work 5, so the comparison delta is zero.
+For input `(7, false)` both return 7 with work 3. For `(7, true)` they return
+8 and 9 with work 5. All these inputs satisfy their dimension declarations.
+For `(MAX_INT64, true)` both refuse with `RR_OVERFLOW` at work 5, despite
+dimensions being within bounds and work being below its limit.
+
+Six separately frozen complete envelopes matched six actual own-reference
+calls, including exact overflow locations. Three portable data tests retain
+the fixed source identities, zero cost delta, changed-branch counterexample
+and overflow control without rerunning either program. No model, native-kernel
+or performance measurement was performed. A matching disabled-branch sample
+and equal work bounds do not establish equivalence on the enabled branch.
