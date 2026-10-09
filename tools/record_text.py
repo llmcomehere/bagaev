@@ -108,8 +108,11 @@ def convert(argv):
     parser.add_argument("--arguments")
     parser.add_argument("--form", choices=("1", "2", "3", "4", "5"), default="1")
     parser.add_argument("--named-calls", action="store_true")
+    parser.add_argument("--bounds")
     args = parser.parse_args(argv)
     if args.named_calls and (args.operation != "encode" or args.form != "5"):
+        raise Refusal("TOOL_USAGE")
+    if args.bounds is not None and (args.operation != "inspect" or args.form != "5"):
         raise Refusal("TOOL_USAGE")
     if (args.operation == "prepare") != (args.arguments is not None):
         raise Refusal("TOOL_USAGE")
@@ -147,6 +150,22 @@ def convert(argv):
             value = {"schema": "bagaev-typed-record-invocation/" + profile,
                      "program": value, "arguments": arguments}
         if args.operation == "inspect":
+            work_fields = {}
+            if args.bounds is not None:
+                import bagaev_record_work
+                bounds_raw = read_input(args.bounds)
+                bounds = parse_json(bounds_raw)
+                entry = value['functions'].get(value['entry'])
+                if entry is None:
+                    raise Refusal("RECORD_ARGUMENTS")
+                params = dict(entry['params'])
+                if (type(bounds) is not dict or set(bounds) != set(params) or
+                    any(type(shape) is not dict or shape.get('type') != params[name]
+                        for name, shape in bounds.items())):
+                    raise Refusal("RECORD_ARGUMENTS")
+                work_fields = {
+                    'argument_bounds_sha256': hashlib.sha256(bounds_raw).hexdigest(),
+                    'work_bound': bagaev_record_work.analyze(entry['body'], bounds)}
             canonical = json.dumps(value, sort_keys=True, ensure_ascii=False,
                                    separators=(",", ":"), allow_nan=False).encode("utf8")
             value = {"schema": "bagaev-record-inspection/1",
@@ -156,7 +175,8 @@ def convert(argv):
                      "functions": [{"name": name, "params": f["params"], "result": f["result"]}
                                    for name, f in sorted(value["functions"].items())],
                      "types": {name: len(value[name]) for name in ("records", "lists", "variants")},
-                     "semantic_check": False, "execution_admission": False}
+                     "semantic_check": False, "execution_admission": False,
+                     **work_fields}
         output = json.dumps(value, sort_keys=True, ensure_ascii=False,
                             separators=(",", ":"), allow_nan=False).encode("utf-8")
     else:

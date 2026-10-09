@@ -23,6 +23,12 @@ include the sorted-unique example's boundary and the extra charge of negated equ
 Conditionals add the condition's bound and the larger arm bound; both arms must
 be supported. Branch shapes join conservatively, without refining bounds from
 guards. Calls and loops remain unsupported.
+`record_text.py inspect SOURCE --form 5 --bounds BOUNDS --output NEW_FILE`
+adds that analysis and the exact bounds-file SHA-256 to inspection data.
+`BOUNDS` is a JSON map matching entry parameters, for example
+`{"xs":{"type":"TextList","items":64,"bytes":479}}`. These are declared maxima,
+not validated runtime arguments. The default inspection output is unchanged;
+other operations/forms reject `--bounds`. No program is run.
 
 ## Readable source
 
