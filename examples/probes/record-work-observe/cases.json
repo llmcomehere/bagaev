@@ -1,0 +1,346 @@
+[
+  {
+    "name": "within",
+    "source": "bagaev record-form/5; program { entry main; fn main(x: Text, y: Text) -> Bool = text.eq(x,y); }\n",
+    "bounds_file": "{\n  \"x\": {\n    \"type\": \"Text\",\n    \"bytes\": 2\n  },\n  \"y\": {\n    \"type\": \"Text\",\n    \"bytes\": 2\n  }\n}\n",
+    "arguments_file": "[\"é\", \"é\"]\n",
+    "program": {
+      "schema": "bagaev-typed-record/11",
+      "records": {},
+      "lists": {},
+      "variants": {},
+      "entry": "main",
+      "functions": {
+        "main": {
+          "params": [
+            [
+              "x",
+              "Text"
+            ],
+            [
+              "y",
+              "Text"
+            ]
+          ],
+          "result": "Bool",
+          "body": [
+            "text.eq",
+            [
+              "arg",
+              "x"
+            ],
+            [
+              "arg",
+              "y"
+            ]
+          ]
+        }
+      }
+    },
+    "expected": {
+      "semantic_check": false,
+      "execution_admission": false,
+      "requires_checked_program": true,
+      "schema": "bagaev-record-work-observation/1",
+      "status": "observation",
+      "source_sha256": "57b57a69eaec6d575efeb649b5d2608feb73334e1b092a64f678abddadc30dfe",
+      "program_sha256": "68342b954442a18dbddef7a377ce53be7889b7b0fd4a344c95a0d315c664bda0",
+      "entry": "main",
+      "argument_dimensions": {
+        "semantic_check": false,
+        "execution_admission": false,
+        "requires_checked_program": true,
+        "schema": "bagaev-record-argument-dimensions/1",
+        "status": "WITHIN",
+        "within_declared_bounds": true,
+        "argument_bounds_sha256": "ffbca20c4a918d03727ccaf6d2c123e79618e2d8d6a7d00b6192131b0db444cc",
+        "arguments_sha256": "a2833f689248ffcb50f910152df9e9c1e54a1757367c14102efe1fe0800e5988",
+        "dimensions": [
+          {
+            "name": "x",
+            "type": "Text",
+            "bytes": 2,
+            "scalars": 1,
+            "within_declared_bounds": true
+          },
+          {
+            "name": "y",
+            "type": "Text",
+            "bytes": 2,
+            "scalars": 1,
+            "within_declared_bounds": true
+          }
+        ]
+      },
+      "work_bound": {
+        "semantic_check": false,
+        "execution_admission": false,
+        "requires_checked_program": true,
+        "schema": "bagaev-record-work-bound/1",
+        "status": "SUPPORTED",
+        "upper_work": 7,
+        "fits_work_budget": true,
+        "work_limit": 65536
+      },
+      "argument_bounds_file_sha256": "ede32cb9ba7a4166a212d54be7eb837a65ea2dc2726521d2fb31a2a104f5e3d9",
+      "arguments_file_sha256": "78e183f6161edfc57d9994c7a2e6775732e617b0a88d4d3648a65094c3dea147"
+    },
+    "expected_sha256": "2fe25ffdb255f47e2d24619c7dc98b07f4050e85ed1f7f3051439a439415029c"
+  },
+  {
+    "name": "exceeds",
+    "source": "bagaev record-form/5; program { entry main; fn main(x: Text, y: Text) -> Bool = text.eq(x,y); }\n",
+    "bounds_file": "{\n  \"x\": {\n    \"type\": \"Text\",\n    \"bytes\": 0\n  },\n  \"y\": {\n    \"type\": \"Text\",\n    \"bytes\": 0\n  }\n}\n",
+    "arguments_file": "[\"é\", \"é\"]\n",
+    "program": {
+      "schema": "bagaev-typed-record/11",
+      "records": {},
+      "lists": {},
+      "variants": {},
+      "entry": "main",
+      "functions": {
+        "main": {
+          "params": [
+            [
+              "x",
+              "Text"
+            ],
+            [
+              "y",
+              "Text"
+            ]
+          ],
+          "result": "Bool",
+          "body": [
+            "text.eq",
+            [
+              "arg",
+              "x"
+            ],
+            [
+              "arg",
+              "y"
+            ]
+          ]
+        }
+      }
+    },
+    "expected": {
+      "semantic_check": false,
+      "execution_admission": false,
+      "requires_checked_program": true,
+      "schema": "bagaev-record-work-observation/1",
+      "status": "observation",
+      "source_sha256": "57b57a69eaec6d575efeb649b5d2608feb73334e1b092a64f678abddadc30dfe",
+      "program_sha256": "68342b954442a18dbddef7a377ce53be7889b7b0fd4a344c95a0d315c664bda0",
+      "entry": "main",
+      "argument_dimensions": {
+        "semantic_check": false,
+        "execution_admission": false,
+        "requires_checked_program": true,
+        "schema": "bagaev-record-argument-dimensions/1",
+        "status": "EXCEEDS",
+        "within_declared_bounds": false,
+        "argument_bounds_sha256": "ade29f3bb6e22a3f240ffcbd641028873e4da860a902de0b7a2f57ec7d78753e",
+        "arguments_sha256": "a2833f689248ffcb50f910152df9e9c1e54a1757367c14102efe1fe0800e5988",
+        "dimensions": [
+          {
+            "name": "x",
+            "type": "Text",
+            "bytes": 2,
+            "scalars": 1,
+            "within_declared_bounds": false
+          },
+          {
+            "name": "y",
+            "type": "Text",
+            "bytes": 2,
+            "scalars": 1,
+            "within_declared_bounds": false
+          }
+        ]
+      },
+      "work_bound": {
+        "semantic_check": false,
+        "execution_admission": false,
+        "requires_checked_program": true,
+        "schema": "bagaev-record-work-bound/1",
+        "status": "SUPPORTED",
+        "upper_work": 3,
+        "fits_work_budget": true,
+        "work_limit": 65536
+      },
+      "argument_bounds_file_sha256": "5218934b6c4d57cd583b88a26227f35c1c1f841242a22895020b671246bde79d",
+      "arguments_file_sha256": "78e183f6161edfc57d9994c7a2e6775732e617b0a88d4d3648a65094c3dea147"
+    },
+    "expected_sha256": "d480e489bdb59aa1a6b104e239074b82761efdfe986496383951ebe026365a27"
+  },
+  {
+    "name": "invalid",
+    "source": "bagaev record-form/5; program { entry main; fn main(x: Text, y: Text) -> Bool = text.eq(x,y); }\n",
+    "bounds_file": "{\n  \"x\": {\n    \"type\": \"Text\",\n    \"bytes\": 2\n  },\n  \"y\": {\n    \"type\": \"Text\",\n    \"bytes\": 2\n  }\n}\n",
+    "arguments_file": "[false, \"é\"]\n",
+    "program": {
+      "schema": "bagaev-typed-record/11",
+      "records": {},
+      "lists": {},
+      "variants": {},
+      "entry": "main",
+      "functions": {
+        "main": {
+          "params": [
+            [
+              "x",
+              "Text"
+            ],
+            [
+              "y",
+              "Text"
+            ]
+          ],
+          "result": "Bool",
+          "body": [
+            "text.eq",
+            [
+              "arg",
+              "x"
+            ],
+            [
+              "arg",
+              "y"
+            ]
+          ]
+        }
+      }
+    },
+    "expected": {
+      "semantic_check": false,
+      "execution_admission": false,
+      "requires_checked_program": true,
+      "schema": "bagaev-record-work-observation/1",
+      "status": "observation",
+      "source_sha256": "57b57a69eaec6d575efeb649b5d2608feb73334e1b092a64f678abddadc30dfe",
+      "program_sha256": "68342b954442a18dbddef7a377ce53be7889b7b0fd4a344c95a0d315c664bda0",
+      "entry": "main",
+      "argument_dimensions": {
+        "semantic_check": false,
+        "execution_admission": false,
+        "requires_checked_program": true,
+        "schema": "bagaev-record-argument-dimensions/1",
+        "status": "INVALID_ARGUMENT",
+        "reason": "text-value",
+        "argument": "x",
+        "within_declared_bounds": null
+      },
+      "work_bound": {
+        "semantic_check": false,
+        "execution_admission": false,
+        "requires_checked_program": true,
+        "schema": "bagaev-record-work-bound/1",
+        "status": "SUPPORTED",
+        "upper_work": 7,
+        "fits_work_budget": true,
+        "work_limit": 65536
+      },
+      "argument_bounds_file_sha256": "ede32cb9ba7a4166a212d54be7eb837a65ea2dc2726521d2fb31a2a104f5e3d9",
+      "arguments_file_sha256": "c3ca67e0123c6dc7f0a767c1d9714fae4584b9a3bfdbd665d0b7e33a478a3632"
+    },
+    "expected_sha256": "db05af466e4a50362f45a99963fb8ad4373b5c3cc47ec24faf9add613fb98d14"
+  },
+  {
+    "name": "unknown-work",
+    "source": "bagaev record-form/5; program { entry main; fn main(x: Text, y: Text) -> Bool = int.eq(text.bytes(x),text.bytes(y)); }\n",
+    "bounds_file": "{\n  \"x\": {\n    \"type\": \"Text\",\n    \"bytes\": 2\n  },\n  \"y\": {\n    \"type\": \"Text\",\n    \"bytes\": 2\n  }\n}\n",
+    "arguments_file": "[\"é\", \"é\"]\n",
+    "program": {
+      "schema": "bagaev-typed-record/11",
+      "records": {},
+      "lists": {},
+      "variants": {},
+      "entry": "main",
+      "functions": {
+        "main": {
+          "params": [
+            [
+              "x",
+              "Text"
+            ],
+            [
+              "y",
+              "Text"
+            ]
+          ],
+          "result": "Bool",
+          "body": [
+            "eq",
+            [
+              "text.bytes",
+              [
+                "arg",
+                "x"
+              ]
+            ],
+            [
+              "text.bytes",
+              [
+                "arg",
+                "y"
+              ]
+            ]
+          ]
+        }
+      }
+    },
+    "expected": {
+      "semantic_check": false,
+      "execution_admission": false,
+      "requires_checked_program": true,
+      "schema": "bagaev-record-work-observation/1",
+      "status": "observation",
+      "source_sha256": "0eb8339f97818476ce612936b142c641062cc8843d798873402f68333fe32de6",
+      "program_sha256": "6795ddc5ff395bfea00ccd574594e165368dde1b58e9005570dfc04906f31e72",
+      "entry": "main",
+      "argument_dimensions": {
+        "semantic_check": false,
+        "execution_admission": false,
+        "requires_checked_program": true,
+        "schema": "bagaev-record-argument-dimensions/1",
+        "status": "WITHIN",
+        "within_declared_bounds": true,
+        "argument_bounds_sha256": "ffbca20c4a918d03727ccaf6d2c123e79618e2d8d6a7d00b6192131b0db444cc",
+        "arguments_sha256": "a2833f689248ffcb50f910152df9e9c1e54a1757367c14102efe1fe0800e5988",
+        "dimensions": [
+          {
+            "name": "x",
+            "type": "Text",
+            "bytes": 2,
+            "scalars": 1,
+            "within_declared_bounds": true
+          },
+          {
+            "name": "y",
+            "type": "Text",
+            "bytes": 2,
+            "scalars": 1,
+            "within_declared_bounds": true
+          }
+        ]
+      },
+      "work_bound": {
+        "semantic_check": false,
+        "execution_admission": false,
+        "requires_checked_program": true,
+        "schema": "bagaev-record-work-bound/1",
+        "status": "UNKNOWN",
+        "reason": "unsupported-expression",
+        "location": {
+          "function": "main",
+          "pointer": "/1"
+        }
+      },
+      "argument_bounds_file_sha256": "ede32cb9ba7a4166a212d54be7eb837a65ea2dc2726521d2fb31a2a104f5e3d9",
+      "arguments_file_sha256": "78e183f6161edfc57d9994c7a2e6775732e617b0a88d4d3648a65094c3dea147"
+    },
+    "expected_sha256": "d763ed128ee3c51394874d766806efd052e5031034a92d6f1f63b2bc67b9535e"
+  }
+]
