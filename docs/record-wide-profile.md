@@ -469,3 +469,13 @@ identities. A successful tool receipt means an observation file was written;
 execution success. Malformed transport/binding or stale pins return JSON error
 with exit2 and no output. Five transport tests cover these distinctions, exact
 output identity, wrong usage, symlinks and preservation of existing output.
+
+The finite `examples/probes/record-work-observe/cases.json` fixture freezes four
+complete observation envelopes and exact output hashes: valid two-byte Text
+inputs within maxima, the same inputs exceeding zero maxima, a wrong argument
+type, and a supported input with unsupported work analysis. Two data tests
+check graph identities and complete CLI output/receipts. Four serial standalone
+CLI invocations also matched these frozen envelopes. None executes the source
+program. The conditional upper bound of3 in the exceeded case is inapplicable
+to its actual inputs; the dimension result preserves that fact. An output file
+and successful transport receipt are never a combined semantic acceptance.
