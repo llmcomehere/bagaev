@@ -1,0 +1,270 @@
+[
+  {
+    "name": "unicode",
+    "body": [
+      "text.eq",
+      [
+        "text",
+        "é"
+      ],
+      [
+        "text",
+        "é"
+      ]
+    ],
+    "params": [],
+    "result_type": "Bool",
+    "arguments": [],
+    "bounds": {},
+    "functions": {},
+    "upper": 13,
+    "expected": {
+      "schema": "bagaev-typed-record-result/11",
+      "status": "success",
+      "value_type": "Bool",
+      "value": false,
+      "work": 13,
+      "reason": null,
+      "location": null
+    }
+  },
+  {
+    "name": "nul-less",
+    "body": [
+      "text.lt",
+      [
+        "text",
+        "\u0000"
+      ],
+      [
+        "text",
+        "a"
+      ]
+    ],
+    "params": [],
+    "result_type": "Bool",
+    "arguments": [],
+    "bounds": {},
+    "functions": {},
+    "upper": 7,
+    "expected": {
+      "schema": "bagaev-typed-record-result/11",
+      "status": "success",
+      "value_type": "Bool",
+      "value": true,
+      "work": 7,
+      "reason": null,
+      "location": null
+    }
+  },
+  {
+    "name": "arguments",
+    "body": [
+      "text.eq",
+      [
+        "arg",
+        "x"
+      ],
+      [
+        "arg",
+        "y"
+      ]
+    ],
+    "params": [
+      [
+        "x",
+        "Text"
+      ],
+      [
+        "y",
+        "Text"
+      ]
+    ],
+    "result_type": "Bool",
+    "arguments": [
+      "é",
+      "é"
+    ],
+    "bounds": {
+      "x": {
+        "type": "Text",
+        "bytes": 16
+      },
+      "y": {
+        "type": "Text",
+        "bytes": 16
+      }
+    },
+    "functions": {},
+    "upper": 35,
+    "expected": {
+      "schema": "bagaev-typed-record-result/11",
+      "status": "success",
+      "value_type": "Bool",
+      "value": true,
+      "work": 7,
+      "reason": null,
+      "location": null
+    }
+  },
+  {
+    "name": "empty",
+    "body": [
+      "text.eq",
+      [
+        "arg",
+        "x"
+      ],
+      [
+        "arg",
+        "y"
+      ]
+    ],
+    "params": [
+      [
+        "x",
+        "Text"
+      ],
+      [
+        "y",
+        "Text"
+      ]
+    ],
+    "result_type": "Bool",
+    "arguments": [
+      "",
+      ""
+    ],
+    "bounds": {
+      "x": {
+        "type": "Text",
+        "bytes": 16
+      },
+      "y": {
+        "type": "Text",
+        "bytes": 16
+      }
+    },
+    "functions": {},
+    "upper": 35,
+    "expected": {
+      "schema": "bagaev-typed-record-result/11",
+      "status": "success",
+      "value_type": "Bool",
+      "value": true,
+      "work": 3,
+      "reason": null,
+      "location": null
+    }
+  },
+  {
+    "name": "helper",
+    "body": [
+      "text.eq",
+      [
+        "call",
+        "identity",
+        [
+          "arg",
+          "x"
+        ]
+      ],
+      [
+        "text",
+        "é"
+      ]
+    ],
+    "params": [
+      [
+        "x",
+        "Text"
+      ]
+    ],
+    "result_type": "Bool",
+    "arguments": [
+      "é"
+    ],
+    "bounds": {
+      "x": {
+        "type": "Text",
+        "bytes": 2
+      }
+    },
+    "functions": {
+      "identity": {
+        "params": [
+          [
+            "v",
+            "Text"
+          ]
+        ],
+        "result": "Text",
+        "body": [
+          "arg",
+          "v"
+        ]
+      }
+    },
+    "upper": 11,
+    "expected": {
+      "schema": "bagaev-typed-record-result/11",
+      "status": "success",
+      "value_type": "Bool",
+      "value": true,
+      "work": 11,
+      "reason": null,
+      "location": null
+    }
+  },
+  {
+    "name": "bulk-refusal",
+    "body": [
+      "loop",
+      32,
+      "i",
+      "a",
+      [
+        "bool",
+        false
+      ],
+      [
+        "text.eq",
+        [
+          "arg",
+          "x"
+        ],
+        [
+          "arg",
+          "x"
+        ]
+      ]
+    ],
+    "params": [
+      [
+        "x",
+        "Text"
+      ]
+    ],
+    "result_type": "Bool",
+    "arguments": [
+      "😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀"
+    ],
+    "bounds": {
+      "x": {
+        "type": "Text",
+        "bytes": 1024
+      }
+    },
+    "functions": {},
+    "upper": 65634,
+    "expected": {
+      "schema": "bagaev-typed-record-result/11",
+      "status": "work-limit",
+      "value_type": null,
+      "value": null,
+      "work": 63586,
+      "reason": "RR_WORK",
+      "location": "/program/functions/main/body/5"
+    }
+  }
+]

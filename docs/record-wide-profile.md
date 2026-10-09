@@ -384,3 +384,22 @@ reusing their execution evidence. No new execution is implied by this source
 bridge. Repeating the data-only command with the artifact's base/target pins
 produces the same output bytes and upper-bound delta 1024. Three tests pin the
 graphs, complete artifact and stale-target refusal after changing the loop count.
+
+### Conditional Text comparison work
+
+Text entry bounds use exactly `{"type":"Text","bytes":B}` with an integer
+maximum 0–1024. They still require separately valid Text arguments within the
+existing scalar limit. Explicit `text.eq` and `text.lt` charge their node, both
+operand bounds and the sum of both UTF-8 byte maxima. They do not normalize
+Unicode or overload scalar equality. Existing `text.bytes`/`text.scalars` work
+analysis remains unsupported in this slice.
+
+Six [frozen Text cases](../examples/probes/record-work-text-comparison/cases.json)
+matched complete own-reference outputs: non-normalized Unicode, NUL ordering,
+short/empty inputs within larger maxima, a Text helper and a bulk-charge refusal.
+The last refuses at work63586 although its upper bound is65634: a bulk charge
+that would exceed65536 is rejected as a whole. Neither a bound nor the remaining
+budget establishes execution success. Five data tests cover these observations,
+shape/type refusals and branch/loop composition; existing unknown-location
+fixtures remain unchanged. No native or model execution or timing measurement
+was performed for this analyzer extension.
