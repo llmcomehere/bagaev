@@ -1,0 +1,1008 @@
+[
+  {
+    "name": "true-false",
+    "profile": 12,
+    "invocation": {
+      "schema": "bagaev-typed-record-invocation/12",
+      "program": {
+        "schema": "bagaev-typed-record/12",
+        "records": {},
+        "lists": {},
+        "variants": {},
+        "entry": "main",
+        "functions": {
+          "main": {
+            "params": [
+              [
+                "x",
+                "Json"
+              ]
+            ],
+            "result": "Bool",
+            "body": [
+              "json.bool_or",
+              [
+                "arg",
+                "x"
+              ],
+              [
+                "bool",
+                false
+              ]
+            ]
+          }
+        }
+      },
+      "arguments": [
+        true
+      ]
+    },
+    "expected": {
+      "schema": "bagaev-typed-record-result/12",
+      "status": "success",
+      "value_type": "Bool",
+      "value": true,
+      "work": 2,
+      "reason": null,
+      "location": null
+    }
+  },
+  {
+    "name": "true-true",
+    "profile": 12,
+    "invocation": {
+      "schema": "bagaev-typed-record-invocation/12",
+      "program": {
+        "schema": "bagaev-typed-record/12",
+        "records": {},
+        "lists": {},
+        "variants": {},
+        "entry": "main",
+        "functions": {
+          "main": {
+            "params": [
+              [
+                "x",
+                "Json"
+              ]
+            ],
+            "result": "Bool",
+            "body": [
+              "json.bool_or",
+              [
+                "arg",
+                "x"
+              ],
+              [
+                "bool",
+                true
+              ]
+            ]
+          }
+        }
+      },
+      "arguments": [
+        true
+      ]
+    },
+    "expected": {
+      "schema": "bagaev-typed-record-result/12",
+      "status": "success",
+      "value_type": "Bool",
+      "value": true,
+      "work": 2,
+      "reason": null,
+      "location": null
+    }
+  },
+  {
+    "name": "false-false",
+    "profile": 12,
+    "invocation": {
+      "schema": "bagaev-typed-record-invocation/12",
+      "program": {
+        "schema": "bagaev-typed-record/12",
+        "records": {},
+        "lists": {},
+        "variants": {},
+        "entry": "main",
+        "functions": {
+          "main": {
+            "params": [
+              [
+                "x",
+                "Json"
+              ]
+            ],
+            "result": "Bool",
+            "body": [
+              "json.bool_or",
+              [
+                "arg",
+                "x"
+              ],
+              [
+                "bool",
+                false
+              ]
+            ]
+          }
+        }
+      },
+      "arguments": [
+        false
+      ]
+    },
+    "expected": {
+      "schema": "bagaev-typed-record-result/12",
+      "status": "success",
+      "value_type": "Bool",
+      "value": false,
+      "work": 2,
+      "reason": null,
+      "location": null
+    }
+  },
+  {
+    "name": "false-true",
+    "profile": 12,
+    "invocation": {
+      "schema": "bagaev-typed-record-invocation/12",
+      "program": {
+        "schema": "bagaev-typed-record/12",
+        "records": {},
+        "lists": {},
+        "variants": {},
+        "entry": "main",
+        "functions": {
+          "main": {
+            "params": [
+              [
+                "x",
+                "Json"
+              ]
+            ],
+            "result": "Bool",
+            "body": [
+              "json.bool_or",
+              [
+                "arg",
+                "x"
+              ],
+              [
+                "bool",
+                true
+              ]
+            ]
+          }
+        }
+      },
+      "arguments": [
+        false
+      ]
+    },
+    "expected": {
+      "schema": "bagaev-typed-record-result/12",
+      "status": "success",
+      "value_type": "Bool",
+      "value": false,
+      "work": 2,
+      "reason": null,
+      "location": null
+    }
+  },
+  {
+    "name": "null-false",
+    "profile": 12,
+    "invocation": {
+      "schema": "bagaev-typed-record-invocation/12",
+      "program": {
+        "schema": "bagaev-typed-record/12",
+        "records": {},
+        "lists": {},
+        "variants": {},
+        "entry": "main",
+        "functions": {
+          "main": {
+            "params": [
+              [
+                "x",
+                "Json"
+              ]
+            ],
+            "result": "Bool",
+            "body": [
+              "json.bool_or",
+              [
+                "arg",
+                "x"
+              ],
+              [
+                "bool",
+                false
+              ]
+            ]
+          }
+        }
+      },
+      "arguments": [
+        null
+      ]
+    },
+    "expected": {
+      "schema": "bagaev-typed-record-result/12",
+      "status": "success",
+      "value_type": "Bool",
+      "value": false,
+      "work": 3,
+      "reason": null,
+      "location": null
+    }
+  },
+  {
+    "name": "null-true",
+    "profile": 12,
+    "invocation": {
+      "schema": "bagaev-typed-record-invocation/12",
+      "program": {
+        "schema": "bagaev-typed-record/12",
+        "records": {},
+        "lists": {},
+        "variants": {},
+        "entry": "main",
+        "functions": {
+          "main": {
+            "params": [
+              [
+                "x",
+                "Json"
+              ]
+            ],
+            "result": "Bool",
+            "body": [
+              "json.bool_or",
+              [
+                "arg",
+                "x"
+              ],
+              [
+                "bool",
+                true
+              ]
+            ]
+          }
+        }
+      },
+      "arguments": [
+        null
+      ]
+    },
+    "expected": {
+      "schema": "bagaev-typed-record-result/12",
+      "status": "success",
+      "value_type": "Bool",
+      "value": true,
+      "work": 3,
+      "reason": null,
+      "location": null
+    }
+  },
+  {
+    "name": "int-false",
+    "profile": 12,
+    "invocation": {
+      "schema": "bagaev-typed-record-invocation/12",
+      "program": {
+        "schema": "bagaev-typed-record/12",
+        "records": {},
+        "lists": {},
+        "variants": {},
+        "entry": "main",
+        "functions": {
+          "main": {
+            "params": [
+              [
+                "x",
+                "Json"
+              ]
+            ],
+            "result": "Bool",
+            "body": [
+              "json.bool_or",
+              [
+                "arg",
+                "x"
+              ],
+              [
+                "bool",
+                false
+              ]
+            ]
+          }
+        }
+      },
+      "arguments": [
+        1
+      ]
+    },
+    "expected": {
+      "schema": "bagaev-typed-record-result/12",
+      "status": "success",
+      "value_type": "Bool",
+      "value": false,
+      "work": 3,
+      "reason": null,
+      "location": null
+    }
+  },
+  {
+    "name": "int-true",
+    "profile": 12,
+    "invocation": {
+      "schema": "bagaev-typed-record-invocation/12",
+      "program": {
+        "schema": "bagaev-typed-record/12",
+        "records": {},
+        "lists": {},
+        "variants": {},
+        "entry": "main",
+        "functions": {
+          "main": {
+            "params": [
+              [
+                "x",
+                "Json"
+              ]
+            ],
+            "result": "Bool",
+            "body": [
+              "json.bool_or",
+              [
+                "arg",
+                "x"
+              ],
+              [
+                "bool",
+                true
+              ]
+            ]
+          }
+        }
+      },
+      "arguments": [
+        1
+      ]
+    },
+    "expected": {
+      "schema": "bagaev-typed-record-result/12",
+      "status": "success",
+      "value_type": "Bool",
+      "value": true,
+      "work": 3,
+      "reason": null,
+      "location": null
+    }
+  },
+  {
+    "name": "text-false",
+    "profile": 12,
+    "invocation": {
+      "schema": "bagaev-typed-record-invocation/12",
+      "program": {
+        "schema": "bagaev-typed-record/12",
+        "records": {},
+        "lists": {},
+        "variants": {},
+        "entry": "main",
+        "functions": {
+          "main": {
+            "params": [
+              [
+                "x",
+                "Json"
+              ]
+            ],
+            "result": "Bool",
+            "body": [
+              "json.bool_or",
+              [
+                "arg",
+                "x"
+              ],
+              [
+                "bool",
+                false
+              ]
+            ]
+          }
+        }
+      },
+      "arguments": [
+        "true"
+      ]
+    },
+    "expected": {
+      "schema": "bagaev-typed-record-result/12",
+      "status": "success",
+      "value_type": "Bool",
+      "value": false,
+      "work": 3,
+      "reason": null,
+      "location": null
+    }
+  },
+  {
+    "name": "text-true",
+    "profile": 12,
+    "invocation": {
+      "schema": "bagaev-typed-record-invocation/12",
+      "program": {
+        "schema": "bagaev-typed-record/12",
+        "records": {},
+        "lists": {},
+        "variants": {},
+        "entry": "main",
+        "functions": {
+          "main": {
+            "params": [
+              [
+                "x",
+                "Json"
+              ]
+            ],
+            "result": "Bool",
+            "body": [
+              "json.bool_or",
+              [
+                "arg",
+                "x"
+              ],
+              [
+                "bool",
+                true
+              ]
+            ]
+          }
+        }
+      },
+      "arguments": [
+        "true"
+      ]
+    },
+    "expected": {
+      "schema": "bagaev-typed-record-result/12",
+      "status": "success",
+      "value_type": "Bool",
+      "value": true,
+      "work": 3,
+      "reason": null,
+      "location": null
+    }
+  },
+  {
+    "name": "array-false",
+    "profile": 12,
+    "invocation": {
+      "schema": "bagaev-typed-record-invocation/12",
+      "program": {
+        "schema": "bagaev-typed-record/12",
+        "records": {},
+        "lists": {},
+        "variants": {},
+        "entry": "main",
+        "functions": {
+          "main": {
+            "params": [
+              [
+                "x",
+                "Json"
+              ]
+            ],
+            "result": "Bool",
+            "body": [
+              "json.bool_or",
+              [
+                "arg",
+                "x"
+              ],
+              [
+                "bool",
+                false
+              ]
+            ]
+          }
+        }
+      },
+      "arguments": [
+        []
+      ]
+    },
+    "expected": {
+      "schema": "bagaev-typed-record-result/12",
+      "status": "success",
+      "value_type": "Bool",
+      "value": false,
+      "work": 3,
+      "reason": null,
+      "location": null
+    }
+  },
+  {
+    "name": "array-true",
+    "profile": 12,
+    "invocation": {
+      "schema": "bagaev-typed-record-invocation/12",
+      "program": {
+        "schema": "bagaev-typed-record/12",
+        "records": {},
+        "lists": {},
+        "variants": {},
+        "entry": "main",
+        "functions": {
+          "main": {
+            "params": [
+              [
+                "x",
+                "Json"
+              ]
+            ],
+            "result": "Bool",
+            "body": [
+              "json.bool_or",
+              [
+                "arg",
+                "x"
+              ],
+              [
+                "bool",
+                true
+              ]
+            ]
+          }
+        }
+      },
+      "arguments": [
+        []
+      ]
+    },
+    "expected": {
+      "schema": "bagaev-typed-record-result/12",
+      "status": "success",
+      "value_type": "Bool",
+      "value": true,
+      "work": 3,
+      "reason": null,
+      "location": null
+    }
+  },
+  {
+    "name": "object-false",
+    "profile": 12,
+    "invocation": {
+      "schema": "bagaev-typed-record-invocation/12",
+      "program": {
+        "schema": "bagaev-typed-record/12",
+        "records": {},
+        "lists": {},
+        "variants": {},
+        "entry": "main",
+        "functions": {
+          "main": {
+            "params": [
+              [
+                "x",
+                "Json"
+              ]
+            ],
+            "result": "Bool",
+            "body": [
+              "json.bool_or",
+              [
+                "arg",
+                "x"
+              ],
+              [
+                "bool",
+                false
+              ]
+            ]
+          }
+        }
+      },
+      "arguments": [
+        {}
+      ]
+    },
+    "expected": {
+      "schema": "bagaev-typed-record-result/12",
+      "status": "success",
+      "value_type": "Bool",
+      "value": false,
+      "work": 3,
+      "reason": null,
+      "location": null
+    }
+  },
+  {
+    "name": "object-true",
+    "profile": 12,
+    "invocation": {
+      "schema": "bagaev-typed-record-invocation/12",
+      "program": {
+        "schema": "bagaev-typed-record/12",
+        "records": {},
+        "lists": {},
+        "variants": {},
+        "entry": "main",
+        "functions": {
+          "main": {
+            "params": [
+              [
+                "x",
+                "Json"
+              ]
+            ],
+            "result": "Bool",
+            "body": [
+              "json.bool_or",
+              [
+                "arg",
+                "x"
+              ],
+              [
+                "bool",
+                true
+              ]
+            ]
+          }
+        }
+      },
+      "arguments": [
+        {}
+      ]
+    },
+    "expected": {
+      "schema": "bagaev-typed-record-result/12",
+      "status": "success",
+      "value_type": "Bool",
+      "value": true,
+      "work": 3,
+      "reason": null,
+      "location": null
+    }
+  },
+  {
+    "name": "missing-field",
+    "profile": 12,
+    "invocation": {
+      "schema": "bagaev-typed-record-invocation/12",
+      "program": {
+        "schema": "bagaev-typed-record/12",
+        "records": {},
+        "lists": {},
+        "variants": {},
+        "entry": "main",
+        "functions": {
+          "main": {
+            "params": [
+              [
+                "x",
+                "Json"
+              ]
+            ],
+            "result": "Bool",
+            "body": [
+              "json.bool_or",
+              [
+                "json.field",
+                [
+                  "arg",
+                  "x"
+                ],
+                "active"
+              ],
+              [
+                "bool",
+                true
+              ]
+            ]
+          }
+        }
+      },
+      "arguments": [
+        {}
+      ]
+    },
+    "expected": {
+      "schema": "bagaev-typed-record-result/12",
+      "status": "success",
+      "value_type": "Bool",
+      "value": true,
+      "work": 4,
+      "reason": null,
+      "location": null
+    }
+  },
+  {
+    "name": "lazy-true",
+    "profile": 12,
+    "invocation": {
+      "schema": "bagaev-typed-record-invocation/12",
+      "program": {
+        "schema": "bagaev-typed-record/12",
+        "records": {},
+        "lists": {},
+        "variants": {},
+        "entry": "main",
+        "functions": {
+          "main": {
+            "params": [
+              [
+                "x",
+                "Json"
+              ]
+            ],
+            "result": "Bool",
+            "body": [
+              "json.bool_or",
+              [
+                "arg",
+                "x"
+              ],
+              [
+                "eq",
+                [
+                  "add",
+                  [
+                    "int",
+                    9223372036854775807
+                  ],
+                  [
+                    "int",
+                    1
+                  ]
+                ],
+                [
+                  "int",
+                  0
+                ]
+              ]
+            ]
+          }
+        }
+      },
+      "arguments": [
+        true
+      ]
+    },
+    "expected": {
+      "schema": "bagaev-typed-record-result/12",
+      "status": "success",
+      "value_type": "Bool",
+      "value": true,
+      "work": 2,
+      "reason": null,
+      "location": null
+    }
+  },
+  {
+    "name": "lazy-false",
+    "profile": 12,
+    "invocation": {
+      "schema": "bagaev-typed-record-invocation/12",
+      "program": {
+        "schema": "bagaev-typed-record/12",
+        "records": {},
+        "lists": {},
+        "variants": {},
+        "entry": "main",
+        "functions": {
+          "main": {
+            "params": [
+              [
+                "x",
+                "Json"
+              ]
+            ],
+            "result": "Bool",
+            "body": [
+              "json.bool_or",
+              [
+                "arg",
+                "x"
+              ],
+              [
+                "eq",
+                [
+                  "add",
+                  [
+                    "int",
+                    9223372036854775807
+                  ],
+                  [
+                    "int",
+                    1
+                  ]
+                ],
+                [
+                  "int",
+                  0
+                ]
+              ]
+            ]
+          }
+        }
+      },
+      "arguments": [
+        false
+      ]
+    },
+    "expected": {
+      "schema": "bagaev-typed-record-result/12",
+      "status": "success",
+      "value_type": "Bool",
+      "value": false,
+      "work": 2,
+      "reason": null,
+      "location": null
+    }
+  },
+  {
+    "name": "fallback-overflow",
+    "profile": 12,
+    "invocation": {
+      "schema": "bagaev-typed-record-invocation/12",
+      "program": {
+        "schema": "bagaev-typed-record/12",
+        "records": {},
+        "lists": {},
+        "variants": {},
+        "entry": "main",
+        "functions": {
+          "main": {
+            "params": [
+              [
+                "x",
+                "Json"
+              ]
+            ],
+            "result": "Bool",
+            "body": [
+              "json.bool_or",
+              [
+                "arg",
+                "x"
+              ],
+              [
+                "eq",
+                [
+                  "add",
+                  [
+                    "int",
+                    9223372036854775807
+                  ],
+                  [
+                    "int",
+                    1
+                  ]
+                ],
+                [
+                  "int",
+                  0
+                ]
+              ]
+            ]
+          }
+        }
+      },
+      "arguments": [
+        null
+      ]
+    },
+    "expected": {
+      "schema": "bagaev-typed-record-result/12",
+      "status": "integer-overflow",
+      "value_type": null,
+      "value": null,
+      "work": 6,
+      "reason": "RR_OVERFLOW",
+      "location": "/program/functions/main/body/2/1"
+    }
+  },
+  {
+    "name": "wrong-fallback",
+    "profile": 12,
+    "invocation": {
+      "schema": "bagaev-typed-record-invocation/12",
+      "program": {
+        "schema": "bagaev-typed-record/12",
+        "records": {},
+        "lists": {},
+        "variants": {},
+        "entry": "main",
+        "functions": {
+          "main": {
+            "params": [
+              [
+                "x",
+                "Json"
+              ]
+            ],
+            "result": "Bool",
+            "body": [
+              "json.bool_or",
+              [
+                "arg",
+                "x"
+              ],
+              [
+                "int",
+                1
+              ]
+            ]
+          }
+        }
+      },
+      "arguments": [
+        true
+      ]
+    },
+    "expected": {
+      "schema": "bagaev-typed-record-result/12",
+      "status": "invalid-ir",
+      "value_type": null,
+      "value": null,
+      "work": 0,
+      "reason": "RR_TYPE",
+      "location": "/program/functions/main/body/2"
+    }
+  },
+  {
+    "name": "legacy-refusal",
+    "profile": 11,
+    "invocation": {
+      "schema": "bagaev-typed-record-invocation/11",
+      "program": {
+        "schema": "bagaev-typed-record/11",
+        "records": {},
+        "lists": {},
+        "variants": {},
+        "entry": "main",
+        "functions": {
+          "main": {
+            "params": [
+              [
+                "x",
+                "Json"
+              ]
+            ],
+            "result": "Bool",
+            "body": [
+              "json.bool_or",
+              [
+                "arg",
+                "x"
+              ],
+              [
+                "bool",
+                false
+              ]
+            ]
+          }
+        }
+      },
+      "arguments": [
+        true
+      ]
+    },
+    "expected": {
+      "schema": "bagaev-typed-record-result/11",
+      "status": "invalid-ir",
+      "value_type": null,
+      "value": null,
+      "work": 0,
+      "reason": "RR_SHAPE",
+      "location": "/program/functions/main/body"
+    }
+  }
+]

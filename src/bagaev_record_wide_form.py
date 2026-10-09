@@ -22,12 +22,13 @@ def _body_tokens(text,pos):
   items.append((m[0],pos,m.end(),False));pos=m.end()
  return items
 class Reader(prior.Reader):
+ version="5";schema="bagaev-typed-record/11";intrinsics=INTRINSICS
  def __init__(self,source):
   need(type(source) in (str,bytes),'FORM_SYNTAX')
   try:raw=source.encode('utf8') if type(source)is str else source;text=raw.decode('utf8')
   except UnicodeError:raise FormError('FORM_SYNTAX') from None
   need(len(raw)<=old.BYTE_LIMIT,'FORM_BOUNDS');need(not text.startswith('\ufeff'))
-  h=re.match(r'\A[ \t\r\n]*bagaev[ \t\r\n]+record-form/([A-Za-z0-9_]+)[ \t\r\n]*;',text);need(h is not None);need(h[1]=='5','FORM_VERSION');pos=h.end();self.tokens=[]
+  h=re.match(r'\A[ \t\r\n]*bagaev[ \t\r\n]+record-form/([A-Za-z0-9_]+)[ \t\r\n]*;',text);need(h is not None);need(h[1]==self.version,'FORM_VERSION');pos=h.end();self.tokens=[]
   self.token_items=_body_tokens(text,pos);self.tokens=[token for token,_,_,comment in self.token_items if not comment]
   self.pos=0;self.records={};self.functions={};self.variants={};self.clauses={};self.lists={}
  def ident(self):
@@ -52,14 +53,14 @@ class Reader(prior.Reader):
    self.take(')');return ('recordlist',name,values)
   if self.pos+3<len(self.tokens) and self.tokens[self.pos+1]=='.' and self.tokens[self.pos+3]=='(':
    operation=self.tokens[self.pos]+'.'+self.tokens[self.pos+2]
-   if operation in INTRINSICS and operation not in prior.INTRINSICS:
+   if operation in self.intrinsics and operation not in prior.INTRINSICS:
     need(depth<=old.DEPTH_LIMIT,'FORM_BOUNDS');self.take();self.take('.');self.take();self.take('(');args=[]
     if self.peek()!=')':
      while True:
       args.append(self.expression(depth+1));need(len(args)<=2)
       if self.peek()!=',':break
       self.take(',')
-    self.take(')');need(len(args)==INTRINSICS[operation]);return ('builtin',{'int.eq':'eq','int.le':'le','bool.not':'not'}.get(operation,operation),args)
+    self.take(')');need(len(args)==self.intrinsics[operation]);return ('builtin',{'int.eq':'eq','int.le':'le','bool.not':'not'}.get(operation,operation),args)
   return super().atom(depth)
  def _named_parameters(self,name):
   need(name in self.functions,'FORM_REFERENCE');return [p[0] for p in self.functions[name]['params']]
@@ -97,7 +98,7 @@ class Reader(prior.Reader):
    self.take(';')
   self.take('}');need(self.peek() is None);need(entry is not None,'FORM_SHAPE')
   for f in self.functions.values():f['body']=self.lower(f['body'])
-  result={'schema':'bagaev-typed-record/11','records':self.records,'lists':self.lists,'variants':self.variants,'entry':entry,'functions':self.functions}
+  result={'schema':self.schema,'records':self.records,'lists':self.lists,'variants':self.variants,'entry':entry,'functions':self.functions}
   bounded(result);return result
 def decode(source):
  try:return Reader(source).read()
@@ -106,11 +107,11 @@ def encode(value):
  return _encode(value,False)
 def encode_named(value):
  return _encode(value,True)
-def _encode(value,named_calls):
+def _encode(value,named_calls,*,schema="bagaev-typed-record/11",version="5",intrinsics=INTRINSICS,decoder=decode):
  bounded(value)
  def shape(v,keys):need(type(v)is dict and set(v)==set(keys),'FORM_PROFILE')
  def ident(v):need(type(v)is str and old.IDENT.fullmatch(v) is not None and v not in RESERVED,'FORM_PROFILE');return v
- p=value;shape(p,['schema','records','lists','variants','entry','functions']);need(p['schema']=='bagaev-typed-record/11','FORM_PROFILE')
+ p=value;shape(p,['schema','records','lists','variants','entry','functions']);need(p['schema']==schema,'FORM_PROFILE')
  need(all(type(p[k])is dict for k in ['records','lists','variants','functions']),'FORM_PROFILE');need(not(set(p['records'])&set(p['variants'])),'FORM_PROFILE')
  need(not(set(p['lists'])&(set(p['records'])|set(p['variants']))),'FORM_PROFILE')
  for name,d in p['lists'].items():
@@ -141,8 +142,8 @@ def _encode(value,named_calls):
    need(len(x)==3 and type(x[2])is str and not any(0xd800<=ord(c)<=0xdfff for c in x[2]),'FORM_PROFILE');need(len(x[2].encode('utf8'))<=64,'FORM_BOUNDS');return 'json.field('+expr(x[1])+', '+json.dumps(x[2],ensure_ascii=False)+')'
   if op in ('eq','le','not'):
    need(len(x)==(2 if op=='not' else 3),'FORM_PROFILE');return {'eq':'int.eq','le':'int.le','not':'bool.not'}[op]+'('+', '.join(expr(a) for a in x[1:])+')'
-  if op in INTRINSICS:
-   arity=INTRINSICS[op];need((len(x)-1<=64) if arity is None else len(x)==arity+1,'FORM_PROFILE');return op+'('+', '.join(expr(a) for a in x[1:])+')'
+  if op in intrinsics:
+   arity=intrinsics[op];need((len(x)-1<=64) if arity is None else len(x)==arity+1,'FORM_PROFILE');return op+'('+', '.join(expr(a) for a in x[1:])+')'
   if op=='match' and len(x)==3:
    need(type(x[2])is list,'FORM_PROFILE');arms=[]
    for arm in x[2]:
@@ -161,11 +162,11 @@ def _encode(value,named_calls):
   if op=='lt' and len(x)==3:return '('+operand(x[1])+' < '+operand(x[2])+')'
   if op=='if' and len(x)==4:return 'if ('+expr(x[1])+') then ('+expr(x[2])+') else ('+expr(x[3])+')'
   if op=='variant' and len(x)==4:
-   n=ident(x[1]);alt=ident(x[2]);need(n+'.'+alt not in INTRINSICS,'FORM_PROFILE');need(n in p['variants'] and alt in p['variants'][n],'FORM_PROFILE');return n+'.'+alt+'('+expr(x[3])+')'
+   n=ident(x[1]);alt=ident(x[2]);need(n+'.'+alt not in intrinsics,'FORM_PROFILE');need(n in p['variants'] and alt in p['variants'][n],'FORM_PROFILE');return n+'.'+alt+'('+expr(x[3])+')'
   if op=='record' and len(x)>=2:
    n=ident(x[1]);need(n in p['records'],'FORM_PROFILE');fields=sorted(p['records'][n]);need(len(x)==len(fields)+2,'FORM_PROFILE');return n+' { '+', '.join(k+': '+expr(a) for k,a in zip(fields,x[2:]))+' }'
   raise FormError('FORM_PROFILE')
- lines=['bagaev record-form/5;','program {']
+ lines=['bagaev record-form/'+version+';','program {']
  for kind,defs in [('record',p['records']),('variant',p['variants'])]:
   for n in sorted(defs):lines.append('  '+kind+' '+n+' { '+', '.join(k+': '+('OptionInt64 omit_none' if type(defs[n][k])is dict else defs[n][k]) for k in sorted(defs[n]))+' };')
  for name,d in sorted(p['lists'].items()):lines.append('  list '+name+' of '+d['element']+' capacity '+str(d['capacity'])+';')
@@ -174,4 +175,4 @@ def _encode(value,named_calls):
   f=p['functions'][n];shape(f,['params','result','body']);need(type(f['params'])is list,'FORM_PROFILE');params=[]
   for pair in f['params']:need(type(pair)is list and len(pair)==2,'FORM_PROFILE');params.append(ident(pair[0])+': '+ident(pair[1]))
   lines.append('  fn '+ident(n)+'('+', '.join(params)+') -> '+ident(f['result'])+' = '+expr(f['body'])+';')
- lines.append('}');out=('\n'.join(lines)+'\n').encode();need(len(out)<=old.BYTE_LIMIT,'FORM_BOUNDS');need(json.dumps(decode(out),sort_keys=True,ensure_ascii=False,separators=(',',':'),allow_nan=False)==json.dumps(value,sort_keys=True,ensure_ascii=False,separators=(',',':'),allow_nan=False),'FORM_PROFILE');return out
+ lines.append('}');out=('\n'.join(lines)+'\n').encode();need(len(out)<=old.BYTE_LIMIT,'FORM_BOUNDS');need(json.dumps(decoder(out),sort_keys=True,ensure_ascii=False,separators=(',',':'),allow_nan=False)==json.dumps(value,sort_keys=True,ensure_ascii=False,separators=(',',':'),allow_nan=False),'FORM_PROFILE');return out
