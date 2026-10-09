@@ -37,6 +37,13 @@ With declaration maps, nominal record-list input bounds use
 element fields are Int64/Bool only. Length, index and scalar field projection
 retain nominal names; nested/Text fields and nominal calls/accumulators remain
 unsupported. A fitting work bound does not prove index validity.
+The [finite cardinality cases](../examples/probes/record-work-cardinality/cases.json)
+preserve 49 complete reference observations: all 17 lengths of one guarded sum,
+30 positive/negative overflow positions and two invalid indices. All matched
+their pre-frozen full result envelopes; observed work stayed within the bound.
+The accompanying static test checks analysis only, without launching an evaluator.
+These are finite conformance observations, not exhaustive Int64/AST coverage or
+performance measurements.
 Expression refusals include a function name and body-relative JSON pointer;
 the analysis library uses a null function for its supplied root expression.
 These identify the unsupported expression, not a source character span.
