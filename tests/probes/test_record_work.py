@@ -77,5 +77,42 @@ class Work(unittest.TestCase):
             r=analyze(e,{})
             self.assertEqual(r['status'],'UNKNOWN');self.assertNotIn('upper_work',r)
 
+    def test_helper_scope_and_repeated_cost(self):
+        args={'xs':{'type':'TextList','items':3,'bytes':5}}
+        functions={'dedup':{'params':[['x','TextList']],'result':'TextList',
+                            'body':['list.unique',['arg','x']]},
+                   'wrap':{'params':[['u','TextList']],'result':'TextList',
+                           'body':['call','dedup',['arg','u']]},
+                   'identity':{'params':[['x','Int64']],'result':'Int64','body':['arg','x']}}
+        call=['call','dedup',['arg','xs']]
+        self.assertEqual(analyze(call,args,functions)['upper_work'],43)
+        self.assertEqual(analyze(['call','wrap',['arg','xs']],args,functions)['upper_work'],45)
+        self.assertEqual(analyze(['let','y',call,['call','dedup',['use','y']]],args,functions)['upper_work'],87)
+        self.assertEqual(analyze(['call','identity',['int',1]],{},functions)['upper_work'],3)
+        self.assertEqual(analyze(call,args)['status'],'UNKNOWN')
+
+    def test_helper_refusals(self):
+        args={'xs':{'type':'TextList','items':3,'bytes':5}}
+        for body in (['arg','xs'],['use','outer'],['call','f',['arg','x']]):
+            funcs={'f':{'params':[['x','TextList']],'result':'TextList','body':body}}
+            r=analyze(['let','outer',['arg','xs'],['call','f',['arg','xs']]],args,funcs)
+            self.assertEqual(r['status'],'UNKNOWN');self.assertNotIn('upper_work',r)
+        funcs={'f':{'params':[],'result':'Int64','body':['call','g']},
+               'g':{'params':[],'result':'Int64','body':['call','f']}}
+        self.assertEqual(analyze(['call','f'],{},funcs)['reason'],'call-cycle')
+        funcs={'f':{'params':[['x','Int64']],'result':'Int64','body':['arg','x']}}
+        for call in (['call','f'],['call','f',['bool',True]]):
+            self.assertEqual(analyze(call,{},funcs)['status'],'UNKNOWN')
+        funcs['f']['result']='Report'
+        self.assertEqual(analyze(['call','f',['int',1]],{},funcs)['status'],'UNKNOWN')
+
+    def test_expanded_call_budget(self):
+        funcs={'f0':{'params':[],'result':'Bool','body':['bool',True]}}
+        for i in range(1,12):
+            funcs['f'+str(i)]={'params':[],'result':'Bool',
+                              'body':['eq',['call','f'+str(i-1)],['call','f'+str(i-1)]]}
+        r=analyze(['call','f11'],{},funcs)
+        self.assertEqual(r['status'],'UNKNOWN');self.assertEqual(r['reason'],'analysis-bounds')
+
 
 if __name__=='__main__':unittest.main()

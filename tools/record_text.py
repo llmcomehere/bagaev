@@ -165,7 +165,7 @@ def convert(argv):
                     raise Refusal("RECORD_ARGUMENTS")
                 work_fields = {
                     'argument_bounds_sha256': hashlib.sha256(bounds_raw).hexdigest(),
-                    'work_bound': bagaev_record_work.analyze(entry['body'], bounds)}
+                    'work_bound': bagaev_record_work.analyze(entry['body'], bounds, value['functions'])}
             canonical = json.dumps(value, sort_keys=True, ensure_ascii=False,
                                    separators=(",", ":"), allow_nan=False).encode("utf8")
             value = {"schema": "bagaev-record-inspection/1",

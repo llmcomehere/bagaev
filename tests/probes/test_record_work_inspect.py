@@ -55,4 +55,12 @@ class Inspect(unittest.TestCase):
         self.assertEqual(caught.exception.code,'RECORD_ARGUMENTS')
         self.assertFalse(self.out.exists())
 
+    def test_helper_definitions_are_used(self):
+        source='bagaev record-form/5; program { entry main; fn helper(x: TextList) -> TextList = list.unique(x); fn main(xs: TextList) -> TextList = helper(xs); }'
+        self.source.write_text(source)
+        self.bounds.write_text('{"xs":{"type":"TextList","items":3,"bytes":5}}')
+        record_text.convert(self.command()+['--bounds',str(self.bounds)])
+        r=json.loads(self.out.read_bytes())['work_bound']
+        self.assertEqual(r['upper_work'],43);self.assertFalse(r['execution_admission'])
+
 if __name__=='__main__':unittest.main()
