@@ -14,12 +14,15 @@ This is a separately versioned pure reference profile, not an expanded native AB
 component-owned state, durable catalogue or production runtime.
 
 The pure [conditional work analyzer](../src/bagaev_record_work.py) estimates
-upper logical work for a small straight-line expression subset using declared
+upper logical work for a small expression subset using declared
 argument bounds. It requires separately checked program semantics and valid
 arguments. Unsupported operations return `UNKNOWN`; a bound above 65,536 means
 possible budget exhaustion, not certain failure. It grants no execution admission
 and does not measure latency or memory. [Literal tests](../tests/probes/test_record_work.py)
 include the sorted-unique example's boundary and the extra charge of negated equality.
+Conditionals add the condition's bound and the larger arm bound; both arms must
+be supported. Branch shapes join conservatively, without refining bounds from
+guards. Calls and loops remain unsupported.
 
 ## Readable source
 

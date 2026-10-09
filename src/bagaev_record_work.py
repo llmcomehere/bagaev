@@ -1,4 +1,4 @@
-"""Conditional profile11 work bounds for a small straight-line IR subset.
+"""Conditional profile11 work bounds for a small pure IR subset.
 
 This pure analysis neither checks a complete program nor admits execution.
 Its bounds apply only to separately checked expressions and valid arguments
@@ -63,6 +63,14 @@ def analyze(expression, arguments):
             nested[x[1]] = value
             tail, result = visit(x[3], nested, depth+1)
             return 1+cost+tail, result
+        if op == 'if' and len(x) == 4:
+            condition, cv = visit(x[1], scope, depth+1)
+            yes, yv = visit(x[2], scope, depth+1)
+            no, nv = visit(x[3], scope, depth+1)
+            if cv[0] != 'Bool' or yv[0] != nv[0]:
+                raise Unknown('operand-type')
+            joined = (yv[0], max(yv[1], nv[1]), max(yv[2], nv[2]))
+            return 1+condition+max(yes, no), joined
         if op == 'record' and 2 <= len(x) <= 10 and type(x[1]) is str:
             return 1+sum(visit(v, scope, depth+1)[0] for v in x[2:]), ('Record', 0, 0)
         if op in ('list.len', 'list.unique', 'list.increasing') and len(x) == 2:
