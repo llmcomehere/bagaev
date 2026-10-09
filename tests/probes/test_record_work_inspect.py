@@ -56,7 +56,7 @@ class Inspect(unittest.TestCase):
         self.assertFalse(self.out.exists())
 
     def test_unknown_location_names_entry(self):
-        self.source.write_text('bagaev record-form/5; program { entry main; fn main() -> Int64 = 1 + 2; }')
+        self.source.write_text('bagaev record-form/5; program { entry main; fn main() -> Int64 = text.bytes("x"); }')
         self.bounds.write_text('{}')
         record_text.convert(self.command()+['--bounds',str(self.bounds)])
         result=json.loads(self.out.read_bytes())['work_bound']
@@ -69,6 +69,14 @@ class Inspect(unittest.TestCase):
         record_text.convert(self.command()+['--bounds',str(self.bounds)])
         result=json.loads(self.out.read_bytes())['work_bound']
         self.assertEqual(result['upper_work'],84)
+        self.assertFalse(result['semantic_check']);self.assertFalse(result['execution_admission'])
+
+    def test_scalar_fold_work_bound(self):
+        self.source.write_text('bagaev record-form/5; program { entry main; fn main() -> Int64 = fold (16, (0)) with (i, acc) in (acc + i); }')
+        self.bounds.write_text('{}')
+        record_text.convert(self.command()+['--bounds',str(self.bounds)])
+        result=json.loads(self.out.read_bytes())['work_bound']
+        self.assertEqual(result['upper_work'],50)
         self.assertFalse(result['semantic_check']);self.assertFalse(result['execution_admission'])
 
     def test_helper_definitions_are_used(self):

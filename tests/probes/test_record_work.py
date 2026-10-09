@@ -106,6 +106,20 @@ class Work(unittest.TestCase):
         funcs['f']['result']='Report'
         self.assertEqual(analyze(['call','f',['int',1]],{},funcs)['status'],'UNKNOWN')
 
+    def test_scalar_arithmetic_work_not_overflow_proof(self):
+        for op in ('add', 'sub', 'mul'):
+            result = analyze([op, ['int', 2**63-1], ['int', 2]], {})
+            self.assertEqual(result['upper_work'], 3)
+            self.assertTrue(result['fits_work_budget'])
+            self.assertFalse(result['semantic_check'])
+            self.assertFalse(result['execution_admission'])
+            self.assertEqual(analyze([op, ['bool', True], ['int', 1]], {})['status'], 'UNKNOWN')
+            self.assertEqual(analyze([op, ['int', 1]], {})['status'], 'UNKNOWN')
+        summation = ['loop', 16, 'i', 'a', ['int', 0], ['add', ['use', 'a'], ['use', 'i']]]
+        self.assertEqual(analyze(summation, {})['upper_work'], 50)
+        overflow = ['loop', 1024, 'i', 'a', ['int', 2**63-1], ['add', ['use', 'a'], ['int', 1]]]
+        self.assertEqual(analyze(overflow, {})['upper_work'], 3074)
+
     def test_loop_literal_bounds_and_nested_invariant(self):
         args = {'xs': {'type': 'TextList', 'items': 3, 'bytes': 5}}
         for count, work in [(0, 2), (1, 43), (2, 84)]:
