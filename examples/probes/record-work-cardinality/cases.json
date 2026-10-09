@@ -1,0 +1,2206 @@
+{
+  "schema": "bagaev-record-work-cases/1",
+  "records": {
+    "Item": {
+      "amount": "Int64"
+    }
+  },
+  "lists": {
+    "Items": {
+      "element": "Item",
+      "capacity": 16
+    }
+  },
+  "bodies": {
+    "body0": [
+      "loop",
+      16,
+      "i",
+      "sum",
+      [
+        "int",
+        0
+      ],
+      [
+        "if",
+        [
+          "lt",
+          [
+            "use",
+            "i"
+          ],
+          [
+            "records.len",
+            [
+              "arg",
+              "items"
+            ]
+          ]
+        ],
+        [
+          "add",
+          [
+            "use",
+            "sum"
+          ],
+          [
+            "field",
+            [
+              "records.at",
+              [
+                "arg",
+                "items"
+              ],
+              [
+                "use",
+                "i"
+              ]
+            ],
+            "amount"
+          ]
+        ],
+        [
+          "use",
+          "sum"
+        ]
+      ]
+    ],
+    "body1": [
+      "field",
+      [
+        "records.at",
+        [
+          "arg",
+          "items"
+        ],
+        [
+          "int",
+          -1
+        ]
+      ],
+      "amount"
+    ],
+    "body2": [
+      "field",
+      [
+        "records.at",
+        [
+          "arg",
+          "items"
+        ],
+        [
+          "int",
+          1
+        ]
+      ],
+      "amount"
+    ]
+  },
+  "cases": [
+    {
+      "name": "cardinality0",
+      "body": "body0",
+      "arguments": [
+        []
+      ],
+      "bound": 178,
+      "expected": {
+        "schema": "bagaev-typed-record-result/11",
+        "status": "success",
+        "value_type": "Int64",
+        "value": 0,
+        "work": 98,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "name": "cardinality1",
+      "body": "body0",
+      "arguments": [
+        [
+          {
+            "amount": 1
+          }
+        ]
+      ],
+      "bound": 178,
+      "expected": {
+        "schema": "bagaev-typed-record-result/11",
+        "status": "success",
+        "value_type": "Int64",
+        "value": 1,
+        "work": 103,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "name": "cardinality2",
+      "body": "body0",
+      "arguments": [
+        [
+          {
+            "amount": 1
+          },
+          {
+            "amount": -2
+          }
+        ]
+      ],
+      "bound": 178,
+      "expected": {
+        "schema": "bagaev-typed-record-result/11",
+        "status": "success",
+        "value_type": "Int64",
+        "value": -1,
+        "work": 108,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "name": "cardinality3",
+      "body": "body0",
+      "arguments": [
+        [
+          {
+            "amount": 1
+          },
+          {
+            "amount": -2
+          },
+          {
+            "amount": 3
+          }
+        ]
+      ],
+      "bound": 178,
+      "expected": {
+        "schema": "bagaev-typed-record-result/11",
+        "status": "success",
+        "value_type": "Int64",
+        "value": 2,
+        "work": 113,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "name": "cardinality4",
+      "body": "body0",
+      "arguments": [
+        [
+          {
+            "amount": 1
+          },
+          {
+            "amount": -2
+          },
+          {
+            "amount": 3
+          },
+          {
+            "amount": -4
+          }
+        ]
+      ],
+      "bound": 178,
+      "expected": {
+        "schema": "bagaev-typed-record-result/11",
+        "status": "success",
+        "value_type": "Int64",
+        "value": -2,
+        "work": 118,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "name": "cardinality5",
+      "body": "body0",
+      "arguments": [
+        [
+          {
+            "amount": 1
+          },
+          {
+            "amount": -2
+          },
+          {
+            "amount": 3
+          },
+          {
+            "amount": -4
+          },
+          {
+            "amount": 5
+          }
+        ]
+      ],
+      "bound": 178,
+      "expected": {
+        "schema": "bagaev-typed-record-result/11",
+        "status": "success",
+        "value_type": "Int64",
+        "value": 3,
+        "work": 123,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "name": "cardinality6",
+      "body": "body0",
+      "arguments": [
+        [
+          {
+            "amount": 1
+          },
+          {
+            "amount": -2
+          },
+          {
+            "amount": 3
+          },
+          {
+            "amount": -4
+          },
+          {
+            "amount": 5
+          },
+          {
+            "amount": -6
+          }
+        ]
+      ],
+      "bound": 178,
+      "expected": {
+        "schema": "bagaev-typed-record-result/11",
+        "status": "success",
+        "value_type": "Int64",
+        "value": -3,
+        "work": 128,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "name": "cardinality7",
+      "body": "body0",
+      "arguments": [
+        [
+          {
+            "amount": 1
+          },
+          {
+            "amount": -2
+          },
+          {
+            "amount": 3
+          },
+          {
+            "amount": -4
+          },
+          {
+            "amount": 5
+          },
+          {
+            "amount": -6
+          },
+          {
+            "amount": 7
+          }
+        ]
+      ],
+      "bound": 178,
+      "expected": {
+        "schema": "bagaev-typed-record-result/11",
+        "status": "success",
+        "value_type": "Int64",
+        "value": 4,
+        "work": 133,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "name": "cardinality8",
+      "body": "body0",
+      "arguments": [
+        [
+          {
+            "amount": 1
+          },
+          {
+            "amount": -2
+          },
+          {
+            "amount": 3
+          },
+          {
+            "amount": -4
+          },
+          {
+            "amount": 5
+          },
+          {
+            "amount": -6
+          },
+          {
+            "amount": 7
+          },
+          {
+            "amount": -8
+          }
+        ]
+      ],
+      "bound": 178,
+      "expected": {
+        "schema": "bagaev-typed-record-result/11",
+        "status": "success",
+        "value_type": "Int64",
+        "value": -4,
+        "work": 138,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "name": "cardinality9",
+      "body": "body0",
+      "arguments": [
+        [
+          {
+            "amount": 1
+          },
+          {
+            "amount": -2
+          },
+          {
+            "amount": 3
+          },
+          {
+            "amount": -4
+          },
+          {
+            "amount": 5
+          },
+          {
+            "amount": -6
+          },
+          {
+            "amount": 7
+          },
+          {
+            "amount": -8
+          },
+          {
+            "amount": 9
+          }
+        ]
+      ],
+      "bound": 178,
+      "expected": {
+        "schema": "bagaev-typed-record-result/11",
+        "status": "success",
+        "value_type": "Int64",
+        "value": 5,
+        "work": 143,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "name": "cardinality10",
+      "body": "body0",
+      "arguments": [
+        [
+          {
+            "amount": 1
+          },
+          {
+            "amount": -2
+          },
+          {
+            "amount": 3
+          },
+          {
+            "amount": -4
+          },
+          {
+            "amount": 5
+          },
+          {
+            "amount": -6
+          },
+          {
+            "amount": 7
+          },
+          {
+            "amount": -8
+          },
+          {
+            "amount": 9
+          },
+          {
+            "amount": -10
+          }
+        ]
+      ],
+      "bound": 178,
+      "expected": {
+        "schema": "bagaev-typed-record-result/11",
+        "status": "success",
+        "value_type": "Int64",
+        "value": -5,
+        "work": 148,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "name": "cardinality11",
+      "body": "body0",
+      "arguments": [
+        [
+          {
+            "amount": 1
+          },
+          {
+            "amount": -2
+          },
+          {
+            "amount": 3
+          },
+          {
+            "amount": -4
+          },
+          {
+            "amount": 5
+          },
+          {
+            "amount": -6
+          },
+          {
+            "amount": 7
+          },
+          {
+            "amount": -8
+          },
+          {
+            "amount": 9
+          },
+          {
+            "amount": -10
+          },
+          {
+            "amount": 11
+          }
+        ]
+      ],
+      "bound": 178,
+      "expected": {
+        "schema": "bagaev-typed-record-result/11",
+        "status": "success",
+        "value_type": "Int64",
+        "value": 6,
+        "work": 153,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "name": "cardinality12",
+      "body": "body0",
+      "arguments": [
+        [
+          {
+            "amount": 1
+          },
+          {
+            "amount": -2
+          },
+          {
+            "amount": 3
+          },
+          {
+            "amount": -4
+          },
+          {
+            "amount": 5
+          },
+          {
+            "amount": -6
+          },
+          {
+            "amount": 7
+          },
+          {
+            "amount": -8
+          },
+          {
+            "amount": 9
+          },
+          {
+            "amount": -10
+          },
+          {
+            "amount": 11
+          },
+          {
+            "amount": -12
+          }
+        ]
+      ],
+      "bound": 178,
+      "expected": {
+        "schema": "bagaev-typed-record-result/11",
+        "status": "success",
+        "value_type": "Int64",
+        "value": -6,
+        "work": 158,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "name": "cardinality13",
+      "body": "body0",
+      "arguments": [
+        [
+          {
+            "amount": 1
+          },
+          {
+            "amount": -2
+          },
+          {
+            "amount": 3
+          },
+          {
+            "amount": -4
+          },
+          {
+            "amount": 5
+          },
+          {
+            "amount": -6
+          },
+          {
+            "amount": 7
+          },
+          {
+            "amount": -8
+          },
+          {
+            "amount": 9
+          },
+          {
+            "amount": -10
+          },
+          {
+            "amount": 11
+          },
+          {
+            "amount": -12
+          },
+          {
+            "amount": 13
+          }
+        ]
+      ],
+      "bound": 178,
+      "expected": {
+        "schema": "bagaev-typed-record-result/11",
+        "status": "success",
+        "value_type": "Int64",
+        "value": 7,
+        "work": 163,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "name": "cardinality14",
+      "body": "body0",
+      "arguments": [
+        [
+          {
+            "amount": 1
+          },
+          {
+            "amount": -2
+          },
+          {
+            "amount": 3
+          },
+          {
+            "amount": -4
+          },
+          {
+            "amount": 5
+          },
+          {
+            "amount": -6
+          },
+          {
+            "amount": 7
+          },
+          {
+            "amount": -8
+          },
+          {
+            "amount": 9
+          },
+          {
+            "amount": -10
+          },
+          {
+            "amount": 11
+          },
+          {
+            "amount": -12
+          },
+          {
+            "amount": 13
+          },
+          {
+            "amount": -14
+          }
+        ]
+      ],
+      "bound": 178,
+      "expected": {
+        "schema": "bagaev-typed-record-result/11",
+        "status": "success",
+        "value_type": "Int64",
+        "value": -7,
+        "work": 168,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "name": "cardinality15",
+      "body": "body0",
+      "arguments": [
+        [
+          {
+            "amount": 1
+          },
+          {
+            "amount": -2
+          },
+          {
+            "amount": 3
+          },
+          {
+            "amount": -4
+          },
+          {
+            "amount": 5
+          },
+          {
+            "amount": -6
+          },
+          {
+            "amount": 7
+          },
+          {
+            "amount": -8
+          },
+          {
+            "amount": 9
+          },
+          {
+            "amount": -10
+          },
+          {
+            "amount": 11
+          },
+          {
+            "amount": -12
+          },
+          {
+            "amount": 13
+          },
+          {
+            "amount": -14
+          },
+          {
+            "amount": 15
+          }
+        ]
+      ],
+      "bound": 178,
+      "expected": {
+        "schema": "bagaev-typed-record-result/11",
+        "status": "success",
+        "value_type": "Int64",
+        "value": 8,
+        "work": 173,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "name": "cardinality16",
+      "body": "body0",
+      "arguments": [
+        [
+          {
+            "amount": 1
+          },
+          {
+            "amount": -2
+          },
+          {
+            "amount": 3
+          },
+          {
+            "amount": -4
+          },
+          {
+            "amount": 5
+          },
+          {
+            "amount": -6
+          },
+          {
+            "amount": 7
+          },
+          {
+            "amount": -8
+          },
+          {
+            "amount": 9
+          },
+          {
+            "amount": -10
+          },
+          {
+            "amount": 11
+          },
+          {
+            "amount": -12
+          },
+          {
+            "amount": 13
+          },
+          {
+            "amount": -14
+          },
+          {
+            "amount": 15
+          },
+          {
+            "amount": -16
+          }
+        ]
+      ],
+      "bound": 178,
+      "expected": {
+        "schema": "bagaev-typed-record-result/11",
+        "status": "success",
+        "value_type": "Int64",
+        "value": -8,
+        "work": 178,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "name": "positive-overflow-1",
+      "body": "body0",
+      "arguments": [
+        [
+          {
+            "amount": 9223372036854775807
+          },
+          {
+            "amount": 1
+          }
+        ]
+      ],
+      "bound": 178,
+      "expected": {
+        "schema": "bagaev-typed-record-result/11",
+        "status": "integer-overflow",
+        "value_type": null,
+        "value": null,
+        "work": 24,
+        "reason": "RR_OVERFLOW",
+        "location": "/program/functions/main/body/5/2"
+      }
+    },
+    {
+      "name": "positive-overflow-2",
+      "body": "body0",
+      "arguments": [
+        [
+          {
+            "amount": 9223372036854775807
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 1
+          }
+        ]
+      ],
+      "bound": 178,
+      "expected": {
+        "schema": "bagaev-typed-record-result/11",
+        "status": "integer-overflow",
+        "value_type": null,
+        "value": null,
+        "work": 35,
+        "reason": "RR_OVERFLOW",
+        "location": "/program/functions/main/body/5/2"
+      }
+    },
+    {
+      "name": "positive-overflow-3",
+      "body": "body0",
+      "arguments": [
+        [
+          {
+            "amount": 9223372036854775807
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 1
+          }
+        ]
+      ],
+      "bound": 178,
+      "expected": {
+        "schema": "bagaev-typed-record-result/11",
+        "status": "integer-overflow",
+        "value_type": null,
+        "value": null,
+        "work": 46,
+        "reason": "RR_OVERFLOW",
+        "location": "/program/functions/main/body/5/2"
+      }
+    },
+    {
+      "name": "positive-overflow-4",
+      "body": "body0",
+      "arguments": [
+        [
+          {
+            "amount": 9223372036854775807
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 1
+          }
+        ]
+      ],
+      "bound": 178,
+      "expected": {
+        "schema": "bagaev-typed-record-result/11",
+        "status": "integer-overflow",
+        "value_type": null,
+        "value": null,
+        "work": 57,
+        "reason": "RR_OVERFLOW",
+        "location": "/program/functions/main/body/5/2"
+      }
+    },
+    {
+      "name": "positive-overflow-5",
+      "body": "body0",
+      "arguments": [
+        [
+          {
+            "amount": 9223372036854775807
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 1
+          }
+        ]
+      ],
+      "bound": 178,
+      "expected": {
+        "schema": "bagaev-typed-record-result/11",
+        "status": "integer-overflow",
+        "value_type": null,
+        "value": null,
+        "work": 68,
+        "reason": "RR_OVERFLOW",
+        "location": "/program/functions/main/body/5/2"
+      }
+    },
+    {
+      "name": "positive-overflow-6",
+      "body": "body0",
+      "arguments": [
+        [
+          {
+            "amount": 9223372036854775807
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 1
+          }
+        ]
+      ],
+      "bound": 178,
+      "expected": {
+        "schema": "bagaev-typed-record-result/11",
+        "status": "integer-overflow",
+        "value_type": null,
+        "value": null,
+        "work": 79,
+        "reason": "RR_OVERFLOW",
+        "location": "/program/functions/main/body/5/2"
+      }
+    },
+    {
+      "name": "positive-overflow-7",
+      "body": "body0",
+      "arguments": [
+        [
+          {
+            "amount": 9223372036854775807
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 1
+          }
+        ]
+      ],
+      "bound": 178,
+      "expected": {
+        "schema": "bagaev-typed-record-result/11",
+        "status": "integer-overflow",
+        "value_type": null,
+        "value": null,
+        "work": 90,
+        "reason": "RR_OVERFLOW",
+        "location": "/program/functions/main/body/5/2"
+      }
+    },
+    {
+      "name": "positive-overflow-8",
+      "body": "body0",
+      "arguments": [
+        [
+          {
+            "amount": 9223372036854775807
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 1
+          }
+        ]
+      ],
+      "bound": 178,
+      "expected": {
+        "schema": "bagaev-typed-record-result/11",
+        "status": "integer-overflow",
+        "value_type": null,
+        "value": null,
+        "work": 101,
+        "reason": "RR_OVERFLOW",
+        "location": "/program/functions/main/body/5/2"
+      }
+    },
+    {
+      "name": "positive-overflow-9",
+      "body": "body0",
+      "arguments": [
+        [
+          {
+            "amount": 9223372036854775807
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 1
+          }
+        ]
+      ],
+      "bound": 178,
+      "expected": {
+        "schema": "bagaev-typed-record-result/11",
+        "status": "integer-overflow",
+        "value_type": null,
+        "value": null,
+        "work": 112,
+        "reason": "RR_OVERFLOW",
+        "location": "/program/functions/main/body/5/2"
+      }
+    },
+    {
+      "name": "positive-overflow-10",
+      "body": "body0",
+      "arguments": [
+        [
+          {
+            "amount": 9223372036854775807
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 1
+          }
+        ]
+      ],
+      "bound": 178,
+      "expected": {
+        "schema": "bagaev-typed-record-result/11",
+        "status": "integer-overflow",
+        "value_type": null,
+        "value": null,
+        "work": 123,
+        "reason": "RR_OVERFLOW",
+        "location": "/program/functions/main/body/5/2"
+      }
+    },
+    {
+      "name": "positive-overflow-11",
+      "body": "body0",
+      "arguments": [
+        [
+          {
+            "amount": 9223372036854775807
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 1
+          }
+        ]
+      ],
+      "bound": 178,
+      "expected": {
+        "schema": "bagaev-typed-record-result/11",
+        "status": "integer-overflow",
+        "value_type": null,
+        "value": null,
+        "work": 134,
+        "reason": "RR_OVERFLOW",
+        "location": "/program/functions/main/body/5/2"
+      }
+    },
+    {
+      "name": "positive-overflow-12",
+      "body": "body0",
+      "arguments": [
+        [
+          {
+            "amount": 9223372036854775807
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 1
+          }
+        ]
+      ],
+      "bound": 178,
+      "expected": {
+        "schema": "bagaev-typed-record-result/11",
+        "status": "integer-overflow",
+        "value_type": null,
+        "value": null,
+        "work": 145,
+        "reason": "RR_OVERFLOW",
+        "location": "/program/functions/main/body/5/2"
+      }
+    },
+    {
+      "name": "positive-overflow-13",
+      "body": "body0",
+      "arguments": [
+        [
+          {
+            "amount": 9223372036854775807
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 1
+          }
+        ]
+      ],
+      "bound": 178,
+      "expected": {
+        "schema": "bagaev-typed-record-result/11",
+        "status": "integer-overflow",
+        "value_type": null,
+        "value": null,
+        "work": 156,
+        "reason": "RR_OVERFLOW",
+        "location": "/program/functions/main/body/5/2"
+      }
+    },
+    {
+      "name": "positive-overflow-14",
+      "body": "body0",
+      "arguments": [
+        [
+          {
+            "amount": 9223372036854775807
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 1
+          }
+        ]
+      ],
+      "bound": 178,
+      "expected": {
+        "schema": "bagaev-typed-record-result/11",
+        "status": "integer-overflow",
+        "value_type": null,
+        "value": null,
+        "work": 167,
+        "reason": "RR_OVERFLOW",
+        "location": "/program/functions/main/body/5/2"
+      }
+    },
+    {
+      "name": "positive-overflow-15",
+      "body": "body0",
+      "arguments": [
+        [
+          {
+            "amount": 9223372036854775807
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 1
+          }
+        ]
+      ],
+      "bound": 178,
+      "expected": {
+        "schema": "bagaev-typed-record-result/11",
+        "status": "integer-overflow",
+        "value_type": null,
+        "value": null,
+        "work": 178,
+        "reason": "RR_OVERFLOW",
+        "location": "/program/functions/main/body/5/2"
+      }
+    },
+    {
+      "name": "negative-overflow-1",
+      "body": "body0",
+      "arguments": [
+        [
+          {
+            "amount": -9223372036854775808
+          },
+          {
+            "amount": -1
+          }
+        ]
+      ],
+      "bound": 178,
+      "expected": {
+        "schema": "bagaev-typed-record-result/11",
+        "status": "integer-overflow",
+        "value_type": null,
+        "value": null,
+        "work": 24,
+        "reason": "RR_OVERFLOW",
+        "location": "/program/functions/main/body/5/2"
+      }
+    },
+    {
+      "name": "negative-overflow-2",
+      "body": "body0",
+      "arguments": [
+        [
+          {
+            "amount": -9223372036854775808
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": -1
+          }
+        ]
+      ],
+      "bound": 178,
+      "expected": {
+        "schema": "bagaev-typed-record-result/11",
+        "status": "integer-overflow",
+        "value_type": null,
+        "value": null,
+        "work": 35,
+        "reason": "RR_OVERFLOW",
+        "location": "/program/functions/main/body/5/2"
+      }
+    },
+    {
+      "name": "negative-overflow-3",
+      "body": "body0",
+      "arguments": [
+        [
+          {
+            "amount": -9223372036854775808
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": -1
+          }
+        ]
+      ],
+      "bound": 178,
+      "expected": {
+        "schema": "bagaev-typed-record-result/11",
+        "status": "integer-overflow",
+        "value_type": null,
+        "value": null,
+        "work": 46,
+        "reason": "RR_OVERFLOW",
+        "location": "/program/functions/main/body/5/2"
+      }
+    },
+    {
+      "name": "negative-overflow-4",
+      "body": "body0",
+      "arguments": [
+        [
+          {
+            "amount": -9223372036854775808
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": -1
+          }
+        ]
+      ],
+      "bound": 178,
+      "expected": {
+        "schema": "bagaev-typed-record-result/11",
+        "status": "integer-overflow",
+        "value_type": null,
+        "value": null,
+        "work": 57,
+        "reason": "RR_OVERFLOW",
+        "location": "/program/functions/main/body/5/2"
+      }
+    },
+    {
+      "name": "negative-overflow-5",
+      "body": "body0",
+      "arguments": [
+        [
+          {
+            "amount": -9223372036854775808
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": -1
+          }
+        ]
+      ],
+      "bound": 178,
+      "expected": {
+        "schema": "bagaev-typed-record-result/11",
+        "status": "integer-overflow",
+        "value_type": null,
+        "value": null,
+        "work": 68,
+        "reason": "RR_OVERFLOW",
+        "location": "/program/functions/main/body/5/2"
+      }
+    },
+    {
+      "name": "negative-overflow-6",
+      "body": "body0",
+      "arguments": [
+        [
+          {
+            "amount": -9223372036854775808
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": -1
+          }
+        ]
+      ],
+      "bound": 178,
+      "expected": {
+        "schema": "bagaev-typed-record-result/11",
+        "status": "integer-overflow",
+        "value_type": null,
+        "value": null,
+        "work": 79,
+        "reason": "RR_OVERFLOW",
+        "location": "/program/functions/main/body/5/2"
+      }
+    },
+    {
+      "name": "negative-overflow-7",
+      "body": "body0",
+      "arguments": [
+        [
+          {
+            "amount": -9223372036854775808
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": -1
+          }
+        ]
+      ],
+      "bound": 178,
+      "expected": {
+        "schema": "bagaev-typed-record-result/11",
+        "status": "integer-overflow",
+        "value_type": null,
+        "value": null,
+        "work": 90,
+        "reason": "RR_OVERFLOW",
+        "location": "/program/functions/main/body/5/2"
+      }
+    },
+    {
+      "name": "negative-overflow-8",
+      "body": "body0",
+      "arguments": [
+        [
+          {
+            "amount": -9223372036854775808
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": -1
+          }
+        ]
+      ],
+      "bound": 178,
+      "expected": {
+        "schema": "bagaev-typed-record-result/11",
+        "status": "integer-overflow",
+        "value_type": null,
+        "value": null,
+        "work": 101,
+        "reason": "RR_OVERFLOW",
+        "location": "/program/functions/main/body/5/2"
+      }
+    },
+    {
+      "name": "negative-overflow-9",
+      "body": "body0",
+      "arguments": [
+        [
+          {
+            "amount": -9223372036854775808
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": -1
+          }
+        ]
+      ],
+      "bound": 178,
+      "expected": {
+        "schema": "bagaev-typed-record-result/11",
+        "status": "integer-overflow",
+        "value_type": null,
+        "value": null,
+        "work": 112,
+        "reason": "RR_OVERFLOW",
+        "location": "/program/functions/main/body/5/2"
+      }
+    },
+    {
+      "name": "negative-overflow-10",
+      "body": "body0",
+      "arguments": [
+        [
+          {
+            "amount": -9223372036854775808
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": -1
+          }
+        ]
+      ],
+      "bound": 178,
+      "expected": {
+        "schema": "bagaev-typed-record-result/11",
+        "status": "integer-overflow",
+        "value_type": null,
+        "value": null,
+        "work": 123,
+        "reason": "RR_OVERFLOW",
+        "location": "/program/functions/main/body/5/2"
+      }
+    },
+    {
+      "name": "negative-overflow-11",
+      "body": "body0",
+      "arguments": [
+        [
+          {
+            "amount": -9223372036854775808
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": -1
+          }
+        ]
+      ],
+      "bound": 178,
+      "expected": {
+        "schema": "bagaev-typed-record-result/11",
+        "status": "integer-overflow",
+        "value_type": null,
+        "value": null,
+        "work": 134,
+        "reason": "RR_OVERFLOW",
+        "location": "/program/functions/main/body/5/2"
+      }
+    },
+    {
+      "name": "negative-overflow-12",
+      "body": "body0",
+      "arguments": [
+        [
+          {
+            "amount": -9223372036854775808
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": -1
+          }
+        ]
+      ],
+      "bound": 178,
+      "expected": {
+        "schema": "bagaev-typed-record-result/11",
+        "status": "integer-overflow",
+        "value_type": null,
+        "value": null,
+        "work": 145,
+        "reason": "RR_OVERFLOW",
+        "location": "/program/functions/main/body/5/2"
+      }
+    },
+    {
+      "name": "negative-overflow-13",
+      "body": "body0",
+      "arguments": [
+        [
+          {
+            "amount": -9223372036854775808
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": -1
+          }
+        ]
+      ],
+      "bound": 178,
+      "expected": {
+        "schema": "bagaev-typed-record-result/11",
+        "status": "integer-overflow",
+        "value_type": null,
+        "value": null,
+        "work": 156,
+        "reason": "RR_OVERFLOW",
+        "location": "/program/functions/main/body/5/2"
+      }
+    },
+    {
+      "name": "negative-overflow-14",
+      "body": "body0",
+      "arguments": [
+        [
+          {
+            "amount": -9223372036854775808
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": -1
+          }
+        ]
+      ],
+      "bound": 178,
+      "expected": {
+        "schema": "bagaev-typed-record-result/11",
+        "status": "integer-overflow",
+        "value_type": null,
+        "value": null,
+        "work": 167,
+        "reason": "RR_OVERFLOW",
+        "location": "/program/functions/main/body/5/2"
+      }
+    },
+    {
+      "name": "negative-overflow-15",
+      "body": "body0",
+      "arguments": [
+        [
+          {
+            "amount": -9223372036854775808
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": 0
+          },
+          {
+            "amount": -1
+          }
+        ]
+      ],
+      "bound": 178,
+      "expected": {
+        "schema": "bagaev-typed-record-result/11",
+        "status": "integer-overflow",
+        "value_type": null,
+        "value": null,
+        "work": 178,
+        "reason": "RR_OVERFLOW",
+        "location": "/program/functions/main/body/5/2"
+      }
+    },
+    {
+      "name": "index-1",
+      "body": "body1",
+      "arguments": [
+        [
+          {
+            "amount": 7
+          }
+        ]
+      ],
+      "bound": 4,
+      "expected": {
+        "schema": "bagaev-typed-record-result/11",
+        "status": "list-index",
+        "value_type": null,
+        "value": null,
+        "work": 4,
+        "reason": "RR_INDEX",
+        "location": "/program/functions/main/body/1"
+      }
+    },
+    {
+      "name": "index1",
+      "body": "body2",
+      "arguments": [
+        [
+          {
+            "amount": 7
+          }
+        ]
+      ],
+      "bound": 4,
+      "expected": {
+        "schema": "bagaev-typed-record-result/11",
+        "status": "list-index",
+        "value_type": null,
+        "value": null,
+        "work": 4,
+        "reason": "RR_INDEX",
+        "location": "/program/functions/main/body/1"
+      }
+    }
+  ]
+}
