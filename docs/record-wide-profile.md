@@ -28,6 +28,15 @@ Nominal call signatures and loops remain unsupported.
 Expression refusals include a function name and body-relative JSON pointer;
 the analysis library uses a null function for its supplied root expression.
 These identify the unsupported expression, not a source character span.
+
+The explicit [resource-aware edit](../examples/probes/record-work-edit/Reuse.bagaev)
+reuses a sorted-unique value that [the original](../examples/probes/record-work-edit/Repeated.bagaev)
+computes twice. [Frozen paired cases](../examples/probes/record-work-edit/cases.json)
+pin both graphs: at 64 items and 256 UTF-8 bytes the upper bound changes from
+73739 to 36874. The draft changes only `summarize`; this is not an automatic
+optimizer or a claim of identical refusal behavior. Six own reference observations
+matched the full expected envelopes, including the original's `RR_WORK` and the
+edited version's success on that boundary case. This is no latency measurement.
 `record_text.py inspect SOURCE --form 5 --bounds BOUNDS --output NEW_FILE`
 adds that analysis and the exact bounds-file SHA-256 to inspection data.
 `BOUNDS` is a JSON map matching entry parameters, for example
