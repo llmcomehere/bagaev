@@ -34,7 +34,15 @@ def analyze(expression, arguments, functions=None):
             raise Unknown('argument-bounds')
         return ('TextList', n, b)
 
-    def visit(x, scope, depth, arg_scope, stack):
+    def visit(x, scope, depth, arg_scope, stack, path='', owner=None):
+        try:
+            return visit_inner(x, scope, depth, arg_scope, stack, path, owner)
+        except (Unknown, UnicodeError, RecursionError) as e:
+            if not hasattr(e, 'location'):
+                e.location = {'function': owner, 'pointer': path}
+            raise
+
+    def visit_inner(x, scope, depth, arg_scope, stack, path, owner):
         nonlocal count
         count += 1
         if count > 2048 or depth > 32:
@@ -59,21 +67,21 @@ def analyze(expression, arguments, functions=None):
                 raise Unknown('text-bounds')
             return 1+b, ('Text', 0, b)
         if op == 'let' and len(x) == 4 and type(x[1]) is str:
-            cost, value = visit(x[2], scope, depth+1, arg_scope, stack)
+            cost, value = visit(x[2], scope, depth+1, arg_scope, stack, path+'/2', owner)
             nested = dict(scope)
             nested[x[1]] = value
-            tail, result = visit(x[3], nested, depth+1, arg_scope, stack)
+            tail, result = visit(x[3], nested, depth+1, arg_scope, stack, path+'/3', owner)
             return 1+cost+tail, result
         if op == 'if' and len(x) == 4:
-            condition, cv = visit(x[1], scope, depth+1, arg_scope, stack)
-            yes, yv = visit(x[2], scope, depth+1, arg_scope, stack)
-            no, nv = visit(x[3], scope, depth+1, arg_scope, stack)
+            condition, cv = visit(x[1], scope, depth+1, arg_scope, stack, path+'/1', owner)
+            yes, yv = visit(x[2], scope, depth+1, arg_scope, stack, path+'/2', owner)
+            no, nv = visit(x[3], scope, depth+1, arg_scope, stack, path+'/3', owner)
             if cv[0] != 'Bool' or yv[0] != nv[0]:
                 raise Unknown('operand-type')
             joined = (yv[0], max(yv[1], nv[1]), max(yv[2], nv[2]))
             return 1+condition+max(yes, no), joined
         if op == 'record' and 2 <= len(x) <= 10 and type(x[1]) is str:
-            return 1+sum(visit(v, scope, depth+1, arg_scope, stack)[0] for v in x[2:]), ('Record', 0, 0)
+            return 1+sum(visit(v, scope, depth+1, arg_scope, stack, path+'/'+str(i), owner)[0] for i, v in enumerate(x[2:], 2)), ('Record', 0, 0)
         if op == 'call' and 2 <= len(x) <= 10 and type(x[1]) is str:
             name = x[1]
             if name in stack:
@@ -93,18 +101,18 @@ def analyze(expression, arguments, functions=None):
                 raise Unknown('call-arity')
             cost = 1
             bindings = {}
-            for actual, (parameter, kind) in zip(x[2:], params):
-                charged, value = visit(actual, scope, depth+1, arg_scope, stack)
+            for i, (actual, (parameter, kind)) in enumerate(zip(x[2:], params), 2):
+                charged, value = visit(actual, scope, depth+1, arg_scope, stack, path+'/'+str(i), owner)
                 if value[0] != kind:
                     raise Unknown('operand-type')
                 cost += charged
                 bindings[parameter] = value
-            charged, result = visit(function['body'], {}, depth+1, bindings, stack+(name,))
+            charged, result = visit(function['body'], {}, depth+1, bindings, stack+(name,), '', name)
             if result[0] != function['result']:
                 raise Unknown('operand-type')
             return cost+charged, result
         if op in ('list.len', 'list.unique', 'list.increasing') and len(x) == 2:
-            cost, value = visit(x[1], scope, depth+1, arg_scope, stack)
+            cost, value = visit(x[1], scope, depth+1, arg_scope, stack, path+'/1', owner)
             if value[0] != 'TextList':
                 raise Unknown('operand-type')
             _, n, b = value
@@ -114,13 +122,13 @@ def analyze(expression, arguments, functions=None):
                 return 1+cost+n+2*b, ('Bool', 0, 0)
             return 1+cost+n*n+2*n*b, value
         if op in ('eq', 'lt', 'le') and len(x) == 3:
-            a, av = visit(x[1], scope, depth+1, arg_scope, stack)
-            b, bv = visit(x[2], scope, depth+1, arg_scope, stack)
+            a, av = visit(x[1], scope, depth+1, arg_scope, stack, path+'/1', owner)
+            b, bv = visit(x[2], scope, depth+1, arg_scope, stack, path+'/2', owner)
             if av[0] != bv[0] or av[0] not in (('Int64', 'Bool') if op == 'eq' else ('Int64',)):
                 raise Unknown('operand-type')
             return 1+a+b, ('Bool', 0, 0)
         if op == 'not' and len(x) == 2:
-            cost, value = visit(x[1], scope, depth+1, arg_scope, stack)
+            cost, value = visit(x[1], scope, depth+1, arg_scope, stack, path+'/1', owner)
             if value[0] != 'Bool':
                 raise Unknown('operand-type')
             return 1+cost, value
@@ -137,4 +145,5 @@ def analyze(expression, arguments, functions=None):
         return dict(base, status='SUPPORTED', upper_work=work,
                     fits_work_budget=work <= 65536, work_limit=65536)
     except (Unknown, UnicodeError, RecursionError) as e:
-        return dict(base, status='UNKNOWN', reason=str(e))
+        return dict(base, status='UNKNOWN', reason=str(e),
+                    **({'location': e.location} if hasattr(e, 'location') else {}))
