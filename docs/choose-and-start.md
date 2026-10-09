@@ -1,20 +1,20 @@
 # Compact language reference
 
-One use reference; primary budgets: 32,768 UTF-8 bytes here, 4,096 in README.
-These are byte limits, not measured tokens or a universal model context-fit claim.
+Budgets: 32,768 UTF-8 bytes here, 4,096 in README.
+Byte limits, not measured tokens or universal context-fit claims.
 
 ## Choose a route from the task
 
 | Task/source | Explicit choice | Important boundary |
 | --- | --- | --- |
-| New readable typed pure code | `record-form/5`, typed-record/11 | Main language below; immutable values, bounded first-order computation. |
-| Existing owned-state component | `component-form/7`, component-source/2, typed-record/10 | Same basic expression style, a narrower vocabulary and explicit state contract; select its receiver separately. |
-| Existing dynamic JSON/Store program | `bagaev-l2/1`, or explicit `/2` for `filter` | Different dynamic language and pins; see the complete operation summary below. |
+| New readable typed pure code | `record-form/5`, typed-record/11 | Immutable values; bounded first-order computation. |
+| Existing owned-state component | `component-form/7`, component-source/2, typed-record/10 | Narrower expression vocabulary; explicit state contract and separate receiver. |
+| Existing dynamic JSON/Store program | `bagaev-l2/1`, or explicit `/2` for `filter` | Dynamic language and distinct pins; complete operations below. |
 | Small original dataflow example | `bagaev/l0-program/v1` | Ten operations; all nodes evaluate, including unreachable ones. |
 
-Respect prescribed stacks and explicit versions. Production/mobile/GPU/distributed
-support and cost advantage are unproven. Pure code needs no LLM and has no I/O,
-clock, randomness, imports, callbacks, dynamic evaluation or mutation.
+Respect stacks/versions. Production/mobile/GPU/distributed support and cost
+advantage are unproven. Pure code needs no LLM; no I/O, clock, randomness,
+imports, callbacks, dynamic evaluation or mutation.
 
 ## Start with readable typed source
 
@@ -32,8 +32,8 @@ program {
 }
 ```
 
-Arguments `[[{"amount":3},{"amount":4}]]` specify result Int64 `7`. Arguments
-are one array in parameter order. The 16-iteration loop guards actual length.
+Arguments `[[{"amount":3},{"amount":4}]]` give Int64 `7`. Supply one array
+in parameter order. The loop guards actual length.
 
 ### Source grammar
 
@@ -42,7 +42,7 @@ space/tab/CR/LF. After the header, `//` outside strings comments through LF/EOF.
 No block comments, interpolation or comments inside/before the header. Comment
 controls except tab/CR refuse. Comments are untrusted layout data, absent from IR.
 
-Declarations end in semicolons; order may vary and forward references are allowed:
+Semicolon-terminated declarations allow any order and forward references:
 
 | Declaration | Meaning |
 | --- | --- |
@@ -227,16 +227,15 @@ Join checked nodes and maps only when program pins match, using JSON pointers.
 
 ## Finish one change
 
-Use reviewed tools in an authorized environment. From the checkout, `-B`
-suppresses bytecode writes, not sandboxing. Inputs are bounded regular nonsymlink
-files, outputs exclusively new. Structured refusals exit 2; an OS failure can
-leave a partial new file. These data tools do not launch an evaluator.
+Use reviewed tools with execution authority. `-B` only suppresses bytecode writes;
+it is not a sandbox. Inputs: bounded regular nonsymlink files; outputs: new only.
+Refusals exit 2; OS failure may leave a partial new file. No evaluator is launched.
 
 | Need | Command shape (`python3 -B tools/` prefix omitted) |
 | --- | --- |
 | Decode readable source | `record_text.py decode S --form 5 --output P` |
 | Encode graph | `record_text.py encode P --form 5 [--named-calls] --output S` |
-| Inspect identity | `record_text.py inspect S --form 5 --output INFO` |
+| Inspect identity | `record_text.py inspect S --form 5 [--bounds B] --output INFO` |
 | Prepare typed arguments | `record_text.py prepare S --form 5 --arguments A --output INV` |
 | Prepare raw Json arguments | `record_json_prepare.py S --form 5 --arguments A --output INV` |
 | Syntax context | `record_diagnose.py S --form 5 --output DIAG` |
@@ -249,6 +248,10 @@ leave a partial new file. These data tools do not launch an evaluator.
 | Pinned source map | `record_source_map.py S --form 5 --program-pin sha256:BASE [--source-sha256 RAW] [--pointer PTR] --output MAP` |
 | Discovery | `record_capabilities.py --form 5 --revision 5` |
 
+`--bounds B` accepts an exact entry-parameter map: Int64/Bool use `{"type":T}`;
+TextList uses `{"type":"TextList","items":N,"bytes":B}` maxima. The result is a
+conditional work bound or `UNKNOWN`, never semantic validity or execution admission.
+
 Typed preparation accepts strict Int64 JSON transport, so it refuses fractions
 and out-of-range integers even inside Json. Raw Json preparation preserves number
 lexemes and accepts only an all-Json or zero-parameter entry, with exact argument
@@ -258,11 +261,11 @@ The Rust reference entry is `examples/probes/backend/rust/record_wide_main.rs`;
 a separately reviewed/built executable consumes `run --input INV`. A compiler,
 result pin or this document never grants permission to execute untrusted code.
 
-Graph encoding preserves meaning, not comments/layout; `--named-calls` is form5
-encode-only. Token formatting retains comment text/order and existing named
-spelling, normalizes whitespace and checks graph equality/idempotence. Optional
-width is a soft Unicode-character goal: indivisible text/comments and punctuation
-may exceed it. Defaults retain old bytes. Syntax `valid_form` is not type checking.
+Encoding preserves meaning, not layout; `--named-calls` is form5 encode-only.
+Formatting preserves comment text/order and named spelling, normalizes whitespace,
+and checks graph equality/idempotence. Width is a soft Unicode-character goal;
+indivisible text/comments or punctuation may exceed it. Defaults retain old bytes.
+Syntax `valid_form` is not type checking.
 
 Focused context/2 includes a canonical selected-function fragment plus direct
 caller/callee signatures and pins. `--locations` gives context/3 with original
