@@ -454,3 +454,18 @@ There is no combined success/admission verdict. Full program semantics and
 execution permission remain separate requirements. Seven data tests cover
 violated/applicable maxima, parameter order, invalid/unsupported observations,
 stale pins, missing entry and unchanged graph identity under comments.
+
+A separate bounded command writes that observation without executing source:
+
+```
+python tools/record_work_observe.py source.bagaev --form 5 --program PROGRAM_SHA256 --bounds bounds.json --arguments arguments.json --output observation.json
+```
+
+The arguments file is a positional JSON array. Existing bounded regular-file
+reads, strict JSON parsing and exclusive output rules apply. Raw bounds and
+arguments file hashes are retained in addition to the nested canonical named-map
+identities. A successful tool receipt means an observation file was written;
+`EXCEEDS`, `INVALID_ARGUMENT` and `UNKNOWN` remain explicit data outcomes, not
+execution success. Malformed transport/binding or stale pins return JSON error
+with exit2 and no output. Five transport tests cover these distinctions, exact
+output identity, wrong usage, symlinks and preservation of existing output.
