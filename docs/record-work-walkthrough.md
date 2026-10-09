@@ -89,3 +89,18 @@ typed values, identities and input preservation. Source checking, capture
 authentication, all-input equivalence checking and execution admission remain
 explicitly false. This comparator neither runs programs nor upgrades supplied
 data into trusted runtime evidence.
+
+An explicit bounded file command exposes this comparison:
+
+```
+python tools/record_capture_compare.py before.json after.json --base BASE_SHA256 --target TARGET_SHA256 --arguments-sha256 POSITIONAL_ARGUMENTS_SHA256 --output comparison.json
+```
+
+Inputs use the exact capture-object shape above. Existing strict JSON,
+bounded regular-file reads and exclusive output rules apply. The result also
+retains both raw input-file hashes, distinct from canonical result identities.
+A successful receipt means a file was written even when the compared values
+differ. Malformed input, stale pins or wrong usage refuse with exit 2 and no
+output. Five transport tests cover equal/different/failure outcomes, identities,
+refusals, existing-output preservation and symlink rejection. There is no run
+option, implicit capture creation or authentication step.
