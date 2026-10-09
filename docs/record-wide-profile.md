@@ -443,3 +443,14 @@ match a function signature, prove index/overflow safety or admit execution.
 Semantic checking and execution admission remain false. Eight data tests cover
 boundary values, the two applicability controls, invalid/unsupported shapes,
 identity stability and input preservation; no program execution was performed.
+
+The pure [source observation API](../src/bagaev_record_work_observation.py) binds
+these two separate facts to an exact form5 graph pin and source hash. It maps a
+positional argument array using the declared entry parameter order, rejects
+bounds/name/type/count mismatches, then returns both conditional work analysis
+and actual-dimension observation. A `WITHIN` dimension result can coexist with
+`UNKNOWN` work; supported work can coexist with unsupported nominal dimensions.
+There is no combined success/admission verdict. Full program semantics and
+execution permission remain separate requirements. Seven data tests cover
+violated/applicable maxima, parameter order, invalid/unsupported observations,
+stale pins, missing entry and unchanged graph identity under comments.
