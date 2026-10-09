@@ -106,6 +106,40 @@ class Work(unittest.TestCase):
         funcs['f']['result']='Report'
         self.assertEqual(analyze(['call','f',['int',1]],{},funcs)['status'],'UNKNOWN')
 
+    def test_loop_literal_bounds_and_nested_invariant(self):
+        args = {'xs': {'type': 'TextList', 'items': 3, 'bytes': 5}}
+        for count, work in [(0, 2), (1, 43), (2, 84)]:
+            expression = ['loop', count, 'i', 'acc', ['arg', 'xs'], ['list.unique', ['use', 'acc']]]
+            self.assertEqual(analyze(expression, args)['upper_work'], work)
+        scalar = ['loop', 1024, 'i', 'acc', ['int', 0], ['use', 'acc']]
+        self.assertEqual(analyze(scalar, {})['upper_work'], 1026)
+        inner = ['loop', 3, 'j', 'inner', ['use', 'acc'], ['list.unique', ['use', 'inner']]]
+        outer = ['loop', 2, 'i', 'acc', ['arg', 'xs'], inner]
+        self.assertEqual(analyze(outer, args)['upper_work'], 252)
+        helper = {'dedup': {'params': [['x', 'TextList']], 'result': 'TextList',
+                            'body': ['list.unique', ['arg', 'x']]}}
+        expression = ['loop', 2, 'i', 'acc', ['arg', 'xs'], ['call', 'dedup', ['use', 'acc']]]
+        self.assertEqual(analyze(expression, args, helper)['upper_work'], 88)
+        expression[1] = 1024
+        args['xs'].update(items=64, bytes=4096)
+        self.assertFalse(analyze(expression, args, helper)['fits_work_budget'])
+
+    def test_loop_refusals(self):
+        expressions = [
+            ['loop', 2, 'i', 'a', ['text', ''], ['text', 'a']],
+            ['loop', 0, 'i', 'a', ['int', 0], ['unsupported']],
+            ['loop', 1, 'i', 'a', ['use', 'i'], ['use', 'a']],
+            ['loop', 1, 'i', 'a', ['int', 0], ['bool', True]],
+            ['loop', 1, 'i', 'i', ['int', 0], ['use', 'i']],
+            ['let', 'i', ['int', 0], ['loop', 1, 'i', 'a', ['int', 0], ['use', 'a']]],
+            ['let', 'x', ['loop', 1, 'i', 'a', ['int', 0], ['use', 'a']], ['use', 'a']]]
+        expressions += [['loop', n, 'i', 'a', ['int', 0], ['use', 'a']] for n in (-1, 1025, True, '1')]
+        for expression in expressions:
+            result = analyze(expression, {})
+            self.assertEqual(result['status'], 'UNKNOWN', expression)
+            self.assertNotIn('upper_work', result)
+        self.assertEqual(analyze(expressions[1], {})['location']['pointer'], '/5')
+
     def test_unknown_locations(self):
         for expression, pointer in ((['loop'], ''),
                                      (['if', ['bool', True], ['int', 1], ['loop']], '/3'),
