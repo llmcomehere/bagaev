@@ -12,7 +12,7 @@ class Unknown(ValueError):
 def analyze(expression, arguments, functions=None, records=None, lists=None):
     """Return SUPPORTED with an upper bound, or UNKNOWN without one.
 
-    Argument shapes: {'type': 'Int64'|'Bool'} or
+    Argument shapes: {'type': 'Int64'|'Bool'}, {'type': 'Text', 'bytes': maximum_utf8_bytes}, or
     {'type': 'TextList', 'items': maximum_count, 'bytes': maximum_utf8_bytes}.
     Only the documented expression subset is supported; no evaluation occurs.
     Optional definitions permit bounded helper calls with supported shapes.
@@ -44,6 +44,10 @@ def analyze(expression, arguments, functions=None, records=None, lists=None):
             raise Unknown('argument-shape')
         if s in ({'type': 'Int64'}, {'type': 'Bool'}):
             return (s['type'], 0, 0)
+        if s.get('type') == 'Text':
+            if set(s) != {'type', 'bytes'} or type(s['bytes']) is not int or not 0 <= s['bytes'] <= 1024:
+                raise Unknown('argument-bounds')
+            return ('Text', 0, s['bytes'])
         if type(s.get('type')) is str and s['type'] in list_defs:
             declared = list_declaration(s['type'])
             if set(s) != {'type', 'items'} or type(s['items']) is not int or not 0 <= s['items'] <= declared['capacity']:
@@ -205,6 +209,12 @@ def analyze(expression, arguments, functions=None, records=None, lists=None):
             if op == 'list.increasing':
                 return 1+cost+n+2*b, ('Bool', 0, 0)
             return 1+cost+n*n+2*n*b, value
+        if op in ('text.eq', 'text.lt') and len(x) == 3:
+            a, av = visit(x[1], scope, depth+1, arg_scope, stack, path+'/1', owner)
+            b, bv = visit(x[2], scope, depth+1, arg_scope, stack, path+'/2', owner)
+            if av[0] != 'Text' or bv[0] != 'Text':
+                raise Unknown('operand-type')
+            return 1+a+b+av[2]+bv[2], ('Bool', 0, 0)
         if op in ('eq', 'lt', 'le', 'add', 'sub', 'mul') and len(x) == 3:
             a, av = visit(x[1], scope, depth+1, arg_scope, stack, path+'/1', owner)
             b, bv = visit(x[2], scope, depth+1, arg_scope, stack, path+'/2', owner)
