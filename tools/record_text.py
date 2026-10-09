@@ -163,7 +163,8 @@ def convert(argv):
                     any(type(shape) is not dict or shape.get('type') != params[name]
                         for name, shape in bounds.items())):
                     raise Refusal("RECORD_ARGUMENTS")
-                analysis = bagaev_record_work.analyze(entry['body'], bounds, value['functions'])
+                analysis = bagaev_record_work.analyze(entry['body'], bounds, value['functions'],
+                                                     value['records'], value['lists'])
                 if 'location' in analysis and analysis['location']['function'] is None:
                     analysis['location']['function'] = value['entry']
                 work_fields = {

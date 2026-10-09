@@ -9,24 +9,46 @@ class Unknown(ValueError):
     pass
 
 
-def analyze(expression, arguments, functions=None):
+def analyze(expression, arguments, functions=None, records=None, lists=None):
     """Return SUPPORTED with an upper bound, or UNKNOWN without one.
 
     Argument shapes: {'type': 'Int64'|'Bool'} or
     {'type': 'TextList', 'items': maximum_count, 'bytes': maximum_utf8_bytes}.
     Only the documented expression subset is supported; no evaluation occurs.
     Optional definitions permit bounded primitive-signature helper calls.
+    Nominal list bounds require scalar-only record/list declaration maps.
     """
     base = {'schema': 'bagaev-record-work-bound/1',
             'semantic_check': False, 'execution_admission': False,
             'requires_checked_program': True}
     count = 0
 
+    def record_fields(name):
+        fields = record_defs.get(name)
+        if (type(fields) is not dict or not 1 <= len(fields) <= 8 or
+            any(type(k) is not str or v not in ('Int64', 'Bool') for k, v in fields.items())):
+            raise Unknown('record-shape')
+        return fields
+
+    def list_declaration(name):
+        declared = list_defs.get(name)
+        if (type(declared) is not dict or set(declared) != {'element', 'capacity'} or
+            type(declared['element']) is not str or type(declared['capacity']) is not int or
+            not 0 <= declared['capacity'] <= 16):
+            raise Unknown('record-list-shape')
+        record_fields(declared['element'])
+        return declared
+
     def shape(s):
         if type(s) is not dict:
             raise Unknown('argument-shape')
         if s in ({'type': 'Int64'}, {'type': 'Bool'}):
             return (s['type'], 0, 0)
+        if type(s.get('type')) is str and s['type'] in list_defs:
+            declared = list_declaration(s['type'])
+            if set(s) != {'type', 'items'} or type(s['items']) is not int or not 0 <= s['items'] <= declared['capacity']:
+                raise Unknown('argument-bounds')
+            return ('Records:' + s['type'], s['items'], 0)
         if set(s) != {'type', 'items', 'bytes'} or s['type'] != 'TextList':
             raise Unknown('argument-shape')
         n, b = s['items'], s['bytes']
@@ -82,6 +104,25 @@ def analyze(expression, arguments, functions=None):
             return 1+condition+max(yes, no), joined
         if op == 'record' and 2 <= len(x) <= 10 and type(x[1]) is str:
             return 1+sum(visit(v, scope, depth+1, arg_scope, stack, path+'/'+str(i), owner)[0] for i, v in enumerate(x[2:], 2)), ('Record', 0, 0)
+        if op in ('records.len', 'records.at') and len(x) == (2 if op == 'records.len' else 3):
+            cost, value = visit(x[1], scope, depth+1, arg_scope, stack, path+'/1', owner)
+            if not value[0].startswith('Records:'):
+                raise Unknown('operand-type')
+            declared = list_declaration(value[0][8:])
+            if op == 'records.len':
+                return 1+cost, ('Int64', 0, 0)
+            index_cost, index_shape = visit(x[2], scope, depth+1, arg_scope, stack, path+'/2', owner)
+            if index_shape[0] != 'Int64':
+                raise Unknown('operand-type')
+            return 1+cost+index_cost, ('Record:' + declared['element'], 0, 0)
+        if op == 'field' and len(x) == 3 and type(x[2]) is str:
+            cost, value = visit(x[1], scope, depth+1, arg_scope, stack, path+'/1', owner)
+            if not value[0].startswith('Record:'):
+                raise Unknown('operand-type')
+            fields = record_fields(value[0][7:])
+            if x[2] not in fields:
+                raise Unknown('field-reference')
+            return 1+cost, (fields[x[2]], 0, 0)
         if op == 'loop' and len(x) == 6:
             iterations, index_name, accumulator_name = x[1:4]
             if type(iterations) is not int or not 0 <= iterations <= 1024:
@@ -152,6 +193,12 @@ def analyze(expression, arguments, functions=None):
         raise Unknown('unsupported-expression')
 
     try:
+        record_defs = {} if records is None else records
+        list_defs = {} if lists is None else lists
+        if (type(record_defs) is not dict or type(list_defs) is not dict or
+            len(record_defs)+len(list_defs) > 8 or
+            any(type(k) is not str for k in (*record_defs, *list_defs))):
+            raise Unknown('declarations-shape')
         if type(arguments) is not dict or len(arguments) > 8 or any(type(k) is not str for k in arguments):
             raise Unknown('arguments-shape')
         args = {k: shape(v) for k, v in arguments.items()}

@@ -32,6 +32,11 @@ shape stays within its initial maxima. The bound is one loop entry, initial
 work, and count times the body bound. Even zero-count loops require a supported
 invariant body. Growing shapes and nominal call/accumulator types remain
 unsupported; no body is executed or unrolled by this analysis.
+With declaration maps, nominal record-list input bounds use
+`{"type":"Items","items":N}` for a declared capacity up to 16. The supported
+element fields are Int64/Bool only. Length, index and scalar field projection
+retain nominal names; nested/Text fields and nominal calls/accumulators remain
+unsupported. A fitting work bound does not prove index validity.
 Expression refusals include a function name and body-relative JSON pointer;
 the analysis library uses a null function for its supplied root expression.
 These identify the unsupported expression, not a source character span.
