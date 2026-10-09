@@ -1,0 +1,9 @@
+bagaev record-form/5;
+program {
+  record Item { amount: Int64, active: Bool };
+  list Items of Item capacity 16;
+  entry main;
+  fn main(items: Items) -> Int64 =
+    fold (16, 0) with (i, sum) in
+      if i < records.len(items) then if record.field(records.at(items, i), "active") then sum + record.field(records.at(items, i), "amount") else sum else sum;
+}
