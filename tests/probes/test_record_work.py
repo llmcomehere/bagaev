@@ -58,5 +58,24 @@ class Work(unittest.TestCase):
         self.assertEqual(analyze(['text','x'*257],{})['status'],'UNKNOWN')
         self.assertEqual(analyze(['text','\ud800'],{})['status'],'UNKNOWN')
 
+    def test_conditional_maximum_and_shape_join(self):
+        args={'c':{'type':'Bool'},'xs':{'type':'TextList','items':3,'bytes':5}}
+        c=['arg','c'];xs=['arg','xs']
+        self.assertEqual(analyze(['if',c,['int',1],['int',2]],args)['upper_work'],3)
+        branch=['if',c,['list.unique',xs],xs]
+        self.assertEqual(analyze(branch,args)['upper_work'],43)
+        self.assertEqual(analyze(['list.unique',branch],args)['upper_work'],83)
+        self.assertEqual(analyze(['if',c,['text','é'],['text','abc']],args)['upper_work'],6)
+        # Joining independent maxima must not select only the cheaper arm.
+        args['ys']={'type':'TextList','items':4,'bytes':1}
+        self.assertEqual(analyze(['list.unique',['if',c,xs,['arg','ys']]],args)['upper_work'],60)
+
+    def test_conditional_unknown_arms_and_types(self):
+        for e in (['if',['bool',False],['call','missing'],['int',0]],
+                  ['if',['bool',True],['int',1],['bool',False]],
+                  ['if',['int',0],['int',1],['int',2]]):
+            r=analyze(e,{})
+            self.assertEqual(r['status'],'UNKNOWN');self.assertNotIn('upper_work',r)
+
 
 if __name__=='__main__':unittest.main()
