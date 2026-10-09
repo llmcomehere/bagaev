@@ -403,3 +403,13 @@ budget establishes execution success. Five data tests cover these observations,
 shape/type refusals and branch/loop composition; existing unknown-location
 fixtures remain unchanged. No native or model execution or timing measurement
 was performed for this analyzer extension.
+
+`list.at` can now supply a Text shape to that comparison: its charge is one
+entry plus the list and index operand bounds; the selected item's byte maximum
+is the smaller of1024 and the whole-list byte maximum. This deliberately does
+not prove the index is valid or that any element exists. Five
+[frozen index cases](../examples/probes/record-work-text-index/cases.json) matched
+complete own-reference outputs, including empty/negative-index refusals at
+work4 and the nested comparison pointer. Four data tests cover the byte cap,
+argument types, arity and index-expression costs. This extends conditional
+analysis only; runtime, scalar-overload and admission rules are unchanged.

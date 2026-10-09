@@ -199,6 +199,12 @@ def analyze(expression, arguments, functions=None, records=None, lists=None):
             if result[0] != result_kind:
                 raise Unknown('operand-type')
             return cost+charged, result
+        if op == 'list.at' and len(x) == 3:
+            cost, value = visit(x[1], scope, depth+1, arg_scope, stack, path+'/1', owner)
+            index_cost, index_shape = visit(x[2], scope, depth+1, arg_scope, stack, path+'/2', owner)
+            if value[0] != 'TextList' or index_shape[0] != 'Int64':
+                raise Unknown('operand-type')
+            return 1+cost+index_cost, ('Text', 0, min(1024, value[2]))
         if op in ('list.len', 'list.unique', 'list.increasing') and len(x) == 2:
             cost, value = visit(x[1], scope, depth+1, arg_scope, stack, path+'/1', owner)
             if value[0] != 'TextList':

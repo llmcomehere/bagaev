@@ -1,0 +1,275 @@
+[
+  {
+    "name": "normal",
+    "body": [
+      "text.eq",
+      [
+        "list.at",
+        [
+          "arg",
+          "xs"
+        ],
+        [
+          "int",
+          0
+        ]
+      ],
+      [
+        "text",
+        "é"
+      ]
+    ],
+    "params": [
+      [
+        "xs",
+        "TextList"
+      ]
+    ],
+    "result_type": "Bool",
+    "arguments": [
+      [
+        "é",
+        "abc"
+      ]
+    ],
+    "bounds": {
+      "xs": {
+        "type": "TextList",
+        "items": 2,
+        "bytes": 6
+      }
+    },
+    "functions": {},
+    "upper": 15,
+    "expected": {
+      "schema": "bagaev-typed-record-result/11",
+      "status": "success",
+      "value_type": "Bool",
+      "value": true,
+      "work": 11,
+      "reason": null,
+      "location": null
+    }
+  },
+  {
+    "name": "empty",
+    "body": [
+      "text.eq",
+      [
+        "list.at",
+        [
+          "arg",
+          "xs"
+        ],
+        [
+          "int",
+          0
+        ]
+      ],
+      [
+        "text",
+        "é"
+      ]
+    ],
+    "params": [
+      [
+        "xs",
+        "TextList"
+      ]
+    ],
+    "result_type": "Bool",
+    "arguments": [
+      []
+    ],
+    "bounds": {
+      "xs": {
+        "type": "TextList",
+        "items": 2,
+        "bytes": 6
+      }
+    },
+    "functions": {},
+    "upper": 15,
+    "expected": {
+      "schema": "bagaev-typed-record-result/11",
+      "status": "list-index",
+      "value_type": null,
+      "value": null,
+      "work": 4,
+      "reason": "RR_INDEX",
+      "location": "/program/functions/main/body/1"
+    }
+  },
+  {
+    "name": "negative",
+    "body": [
+      "text.eq",
+      [
+        "list.at",
+        [
+          "arg",
+          "xs"
+        ],
+        [
+          "int",
+          -1
+        ]
+      ],
+      [
+        "text",
+        "é"
+      ]
+    ],
+    "params": [
+      [
+        "xs",
+        "TextList"
+      ]
+    ],
+    "result_type": "Bool",
+    "arguments": [
+      [
+        "é"
+      ]
+    ],
+    "bounds": {
+      "xs": {
+        "type": "TextList",
+        "items": 2,
+        "bytes": 6
+      }
+    },
+    "functions": {},
+    "upper": 15,
+    "expected": {
+      "schema": "bagaev-typed-record-result/11",
+      "status": "list-index",
+      "value_type": null,
+      "value": null,
+      "work": 4,
+      "reason": "RR_INDEX",
+      "location": "/program/functions/main/body/1"
+    }
+  },
+  {
+    "name": "wide",
+    "body": [
+      "text.eq",
+      [
+        "list.at",
+        [
+          "arg",
+          "xs"
+        ],
+        [
+          "int",
+          0
+        ]
+      ],
+      [
+        "text",
+        "é"
+      ]
+    ],
+    "params": [
+      [
+        "xs",
+        "TextList"
+      ]
+    ],
+    "result_type": "Bool",
+    "arguments": [
+      [
+        "é"
+      ]
+    ],
+    "bounds": {
+      "xs": {
+        "type": "TextList",
+        "items": 64,
+        "bytes": 4096
+      }
+    },
+    "functions": {},
+    "upper": 1033,
+    "expected": {
+      "schema": "bagaev-typed-record-result/11",
+      "status": "success",
+      "value_type": "Bool",
+      "value": true,
+      "work": 11,
+      "reason": null,
+      "location": null
+    }
+  },
+  {
+    "name": "helper",
+    "body": [
+      "text.eq",
+      [
+        "call",
+        "first",
+        [
+          "arg",
+          "xs"
+        ]
+      ],
+      [
+        "text",
+        "é"
+      ]
+    ],
+    "params": [
+      [
+        "xs",
+        "TextList"
+      ]
+    ],
+    "result_type": "Bool",
+    "arguments": [
+      [
+        "é",
+        "abc"
+      ]
+    ],
+    "bounds": {
+      "xs": {
+        "type": "TextList",
+        "items": 2,
+        "bytes": 6
+      }
+    },
+    "functions": {
+      "first": {
+        "params": [
+          [
+            "ys",
+            "TextList"
+          ]
+        ],
+        "result": "Text",
+        "body": [
+          "list.at",
+          [
+            "arg",
+            "ys"
+          ],
+          [
+            "int",
+            0
+          ]
+        ]
+      }
+    },
+    "upper": 17,
+    "expected": {
+      "schema": "bagaev-typed-record-result/11",
+      "status": "success",
+      "value_type": "Bool",
+      "value": true,
+      "work": 13,
+      "reason": null,
+      "location": null
+    }
+  }
+]
