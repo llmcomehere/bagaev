@@ -151,3 +151,22 @@ Bool-as-Int64 and integer-as-Bool inputs, distinguish a valid sixteen-item input
 exceeding a declared bound of fifteen, and check the exact detached source draft.
 The draft replaces only `main`, preserves declarations, refuses stale pins and
 retains false semantic-check and execution-admission flags.
+
+## Ordinary application baseline
+
+The small [ordinary Python baseline](../src/active_total_reference.py) implements
+only this bounded application's ordered, checked Int64 aggregation. It validates
+all records before computation, including inactive ones, then either adds every
+amount or only active amounts. It neither reads program graphs nor simulates
+language work, source pointers or execution admission. Its result reports status,
+value and the zero-based input index of the first overflowing addition.
+
+Four baseline tests compare status/value against the eighteen prior matched
+language responses and independently fixed ordered-overflow controls. In
+particular MAX_INT64 + 1 - 1 fails at index 1 rather than silently recovering
+because a later mathematical total would fit. Missing/extra fields, invalid
+capacity, Bool/Int64 confusion and out-of-range inactive values refuse before
+aggregation. Inputs are preserved. The comparison reuses earlier language
+captures and performs no new bagaev run. This is an ordinary semantic baseline,
+not a strong native performance comparison, timing result or proof of parity
+for language work, source diagnostics or all programs.
