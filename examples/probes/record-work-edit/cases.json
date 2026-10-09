@@ -1,0 +1,397 @@
+{
+  "base": "d71fc5dc534eb2dc77e3ef6c737a67eafdac13fa556213d63a50fb67bcb15c03",
+  "target": "db0ce117833f61306bb2db989cf68afe7e66e134a16abc935034abbed489dfe2",
+  "before_graph": {
+    "schema": "bagaev-typed-record/11",
+    "records": {
+      "Report": {
+        "values": "TextList",
+        "had_duplicates": "Bool"
+      }
+    },
+    "lists": {},
+    "variants": {},
+    "entry": "summarize",
+    "functions": {
+      "marker": {
+        "params": [],
+        "result": "Int64",
+        "body": [
+          "int",
+          42
+        ]
+      },
+      "summarize": {
+        "params": [
+          [
+            "xs",
+            "TextList"
+          ]
+        ],
+        "result": "Report",
+        "body": [
+          "let",
+          "ys",
+          [
+            "list.unique",
+            [
+              "arg",
+              "xs"
+            ]
+          ],
+          [
+            "record",
+            "Report",
+            [
+              "lt",
+              [
+                "list.len",
+                [
+                  "use",
+                  "ys"
+                ]
+              ],
+              [
+                "list.len",
+                [
+                  "arg",
+                  "xs"
+                ]
+              ]
+            ],
+            [
+              "list.unique",
+              [
+                "arg",
+                "xs"
+              ]
+            ]
+          ]
+        ]
+      }
+    }
+  },
+  "after_graph": {
+    "schema": "bagaev-typed-record/11",
+    "records": {
+      "Report": {
+        "values": "TextList",
+        "had_duplicates": "Bool"
+      }
+    },
+    "lists": {},
+    "variants": {},
+    "entry": "summarize",
+    "functions": {
+      "marker": {
+        "params": [],
+        "result": "Int64",
+        "body": [
+          "int",
+          42
+        ]
+      },
+      "summarize": {
+        "params": [
+          [
+            "xs",
+            "TextList"
+          ]
+        ],
+        "result": "Report",
+        "body": [
+          "let",
+          "ys",
+          [
+            "list.unique",
+            [
+              "arg",
+              "xs"
+            ]
+          ],
+          [
+            "record",
+            "Report",
+            [
+              "lt",
+              [
+                "list.len",
+                [
+                  "use",
+                  "ys"
+                ]
+              ],
+              [
+                "list.len",
+                [
+                  "arg",
+                  "xs"
+                ]
+              ]
+            ],
+            [
+              "use",
+              "ys"
+            ]
+          ]
+        ]
+      }
+    }
+  },
+  "cases": [
+    {
+      "name": "empty",
+      "arguments": [
+        []
+      ],
+      "bounds": {
+        "xs": {
+          "type": "TextList",
+          "items": 0,
+          "bytes": 0
+        }
+      },
+      "before_bound": 11,
+      "after_bound": 10,
+      "before": {
+        "schema": "bagaev-typed-record-result/11",
+        "status": "success",
+        "value_type": "Record:Report",
+        "value": {
+          "values": [],
+          "had_duplicates": false
+        },
+        "work": 11,
+        "reason": null,
+        "location": null
+      },
+      "after": {
+        "schema": "bagaev-typed-record-result/11",
+        "status": "success",
+        "value_type": "Record:Report",
+        "value": {
+          "values": [],
+          "had_duplicates": false
+        },
+        "work": 10,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "name": "duplicates",
+      "arguments": [
+        [
+          "aa",
+          "aa",
+          "b"
+        ]
+      ],
+      "bounds": {
+        "xs": {
+          "type": "TextList",
+          "items": 3,
+          "bytes": 5
+        }
+      },
+      "before_bound": 89,
+      "after_bound": 49,
+      "before": {
+        "schema": "bagaev-typed-record-result/11",
+        "status": "success",
+        "value_type": "Record:Report",
+        "value": {
+          "values": [
+            "aa",
+            "b"
+          ],
+          "had_duplicates": true
+        },
+        "work": 89,
+        "reason": null,
+        "location": null
+      },
+      "after": {
+        "schema": "bagaev-typed-record-result/11",
+        "status": "success",
+        "value_type": "Record:Report",
+        "value": {
+          "values": [
+            "aa",
+            "b"
+          ],
+          "had_duplicates": true
+        },
+        "work": 49,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "name": "work_boundary",
+      "arguments": [
+        [
+          "0000",
+          "0001",
+          "0002",
+          "0003",
+          "0004",
+          "0005",
+          "0006",
+          "0007",
+          "0008",
+          "0009",
+          "0010",
+          "0011",
+          "0012",
+          "0013",
+          "0014",
+          "0015",
+          "0016",
+          "0017",
+          "0018",
+          "0019",
+          "0020",
+          "0021",
+          "0022",
+          "0023",
+          "0024",
+          "0025",
+          "0026",
+          "0027",
+          "0028",
+          "0029",
+          "0030",
+          "0031",
+          "0032",
+          "0033",
+          "0034",
+          "0035",
+          "0036",
+          "0037",
+          "0038",
+          "0039",
+          "0040",
+          "0041",
+          "0042",
+          "0043",
+          "0044",
+          "0045",
+          "0046",
+          "0047",
+          "0048",
+          "0049",
+          "0050",
+          "0051",
+          "0052",
+          "0053",
+          "0054",
+          "0055",
+          "0056",
+          "0057",
+          "0058",
+          "0059",
+          "0060",
+          "0061",
+          "0062",
+          "0063"
+        ]
+      ],
+      "bounds": {
+        "xs": {
+          "type": "TextList",
+          "items": 64,
+          "bytes": 256
+        }
+      },
+      "before_bound": 73739,
+      "after_bound": 36874,
+      "before": {
+        "schema": "bagaev-typed-record-result/11",
+        "status": "work-limit",
+        "value_type": null,
+        "value": null,
+        "work": 36875,
+        "reason": "RR_WORK",
+        "location": "/program/functions/summarize/body/3/3"
+      },
+      "after": {
+        "schema": "bagaev-typed-record-result/11",
+        "status": "success",
+        "value_type": "Record:Report",
+        "value": {
+          "values": [
+            "0000",
+            "0001",
+            "0002",
+            "0003",
+            "0004",
+            "0005",
+            "0006",
+            "0007",
+            "0008",
+            "0009",
+            "0010",
+            "0011",
+            "0012",
+            "0013",
+            "0014",
+            "0015",
+            "0016",
+            "0017",
+            "0018",
+            "0019",
+            "0020",
+            "0021",
+            "0022",
+            "0023",
+            "0024",
+            "0025",
+            "0026",
+            "0027",
+            "0028",
+            "0029",
+            "0030",
+            "0031",
+            "0032",
+            "0033",
+            "0034",
+            "0035",
+            "0036",
+            "0037",
+            "0038",
+            "0039",
+            "0040",
+            "0041",
+            "0042",
+            "0043",
+            "0044",
+            "0045",
+            "0046",
+            "0047",
+            "0048",
+            "0049",
+            "0050",
+            "0051",
+            "0052",
+            "0053",
+            "0054",
+            "0055",
+            "0056",
+            "0057",
+            "0058",
+            "0059",
+            "0060",
+            "0061",
+            "0062",
+            "0063"
+          ],
+          "had_duplicates": false
+        },
+        "work": 36874,
+        "reason": null,
+        "location": null
+      }
+    }
+  ]
+}

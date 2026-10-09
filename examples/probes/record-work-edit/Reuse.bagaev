@@ -1,0 +1,9 @@
+bagaev record-form/5;
+program {
+  record Report { values: TextList, had_duplicates: Bool };
+  entry summarize;
+  fn marker() -> Int64 = 42;
+  fn summarize(xs: TextList) -> Report =
+    let ys = list.unique(xs) in
+    Report { values: ys, had_duplicates: list.len(ys) < list.len(xs) };
+}
