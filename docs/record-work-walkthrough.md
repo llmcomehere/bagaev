@@ -64,3 +64,28 @@ the fixed source identities, zero cost delta, changed-branch counterexample
 and overflow control without rerunning either program. No model, native-kernel
 or performance measurement was performed. A matching disabled-branch sample
 and equal work bounds do not establish equivalence on the enabled branch.
+
+## Compare supplied capture data explicitly
+
+The pure [capture comparator](../src/bagaev_record_capture_compare.py) accepts
+two data objects, each containing exactly `program_sha256`,
+`arguments_sha256` and `result`. The caller supplies expected base, target and
+one shared argument pin. Here the argument pin is the canonical positional
+array hash, not the dimension observer's canonical named-map hash. Mismatched
+metadata refuses; matching metadata does not authenticate a capture or prove
+that any program ran.
+
+Revision 1 accepts only strict Int64/Bool success envelopes and the documented
+integer-overflow, list-index, work-limit and record-list-bound failures from
+profile 11. Other result types/statuses refuse. It returns full-envelope
+equality, successful typed-value equality, failure identity equality and work
+delta separately, with canonical result hashes. Value equality is null unless
+both results succeed; failure equality is null unless both are failures.
+
+For the helper examples the recorded values match while work deltas are
+0, 4 and 32. For the changed branch, the enabled values differ despite a zero
+work delta. Seven data tests cover these controls, result shapes, stale pins,
+typed values, identities and input preservation. Source checking, capture
+authentication, all-input equivalence checking and execution admission remain
+explicitly false. This comparator neither runs programs nor upgrades supplied
+data into trusted runtime evidence.
