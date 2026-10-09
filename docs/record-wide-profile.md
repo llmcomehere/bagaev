@@ -20,6 +20,9 @@ arguments. Unsupported operations return `UNKNOWN`; a bound above 65,536 means
 possible budget exhaustion, not certain failure. It grants no execution admission
 and does not measure latency or memory. [Literal tests](../tests/probes/test_record_work.py)
 include the sorted-unique example's boundary and the extra charge of negated equality.
+Integer addition, subtraction and multiplication charge their node and strict
+operands; their work bounds do not prove absence of integer overflow. A fitting
+work budget can still accompany an `RR_OVERFLOW` refusal.
 Conditionals add the condition's bound and the larger arm bound; both arms must
 be supported. Branch shapes join conservatively, without refining bounds from
 guards. Primitive-signature helper calls use fresh parameter/local scopes and

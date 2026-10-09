@@ -138,12 +138,12 @@ def analyze(expression, arguments, functions=None):
             if op == 'list.increasing':
                 return 1+cost+n+2*b, ('Bool', 0, 0)
             return 1+cost+n*n+2*n*b, value
-        if op in ('eq', 'lt', 'le') and len(x) == 3:
+        if op in ('eq', 'lt', 'le', 'add', 'sub', 'mul') and len(x) == 3:
             a, av = visit(x[1], scope, depth+1, arg_scope, stack, path+'/1', owner)
             b, bv = visit(x[2], scope, depth+1, arg_scope, stack, path+'/2', owner)
             if av[0] != bv[0] or av[0] not in (('Int64', 'Bool') if op == 'eq' else ('Int64',)):
                 raise Unknown('operand-type')
-            return 1+a+b, ('Bool', 0, 0)
+            return 1+a+b, ('Int64' if op in ('add', 'sub', 'mul') else 'Bool', 0, 0)
         if op == 'not' and len(x) == 2:
             cost, value = visit(x[1], scope, depth+1, arg_scope, stack, path+'/1', owner)
             if value[0] != 'Bool':
