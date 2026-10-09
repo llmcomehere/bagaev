@@ -56,6 +56,12 @@ their pre-frozen full result envelopes; observed work stayed within the bound.
 The accompanying static test checks analysis only, without launching an evaluator.
 These are finite conformance observations, not exhaustive Int64/AST coverage or
 performance measurements.
+Eight additional [composition cases](../examples/probes/record-work-composition/cases.json)
+matched pre-frozen complete reference responses. They cover componentwise branch
+joins used by subsequent work, loop invariants after shrinking lists, helper
+costs, nested loops and left-to-right early refusal. An overflowing left operand
+stops at work 4 although the full expression's upper bound is 3007. The analyzer
+need not predict which branch/refusal occurs to provide a conservative bound.
 Expression refusals include a function name and body-relative JSON pointer;
 the analysis library uses a null function for its supplied root expression.
 These identify the unsupported expression, not a source character span.
