@@ -1,0 +1,572 @@
+[
+  {
+    "name": "join-True",
+    "body": [
+      "let",
+      "z",
+      [
+        "if",
+        [
+          "arg",
+          "flag"
+        ],
+        [
+          "list.unique",
+          [
+            "arg",
+            "xs"
+          ]
+        ],
+        [
+          "arg",
+          "ys"
+        ]
+      ],
+      [
+        "list.unique",
+        [
+          "use",
+          "z"
+        ]
+      ]
+    ],
+    "params": [
+      [
+        "flag",
+        "Bool"
+      ],
+      [
+        "xs",
+        "TextList"
+      ],
+      [
+        "ys",
+        "TextList"
+      ]
+    ],
+    "arguments": [
+      true,
+      [
+        "aa",
+        "bb"
+      ],
+      [
+        "a",
+        "b",
+        "c"
+      ]
+    ],
+    "bounds": {
+      "flag": {
+        "type": "Bool"
+      },
+      "xs": {
+        "type": "TextList",
+        "items": 2,
+        "bytes": 4
+      },
+      "ys": {
+        "type": "TextList",
+        "items": 3,
+        "bytes": 3
+      }
+    },
+    "result_type": "TextList",
+    "expected": {
+      "schema": "bagaev-typed-record-result/11",
+      "status": "success",
+      "value_type": "TextList",
+      "value": [
+        "aa",
+        "bb"
+      ],
+      "work": 47,
+      "reason": null,
+      "location": null
+    },
+    "upper": 60,
+    "functions": {}
+  },
+  {
+    "name": "join-False",
+    "body": [
+      "let",
+      "z",
+      [
+        "if",
+        [
+          "arg",
+          "flag"
+        ],
+        [
+          "list.unique",
+          [
+            "arg",
+            "xs"
+          ]
+        ],
+        [
+          "arg",
+          "ys"
+        ]
+      ],
+      [
+        "list.unique",
+        [
+          "use",
+          "z"
+        ]
+      ]
+    ],
+    "params": [
+      [
+        "flag",
+        "Bool"
+      ],
+      [
+        "xs",
+        "TextList"
+      ],
+      [
+        "ys",
+        "TextList"
+      ]
+    ],
+    "arguments": [
+      false,
+      [
+        "aa",
+        "bb"
+      ],
+      [
+        "a",
+        "b",
+        "c"
+      ]
+    ],
+    "bounds": {
+      "flag": {
+        "type": "Bool"
+      },
+      "xs": {
+        "type": "TextList",
+        "items": 2,
+        "bytes": 4
+      },
+      "ys": {
+        "type": "TextList",
+        "items": 3,
+        "bytes": 3
+      }
+    },
+    "result_type": "TextList",
+    "expected": {
+      "schema": "bagaev-typed-record-result/11",
+      "status": "success",
+      "value_type": "TextList",
+      "value": [
+        "a",
+        "b",
+        "c"
+      ],
+      "work": 33,
+      "reason": null,
+      "location": null
+    },
+    "upper": 60,
+    "functions": {}
+  },
+  {
+    "name": "loop-distinct",
+    "body": [
+      "loop",
+      3,
+      "i",
+      "acc",
+      [
+        "arg",
+        "xs"
+      ],
+      [
+        "if",
+        [
+          "arg",
+          "flag"
+        ],
+        [
+          "list.unique",
+          [
+            "use",
+            "acc"
+          ]
+        ],
+        [
+          "use",
+          "acc"
+        ]
+      ]
+    ],
+    "params": [
+      [
+        "flag",
+        "Bool"
+      ],
+      [
+        "xs",
+        "TextList"
+      ]
+    ],
+    "arguments": [
+      true,
+      [
+        "aa",
+        "bb"
+      ]
+    ],
+    "bounds": {
+      "flag": {
+        "type": "Bool"
+      },
+      "xs": {
+        "type": "TextList",
+        "items": 2,
+        "bytes": 4
+      }
+    },
+    "result_type": "TextList",
+    "expected": {
+      "schema": "bagaev-typed-record-result/11",
+      "status": "success",
+      "value_type": "TextList",
+      "value": [
+        "aa",
+        "bb"
+      ],
+      "work": 74,
+      "reason": null,
+      "location": null
+    },
+    "upper": 74,
+    "functions": {}
+  },
+  {
+    "name": "loop-skip",
+    "body": [
+      "loop",
+      3,
+      "i",
+      "acc",
+      [
+        "arg",
+        "xs"
+      ],
+      [
+        "if",
+        [
+          "arg",
+          "flag"
+        ],
+        [
+          "list.unique",
+          [
+            "use",
+            "acc"
+          ]
+        ],
+        [
+          "use",
+          "acc"
+        ]
+      ]
+    ],
+    "params": [
+      [
+        "flag",
+        "Bool"
+      ],
+      [
+        "xs",
+        "TextList"
+      ]
+    ],
+    "arguments": [
+      false,
+      [
+        "aa",
+        "bb"
+      ]
+    ],
+    "bounds": {
+      "flag": {
+        "type": "Bool"
+      },
+      "xs": {
+        "type": "TextList",
+        "items": 2,
+        "bytes": 4
+      }
+    },
+    "result_type": "TextList",
+    "expected": {
+      "schema": "bagaev-typed-record-result/11",
+      "status": "success",
+      "value_type": "TextList",
+      "value": [
+        "aa",
+        "bb"
+      ],
+      "work": 11,
+      "reason": null,
+      "location": null
+    },
+    "upper": 74,
+    "functions": {}
+  },
+  {
+    "name": "loop-shrink",
+    "body": [
+      "loop",
+      3,
+      "i",
+      "acc",
+      [
+        "arg",
+        "xs"
+      ],
+      [
+        "if",
+        [
+          "arg",
+          "flag"
+        ],
+        [
+          "list.unique",
+          [
+            "use",
+            "acc"
+          ]
+        ],
+        [
+          "use",
+          "acc"
+        ]
+      ]
+    ],
+    "params": [
+      [
+        "flag",
+        "Bool"
+      ],
+      [
+        "xs",
+        "TextList"
+      ]
+    ],
+    "arguments": [
+      true,
+      [
+        "aa",
+        "aa"
+      ]
+    ],
+    "bounds": {
+      "flag": {
+        "type": "Bool"
+      },
+      "xs": {
+        "type": "TextList",
+        "items": 2,
+        "bytes": 4
+      }
+    },
+    "result_type": "TextList",
+    "expected": {
+      "schema": "bagaev-typed-record-result/11",
+      "status": "success",
+      "value_type": "TextList",
+      "value": [
+        "aa"
+      ],
+      "work": 44,
+      "reason": null,
+      "location": null
+    },
+    "upper": 74,
+    "functions": {}
+  },
+  {
+    "name": "call-shrink",
+    "body": [
+      "list.unique",
+      [
+        "call",
+        "dedupe",
+        [
+          "arg",
+          "xs"
+        ]
+      ]
+    ],
+    "params": [
+      [
+        "xs",
+        "TextList"
+      ]
+    ],
+    "arguments": [
+      [
+        "aa",
+        "aa"
+      ]
+    ],
+    "bounds": {
+      "xs": {
+        "type": "TextList",
+        "items": 2,
+        "bytes": 4
+      }
+    },
+    "result_type": "TextList",
+    "expected": {
+      "schema": "bagaev-typed-record-result/11",
+      "status": "success",
+      "value_type": "TextList",
+      "value": [
+        "aa"
+      ],
+      "work": 30,
+      "reason": null,
+      "location": null
+    },
+    "upper": 45,
+    "functions": {
+      "dedupe": {
+        "params": [
+          [
+            "v",
+            "TextList"
+          ]
+        ],
+        "result": "TextList",
+        "body": [
+          "list.unique",
+          [
+            "arg",
+            "v"
+          ]
+        ]
+      }
+    }
+  },
+  {
+    "name": "nested",
+    "body": [
+      "loop",
+      2,
+      "i",
+      "a",
+      [
+        "int",
+        0
+      ],
+      [
+        "loop",
+        3,
+        "j",
+        "b",
+        [
+          "use",
+          "a"
+        ],
+        [
+          "add",
+          [
+            "use",
+            "b"
+          ],
+          [
+            "int",
+            1
+          ]
+        ]
+      ]
+    ],
+    "params": [],
+    "arguments": [],
+    "bounds": {},
+    "result_type": "Int64",
+    "expected": {
+      "schema": "bagaev-typed-record-result/11",
+      "status": "success",
+      "value_type": "Int64",
+      "value": 6,
+      "work": 24,
+      "reason": null,
+      "location": null
+    },
+    "upper": 24,
+    "functions": {}
+  },
+  {
+    "name": "early-overflow",
+    "body": [
+      "add",
+      [
+        "add",
+        [
+          "int",
+          9223372036854775807
+        ],
+        [
+          "int",
+          1
+        ]
+      ],
+      [
+        "call",
+        "expensive"
+      ]
+    ],
+    "params": [],
+    "arguments": [],
+    "bounds": {},
+    "result_type": "Int64",
+    "expected": {
+      "schema": "bagaev-typed-record-result/11",
+      "status": "integer-overflow",
+      "value_type": null,
+      "value": null,
+      "work": 4,
+      "reason": "RR_OVERFLOW",
+      "location": "/program/functions/main/body/1"
+    },
+    "upper": 3007,
+    "functions": {
+      "expensive": {
+        "params": [],
+        "result": "Int64",
+        "body": [
+          "loop",
+          1000,
+          "i",
+          "a",
+          [
+            "int",
+            0
+          ],
+          [
+            "add",
+            [
+              "use",
+              "a"
+            ],
+            [
+              "int",
+              1
+            ]
+          ]
+        ]
+      }
+    }
+  }
+]
