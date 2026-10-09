@@ -15,7 +15,7 @@ def analyze(expression, arguments, functions=None, records=None, lists=None):
     Argument shapes: {'type': 'Int64'|'Bool'} or
     {'type': 'TextList', 'items': maximum_count, 'bytes': maximum_utf8_bytes}.
     Only the documented expression subset is supported; no evaluation occurs.
-    Optional definitions permit bounded primitive-signature helper calls.
+    Optional definitions permit bounded helper calls with supported shapes.
     Nominal list bounds require scalar-only record/list declaration maps.
     """
     base = {'schema': 'bagaev-record-work-bound/1',
@@ -55,6 +55,19 @@ def analyze(expression, arguments, functions=None, records=None, lists=None):
         if type(n) is not int or type(b) is not int or not 0 <= n <= 64 or not 0 <= b <= min(4096, 1024*n):
             raise Unknown('argument-bounds')
         return ('TextList', n, b)
+
+    def signature_kind(name):
+        if type(name) is not str:
+            raise Unknown('function-signature')
+        if name in ('Int64', 'Bool', 'Text', 'TextList'):
+            return name
+        if name in list_defs:
+            list_declaration(name)
+            return 'Records:' + name
+        if name in record_defs:
+            record_fields(name)
+            return 'Record:' + name
+        raise Unknown('function-signature')
 
     def visit(x, scope, depth, arg_scope, stack, path='', owner=None):
         try:
@@ -150,23 +163,24 @@ def analyze(expression, arguments, functions=None, records=None, lists=None):
             if type(function) is not dict or set(function) != {'params', 'result', 'body'}:
                 raise Unknown('function-shape')
             params = function['params']
-            primitive = ('Int64', 'Bool', 'Text', 'TextList')
-            if type(params) is not list or len(params) > 8 or function['result'] not in primitive:
+            if type(params) is not list or len(params) > 8:
                 raise Unknown('function-signature')
-            if any(type(p) is not list or len(p) != 2 or type(p[0]) is not str or p[1] not in primitive for p in params):
+            if any(type(p) is not list or len(p) != 2 or type(p[0]) is not str for p in params):
                 raise Unknown('function-signature')
+            result_kind = signature_kind(function['result'])
+            parameter_kinds = [signature_kind(p[1]) for p in params]
             if len({p[0] for p in params}) != len(params) or len(x)-2 != len(params):
                 raise Unknown('call-arity')
             cost = 1
             bindings = {}
-            for i, (actual, (parameter, kind)) in enumerate(zip(x[2:], params), 2):
+            for i, (actual, (parameter, _), kind) in enumerate(zip(x[2:], params, parameter_kinds), 2):
                 charged, value = visit(actual, scope, depth+1, arg_scope, stack, path+'/'+str(i), owner)
                 if value[0] != kind:
                     raise Unknown('operand-type')
                 cost += charged
                 bindings[parameter] = value
             charged, result = visit(function['body'], {}, depth+1, bindings, stack+(name,), '', name)
-            if result[0] != function['result']:
+            if result[0] != result_kind:
                 raise Unknown('operand-type')
             return cost+charged, result
         if op in ('list.len', 'list.unique', 'list.increasing') and len(x) == 2:
