@@ -15,7 +15,7 @@ class CompactReference(unittest.TestCase):
         self.assertIn('not measured tokens',self.text);self.assertIn('No runtime semantics changed here',self.text)
     def test_actual_intrinsic_coverage(self):
         for name in form.INTRINSICS:self.assertIn('`'+name+'(',self.text,name)
-        for token in ['fold (N, initial)','let x = value in body','match (value)','OptionInt64 omit_none','65,536','2,048','32,768','RR_RECORD_LIST_ITEMS','declaration order','sorted field-name order','--callee-context','--source-body','record_draft.py','[--bounds B]','exact entry-parameter map','conditional work bound or `UNKNOWN`']:
+        for token in ['fold (N, initial)','let x = value in body','match (value)','OptionInt64 omit_none','65,536','2,048','32,768','RR_RECORD_LIST_ITEMS','declaration order','sorted field-name order','--callee-context','--source-body','record_draft.py','[--bounds B]','exact entry-parameter map','conditional work bound or `UNKNOWN`','nominal lists: `{"type":T,"items":N}`','capacity<=16, Int64/Bool fields only']:
             self.assertIn(token,self.text)
     def test_legacy_operation_coverage(self):
         section=self.text.split('## Existing dynamic L2 programs',1)[1].split('## Original L0 compatibility',1)[0]

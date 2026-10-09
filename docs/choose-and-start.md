@@ -248,14 +248,14 @@ Refusals exit 2; OS failure may leave a partial new file. No evaluator is launch
 | Pinned source map | `record_source_map.py S --form 5 --program-pin sha256:BASE [--source-sha256 RAW] [--pointer PTR] --output MAP` |
 | Discovery | `record_capabilities.py --form 5 --revision 5` |
 
-`--bounds B` accepts an exact entry-parameter map: Int64/Bool use `{"type":T}`;
-TextList uses `{"type":"TextList","items":N,"bytes":B}` maxima. The result is a
-conditional work bound or `UNKNOWN`, never semantic validity or execution admission.
+`--bounds B`: exact entry-parameter map. Int64/Bool: `{"type":T}`;
+TextList: `{"type":"TextList","items":N,"bytes":B}` maxima;
+nominal lists: `{"type":T,"items":N}`, capacity<=16, Int64/Bool fields only.
+Returns a conditional work bound or `UNKNOWN`; no semantic validity or execution admission.
 
-Typed preparation accepts strict Int64 JSON transport, so it refuses fractions
-and out-of-range integers even inside Json. Raw Json preparation preserves number
-lexemes and accepts only an all-Json or zero-parameter entry, with exact argument
-count. It refuses duplicate keys, non-JSON numbers and isolated surrogates.
+Typed transport refuses fractions/out-of-Int64 numbers, even inside Json.
+Raw Json preserves number lexemes; entry parameters must all be Json (or absent),
+with exact argument count. Duplicate keys, non-JSON numbers and isolated surrogates refuse.
 Both write invocation/11 data with `schema`, `program`, `arguments`, not a result.
 The Rust reference entry is `examples/probes/backend/rust/record_wide_main.rs`;
 a separately reviewed/built executable consumes `run --input INV`. A compiler,
