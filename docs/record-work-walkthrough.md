@@ -113,3 +113,29 @@ importing the comparator, then matched four serial standalone data CLI calls,
 including full output hashes and receipts. Two portable regression tests retain
 these outputs. The capture inputs are synthetic fixture wrappers around prior
 matched envelopes; this adds no program execution or capture authentication.
+
+## An intentional application rule change
+
+The [all-item total](../examples/probes/record-active-total/All.bagaev) and
+[active-item total](../examples/probes/record-active-total/Active.bagaev) use the
+same bounded record input: up to sixteen items with Int64 `amount` and Bool
+`active`. The new rule adds only active amounts. This is a synthetic application
+slice, not a durable catalog or an equivalence-preserving optimization.
+
+Six paired [frozen scenarios](../examples/probes/record-active-total/cases.json)
+cover empty, all-active, mixed, negative-inactive, skipped-overflow and active-
+overflow inputs. Twelve own-reference calls matched the complete pre-frozen
+responses. Empty totals stay 0; all-active 3 and 4 still total 7; inactive 3
+and active 4 change the total from 7 to 4. Negative inactive amounts are skipped.
+For active MAX_INT64 followed by inactive 1, the old program overflows while
+the new one returns MAX_INT64: the inactive addition is genuinely unevaluated.
+Making both items active still overflows, at the new expression's exact location.
+
+All selected arguments satisfy their dimensions. Conditional work bounds are
+178 and 258. Actual successful work is 98 + 5 times item count for the old
+program, and another 5 times active count for the new one. The overflow controls
+stop early at work 24 and 34. These are logical charges, not latency or memory
+measurements. Three data tests retain source pins, bounds and supplied-capture
+comparison axes without rerunning the programs. Equal failure reasons at
+changed locations do not count as identical failure observations. This finite
+slice establishes no all-input equivalence, native parity or production admission.
