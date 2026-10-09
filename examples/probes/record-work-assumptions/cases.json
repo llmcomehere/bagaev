@@ -1,0 +1,103 @@
+[
+  {
+    "name": "arguments",
+    "body": [
+      "text.eq",
+      [
+        "arg",
+        "x"
+      ],
+      [
+        "arg",
+        "y"
+      ]
+    ],
+    "arguments": [
+      "é",
+      "é"
+    ],
+    "violating_bounds": {
+      "x": {
+        "type": "Text",
+        "bytes": 0
+      },
+      "y": {
+        "type": "Text",
+        "bytes": 0
+      }
+    },
+    "applicable_bounds": {
+      "x": {
+        "type": "Text",
+        "bytes": 2
+      },
+      "y": {
+        "type": "Text",
+        "bytes": 2
+      }
+    },
+    "violating_upper": 3,
+    "applicable_upper": 7,
+    "prior_full_observation": {
+      "location": null,
+      "reason": null,
+      "schema": "bagaev-typed-record-result/11",
+      "status": "success",
+      "value": true,
+      "value_type": "Bool",
+      "work": 7
+    }
+  },
+  {
+    "name": "normal",
+    "body": [
+      "text.eq",
+      [
+        "list.at",
+        [
+          "arg",
+          "xs"
+        ],
+        [
+          "int",
+          0
+        ]
+      ],
+      [
+        "text",
+        "é"
+      ]
+    ],
+    "arguments": [
+      [
+        "é",
+        "abc"
+      ]
+    ],
+    "violating_bounds": {
+      "xs": {
+        "type": "TextList",
+        "items": 2,
+        "bytes": 0
+      }
+    },
+    "applicable_bounds": {
+      "xs": {
+        "type": "TextList",
+        "items": 2,
+        "bytes": 5
+      }
+    },
+    "violating_upper": 9,
+    "applicable_upper": 14,
+    "prior_full_observation": {
+      "location": null,
+      "reason": null,
+      "schema": "bagaev-typed-record-result/11",
+      "status": "success",
+      "value": true,
+      "value_type": "Bool",
+      "work": 11
+    }
+  }
+]

@@ -413,3 +413,17 @@ complete own-reference outputs, including empty/negative-index refusals at
 work4 and the nested comparison pointer. Four data tests cover the byte cap,
 argument types, arity and index-expression costs. This extends conditional
 analysis only; runtime, scalar-overload and admission rules are unchanged.
+
+### Declared maxima must actually apply
+
+The [assumption controls](../examples/probes/record-work-assumptions/cases.json)
+reuse two earlier complete observations with exactly matched invocation graphs
+and arguments. Declaring zero-byte bounds for actual nonempty Text arguments
+produces upper3 while the earlier valid invocation used work7. Declaring zero
+total list bytes for the indexing example produces upper9 while its captured
+invocation used work11. Both inputs violate the declared maxima; these are
+inapplicable bounds, not counterexamples to a bound under its prerequisites.
+Corrected maxima give upper7 and14 respectively. Neither inspect nor compare
+validates actual invocation arguments against these declarations. Two data tests
+preserve these controls and their prior-observation provenance; no new program
+execution or admission mechanism was added.
