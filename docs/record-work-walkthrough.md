@@ -170,3 +170,13 @@ aggregation. Inputs are preserved. The comparison reuses earlier language
 captures and performs no new bagaev run. This is an ordinary semantic baseline,
 not a strong native performance comparison, timing result or proof of parity
 for language work, source diagnostics or all programs.
+
+Eight later [ordered-overflow language observations](../examples/probes/record-active-total/order-cases.json)
+exercise those four baseline controls in both all/active modes. All complete
+language responses matched their own pre-frozen expectations, and their
+status/value projections matched the ordinary baseline. Positive and negative
+intermediate overflow stop at the second addition, even when a later item could
+bring the mathematical sum back into range. Skipping the inactive middle item
+instead succeeds with MAX_INT64 - 1 at work 123. Two static regressions retain
+these source, bound, value and failure-location observations. These are eight
+new own-reference calls; previous captures were neither rerun nor overwritten.
