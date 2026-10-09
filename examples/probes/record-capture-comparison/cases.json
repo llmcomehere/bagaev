@@ -1,0 +1,102 @@
+[
+  {
+    "name": "disabled",
+    "before_file": "{\n  \"program_sha256\": \"790c5e3bc358c16e9f831ce79dfa82d0f8013b469a059413fd6079c0e9e8f314\",\n  \"arguments_sha256\": \"e9b0772f27be1484fd65e7cb0d59b64487195518d534a5aaf4d1e190d6991e07\",\n  \"result\": {\n    \"schema\": \"bagaev-typed-record-result/11\",\n    \"status\": \"success\",\n    \"value_type\": \"Int64\",\n    \"value\": 7,\n    \"work\": 3,\n    \"reason\": null,\n    \"location\": null\n  }\n}\n",
+    "after_file": "{\n  \"program_sha256\": \"6315072784617469802830a278cd12b9bdc9bbb173b82f7c0c021b3b32d9f7ba\",\n  \"arguments_sha256\": \"e9b0772f27be1484fd65e7cb0d59b64487195518d534a5aaf4d1e190d6991e07\",\n  \"result\": {\n    \"schema\": \"bagaev-typed-record-result/11\",\n    \"status\": \"success\",\n    \"value_type\": \"Int64\",\n    \"value\": 7,\n    \"work\": 3,\n    \"reason\": null,\n    \"location\": null\n  }\n}\n",
+    "expected": {
+      "schema": "bagaev-record-capture-comparison/1",
+      "status": "comparison",
+      "base": "790c5e3bc358c16e9f831ce79dfa82d0f8013b469a059413fd6079c0e9e8f314",
+      "target": "6315072784617469802830a278cd12b9bdc9bbb173b82f7c0c021b3b32d9f7ba",
+      "arguments_sha256": "e9b0772f27be1484fd65e7cb0d59b64487195518d534a5aaf4d1e190d6991e07",
+      "before_result_sha256": "71e10c8f8bbb81f1c00705ac2d56e56a3bd3eded23c1ab69eea60f627367352b",
+      "after_result_sha256": "71e10c8f8bbb81f1c00705ac2d56e56a3bd3eded23c1ab69eea60f627367352b",
+      "same_result": true,
+      "same_success_value": true,
+      "same_failure": null,
+      "work_delta": 0,
+      "source_check": false,
+      "capture_authentication": false,
+      "equivalence_check": false,
+      "execution_admission": false,
+      "before_file_sha256": "a4c134761641f5cfd3903d2de24a144ed924ad820d87d8e448fba7275a92f468",
+      "after_file_sha256": "22bced983110341eb743e889abfbb509188c8d3728d8cf9351616111f174f796"
+    },
+    "expected_sha256": "a4bc395bd8045fefea4ce61748873bf8c315ef3e4438ec4cad881b93930e704a"
+  },
+  {
+    "name": "enabled",
+    "before_file": "{\n  \"program_sha256\": \"790c5e3bc358c16e9f831ce79dfa82d0f8013b469a059413fd6079c0e9e8f314\",\n  \"arguments_sha256\": \"a69affc5736acce83939cab683b4ea097aee2ce5c370426c9b946d10613cc23c\",\n  \"result\": {\n    \"schema\": \"bagaev-typed-record-result/11\",\n    \"status\": \"success\",\n    \"value_type\": \"Int64\",\n    \"value\": 8,\n    \"work\": 5,\n    \"reason\": null,\n    \"location\": null\n  }\n}\n",
+    "after_file": "{\n  \"program_sha256\": \"6315072784617469802830a278cd12b9bdc9bbb173b82f7c0c021b3b32d9f7ba\",\n  \"arguments_sha256\": \"a69affc5736acce83939cab683b4ea097aee2ce5c370426c9b946d10613cc23c\",\n  \"result\": {\n    \"schema\": \"bagaev-typed-record-result/11\",\n    \"status\": \"success\",\n    \"value_type\": \"Int64\",\n    \"value\": 9,\n    \"work\": 5,\n    \"reason\": null,\n    \"location\": null\n  }\n}\n",
+    "expected": {
+      "schema": "bagaev-record-capture-comparison/1",
+      "status": "comparison",
+      "base": "790c5e3bc358c16e9f831ce79dfa82d0f8013b469a059413fd6079c0e9e8f314",
+      "target": "6315072784617469802830a278cd12b9bdc9bbb173b82f7c0c021b3b32d9f7ba",
+      "arguments_sha256": "a69affc5736acce83939cab683b4ea097aee2ce5c370426c9b946d10613cc23c",
+      "before_result_sha256": "f4549fb1df58bd7e479ac9bd81f2b9ccbcdac27cdd52e271dba77672eacbc42b",
+      "after_result_sha256": "d95898cb47ed8bf2247b558ebb0ca554b6309ee8adcff92a99c97199e92590ed",
+      "same_result": false,
+      "same_success_value": false,
+      "same_failure": null,
+      "work_delta": 0,
+      "source_check": false,
+      "capture_authentication": false,
+      "equivalence_check": false,
+      "execution_admission": false,
+      "before_file_sha256": "0cf31001878bcb51722fcb0a7122af6bac162c3bc21f71b71901166cb98c83ff",
+      "after_file_sha256": "c4c2cebfdb9d077fc64a7288809cdcb4fc9b42421de4786e3b7c805a07108842"
+    },
+    "expected_sha256": "9fe0c07f1f8e5511bc72e6ae959886ed2078b9d751b14bf6cb85ac192cb8cd8f"
+  },
+  {
+    "name": "overflow",
+    "before_file": "{\n  \"program_sha256\": \"790c5e3bc358c16e9f831ce79dfa82d0f8013b469a059413fd6079c0e9e8f314\",\n  \"arguments_sha256\": \"c3f7c8546d7d1d31d48314475042deacca64377481791bd7d983514abebf5b07\",\n  \"result\": {\n    \"schema\": \"bagaev-typed-record-result/11\",\n    \"status\": \"integer-overflow\",\n    \"value_type\": null,\n    \"value\": null,\n    \"work\": 5,\n    \"reason\": \"RR_OVERFLOW\",\n    \"location\": \"/program/functions/main/body/2\"\n  }\n}\n",
+    "after_file": "{\n  \"program_sha256\": \"6315072784617469802830a278cd12b9bdc9bbb173b82f7c0c021b3b32d9f7ba\",\n  \"arguments_sha256\": \"c3f7c8546d7d1d31d48314475042deacca64377481791bd7d983514abebf5b07\",\n  \"result\": {\n    \"schema\": \"bagaev-typed-record-result/11\",\n    \"status\": \"integer-overflow\",\n    \"value_type\": null,\n    \"value\": null,\n    \"work\": 5,\n    \"reason\": \"RR_OVERFLOW\",\n    \"location\": \"/program/functions/main/body/2\"\n  }\n}\n",
+    "expected": {
+      "schema": "bagaev-record-capture-comparison/1",
+      "status": "comparison",
+      "base": "790c5e3bc358c16e9f831ce79dfa82d0f8013b469a059413fd6079c0e9e8f314",
+      "target": "6315072784617469802830a278cd12b9bdc9bbb173b82f7c0c021b3b32d9f7ba",
+      "arguments_sha256": "c3f7c8546d7d1d31d48314475042deacca64377481791bd7d983514abebf5b07",
+      "before_result_sha256": "9e076277b318290e4982dd02b390645ee0bd237182e303190592e2063e514004",
+      "after_result_sha256": "9e076277b318290e4982dd02b390645ee0bd237182e303190592e2063e514004",
+      "same_result": true,
+      "same_success_value": null,
+      "same_failure": true,
+      "work_delta": 0,
+      "source_check": false,
+      "capture_authentication": false,
+      "equivalence_check": false,
+      "execution_admission": false,
+      "before_file_sha256": "c749a9ad6cbe6e58f8c818f624104e1828901499c158e6b04600f9effb444740",
+      "after_file_sha256": "3efbf2493fa1c4045c2d570169dba5dcfc0becadefc99d2476029c8d28a80e49"
+    },
+    "expected_sha256": "dcb43a607019c42affef5024003a350ecfccf95e6e2bf1d3c61fb08c7752d584"
+  },
+  {
+    "name": "helper-work",
+    "before_file": "{\n  \"program_sha256\": \"042ed05a6ad9e7a0d3cc5f8bbe583d6c271dcbe28dd8ddb6934d7366033250d9\",\n  \"arguments_sha256\": \"dadf5943a4491a3e165666da527e554c9e65f0d62033b7c30e3abc4dc2fd57ed\",\n  \"result\": {\n    \"schema\": \"bagaev-typed-record-result/11\",\n    \"status\": \"success\",\n    \"value_type\": \"Int64\",\n    \"value\": 7,\n    \"work\": 108,\n    \"reason\": null,\n    \"location\": null\n  }\n}\n",
+    "after_file": "{\n  \"program_sha256\": \"b2c6567909b9b43786a9d2822ccae0e21026b4cfd80c69efe0b2df4349e8c813\",\n  \"arguments_sha256\": \"dadf5943a4491a3e165666da527e554c9e65f0d62033b7c30e3abc4dc2fd57ed\",\n  \"result\": {\n    \"schema\": \"bagaev-typed-record-result/11\",\n    \"status\": \"success\",\n    \"value_type\": \"Int64\",\n    \"value\": 7,\n    \"work\": 112,\n    \"reason\": null,\n    \"location\": null\n  }\n}\n",
+    "expected": {
+      "schema": "bagaev-record-capture-comparison/1",
+      "status": "comparison",
+      "base": "042ed05a6ad9e7a0d3cc5f8bbe583d6c271dcbe28dd8ddb6934d7366033250d9",
+      "target": "b2c6567909b9b43786a9d2822ccae0e21026b4cfd80c69efe0b2df4349e8c813",
+      "arguments_sha256": "dadf5943a4491a3e165666da527e554c9e65f0d62033b7c30e3abc4dc2fd57ed",
+      "before_result_sha256": "f084f92832da02c8ceb5e45a7b765f13f4df74c3f29bdc6b8e64cd3c10c330f3",
+      "after_result_sha256": "58a698c0e2f9631345d2c4b9601058129c822fa1317aa91a44a19196672ac985",
+      "same_result": false,
+      "same_success_value": true,
+      "same_failure": null,
+      "work_delta": 4,
+      "source_check": false,
+      "capture_authentication": false,
+      "equivalence_check": false,
+      "execution_admission": false,
+      "before_file_sha256": "557c729127650e1ffd1c290e612a225fb82fd812f6a65e919fba73cf86c2261f",
+      "after_file_sha256": "37a9b78d9344b434b7e10268c7e7f12986eba17ec77486bbe0fe2e04f44e2586"
+    },
+    "expected_sha256": "dcaf5e45dabee7efb631b52535db1c59de744bb7304796f0c2fe65d3f6aab749"
+  }
+]

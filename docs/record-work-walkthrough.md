@@ -104,3 +104,12 @@ differ. Malformed input, stale pins or wrong usage refuse with exit 2 and no
 output. Five transport tests cover equal/different/failure outcomes, identities,
 refusals, existing-output preservation and symlink rejection. There is no run
 option, implicit capture creation or authentication step.
+
+Four [complete frozen file comparisons](../examples/probes/record-capture-comparison/cases.json)
+retain disabled-branch equality, enabled-branch value inequality at unchanged
+work, equal overflow with null successful-value equality, and helper extraction
+with equal value but four additional work units. Expectations were fixed without
+importing the comparator, then matched four serial standalone data CLI calls,
+including full output hashes and receipts. Two portable regression tests retain
+these outputs. The capture inputs are synthetic fixture wrappers around prior
+matched envelopes; this adds no program execution or capture authentication.
