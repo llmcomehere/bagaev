@@ -106,6 +106,33 @@ class Work(unittest.TestCase):
         funcs['f']['result']='Report'
         self.assertEqual(analyze(['call','f',['int',1]],{},funcs)['status'],'UNKNOWN')
 
+    def test_unknown_locations(self):
+        for expression, pointer in ((['loop'], ''),
+                                     (['if', ['bool', True], ['int', 1], ['loop']], '/3'),
+                                     (['call', 'f', ['loop']], '/2')):
+            functions = {'f': {'params': [['x', 'Int64']], 'result': 'Int64', 'body': ['arg', 'x']}}
+            result = analyze(expression, {}, functions)
+            self.assertEqual(result['location'], {'function': None, 'pointer': pointer})
+            self.assertNotIn('upper_work', result)
+        functions = {'f': {'params': [], 'result': 'Int64',
+                           'body': ['let', 'x', ['int', 1], ['loop']]}}
+        self.assertEqual(analyze(['call', 'f'], {}, functions)['location'],
+                         {'function': 'f', 'pointer': '/3'})
+        functions['f']['body'] = ['call', 'g']
+        functions['g'] = {'params': [], 'result': 'Int64', 'body': ['call', 'f']}
+        self.assertEqual(analyze(['call', 'f'], {}, functions)['location'],
+                         {'function': 'g', 'pointer': ''})
+        self.assertNotIn('location', analyze(['int', 1], {'x': {}}))
+        self.assertEqual(analyze(['int', 1], {}), {
+            'schema': 'bagaev-record-work-bound/1', 'semantic_check': False,
+            'execution_admission': False, 'requires_checked_program': True,
+            'status': 'SUPPORTED', 'upper_work': 1, 'fits_work_budget': True,
+            'work_limit': 65536})
+
+    def test_parent_type_error_keeps_parent_location(self):
+        result = analyze(['not', ['int', 1]], {})
+        self.assertEqual(result['location'], {'function': None, 'pointer': ''})
+
     def test_expanded_call_budget(self):
         funcs={'f0':{'params':[],'result':'Bool','body':['bool',True]}}
         for i in range(1,12):

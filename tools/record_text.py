@@ -163,9 +163,12 @@ def convert(argv):
                     any(type(shape) is not dict or shape.get('type') != params[name]
                         for name, shape in bounds.items())):
                     raise Refusal("RECORD_ARGUMENTS")
+                analysis = bagaev_record_work.analyze(entry['body'], bounds, value['functions'])
+                if 'location' in analysis and analysis['location']['function'] is None:
+                    analysis['location']['function'] = value['entry']
                 work_fields = {
                     'argument_bounds_sha256': hashlib.sha256(bounds_raw).hexdigest(),
-                    'work_bound': bagaev_record_work.analyze(entry['body'], bounds, value['functions'])}
+                    'work_bound': analysis}
             canonical = json.dumps(value, sort_keys=True, ensure_ascii=False,
                                    separators=(",", ":"), allow_nan=False).encode("utf8")
             value = {"schema": "bagaev-record-inspection/1",

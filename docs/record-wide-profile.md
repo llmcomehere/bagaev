@@ -25,6 +25,9 @@ be supported. Branch shapes join conservatively, without refining bounds from
 guards. Primitive-signature helper calls use fresh parameter/local scopes and
 charge each call separately; cycles or excessive expansion yield `UNKNOWN`.
 Nominal call signatures and loops remain unsupported.
+Expression refusals include a function name and body-relative JSON pointer;
+the analysis library uses a null function for its supplied root expression.
+These identify the unsupported expression, not a source character span.
 `record_text.py inspect SOURCE --form 5 --bounds BOUNDS --output NEW_FILE`
 adds that analysis and the exact bounds-file SHA-256 to inspection data.
 `BOUNDS` is a JSON map matching entry parameters, for example
