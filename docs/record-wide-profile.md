@@ -13,6 +13,14 @@ appending to a full list refuses RR_RECORD_LIST_ITEMS with no partial result.
 This is a separately versioned pure reference profile, not an expanded native ABI,
 component-owned state, durable catalogue or production runtime.
 
+The pure [conditional work analyzer](../src/bagaev_record_work.py) estimates
+upper logical work for a small straight-line expression subset using declared
+argument bounds. It requires separately checked program semantics and valid
+arguments. Unsupported operations return `UNKNOWN`; a bound above 65,536 means
+possible budget exhaustion, not certain failure. It grants no execution admission
+and does not measure latency or memory. [Literal tests](../tests/probes/test_record_work.py)
+include the sorted-unique example's boundary and the extra charge of negated equality.
+
 ## Readable source
 
 Explicit record-form/5 selects this new schema and allows capacities up to 16:
