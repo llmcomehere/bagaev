@@ -373,3 +373,14 @@ exit status 2. `UNKNOWN` is a successful analysis result without a numeric
 difference, not a successful execution. Five CLI tests cover successful
 receipts, usage/pins, malformed bounds, symlinks, existing-output preservation
 and unknown analysis. The existing record-text command is unchanged.
+
+The work-limit counterexample also includes exact readable
+[original](../examples/probes/record-work-helper-limit/Direct.bagaev) and
+[candidate](../examples/probes/record-work-helper-limit/Extracted.bagaev) sources,
+[empty entry bounds](../examples/probes/record-work-helper-limit/bounds.json),
+and a [complete comparison artifact](../examples/probes/record-work-helper-limit/comparison.json).
+The source graphs were matched to the two previously captured invocations before
+reusing their execution evidence. No new execution is implied by this source
+bridge. Repeating the data-only command with the artifact's base/target pins
+produces the same output bytes and upper-bound delta 1024. Three tests pin the
+graphs, complete artifact and stale-target refusal after changing the loop count.
