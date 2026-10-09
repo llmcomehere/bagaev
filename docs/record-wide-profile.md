@@ -357,3 +357,19 @@ The API has no evaluator dispatch, filesystem effects or automatic optimizer.
 Seven data-only tests cover the arithmetic delta, equal bounds for different
 values, source/graph/bounds pins, draft refusals, unknown shapes, missing entry,
 input preservation and the two existing resource-aware edit specimens.
+
+The separate data-only command is:
+
+```
+python tools/record_work_compare.py original.bagaev candidate.bagaev --form 5 --bounds bounds.json --base BASE_PROGRAM_SHA256 --target TARGET_PROGRAM_SHA256 --output comparison.json
+```
+
+Form5 and both graph pins are mandatory. Input files use the existing bounded
+regular-file reader, strict JSON parsing and exclusive output writer. Existing
+outputs are never replaced. The comparison includes both canonical-bound and
+raw bounds-file hashes, so formatting differences remain distinguishable.
+The stdout receipt pins the output bytes; refusals return a JSON error and
+exit status 2. `UNKNOWN` is a successful analysis result without a numeric
+difference, not a successful execution. Five CLI tests cover successful
+receipts, usage/pins, malformed bounds, symlinks, existing-output preservation
+and unknown analysis. The existing record-text command is unchanged.
