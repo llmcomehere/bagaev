@@ -427,3 +427,19 @@ Corrected maxima give upper7 and14 respectively. Neither inspect nor compare
 validates actual invocation arguments against these declarations. Two data tests
 preserve these controls and their prior-observation provenance; no new program
 execution or admission mechanism was added.
+
+The optional pure [argument-dimension observer](../src/bagaev_record_argument_dimensions.py)
+compares actual name-mapped Int64, Bool, Text and TextList values with declared
+maxima. It returns `WITHIN` or `EXCEEDS` for supported valid values,
+`INVALID_ARGUMENT` for invalid tags/value limits, and `UNKNOWN` for unsupported
+shapes or mismatched maps. All declarations are checked before values, in sorted
+name order. Nominal records/lists are not supported by this observer yet.
+
+Successful observations retain canonical bounds/argument hashes and numeric
+dimension rows, without returning the argument values. Text bytes/scalars,
+per-item limits and whole-list count/bytes follow the existing value profile.
+`WITHIN` establishes only these dimensions: it does not check a source program,
+match a function signature, prove index/overflow safety or admit execution.
+Semantic checking and execution admission remain false. Eight data tests cover
+boundary values, the two applicability controls, invalid/unsupported shapes,
+identity stability and input preservation; no program execution was performed.
