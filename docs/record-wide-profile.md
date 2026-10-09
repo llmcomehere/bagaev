@@ -42,6 +42,13 @@ Declared scalar record constructors also retain nominal identity, with fields
 checked in sorted field-name order. Opaque non-scalar or undeclared constructors
 keep their earlier cost-only summary, which cannot support field projection or
 a nominal helper result.
+The [helper extraction specimen](../examples/probes/record-work-helper-edit/Extracted.bagaev)
+uses the existing whole-source draft to add `amount` and replace only `main`.
+Its [pinned graph/result data](../examples/probes/record-work-helper-edit/cases.json)
+preserve values at counts 0/2/16, while upper work changes from 178 to 210 and
+observed work increases by 0/4/32. The six complete responses reuse prior exact
+invocation captures, not new execution. This example grants no semantic admission
+and does not claim work equivalence or optimization.
 The [finite cardinality cases](../examples/probes/record-work-cardinality/cases.json)
 preserve 49 complete reference observations: all 17 lengths of one guarded sum,
 30 positive/negative overflow positions and two invalid indices. All matched
