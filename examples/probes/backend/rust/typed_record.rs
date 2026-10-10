@@ -942,6 +942,16 @@ pub fn check_source_v10(bytes:&[u8])->Result<SourceCheck,&'static str>{
 pub fn process_v11(bytes:&[u8])->Result<Vec<u8>,&'static str>{process_profile(bytes,11)}
 pub fn process_v12(bytes:&[u8])->Result<Vec<u8>,&'static str>{process_profile(bytes,12)}
 
+/// Explicit /12 invocation checker. Data validation is not native execution authority.
+pub fn checked_json_invocation_v12(bytes:&[u8])->Result<CheckedJsonInvocation,String>{
+ let doc=parsed(bytes).map_err(|e|format!("{e:?}"))?;
+ let (program,args)=checked_invocation(&doc,12).map_err(|e|format!("{e:?}"))?;
+ if program.functions[program.entry].parameters.iter().any(|p|p.ty!=Type::Json){return Err("NATIVE_JSON_SIGNATURE".to_owned());}
+ let mut arguments=Vec::new();
+ for arg in args{match arg{OwnedArgument::Json(v)=>arguments.push(v),_=>return Err("NATIVE_JSON_SIGNATURE".to_owned())}}
+ Ok(CheckedJsonInvocation{program,arguments})
+}
+
 pub fn checked_json_invocation_v11(bytes:&[u8])->Result<CheckedJsonInvocation,String>{
  let doc=parsed(bytes).map_err(|e|format!("{e:?}"))?;
  let (program,args)=checked_invocation(&doc,11).map_err(|e|format!("{e:?}"))?;
