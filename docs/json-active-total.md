@@ -37,5 +37,7 @@ status/value projection. Portable data tests do not launch the reference.
 
 The input is synthetic and bounded. There is no native12 adapter or kernel,
 performance/model-benefit measurement, persistence, concurrency or production
-admission. The compact guide and general command-line tools still select the
-existing profile11 route. Do not feed this source to that route implicitly.
+admission. Use the explicit [lossless Json preparer](json-argument-prepare.md)
+with `--form 6` to construct invocation12 data. The compact guide and general
+record_text tool still select the existing profile11 route. Do not feed this
+source to that route implicitly.
