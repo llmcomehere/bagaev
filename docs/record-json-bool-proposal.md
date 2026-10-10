@@ -51,7 +51,10 @@ This is finite reference evidence, not a full-language conformance proof.
 No generated native module was executed, and no native /12 path is supplied.
 
 Before integration: retain separate exact-head review and passing CI. The
-compact guide and existing tools still describe the /11 route; extending them
-must retain the compact-reference byte budget. A future faithful Json
-application adapter and native qualification are
-separate work, not implied by parsing, compilation or source integration.
+compact guide and general record_text tool still describe the /11 route; extending them
+must retain the compact-reference byte budget. The separately qualified
+[Json application entry](json-active-total.md) preserves the active-total
+business calculation. Native qualification remains separate work, not implied
+by parsing, compilation or source integration.
+The [lossless Json preparer](json-argument-prepare.md) separately accepts explicit
+form6 and constructs invocation12 data without runtime or native execution.
