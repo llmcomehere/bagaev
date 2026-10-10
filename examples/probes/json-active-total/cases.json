@@ -1,0 +1,398 @@
+[
+  {
+    "name": "empty",
+    "input": [],
+    "expected": {
+      "status": "success",
+      "value": 0
+    }
+  },
+  {
+    "name": "both-booleans",
+    "input": [
+      {
+        "amount": 3,
+        "active": true
+      },
+      {
+        "amount": 9,
+        "active": false
+      }
+    ],
+    "expected": {
+      "status": "success",
+      "value": 3
+    }
+  },
+  {
+    "name": "negative",
+    "input": [
+      {
+        "amount": -5,
+        "active": true
+      },
+      {
+        "amount": 2,
+        "active": true
+      }
+    ],
+    "expected": {
+      "status": "success",
+      "value": -3
+    }
+  },
+  {
+    "name": "inactive-overflow",
+    "input": [
+      {
+        "amount": 9223372036854775807,
+        "active": true
+      },
+      {
+        "amount": 1,
+        "active": false
+      }
+    ],
+    "expected": {
+      "status": "success",
+      "value": 9223372036854775807
+    }
+  },
+  {
+    "name": "positive-overflow",
+    "input": [
+      {
+        "amount": 9223372036854775807,
+        "active": true
+      },
+      {
+        "amount": 1,
+        "active": true
+      }
+    ],
+    "expected": {
+      "status": "integer-overflow",
+      "value": null
+    }
+  },
+  {
+    "name": "negative-overflow",
+    "input": [
+      {
+        "amount": -9223372036854775808,
+        "active": true
+      },
+      {
+        "amount": -1,
+        "active": true
+      }
+    ],
+    "expected": {
+      "status": "integer-overflow",
+      "value": null
+    }
+  },
+  {
+    "name": "cancellation",
+    "input": [
+      {
+        "amount": 9223372036854775807,
+        "active": true
+      },
+      {
+        "amount": -9223372036854775807,
+        "active": true
+      }
+    ],
+    "expected": {
+      "status": "success",
+      "value": 0
+    }
+  },
+  {
+    "name": "sixteen",
+    "input": [
+      {
+        "amount": 1,
+        "active": true
+      },
+      {
+        "amount": 1,
+        "active": true
+      },
+      {
+        "amount": 1,
+        "active": true
+      },
+      {
+        "amount": 1,
+        "active": true
+      },
+      {
+        "amount": 1,
+        "active": true
+      },
+      {
+        "amount": 1,
+        "active": true
+      },
+      {
+        "amount": 1,
+        "active": true
+      },
+      {
+        "amount": 1,
+        "active": true
+      },
+      {
+        "amount": 1,
+        "active": true
+      },
+      {
+        "amount": 1,
+        "active": true
+      },
+      {
+        "amount": 1,
+        "active": true
+      },
+      {
+        "amount": 1,
+        "active": true
+      },
+      {
+        "amount": 1,
+        "active": true
+      },
+      {
+        "amount": 1,
+        "active": true
+      },
+      {
+        "amount": 1,
+        "active": true
+      },
+      {
+        "amount": 1,
+        "active": true
+      }
+    ],
+    "expected": {
+      "status": "success",
+      "value": 16
+    }
+  },
+  {
+    "name": "seventeen",
+    "input": [
+      {
+        "amount": 1,
+        "active": true
+      },
+      {
+        "amount": 1,
+        "active": true
+      },
+      {
+        "amount": 1,
+        "active": true
+      },
+      {
+        "amount": 1,
+        "active": true
+      },
+      {
+        "amount": 1,
+        "active": true
+      },
+      {
+        "amount": 1,
+        "active": true
+      },
+      {
+        "amount": 1,
+        "active": true
+      },
+      {
+        "amount": 1,
+        "active": true
+      },
+      {
+        "amount": 1,
+        "active": true
+      },
+      {
+        "amount": 1,
+        "active": true
+      },
+      {
+        "amount": 1,
+        "active": true
+      },
+      {
+        "amount": 1,
+        "active": true
+      },
+      {
+        "amount": 1,
+        "active": true
+      },
+      {
+        "amount": 1,
+        "active": true
+      },
+      {
+        "amount": 1,
+        "active": true
+      },
+      {
+        "amount": 1,
+        "active": true
+      },
+      {
+        "amount": 1,
+        "active": true
+      }
+    ],
+    "expected": {
+      "status": "invalid-input",
+      "value": null
+    }
+  },
+  {
+    "name": "object-root",
+    "input": {},
+    "expected": {
+      "status": "invalid-input",
+      "value": null
+    }
+  },
+  {
+    "name": "null-root",
+    "input": null,
+    "expected": {
+      "status": "invalid-input",
+      "value": null
+    }
+  },
+  {
+    "name": "missing-active",
+    "input": [
+      {
+        "amount": 1
+      }
+    ],
+    "expected": {
+      "status": "invalid-input",
+      "value": null
+    }
+  },
+  {
+    "name": "missing-amount",
+    "input": [
+      {
+        "active": true
+      }
+    ],
+    "expected": {
+      "status": "invalid-input",
+      "value": null
+    }
+  },
+  {
+    "name": "extra-field",
+    "input": [
+      {
+        "amount": 1,
+        "active": true,
+        "extra": 0
+      }
+    ],
+    "expected": {
+      "status": "invalid-input",
+      "value": null
+    }
+  },
+  {
+    "name": "integer-active",
+    "input": [
+      {
+        "amount": 1,
+        "active": 1
+      }
+    ],
+    "expected": {
+      "status": "invalid-input",
+      "value": null
+    }
+  },
+  {
+    "name": "boolean-amount",
+    "input": [
+      {
+        "amount": true,
+        "active": true
+      }
+    ],
+    "expected": {
+      "status": "invalid-input",
+      "value": null
+    }
+  },
+  {
+    "name": "fraction-amount",
+    "input": [
+      {
+        "amount": 1.5,
+        "active": true
+      }
+    ],
+    "expected": {
+      "status": "invalid-input",
+      "value": null
+    }
+  },
+  {
+    "name": "out-of-range",
+    "input": [
+      {
+        "amount": 9223372036854775808,
+        "active": false
+      }
+    ],
+    "expected": {
+      "status": "invalid-input",
+      "value": null
+    }
+  },
+  {
+    "name": "null-item",
+    "input": [
+      null
+    ],
+    "expected": {
+      "status": "invalid-input",
+      "value": null
+    }
+  },
+  {
+    "name": "invalid-before-overflow",
+    "input": [
+      {
+        "amount": 9223372036854775807,
+        "active": true
+      },
+      {
+        "amount": 1,
+        "active": true
+      },
+      {
+        "active": false
+      }
+    ],
+    "expected": {
+      "status": "invalid-input",
+      "value": null
+    }
+  }
+]

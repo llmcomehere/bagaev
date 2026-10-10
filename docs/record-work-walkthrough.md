@@ -180,3 +180,8 @@ bring the mathematical sum back into range. Skipping the inactive middle item
 instead succeeds with MAX_INT64 - 1 at work 123. Two static regressions retain
 these source, bound, value and failure-location observations. These are eight
 new own-reference calls; previous captures were neither rerun nor overwritten.
+
+The separate [JSON active-total entry](json-active-total.md) preserves this
+business calculation with explicit profile12 Boolean projection and whole-input
+shape validation. Its application outcomes and work observations are distinct
+from the typed-entry response envelopes above.

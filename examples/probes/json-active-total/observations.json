@@ -1,0 +1,473 @@
+{
+  "schema": "bagaev-json-active-total-observations/1",
+  "date": "2026-10-10",
+  "reference_source_commit": "17a4b90005b222293873feb25fc0d67aa5dff963",
+  "status": "PASS",
+  "source_sha256": "379ccce2b4f6bb0125ef73eed18eacac50b48b5419a55d0178a0a6b98de7a363",
+  "fixture_hashes": {
+    "cases.json": "79abf0571eb3eca545f8cadd7f77fc6bf0b4f53e253979638511cac9ac1a17dd",
+    "lexical-cases.json": "5e94b544309160114598c170033102f5c2f280c24a417d9d148d49575ac58973"
+  },
+  "reference_calls": 23,
+  "native_calls": 0,
+  "rows": [
+    {
+      "case": "empty",
+      "business_match": true,
+      "baseline": {
+        "status": "success",
+        "value": 0
+      },
+      "result": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value": {
+          "total": 0,
+          "valid": true
+        },
+        "value_type": "Record:Outcome",
+        "work": 293
+      }
+    },
+    {
+      "case": "both-booleans",
+      "business_match": true,
+      "baseline": {
+        "status": "success",
+        "value": 3
+      },
+      "result": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value": {
+          "total": 3,
+          "valid": true
+        },
+        "value_type": "Record:Outcome",
+        "work": 523
+      }
+    },
+    {
+      "case": "negative",
+      "business_match": true,
+      "baseline": {
+        "status": "success",
+        "value": -3
+      },
+      "result": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value": {
+          "total": -3,
+          "valid": true
+        },
+        "value_type": "Record:Outcome",
+        "work": 545
+      }
+    },
+    {
+      "case": "inactive-overflow",
+      "business_match": true,
+      "baseline": {
+        "status": "success",
+        "value": 9223372036854775807
+      },
+      "result": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value": {
+          "total": 9223372036854775807,
+          "valid": true
+        },
+        "value_type": "Record:Outcome",
+        "work": 559
+      }
+    },
+    {
+      "case": "positive-overflow",
+      "business_match": true,
+      "baseline": {
+        "status": "integer-overflow",
+        "value": null
+      },
+      "result": {
+        "location": "/program/functions/active_sum/body/5/2/3/2",
+        "reason": "RR_OVERFLOW",
+        "schema": "bagaev-typed-record-result/12",
+        "status": "integer-overflow",
+        "value": null,
+        "value_type": null,
+        "work": 480
+      }
+    },
+    {
+      "case": "negative-overflow",
+      "business_match": true,
+      "baseline": {
+        "status": "integer-overflow",
+        "value": null
+      },
+      "result": {
+        "location": "/program/functions/active_sum/body/5/2/3/2",
+        "reason": "RR_OVERFLOW",
+        "schema": "bagaev-typed-record-result/12",
+        "status": "integer-overflow",
+        "value": null,
+        "value_type": null,
+        "work": 484
+      }
+    },
+    {
+      "case": "cancellation",
+      "business_match": true,
+      "baseline": {
+        "status": "success",
+        "value": 0
+      },
+      "result": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value": {
+          "total": 0,
+          "valid": true
+        },
+        "value_type": "Record:Outcome",
+        "work": 617
+      }
+    },
+    {
+      "case": "sixteen",
+      "business_match": true,
+      "baseline": {
+        "status": "success",
+        "value": 16
+      },
+      "result": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value": {
+          "total": 16,
+          "valid": true
+        },
+        "value_type": "Record:Outcome",
+        "work": 2293
+      }
+    },
+    {
+      "case": "seventeen",
+      "business_match": true,
+      "baseline": {
+        "status": "invalid-input",
+        "value": null
+      },
+      "result": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value": {
+          "total": 0,
+          "valid": false
+        },
+        "value_type": "Record:Outcome",
+        "work": 33
+      }
+    },
+    {
+      "case": "object-root",
+      "business_match": true,
+      "baseline": {
+        "status": "invalid-input",
+        "value": null
+      },
+      "result": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value": {
+          "total": 0,
+          "valid": false
+        },
+        "value_type": "Record:Outcome",
+        "work": 28
+      }
+    },
+    {
+      "case": "null-root",
+      "business_match": true,
+      "baseline": {
+        "status": "invalid-input",
+        "value": null
+      },
+      "result": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value": {
+          "total": 0,
+          "valid": false
+        },
+        "value_type": "Record:Outcome",
+        "work": 26
+      }
+    },
+    {
+      "case": "missing-active",
+      "business_match": true,
+      "baseline": {
+        "status": "invalid-input",
+        "value": null
+      },
+      "result": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value": {
+          "total": 0,
+          "valid": false
+        },
+        "value_type": "Record:Outcome",
+        "work": 121
+      }
+    },
+    {
+      "case": "missing-amount",
+      "business_match": true,
+      "baseline": {
+        "status": "invalid-input",
+        "value": null
+      },
+      "result": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value": {
+          "total": 0,
+          "valid": false
+        },
+        "value_type": "Record:Outcome",
+        "work": 121
+      }
+    },
+    {
+      "case": "extra-field",
+      "business_match": true,
+      "baseline": {
+        "status": "invalid-input",
+        "value": null
+      },
+      "result": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value": {
+          "total": 0,
+          "valid": false
+        },
+        "value_type": "Record:Outcome",
+        "work": 121
+      }
+    },
+    {
+      "case": "integer-active",
+      "business_match": true,
+      "baseline": {
+        "status": "invalid-input",
+        "value": null
+      },
+      "result": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value": {
+          "total": 0,
+          "valid": false
+        },
+        "value_type": "Record:Outcome",
+        "work": 170
+      }
+    },
+    {
+      "case": "boolean-amount",
+      "business_match": true,
+      "baseline": {
+        "status": "invalid-input",
+        "value": null
+      },
+      "result": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value": {
+          "total": 0,
+          "valid": false
+        },
+        "value_type": "Record:Outcome",
+        "work": 140
+      }
+    },
+    {
+      "case": "fraction-amount",
+      "business_match": true,
+      "baseline": {
+        "status": "invalid-input",
+        "value": null
+      },
+      "result": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value": {
+          "total": 0,
+          "valid": false
+        },
+        "value_type": "Record:Outcome",
+        "work": 140
+      }
+    },
+    {
+      "case": "out-of-range",
+      "business_match": true,
+      "baseline": {
+        "status": "invalid-input",
+        "value": null
+      },
+      "result": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value": {
+          "total": 0,
+          "valid": false
+        },
+        "value_type": "Record:Outcome",
+        "work": 159
+      }
+    },
+    {
+      "case": "null-item",
+      "business_match": true,
+      "baseline": {
+        "status": "invalid-input",
+        "value": null
+      },
+      "result": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value": {
+          "total": 0,
+          "valid": false
+        },
+        "value_type": "Record:Outcome",
+        "work": 113
+      }
+    },
+    {
+      "case": "invalid-before-overflow",
+      "business_match": true,
+      "baseline": {
+        "status": "invalid-input",
+        "value": null
+      },
+      "result": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value": {
+          "total": 0,
+          "valid": false
+        },
+        "value_type": "Record:Outcome",
+        "work": 317
+      }
+    },
+    {
+      "case": "integer-negative-zero",
+      "business_match": true,
+      "baseline": {
+        "status": "success",
+        "value": 0
+      },
+      "result": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value": {
+          "total": 0,
+          "valid": true
+        },
+        "value_type": "Record:Outcome",
+        "work": 420
+      }
+    },
+    {
+      "case": "fraction-negative-zero",
+      "business_match": true,
+      "baseline": {
+        "status": "invalid-input",
+        "value": null
+      },
+      "result": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value": {
+          "total": 0,
+          "valid": false
+        },
+        "value_type": "Record:Outcome",
+        "work": 140
+      }
+    },
+    {
+      "case": "integral-exponent",
+      "business_match": true,
+      "baseline": {
+        "status": "invalid-input",
+        "value": null
+      },
+      "result": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value": {
+          "total": 0,
+          "valid": false
+        },
+        "value_type": "Record:Outcome",
+        "work": 140
+      }
+    }
+  ],
+  "limits": [
+    "Business status/value is the frozen oracle. Work and locations are observations, not pre-frozen full-envelope expectations.",
+    "No native execution, performance measurements or execution admission."
+  ]
+}

@@ -1,0 +1,5 @@
+[
+ {"name":"integer-negative-zero","raw_input":"[{\"amount\":-0,\"active\":true}]","expected":{"status":"success","value":0}},
+ {"name":"fraction-negative-zero","raw_input":"[{\"amount\":-0.0,\"active\":true}]","expected":{"status":"invalid-input","value":null}},
+ {"name":"integral-exponent","raw_input":"[{\"amount\":1e0,\"active\":true}]","expected":{"status":"invalid-input","value":null}}
+]
