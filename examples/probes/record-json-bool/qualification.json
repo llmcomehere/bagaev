@@ -1,0 +1,1246 @@
+{
+  "schema": "bagaev-json-bool-qualification/1",
+  "date": "2026-10-10",
+  "source_commit": "5a01f01d5aa8d03d8734057bfcb82cdeb124b97b",
+  "reference_calls": 82,
+  "new_operation_calls": 30,
+  "legacy_calls": 52,
+  "native_calls": 0,
+  "rows": [
+    {
+      "group": "new-operation",
+      "case": "true-false",
+      "profile": 12,
+      "result": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value": true,
+        "value_type": "Bool",
+        "work": 2
+      },
+      "full_match": true
+    },
+    {
+      "group": "new-operation",
+      "case": "true-true",
+      "profile": 12,
+      "result": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value": true,
+        "value_type": "Bool",
+        "work": 2
+      },
+      "full_match": true
+    },
+    {
+      "group": "new-operation",
+      "case": "false-false",
+      "profile": 12,
+      "result": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value": false,
+        "value_type": "Bool",
+        "work": 2
+      },
+      "full_match": true
+    },
+    {
+      "group": "new-operation",
+      "case": "false-true",
+      "profile": 12,
+      "result": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value": false,
+        "value_type": "Bool",
+        "work": 2
+      },
+      "full_match": true
+    },
+    {
+      "group": "new-operation",
+      "case": "null-false",
+      "profile": 12,
+      "result": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value": false,
+        "value_type": "Bool",
+        "work": 3
+      },
+      "full_match": true
+    },
+    {
+      "group": "new-operation",
+      "case": "null-true",
+      "profile": 12,
+      "result": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value": true,
+        "value_type": "Bool",
+        "work": 3
+      },
+      "full_match": true
+    },
+    {
+      "group": "new-operation",
+      "case": "int-false",
+      "profile": 12,
+      "result": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value": false,
+        "value_type": "Bool",
+        "work": 3
+      },
+      "full_match": true
+    },
+    {
+      "group": "new-operation",
+      "case": "int-true",
+      "profile": 12,
+      "result": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value": true,
+        "value_type": "Bool",
+        "work": 3
+      },
+      "full_match": true
+    },
+    {
+      "group": "new-operation",
+      "case": "text-false",
+      "profile": 12,
+      "result": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value": false,
+        "value_type": "Bool",
+        "work": 3
+      },
+      "full_match": true
+    },
+    {
+      "group": "new-operation",
+      "case": "text-true",
+      "profile": 12,
+      "result": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value": true,
+        "value_type": "Bool",
+        "work": 3
+      },
+      "full_match": true
+    },
+    {
+      "group": "new-operation",
+      "case": "array-false",
+      "profile": 12,
+      "result": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value": false,
+        "value_type": "Bool",
+        "work": 3
+      },
+      "full_match": true
+    },
+    {
+      "group": "new-operation",
+      "case": "array-true",
+      "profile": 12,
+      "result": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value": true,
+        "value_type": "Bool",
+        "work": 3
+      },
+      "full_match": true
+    },
+    {
+      "group": "new-operation",
+      "case": "object-false",
+      "profile": 12,
+      "result": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value": false,
+        "value_type": "Bool",
+        "work": 3
+      },
+      "full_match": true
+    },
+    {
+      "group": "new-operation",
+      "case": "object-true",
+      "profile": 12,
+      "result": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value": true,
+        "value_type": "Bool",
+        "work": 3
+      },
+      "full_match": true
+    },
+    {
+      "group": "new-operation",
+      "case": "missing-field",
+      "profile": 12,
+      "result": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value": true,
+        "value_type": "Bool",
+        "work": 4
+      },
+      "full_match": true
+    },
+    {
+      "group": "new-operation",
+      "case": "lazy-true",
+      "profile": 12,
+      "result": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value": true,
+        "value_type": "Bool",
+        "work": 2
+      },
+      "full_match": true
+    },
+    {
+      "group": "new-operation",
+      "case": "lazy-false",
+      "profile": 12,
+      "result": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value": false,
+        "value_type": "Bool",
+        "work": 2
+      },
+      "full_match": true
+    },
+    {
+      "group": "new-operation",
+      "case": "fallback-overflow",
+      "profile": 12,
+      "result": {
+        "location": "/program/functions/main/body/2/1",
+        "reason": "RR_OVERFLOW",
+        "schema": "bagaev-typed-record-result/12",
+        "status": "integer-overflow",
+        "value": null,
+        "value_type": null,
+        "work": 6
+      },
+      "full_match": true
+    },
+    {
+      "group": "new-operation",
+      "case": "wrong-fallback",
+      "profile": 12,
+      "result": {
+        "location": "/program/functions/main/body/2",
+        "reason": "RR_TYPE",
+        "schema": "bagaev-typed-record-result/12",
+        "status": "invalid-ir",
+        "value": null,
+        "value_type": null,
+        "work": 0
+      },
+      "full_match": true
+    },
+    {
+      "group": "new-operation",
+      "case": "legacy-refusal",
+      "profile": 11,
+      "result": {
+        "location": "/program/functions/main/body",
+        "reason": "RR_SHAPE",
+        "schema": "bagaev-typed-record-result/11",
+        "status": "invalid-ir",
+        "value": null,
+        "value_type": null,
+        "work": 0
+      },
+      "full_match": true
+    },
+    {
+      "group": "new-operation",
+      "case": "fraction-false",
+      "profile": 12,
+      "result": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value": false,
+        "value_type": "Bool",
+        "work": 3
+      },
+      "full_match": true
+    },
+    {
+      "group": "new-operation",
+      "case": "fraction-true",
+      "profile": 12,
+      "result": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value": true,
+        "value_type": "Bool",
+        "work": 3
+      },
+      "full_match": true
+    },
+    {
+      "group": "new-operation",
+      "case": "exponent-false",
+      "profile": 12,
+      "result": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value": false,
+        "value_type": "Bool",
+        "work": 3
+      },
+      "full_match": true
+    },
+    {
+      "group": "new-operation",
+      "case": "exponent-true",
+      "profile": 12,
+      "result": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value": true,
+        "value_type": "Bool",
+        "work": 3
+      },
+      "full_match": true
+    },
+    {
+      "group": "new-operation",
+      "case": "negative-zero-false",
+      "profile": 12,
+      "result": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value": false,
+        "value_type": "Bool",
+        "work": 3
+      },
+      "full_match": true
+    },
+    {
+      "group": "new-operation",
+      "case": "negative-zero-true",
+      "profile": 12,
+      "result": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value": true,
+        "value_type": "Bool",
+        "work": 3
+      },
+      "full_match": true
+    },
+    {
+      "group": "new-operation",
+      "case": "outer-old-schema",
+      "profile": 12,
+      "result": {
+        "location": "/schema",
+        "reason": "RR_VERSION",
+        "schema": "bagaev-typed-record-result/12",
+        "status": "invalid-ir",
+        "value": null,
+        "value_type": null,
+        "work": 0
+      },
+      "full_match": true
+    },
+    {
+      "group": "new-operation",
+      "case": "inner-old-schema",
+      "profile": 12,
+      "result": {
+        "location": "/program/schema",
+        "reason": "RR_VERSION",
+        "schema": "bagaev-typed-record-result/12",
+        "status": "invalid-ir",
+        "value": null,
+        "value_type": null,
+        "work": 0
+      },
+      "full_match": true
+    },
+    {
+      "group": "new-operation",
+      "case": "missing-argument",
+      "profile": 12,
+      "result": {
+        "location": "/arguments",
+        "reason": "RR_ARGUMENT",
+        "schema": "bagaev-typed-record-result/12",
+        "status": "invalid-ir",
+        "value": null,
+        "value_type": null,
+        "work": 0
+      },
+      "full_match": true
+    },
+    {
+      "group": "new-operation",
+      "case": "wrong-json-operand",
+      "profile": 12,
+      "result": {
+        "location": "/program/functions/main/body/1",
+        "reason": "RR_TYPE",
+        "schema": "bagaev-typed-record-result/12",
+        "status": "invalid-ir",
+        "value": null,
+        "value_type": null,
+        "work": 0
+      },
+      "full_match": true
+    },
+    {
+      "group": "legacy-replay",
+      "case": "cases-0-11",
+      "profile": 11,
+      "result": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-record-result/11",
+        "status": "success",
+        "value": 0,
+        "value_type": "Int64",
+        "work": 98
+      },
+      "full_match": true
+    },
+    {
+      "group": "legacy-replay",
+      "case": "cases-0-12",
+      "profile": 12,
+      "result": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value": 0,
+        "value_type": "Int64",
+        "work": 98
+      },
+      "full_match": true
+    },
+    {
+      "group": "legacy-replay",
+      "case": "cases-1-11",
+      "profile": 11,
+      "result": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-record-result/11",
+        "status": "success",
+        "value": 0,
+        "value_type": "Int64",
+        "work": 98
+      },
+      "full_match": true
+    },
+    {
+      "group": "legacy-replay",
+      "case": "cases-1-12",
+      "profile": 12,
+      "result": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value": 0,
+        "value_type": "Int64",
+        "work": 98
+      },
+      "full_match": true
+    },
+    {
+      "group": "legacy-replay",
+      "case": "cases-2-11",
+      "profile": 11,
+      "result": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-record-result/11",
+        "status": "success",
+        "value": 7,
+        "value_type": "Int64",
+        "work": 108
+      },
+      "full_match": true
+    },
+    {
+      "group": "legacy-replay",
+      "case": "cases-2-12",
+      "profile": 12,
+      "result": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value": 7,
+        "value_type": "Int64",
+        "work": 108
+      },
+      "full_match": true
+    },
+    {
+      "group": "legacy-replay",
+      "case": "cases-3-11",
+      "profile": 11,
+      "result": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-record-result/11",
+        "status": "success",
+        "value": 7,
+        "value_type": "Int64",
+        "work": 118
+      },
+      "full_match": true
+    },
+    {
+      "group": "legacy-replay",
+      "case": "cases-3-12",
+      "profile": 12,
+      "result": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value": 7,
+        "value_type": "Int64",
+        "work": 118
+      },
+      "full_match": true
+    },
+    {
+      "group": "legacy-replay",
+      "case": "cases-4-11",
+      "profile": 11,
+      "result": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-record-result/11",
+        "status": "success",
+        "value": 7,
+        "value_type": "Int64",
+        "work": 108
+      },
+      "full_match": true
+    },
+    {
+      "group": "legacy-replay",
+      "case": "cases-4-12",
+      "profile": 12,
+      "result": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value": 7,
+        "value_type": "Int64",
+        "work": 108
+      },
+      "full_match": true
+    },
+    {
+      "group": "legacy-replay",
+      "case": "cases-5-11",
+      "profile": 11,
+      "result": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-record-result/11",
+        "status": "success",
+        "value": 4,
+        "value_type": "Int64",
+        "work": 113
+      },
+      "full_match": true
+    },
+    {
+      "group": "legacy-replay",
+      "case": "cases-5-12",
+      "profile": 12,
+      "result": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value": 4,
+        "value_type": "Int64",
+        "work": 113
+      },
+      "full_match": true
+    },
+    {
+      "group": "legacy-replay",
+      "case": "cases-6-11",
+      "profile": 11,
+      "result": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-record-result/11",
+        "status": "success",
+        "value": 1,
+        "value_type": "Int64",
+        "work": 108
+      },
+      "full_match": true
+    },
+    {
+      "group": "legacy-replay",
+      "case": "cases-6-12",
+      "profile": 12,
+      "result": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value": 1,
+        "value_type": "Int64",
+        "work": 108
+      },
+      "full_match": true
+    },
+    {
+      "group": "legacy-replay",
+      "case": "cases-7-11",
+      "profile": 11,
+      "result": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-record-result/11",
+        "status": "success",
+        "value": 4,
+        "value_type": "Int64",
+        "work": 113
+      },
+      "full_match": true
+    },
+    {
+      "group": "legacy-replay",
+      "case": "cases-7-12",
+      "profile": 12,
+      "result": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value": 4,
+        "value_type": "Int64",
+        "work": 113
+      },
+      "full_match": true
+    },
+    {
+      "group": "legacy-replay",
+      "case": "cases-8-11",
+      "profile": 11,
+      "result": {
+        "location": "/program/functions/main/body/5/2",
+        "reason": "RR_OVERFLOW",
+        "schema": "bagaev-typed-record-result/11",
+        "status": "integer-overflow",
+        "value": null,
+        "value_type": null,
+        "work": 24
+      },
+      "full_match": true
+    },
+    {
+      "group": "legacy-replay",
+      "case": "cases-8-12",
+      "profile": 12,
+      "result": {
+        "location": "/program/functions/main/body/5/2",
+        "reason": "RR_OVERFLOW",
+        "schema": "bagaev-typed-record-result/12",
+        "status": "integer-overflow",
+        "value": null,
+        "value_type": null,
+        "work": 24
+      },
+      "full_match": true
+    },
+    {
+      "group": "legacy-replay",
+      "case": "cases-9-11",
+      "profile": 11,
+      "result": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-record-result/11",
+        "status": "success",
+        "value": 9223372036854775807,
+        "value_type": "Int64",
+        "work": 113
+      },
+      "full_match": true
+    },
+    {
+      "group": "legacy-replay",
+      "case": "cases-9-12",
+      "profile": 12,
+      "result": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value": 9223372036854775807,
+        "value_type": "Int64",
+        "work": 113
+      },
+      "full_match": true
+    },
+    {
+      "group": "legacy-replay",
+      "case": "cases-10-11",
+      "profile": 11,
+      "result": {
+        "location": "/program/functions/main/body/5/2",
+        "reason": "RR_OVERFLOW",
+        "schema": "bagaev-typed-record-result/11",
+        "status": "integer-overflow",
+        "value": null,
+        "value_type": null,
+        "work": 24
+      },
+      "full_match": true
+    },
+    {
+      "group": "legacy-replay",
+      "case": "cases-10-12",
+      "profile": 12,
+      "result": {
+        "location": "/program/functions/main/body/5/2",
+        "reason": "RR_OVERFLOW",
+        "schema": "bagaev-typed-record-result/12",
+        "status": "integer-overflow",
+        "value": null,
+        "value_type": null,
+        "work": 24
+      },
+      "full_match": true
+    },
+    {
+      "group": "legacy-replay",
+      "case": "cases-11-11",
+      "profile": 11,
+      "result": {
+        "location": "/program/functions/main/body/5/2/2",
+        "reason": "RR_OVERFLOW",
+        "schema": "bagaev-typed-record-result/11",
+        "status": "integer-overflow",
+        "value": null,
+        "value_type": null,
+        "work": 34
+      },
+      "full_match": true
+    },
+    {
+      "group": "legacy-replay",
+      "case": "cases-11-12",
+      "profile": 12,
+      "result": {
+        "location": "/program/functions/main/body/5/2/2",
+        "reason": "RR_OVERFLOW",
+        "schema": "bagaev-typed-record-result/12",
+        "status": "integer-overflow",
+        "value": null,
+        "value_type": null,
+        "work": 34
+      },
+      "full_match": true
+    },
+    {
+      "group": "legacy-replay",
+      "case": "boundary-cases-0-11",
+      "profile": 11,
+      "result": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-record-result/11",
+        "status": "success",
+        "value": 120,
+        "value_type": "Int64",
+        "work": 178
+      },
+      "full_match": true
+    },
+    {
+      "group": "legacy-replay",
+      "case": "boundary-cases-0-12",
+      "profile": 12,
+      "result": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value": 120,
+        "value_type": "Int64",
+        "work": 178
+      },
+      "full_match": true
+    },
+    {
+      "group": "legacy-replay",
+      "case": "boundary-cases-1-11",
+      "profile": 11,
+      "result": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-record-result/11",
+        "status": "success",
+        "value": 120,
+        "value_type": "Int64",
+        "work": 258
+      },
+      "full_match": true
+    },
+    {
+      "group": "legacy-replay",
+      "case": "boundary-cases-1-12",
+      "profile": 12,
+      "result": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value": 120,
+        "value_type": "Int64",
+        "work": 258
+      },
+      "full_match": true
+    },
+    {
+      "group": "legacy-replay",
+      "case": "boundary-cases-2-11",
+      "profile": 11,
+      "result": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-record-result/11",
+        "status": "success",
+        "value": 120,
+        "value_type": "Int64",
+        "work": 178
+      },
+      "full_match": true
+    },
+    {
+      "group": "legacy-replay",
+      "case": "boundary-cases-2-12",
+      "profile": 12,
+      "result": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value": 120,
+        "value_type": "Int64",
+        "work": 178
+      },
+      "full_match": true
+    },
+    {
+      "group": "legacy-replay",
+      "case": "boundary-cases-3-11",
+      "profile": 11,
+      "result": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-record-result/11",
+        "status": "success",
+        "value": 56,
+        "value_type": "Int64",
+        "work": 218
+      },
+      "full_match": true
+    },
+    {
+      "group": "legacy-replay",
+      "case": "boundary-cases-3-12",
+      "profile": 12,
+      "result": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value": 56,
+        "value_type": "Int64",
+        "work": 218
+      },
+      "full_match": true
+    },
+    {
+      "group": "legacy-replay",
+      "case": "boundary-cases-4-11",
+      "profile": 11,
+      "result": {
+        "location": "/program/functions/main/body/5/2",
+        "reason": "RR_OVERFLOW",
+        "schema": "bagaev-typed-record-result/11",
+        "status": "integer-overflow",
+        "value": null,
+        "value_type": null,
+        "work": 24
+      },
+      "full_match": true
+    },
+    {
+      "group": "legacy-replay",
+      "case": "boundary-cases-4-12",
+      "profile": 12,
+      "result": {
+        "location": "/program/functions/main/body/5/2",
+        "reason": "RR_OVERFLOW",
+        "schema": "bagaev-typed-record-result/12",
+        "status": "integer-overflow",
+        "value": null,
+        "value_type": null,
+        "work": 24
+      },
+      "full_match": true
+    },
+    {
+      "group": "legacy-replay",
+      "case": "boundary-cases-5-11",
+      "profile": 11,
+      "result": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-record-result/11",
+        "status": "success",
+        "value": 0,
+        "value_type": "Int64",
+        "work": 178
+      },
+      "full_match": true
+    },
+    {
+      "group": "legacy-replay",
+      "case": "boundary-cases-5-12",
+      "profile": 12,
+      "result": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value": 0,
+        "value_type": "Int64",
+        "work": 178
+      },
+      "full_match": true
+    },
+    {
+      "group": "legacy-replay",
+      "case": "order-cases-0-11",
+      "profile": 11,
+      "result": {
+        "location": "/program/functions/main/body/5/2",
+        "reason": "RR_OVERFLOW",
+        "schema": "bagaev-typed-record-result/11",
+        "status": "integer-overflow",
+        "value": null,
+        "value_type": null,
+        "work": 24
+      },
+      "full_match": true
+    },
+    {
+      "group": "legacy-replay",
+      "case": "order-cases-0-12",
+      "profile": 12,
+      "result": {
+        "location": "/program/functions/main/body/5/2",
+        "reason": "RR_OVERFLOW",
+        "schema": "bagaev-typed-record-result/12",
+        "status": "integer-overflow",
+        "value": null,
+        "value_type": null,
+        "work": 24
+      },
+      "full_match": true
+    },
+    {
+      "group": "legacy-replay",
+      "case": "order-cases-1-11",
+      "profile": 11,
+      "result": {
+        "location": "/program/functions/main/body/5/2/2",
+        "reason": "RR_OVERFLOW",
+        "schema": "bagaev-typed-record-result/11",
+        "status": "integer-overflow",
+        "value": null,
+        "value_type": null,
+        "work": 34
+      },
+      "full_match": true
+    },
+    {
+      "group": "legacy-replay",
+      "case": "order-cases-1-12",
+      "profile": 12,
+      "result": {
+        "location": "/program/functions/main/body/5/2/2",
+        "reason": "RR_OVERFLOW",
+        "schema": "bagaev-typed-record-result/12",
+        "status": "integer-overflow",
+        "value": null,
+        "value_type": null,
+        "work": 34
+      },
+      "full_match": true
+    },
+    {
+      "group": "legacy-replay",
+      "case": "order-cases-2-11",
+      "profile": 11,
+      "result": {
+        "location": "/program/functions/main/body/5/2",
+        "reason": "RR_OVERFLOW",
+        "schema": "bagaev-typed-record-result/11",
+        "status": "integer-overflow",
+        "value": null,
+        "value_type": null,
+        "work": 24
+      },
+      "full_match": true
+    },
+    {
+      "group": "legacy-replay",
+      "case": "order-cases-2-12",
+      "profile": 12,
+      "result": {
+        "location": "/program/functions/main/body/5/2",
+        "reason": "RR_OVERFLOW",
+        "schema": "bagaev-typed-record-result/12",
+        "status": "integer-overflow",
+        "value": null,
+        "value_type": null,
+        "work": 24
+      },
+      "full_match": true
+    },
+    {
+      "group": "legacy-replay",
+      "case": "order-cases-3-11",
+      "profile": 11,
+      "result": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-record-result/11",
+        "status": "success",
+        "value": 9223372036854775806,
+        "value_type": "Int64",
+        "work": 123
+      },
+      "full_match": true
+    },
+    {
+      "group": "legacy-replay",
+      "case": "order-cases-3-12",
+      "profile": 12,
+      "result": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value": 9223372036854775806,
+        "value_type": "Int64",
+        "work": 123
+      },
+      "full_match": true
+    },
+    {
+      "group": "legacy-replay",
+      "case": "order-cases-4-11",
+      "profile": 11,
+      "result": {
+        "location": "/program/functions/main/body/5/2",
+        "reason": "RR_OVERFLOW",
+        "schema": "bagaev-typed-record-result/11",
+        "status": "integer-overflow",
+        "value": null,
+        "value_type": null,
+        "work": 24
+      },
+      "full_match": true
+    },
+    {
+      "group": "legacy-replay",
+      "case": "order-cases-4-12",
+      "profile": 12,
+      "result": {
+        "location": "/program/functions/main/body/5/2",
+        "reason": "RR_OVERFLOW",
+        "schema": "bagaev-typed-record-result/12",
+        "status": "integer-overflow",
+        "value": null,
+        "value_type": null,
+        "work": 24
+      },
+      "full_match": true
+    },
+    {
+      "group": "legacy-replay",
+      "case": "order-cases-5-11",
+      "profile": 11,
+      "result": {
+        "location": "/program/functions/main/body/5/2/2",
+        "reason": "RR_OVERFLOW",
+        "schema": "bagaev-typed-record-result/11",
+        "status": "integer-overflow",
+        "value": null,
+        "value_type": null,
+        "work": 34
+      },
+      "full_match": true
+    },
+    {
+      "group": "legacy-replay",
+      "case": "order-cases-5-12",
+      "profile": 12,
+      "result": {
+        "location": "/program/functions/main/body/5/2/2",
+        "reason": "RR_OVERFLOW",
+        "schema": "bagaev-typed-record-result/12",
+        "status": "integer-overflow",
+        "value": null,
+        "value_type": null,
+        "work": 34
+      },
+      "full_match": true
+    },
+    {
+      "group": "legacy-replay",
+      "case": "order-cases-6-11",
+      "profile": 11,
+      "result": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-record-result/11",
+        "status": "success",
+        "value": -1,
+        "value_type": "Int64",
+        "work": 108
+      },
+      "full_match": true
+    },
+    {
+      "group": "legacy-replay",
+      "case": "order-cases-6-12",
+      "profile": 12,
+      "result": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value": -1,
+        "value_type": "Int64",
+        "work": 108
+      },
+      "full_match": true
+    },
+    {
+      "group": "legacy-replay",
+      "case": "order-cases-7-11",
+      "profile": 11,
+      "result": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-record-result/11",
+        "status": "success",
+        "value": 0,
+        "value_type": "Int64",
+        "work": 108
+      },
+      "full_match": true
+    },
+    {
+      "group": "legacy-replay",
+      "case": "order-cases-7-12",
+      "profile": 12,
+      "result": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value": 0,
+        "value_type": "Int64",
+        "work": 108
+      },
+      "full_match": true
+    }
+  ],
+  "limits": [
+    "Finite exact-envelope checks, not performance or model-benefit measurements.",
+    "Legacy replay uses26 existing active-total cases on11 and12; only explicit input/output schema versions change.",
+    "No native12 interface is supplied."
+  ]
+}

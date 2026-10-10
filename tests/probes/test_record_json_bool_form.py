@@ -1,4 +1,4 @@
-"""Explicit form6 data checks. Frozen runtime cases here are NOT_RUN."""
+"""Explicit form6 data checks; this test module does not execute the reference."""
 from pathlib import Path
 import copy,hashlib,json,sys,unittest
 ROOT=Path(__file__).resolve().parents[2];sys.path.insert(0,str(ROOT/'src'))
