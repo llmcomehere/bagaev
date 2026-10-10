@@ -26,7 +26,7 @@ pub struct MatchCase{pub name:String,pub slot:usize,pub body:NodeId}
 #[derive(Clone, Debug)]
 pub enum NodeKind {
     Int(i64), Bool(bool), Text(String),
-    JsonKind{operand:NodeId},JsonLen{operand:NodeId},JsonInt{operand:NodeId},JsonIsText{operand:NodeId},JsonField{object:NodeId,key:String},JsonAt{array:NodeId,index:NodeId},JsonTextOr{json:NodeId,fallback:NodeId},
+    JsonKind{operand:NodeId},JsonLen{operand:NodeId},JsonInt{operand:NodeId},JsonIsText{operand:NodeId},JsonField{object:NodeId,key:String},JsonAt{array:NodeId,index:NodeId},JsonTextOr{json:NodeId,fallback:NodeId},JsonBoolOr{json:NodeId,fallback:NodeId},
     Variant{definition:usize,alternative:usize,value:NodeId}, Match{variant:NodeId,cases:Vec<MatchCase>},
     RecordList{definition:usize,values:Vec<NodeId>}, RecordsLength{list:NodeId}, RecordsAt{list:NodeId,index:NodeId},
     Record{definition:usize,values:Vec<NodeId>}, Field{record:NodeId,name:String},
@@ -47,7 +47,7 @@ pub enum NodeKind {
 impl NodeKind {
     pub fn name(&self) -> &'static str {
         match self {
-            Self::JsonKind{..}=>"json.kind",Self::JsonLen{..}=>"json.len",Self::JsonInt{..}=>"json.int",Self::JsonIsText{..}=>"json.is_text",Self::JsonField{..}=>"json.field",Self::JsonAt{..}=>"json.at",Self::JsonTextOr{..}=>"json.text_or",
+            Self::JsonKind{..}=>"json.kind",Self::JsonLen{..}=>"json.len",Self::JsonInt{..}=>"json.int",Self::JsonIsText{..}=>"json.is_text",Self::JsonField{..}=>"json.field",Self::JsonAt{..}=>"json.at",Self::JsonTextOr{..}=>"json.text_or",Self::JsonBoolOr{..}=>"json.bool_or",
             Self::Variant{..}=>"variant",Self::Match{..}=>"match",
             Self::RecordList{..}=>"records.list",Self::RecordsLength{..}=>"records.len",Self::RecordsAt{..}=>"records.at",
             Self::Record{..}=>"record",Self::Field{..}=>"field",
@@ -63,7 +63,7 @@ impl NodeKind {
     /// Source evaluation order; includes both lazy arms and a loop's body statically.
     pub fn children(&self) -> Vec<NodeId> {
         match self {
-            Self::JsonKind{operand}|Self::JsonLen{operand}|Self::JsonInt{operand}|Self::JsonIsText{operand}=>vec![*operand],Self::JsonField{object,..}=>vec![*object],Self::JsonAt{array,index}=>vec![*array,*index],Self::JsonTextOr{json,fallback}=>vec![*json,*fallback],
+            Self::JsonKind{operand}|Self::JsonLen{operand}|Self::JsonInt{operand}|Self::JsonIsText{operand}=>vec![*operand],Self::JsonField{object,..}=>vec![*object],Self::JsonAt{array,index}=>vec![*array,*index],Self::JsonTextOr{json,fallback}|Self::JsonBoolOr{json,fallback}=>vec![*json,*fallback],
             Self::Variant{value,..}=>vec![*value],Self::Match{variant,cases}=>{let mut v=vec![*variant];v.extend(cases.iter().map(|c|c.body));v},
             Self::RecordList{values,..}=>values.clone(),Self::RecordsLength{list}=>vec![*list],Self::RecordsAt{list,index}=>vec![*list,*index],
             Self::Record{values,..}=>values.clone(),Self::Field{record,..}=>vec![*record],

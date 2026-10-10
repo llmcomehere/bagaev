@@ -20,6 +20,7 @@ impl Owned{
 }
 impl<'a> View<'a>{
  fn value(self)->Option<&'a Value>{self.id.and_then(|i|self.owner.document.values.get(i))}
+ pub fn boolean(self)->Option<bool>{match self.value(){Some(Value::Bool(v))=>Some(*v),_=>None}}
  pub fn kind(self)->&'static str{match self.value(){None=>"missing",Some(Value::Null)=>"null",Some(Value::Bool(_))=>"bool",Some(Value::Integer(_))=>"int",Some(Value::Number(_))=>"number",Some(Value::String(_))=>"text",Some(Value::Array(_))=>"array",Some(Value::Object(_))=>"object"}}
  pub fn field_charge(self,key:&str)->u64{match self.value(){Some(Value::Object(m))=>(m.len() as u64).saturating_mul((key.len() as u64).saturating_add(1)),_=>0}}
  pub fn field(self,key:&str)->Self{let id=match self.value(){Some(Value::Object(m))=>m.get(&JsonString::from_str(key)).copied(),_=>None};Self{owner:self.owner,id}}

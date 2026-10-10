@@ -168,6 +168,7 @@ impl FunctionEmitter<'_, '_> {
         let kind=node.kind().clone(); let ty=llvm_ty(node.ty());
         writeln!(self.output,"  ; node {id}")?; self.tick(id)?;
         match kind {
+            NodeKind::JsonBoolOr{..}=>Err(EmitError::Interface),
             NodeKind::RecordsPush{..}=>Err(EmitError::Interface),
             NodeKind::ListPush{..}=>Err(EmitError::Interface),
             NodeKind::Variant{definition,alternative,value}=>{
