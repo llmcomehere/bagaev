@@ -59,4 +59,21 @@ mod tests {
   assert!(typed_record::prepare_json_arguments_v12(&p,raw.as_bytes()).is_ok());raw.insert_str(raw.len()-2,",0");
   assert_eq!(typed_record::prepare_json_arguments_v12(&p,raw.as_bytes()).err().unwrap(),"PREPARED_VALUE_BOUNDS");
  }
+ #[test]
+ fn work_limit_and_lazy_reset_literal_oracle(){
+  // Inner loop costs1026; outer setup and projection cost4. 63 rounds=64642.
+  for (count,arg,status,work,value,ty,location,reason) in [
+   (63,"null","success",64642,"false","\"Bool\"","null","null"),
+   (64,"null","work-limit",65536,"null","null","\"/program/functions/main/body/2/5/5\"","\"RR_WORK\""),
+   (64,"true","success",2,"true","\"Bool\"","null","null")
+  ] {
+   let fallback=format!(r#"["loop",{},"i","a",["bool",false],["loop",1024,"j","b",["bool",false],["use","b"]]]"#,count);
+   let src=String::from_utf8(source(12,"Json")).unwrap().replace("[\"bool\",false]",&fallback);
+   let p=typed_record::prepare_json_program_v12(src.as_bytes()).unwrap();drop(src);
+   let args=format!("[{}]",arg);let call=typed_record::prepare_json_arguments_v12(&p,args.as_bytes()).unwrap();drop(args);
+   let expected=format!("{{\"location\":{},\"reason\":{},\"schema\":\"bagaev-typed-record-result/12\",\"status\":\"{}\",\"value\":{},\"value_type\":{},\"work\":{}}}\n",location,reason,status,value,ty,work).into_bytes();
+   assert_eq!(typed_record::evaluate_prepared_json_v12(&call).unwrap(),expected);
+   assert_eq!(typed_record::evaluate_prepared_json_v12(&call).unwrap(),expected);
+  }
+ }
 }
