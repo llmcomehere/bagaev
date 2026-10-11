@@ -1,7 +1,8 @@
 # Candidate native12 Boolean projection
 
-Status: source/data checks only. Generated LLVM compilation and generated-kernel
-execution are NOT_RUN. This candidate is not accepted native12 support.
+Status: bounded generated-native qualification completed on2026-10-11.
+Integration still requires separate exact-head review and successful CI; these
+finite observations do not establish general or production native12 support.
 
 The [reference Boolean operation](record-json-bool-proposal.md) and
 [JSON active-total application](json-active-total.md) already have finite reference
@@ -40,9 +41,25 @@ Prepared/source-once profile11 APIs are unchanged; no prepared12 API is added.
   emitted data and six invalid invocations refused. The JSON active-total source
   also emitted module/binding data with matching artifact digest.
 
-Before acceptance: compile reviewed generated modules with the admitted LLVM
-toolchain, check actual kernels at O0/O2 and two scratch fills, compare complete
-values/work/refusal locations with reference, retain frozen application outcomes,
-and verify input snapshots, scratch guards/tails and owned output. Keep separate
-exact-head review and successful CI. No speed, cost or model-benefit claim follows
-from the current source/data checks.
+## Generated-native qualification on 2026-10-11
+
+Five exact reviewed modules were compiled with LLVM21.1.8 for x86-64 at O0/O2.
+The24 existing Boolean cases and23 frozen active-total application cases ran
+with both90 and165 scratch/output prefills:188 complete native results matched
+the pre-existing expectations, including value/type, work, reason and exact
+failure location. No reference interpreter was invoked during this replay.
+
+Input descriptor/payload snapshots were unchanged. Scratch boundary guards and
+unused tails were preserved; successful output was copied into owned bytes
+before releasing input and scratch. Module bindings were checked before calls.
+The47 cases are repeated controls, not188 independent semantic cases.
+
+[Public observations](../examples/probes/record-json-bool/native12-observations.json)
+record each case, module identity, optimization, fill, wire hash and complete
+result. The ordinary execution limits were unchanged. The source-once API from
+#241 is a separate reference slice; this native change does not add a native
+prepared12 API. Required review and exact-head CI remain integration gates.
+
+This is same-maintainer finite evidence, not independent reproduction, arbitrary
+pointer safety, hostile-kernel admission, general backend equivalence or a speed,
+cost or model-benefit result.

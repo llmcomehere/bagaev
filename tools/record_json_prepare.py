@@ -62,14 +62,16 @@ def arguments(raw, arity):
 def prepare(argv):
     p = transport.Parser(add_help=False, allow_abbrev=False)
     p.add_argument("source")
-    p.add_argument("--form", choices=("4", "5"), required=True)
+    p.add_argument("--form", choices=("4", "5", "6"), required=True)
     p.add_argument("--arguments", required=True)
     p.add_argument("--output", required=True)
     a = p.parse_args(argv)
     if a.form == "4":
         import bagaev_record_json_form as codec
-    else:
+    elif a.form == "5":
         import bagaev_record_wide_form as codec
+    else:
+        import bagaev_record_json_bool_form as codec
     source = transport.read_input(a.source)
     program = codec.decode(source)
     entry = program["functions"].get(program["entry"])
@@ -79,7 +81,7 @@ def prepare(argv):
     arguments(raw, len(entry["params"]))
     canonical = json.dumps(program, sort_keys=True, ensure_ascii=False,
                            separators=(",", ":"), allow_nan=False).encode("utf-8")
-    profile = b"10" if a.form == "4" else b"11"
+    profile = {"4": b"10", "5": b"11", "6": b"12"}[a.form]
     invocation = (b'{"schema":"bagaev-typed-record-invocation/' + profile
                   + b'","program":' + canonical + b',"arguments":' + raw + b"}")
     if len(invocation) > transport.LIMIT:

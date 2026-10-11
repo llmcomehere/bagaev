@@ -6,7 +6,7 @@ fractional or larger numeric values inside a Json argument before an application
 can inspect and refuse them.
 
 The separate [record_json_prepare.py](../tools/record_json_prepare.py) route
-requires explicit form4/profile10 or form5/profile11 and an entry whose
+requires explicit form4/profile10, form5/profile11 or form6/profile12 and an entry whose
 parameters are all Json. A zero-argument entry is allowed. It keeps existing
 source codecs and the old preparation route unchanged.
 
@@ -33,6 +33,14 @@ The tool constructs data only. It never launches a reference, compiler, kernel o
 network request and does not select an execution profile. Execution of the output
 requires separate authority and the existing checked runtime.
 
+For the explicitly versioned Boolean operation and JSON active-total specimen:
+
+    python tools/record_json_prepare.py examples/probes/json-active-total/ActiveJson.bagaev --form 6 --arguments arguments.json --output invocation.json
+
+Here arguments.json contains an outer argument array with the application's item
+array as its sole element. Form6 never falls back to form5, and selecting form6
+for a form5 source refuses. This adds no native execution or prepared native12 API.
+
 ## Checks and scope
 
 Thirteen literal argument cases were frozen before implementation. Five data-only
@@ -49,3 +57,9 @@ invocations then passed the already admitted reference11 with complete expected
 outcomes, including the fractional/large-number application refusals.
 This does not change the earlier typed preparation refusal or claim universal
 Json-runtime acceptance, native execution by this tool, or performance benefit.
+
+On 2026-10-10 the explicit form6 extension passed three new and five unchanged
+data tests with Python warnings treated as errors. Twenty-three actual CLI calls
+preserved the JSON active-total argument bytes, including -0, -0.0 and1e0 tokens.
+All23 resulting invocations matched the previously recorded complete reference12
+responses. These are new reference calls, not native calls or performance results.
