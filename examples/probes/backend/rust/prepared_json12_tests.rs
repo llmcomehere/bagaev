@@ -44,11 +44,17 @@ mod tests {
   let src=source(12,"Json");let p=typed_record::prepare_json_program_v12(&src).unwrap();
   assert!(typed_record::prepare_json_program_v12(&source(11,"Json")).is_err());
   assert!(typed_record::prepare_json_program_v11(&src).is_err());
-  assert!(typed_record::prepare_json_program_v12(&source(12,"Int64")).is_err());
+  let non_json=String::from_utf8(source(12,"Int64")).unwrap().replace("[\"json.bool_or\",[\"arg\",\"x\"],[\"bool\",false]]", "[\"bool\",false]");
+  assert_eq!(typed_record::prepare_json_program_v12(non_json.as_bytes()).err().unwrap(),"NATIVE_JSON_SIGNATURE");
+  assert!(typed_record::prepare_json_program_v12(&vec![b' ';transport::FRAME_LIMIT+1]).is_err());
   for raw in [b"{}".as_slice(),b"[]",b"[",b"[true,false]",b"[{\"x\":0,\"x\":1}]"] {assert!(typed_record::prepare_json_arguments_v12(&p,raw).is_err());}
   let max=transport::FRAME_LIMIT-70-p.source().canonical_bytes().len();let mut raw=b"[0]".to_vec();raw.resize(max,b' ');
   assert!(typed_record::prepare_json_arguments_v12(&p,&raw).is_ok());raw.push(b' ');
   assert_eq!(typed_record::prepare_json_arguments_v12(&p,&raw).err().unwrap(),"PREPARED_FRAME_BOUNDS");
+  let deep=format!("{}0{}","[".repeat(130),"]".repeat(130));
+  assert!(typed_record::prepare_json_arguments_v12(&p,deep.as_bytes()).is_ok());
+  let deeper=format!("{}0{}","[".repeat(131),"]".repeat(131));
+  assert!(typed_record::prepare_json_arguments_v12(&p,deeper.as_bytes()).err().unwrap().contains("Bounds"));
   let n=16380-p.source_values();let mut raw=format!("[[{}]]",vec!["0";n].join(","));
   assert!(typed_record::prepare_json_arguments_v12(&p,raw.as_bytes()).is_ok());raw.insert_str(raw.len()-2,",0");
   assert_eq!(typed_record::prepare_json_arguments_v12(&p,raw.as_bytes()).err().unwrap(),"PREPARED_VALUE_BOUNDS");
