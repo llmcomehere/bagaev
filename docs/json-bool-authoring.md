@@ -12,16 +12,24 @@ Choose `--form 6` explicitly; old tool defaults and versions are unchanged.
 - `tools/record_source_map.py`: expression ranges with required `--program-pin`,
   optional `--source-sha256` and `--pointer`. Raw layout identity is separate
   from the complete graph pin; repeated equal literals retain distinct ranges.
-- `tools/record_function.py`: read-only `extract` and `context --name NAME`,
+- `tools/record_function.py`: `extract` and `context --name NAME`,
   including `--locations` or `--source-body`. Canonical fragments contain only
   the selected function and type environment; direct callers/callees carry
   signatures/pins. Original body text/hash refers to the original full source,
   including internal comments, never the canonical fragment's coordinates.
+- `tools/record_function.py replace`: one existing body from a standalone
+  positional-call fragment, with required `--replacement`, `--base` and
+  `--function-pin`. Returns detached draft/2; types/entry/signatures and other
+  bodies stay unchanged. Stale pins, scope expansion and no-op refuse.
+- `tools/record_export.py`: canonical source6 from a focused `--draft` with
+  independently supplied `--base` and `--target`. Reconstructs the complete
+  packet instead of trusting its delta/flags. Additional keys, false flags
+  replaced by integer0, multiple changed bodies and wrong signatures refuse.
 
 Each command needs an input and a new `--output` path; the preparer also needs
 `--arguments`. Generic record_text prepare6 and inspect6 `--bounds` refuse
-`TOOL_USAGE` before reading inputs. Form6 function `replace` and
-`--callee-context` also refuse before I/O; draft/export tools remain on existing
+`TOOL_USAGE` before reading inputs. Form6 `--callee-context` and layout-preserving
+export also refuse before I/O; whole-source draft tools remain on existing
 profiles. A diagnostic's `valid_form` is syntax/lowering
 validity only. All tools report no semantic checking or execution admission;
 none runs the program or a compiler. Follow the existing bounded regular-file,
