@@ -35,9 +35,14 @@ retain language work and locations. Those fields are captured observations,
 not independently frozen full-envelope expectations; the oracle is the business
 status/value projection. Portable data tests do not launch the reference.
 
-The input is synthetic and bounded. There is no native12 adapter or kernel,
-performance/model-benefit measurement, persistence, concurrency or production
-admission. Use the explicit [lossless Json preparer](json-argument-prepare.md)
-with `--form 6` to construct invocation12 data. The compact guide and general
-record_text tool still select the existing profile11 route. Do not feed this
-source to that route implicitly.
+The input is synthetic and bounded. The original observations above executed
+no native12 adapter or kernel. Later finite native and source-once qualification
+is recorded separately in [PR #239](https://github.com/llmcomehere/bagaev/pull/239)
+and [PR #244](https://github.com/llmcomehere/bagaev/pull/244); those results do not
+turn the original reference captures into native execution or independent oracles.
+There is no performance/model-benefit, persistence, concurrency or production
+admission claim here. Use the explicit [lossless Json preparer](json-argument-prepare.md)
+with `--form 6` to construct invocation12 data. The explicit form6 authoring route
+is a separate slice in [PR #242](https://github.com/llmcomehere/bagaev/pull/242).
+Select the route supported by the checked-out revision; a profile11 default
+must not implicitly admit this profile12 source.
