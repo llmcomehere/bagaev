@@ -1,0 +1,3128 @@
+{
+  "status": "PASS",
+  "data_projection_calls": 188,
+  "successes": 176,
+  "unbound_failure_refusals": 12,
+  "native_calls": 0,
+  "reference_calls": 0,
+  "observations": [
+    {
+      "case": "bool-true-false",
+      "source_sha256": "5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+      "optimization": "O0",
+      "fill": 90,
+      "wire_sha256": "4e8e31bfdeb037816e95f1e15e865711039e84e8199cdbb74b96eb7fa662c3cb",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+        "work": 2,
+        "value": true
+      },
+      "json_sha256": "f68ca2ee1b7901911c2a19415e57868483b89bc3c9ffb6aca4c712ae98e3d455"
+    },
+    {
+      "case": "bool-true-false",
+      "source_sha256": "5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+      "optimization": "O0",
+      "fill": 165,
+      "wire_sha256": "4e8e31bfdeb037816e95f1e15e865711039e84e8199cdbb74b96eb7fa662c3cb",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+        "work": 2,
+        "value": true
+      },
+      "json_sha256": "f68ca2ee1b7901911c2a19415e57868483b89bc3c9ffb6aca4c712ae98e3d455"
+    },
+    {
+      "case": "bool-false-false",
+      "source_sha256": "5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+      "optimization": "O0",
+      "fill": 90,
+      "wire_sha256": "ab5bd356f98fee60750dc822bf341744093b9ea6692cec08775bfe4bb604e9a8",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+        "work": 2,
+        "value": false
+      },
+      "json_sha256": "cc39b70fe2485f5deb049b3b4cc597f97a93dcbaf6eb0dad750e0507dbc00732"
+    },
+    {
+      "case": "bool-false-false",
+      "source_sha256": "5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+      "optimization": "O0",
+      "fill": 165,
+      "wire_sha256": "ab5bd356f98fee60750dc822bf341744093b9ea6692cec08775bfe4bb604e9a8",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+        "work": 2,
+        "value": false
+      },
+      "json_sha256": "cc39b70fe2485f5deb049b3b4cc597f97a93dcbaf6eb0dad750e0507dbc00732"
+    },
+    {
+      "case": "bool-null-false",
+      "source_sha256": "5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+      "optimization": "O0",
+      "fill": 90,
+      "wire_sha256": "2954eb0073d211e7d109c4b9ce7f9a4141825c44418faad34dad99336adf12a7",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+        "work": 3,
+        "value": false
+      },
+      "json_sha256": "1cd0c6a2050a0e9ed2619daef7ad18775d783dbc286402074626eb0742efcd34"
+    },
+    {
+      "case": "bool-null-false",
+      "source_sha256": "5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+      "optimization": "O0",
+      "fill": 165,
+      "wire_sha256": "2954eb0073d211e7d109c4b9ce7f9a4141825c44418faad34dad99336adf12a7",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+        "work": 3,
+        "value": false
+      },
+      "json_sha256": "1cd0c6a2050a0e9ed2619daef7ad18775d783dbc286402074626eb0742efcd34"
+    },
+    {
+      "case": "bool-int-false",
+      "source_sha256": "5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+      "optimization": "O0",
+      "fill": 90,
+      "wire_sha256": "2954eb0073d211e7d109c4b9ce7f9a4141825c44418faad34dad99336adf12a7",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+        "work": 3,
+        "value": false
+      },
+      "json_sha256": "1cd0c6a2050a0e9ed2619daef7ad18775d783dbc286402074626eb0742efcd34"
+    },
+    {
+      "case": "bool-int-false",
+      "source_sha256": "5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+      "optimization": "O0",
+      "fill": 165,
+      "wire_sha256": "2954eb0073d211e7d109c4b9ce7f9a4141825c44418faad34dad99336adf12a7",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+        "work": 3,
+        "value": false
+      },
+      "json_sha256": "1cd0c6a2050a0e9ed2619daef7ad18775d783dbc286402074626eb0742efcd34"
+    },
+    {
+      "case": "bool-text-false",
+      "source_sha256": "5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+      "optimization": "O0",
+      "fill": 90,
+      "wire_sha256": "2954eb0073d211e7d109c4b9ce7f9a4141825c44418faad34dad99336adf12a7",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+        "work": 3,
+        "value": false
+      },
+      "json_sha256": "1cd0c6a2050a0e9ed2619daef7ad18775d783dbc286402074626eb0742efcd34"
+    },
+    {
+      "case": "bool-text-false",
+      "source_sha256": "5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+      "optimization": "O0",
+      "fill": 165,
+      "wire_sha256": "2954eb0073d211e7d109c4b9ce7f9a4141825c44418faad34dad99336adf12a7",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+        "work": 3,
+        "value": false
+      },
+      "json_sha256": "1cd0c6a2050a0e9ed2619daef7ad18775d783dbc286402074626eb0742efcd34"
+    },
+    {
+      "case": "bool-array-false",
+      "source_sha256": "5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+      "optimization": "O0",
+      "fill": 90,
+      "wire_sha256": "2954eb0073d211e7d109c4b9ce7f9a4141825c44418faad34dad99336adf12a7",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+        "work": 3,
+        "value": false
+      },
+      "json_sha256": "1cd0c6a2050a0e9ed2619daef7ad18775d783dbc286402074626eb0742efcd34"
+    },
+    {
+      "case": "bool-array-false",
+      "source_sha256": "5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+      "optimization": "O0",
+      "fill": 165,
+      "wire_sha256": "2954eb0073d211e7d109c4b9ce7f9a4141825c44418faad34dad99336adf12a7",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+        "work": 3,
+        "value": false
+      },
+      "json_sha256": "1cd0c6a2050a0e9ed2619daef7ad18775d783dbc286402074626eb0742efcd34"
+    },
+    {
+      "case": "bool-object-false",
+      "source_sha256": "5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+      "optimization": "O0",
+      "fill": 90,
+      "wire_sha256": "2954eb0073d211e7d109c4b9ce7f9a4141825c44418faad34dad99336adf12a7",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+        "work": 3,
+        "value": false
+      },
+      "json_sha256": "1cd0c6a2050a0e9ed2619daef7ad18775d783dbc286402074626eb0742efcd34"
+    },
+    {
+      "case": "bool-object-false",
+      "source_sha256": "5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+      "optimization": "O0",
+      "fill": 165,
+      "wire_sha256": "2954eb0073d211e7d109c4b9ce7f9a4141825c44418faad34dad99336adf12a7",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+        "work": 3,
+        "value": false
+      },
+      "json_sha256": "1cd0c6a2050a0e9ed2619daef7ad18775d783dbc286402074626eb0742efcd34"
+    },
+    {
+      "case": "bool-fraction-false",
+      "source_sha256": "5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+      "optimization": "O0",
+      "fill": 90,
+      "wire_sha256": "2954eb0073d211e7d109c4b9ce7f9a4141825c44418faad34dad99336adf12a7",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+        "work": 3,
+        "value": false
+      },
+      "json_sha256": "1cd0c6a2050a0e9ed2619daef7ad18775d783dbc286402074626eb0742efcd34"
+    },
+    {
+      "case": "bool-fraction-false",
+      "source_sha256": "5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+      "optimization": "O0",
+      "fill": 165,
+      "wire_sha256": "2954eb0073d211e7d109c4b9ce7f9a4141825c44418faad34dad99336adf12a7",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+        "work": 3,
+        "value": false
+      },
+      "json_sha256": "1cd0c6a2050a0e9ed2619daef7ad18775d783dbc286402074626eb0742efcd34"
+    },
+    {
+      "case": "bool-exponent-false",
+      "source_sha256": "5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+      "optimization": "O0",
+      "fill": 90,
+      "wire_sha256": "2954eb0073d211e7d109c4b9ce7f9a4141825c44418faad34dad99336adf12a7",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+        "work": 3,
+        "value": false
+      },
+      "json_sha256": "1cd0c6a2050a0e9ed2619daef7ad18775d783dbc286402074626eb0742efcd34"
+    },
+    {
+      "case": "bool-exponent-false",
+      "source_sha256": "5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+      "optimization": "O0",
+      "fill": 165,
+      "wire_sha256": "2954eb0073d211e7d109c4b9ce7f9a4141825c44418faad34dad99336adf12a7",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+        "work": 3,
+        "value": false
+      },
+      "json_sha256": "1cd0c6a2050a0e9ed2619daef7ad18775d783dbc286402074626eb0742efcd34"
+    },
+    {
+      "case": "bool-negative-zero-false",
+      "source_sha256": "5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+      "optimization": "O0",
+      "fill": 90,
+      "wire_sha256": "2954eb0073d211e7d109c4b9ce7f9a4141825c44418faad34dad99336adf12a7",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+        "work": 3,
+        "value": false
+      },
+      "json_sha256": "1cd0c6a2050a0e9ed2619daef7ad18775d783dbc286402074626eb0742efcd34"
+    },
+    {
+      "case": "bool-negative-zero-false",
+      "source_sha256": "5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+      "optimization": "O0",
+      "fill": 165,
+      "wire_sha256": "2954eb0073d211e7d109c4b9ce7f9a4141825c44418faad34dad99336adf12a7",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+        "work": 3,
+        "value": false
+      },
+      "json_sha256": "1cd0c6a2050a0e9ed2619daef7ad18775d783dbc286402074626eb0742efcd34"
+    },
+    {
+      "case": "bool-true-true",
+      "source_sha256": "c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+      "optimization": "O0",
+      "fill": 90,
+      "wire_sha256": "9fdaec2053afaf2519583beb16963a003500c45afe850007bc7b2363ef96f8e7",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+        "work": 2,
+        "value": true
+      },
+      "json_sha256": "94c85a2533c71a02d31bf81467bf19666e0e286265e22f2be04be788dbb5c782"
+    },
+    {
+      "case": "bool-true-true",
+      "source_sha256": "c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+      "optimization": "O0",
+      "fill": 165,
+      "wire_sha256": "9fdaec2053afaf2519583beb16963a003500c45afe850007bc7b2363ef96f8e7",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+        "work": 2,
+        "value": true
+      },
+      "json_sha256": "94c85a2533c71a02d31bf81467bf19666e0e286265e22f2be04be788dbb5c782"
+    },
+    {
+      "case": "bool-false-true",
+      "source_sha256": "c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+      "optimization": "O0",
+      "fill": 90,
+      "wire_sha256": "cff0dd0419a8f38a98ddc99416ed18ca3e1bf3c1eb9e49ffe29073498da9e0f0",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+        "work": 2,
+        "value": false
+      },
+      "json_sha256": "95001cac1f9d27d24580484cecef1f0124f3526889315b65a5078ae8abe877b8"
+    },
+    {
+      "case": "bool-false-true",
+      "source_sha256": "c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+      "optimization": "O0",
+      "fill": 165,
+      "wire_sha256": "cff0dd0419a8f38a98ddc99416ed18ca3e1bf3c1eb9e49ffe29073498da9e0f0",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+        "work": 2,
+        "value": false
+      },
+      "json_sha256": "95001cac1f9d27d24580484cecef1f0124f3526889315b65a5078ae8abe877b8"
+    },
+    {
+      "case": "bool-null-true",
+      "source_sha256": "c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+      "optimization": "O0",
+      "fill": 90,
+      "wire_sha256": "6f1afd9fa9711989c6c3196ff00aa27b67db42c8f4860536f3042d9e47c80033",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+        "work": 3,
+        "value": true
+      },
+      "json_sha256": "b470e400a8d2b7b6a9eb78488616c774c94aedec034699851fe078b46833cf67"
+    },
+    {
+      "case": "bool-null-true",
+      "source_sha256": "c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+      "optimization": "O0",
+      "fill": 165,
+      "wire_sha256": "6f1afd9fa9711989c6c3196ff00aa27b67db42c8f4860536f3042d9e47c80033",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+        "work": 3,
+        "value": true
+      },
+      "json_sha256": "b470e400a8d2b7b6a9eb78488616c774c94aedec034699851fe078b46833cf67"
+    },
+    {
+      "case": "bool-int-true",
+      "source_sha256": "c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+      "optimization": "O0",
+      "fill": 90,
+      "wire_sha256": "6f1afd9fa9711989c6c3196ff00aa27b67db42c8f4860536f3042d9e47c80033",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+        "work": 3,
+        "value": true
+      },
+      "json_sha256": "b470e400a8d2b7b6a9eb78488616c774c94aedec034699851fe078b46833cf67"
+    },
+    {
+      "case": "bool-int-true",
+      "source_sha256": "c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+      "optimization": "O0",
+      "fill": 165,
+      "wire_sha256": "6f1afd9fa9711989c6c3196ff00aa27b67db42c8f4860536f3042d9e47c80033",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+        "work": 3,
+        "value": true
+      },
+      "json_sha256": "b470e400a8d2b7b6a9eb78488616c774c94aedec034699851fe078b46833cf67"
+    },
+    {
+      "case": "bool-text-true",
+      "source_sha256": "c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+      "optimization": "O0",
+      "fill": 90,
+      "wire_sha256": "6f1afd9fa9711989c6c3196ff00aa27b67db42c8f4860536f3042d9e47c80033",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+        "work": 3,
+        "value": true
+      },
+      "json_sha256": "b470e400a8d2b7b6a9eb78488616c774c94aedec034699851fe078b46833cf67"
+    },
+    {
+      "case": "bool-text-true",
+      "source_sha256": "c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+      "optimization": "O0",
+      "fill": 165,
+      "wire_sha256": "6f1afd9fa9711989c6c3196ff00aa27b67db42c8f4860536f3042d9e47c80033",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+        "work": 3,
+        "value": true
+      },
+      "json_sha256": "b470e400a8d2b7b6a9eb78488616c774c94aedec034699851fe078b46833cf67"
+    },
+    {
+      "case": "bool-array-true",
+      "source_sha256": "c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+      "optimization": "O0",
+      "fill": 90,
+      "wire_sha256": "6f1afd9fa9711989c6c3196ff00aa27b67db42c8f4860536f3042d9e47c80033",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+        "work": 3,
+        "value": true
+      },
+      "json_sha256": "b470e400a8d2b7b6a9eb78488616c774c94aedec034699851fe078b46833cf67"
+    },
+    {
+      "case": "bool-array-true",
+      "source_sha256": "c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+      "optimization": "O0",
+      "fill": 165,
+      "wire_sha256": "6f1afd9fa9711989c6c3196ff00aa27b67db42c8f4860536f3042d9e47c80033",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+        "work": 3,
+        "value": true
+      },
+      "json_sha256": "b470e400a8d2b7b6a9eb78488616c774c94aedec034699851fe078b46833cf67"
+    },
+    {
+      "case": "bool-object-true",
+      "source_sha256": "c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+      "optimization": "O0",
+      "fill": 90,
+      "wire_sha256": "6f1afd9fa9711989c6c3196ff00aa27b67db42c8f4860536f3042d9e47c80033",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+        "work": 3,
+        "value": true
+      },
+      "json_sha256": "b470e400a8d2b7b6a9eb78488616c774c94aedec034699851fe078b46833cf67"
+    },
+    {
+      "case": "bool-object-true",
+      "source_sha256": "c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+      "optimization": "O0",
+      "fill": 165,
+      "wire_sha256": "6f1afd9fa9711989c6c3196ff00aa27b67db42c8f4860536f3042d9e47c80033",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+        "work": 3,
+        "value": true
+      },
+      "json_sha256": "b470e400a8d2b7b6a9eb78488616c774c94aedec034699851fe078b46833cf67"
+    },
+    {
+      "case": "bool-fraction-true",
+      "source_sha256": "c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+      "optimization": "O0",
+      "fill": 90,
+      "wire_sha256": "6f1afd9fa9711989c6c3196ff00aa27b67db42c8f4860536f3042d9e47c80033",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+        "work": 3,
+        "value": true
+      },
+      "json_sha256": "b470e400a8d2b7b6a9eb78488616c774c94aedec034699851fe078b46833cf67"
+    },
+    {
+      "case": "bool-fraction-true",
+      "source_sha256": "c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+      "optimization": "O0",
+      "fill": 165,
+      "wire_sha256": "6f1afd9fa9711989c6c3196ff00aa27b67db42c8f4860536f3042d9e47c80033",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+        "work": 3,
+        "value": true
+      },
+      "json_sha256": "b470e400a8d2b7b6a9eb78488616c774c94aedec034699851fe078b46833cf67"
+    },
+    {
+      "case": "bool-exponent-true",
+      "source_sha256": "c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+      "optimization": "O0",
+      "fill": 90,
+      "wire_sha256": "6f1afd9fa9711989c6c3196ff00aa27b67db42c8f4860536f3042d9e47c80033",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+        "work": 3,
+        "value": true
+      },
+      "json_sha256": "b470e400a8d2b7b6a9eb78488616c774c94aedec034699851fe078b46833cf67"
+    },
+    {
+      "case": "bool-exponent-true",
+      "source_sha256": "c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+      "optimization": "O0",
+      "fill": 165,
+      "wire_sha256": "6f1afd9fa9711989c6c3196ff00aa27b67db42c8f4860536f3042d9e47c80033",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+        "work": 3,
+        "value": true
+      },
+      "json_sha256": "b470e400a8d2b7b6a9eb78488616c774c94aedec034699851fe078b46833cf67"
+    },
+    {
+      "case": "bool-negative-zero-true",
+      "source_sha256": "c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+      "optimization": "O0",
+      "fill": 90,
+      "wire_sha256": "6f1afd9fa9711989c6c3196ff00aa27b67db42c8f4860536f3042d9e47c80033",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+        "work": 3,
+        "value": true
+      },
+      "json_sha256": "b470e400a8d2b7b6a9eb78488616c774c94aedec034699851fe078b46833cf67"
+    },
+    {
+      "case": "bool-negative-zero-true",
+      "source_sha256": "c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+      "optimization": "O0",
+      "fill": 165,
+      "wire_sha256": "6f1afd9fa9711989c6c3196ff00aa27b67db42c8f4860536f3042d9e47c80033",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+        "work": 3,
+        "value": true
+      },
+      "json_sha256": "b470e400a8d2b7b6a9eb78488616c774c94aedec034699851fe078b46833cf67"
+    },
+    {
+      "case": "bool-missing-field",
+      "source_sha256": "06677e1f35e1e8d572207efaf13fbf4be1e9614a887ad5da721d09193e479692",
+      "optimization": "O0",
+      "fill": 90,
+      "wire_sha256": "54ce48c4ba0aa0816a32207f0bf89e22ec32d077363451310c59b108ddd90e3e",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:06677e1f35e1e8d572207efaf13fbf4be1e9614a887ad5da721d09193e479692",
+        "work": 4,
+        "value": true
+      },
+      "json_sha256": "5d5c3973aec5b49e19ee73dedbdcad3f39e108be5ddcab5eeaade5406d1d4c2e"
+    },
+    {
+      "case": "bool-missing-field",
+      "source_sha256": "06677e1f35e1e8d572207efaf13fbf4be1e9614a887ad5da721d09193e479692",
+      "optimization": "O0",
+      "fill": 165,
+      "wire_sha256": "54ce48c4ba0aa0816a32207f0bf89e22ec32d077363451310c59b108ddd90e3e",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:06677e1f35e1e8d572207efaf13fbf4be1e9614a887ad5da721d09193e479692",
+        "work": 4,
+        "value": true
+      },
+      "json_sha256": "5d5c3973aec5b49e19ee73dedbdcad3f39e108be5ddcab5eeaade5406d1d4c2e"
+    },
+    {
+      "case": "bool-lazy-true",
+      "source_sha256": "0f4e43d6a06dee7643523ce2fa9a63462ddd29e55c9800e9b77e6aa9b5b2c7e4",
+      "optimization": "O0",
+      "fill": 90,
+      "wire_sha256": "de1ce5a1133a33e13d89a2e0a4209c94d6193cb6718c827ceb8fbed102d992f4",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:0f4e43d6a06dee7643523ce2fa9a63462ddd29e55c9800e9b77e6aa9b5b2c7e4",
+        "work": 2,
+        "value": true
+      },
+      "json_sha256": "9cbc5a5b0d9470da74a5b36b9037ef34749a945c7ada79c19eae7c4f83f166fd"
+    },
+    {
+      "case": "bool-lazy-true",
+      "source_sha256": "0f4e43d6a06dee7643523ce2fa9a63462ddd29e55c9800e9b77e6aa9b5b2c7e4",
+      "optimization": "O0",
+      "fill": 165,
+      "wire_sha256": "de1ce5a1133a33e13d89a2e0a4209c94d6193cb6718c827ceb8fbed102d992f4",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:0f4e43d6a06dee7643523ce2fa9a63462ddd29e55c9800e9b77e6aa9b5b2c7e4",
+        "work": 2,
+        "value": true
+      },
+      "json_sha256": "9cbc5a5b0d9470da74a5b36b9037ef34749a945c7ada79c19eae7c4f83f166fd"
+    },
+    {
+      "case": "bool-lazy-false",
+      "source_sha256": "0f4e43d6a06dee7643523ce2fa9a63462ddd29e55c9800e9b77e6aa9b5b2c7e4",
+      "optimization": "O0",
+      "fill": 90,
+      "wire_sha256": "fbeb69ef6a3b78030ea3c5916ea7205eb2dd16eca4c0d623269f4040adaa9388",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:0f4e43d6a06dee7643523ce2fa9a63462ddd29e55c9800e9b77e6aa9b5b2c7e4",
+        "work": 2,
+        "value": false
+      },
+      "json_sha256": "015e9fdcc06225977c18361930fa49decc2eab990a99631ab2a46d854366f205"
+    },
+    {
+      "case": "bool-lazy-false",
+      "source_sha256": "0f4e43d6a06dee7643523ce2fa9a63462ddd29e55c9800e9b77e6aa9b5b2c7e4",
+      "optimization": "O0",
+      "fill": 165,
+      "wire_sha256": "fbeb69ef6a3b78030ea3c5916ea7205eb2dd16eca4c0d623269f4040adaa9388",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:0f4e43d6a06dee7643523ce2fa9a63462ddd29e55c9800e9b77e6aa9b5b2c7e4",
+        "work": 2,
+        "value": false
+      },
+      "json_sha256": "015e9fdcc06225977c18361930fa49decc2eab990a99631ab2a46d854366f205"
+    },
+    {
+      "case": "bool-fallback-overflow",
+      "source_sha256": "0f4e43d6a06dee7643523ce2fa9a63462ddd29e55c9800e9b77e6aa9b5b2c7e4",
+      "optimization": "O0",
+      "fill": 90,
+      "wire_sha256": "1c3385bf0078865882b139cd2f4b453765f259a4d3a27c12ea4cd435d54fc860",
+      "returncode": 2,
+      "expected_json": null,
+      "json_sha256": null
+    },
+    {
+      "case": "bool-fallback-overflow",
+      "source_sha256": "0f4e43d6a06dee7643523ce2fa9a63462ddd29e55c9800e9b77e6aa9b5b2c7e4",
+      "optimization": "O0",
+      "fill": 165,
+      "wire_sha256": "1c3385bf0078865882b139cd2f4b453765f259a4d3a27c12ea4cd435d54fc860",
+      "returncode": 2,
+      "expected_json": null,
+      "json_sha256": null
+    },
+    {
+      "case": "app-empty",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O0",
+      "fill": 90,
+      "wire_sha256": "dacb85320a0161b571251dfbe64bccaefdbdea252bb59f7ceff8bf18a31aa8cb",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+        "work": 293,
+        "value": {
+          "total": 0,
+          "valid": true
+        }
+      },
+      "json_sha256": "07fcbcb50f8ff29f177a9c550443791f67f7b20b0503a2414409e58804ba1c0e"
+    },
+    {
+      "case": "app-empty",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O0",
+      "fill": 165,
+      "wire_sha256": "dacb85320a0161b571251dfbe64bccaefdbdea252bb59f7ceff8bf18a31aa8cb",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+        "work": 293,
+        "value": {
+          "total": 0,
+          "valid": true
+        }
+      },
+      "json_sha256": "07fcbcb50f8ff29f177a9c550443791f67f7b20b0503a2414409e58804ba1c0e"
+    },
+    {
+      "case": "app-both-booleans",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O0",
+      "fill": 90,
+      "wire_sha256": "a240530cb09839083df0cfcbcd69303fa194462dfa45a9ba67d19f796bd20ac8",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+        "work": 523,
+        "value": {
+          "total": 3,
+          "valid": true
+        }
+      },
+      "json_sha256": "c98b9a81747bb710d5aca5c8c6957c5d44e677557971d9aad25d84f6503661f4"
+    },
+    {
+      "case": "app-both-booleans",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O0",
+      "fill": 165,
+      "wire_sha256": "a240530cb09839083df0cfcbcd69303fa194462dfa45a9ba67d19f796bd20ac8",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+        "work": 523,
+        "value": {
+          "total": 3,
+          "valid": true
+        }
+      },
+      "json_sha256": "c98b9a81747bb710d5aca5c8c6957c5d44e677557971d9aad25d84f6503661f4"
+    },
+    {
+      "case": "app-negative",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O0",
+      "fill": 90,
+      "wire_sha256": "b31491a58a16a20952bbebde89b6cd31ff1aeaa0d81e7a5fa6d836b66845018b",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+        "work": 545,
+        "value": {
+          "total": -3,
+          "valid": true
+        }
+      },
+      "json_sha256": "a60f6254eadcc2636fa64c3e3f3438d8bf8619b51e4a1c8aaaf14e1e85dece6e"
+    },
+    {
+      "case": "app-negative",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O0",
+      "fill": 165,
+      "wire_sha256": "b31491a58a16a20952bbebde89b6cd31ff1aeaa0d81e7a5fa6d836b66845018b",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+        "work": 545,
+        "value": {
+          "total": -3,
+          "valid": true
+        }
+      },
+      "json_sha256": "a60f6254eadcc2636fa64c3e3f3438d8bf8619b51e4a1c8aaaf14e1e85dece6e"
+    },
+    {
+      "case": "app-inactive-overflow",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O0",
+      "fill": 90,
+      "wire_sha256": "f8b9c6eb6c348308f51843784a68f5aa1a2ed8449e8ef14c5ad0bc657236fc31",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+        "work": 559,
+        "value": {
+          "total": 9223372036854775807,
+          "valid": true
+        }
+      },
+      "json_sha256": "6350d5293fa5c591eb528f4c03e15238d595986a89c675137033dc4337774a39"
+    },
+    {
+      "case": "app-inactive-overflow",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O0",
+      "fill": 165,
+      "wire_sha256": "f8b9c6eb6c348308f51843784a68f5aa1a2ed8449e8ef14c5ad0bc657236fc31",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+        "work": 559,
+        "value": {
+          "total": 9223372036854775807,
+          "valid": true
+        }
+      },
+      "json_sha256": "6350d5293fa5c591eb528f4c03e15238d595986a89c675137033dc4337774a39"
+    },
+    {
+      "case": "app-positive-overflow",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O0",
+      "fill": 90,
+      "wire_sha256": "8b49b4ec9a8ba43970e97a33e641a382eec6927a4be3dc083bd56298ba513894",
+      "returncode": 2,
+      "expected_json": null,
+      "json_sha256": null
+    },
+    {
+      "case": "app-positive-overflow",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O0",
+      "fill": 165,
+      "wire_sha256": "8b49b4ec9a8ba43970e97a33e641a382eec6927a4be3dc083bd56298ba513894",
+      "returncode": 2,
+      "expected_json": null,
+      "json_sha256": null
+    },
+    {
+      "case": "app-negative-overflow",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O0",
+      "fill": 90,
+      "wire_sha256": "a61459aeab8d50e9a158c66bedd6f692802e7eb25d76f5a07c5604b66d302098",
+      "returncode": 2,
+      "expected_json": null,
+      "json_sha256": null
+    },
+    {
+      "case": "app-negative-overflow",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O0",
+      "fill": 165,
+      "wire_sha256": "a61459aeab8d50e9a158c66bedd6f692802e7eb25d76f5a07c5604b66d302098",
+      "returncode": 2,
+      "expected_json": null,
+      "json_sha256": null
+    },
+    {
+      "case": "app-cancellation",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O0",
+      "fill": 90,
+      "wire_sha256": "4a2688a9072106e9936c3000aef6e43a19b3b5b6d156e75270f0620aea4e87b1",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+        "work": 617,
+        "value": {
+          "total": 0,
+          "valid": true
+        }
+      },
+      "json_sha256": "c5571096ffaebaf76dc1f7f6b3b33719e7a04ff79ee72e8966727a65146d1464"
+    },
+    {
+      "case": "app-cancellation",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O0",
+      "fill": 165,
+      "wire_sha256": "4a2688a9072106e9936c3000aef6e43a19b3b5b6d156e75270f0620aea4e87b1",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+        "work": 617,
+        "value": {
+          "total": 0,
+          "valid": true
+        }
+      },
+      "json_sha256": "c5571096ffaebaf76dc1f7f6b3b33719e7a04ff79ee72e8966727a65146d1464"
+    },
+    {
+      "case": "app-sixteen",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O0",
+      "fill": 90,
+      "wire_sha256": "58fb3c6dc46c2e9356190dda5d57c4051eed6a15f158103c920e058dce545b93",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+        "work": 2293,
+        "value": {
+          "total": 16,
+          "valid": true
+        }
+      },
+      "json_sha256": "d036790bac306dd7ae2b4b76cd531156b1251ff67631c1b8d3f07615eaad7d95"
+    },
+    {
+      "case": "app-sixteen",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O0",
+      "fill": 165,
+      "wire_sha256": "58fb3c6dc46c2e9356190dda5d57c4051eed6a15f158103c920e058dce545b93",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+        "work": 2293,
+        "value": {
+          "total": 16,
+          "valid": true
+        }
+      },
+      "json_sha256": "d036790bac306dd7ae2b4b76cd531156b1251ff67631c1b8d3f07615eaad7d95"
+    },
+    {
+      "case": "app-seventeen",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O0",
+      "fill": 90,
+      "wire_sha256": "974195ed586861d3dfb54cd9e463242f9dd81cfaef180053c29ee945598e2bb2",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+        "work": 33,
+        "value": {
+          "total": 0,
+          "valid": false
+        }
+      },
+      "json_sha256": "e42457ec9647115078a4c986dc767e159d1a95e97d03aa84cc2856d225a8dd27"
+    },
+    {
+      "case": "app-seventeen",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O0",
+      "fill": 165,
+      "wire_sha256": "974195ed586861d3dfb54cd9e463242f9dd81cfaef180053c29ee945598e2bb2",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+        "work": 33,
+        "value": {
+          "total": 0,
+          "valid": false
+        }
+      },
+      "json_sha256": "e42457ec9647115078a4c986dc767e159d1a95e97d03aa84cc2856d225a8dd27"
+    },
+    {
+      "case": "app-object-root",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O0",
+      "fill": 90,
+      "wire_sha256": "c5beb007a24ddb6e27c5c342bd4814a4585ca11d7c7b9b596fbee457bde6912b",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+        "work": 28,
+        "value": {
+          "total": 0,
+          "valid": false
+        }
+      },
+      "json_sha256": "6617a705e6932bab05c32a2ab6bbd07f7633431b3f806529396b34407cb30f88"
+    },
+    {
+      "case": "app-object-root",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O0",
+      "fill": 165,
+      "wire_sha256": "c5beb007a24ddb6e27c5c342bd4814a4585ca11d7c7b9b596fbee457bde6912b",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+        "work": 28,
+        "value": {
+          "total": 0,
+          "valid": false
+        }
+      },
+      "json_sha256": "6617a705e6932bab05c32a2ab6bbd07f7633431b3f806529396b34407cb30f88"
+    },
+    {
+      "case": "app-null-root",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O0",
+      "fill": 90,
+      "wire_sha256": "8d86acd57a18ea73e3138b852ccc793352094bb2a504311fdf57688b1eda724c",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+        "work": 26,
+        "value": {
+          "total": 0,
+          "valid": false
+        }
+      },
+      "json_sha256": "9f68075c8dce3285f568e1a79821cc370aea108d839ff4b957148bd8f79068c1"
+    },
+    {
+      "case": "app-null-root",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O0",
+      "fill": 165,
+      "wire_sha256": "8d86acd57a18ea73e3138b852ccc793352094bb2a504311fdf57688b1eda724c",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+        "work": 26,
+        "value": {
+          "total": 0,
+          "valid": false
+        }
+      },
+      "json_sha256": "9f68075c8dce3285f568e1a79821cc370aea108d839ff4b957148bd8f79068c1"
+    },
+    {
+      "case": "app-missing-active",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O0",
+      "fill": 90,
+      "wire_sha256": "1c8fbb1c54ae67a5624c21fd4dc8052f09b7f11590f5da33434b780e26bc301e",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+        "work": 121,
+        "value": {
+          "total": 0,
+          "valid": false
+        }
+      },
+      "json_sha256": "69474b8a44ea1739ebd29c4c29976ba260a681a0886cc7a7799dd3240cb582be"
+    },
+    {
+      "case": "app-missing-active",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O0",
+      "fill": 165,
+      "wire_sha256": "1c8fbb1c54ae67a5624c21fd4dc8052f09b7f11590f5da33434b780e26bc301e",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+        "work": 121,
+        "value": {
+          "total": 0,
+          "valid": false
+        }
+      },
+      "json_sha256": "69474b8a44ea1739ebd29c4c29976ba260a681a0886cc7a7799dd3240cb582be"
+    },
+    {
+      "case": "app-missing-amount",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O0",
+      "fill": 90,
+      "wire_sha256": "1c8fbb1c54ae67a5624c21fd4dc8052f09b7f11590f5da33434b780e26bc301e",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+        "work": 121,
+        "value": {
+          "total": 0,
+          "valid": false
+        }
+      },
+      "json_sha256": "69474b8a44ea1739ebd29c4c29976ba260a681a0886cc7a7799dd3240cb582be"
+    },
+    {
+      "case": "app-missing-amount",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O0",
+      "fill": 165,
+      "wire_sha256": "1c8fbb1c54ae67a5624c21fd4dc8052f09b7f11590f5da33434b780e26bc301e",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+        "work": 121,
+        "value": {
+          "total": 0,
+          "valid": false
+        }
+      },
+      "json_sha256": "69474b8a44ea1739ebd29c4c29976ba260a681a0886cc7a7799dd3240cb582be"
+    },
+    {
+      "case": "app-extra-field",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O0",
+      "fill": 90,
+      "wire_sha256": "1c8fbb1c54ae67a5624c21fd4dc8052f09b7f11590f5da33434b780e26bc301e",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+        "work": 121,
+        "value": {
+          "total": 0,
+          "valid": false
+        }
+      },
+      "json_sha256": "69474b8a44ea1739ebd29c4c29976ba260a681a0886cc7a7799dd3240cb582be"
+    },
+    {
+      "case": "app-extra-field",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O0",
+      "fill": 165,
+      "wire_sha256": "1c8fbb1c54ae67a5624c21fd4dc8052f09b7f11590f5da33434b780e26bc301e",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+        "work": 121,
+        "value": {
+          "total": 0,
+          "valid": false
+        }
+      },
+      "json_sha256": "69474b8a44ea1739ebd29c4c29976ba260a681a0886cc7a7799dd3240cb582be"
+    },
+    {
+      "case": "app-integer-active",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O0",
+      "fill": 90,
+      "wire_sha256": "25fe4581db3feab742453a15dd7376486a97f251194a7e8827f995cc2669c0e3",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+        "work": 170,
+        "value": {
+          "total": 0,
+          "valid": false
+        }
+      },
+      "json_sha256": "be88f44c767483998f779b60aaea5fd3ff9eeebcb85ad5c689eef8f0e683daa3"
+    },
+    {
+      "case": "app-integer-active",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O0",
+      "fill": 165,
+      "wire_sha256": "25fe4581db3feab742453a15dd7376486a97f251194a7e8827f995cc2669c0e3",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+        "work": 170,
+        "value": {
+          "total": 0,
+          "valid": false
+        }
+      },
+      "json_sha256": "be88f44c767483998f779b60aaea5fd3ff9eeebcb85ad5c689eef8f0e683daa3"
+    },
+    {
+      "case": "app-boolean-amount",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O0",
+      "fill": 90,
+      "wire_sha256": "eaf7269007584e00d47932cd749ad053c970805fc7eb251bd29f96c2a984f802",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+        "work": 140,
+        "value": {
+          "total": 0,
+          "valid": false
+        }
+      },
+      "json_sha256": "6b3a46b5ab8e6ebd9d8d88e4fe8129a6b8b56ca4ec50e17a22707110d3bda349"
+    },
+    {
+      "case": "app-boolean-amount",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O0",
+      "fill": 165,
+      "wire_sha256": "eaf7269007584e00d47932cd749ad053c970805fc7eb251bd29f96c2a984f802",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+        "work": 140,
+        "value": {
+          "total": 0,
+          "valid": false
+        }
+      },
+      "json_sha256": "6b3a46b5ab8e6ebd9d8d88e4fe8129a6b8b56ca4ec50e17a22707110d3bda349"
+    },
+    {
+      "case": "app-fraction-amount",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O0",
+      "fill": 90,
+      "wire_sha256": "eaf7269007584e00d47932cd749ad053c970805fc7eb251bd29f96c2a984f802",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+        "work": 140,
+        "value": {
+          "total": 0,
+          "valid": false
+        }
+      },
+      "json_sha256": "6b3a46b5ab8e6ebd9d8d88e4fe8129a6b8b56ca4ec50e17a22707110d3bda349"
+    },
+    {
+      "case": "app-fraction-amount",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O0",
+      "fill": 165,
+      "wire_sha256": "eaf7269007584e00d47932cd749ad053c970805fc7eb251bd29f96c2a984f802",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+        "work": 140,
+        "value": {
+          "total": 0,
+          "valid": false
+        }
+      },
+      "json_sha256": "6b3a46b5ab8e6ebd9d8d88e4fe8129a6b8b56ca4ec50e17a22707110d3bda349"
+    },
+    {
+      "case": "app-out-of-range",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O0",
+      "fill": 90,
+      "wire_sha256": "d3b8bc7c686d63b173916beecb1d3e953ad0f248ec0792ca20589c233c216966",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+        "work": 159,
+        "value": {
+          "total": 0,
+          "valid": false
+        }
+      },
+      "json_sha256": "dc926cbdbe6caaffd37028389be9ac1036fdcb159818e42216bbf7add1953ec5"
+    },
+    {
+      "case": "app-out-of-range",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O0",
+      "fill": 165,
+      "wire_sha256": "d3b8bc7c686d63b173916beecb1d3e953ad0f248ec0792ca20589c233c216966",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+        "work": 159,
+        "value": {
+          "total": 0,
+          "valid": false
+        }
+      },
+      "json_sha256": "dc926cbdbe6caaffd37028389be9ac1036fdcb159818e42216bbf7add1953ec5"
+    },
+    {
+      "case": "app-null-item",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O0",
+      "fill": 90,
+      "wire_sha256": "2cf21ac9f24a5c7ad406099856f6a3167f9b8e245caafc69f459d62583617f27",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+        "work": 113,
+        "value": {
+          "total": 0,
+          "valid": false
+        }
+      },
+      "json_sha256": "e4712721a3894d88f62eab9bbeecf5f5b480c905e0e9f12369e88a9463ed2f90"
+    },
+    {
+      "case": "app-null-item",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O0",
+      "fill": 165,
+      "wire_sha256": "2cf21ac9f24a5c7ad406099856f6a3167f9b8e245caafc69f459d62583617f27",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+        "work": 113,
+        "value": {
+          "total": 0,
+          "valid": false
+        }
+      },
+      "json_sha256": "e4712721a3894d88f62eab9bbeecf5f5b480c905e0e9f12369e88a9463ed2f90"
+    },
+    {
+      "case": "app-invalid-before-overflow",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O0",
+      "fill": 90,
+      "wire_sha256": "97692d071d6ddbae87816449f50a23bfb984efb50606e9569e75d9b35ed6d9f7",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+        "work": 317,
+        "value": {
+          "total": 0,
+          "valid": false
+        }
+      },
+      "json_sha256": "9a5cbfb1966370dec3b18de68363337056b65056c6807f5c2840a7e0af3ed9e6"
+    },
+    {
+      "case": "app-invalid-before-overflow",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O0",
+      "fill": 165,
+      "wire_sha256": "97692d071d6ddbae87816449f50a23bfb984efb50606e9569e75d9b35ed6d9f7",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+        "work": 317,
+        "value": {
+          "total": 0,
+          "valid": false
+        }
+      },
+      "json_sha256": "9a5cbfb1966370dec3b18de68363337056b65056c6807f5c2840a7e0af3ed9e6"
+    },
+    {
+      "case": "app-integer-negative-zero",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O0",
+      "fill": 90,
+      "wire_sha256": "e670b738efe7bbfe04a731be9eb2662bd32f5e5ceb2a736500ef58dbf7674311",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+        "work": 420,
+        "value": {
+          "total": 0,
+          "valid": true
+        }
+      },
+      "json_sha256": "6a8336cd56175021e95cb51b9c558cfdd6aafa9a8c65b39c4fbdf31ad2bc0e96"
+    },
+    {
+      "case": "app-integer-negative-zero",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O0",
+      "fill": 165,
+      "wire_sha256": "e670b738efe7bbfe04a731be9eb2662bd32f5e5ceb2a736500ef58dbf7674311",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+        "work": 420,
+        "value": {
+          "total": 0,
+          "valid": true
+        }
+      },
+      "json_sha256": "6a8336cd56175021e95cb51b9c558cfdd6aafa9a8c65b39c4fbdf31ad2bc0e96"
+    },
+    {
+      "case": "app-fraction-negative-zero",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O0",
+      "fill": 90,
+      "wire_sha256": "eaf7269007584e00d47932cd749ad053c970805fc7eb251bd29f96c2a984f802",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+        "work": 140,
+        "value": {
+          "total": 0,
+          "valid": false
+        }
+      },
+      "json_sha256": "6b3a46b5ab8e6ebd9d8d88e4fe8129a6b8b56ca4ec50e17a22707110d3bda349"
+    },
+    {
+      "case": "app-fraction-negative-zero",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O0",
+      "fill": 165,
+      "wire_sha256": "eaf7269007584e00d47932cd749ad053c970805fc7eb251bd29f96c2a984f802",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+        "work": 140,
+        "value": {
+          "total": 0,
+          "valid": false
+        }
+      },
+      "json_sha256": "6b3a46b5ab8e6ebd9d8d88e4fe8129a6b8b56ca4ec50e17a22707110d3bda349"
+    },
+    {
+      "case": "app-integral-exponent",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O0",
+      "fill": 90,
+      "wire_sha256": "eaf7269007584e00d47932cd749ad053c970805fc7eb251bd29f96c2a984f802",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+        "work": 140,
+        "value": {
+          "total": 0,
+          "valid": false
+        }
+      },
+      "json_sha256": "6b3a46b5ab8e6ebd9d8d88e4fe8129a6b8b56ca4ec50e17a22707110d3bda349"
+    },
+    {
+      "case": "app-integral-exponent",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O0",
+      "fill": 165,
+      "wire_sha256": "eaf7269007584e00d47932cd749ad053c970805fc7eb251bd29f96c2a984f802",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+        "work": 140,
+        "value": {
+          "total": 0,
+          "valid": false
+        }
+      },
+      "json_sha256": "6b3a46b5ab8e6ebd9d8d88e4fe8129a6b8b56ca4ec50e17a22707110d3bda349"
+    },
+    {
+      "case": "bool-true-false",
+      "source_sha256": "5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+      "optimization": "O2",
+      "fill": 90,
+      "wire_sha256": "4e8e31bfdeb037816e95f1e15e865711039e84e8199cdbb74b96eb7fa662c3cb",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+        "work": 2,
+        "value": true
+      },
+      "json_sha256": "f68ca2ee1b7901911c2a19415e57868483b89bc3c9ffb6aca4c712ae98e3d455"
+    },
+    {
+      "case": "bool-true-false",
+      "source_sha256": "5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+      "optimization": "O2",
+      "fill": 165,
+      "wire_sha256": "4e8e31bfdeb037816e95f1e15e865711039e84e8199cdbb74b96eb7fa662c3cb",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+        "work": 2,
+        "value": true
+      },
+      "json_sha256": "f68ca2ee1b7901911c2a19415e57868483b89bc3c9ffb6aca4c712ae98e3d455"
+    },
+    {
+      "case": "bool-false-false",
+      "source_sha256": "5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+      "optimization": "O2",
+      "fill": 90,
+      "wire_sha256": "ab5bd356f98fee60750dc822bf341744093b9ea6692cec08775bfe4bb604e9a8",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+        "work": 2,
+        "value": false
+      },
+      "json_sha256": "cc39b70fe2485f5deb049b3b4cc597f97a93dcbaf6eb0dad750e0507dbc00732"
+    },
+    {
+      "case": "bool-false-false",
+      "source_sha256": "5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+      "optimization": "O2",
+      "fill": 165,
+      "wire_sha256": "ab5bd356f98fee60750dc822bf341744093b9ea6692cec08775bfe4bb604e9a8",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+        "work": 2,
+        "value": false
+      },
+      "json_sha256": "cc39b70fe2485f5deb049b3b4cc597f97a93dcbaf6eb0dad750e0507dbc00732"
+    },
+    {
+      "case": "bool-null-false",
+      "source_sha256": "5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+      "optimization": "O2",
+      "fill": 90,
+      "wire_sha256": "2954eb0073d211e7d109c4b9ce7f9a4141825c44418faad34dad99336adf12a7",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+        "work": 3,
+        "value": false
+      },
+      "json_sha256": "1cd0c6a2050a0e9ed2619daef7ad18775d783dbc286402074626eb0742efcd34"
+    },
+    {
+      "case": "bool-null-false",
+      "source_sha256": "5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+      "optimization": "O2",
+      "fill": 165,
+      "wire_sha256": "2954eb0073d211e7d109c4b9ce7f9a4141825c44418faad34dad99336adf12a7",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+        "work": 3,
+        "value": false
+      },
+      "json_sha256": "1cd0c6a2050a0e9ed2619daef7ad18775d783dbc286402074626eb0742efcd34"
+    },
+    {
+      "case": "bool-int-false",
+      "source_sha256": "5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+      "optimization": "O2",
+      "fill": 90,
+      "wire_sha256": "2954eb0073d211e7d109c4b9ce7f9a4141825c44418faad34dad99336adf12a7",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+        "work": 3,
+        "value": false
+      },
+      "json_sha256": "1cd0c6a2050a0e9ed2619daef7ad18775d783dbc286402074626eb0742efcd34"
+    },
+    {
+      "case": "bool-int-false",
+      "source_sha256": "5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+      "optimization": "O2",
+      "fill": 165,
+      "wire_sha256": "2954eb0073d211e7d109c4b9ce7f9a4141825c44418faad34dad99336adf12a7",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+        "work": 3,
+        "value": false
+      },
+      "json_sha256": "1cd0c6a2050a0e9ed2619daef7ad18775d783dbc286402074626eb0742efcd34"
+    },
+    {
+      "case": "bool-text-false",
+      "source_sha256": "5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+      "optimization": "O2",
+      "fill": 90,
+      "wire_sha256": "2954eb0073d211e7d109c4b9ce7f9a4141825c44418faad34dad99336adf12a7",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+        "work": 3,
+        "value": false
+      },
+      "json_sha256": "1cd0c6a2050a0e9ed2619daef7ad18775d783dbc286402074626eb0742efcd34"
+    },
+    {
+      "case": "bool-text-false",
+      "source_sha256": "5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+      "optimization": "O2",
+      "fill": 165,
+      "wire_sha256": "2954eb0073d211e7d109c4b9ce7f9a4141825c44418faad34dad99336adf12a7",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+        "work": 3,
+        "value": false
+      },
+      "json_sha256": "1cd0c6a2050a0e9ed2619daef7ad18775d783dbc286402074626eb0742efcd34"
+    },
+    {
+      "case": "bool-array-false",
+      "source_sha256": "5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+      "optimization": "O2",
+      "fill": 90,
+      "wire_sha256": "2954eb0073d211e7d109c4b9ce7f9a4141825c44418faad34dad99336adf12a7",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+        "work": 3,
+        "value": false
+      },
+      "json_sha256": "1cd0c6a2050a0e9ed2619daef7ad18775d783dbc286402074626eb0742efcd34"
+    },
+    {
+      "case": "bool-array-false",
+      "source_sha256": "5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+      "optimization": "O2",
+      "fill": 165,
+      "wire_sha256": "2954eb0073d211e7d109c4b9ce7f9a4141825c44418faad34dad99336adf12a7",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+        "work": 3,
+        "value": false
+      },
+      "json_sha256": "1cd0c6a2050a0e9ed2619daef7ad18775d783dbc286402074626eb0742efcd34"
+    },
+    {
+      "case": "bool-object-false",
+      "source_sha256": "5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+      "optimization": "O2",
+      "fill": 90,
+      "wire_sha256": "2954eb0073d211e7d109c4b9ce7f9a4141825c44418faad34dad99336adf12a7",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+        "work": 3,
+        "value": false
+      },
+      "json_sha256": "1cd0c6a2050a0e9ed2619daef7ad18775d783dbc286402074626eb0742efcd34"
+    },
+    {
+      "case": "bool-object-false",
+      "source_sha256": "5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+      "optimization": "O2",
+      "fill": 165,
+      "wire_sha256": "2954eb0073d211e7d109c4b9ce7f9a4141825c44418faad34dad99336adf12a7",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+        "work": 3,
+        "value": false
+      },
+      "json_sha256": "1cd0c6a2050a0e9ed2619daef7ad18775d783dbc286402074626eb0742efcd34"
+    },
+    {
+      "case": "bool-fraction-false",
+      "source_sha256": "5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+      "optimization": "O2",
+      "fill": 90,
+      "wire_sha256": "2954eb0073d211e7d109c4b9ce7f9a4141825c44418faad34dad99336adf12a7",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+        "work": 3,
+        "value": false
+      },
+      "json_sha256": "1cd0c6a2050a0e9ed2619daef7ad18775d783dbc286402074626eb0742efcd34"
+    },
+    {
+      "case": "bool-fraction-false",
+      "source_sha256": "5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+      "optimization": "O2",
+      "fill": 165,
+      "wire_sha256": "2954eb0073d211e7d109c4b9ce7f9a4141825c44418faad34dad99336adf12a7",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+        "work": 3,
+        "value": false
+      },
+      "json_sha256": "1cd0c6a2050a0e9ed2619daef7ad18775d783dbc286402074626eb0742efcd34"
+    },
+    {
+      "case": "bool-exponent-false",
+      "source_sha256": "5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+      "optimization": "O2",
+      "fill": 90,
+      "wire_sha256": "2954eb0073d211e7d109c4b9ce7f9a4141825c44418faad34dad99336adf12a7",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+        "work": 3,
+        "value": false
+      },
+      "json_sha256": "1cd0c6a2050a0e9ed2619daef7ad18775d783dbc286402074626eb0742efcd34"
+    },
+    {
+      "case": "bool-exponent-false",
+      "source_sha256": "5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+      "optimization": "O2",
+      "fill": 165,
+      "wire_sha256": "2954eb0073d211e7d109c4b9ce7f9a4141825c44418faad34dad99336adf12a7",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+        "work": 3,
+        "value": false
+      },
+      "json_sha256": "1cd0c6a2050a0e9ed2619daef7ad18775d783dbc286402074626eb0742efcd34"
+    },
+    {
+      "case": "bool-negative-zero-false",
+      "source_sha256": "5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+      "optimization": "O2",
+      "fill": 90,
+      "wire_sha256": "2954eb0073d211e7d109c4b9ce7f9a4141825c44418faad34dad99336adf12a7",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+        "work": 3,
+        "value": false
+      },
+      "json_sha256": "1cd0c6a2050a0e9ed2619daef7ad18775d783dbc286402074626eb0742efcd34"
+    },
+    {
+      "case": "bool-negative-zero-false",
+      "source_sha256": "5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+      "optimization": "O2",
+      "fill": 165,
+      "wire_sha256": "2954eb0073d211e7d109c4b9ce7f9a4141825c44418faad34dad99336adf12a7",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+        "work": 3,
+        "value": false
+      },
+      "json_sha256": "1cd0c6a2050a0e9ed2619daef7ad18775d783dbc286402074626eb0742efcd34"
+    },
+    {
+      "case": "bool-true-true",
+      "source_sha256": "c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+      "optimization": "O2",
+      "fill": 90,
+      "wire_sha256": "9fdaec2053afaf2519583beb16963a003500c45afe850007bc7b2363ef96f8e7",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+        "work": 2,
+        "value": true
+      },
+      "json_sha256": "94c85a2533c71a02d31bf81467bf19666e0e286265e22f2be04be788dbb5c782"
+    },
+    {
+      "case": "bool-true-true",
+      "source_sha256": "c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+      "optimization": "O2",
+      "fill": 165,
+      "wire_sha256": "9fdaec2053afaf2519583beb16963a003500c45afe850007bc7b2363ef96f8e7",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+        "work": 2,
+        "value": true
+      },
+      "json_sha256": "94c85a2533c71a02d31bf81467bf19666e0e286265e22f2be04be788dbb5c782"
+    },
+    {
+      "case": "bool-false-true",
+      "source_sha256": "c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+      "optimization": "O2",
+      "fill": 90,
+      "wire_sha256": "cff0dd0419a8f38a98ddc99416ed18ca3e1bf3c1eb9e49ffe29073498da9e0f0",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+        "work": 2,
+        "value": false
+      },
+      "json_sha256": "95001cac1f9d27d24580484cecef1f0124f3526889315b65a5078ae8abe877b8"
+    },
+    {
+      "case": "bool-false-true",
+      "source_sha256": "c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+      "optimization": "O2",
+      "fill": 165,
+      "wire_sha256": "cff0dd0419a8f38a98ddc99416ed18ca3e1bf3c1eb9e49ffe29073498da9e0f0",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+        "work": 2,
+        "value": false
+      },
+      "json_sha256": "95001cac1f9d27d24580484cecef1f0124f3526889315b65a5078ae8abe877b8"
+    },
+    {
+      "case": "bool-null-true",
+      "source_sha256": "c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+      "optimization": "O2",
+      "fill": 90,
+      "wire_sha256": "6f1afd9fa9711989c6c3196ff00aa27b67db42c8f4860536f3042d9e47c80033",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+        "work": 3,
+        "value": true
+      },
+      "json_sha256": "b470e400a8d2b7b6a9eb78488616c774c94aedec034699851fe078b46833cf67"
+    },
+    {
+      "case": "bool-null-true",
+      "source_sha256": "c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+      "optimization": "O2",
+      "fill": 165,
+      "wire_sha256": "6f1afd9fa9711989c6c3196ff00aa27b67db42c8f4860536f3042d9e47c80033",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+        "work": 3,
+        "value": true
+      },
+      "json_sha256": "b470e400a8d2b7b6a9eb78488616c774c94aedec034699851fe078b46833cf67"
+    },
+    {
+      "case": "bool-int-true",
+      "source_sha256": "c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+      "optimization": "O2",
+      "fill": 90,
+      "wire_sha256": "6f1afd9fa9711989c6c3196ff00aa27b67db42c8f4860536f3042d9e47c80033",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+        "work": 3,
+        "value": true
+      },
+      "json_sha256": "b470e400a8d2b7b6a9eb78488616c774c94aedec034699851fe078b46833cf67"
+    },
+    {
+      "case": "bool-int-true",
+      "source_sha256": "c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+      "optimization": "O2",
+      "fill": 165,
+      "wire_sha256": "6f1afd9fa9711989c6c3196ff00aa27b67db42c8f4860536f3042d9e47c80033",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+        "work": 3,
+        "value": true
+      },
+      "json_sha256": "b470e400a8d2b7b6a9eb78488616c774c94aedec034699851fe078b46833cf67"
+    },
+    {
+      "case": "bool-text-true",
+      "source_sha256": "c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+      "optimization": "O2",
+      "fill": 90,
+      "wire_sha256": "6f1afd9fa9711989c6c3196ff00aa27b67db42c8f4860536f3042d9e47c80033",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+        "work": 3,
+        "value": true
+      },
+      "json_sha256": "b470e400a8d2b7b6a9eb78488616c774c94aedec034699851fe078b46833cf67"
+    },
+    {
+      "case": "bool-text-true",
+      "source_sha256": "c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+      "optimization": "O2",
+      "fill": 165,
+      "wire_sha256": "6f1afd9fa9711989c6c3196ff00aa27b67db42c8f4860536f3042d9e47c80033",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+        "work": 3,
+        "value": true
+      },
+      "json_sha256": "b470e400a8d2b7b6a9eb78488616c774c94aedec034699851fe078b46833cf67"
+    },
+    {
+      "case": "bool-array-true",
+      "source_sha256": "c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+      "optimization": "O2",
+      "fill": 90,
+      "wire_sha256": "6f1afd9fa9711989c6c3196ff00aa27b67db42c8f4860536f3042d9e47c80033",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+        "work": 3,
+        "value": true
+      },
+      "json_sha256": "b470e400a8d2b7b6a9eb78488616c774c94aedec034699851fe078b46833cf67"
+    },
+    {
+      "case": "bool-array-true",
+      "source_sha256": "c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+      "optimization": "O2",
+      "fill": 165,
+      "wire_sha256": "6f1afd9fa9711989c6c3196ff00aa27b67db42c8f4860536f3042d9e47c80033",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+        "work": 3,
+        "value": true
+      },
+      "json_sha256": "b470e400a8d2b7b6a9eb78488616c774c94aedec034699851fe078b46833cf67"
+    },
+    {
+      "case": "bool-object-true",
+      "source_sha256": "c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+      "optimization": "O2",
+      "fill": 90,
+      "wire_sha256": "6f1afd9fa9711989c6c3196ff00aa27b67db42c8f4860536f3042d9e47c80033",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+        "work": 3,
+        "value": true
+      },
+      "json_sha256": "b470e400a8d2b7b6a9eb78488616c774c94aedec034699851fe078b46833cf67"
+    },
+    {
+      "case": "bool-object-true",
+      "source_sha256": "c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+      "optimization": "O2",
+      "fill": 165,
+      "wire_sha256": "6f1afd9fa9711989c6c3196ff00aa27b67db42c8f4860536f3042d9e47c80033",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+        "work": 3,
+        "value": true
+      },
+      "json_sha256": "b470e400a8d2b7b6a9eb78488616c774c94aedec034699851fe078b46833cf67"
+    },
+    {
+      "case": "bool-fraction-true",
+      "source_sha256": "c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+      "optimization": "O2",
+      "fill": 90,
+      "wire_sha256": "6f1afd9fa9711989c6c3196ff00aa27b67db42c8f4860536f3042d9e47c80033",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+        "work": 3,
+        "value": true
+      },
+      "json_sha256": "b470e400a8d2b7b6a9eb78488616c774c94aedec034699851fe078b46833cf67"
+    },
+    {
+      "case": "bool-fraction-true",
+      "source_sha256": "c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+      "optimization": "O2",
+      "fill": 165,
+      "wire_sha256": "6f1afd9fa9711989c6c3196ff00aa27b67db42c8f4860536f3042d9e47c80033",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+        "work": 3,
+        "value": true
+      },
+      "json_sha256": "b470e400a8d2b7b6a9eb78488616c774c94aedec034699851fe078b46833cf67"
+    },
+    {
+      "case": "bool-exponent-true",
+      "source_sha256": "c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+      "optimization": "O2",
+      "fill": 90,
+      "wire_sha256": "6f1afd9fa9711989c6c3196ff00aa27b67db42c8f4860536f3042d9e47c80033",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+        "work": 3,
+        "value": true
+      },
+      "json_sha256": "b470e400a8d2b7b6a9eb78488616c774c94aedec034699851fe078b46833cf67"
+    },
+    {
+      "case": "bool-exponent-true",
+      "source_sha256": "c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+      "optimization": "O2",
+      "fill": 165,
+      "wire_sha256": "6f1afd9fa9711989c6c3196ff00aa27b67db42c8f4860536f3042d9e47c80033",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+        "work": 3,
+        "value": true
+      },
+      "json_sha256": "b470e400a8d2b7b6a9eb78488616c774c94aedec034699851fe078b46833cf67"
+    },
+    {
+      "case": "bool-negative-zero-true",
+      "source_sha256": "c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+      "optimization": "O2",
+      "fill": 90,
+      "wire_sha256": "6f1afd9fa9711989c6c3196ff00aa27b67db42c8f4860536f3042d9e47c80033",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+        "work": 3,
+        "value": true
+      },
+      "json_sha256": "b470e400a8d2b7b6a9eb78488616c774c94aedec034699851fe078b46833cf67"
+    },
+    {
+      "case": "bool-negative-zero-true",
+      "source_sha256": "c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+      "optimization": "O2",
+      "fill": 165,
+      "wire_sha256": "6f1afd9fa9711989c6c3196ff00aa27b67db42c8f4860536f3042d9e47c80033",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+        "work": 3,
+        "value": true
+      },
+      "json_sha256": "b470e400a8d2b7b6a9eb78488616c774c94aedec034699851fe078b46833cf67"
+    },
+    {
+      "case": "bool-missing-field",
+      "source_sha256": "06677e1f35e1e8d572207efaf13fbf4be1e9614a887ad5da721d09193e479692",
+      "optimization": "O2",
+      "fill": 90,
+      "wire_sha256": "54ce48c4ba0aa0816a32207f0bf89e22ec32d077363451310c59b108ddd90e3e",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:06677e1f35e1e8d572207efaf13fbf4be1e9614a887ad5da721d09193e479692",
+        "work": 4,
+        "value": true
+      },
+      "json_sha256": "5d5c3973aec5b49e19ee73dedbdcad3f39e108be5ddcab5eeaade5406d1d4c2e"
+    },
+    {
+      "case": "bool-missing-field",
+      "source_sha256": "06677e1f35e1e8d572207efaf13fbf4be1e9614a887ad5da721d09193e479692",
+      "optimization": "O2",
+      "fill": 165,
+      "wire_sha256": "54ce48c4ba0aa0816a32207f0bf89e22ec32d077363451310c59b108ddd90e3e",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:06677e1f35e1e8d572207efaf13fbf4be1e9614a887ad5da721d09193e479692",
+        "work": 4,
+        "value": true
+      },
+      "json_sha256": "5d5c3973aec5b49e19ee73dedbdcad3f39e108be5ddcab5eeaade5406d1d4c2e"
+    },
+    {
+      "case": "bool-lazy-true",
+      "source_sha256": "0f4e43d6a06dee7643523ce2fa9a63462ddd29e55c9800e9b77e6aa9b5b2c7e4",
+      "optimization": "O2",
+      "fill": 90,
+      "wire_sha256": "de1ce5a1133a33e13d89a2e0a4209c94d6193cb6718c827ceb8fbed102d992f4",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:0f4e43d6a06dee7643523ce2fa9a63462ddd29e55c9800e9b77e6aa9b5b2c7e4",
+        "work": 2,
+        "value": true
+      },
+      "json_sha256": "9cbc5a5b0d9470da74a5b36b9037ef34749a945c7ada79c19eae7c4f83f166fd"
+    },
+    {
+      "case": "bool-lazy-true",
+      "source_sha256": "0f4e43d6a06dee7643523ce2fa9a63462ddd29e55c9800e9b77e6aa9b5b2c7e4",
+      "optimization": "O2",
+      "fill": 165,
+      "wire_sha256": "de1ce5a1133a33e13d89a2e0a4209c94d6193cb6718c827ceb8fbed102d992f4",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:0f4e43d6a06dee7643523ce2fa9a63462ddd29e55c9800e9b77e6aa9b5b2c7e4",
+        "work": 2,
+        "value": true
+      },
+      "json_sha256": "9cbc5a5b0d9470da74a5b36b9037ef34749a945c7ada79c19eae7c4f83f166fd"
+    },
+    {
+      "case": "bool-lazy-false",
+      "source_sha256": "0f4e43d6a06dee7643523ce2fa9a63462ddd29e55c9800e9b77e6aa9b5b2c7e4",
+      "optimization": "O2",
+      "fill": 90,
+      "wire_sha256": "fbeb69ef6a3b78030ea3c5916ea7205eb2dd16eca4c0d623269f4040adaa9388",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:0f4e43d6a06dee7643523ce2fa9a63462ddd29e55c9800e9b77e6aa9b5b2c7e4",
+        "work": 2,
+        "value": false
+      },
+      "json_sha256": "015e9fdcc06225977c18361930fa49decc2eab990a99631ab2a46d854366f205"
+    },
+    {
+      "case": "bool-lazy-false",
+      "source_sha256": "0f4e43d6a06dee7643523ce2fa9a63462ddd29e55c9800e9b77e6aa9b5b2c7e4",
+      "optimization": "O2",
+      "fill": 165,
+      "wire_sha256": "fbeb69ef6a3b78030ea3c5916ea7205eb2dd16eca4c0d623269f4040adaa9388",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:0f4e43d6a06dee7643523ce2fa9a63462ddd29e55c9800e9b77e6aa9b5b2c7e4",
+        "work": 2,
+        "value": false
+      },
+      "json_sha256": "015e9fdcc06225977c18361930fa49decc2eab990a99631ab2a46d854366f205"
+    },
+    {
+      "case": "bool-fallback-overflow",
+      "source_sha256": "0f4e43d6a06dee7643523ce2fa9a63462ddd29e55c9800e9b77e6aa9b5b2c7e4",
+      "optimization": "O2",
+      "fill": 90,
+      "wire_sha256": "1c3385bf0078865882b139cd2f4b453765f259a4d3a27c12ea4cd435d54fc860",
+      "returncode": 2,
+      "expected_json": null,
+      "json_sha256": null
+    },
+    {
+      "case": "bool-fallback-overflow",
+      "source_sha256": "0f4e43d6a06dee7643523ce2fa9a63462ddd29e55c9800e9b77e6aa9b5b2c7e4",
+      "optimization": "O2",
+      "fill": 165,
+      "wire_sha256": "1c3385bf0078865882b139cd2f4b453765f259a4d3a27c12ea4cd435d54fc860",
+      "returncode": 2,
+      "expected_json": null,
+      "json_sha256": null
+    },
+    {
+      "case": "app-empty",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O2",
+      "fill": 90,
+      "wire_sha256": "dacb85320a0161b571251dfbe64bccaefdbdea252bb59f7ceff8bf18a31aa8cb",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+        "work": 293,
+        "value": {
+          "total": 0,
+          "valid": true
+        }
+      },
+      "json_sha256": "07fcbcb50f8ff29f177a9c550443791f67f7b20b0503a2414409e58804ba1c0e"
+    },
+    {
+      "case": "app-empty",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O2",
+      "fill": 165,
+      "wire_sha256": "dacb85320a0161b571251dfbe64bccaefdbdea252bb59f7ceff8bf18a31aa8cb",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+        "work": 293,
+        "value": {
+          "total": 0,
+          "valid": true
+        }
+      },
+      "json_sha256": "07fcbcb50f8ff29f177a9c550443791f67f7b20b0503a2414409e58804ba1c0e"
+    },
+    {
+      "case": "app-both-booleans",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O2",
+      "fill": 90,
+      "wire_sha256": "a240530cb09839083df0cfcbcd69303fa194462dfa45a9ba67d19f796bd20ac8",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+        "work": 523,
+        "value": {
+          "total": 3,
+          "valid": true
+        }
+      },
+      "json_sha256": "c98b9a81747bb710d5aca5c8c6957c5d44e677557971d9aad25d84f6503661f4"
+    },
+    {
+      "case": "app-both-booleans",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O2",
+      "fill": 165,
+      "wire_sha256": "a240530cb09839083df0cfcbcd69303fa194462dfa45a9ba67d19f796bd20ac8",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+        "work": 523,
+        "value": {
+          "total": 3,
+          "valid": true
+        }
+      },
+      "json_sha256": "c98b9a81747bb710d5aca5c8c6957c5d44e677557971d9aad25d84f6503661f4"
+    },
+    {
+      "case": "app-negative",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O2",
+      "fill": 90,
+      "wire_sha256": "b31491a58a16a20952bbebde89b6cd31ff1aeaa0d81e7a5fa6d836b66845018b",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+        "work": 545,
+        "value": {
+          "total": -3,
+          "valid": true
+        }
+      },
+      "json_sha256": "a60f6254eadcc2636fa64c3e3f3438d8bf8619b51e4a1c8aaaf14e1e85dece6e"
+    },
+    {
+      "case": "app-negative",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O2",
+      "fill": 165,
+      "wire_sha256": "b31491a58a16a20952bbebde89b6cd31ff1aeaa0d81e7a5fa6d836b66845018b",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+        "work": 545,
+        "value": {
+          "total": -3,
+          "valid": true
+        }
+      },
+      "json_sha256": "a60f6254eadcc2636fa64c3e3f3438d8bf8619b51e4a1c8aaaf14e1e85dece6e"
+    },
+    {
+      "case": "app-inactive-overflow",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O2",
+      "fill": 90,
+      "wire_sha256": "f8b9c6eb6c348308f51843784a68f5aa1a2ed8449e8ef14c5ad0bc657236fc31",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+        "work": 559,
+        "value": {
+          "total": 9223372036854775807,
+          "valid": true
+        }
+      },
+      "json_sha256": "6350d5293fa5c591eb528f4c03e15238d595986a89c675137033dc4337774a39"
+    },
+    {
+      "case": "app-inactive-overflow",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O2",
+      "fill": 165,
+      "wire_sha256": "f8b9c6eb6c348308f51843784a68f5aa1a2ed8449e8ef14c5ad0bc657236fc31",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+        "work": 559,
+        "value": {
+          "total": 9223372036854775807,
+          "valid": true
+        }
+      },
+      "json_sha256": "6350d5293fa5c591eb528f4c03e15238d595986a89c675137033dc4337774a39"
+    },
+    {
+      "case": "app-positive-overflow",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O2",
+      "fill": 90,
+      "wire_sha256": "8b49b4ec9a8ba43970e97a33e641a382eec6927a4be3dc083bd56298ba513894",
+      "returncode": 2,
+      "expected_json": null,
+      "json_sha256": null
+    },
+    {
+      "case": "app-positive-overflow",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O2",
+      "fill": 165,
+      "wire_sha256": "8b49b4ec9a8ba43970e97a33e641a382eec6927a4be3dc083bd56298ba513894",
+      "returncode": 2,
+      "expected_json": null,
+      "json_sha256": null
+    },
+    {
+      "case": "app-negative-overflow",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O2",
+      "fill": 90,
+      "wire_sha256": "a61459aeab8d50e9a158c66bedd6f692802e7eb25d76f5a07c5604b66d302098",
+      "returncode": 2,
+      "expected_json": null,
+      "json_sha256": null
+    },
+    {
+      "case": "app-negative-overflow",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O2",
+      "fill": 165,
+      "wire_sha256": "a61459aeab8d50e9a158c66bedd6f692802e7eb25d76f5a07c5604b66d302098",
+      "returncode": 2,
+      "expected_json": null,
+      "json_sha256": null
+    },
+    {
+      "case": "app-cancellation",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O2",
+      "fill": 90,
+      "wire_sha256": "4a2688a9072106e9936c3000aef6e43a19b3b5b6d156e75270f0620aea4e87b1",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+        "work": 617,
+        "value": {
+          "total": 0,
+          "valid": true
+        }
+      },
+      "json_sha256": "c5571096ffaebaf76dc1f7f6b3b33719e7a04ff79ee72e8966727a65146d1464"
+    },
+    {
+      "case": "app-cancellation",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O2",
+      "fill": 165,
+      "wire_sha256": "4a2688a9072106e9936c3000aef6e43a19b3b5b6d156e75270f0620aea4e87b1",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+        "work": 617,
+        "value": {
+          "total": 0,
+          "valid": true
+        }
+      },
+      "json_sha256": "c5571096ffaebaf76dc1f7f6b3b33719e7a04ff79ee72e8966727a65146d1464"
+    },
+    {
+      "case": "app-sixteen",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O2",
+      "fill": 90,
+      "wire_sha256": "58fb3c6dc46c2e9356190dda5d57c4051eed6a15f158103c920e058dce545b93",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+        "work": 2293,
+        "value": {
+          "total": 16,
+          "valid": true
+        }
+      },
+      "json_sha256": "d036790bac306dd7ae2b4b76cd531156b1251ff67631c1b8d3f07615eaad7d95"
+    },
+    {
+      "case": "app-sixteen",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O2",
+      "fill": 165,
+      "wire_sha256": "58fb3c6dc46c2e9356190dda5d57c4051eed6a15f158103c920e058dce545b93",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+        "work": 2293,
+        "value": {
+          "total": 16,
+          "valid": true
+        }
+      },
+      "json_sha256": "d036790bac306dd7ae2b4b76cd531156b1251ff67631c1b8d3f07615eaad7d95"
+    },
+    {
+      "case": "app-seventeen",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O2",
+      "fill": 90,
+      "wire_sha256": "974195ed586861d3dfb54cd9e463242f9dd81cfaef180053c29ee945598e2bb2",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+        "work": 33,
+        "value": {
+          "total": 0,
+          "valid": false
+        }
+      },
+      "json_sha256": "e42457ec9647115078a4c986dc767e159d1a95e97d03aa84cc2856d225a8dd27"
+    },
+    {
+      "case": "app-seventeen",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O2",
+      "fill": 165,
+      "wire_sha256": "974195ed586861d3dfb54cd9e463242f9dd81cfaef180053c29ee945598e2bb2",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+        "work": 33,
+        "value": {
+          "total": 0,
+          "valid": false
+        }
+      },
+      "json_sha256": "e42457ec9647115078a4c986dc767e159d1a95e97d03aa84cc2856d225a8dd27"
+    },
+    {
+      "case": "app-object-root",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O2",
+      "fill": 90,
+      "wire_sha256": "c5beb007a24ddb6e27c5c342bd4814a4585ca11d7c7b9b596fbee457bde6912b",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+        "work": 28,
+        "value": {
+          "total": 0,
+          "valid": false
+        }
+      },
+      "json_sha256": "6617a705e6932bab05c32a2ab6bbd07f7633431b3f806529396b34407cb30f88"
+    },
+    {
+      "case": "app-object-root",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O2",
+      "fill": 165,
+      "wire_sha256": "c5beb007a24ddb6e27c5c342bd4814a4585ca11d7c7b9b596fbee457bde6912b",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+        "work": 28,
+        "value": {
+          "total": 0,
+          "valid": false
+        }
+      },
+      "json_sha256": "6617a705e6932bab05c32a2ab6bbd07f7633431b3f806529396b34407cb30f88"
+    },
+    {
+      "case": "app-null-root",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O2",
+      "fill": 90,
+      "wire_sha256": "8d86acd57a18ea73e3138b852ccc793352094bb2a504311fdf57688b1eda724c",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+        "work": 26,
+        "value": {
+          "total": 0,
+          "valid": false
+        }
+      },
+      "json_sha256": "9f68075c8dce3285f568e1a79821cc370aea108d839ff4b957148bd8f79068c1"
+    },
+    {
+      "case": "app-null-root",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O2",
+      "fill": 165,
+      "wire_sha256": "8d86acd57a18ea73e3138b852ccc793352094bb2a504311fdf57688b1eda724c",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+        "work": 26,
+        "value": {
+          "total": 0,
+          "valid": false
+        }
+      },
+      "json_sha256": "9f68075c8dce3285f568e1a79821cc370aea108d839ff4b957148bd8f79068c1"
+    },
+    {
+      "case": "app-missing-active",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O2",
+      "fill": 90,
+      "wire_sha256": "1c8fbb1c54ae67a5624c21fd4dc8052f09b7f11590f5da33434b780e26bc301e",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+        "work": 121,
+        "value": {
+          "total": 0,
+          "valid": false
+        }
+      },
+      "json_sha256": "69474b8a44ea1739ebd29c4c29976ba260a681a0886cc7a7799dd3240cb582be"
+    },
+    {
+      "case": "app-missing-active",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O2",
+      "fill": 165,
+      "wire_sha256": "1c8fbb1c54ae67a5624c21fd4dc8052f09b7f11590f5da33434b780e26bc301e",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+        "work": 121,
+        "value": {
+          "total": 0,
+          "valid": false
+        }
+      },
+      "json_sha256": "69474b8a44ea1739ebd29c4c29976ba260a681a0886cc7a7799dd3240cb582be"
+    },
+    {
+      "case": "app-missing-amount",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O2",
+      "fill": 90,
+      "wire_sha256": "1c8fbb1c54ae67a5624c21fd4dc8052f09b7f11590f5da33434b780e26bc301e",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+        "work": 121,
+        "value": {
+          "total": 0,
+          "valid": false
+        }
+      },
+      "json_sha256": "69474b8a44ea1739ebd29c4c29976ba260a681a0886cc7a7799dd3240cb582be"
+    },
+    {
+      "case": "app-missing-amount",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O2",
+      "fill": 165,
+      "wire_sha256": "1c8fbb1c54ae67a5624c21fd4dc8052f09b7f11590f5da33434b780e26bc301e",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+        "work": 121,
+        "value": {
+          "total": 0,
+          "valid": false
+        }
+      },
+      "json_sha256": "69474b8a44ea1739ebd29c4c29976ba260a681a0886cc7a7799dd3240cb582be"
+    },
+    {
+      "case": "app-extra-field",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O2",
+      "fill": 90,
+      "wire_sha256": "1c8fbb1c54ae67a5624c21fd4dc8052f09b7f11590f5da33434b780e26bc301e",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+        "work": 121,
+        "value": {
+          "total": 0,
+          "valid": false
+        }
+      },
+      "json_sha256": "69474b8a44ea1739ebd29c4c29976ba260a681a0886cc7a7799dd3240cb582be"
+    },
+    {
+      "case": "app-extra-field",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O2",
+      "fill": 165,
+      "wire_sha256": "1c8fbb1c54ae67a5624c21fd4dc8052f09b7f11590f5da33434b780e26bc301e",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+        "work": 121,
+        "value": {
+          "total": 0,
+          "valid": false
+        }
+      },
+      "json_sha256": "69474b8a44ea1739ebd29c4c29976ba260a681a0886cc7a7799dd3240cb582be"
+    },
+    {
+      "case": "app-integer-active",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O2",
+      "fill": 90,
+      "wire_sha256": "25fe4581db3feab742453a15dd7376486a97f251194a7e8827f995cc2669c0e3",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+        "work": 170,
+        "value": {
+          "total": 0,
+          "valid": false
+        }
+      },
+      "json_sha256": "be88f44c767483998f779b60aaea5fd3ff9eeebcb85ad5c689eef8f0e683daa3"
+    },
+    {
+      "case": "app-integer-active",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O2",
+      "fill": 165,
+      "wire_sha256": "25fe4581db3feab742453a15dd7376486a97f251194a7e8827f995cc2669c0e3",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+        "work": 170,
+        "value": {
+          "total": 0,
+          "valid": false
+        }
+      },
+      "json_sha256": "be88f44c767483998f779b60aaea5fd3ff9eeebcb85ad5c689eef8f0e683daa3"
+    },
+    {
+      "case": "app-boolean-amount",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O2",
+      "fill": 90,
+      "wire_sha256": "eaf7269007584e00d47932cd749ad053c970805fc7eb251bd29f96c2a984f802",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+        "work": 140,
+        "value": {
+          "total": 0,
+          "valid": false
+        }
+      },
+      "json_sha256": "6b3a46b5ab8e6ebd9d8d88e4fe8129a6b8b56ca4ec50e17a22707110d3bda349"
+    },
+    {
+      "case": "app-boolean-amount",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O2",
+      "fill": 165,
+      "wire_sha256": "eaf7269007584e00d47932cd749ad053c970805fc7eb251bd29f96c2a984f802",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+        "work": 140,
+        "value": {
+          "total": 0,
+          "valid": false
+        }
+      },
+      "json_sha256": "6b3a46b5ab8e6ebd9d8d88e4fe8129a6b8b56ca4ec50e17a22707110d3bda349"
+    },
+    {
+      "case": "app-fraction-amount",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O2",
+      "fill": 90,
+      "wire_sha256": "eaf7269007584e00d47932cd749ad053c970805fc7eb251bd29f96c2a984f802",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+        "work": 140,
+        "value": {
+          "total": 0,
+          "valid": false
+        }
+      },
+      "json_sha256": "6b3a46b5ab8e6ebd9d8d88e4fe8129a6b8b56ca4ec50e17a22707110d3bda349"
+    },
+    {
+      "case": "app-fraction-amount",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O2",
+      "fill": 165,
+      "wire_sha256": "eaf7269007584e00d47932cd749ad053c970805fc7eb251bd29f96c2a984f802",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+        "work": 140,
+        "value": {
+          "total": 0,
+          "valid": false
+        }
+      },
+      "json_sha256": "6b3a46b5ab8e6ebd9d8d88e4fe8129a6b8b56ca4ec50e17a22707110d3bda349"
+    },
+    {
+      "case": "app-out-of-range",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O2",
+      "fill": 90,
+      "wire_sha256": "d3b8bc7c686d63b173916beecb1d3e953ad0f248ec0792ca20589c233c216966",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+        "work": 159,
+        "value": {
+          "total": 0,
+          "valid": false
+        }
+      },
+      "json_sha256": "dc926cbdbe6caaffd37028389be9ac1036fdcb159818e42216bbf7add1953ec5"
+    },
+    {
+      "case": "app-out-of-range",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O2",
+      "fill": 165,
+      "wire_sha256": "d3b8bc7c686d63b173916beecb1d3e953ad0f248ec0792ca20589c233c216966",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+        "work": 159,
+        "value": {
+          "total": 0,
+          "valid": false
+        }
+      },
+      "json_sha256": "dc926cbdbe6caaffd37028389be9ac1036fdcb159818e42216bbf7add1953ec5"
+    },
+    {
+      "case": "app-null-item",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O2",
+      "fill": 90,
+      "wire_sha256": "2cf21ac9f24a5c7ad406099856f6a3167f9b8e245caafc69f459d62583617f27",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+        "work": 113,
+        "value": {
+          "total": 0,
+          "valid": false
+        }
+      },
+      "json_sha256": "e4712721a3894d88f62eab9bbeecf5f5b480c905e0e9f12369e88a9463ed2f90"
+    },
+    {
+      "case": "app-null-item",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O2",
+      "fill": 165,
+      "wire_sha256": "2cf21ac9f24a5c7ad406099856f6a3167f9b8e245caafc69f459d62583617f27",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+        "work": 113,
+        "value": {
+          "total": 0,
+          "valid": false
+        }
+      },
+      "json_sha256": "e4712721a3894d88f62eab9bbeecf5f5b480c905e0e9f12369e88a9463ed2f90"
+    },
+    {
+      "case": "app-invalid-before-overflow",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O2",
+      "fill": 90,
+      "wire_sha256": "97692d071d6ddbae87816449f50a23bfb984efb50606e9569e75d9b35ed6d9f7",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+        "work": 317,
+        "value": {
+          "total": 0,
+          "valid": false
+        }
+      },
+      "json_sha256": "9a5cbfb1966370dec3b18de68363337056b65056c6807f5c2840a7e0af3ed9e6"
+    },
+    {
+      "case": "app-invalid-before-overflow",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O2",
+      "fill": 165,
+      "wire_sha256": "97692d071d6ddbae87816449f50a23bfb984efb50606e9569e75d9b35ed6d9f7",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+        "work": 317,
+        "value": {
+          "total": 0,
+          "valid": false
+        }
+      },
+      "json_sha256": "9a5cbfb1966370dec3b18de68363337056b65056c6807f5c2840a7e0af3ed9e6"
+    },
+    {
+      "case": "app-integer-negative-zero",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O2",
+      "fill": 90,
+      "wire_sha256": "e670b738efe7bbfe04a731be9eb2662bd32f5e5ceb2a736500ef58dbf7674311",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+        "work": 420,
+        "value": {
+          "total": 0,
+          "valid": true
+        }
+      },
+      "json_sha256": "6a8336cd56175021e95cb51b9c558cfdd6aafa9a8c65b39c4fbdf31ad2bc0e96"
+    },
+    {
+      "case": "app-integer-negative-zero",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O2",
+      "fill": 165,
+      "wire_sha256": "e670b738efe7bbfe04a731be9eb2662bd32f5e5ceb2a736500ef58dbf7674311",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+        "work": 420,
+        "value": {
+          "total": 0,
+          "valid": true
+        }
+      },
+      "json_sha256": "6a8336cd56175021e95cb51b9c558cfdd6aafa9a8c65b39c4fbdf31ad2bc0e96"
+    },
+    {
+      "case": "app-fraction-negative-zero",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O2",
+      "fill": 90,
+      "wire_sha256": "eaf7269007584e00d47932cd749ad053c970805fc7eb251bd29f96c2a984f802",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+        "work": 140,
+        "value": {
+          "total": 0,
+          "valid": false
+        }
+      },
+      "json_sha256": "6b3a46b5ab8e6ebd9d8d88e4fe8129a6b8b56ca4ec50e17a22707110d3bda349"
+    },
+    {
+      "case": "app-fraction-negative-zero",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O2",
+      "fill": 165,
+      "wire_sha256": "eaf7269007584e00d47932cd749ad053c970805fc7eb251bd29f96c2a984f802",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+        "work": 140,
+        "value": {
+          "total": 0,
+          "valid": false
+        }
+      },
+      "json_sha256": "6b3a46b5ab8e6ebd9d8d88e4fe8129a6b8b56ca4ec50e17a22707110d3bda349"
+    },
+    {
+      "case": "app-integral-exponent",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O2",
+      "fill": 90,
+      "wire_sha256": "eaf7269007584e00d47932cd749ad053c970805fc7eb251bd29f96c2a984f802",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+        "work": 140,
+        "value": {
+          "total": 0,
+          "valid": false
+        }
+      },
+      "json_sha256": "6b3a46b5ab8e6ebd9d8d88e4fe8129a6b8b56ca4ec50e17a22707110d3bda349"
+    },
+    {
+      "case": "app-integral-exponent",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O2",
+      "fill": 165,
+      "wire_sha256": "eaf7269007584e00d47932cd749ad053c970805fc7eb251bd29f96c2a984f802",
+      "returncode": 0,
+      "expected_json": {
+        "schema": "bagaev-native-result/12",
+        "source_pin": "sha256:15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+        "work": 140,
+        "value": {
+          "total": 0,
+          "valid": false
+        }
+      },
+      "json_sha256": "6b3a46b5ab8e6ebd9d8d88e4fe8129a6b8b56ca4ec50e17a22707110d3bda349"
+    }
+  ],
+  "cli": {
+    "status": "PASS",
+    "calls": 16,
+    "successes_including_help": 4,
+    "refusals": 12,
+    "native_calls": 0,
+    "reference_calls": 0,
+    "observations": [
+      {
+        "id": "bool-true-false",
+        "returncode": 0,
+        "stdout_sha256": "2e080264555b3e302bd9f345e0915b2cfc9d64b7dbd38dd977eca5ea18428d84",
+        "reason": null
+      },
+      {
+        "id": "bool-false-false",
+        "returncode": 0,
+        "stdout_sha256": "915de7932b145e755b441c6339d64c6e8603594f9e537b550ba8c25038deca2b",
+        "reason": null
+      },
+      {
+        "id": "app-both-booleans",
+        "returncode": 0,
+        "stdout_sha256": "32bf74dcfbe8878f329898cc2545ab2c7d0d562d83ecb1234d5ffed84c72b597",
+        "reason": null
+      },
+      {
+        "id": "help",
+        "returncode": 0,
+        "stdout_sha256": "e368db14be6f2d598b09e989ce0eadad902d2ef3aced60c691631a44c20b765b",
+        "reason": null
+      },
+      {
+        "id": "wrong-pin",
+        "returncode": 2,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "reason": "SOURCE_PIN_MISMATCH"
+      },
+      {
+        "id": "bad-pin",
+        "returncode": 2,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "reason": "SOURCE_PIN_FORMAT"
+      },
+      {
+        "id": "duplicate",
+        "returncode": 2,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "reason": "ARGUMENTS"
+      },
+      {
+        "id": "unknown",
+        "returncode": 2,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "reason": "ARGUMENTS"
+      },
+      {
+        "id": "missing",
+        "returncode": 2,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "reason": "ARGUMENTS"
+      },
+      {
+        "id": "malformed-wire",
+        "returncode": 2,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "reason": "RESULT_REFUSED"
+      },
+      {
+        "id": "unbound-failure",
+        "returncode": 2,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "reason": "RESULT_REFUSED"
+      },
+      {
+        "id": "directory",
+        "returncode": 2,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "reason": "SOURCE_FILE"
+      },
+      {
+        "id": "symlink",
+        "returncode": 2,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "reason": "SOURCE_FILE"
+      },
+      {
+        "id": "source-size",
+        "returncode": 2,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "reason": "SOURCE_FILE"
+      },
+      {
+        "id": "wire-size",
+        "returncode": 2,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "reason": "WIRE_FILE"
+      },
+      {
+        "id": "old-profile",
+        "returncode": 2,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "reason": "SOURCE_ADMISSION"
+      }
+    ]
+  }
+}
