@@ -229,9 +229,9 @@ Join checked nodes and maps only when program pins match, using JSON pointers.
 
 ## Finish one change
 
-Use reviewed tools with execution authority. `-B` only suppresses bytecode writes;
-it is not a sandbox. Inputs: bounded regular nonsymlink files; outputs: new only.
-Refusals exit 2; OS failure may leave a partial new file. No evaluator is launched.
+Use reviewed, authorized tools. `-B` suppresses bytecode writes, not a sandbox.
+Inputs: bounded regular nonsymlink files; outputs: new only. Refusals exit2;
+OS failure may leave partial output. No evaluator launches.
 
 | Need | Command shape (`python3 -B tools/` prefix omitted) |
 | --- | --- |
@@ -250,9 +250,10 @@ Refusals exit 2; OS failure may leave a partial new file. No evaluator is launch
 | Pinned source map | `record_source_map.py S --form 5 --program-pin sha256:BASE [--source-sha256 RAW] [--pointer PTR] --output MAP` |
 | Discovery | `record_capabilities.py --form 5 --revision 5` |
 
-Form6: decode/encode (also named)/inspect, diagnose/format (also width), source-map;
-Json preparer selects `--form 6` for lossless invocation12. Generic prepare6 and
-bounds6 refuse `TOOL_USAGE`; other tools stay form5-only. No implicit upgrade.
+Form6 accepts decode/encode/inspect, diagnose/format, source-map and function
+extract/context with their flags. Json preparer `--form 6`: lossless invocation12.
+Generic prepare/bounds/function replace refuse `TOOL_USAGE`; draft/export/
+discovery stay form5-only. No implicit upgrade.
 
 `--bounds B`: exact entry-parameter map. Int64/Bool: `{"type":T}`;
 TextList: `{"type":"TextList","items":N,"bytes":B}` maxima;

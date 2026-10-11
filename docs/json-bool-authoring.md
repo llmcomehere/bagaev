@@ -12,11 +12,17 @@ Choose `--form 6` explicitly; old tool defaults and versions are unchanged.
 - `tools/record_source_map.py`: expression ranges with required `--program-pin`,
   optional `--source-sha256` and `--pointer`. Raw layout identity is separate
   from the complete graph pin; repeated equal literals retain distinct ranges.
+- `tools/record_function.py`: read-only `extract` and `context --name NAME`,
+  including `--locations` or `--source-body`. Canonical fragments contain only
+  the selected function and type environment; direct callers/callees carry
+  signatures/pins. Original body text/hash refers to the original full source,
+  including internal comments, never the canonical fragment's coordinates.
 
 Each command needs an input and a new `--output` path; the preparer also needs
 `--arguments`. Generic record_text prepare6 and inspect6 `--bounds` refuse
-`TOOL_USAGE` before reading inputs. Function/draft/export tools remain
-on their existing profiles. A diagnostic's `valid_form` is syntax/lowering
+`TOOL_USAGE` before reading inputs. Form6 function `replace` and
+`--callee-context` also refuse before I/O; draft/export tools remain on existing
+profiles. A diagnostic's `valid_form` is syntax/lowering
 validity only. All tools report no semantic checking or execution admission;
 none runs the program or a compiler. Follow the existing bounded regular-file,
 exclusive-output and execution-authority contracts.
