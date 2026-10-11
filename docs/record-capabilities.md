@@ -1,5 +1,10 @@
 # Discover a pure profile before choosing it
 
+For the newer explicit Boolean-capable route, select
+`python tools/record_capabilities.py --form 6 --revision 6`.
+This additive report describes the accepted profile12 chain; forms4/5 and their
+default reports retain their prior selection and bytes. See revision6 below.
+
 Models and tools can inspect a small structured description before loading a
 whole example. This supports an informed choice of profile; it does not show
 that a model prefers bagaev or that a workload will finish inside its bounds.
@@ -121,3 +126,24 @@ Four portable tests passed: eighteen data CLI calls cover ten frozen old/default
 packets, two fresh revision5 repeats per form and four refusals; implementation
 paths/flags and detached API values are also checked. No program, kernel,
 provider or performance measurement was involved.
+
+## Explicit revision 6: Boolean-capable profile12
+
+Only `--form 6 --revision 6` selects this report. Form6 without revision6 and
+forms4/5 with revision6 refuse. Historical revisions1..5 remain unchanged.
+The report includes json.bool_or, capacity16, lossless Json preparation, named
+calls/comments, focused context and canonical export, source-map selection,
+prepared reference12/native12 and the source-pinned success JSON12 reader.
+
+Unsupported form6 operations are explicitly listed: generic strict prepare,
+inspect --bounds, callee-context and layout-preserving export. Existing
+capabilities on older forms are unaffected. This report does not advertise a
+profile12 checked-location executable or imply executable availability.
+Source pointers and API names describe separately reviewable files only.
+Unbound failure wires refuse; source binding is not origin authentication.
+No program, compiler, native kernel or provider is invoked by discovery.
+
+Four new data-only tests check literal profile identities, route files and
+refusal boundaries, deterministic detached results and legacy revision5 bytes.
+The existing discovery revision3/4/5 suites are separate compatibility checks.
+Metadata does not prove model preference, semantic completeness or performance.

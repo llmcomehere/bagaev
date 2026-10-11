@@ -67,6 +67,56 @@ def describe_v2(version):
     return value
 
 
+def describe_v6(version):
+    """Explicit form6 discovery; historical revisions remain unchanged."""
+    narrow.need(type(version) is str and version == '6', 'FORM_VERSION')
+    import bagaev_record_json_bool_form as codec
+    value = describe_v2('5')
+    value.update(schema='bagaev-record-capabilities/6', form='record-form/6',
+                 program_schema='bagaev-typed-record/12',
+                 invocation_schema='bagaev-typed-record-invocation/12',
+                 result_schema='bagaev-typed-record-result/12')
+    value['selection']['explicit_form_flag'] = '6'
+    value['intrinsic_spellings'] = [{'name': n, 'arity': a} for n, a in sorted(codec.INTRINSICS.items())]
+    value['intrinsic_scope'] = 'named-call spellings including lazy Boolean forms; operators and other special syntax are not enumerated'
+    value['data_tools']['record_text.py'] = ['decode', 'encode', 'inspect']
+    value['data_tools']['record_source_map.py'] = ['pinned-expression-source-map']
+    value['argument_routes']['record_text.py'] = 'unsupported for form6; use explicit lossless Json-only preparation'
+    value['unsupported_options'] = ['record_text.py prepare', 'record_text.py inspect --bounds',
+                                    'record_function.py --callee-context', 'record_export.py --preserve-layout']
+    native = value['native_preparation']
+    native.update(emitter_source='examples/probes/backend/rust/json_native_emit12.rs',
+                  module_schema='bagaev-json-view12-llvm-module/1',
+                  binding_schema='bagaev-json-view12-llvm-binding/1')
+    extensions = describe_v4('5')['profile11_extensions']
+    reference = extensions['prepared_reference']
+    reference.update(prepare_source='prepare_json_program_v12', prepare_arguments='prepare_json_arguments_v12',
+                     evaluate='evaluate_prepared_json_v12', guide='docs/probe-prepared-json12.md')
+    extensions['prepared_native'].update(source='examples/probes/backend/rust/prepared_json_native_v12.rs',
+                                         guide='docs/probe-prepared-native12.md')
+    extensions['success_json_reader'].update(source='examples/probes/backend/rust/native_result_json12_main.rs',
+        library='examples/probes/backend/rust/native_result_json_v12.rs', result_schema='bagaev-native-result/12',
+        guide='docs/native-result-json12.md')
+    extensions['json_boolean_projection'] = {'name': 'json.bool_or', 'arity': 2,
+        'fallback': 'lazy when input is not a JSON Boolean; false is preserved',
+        'guide': 'docs/record-json-bool-proposal.md'}
+    value['profile12_extensions'] = extensions
+    editing = describe_v5('5')['readable_editing']
+    named = editing['named_user_calls']['named_encoder']
+    named.update(flags=['--form', '6', '--named-calls'], library='src/bagaev_record_json_bool_form.py')
+    editing['named_user_calls']['guide'] = 'docs/json-bool-authoring.md'
+    editing['function_context'].update(form_flag_value='6', guide='docs/json-bool-authoring.md')
+    editing['layout_export'] = {'supported': False, 'reason': 'form6 canonical focused export only'}
+    editing['walkthrough'] = {'guide': 'docs/json-active-total.md'}
+    value['readable_editing'] = editing
+    value['source_debugging'] = {'map_tool': 'tools/record_source_map.py', 'form_flag_value': '6',
+        'required_flags': ['--form', '--program-pin', '--output'],
+        'optional_flags': ['--source-sha256', '--pointer'],
+        'native_output_authenticated': False, 'execution_admission': False,
+        'guide': 'docs/json-bool-authoring.md'}
+    return value
+
+
 def describe_v3(version):
     """Explicit discovery of layout-bound debugging data, without execution."""
     value = describe_v2(version)
