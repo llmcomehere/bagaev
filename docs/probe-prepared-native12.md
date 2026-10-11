@@ -38,3 +38,17 @@ were unchanged. The reported376 matches are from the corrected full replay.
 Same-maintainer evidence, not independent reproduction, general backend proof,
 hostile-pointer isolation, model benefit or production acceptance. Separate
 exact-head review and passing CI remain required. Old APIs are unchanged.
+
+## Focused form6 change/export experiment
+
+The candidate from the separate focused form6 change/export slice was also
+compiled and checked through this boundary. Its main body is wrapped by
+if true then B else B. The23-case oracle was already frozen before the earlier
+reference replay: same business values/helper overflow locations, exactly+2work.
+The reviewed changed module matched all184 complete native outputs atO0/O2,
+two fills and two repeats. Raw argument lexemes and the oracle hash were
+preserved. Input/scratch guards and repeated wire equality held.
+
+The public observations include source/module/oracle identities and complete
+results. This cross-PR experiment does not accept the pending authoring PRs,
+add new semantic cases or establish unchanged-work equivalence.
