@@ -50,5 +50,12 @@ two fills and two repeats. Raw argument lexemes and the oracle hash were
 preserved. Input/scratch guards and repeated wire equality held.
 
 The public observations include source/module/oracle identities and complete
-results. This cross-PR experiment does not accept the pending authoring PRs,
-add new semantic cases or establish unchanged-work equivalence.
+results. The authoring slices were subsequently integrated through
+[PR242](https://github.com/llmcomehere/bagaev/pull/242) and
+[PR243](https://github.com/llmcomehere/bagaev/pull/243). The experiment itself
+does not add semantic cases or establish unchanged-work equivalence.
+
+For the data-only consumer after native capture, use the explicit
+[result12 projection](native-result-json12.md#focused-successor-consumer).
+It preserves the successor source pin and complete successful value/work;
+unbound failure wires refuse instead of being relabelled with that source.

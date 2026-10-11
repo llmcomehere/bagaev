@@ -59,3 +59,25 @@ help; twelve refusals cover wrong/malformed pins, repeated/unknown/missing flags
 malformed/unbound wire, directory, symlink, both file-size limits and old11 source.
 These are data-reader checks, not new native executions. The observations file
 includes this separate CLI evidence; the original library observations remain.
+
+## Focused successor consumer
+
+The connected route is explicit [form6 authoring](json-bool-authoring.md),
+focused replacement/export, lossless argument preparation, separately admitted
+[prepared native12 execution](probe-prepared-native12.md), then this data reader.
+Pass the complete canonical successor JSON source and its pin, not the readable
+form or the original programme. Each execution still needs its own admission;
+neither the detached draft nor the captured wire grants that authority.
+
+After integration on 2026-10-11, the unchanged reader was rebuilt and applied
+to all184 previously captured focused-successor wires (23 cases, two compiler
+options, two fills and two repeats). It preserved168 full successful values,
+work and successor pins and refused16 unbound failures. Two additional controls
+refused an original-source/successor-wire mismatch and a successor-source/old-pin
+mismatch; the latter refused before reading a deliberately absent wire file.
+The pre-existing pinned oracle was unchanged. This pass made zero native or
+reference calls and adds no semantic cases or performance evidence.
+
+Fresh integration regressions also passed17 Rust tests across four selected
+reference/native/consumer suites and24 Python tests across six form6 suites.
+These are selected checks, not a full repository test run or independent review.
