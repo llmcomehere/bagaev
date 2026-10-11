@@ -3,6 +3,7 @@ from pathlib import Path
 import ast,json,re,sys,unittest
 T=Path(__file__).resolve().parents[1];sys.path.insert(0,str(T/'src'))
 import bagaev_record_wide_form as form
+import bagaev_record_json_bool_form as form6
 import bagaev_component_record_list_form as component
 import bagaev_l2_filter as l2
 import bagaev_l0 as l0
@@ -14,7 +15,7 @@ class CompactReference(unittest.TestCase):
         for h in ['Why a language for change?','Start with one real change','What exists today','Help test the thesis']:self.assertIn('## '+h,readme)
         self.assertIn('not measured tokens',self.text);self.assertIn('No runtime semantics changed here',self.text)
     def test_actual_intrinsic_coverage(self):
-        for name in form.INTRINSICS:self.assertIn('`'+name+'(',self.text,name)
+        for name in form6.INTRINSICS:self.assertIn('`'+name+'(',self.text,name)
         for token in ['fold (N, initial)','let x = value in body','match (value)','OptionInt64 omit_none','65,536','2,048','32,768','RR_RECORD_LIST_ITEMS','declaration order','sorted field-name order','--callee-context','--source-body','record_draft.py','[--bounds B]','exact entry-parameter map','conditional work bound or `UNKNOWN`','nominal lists: `{"type":T,"items":N}`','capacity<=16, Int64/Bool fields only']:
             self.assertIn(token,self.text)
     def test_legacy_operation_coverage(self):

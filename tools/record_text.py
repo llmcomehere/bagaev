@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Bounded data-only typed-record/10 conversion. No semantic check or execution."""
+"""Bounded explicit typed-record conversion. No semantic check or execution."""
 from pathlib import Path
 import argparse
 import hashlib
@@ -106,11 +106,14 @@ def convert(argv):
     parser.add_argument("input")
     parser.add_argument("--output", required=True)
     parser.add_argument("--arguments")
-    parser.add_argument("--form", choices=("1", "2", "3", "4", "5"), default="1")
+    parser.add_argument("--form", choices=("1", "2", "3", "4", "5", "6"), default="1")
     parser.add_argument("--named-calls", action="store_true")
     parser.add_argument("--bounds")
     args = parser.parse_args(argv)
-    if args.named_calls and (args.operation != "encode" or args.form != "5"):
+    if args.named_calls and (args.operation != "encode" or args.form not in ("5", "6")):
+        raise Refusal("TOOL_USAGE")
+    # Json invocation12 data belongs to the lossless argument preparer.
+    if args.form == "6" and args.operation == "prepare":
         raise Refusal("TOOL_USAGE")
     if args.bounds is not None and (args.operation != "inspect" or args.form != "5"):
         raise Refusal("TOOL_USAGE")
@@ -130,7 +133,10 @@ def convert(argv):
     elif args.form == "5":
         import bagaev_record_wide_form
         codec = bagaev_record_wide_form
-    profile = "11" if args.form == "5" else "10"
+    elif args.form == "6":
+        import bagaev_record_json_bool_form
+        codec = bagaev_record_json_bool_form
+    profile = "12" if args.form == "6" else "11" if args.form == "5" else "10"
     if args.operation in ("decode", "prepare", "inspect"):
         value = codec.decode(raw)
         if args.operation == "prepare":
