@@ -9,7 +9,7 @@ def main(argv=None):
         p=transport.Parser(add_help=False,allow_abbrev=False)
         p.add_argument('original');p.add_argument('--draft',required=True)
         p.add_argument('--base',required=True);p.add_argument('--target',required=True)
-        p.add_argument('--form',choices=('4','5'),default='4');p.add_argument('--output',required=True)
+        p.add_argument('--form',choices=('4','5','6'),default='4');p.add_argument('--output',required=True)
         p.add_argument('--preserve-layout',action='store_true');p.add_argument('--source-sha256');p.add_argument('--replacement-source');p.add_argument('--callee-context',action='store_true')
         a=p.parse_args(sys.argv[1:] if argv is None else argv)
         if (a.preserve_layout != (a.source_sha256 is not None)) or (a.preserve_layout and a.form != '5'):

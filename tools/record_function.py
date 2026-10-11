@@ -10,11 +10,19 @@ def main(argv=None):
     try:
         p=transport.Parser(add_help=False,allow_abbrev=False)
         p.add_argument('operation',choices=('extract','context','replace'));p.add_argument('input')
-        p.add_argument('--callee-context',action='store_true');p.add_argument('--source-body',action='store_true');p.add_argument('--locations',action='store_true');p.add_argument('--form',choices=('4','5'),default='4');p.add_argument('--name');p.add_argument('--replacement');p.add_argument('--base');p.add_argument('--function-pin');p.add_argument('--output',required=True)
+        p.add_argument('--callee-context',action='store_true');p.add_argument('--source-body',action='store_true');p.add_argument('--locations',action='store_true');p.add_argument('--form',choices=('4','5','6'),default='4');p.add_argument('--name');p.add_argument('--replacement');p.add_argument('--base');p.add_argument('--function-pin');p.add_argument('--output',required=True)
         a=p.parse_args(sys.argv[1:] if argv is None else argv)
         edit=wide_edit if a.form=='5' else default_edit
+        if a.form=='6':
+            if a.callee_context:raise transport.Refusal('TOOL_USAGE')
+            if a.operation=='replace':
+                import bagaev_record_json_bool_change
+                edit=bagaev_record_json_bool_change
+            else:
+                import bagaev_record_json_bool_context
+                edit=bagaev_record_json_bool_context
         if a.callee_context and (a.operation!='replace' or a.form!='5'):raise transport.Refusal('TOOL_USAGE')
-        if (a.locations or a.source_body) and (a.operation!='context' or a.form!='5'):raise transport.Refusal('TOOL_USAGE')
+        if (a.locations or a.source_body) and (a.operation!='context' or a.form not in ('5','6')):raise transport.Refusal('TOOL_USAGE')
         if a.operation in ('extract','context'):
             if a.name is None or any(x is not None for x in (a.replacement,a.base,a.function_pin)):raise transport.Refusal('TOOL_USAGE')
             source=transport.read_input(a.input)

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Explicit pinned form5 source mapping; data-only, never launches code."""
+"""Explicit pinned form5/form6 source mapping; data-only, never launches code."""
 import hashlib
 import json
 import re
@@ -13,7 +13,7 @@ SCHEMA = 'bagaev-record-source-map-receipt/1'
 def create(argv):
     parser = transport.Parser(add_help=False, allow_abbrev=False)
     parser.add_argument('input')
-    parser.add_argument('--form', choices=('5',), required=True)
+    parser.add_argument('--form', choices=('5','6'), required=True)
     parser.add_argument('--program-pin', required=True)
     parser.add_argument('--source-sha256')
     parser.add_argument('--pointer')
@@ -23,7 +23,11 @@ def create(argv):
         raise transport.Refusal('SOURCE_MAP_PIN')
     if args.source_sha256 is not None and not re.fullmatch(r'[0-9a-f]{64}', args.source_sha256):
         raise transport.Refusal('SOURCE_MAP_LAYOUT')
-    value = spans.source_map(transport.read_input(args.input))
+    mapper = spans
+    if args.form == '6':
+        import bagaev_record_json_bool_spans
+        mapper = bagaev_record_json_bool_spans
+    value = mapper.source_map(transport.read_input(args.input))
     if value['program_pin'] != args.program_pin:
         raise transport.Refusal('SOURCE_MAP_PIN')
     if args.source_sha256 is not None and value['source_sha256'] != args.source_sha256:
