@@ -63,3 +63,14 @@ prepared12 API. Required review and exact-head CI remain integration gates.
 This is same-maintainer finite evidence, not independent reproduction, arbitrary
 pointer safety, hostile-kernel admission, general backend equivalence or a speed,
 cost or model-benefit result.
+
+## Finite negative controls
+
+Three separately reviewed mutant modules were checked atO0/O2 and both fills.
+Literal predictions were frozen before execution: forcing Boolean payload0
+changed true to false at work2; selecting the fallback for a Boolean triggered
+the existing overflow at work6 and its exact location; omitting the first tick
+preserved true but changed work2 to1. All12 runs exited normally with exactly
+those predicted wrong outputs and failed the unchanged original oracle.
+Compiler errors or crashes were not counted. Production modules were unchanged.
+These controls establish sensitivity to three named defects only.
