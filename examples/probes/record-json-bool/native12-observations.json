@@ -1,0 +1,3827 @@
+{
+  "schema": "bagaev-native-json12-observations/1",
+  "date": "2026-10-11",
+  "profile": {
+    "architecture": "x86_64-unknown-linux-gnu",
+    "llvm": "21.1.8",
+    "rust": "1.93.0",
+    "optimizations": [
+      "O0",
+      "O2"
+    ],
+    "fills": [
+      90,
+      165
+    ]
+  },
+  "unique_cases": 47,
+  "generated_native_calls": 188,
+  "reference_calls": 0,
+  "input_snapshots": "unchanged",
+  "scratch_guards_and_unused_tails": "unchanged",
+  "owned_output": "serialized before input and scratch release; retained bytes after release",
+  "limitations": [
+    "same-maintainer bounded qualification, not independent reproduction",
+    "no timing, cost or model-benefit measurement",
+    "only frozen Boolean and active-total application cases"
+  ],
+  "modules": {
+    "5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe": {
+      "module_sha256": "7e467a9b03d2d693c88dc86f575c3333ccd698dc65f4117cd21d0ea135ce9ffc"
+    },
+    "c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd": {
+      "module_sha256": "310c4dbb048fc6a34711d0793caa06cae24f6444a4c70fd42800e15119a0300a"
+    },
+    "06677e1f35e1e8d572207efaf13fbf4be1e9614a887ad5da721d09193e479692": {
+      "module_sha256": "bce11e49e6354a3a89f84097f91b4f3ced8a384e65525b5b4dd017e89a9fc7aa"
+    },
+    "0f4e43d6a06dee7643523ce2fa9a63462ddd29e55c9800e9b77e6aa9b5b2c7e4": {
+      "module_sha256": "a48acf2f7d067a3b8e7889c44928422767d592907b8f2957d1afd0b3906cb71c"
+    },
+    "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a": {
+      "module_sha256": "d8e174217f39cd031e16c16ae122fb1c02990087adba638eca431433990acfaa"
+    }
+  },
+  "rows": [
+    {
+      "case": "bool-true-false",
+      "source_sha256": "5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+      "optimization": "O0",
+      "fill": 90,
+      "full_match": true,
+      "wire_sha256": "4e8e31bfdeb037816e95f1e15e865711039e84e8199cdbb74b96eb7fa662c3cb",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Bool",
+        "value": true,
+        "work": 2,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "bool-true-false",
+      "source_sha256": "5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+      "optimization": "O0",
+      "fill": 165,
+      "full_match": true,
+      "wire_sha256": "4e8e31bfdeb037816e95f1e15e865711039e84e8199cdbb74b96eb7fa662c3cb",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Bool",
+        "value": true,
+        "work": 2,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "bool-false-false",
+      "source_sha256": "5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+      "optimization": "O0",
+      "fill": 90,
+      "full_match": true,
+      "wire_sha256": "ab5bd356f98fee60750dc822bf341744093b9ea6692cec08775bfe4bb604e9a8",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Bool",
+        "value": false,
+        "work": 2,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "bool-false-false",
+      "source_sha256": "5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+      "optimization": "O0",
+      "fill": 165,
+      "full_match": true,
+      "wire_sha256": "ab5bd356f98fee60750dc822bf341744093b9ea6692cec08775bfe4bb604e9a8",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Bool",
+        "value": false,
+        "work": 2,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "bool-null-false",
+      "source_sha256": "5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+      "optimization": "O0",
+      "fill": 90,
+      "full_match": true,
+      "wire_sha256": "2954eb0073d211e7d109c4b9ce7f9a4141825c44418faad34dad99336adf12a7",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Bool",
+        "value": false,
+        "work": 3,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "bool-null-false",
+      "source_sha256": "5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+      "optimization": "O0",
+      "fill": 165,
+      "full_match": true,
+      "wire_sha256": "2954eb0073d211e7d109c4b9ce7f9a4141825c44418faad34dad99336adf12a7",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Bool",
+        "value": false,
+        "work": 3,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "bool-int-false",
+      "source_sha256": "5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+      "optimization": "O0",
+      "fill": 90,
+      "full_match": true,
+      "wire_sha256": "2954eb0073d211e7d109c4b9ce7f9a4141825c44418faad34dad99336adf12a7",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Bool",
+        "value": false,
+        "work": 3,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "bool-int-false",
+      "source_sha256": "5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+      "optimization": "O0",
+      "fill": 165,
+      "full_match": true,
+      "wire_sha256": "2954eb0073d211e7d109c4b9ce7f9a4141825c44418faad34dad99336adf12a7",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Bool",
+        "value": false,
+        "work": 3,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "bool-text-false",
+      "source_sha256": "5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+      "optimization": "O0",
+      "fill": 90,
+      "full_match": true,
+      "wire_sha256": "2954eb0073d211e7d109c4b9ce7f9a4141825c44418faad34dad99336adf12a7",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Bool",
+        "value": false,
+        "work": 3,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "bool-text-false",
+      "source_sha256": "5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+      "optimization": "O0",
+      "fill": 165,
+      "full_match": true,
+      "wire_sha256": "2954eb0073d211e7d109c4b9ce7f9a4141825c44418faad34dad99336adf12a7",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Bool",
+        "value": false,
+        "work": 3,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "bool-array-false",
+      "source_sha256": "5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+      "optimization": "O0",
+      "fill": 90,
+      "full_match": true,
+      "wire_sha256": "2954eb0073d211e7d109c4b9ce7f9a4141825c44418faad34dad99336adf12a7",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Bool",
+        "value": false,
+        "work": 3,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "bool-array-false",
+      "source_sha256": "5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+      "optimization": "O0",
+      "fill": 165,
+      "full_match": true,
+      "wire_sha256": "2954eb0073d211e7d109c4b9ce7f9a4141825c44418faad34dad99336adf12a7",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Bool",
+        "value": false,
+        "work": 3,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "bool-object-false",
+      "source_sha256": "5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+      "optimization": "O0",
+      "fill": 90,
+      "full_match": true,
+      "wire_sha256": "2954eb0073d211e7d109c4b9ce7f9a4141825c44418faad34dad99336adf12a7",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Bool",
+        "value": false,
+        "work": 3,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "bool-object-false",
+      "source_sha256": "5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+      "optimization": "O0",
+      "fill": 165,
+      "full_match": true,
+      "wire_sha256": "2954eb0073d211e7d109c4b9ce7f9a4141825c44418faad34dad99336adf12a7",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Bool",
+        "value": false,
+        "work": 3,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "bool-fraction-false",
+      "source_sha256": "5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+      "optimization": "O0",
+      "fill": 90,
+      "full_match": true,
+      "wire_sha256": "2954eb0073d211e7d109c4b9ce7f9a4141825c44418faad34dad99336adf12a7",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Bool",
+        "value": false,
+        "work": 3,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "bool-fraction-false",
+      "source_sha256": "5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+      "optimization": "O0",
+      "fill": 165,
+      "full_match": true,
+      "wire_sha256": "2954eb0073d211e7d109c4b9ce7f9a4141825c44418faad34dad99336adf12a7",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Bool",
+        "value": false,
+        "work": 3,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "bool-exponent-false",
+      "source_sha256": "5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+      "optimization": "O0",
+      "fill": 90,
+      "full_match": true,
+      "wire_sha256": "2954eb0073d211e7d109c4b9ce7f9a4141825c44418faad34dad99336adf12a7",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Bool",
+        "value": false,
+        "work": 3,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "bool-exponent-false",
+      "source_sha256": "5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+      "optimization": "O0",
+      "fill": 165,
+      "full_match": true,
+      "wire_sha256": "2954eb0073d211e7d109c4b9ce7f9a4141825c44418faad34dad99336adf12a7",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Bool",
+        "value": false,
+        "work": 3,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "bool-negative-zero-false",
+      "source_sha256": "5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+      "optimization": "O0",
+      "fill": 90,
+      "full_match": true,
+      "wire_sha256": "2954eb0073d211e7d109c4b9ce7f9a4141825c44418faad34dad99336adf12a7",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Bool",
+        "value": false,
+        "work": 3,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "bool-negative-zero-false",
+      "source_sha256": "5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+      "optimization": "O0",
+      "fill": 165,
+      "full_match": true,
+      "wire_sha256": "2954eb0073d211e7d109c4b9ce7f9a4141825c44418faad34dad99336adf12a7",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Bool",
+        "value": false,
+        "work": 3,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "bool-true-true",
+      "source_sha256": "c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+      "optimization": "O0",
+      "fill": 90,
+      "full_match": true,
+      "wire_sha256": "9fdaec2053afaf2519583beb16963a003500c45afe850007bc7b2363ef96f8e7",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Bool",
+        "value": true,
+        "work": 2,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "bool-true-true",
+      "source_sha256": "c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+      "optimization": "O0",
+      "fill": 165,
+      "full_match": true,
+      "wire_sha256": "9fdaec2053afaf2519583beb16963a003500c45afe850007bc7b2363ef96f8e7",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Bool",
+        "value": true,
+        "work": 2,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "bool-false-true",
+      "source_sha256": "c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+      "optimization": "O0",
+      "fill": 90,
+      "full_match": true,
+      "wire_sha256": "cff0dd0419a8f38a98ddc99416ed18ca3e1bf3c1eb9e49ffe29073498da9e0f0",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Bool",
+        "value": false,
+        "work": 2,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "bool-false-true",
+      "source_sha256": "c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+      "optimization": "O0",
+      "fill": 165,
+      "full_match": true,
+      "wire_sha256": "cff0dd0419a8f38a98ddc99416ed18ca3e1bf3c1eb9e49ffe29073498da9e0f0",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Bool",
+        "value": false,
+        "work": 2,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "bool-null-true",
+      "source_sha256": "c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+      "optimization": "O0",
+      "fill": 90,
+      "full_match": true,
+      "wire_sha256": "6f1afd9fa9711989c6c3196ff00aa27b67db42c8f4860536f3042d9e47c80033",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Bool",
+        "value": true,
+        "work": 3,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "bool-null-true",
+      "source_sha256": "c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+      "optimization": "O0",
+      "fill": 165,
+      "full_match": true,
+      "wire_sha256": "6f1afd9fa9711989c6c3196ff00aa27b67db42c8f4860536f3042d9e47c80033",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Bool",
+        "value": true,
+        "work": 3,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "bool-int-true",
+      "source_sha256": "c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+      "optimization": "O0",
+      "fill": 90,
+      "full_match": true,
+      "wire_sha256": "6f1afd9fa9711989c6c3196ff00aa27b67db42c8f4860536f3042d9e47c80033",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Bool",
+        "value": true,
+        "work": 3,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "bool-int-true",
+      "source_sha256": "c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+      "optimization": "O0",
+      "fill": 165,
+      "full_match": true,
+      "wire_sha256": "6f1afd9fa9711989c6c3196ff00aa27b67db42c8f4860536f3042d9e47c80033",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Bool",
+        "value": true,
+        "work": 3,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "bool-text-true",
+      "source_sha256": "c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+      "optimization": "O0",
+      "fill": 90,
+      "full_match": true,
+      "wire_sha256": "6f1afd9fa9711989c6c3196ff00aa27b67db42c8f4860536f3042d9e47c80033",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Bool",
+        "value": true,
+        "work": 3,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "bool-text-true",
+      "source_sha256": "c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+      "optimization": "O0",
+      "fill": 165,
+      "full_match": true,
+      "wire_sha256": "6f1afd9fa9711989c6c3196ff00aa27b67db42c8f4860536f3042d9e47c80033",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Bool",
+        "value": true,
+        "work": 3,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "bool-array-true",
+      "source_sha256": "c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+      "optimization": "O0",
+      "fill": 90,
+      "full_match": true,
+      "wire_sha256": "6f1afd9fa9711989c6c3196ff00aa27b67db42c8f4860536f3042d9e47c80033",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Bool",
+        "value": true,
+        "work": 3,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "bool-array-true",
+      "source_sha256": "c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+      "optimization": "O0",
+      "fill": 165,
+      "full_match": true,
+      "wire_sha256": "6f1afd9fa9711989c6c3196ff00aa27b67db42c8f4860536f3042d9e47c80033",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Bool",
+        "value": true,
+        "work": 3,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "bool-object-true",
+      "source_sha256": "c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+      "optimization": "O0",
+      "fill": 90,
+      "full_match": true,
+      "wire_sha256": "6f1afd9fa9711989c6c3196ff00aa27b67db42c8f4860536f3042d9e47c80033",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Bool",
+        "value": true,
+        "work": 3,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "bool-object-true",
+      "source_sha256": "c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+      "optimization": "O0",
+      "fill": 165,
+      "full_match": true,
+      "wire_sha256": "6f1afd9fa9711989c6c3196ff00aa27b67db42c8f4860536f3042d9e47c80033",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Bool",
+        "value": true,
+        "work": 3,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "bool-fraction-true",
+      "source_sha256": "c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+      "optimization": "O0",
+      "fill": 90,
+      "full_match": true,
+      "wire_sha256": "6f1afd9fa9711989c6c3196ff00aa27b67db42c8f4860536f3042d9e47c80033",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Bool",
+        "value": true,
+        "work": 3,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "bool-fraction-true",
+      "source_sha256": "c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+      "optimization": "O0",
+      "fill": 165,
+      "full_match": true,
+      "wire_sha256": "6f1afd9fa9711989c6c3196ff00aa27b67db42c8f4860536f3042d9e47c80033",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Bool",
+        "value": true,
+        "work": 3,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "bool-exponent-true",
+      "source_sha256": "c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+      "optimization": "O0",
+      "fill": 90,
+      "full_match": true,
+      "wire_sha256": "6f1afd9fa9711989c6c3196ff00aa27b67db42c8f4860536f3042d9e47c80033",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Bool",
+        "value": true,
+        "work": 3,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "bool-exponent-true",
+      "source_sha256": "c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+      "optimization": "O0",
+      "fill": 165,
+      "full_match": true,
+      "wire_sha256": "6f1afd9fa9711989c6c3196ff00aa27b67db42c8f4860536f3042d9e47c80033",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Bool",
+        "value": true,
+        "work": 3,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "bool-negative-zero-true",
+      "source_sha256": "c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+      "optimization": "O0",
+      "fill": 90,
+      "full_match": true,
+      "wire_sha256": "6f1afd9fa9711989c6c3196ff00aa27b67db42c8f4860536f3042d9e47c80033",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Bool",
+        "value": true,
+        "work": 3,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "bool-negative-zero-true",
+      "source_sha256": "c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+      "optimization": "O0",
+      "fill": 165,
+      "full_match": true,
+      "wire_sha256": "6f1afd9fa9711989c6c3196ff00aa27b67db42c8f4860536f3042d9e47c80033",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Bool",
+        "value": true,
+        "work": 3,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "bool-missing-field",
+      "source_sha256": "06677e1f35e1e8d572207efaf13fbf4be1e9614a887ad5da721d09193e479692",
+      "optimization": "O0",
+      "fill": 90,
+      "full_match": true,
+      "wire_sha256": "54ce48c4ba0aa0816a32207f0bf89e22ec32d077363451310c59b108ddd90e3e",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Bool",
+        "value": true,
+        "work": 4,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "bool-missing-field",
+      "source_sha256": "06677e1f35e1e8d572207efaf13fbf4be1e9614a887ad5da721d09193e479692",
+      "optimization": "O0",
+      "fill": 165,
+      "full_match": true,
+      "wire_sha256": "54ce48c4ba0aa0816a32207f0bf89e22ec32d077363451310c59b108ddd90e3e",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Bool",
+        "value": true,
+        "work": 4,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "bool-lazy-true",
+      "source_sha256": "0f4e43d6a06dee7643523ce2fa9a63462ddd29e55c9800e9b77e6aa9b5b2c7e4",
+      "optimization": "O0",
+      "fill": 90,
+      "full_match": true,
+      "wire_sha256": "de1ce5a1133a33e13d89a2e0a4209c94d6193cb6718c827ceb8fbed102d992f4",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Bool",
+        "value": true,
+        "work": 2,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "bool-lazy-true",
+      "source_sha256": "0f4e43d6a06dee7643523ce2fa9a63462ddd29e55c9800e9b77e6aa9b5b2c7e4",
+      "optimization": "O0",
+      "fill": 165,
+      "full_match": true,
+      "wire_sha256": "de1ce5a1133a33e13d89a2e0a4209c94d6193cb6718c827ceb8fbed102d992f4",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Bool",
+        "value": true,
+        "work": 2,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "bool-lazy-false",
+      "source_sha256": "0f4e43d6a06dee7643523ce2fa9a63462ddd29e55c9800e9b77e6aa9b5b2c7e4",
+      "optimization": "O0",
+      "fill": 90,
+      "full_match": true,
+      "wire_sha256": "fbeb69ef6a3b78030ea3c5916ea7205eb2dd16eca4c0d623269f4040adaa9388",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Bool",
+        "value": false,
+        "work": 2,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "bool-lazy-false",
+      "source_sha256": "0f4e43d6a06dee7643523ce2fa9a63462ddd29e55c9800e9b77e6aa9b5b2c7e4",
+      "optimization": "O0",
+      "fill": 165,
+      "full_match": true,
+      "wire_sha256": "fbeb69ef6a3b78030ea3c5916ea7205eb2dd16eca4c0d623269f4040adaa9388",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Bool",
+        "value": false,
+        "work": 2,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "bool-fallback-overflow",
+      "source_sha256": "0f4e43d6a06dee7643523ce2fa9a63462ddd29e55c9800e9b77e6aa9b5b2c7e4",
+      "optimization": "O0",
+      "fill": 90,
+      "full_match": true,
+      "wire_sha256": "1c3385bf0078865882b139cd2f4b453765f259a4d3a27c12ea4cd435d54fc860",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "integer-overflow",
+        "value_type": null,
+        "value": null,
+        "work": 6,
+        "reason": "RR_OVERFLOW",
+        "location": "/program/functions/main/body/2/1"
+      }
+    },
+    {
+      "case": "bool-fallback-overflow",
+      "source_sha256": "0f4e43d6a06dee7643523ce2fa9a63462ddd29e55c9800e9b77e6aa9b5b2c7e4",
+      "optimization": "O0",
+      "fill": 165,
+      "full_match": true,
+      "wire_sha256": "1c3385bf0078865882b139cd2f4b453765f259a4d3a27c12ea4cd435d54fc860",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "integer-overflow",
+        "value_type": null,
+        "value": null,
+        "work": 6,
+        "reason": "RR_OVERFLOW",
+        "location": "/program/functions/main/body/2/1"
+      }
+    },
+    {
+      "case": "app-empty",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O0",
+      "fill": 90,
+      "full_match": true,
+      "wire_sha256": "dacb85320a0161b571251dfbe64bccaefdbdea252bb59f7ceff8bf18a31aa8cb",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Record:Outcome",
+        "value": {
+          "total": 0,
+          "valid": true
+        },
+        "work": 293,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "app-empty",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O0",
+      "fill": 165,
+      "full_match": true,
+      "wire_sha256": "dacb85320a0161b571251dfbe64bccaefdbdea252bb59f7ceff8bf18a31aa8cb",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Record:Outcome",
+        "value": {
+          "total": 0,
+          "valid": true
+        },
+        "work": 293,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "app-both-booleans",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O0",
+      "fill": 90,
+      "full_match": true,
+      "wire_sha256": "a240530cb09839083df0cfcbcd69303fa194462dfa45a9ba67d19f796bd20ac8",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Record:Outcome",
+        "value": {
+          "total": 3,
+          "valid": true
+        },
+        "work": 523,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "app-both-booleans",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O0",
+      "fill": 165,
+      "full_match": true,
+      "wire_sha256": "a240530cb09839083df0cfcbcd69303fa194462dfa45a9ba67d19f796bd20ac8",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Record:Outcome",
+        "value": {
+          "total": 3,
+          "valid": true
+        },
+        "work": 523,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "app-negative",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O0",
+      "fill": 90,
+      "full_match": true,
+      "wire_sha256": "b31491a58a16a20952bbebde89b6cd31ff1aeaa0d81e7a5fa6d836b66845018b",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Record:Outcome",
+        "value": {
+          "total": -3,
+          "valid": true
+        },
+        "work": 545,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "app-negative",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O0",
+      "fill": 165,
+      "full_match": true,
+      "wire_sha256": "b31491a58a16a20952bbebde89b6cd31ff1aeaa0d81e7a5fa6d836b66845018b",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Record:Outcome",
+        "value": {
+          "total": -3,
+          "valid": true
+        },
+        "work": 545,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "app-inactive-overflow",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O0",
+      "fill": 90,
+      "full_match": true,
+      "wire_sha256": "f8b9c6eb6c348308f51843784a68f5aa1a2ed8449e8ef14c5ad0bc657236fc31",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Record:Outcome",
+        "value": {
+          "total": 9223372036854775807,
+          "valid": true
+        },
+        "work": 559,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "app-inactive-overflow",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O0",
+      "fill": 165,
+      "full_match": true,
+      "wire_sha256": "f8b9c6eb6c348308f51843784a68f5aa1a2ed8449e8ef14c5ad0bc657236fc31",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Record:Outcome",
+        "value": {
+          "total": 9223372036854775807,
+          "valid": true
+        },
+        "work": 559,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "app-positive-overflow",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O0",
+      "fill": 90,
+      "full_match": true,
+      "wire_sha256": "8b49b4ec9a8ba43970e97a33e641a382eec6927a4be3dc083bd56298ba513894",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "integer-overflow",
+        "value_type": null,
+        "value": null,
+        "work": 480,
+        "reason": "RR_OVERFLOW",
+        "location": "/program/functions/active_sum/body/5/2/3/2"
+      }
+    },
+    {
+      "case": "app-positive-overflow",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O0",
+      "fill": 165,
+      "full_match": true,
+      "wire_sha256": "8b49b4ec9a8ba43970e97a33e641a382eec6927a4be3dc083bd56298ba513894",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "integer-overflow",
+        "value_type": null,
+        "value": null,
+        "work": 480,
+        "reason": "RR_OVERFLOW",
+        "location": "/program/functions/active_sum/body/5/2/3/2"
+      }
+    },
+    {
+      "case": "app-negative-overflow",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O0",
+      "fill": 90,
+      "full_match": true,
+      "wire_sha256": "a61459aeab8d50e9a158c66bedd6f692802e7eb25d76f5a07c5604b66d302098",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "integer-overflow",
+        "value_type": null,
+        "value": null,
+        "work": 484,
+        "reason": "RR_OVERFLOW",
+        "location": "/program/functions/active_sum/body/5/2/3/2"
+      }
+    },
+    {
+      "case": "app-negative-overflow",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O0",
+      "fill": 165,
+      "full_match": true,
+      "wire_sha256": "a61459aeab8d50e9a158c66bedd6f692802e7eb25d76f5a07c5604b66d302098",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "integer-overflow",
+        "value_type": null,
+        "value": null,
+        "work": 484,
+        "reason": "RR_OVERFLOW",
+        "location": "/program/functions/active_sum/body/5/2/3/2"
+      }
+    },
+    {
+      "case": "app-cancellation",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O0",
+      "fill": 90,
+      "full_match": true,
+      "wire_sha256": "4a2688a9072106e9936c3000aef6e43a19b3b5b6d156e75270f0620aea4e87b1",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Record:Outcome",
+        "value": {
+          "total": 0,
+          "valid": true
+        },
+        "work": 617,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "app-cancellation",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O0",
+      "fill": 165,
+      "full_match": true,
+      "wire_sha256": "4a2688a9072106e9936c3000aef6e43a19b3b5b6d156e75270f0620aea4e87b1",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Record:Outcome",
+        "value": {
+          "total": 0,
+          "valid": true
+        },
+        "work": 617,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "app-sixteen",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O0",
+      "fill": 90,
+      "full_match": true,
+      "wire_sha256": "58fb3c6dc46c2e9356190dda5d57c4051eed6a15f158103c920e058dce545b93",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Record:Outcome",
+        "value": {
+          "total": 16,
+          "valid": true
+        },
+        "work": 2293,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "app-sixteen",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O0",
+      "fill": 165,
+      "full_match": true,
+      "wire_sha256": "58fb3c6dc46c2e9356190dda5d57c4051eed6a15f158103c920e058dce545b93",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Record:Outcome",
+        "value": {
+          "total": 16,
+          "valid": true
+        },
+        "work": 2293,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "app-seventeen",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O0",
+      "fill": 90,
+      "full_match": true,
+      "wire_sha256": "974195ed586861d3dfb54cd9e463242f9dd81cfaef180053c29ee945598e2bb2",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Record:Outcome",
+        "value": {
+          "total": 0,
+          "valid": false
+        },
+        "work": 33,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "app-seventeen",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O0",
+      "fill": 165,
+      "full_match": true,
+      "wire_sha256": "974195ed586861d3dfb54cd9e463242f9dd81cfaef180053c29ee945598e2bb2",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Record:Outcome",
+        "value": {
+          "total": 0,
+          "valid": false
+        },
+        "work": 33,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "app-object-root",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O0",
+      "fill": 90,
+      "full_match": true,
+      "wire_sha256": "c5beb007a24ddb6e27c5c342bd4814a4585ca11d7c7b9b596fbee457bde6912b",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Record:Outcome",
+        "value": {
+          "total": 0,
+          "valid": false
+        },
+        "work": 28,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "app-object-root",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O0",
+      "fill": 165,
+      "full_match": true,
+      "wire_sha256": "c5beb007a24ddb6e27c5c342bd4814a4585ca11d7c7b9b596fbee457bde6912b",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Record:Outcome",
+        "value": {
+          "total": 0,
+          "valid": false
+        },
+        "work": 28,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "app-null-root",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O0",
+      "fill": 90,
+      "full_match": true,
+      "wire_sha256": "8d86acd57a18ea73e3138b852ccc793352094bb2a504311fdf57688b1eda724c",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Record:Outcome",
+        "value": {
+          "total": 0,
+          "valid": false
+        },
+        "work": 26,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "app-null-root",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O0",
+      "fill": 165,
+      "full_match": true,
+      "wire_sha256": "8d86acd57a18ea73e3138b852ccc793352094bb2a504311fdf57688b1eda724c",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Record:Outcome",
+        "value": {
+          "total": 0,
+          "valid": false
+        },
+        "work": 26,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "app-missing-active",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O0",
+      "fill": 90,
+      "full_match": true,
+      "wire_sha256": "1c8fbb1c54ae67a5624c21fd4dc8052f09b7f11590f5da33434b780e26bc301e",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Record:Outcome",
+        "value": {
+          "total": 0,
+          "valid": false
+        },
+        "work": 121,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "app-missing-active",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O0",
+      "fill": 165,
+      "full_match": true,
+      "wire_sha256": "1c8fbb1c54ae67a5624c21fd4dc8052f09b7f11590f5da33434b780e26bc301e",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Record:Outcome",
+        "value": {
+          "total": 0,
+          "valid": false
+        },
+        "work": 121,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "app-missing-amount",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O0",
+      "fill": 90,
+      "full_match": true,
+      "wire_sha256": "1c8fbb1c54ae67a5624c21fd4dc8052f09b7f11590f5da33434b780e26bc301e",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Record:Outcome",
+        "value": {
+          "total": 0,
+          "valid": false
+        },
+        "work": 121,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "app-missing-amount",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O0",
+      "fill": 165,
+      "full_match": true,
+      "wire_sha256": "1c8fbb1c54ae67a5624c21fd4dc8052f09b7f11590f5da33434b780e26bc301e",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Record:Outcome",
+        "value": {
+          "total": 0,
+          "valid": false
+        },
+        "work": 121,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "app-extra-field",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O0",
+      "fill": 90,
+      "full_match": true,
+      "wire_sha256": "1c8fbb1c54ae67a5624c21fd4dc8052f09b7f11590f5da33434b780e26bc301e",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Record:Outcome",
+        "value": {
+          "total": 0,
+          "valid": false
+        },
+        "work": 121,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "app-extra-field",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O0",
+      "fill": 165,
+      "full_match": true,
+      "wire_sha256": "1c8fbb1c54ae67a5624c21fd4dc8052f09b7f11590f5da33434b780e26bc301e",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Record:Outcome",
+        "value": {
+          "total": 0,
+          "valid": false
+        },
+        "work": 121,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "app-integer-active",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O0",
+      "fill": 90,
+      "full_match": true,
+      "wire_sha256": "25fe4581db3feab742453a15dd7376486a97f251194a7e8827f995cc2669c0e3",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Record:Outcome",
+        "value": {
+          "total": 0,
+          "valid": false
+        },
+        "work": 170,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "app-integer-active",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O0",
+      "fill": 165,
+      "full_match": true,
+      "wire_sha256": "25fe4581db3feab742453a15dd7376486a97f251194a7e8827f995cc2669c0e3",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Record:Outcome",
+        "value": {
+          "total": 0,
+          "valid": false
+        },
+        "work": 170,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "app-boolean-amount",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O0",
+      "fill": 90,
+      "full_match": true,
+      "wire_sha256": "eaf7269007584e00d47932cd749ad053c970805fc7eb251bd29f96c2a984f802",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Record:Outcome",
+        "value": {
+          "total": 0,
+          "valid": false
+        },
+        "work": 140,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "app-boolean-amount",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O0",
+      "fill": 165,
+      "full_match": true,
+      "wire_sha256": "eaf7269007584e00d47932cd749ad053c970805fc7eb251bd29f96c2a984f802",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Record:Outcome",
+        "value": {
+          "total": 0,
+          "valid": false
+        },
+        "work": 140,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "app-fraction-amount",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O0",
+      "fill": 90,
+      "full_match": true,
+      "wire_sha256": "eaf7269007584e00d47932cd749ad053c970805fc7eb251bd29f96c2a984f802",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Record:Outcome",
+        "value": {
+          "total": 0,
+          "valid": false
+        },
+        "work": 140,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "app-fraction-amount",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O0",
+      "fill": 165,
+      "full_match": true,
+      "wire_sha256": "eaf7269007584e00d47932cd749ad053c970805fc7eb251bd29f96c2a984f802",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Record:Outcome",
+        "value": {
+          "total": 0,
+          "valid": false
+        },
+        "work": 140,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "app-out-of-range",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O0",
+      "fill": 90,
+      "full_match": true,
+      "wire_sha256": "d3b8bc7c686d63b173916beecb1d3e953ad0f248ec0792ca20589c233c216966",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Record:Outcome",
+        "value": {
+          "total": 0,
+          "valid": false
+        },
+        "work": 159,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "app-out-of-range",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O0",
+      "fill": 165,
+      "full_match": true,
+      "wire_sha256": "d3b8bc7c686d63b173916beecb1d3e953ad0f248ec0792ca20589c233c216966",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Record:Outcome",
+        "value": {
+          "total": 0,
+          "valid": false
+        },
+        "work": 159,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "app-null-item",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O0",
+      "fill": 90,
+      "full_match": true,
+      "wire_sha256": "2cf21ac9f24a5c7ad406099856f6a3167f9b8e245caafc69f459d62583617f27",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Record:Outcome",
+        "value": {
+          "total": 0,
+          "valid": false
+        },
+        "work": 113,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "app-null-item",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O0",
+      "fill": 165,
+      "full_match": true,
+      "wire_sha256": "2cf21ac9f24a5c7ad406099856f6a3167f9b8e245caafc69f459d62583617f27",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Record:Outcome",
+        "value": {
+          "total": 0,
+          "valid": false
+        },
+        "work": 113,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "app-invalid-before-overflow",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O0",
+      "fill": 90,
+      "full_match": true,
+      "wire_sha256": "97692d071d6ddbae87816449f50a23bfb984efb50606e9569e75d9b35ed6d9f7",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Record:Outcome",
+        "value": {
+          "total": 0,
+          "valid": false
+        },
+        "work": 317,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "app-invalid-before-overflow",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O0",
+      "fill": 165,
+      "full_match": true,
+      "wire_sha256": "97692d071d6ddbae87816449f50a23bfb984efb50606e9569e75d9b35ed6d9f7",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Record:Outcome",
+        "value": {
+          "total": 0,
+          "valid": false
+        },
+        "work": 317,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "app-integer-negative-zero",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O0",
+      "fill": 90,
+      "full_match": true,
+      "wire_sha256": "e670b738efe7bbfe04a731be9eb2662bd32f5e5ceb2a736500ef58dbf7674311",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Record:Outcome",
+        "value": {
+          "total": 0,
+          "valid": true
+        },
+        "work": 420,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "app-integer-negative-zero",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O0",
+      "fill": 165,
+      "full_match": true,
+      "wire_sha256": "e670b738efe7bbfe04a731be9eb2662bd32f5e5ceb2a736500ef58dbf7674311",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Record:Outcome",
+        "value": {
+          "total": 0,
+          "valid": true
+        },
+        "work": 420,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "app-fraction-negative-zero",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O0",
+      "fill": 90,
+      "full_match": true,
+      "wire_sha256": "eaf7269007584e00d47932cd749ad053c970805fc7eb251bd29f96c2a984f802",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Record:Outcome",
+        "value": {
+          "total": 0,
+          "valid": false
+        },
+        "work": 140,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "app-fraction-negative-zero",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O0",
+      "fill": 165,
+      "full_match": true,
+      "wire_sha256": "eaf7269007584e00d47932cd749ad053c970805fc7eb251bd29f96c2a984f802",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Record:Outcome",
+        "value": {
+          "total": 0,
+          "valid": false
+        },
+        "work": 140,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "app-integral-exponent",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O0",
+      "fill": 90,
+      "full_match": true,
+      "wire_sha256": "eaf7269007584e00d47932cd749ad053c970805fc7eb251bd29f96c2a984f802",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Record:Outcome",
+        "value": {
+          "total": 0,
+          "valid": false
+        },
+        "work": 140,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "app-integral-exponent",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O0",
+      "fill": 165,
+      "full_match": true,
+      "wire_sha256": "eaf7269007584e00d47932cd749ad053c970805fc7eb251bd29f96c2a984f802",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Record:Outcome",
+        "value": {
+          "total": 0,
+          "valid": false
+        },
+        "work": 140,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "bool-true-false",
+      "source_sha256": "5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+      "optimization": "O2",
+      "fill": 90,
+      "full_match": true,
+      "wire_sha256": "4e8e31bfdeb037816e95f1e15e865711039e84e8199cdbb74b96eb7fa662c3cb",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Bool",
+        "value": true,
+        "work": 2,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "bool-true-false",
+      "source_sha256": "5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+      "optimization": "O2",
+      "fill": 165,
+      "full_match": true,
+      "wire_sha256": "4e8e31bfdeb037816e95f1e15e865711039e84e8199cdbb74b96eb7fa662c3cb",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Bool",
+        "value": true,
+        "work": 2,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "bool-false-false",
+      "source_sha256": "5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+      "optimization": "O2",
+      "fill": 90,
+      "full_match": true,
+      "wire_sha256": "ab5bd356f98fee60750dc822bf341744093b9ea6692cec08775bfe4bb604e9a8",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Bool",
+        "value": false,
+        "work": 2,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "bool-false-false",
+      "source_sha256": "5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+      "optimization": "O2",
+      "fill": 165,
+      "full_match": true,
+      "wire_sha256": "ab5bd356f98fee60750dc822bf341744093b9ea6692cec08775bfe4bb604e9a8",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Bool",
+        "value": false,
+        "work": 2,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "bool-null-false",
+      "source_sha256": "5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+      "optimization": "O2",
+      "fill": 90,
+      "full_match": true,
+      "wire_sha256": "2954eb0073d211e7d109c4b9ce7f9a4141825c44418faad34dad99336adf12a7",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Bool",
+        "value": false,
+        "work": 3,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "bool-null-false",
+      "source_sha256": "5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+      "optimization": "O2",
+      "fill": 165,
+      "full_match": true,
+      "wire_sha256": "2954eb0073d211e7d109c4b9ce7f9a4141825c44418faad34dad99336adf12a7",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Bool",
+        "value": false,
+        "work": 3,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "bool-int-false",
+      "source_sha256": "5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+      "optimization": "O2",
+      "fill": 90,
+      "full_match": true,
+      "wire_sha256": "2954eb0073d211e7d109c4b9ce7f9a4141825c44418faad34dad99336adf12a7",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Bool",
+        "value": false,
+        "work": 3,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "bool-int-false",
+      "source_sha256": "5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+      "optimization": "O2",
+      "fill": 165,
+      "full_match": true,
+      "wire_sha256": "2954eb0073d211e7d109c4b9ce7f9a4141825c44418faad34dad99336adf12a7",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Bool",
+        "value": false,
+        "work": 3,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "bool-text-false",
+      "source_sha256": "5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+      "optimization": "O2",
+      "fill": 90,
+      "full_match": true,
+      "wire_sha256": "2954eb0073d211e7d109c4b9ce7f9a4141825c44418faad34dad99336adf12a7",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Bool",
+        "value": false,
+        "work": 3,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "bool-text-false",
+      "source_sha256": "5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+      "optimization": "O2",
+      "fill": 165,
+      "full_match": true,
+      "wire_sha256": "2954eb0073d211e7d109c4b9ce7f9a4141825c44418faad34dad99336adf12a7",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Bool",
+        "value": false,
+        "work": 3,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "bool-array-false",
+      "source_sha256": "5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+      "optimization": "O2",
+      "fill": 90,
+      "full_match": true,
+      "wire_sha256": "2954eb0073d211e7d109c4b9ce7f9a4141825c44418faad34dad99336adf12a7",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Bool",
+        "value": false,
+        "work": 3,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "bool-array-false",
+      "source_sha256": "5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+      "optimization": "O2",
+      "fill": 165,
+      "full_match": true,
+      "wire_sha256": "2954eb0073d211e7d109c4b9ce7f9a4141825c44418faad34dad99336adf12a7",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Bool",
+        "value": false,
+        "work": 3,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "bool-object-false",
+      "source_sha256": "5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+      "optimization": "O2",
+      "fill": 90,
+      "full_match": true,
+      "wire_sha256": "2954eb0073d211e7d109c4b9ce7f9a4141825c44418faad34dad99336adf12a7",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Bool",
+        "value": false,
+        "work": 3,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "bool-object-false",
+      "source_sha256": "5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+      "optimization": "O2",
+      "fill": 165,
+      "full_match": true,
+      "wire_sha256": "2954eb0073d211e7d109c4b9ce7f9a4141825c44418faad34dad99336adf12a7",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Bool",
+        "value": false,
+        "work": 3,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "bool-fraction-false",
+      "source_sha256": "5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+      "optimization": "O2",
+      "fill": 90,
+      "full_match": true,
+      "wire_sha256": "2954eb0073d211e7d109c4b9ce7f9a4141825c44418faad34dad99336adf12a7",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Bool",
+        "value": false,
+        "work": 3,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "bool-fraction-false",
+      "source_sha256": "5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+      "optimization": "O2",
+      "fill": 165,
+      "full_match": true,
+      "wire_sha256": "2954eb0073d211e7d109c4b9ce7f9a4141825c44418faad34dad99336adf12a7",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Bool",
+        "value": false,
+        "work": 3,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "bool-exponent-false",
+      "source_sha256": "5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+      "optimization": "O2",
+      "fill": 90,
+      "full_match": true,
+      "wire_sha256": "2954eb0073d211e7d109c4b9ce7f9a4141825c44418faad34dad99336adf12a7",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Bool",
+        "value": false,
+        "work": 3,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "bool-exponent-false",
+      "source_sha256": "5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+      "optimization": "O2",
+      "fill": 165,
+      "full_match": true,
+      "wire_sha256": "2954eb0073d211e7d109c4b9ce7f9a4141825c44418faad34dad99336adf12a7",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Bool",
+        "value": false,
+        "work": 3,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "bool-negative-zero-false",
+      "source_sha256": "5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+      "optimization": "O2",
+      "fill": 90,
+      "full_match": true,
+      "wire_sha256": "2954eb0073d211e7d109c4b9ce7f9a4141825c44418faad34dad99336adf12a7",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Bool",
+        "value": false,
+        "work": 3,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "bool-negative-zero-false",
+      "source_sha256": "5c5cc2b4871456e3195d422bf018b62ea800a85a498a712778dd5b7a0ae02dfe",
+      "optimization": "O2",
+      "fill": 165,
+      "full_match": true,
+      "wire_sha256": "2954eb0073d211e7d109c4b9ce7f9a4141825c44418faad34dad99336adf12a7",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Bool",
+        "value": false,
+        "work": 3,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "bool-true-true",
+      "source_sha256": "c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+      "optimization": "O2",
+      "fill": 90,
+      "full_match": true,
+      "wire_sha256": "9fdaec2053afaf2519583beb16963a003500c45afe850007bc7b2363ef96f8e7",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Bool",
+        "value": true,
+        "work": 2,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "bool-true-true",
+      "source_sha256": "c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+      "optimization": "O2",
+      "fill": 165,
+      "full_match": true,
+      "wire_sha256": "9fdaec2053afaf2519583beb16963a003500c45afe850007bc7b2363ef96f8e7",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Bool",
+        "value": true,
+        "work": 2,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "bool-false-true",
+      "source_sha256": "c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+      "optimization": "O2",
+      "fill": 90,
+      "full_match": true,
+      "wire_sha256": "cff0dd0419a8f38a98ddc99416ed18ca3e1bf3c1eb9e49ffe29073498da9e0f0",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Bool",
+        "value": false,
+        "work": 2,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "bool-false-true",
+      "source_sha256": "c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+      "optimization": "O2",
+      "fill": 165,
+      "full_match": true,
+      "wire_sha256": "cff0dd0419a8f38a98ddc99416ed18ca3e1bf3c1eb9e49ffe29073498da9e0f0",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Bool",
+        "value": false,
+        "work": 2,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "bool-null-true",
+      "source_sha256": "c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+      "optimization": "O2",
+      "fill": 90,
+      "full_match": true,
+      "wire_sha256": "6f1afd9fa9711989c6c3196ff00aa27b67db42c8f4860536f3042d9e47c80033",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Bool",
+        "value": true,
+        "work": 3,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "bool-null-true",
+      "source_sha256": "c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+      "optimization": "O2",
+      "fill": 165,
+      "full_match": true,
+      "wire_sha256": "6f1afd9fa9711989c6c3196ff00aa27b67db42c8f4860536f3042d9e47c80033",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Bool",
+        "value": true,
+        "work": 3,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "bool-int-true",
+      "source_sha256": "c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+      "optimization": "O2",
+      "fill": 90,
+      "full_match": true,
+      "wire_sha256": "6f1afd9fa9711989c6c3196ff00aa27b67db42c8f4860536f3042d9e47c80033",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Bool",
+        "value": true,
+        "work": 3,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "bool-int-true",
+      "source_sha256": "c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+      "optimization": "O2",
+      "fill": 165,
+      "full_match": true,
+      "wire_sha256": "6f1afd9fa9711989c6c3196ff00aa27b67db42c8f4860536f3042d9e47c80033",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Bool",
+        "value": true,
+        "work": 3,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "bool-text-true",
+      "source_sha256": "c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+      "optimization": "O2",
+      "fill": 90,
+      "full_match": true,
+      "wire_sha256": "6f1afd9fa9711989c6c3196ff00aa27b67db42c8f4860536f3042d9e47c80033",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Bool",
+        "value": true,
+        "work": 3,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "bool-text-true",
+      "source_sha256": "c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+      "optimization": "O2",
+      "fill": 165,
+      "full_match": true,
+      "wire_sha256": "6f1afd9fa9711989c6c3196ff00aa27b67db42c8f4860536f3042d9e47c80033",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Bool",
+        "value": true,
+        "work": 3,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "bool-array-true",
+      "source_sha256": "c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+      "optimization": "O2",
+      "fill": 90,
+      "full_match": true,
+      "wire_sha256": "6f1afd9fa9711989c6c3196ff00aa27b67db42c8f4860536f3042d9e47c80033",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Bool",
+        "value": true,
+        "work": 3,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "bool-array-true",
+      "source_sha256": "c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+      "optimization": "O2",
+      "fill": 165,
+      "full_match": true,
+      "wire_sha256": "6f1afd9fa9711989c6c3196ff00aa27b67db42c8f4860536f3042d9e47c80033",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Bool",
+        "value": true,
+        "work": 3,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "bool-object-true",
+      "source_sha256": "c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+      "optimization": "O2",
+      "fill": 90,
+      "full_match": true,
+      "wire_sha256": "6f1afd9fa9711989c6c3196ff00aa27b67db42c8f4860536f3042d9e47c80033",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Bool",
+        "value": true,
+        "work": 3,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "bool-object-true",
+      "source_sha256": "c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+      "optimization": "O2",
+      "fill": 165,
+      "full_match": true,
+      "wire_sha256": "6f1afd9fa9711989c6c3196ff00aa27b67db42c8f4860536f3042d9e47c80033",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Bool",
+        "value": true,
+        "work": 3,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "bool-fraction-true",
+      "source_sha256": "c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+      "optimization": "O2",
+      "fill": 90,
+      "full_match": true,
+      "wire_sha256": "6f1afd9fa9711989c6c3196ff00aa27b67db42c8f4860536f3042d9e47c80033",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Bool",
+        "value": true,
+        "work": 3,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "bool-fraction-true",
+      "source_sha256": "c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+      "optimization": "O2",
+      "fill": 165,
+      "full_match": true,
+      "wire_sha256": "6f1afd9fa9711989c6c3196ff00aa27b67db42c8f4860536f3042d9e47c80033",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Bool",
+        "value": true,
+        "work": 3,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "bool-exponent-true",
+      "source_sha256": "c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+      "optimization": "O2",
+      "fill": 90,
+      "full_match": true,
+      "wire_sha256": "6f1afd9fa9711989c6c3196ff00aa27b67db42c8f4860536f3042d9e47c80033",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Bool",
+        "value": true,
+        "work": 3,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "bool-exponent-true",
+      "source_sha256": "c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+      "optimization": "O2",
+      "fill": 165,
+      "full_match": true,
+      "wire_sha256": "6f1afd9fa9711989c6c3196ff00aa27b67db42c8f4860536f3042d9e47c80033",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Bool",
+        "value": true,
+        "work": 3,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "bool-negative-zero-true",
+      "source_sha256": "c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+      "optimization": "O2",
+      "fill": 90,
+      "full_match": true,
+      "wire_sha256": "6f1afd9fa9711989c6c3196ff00aa27b67db42c8f4860536f3042d9e47c80033",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Bool",
+        "value": true,
+        "work": 3,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "bool-negative-zero-true",
+      "source_sha256": "c84a839d6f96ef5715ba30adb57a165c69efb8e65573529302d2ed3ee9f80fdd",
+      "optimization": "O2",
+      "fill": 165,
+      "full_match": true,
+      "wire_sha256": "6f1afd9fa9711989c6c3196ff00aa27b67db42c8f4860536f3042d9e47c80033",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Bool",
+        "value": true,
+        "work": 3,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "bool-missing-field",
+      "source_sha256": "06677e1f35e1e8d572207efaf13fbf4be1e9614a887ad5da721d09193e479692",
+      "optimization": "O2",
+      "fill": 90,
+      "full_match": true,
+      "wire_sha256": "54ce48c4ba0aa0816a32207f0bf89e22ec32d077363451310c59b108ddd90e3e",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Bool",
+        "value": true,
+        "work": 4,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "bool-missing-field",
+      "source_sha256": "06677e1f35e1e8d572207efaf13fbf4be1e9614a887ad5da721d09193e479692",
+      "optimization": "O2",
+      "fill": 165,
+      "full_match": true,
+      "wire_sha256": "54ce48c4ba0aa0816a32207f0bf89e22ec32d077363451310c59b108ddd90e3e",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Bool",
+        "value": true,
+        "work": 4,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "bool-lazy-true",
+      "source_sha256": "0f4e43d6a06dee7643523ce2fa9a63462ddd29e55c9800e9b77e6aa9b5b2c7e4",
+      "optimization": "O2",
+      "fill": 90,
+      "full_match": true,
+      "wire_sha256": "de1ce5a1133a33e13d89a2e0a4209c94d6193cb6718c827ceb8fbed102d992f4",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Bool",
+        "value": true,
+        "work": 2,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "bool-lazy-true",
+      "source_sha256": "0f4e43d6a06dee7643523ce2fa9a63462ddd29e55c9800e9b77e6aa9b5b2c7e4",
+      "optimization": "O2",
+      "fill": 165,
+      "full_match": true,
+      "wire_sha256": "de1ce5a1133a33e13d89a2e0a4209c94d6193cb6718c827ceb8fbed102d992f4",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Bool",
+        "value": true,
+        "work": 2,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "bool-lazy-false",
+      "source_sha256": "0f4e43d6a06dee7643523ce2fa9a63462ddd29e55c9800e9b77e6aa9b5b2c7e4",
+      "optimization": "O2",
+      "fill": 90,
+      "full_match": true,
+      "wire_sha256": "fbeb69ef6a3b78030ea3c5916ea7205eb2dd16eca4c0d623269f4040adaa9388",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Bool",
+        "value": false,
+        "work": 2,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "bool-lazy-false",
+      "source_sha256": "0f4e43d6a06dee7643523ce2fa9a63462ddd29e55c9800e9b77e6aa9b5b2c7e4",
+      "optimization": "O2",
+      "fill": 165,
+      "full_match": true,
+      "wire_sha256": "fbeb69ef6a3b78030ea3c5916ea7205eb2dd16eca4c0d623269f4040adaa9388",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Bool",
+        "value": false,
+        "work": 2,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "bool-fallback-overflow",
+      "source_sha256": "0f4e43d6a06dee7643523ce2fa9a63462ddd29e55c9800e9b77e6aa9b5b2c7e4",
+      "optimization": "O2",
+      "fill": 90,
+      "full_match": true,
+      "wire_sha256": "1c3385bf0078865882b139cd2f4b453765f259a4d3a27c12ea4cd435d54fc860",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "integer-overflow",
+        "value_type": null,
+        "value": null,
+        "work": 6,
+        "reason": "RR_OVERFLOW",
+        "location": "/program/functions/main/body/2/1"
+      }
+    },
+    {
+      "case": "bool-fallback-overflow",
+      "source_sha256": "0f4e43d6a06dee7643523ce2fa9a63462ddd29e55c9800e9b77e6aa9b5b2c7e4",
+      "optimization": "O2",
+      "fill": 165,
+      "full_match": true,
+      "wire_sha256": "1c3385bf0078865882b139cd2f4b453765f259a4d3a27c12ea4cd435d54fc860",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "integer-overflow",
+        "value_type": null,
+        "value": null,
+        "work": 6,
+        "reason": "RR_OVERFLOW",
+        "location": "/program/functions/main/body/2/1"
+      }
+    },
+    {
+      "case": "app-empty",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O2",
+      "fill": 90,
+      "full_match": true,
+      "wire_sha256": "dacb85320a0161b571251dfbe64bccaefdbdea252bb59f7ceff8bf18a31aa8cb",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Record:Outcome",
+        "value": {
+          "total": 0,
+          "valid": true
+        },
+        "work": 293,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "app-empty",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O2",
+      "fill": 165,
+      "full_match": true,
+      "wire_sha256": "dacb85320a0161b571251dfbe64bccaefdbdea252bb59f7ceff8bf18a31aa8cb",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Record:Outcome",
+        "value": {
+          "total": 0,
+          "valid": true
+        },
+        "work": 293,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "app-both-booleans",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O2",
+      "fill": 90,
+      "full_match": true,
+      "wire_sha256": "a240530cb09839083df0cfcbcd69303fa194462dfa45a9ba67d19f796bd20ac8",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Record:Outcome",
+        "value": {
+          "total": 3,
+          "valid": true
+        },
+        "work": 523,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "app-both-booleans",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O2",
+      "fill": 165,
+      "full_match": true,
+      "wire_sha256": "a240530cb09839083df0cfcbcd69303fa194462dfa45a9ba67d19f796bd20ac8",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Record:Outcome",
+        "value": {
+          "total": 3,
+          "valid": true
+        },
+        "work": 523,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "app-negative",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O2",
+      "fill": 90,
+      "full_match": true,
+      "wire_sha256": "b31491a58a16a20952bbebde89b6cd31ff1aeaa0d81e7a5fa6d836b66845018b",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Record:Outcome",
+        "value": {
+          "total": -3,
+          "valid": true
+        },
+        "work": 545,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "app-negative",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O2",
+      "fill": 165,
+      "full_match": true,
+      "wire_sha256": "b31491a58a16a20952bbebde89b6cd31ff1aeaa0d81e7a5fa6d836b66845018b",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Record:Outcome",
+        "value": {
+          "total": -3,
+          "valid": true
+        },
+        "work": 545,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "app-inactive-overflow",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O2",
+      "fill": 90,
+      "full_match": true,
+      "wire_sha256": "f8b9c6eb6c348308f51843784a68f5aa1a2ed8449e8ef14c5ad0bc657236fc31",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Record:Outcome",
+        "value": {
+          "total": 9223372036854775807,
+          "valid": true
+        },
+        "work": 559,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "app-inactive-overflow",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O2",
+      "fill": 165,
+      "full_match": true,
+      "wire_sha256": "f8b9c6eb6c348308f51843784a68f5aa1a2ed8449e8ef14c5ad0bc657236fc31",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Record:Outcome",
+        "value": {
+          "total": 9223372036854775807,
+          "valid": true
+        },
+        "work": 559,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "app-positive-overflow",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O2",
+      "fill": 90,
+      "full_match": true,
+      "wire_sha256": "8b49b4ec9a8ba43970e97a33e641a382eec6927a4be3dc083bd56298ba513894",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "integer-overflow",
+        "value_type": null,
+        "value": null,
+        "work": 480,
+        "reason": "RR_OVERFLOW",
+        "location": "/program/functions/active_sum/body/5/2/3/2"
+      }
+    },
+    {
+      "case": "app-positive-overflow",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O2",
+      "fill": 165,
+      "full_match": true,
+      "wire_sha256": "8b49b4ec9a8ba43970e97a33e641a382eec6927a4be3dc083bd56298ba513894",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "integer-overflow",
+        "value_type": null,
+        "value": null,
+        "work": 480,
+        "reason": "RR_OVERFLOW",
+        "location": "/program/functions/active_sum/body/5/2/3/2"
+      }
+    },
+    {
+      "case": "app-negative-overflow",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O2",
+      "fill": 90,
+      "full_match": true,
+      "wire_sha256": "a61459aeab8d50e9a158c66bedd6f692802e7eb25d76f5a07c5604b66d302098",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "integer-overflow",
+        "value_type": null,
+        "value": null,
+        "work": 484,
+        "reason": "RR_OVERFLOW",
+        "location": "/program/functions/active_sum/body/5/2/3/2"
+      }
+    },
+    {
+      "case": "app-negative-overflow",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O2",
+      "fill": 165,
+      "full_match": true,
+      "wire_sha256": "a61459aeab8d50e9a158c66bedd6f692802e7eb25d76f5a07c5604b66d302098",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "integer-overflow",
+        "value_type": null,
+        "value": null,
+        "work": 484,
+        "reason": "RR_OVERFLOW",
+        "location": "/program/functions/active_sum/body/5/2/3/2"
+      }
+    },
+    {
+      "case": "app-cancellation",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O2",
+      "fill": 90,
+      "full_match": true,
+      "wire_sha256": "4a2688a9072106e9936c3000aef6e43a19b3b5b6d156e75270f0620aea4e87b1",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Record:Outcome",
+        "value": {
+          "total": 0,
+          "valid": true
+        },
+        "work": 617,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "app-cancellation",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O2",
+      "fill": 165,
+      "full_match": true,
+      "wire_sha256": "4a2688a9072106e9936c3000aef6e43a19b3b5b6d156e75270f0620aea4e87b1",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Record:Outcome",
+        "value": {
+          "total": 0,
+          "valid": true
+        },
+        "work": 617,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "app-sixteen",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O2",
+      "fill": 90,
+      "full_match": true,
+      "wire_sha256": "58fb3c6dc46c2e9356190dda5d57c4051eed6a15f158103c920e058dce545b93",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Record:Outcome",
+        "value": {
+          "total": 16,
+          "valid": true
+        },
+        "work": 2293,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "app-sixteen",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O2",
+      "fill": 165,
+      "full_match": true,
+      "wire_sha256": "58fb3c6dc46c2e9356190dda5d57c4051eed6a15f158103c920e058dce545b93",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Record:Outcome",
+        "value": {
+          "total": 16,
+          "valid": true
+        },
+        "work": 2293,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "app-seventeen",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O2",
+      "fill": 90,
+      "full_match": true,
+      "wire_sha256": "974195ed586861d3dfb54cd9e463242f9dd81cfaef180053c29ee945598e2bb2",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Record:Outcome",
+        "value": {
+          "total": 0,
+          "valid": false
+        },
+        "work": 33,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "app-seventeen",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O2",
+      "fill": 165,
+      "full_match": true,
+      "wire_sha256": "974195ed586861d3dfb54cd9e463242f9dd81cfaef180053c29ee945598e2bb2",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Record:Outcome",
+        "value": {
+          "total": 0,
+          "valid": false
+        },
+        "work": 33,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "app-object-root",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O2",
+      "fill": 90,
+      "full_match": true,
+      "wire_sha256": "c5beb007a24ddb6e27c5c342bd4814a4585ca11d7c7b9b596fbee457bde6912b",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Record:Outcome",
+        "value": {
+          "total": 0,
+          "valid": false
+        },
+        "work": 28,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "app-object-root",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O2",
+      "fill": 165,
+      "full_match": true,
+      "wire_sha256": "c5beb007a24ddb6e27c5c342bd4814a4585ca11d7c7b9b596fbee457bde6912b",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Record:Outcome",
+        "value": {
+          "total": 0,
+          "valid": false
+        },
+        "work": 28,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "app-null-root",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O2",
+      "fill": 90,
+      "full_match": true,
+      "wire_sha256": "8d86acd57a18ea73e3138b852ccc793352094bb2a504311fdf57688b1eda724c",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Record:Outcome",
+        "value": {
+          "total": 0,
+          "valid": false
+        },
+        "work": 26,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "app-null-root",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O2",
+      "fill": 165,
+      "full_match": true,
+      "wire_sha256": "8d86acd57a18ea73e3138b852ccc793352094bb2a504311fdf57688b1eda724c",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Record:Outcome",
+        "value": {
+          "total": 0,
+          "valid": false
+        },
+        "work": 26,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "app-missing-active",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O2",
+      "fill": 90,
+      "full_match": true,
+      "wire_sha256": "1c8fbb1c54ae67a5624c21fd4dc8052f09b7f11590f5da33434b780e26bc301e",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Record:Outcome",
+        "value": {
+          "total": 0,
+          "valid": false
+        },
+        "work": 121,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "app-missing-active",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O2",
+      "fill": 165,
+      "full_match": true,
+      "wire_sha256": "1c8fbb1c54ae67a5624c21fd4dc8052f09b7f11590f5da33434b780e26bc301e",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Record:Outcome",
+        "value": {
+          "total": 0,
+          "valid": false
+        },
+        "work": 121,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "app-missing-amount",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O2",
+      "fill": 90,
+      "full_match": true,
+      "wire_sha256": "1c8fbb1c54ae67a5624c21fd4dc8052f09b7f11590f5da33434b780e26bc301e",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Record:Outcome",
+        "value": {
+          "total": 0,
+          "valid": false
+        },
+        "work": 121,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "app-missing-amount",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O2",
+      "fill": 165,
+      "full_match": true,
+      "wire_sha256": "1c8fbb1c54ae67a5624c21fd4dc8052f09b7f11590f5da33434b780e26bc301e",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Record:Outcome",
+        "value": {
+          "total": 0,
+          "valid": false
+        },
+        "work": 121,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "app-extra-field",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O2",
+      "fill": 90,
+      "full_match": true,
+      "wire_sha256": "1c8fbb1c54ae67a5624c21fd4dc8052f09b7f11590f5da33434b780e26bc301e",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Record:Outcome",
+        "value": {
+          "total": 0,
+          "valid": false
+        },
+        "work": 121,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "app-extra-field",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O2",
+      "fill": 165,
+      "full_match": true,
+      "wire_sha256": "1c8fbb1c54ae67a5624c21fd4dc8052f09b7f11590f5da33434b780e26bc301e",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Record:Outcome",
+        "value": {
+          "total": 0,
+          "valid": false
+        },
+        "work": 121,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "app-integer-active",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O2",
+      "fill": 90,
+      "full_match": true,
+      "wire_sha256": "25fe4581db3feab742453a15dd7376486a97f251194a7e8827f995cc2669c0e3",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Record:Outcome",
+        "value": {
+          "total": 0,
+          "valid": false
+        },
+        "work": 170,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "app-integer-active",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O2",
+      "fill": 165,
+      "full_match": true,
+      "wire_sha256": "25fe4581db3feab742453a15dd7376486a97f251194a7e8827f995cc2669c0e3",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Record:Outcome",
+        "value": {
+          "total": 0,
+          "valid": false
+        },
+        "work": 170,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "app-boolean-amount",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O2",
+      "fill": 90,
+      "full_match": true,
+      "wire_sha256": "eaf7269007584e00d47932cd749ad053c970805fc7eb251bd29f96c2a984f802",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Record:Outcome",
+        "value": {
+          "total": 0,
+          "valid": false
+        },
+        "work": 140,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "app-boolean-amount",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O2",
+      "fill": 165,
+      "full_match": true,
+      "wire_sha256": "eaf7269007584e00d47932cd749ad053c970805fc7eb251bd29f96c2a984f802",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Record:Outcome",
+        "value": {
+          "total": 0,
+          "valid": false
+        },
+        "work": 140,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "app-fraction-amount",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O2",
+      "fill": 90,
+      "full_match": true,
+      "wire_sha256": "eaf7269007584e00d47932cd749ad053c970805fc7eb251bd29f96c2a984f802",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Record:Outcome",
+        "value": {
+          "total": 0,
+          "valid": false
+        },
+        "work": 140,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "app-fraction-amount",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O2",
+      "fill": 165,
+      "full_match": true,
+      "wire_sha256": "eaf7269007584e00d47932cd749ad053c970805fc7eb251bd29f96c2a984f802",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Record:Outcome",
+        "value": {
+          "total": 0,
+          "valid": false
+        },
+        "work": 140,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "app-out-of-range",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O2",
+      "fill": 90,
+      "full_match": true,
+      "wire_sha256": "d3b8bc7c686d63b173916beecb1d3e953ad0f248ec0792ca20589c233c216966",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Record:Outcome",
+        "value": {
+          "total": 0,
+          "valid": false
+        },
+        "work": 159,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "app-out-of-range",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O2",
+      "fill": 165,
+      "full_match": true,
+      "wire_sha256": "d3b8bc7c686d63b173916beecb1d3e953ad0f248ec0792ca20589c233c216966",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Record:Outcome",
+        "value": {
+          "total": 0,
+          "valid": false
+        },
+        "work": 159,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "app-null-item",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O2",
+      "fill": 90,
+      "full_match": true,
+      "wire_sha256": "2cf21ac9f24a5c7ad406099856f6a3167f9b8e245caafc69f459d62583617f27",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Record:Outcome",
+        "value": {
+          "total": 0,
+          "valid": false
+        },
+        "work": 113,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "app-null-item",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O2",
+      "fill": 165,
+      "full_match": true,
+      "wire_sha256": "2cf21ac9f24a5c7ad406099856f6a3167f9b8e245caafc69f459d62583617f27",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Record:Outcome",
+        "value": {
+          "total": 0,
+          "valid": false
+        },
+        "work": 113,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "app-invalid-before-overflow",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O2",
+      "fill": 90,
+      "full_match": true,
+      "wire_sha256": "97692d071d6ddbae87816449f50a23bfb984efb50606e9569e75d9b35ed6d9f7",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Record:Outcome",
+        "value": {
+          "total": 0,
+          "valid": false
+        },
+        "work": 317,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "app-invalid-before-overflow",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O2",
+      "fill": 165,
+      "full_match": true,
+      "wire_sha256": "97692d071d6ddbae87816449f50a23bfb984efb50606e9569e75d9b35ed6d9f7",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Record:Outcome",
+        "value": {
+          "total": 0,
+          "valid": false
+        },
+        "work": 317,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "app-integer-negative-zero",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O2",
+      "fill": 90,
+      "full_match": true,
+      "wire_sha256": "e670b738efe7bbfe04a731be9eb2662bd32f5e5ceb2a736500ef58dbf7674311",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Record:Outcome",
+        "value": {
+          "total": 0,
+          "valid": true
+        },
+        "work": 420,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "app-integer-negative-zero",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O2",
+      "fill": 165,
+      "full_match": true,
+      "wire_sha256": "e670b738efe7bbfe04a731be9eb2662bd32f5e5ceb2a736500ef58dbf7674311",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Record:Outcome",
+        "value": {
+          "total": 0,
+          "valid": true
+        },
+        "work": 420,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "app-fraction-negative-zero",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O2",
+      "fill": 90,
+      "full_match": true,
+      "wire_sha256": "eaf7269007584e00d47932cd749ad053c970805fc7eb251bd29f96c2a984f802",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Record:Outcome",
+        "value": {
+          "total": 0,
+          "valid": false
+        },
+        "work": 140,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "app-fraction-negative-zero",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O2",
+      "fill": 165,
+      "full_match": true,
+      "wire_sha256": "eaf7269007584e00d47932cd749ad053c970805fc7eb251bd29f96c2a984f802",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Record:Outcome",
+        "value": {
+          "total": 0,
+          "valid": false
+        },
+        "work": 140,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "app-integral-exponent",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O2",
+      "fill": 90,
+      "full_match": true,
+      "wire_sha256": "eaf7269007584e00d47932cd749ad053c970805fc7eb251bd29f96c2a984f802",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Record:Outcome",
+        "value": {
+          "total": 0,
+          "valid": false
+        },
+        "work": 140,
+        "reason": null,
+        "location": null
+      }
+    },
+    {
+      "case": "app-integral-exponent",
+      "source_sha256": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+      "optimization": "O2",
+      "fill": 165,
+      "full_match": true,
+      "wire_sha256": "eaf7269007584e00d47932cd749ad053c970805fc7eb251bd29f96c2a984f802",
+      "result": {
+        "schema": "bagaev-typed-record-result/12",
+        "status": "success",
+        "value_type": "Record:Outcome",
+        "value": {
+          "total": 0,
+          "valid": false
+        },
+        "work": 140,
+        "reason": null,
+        "location": null
+      }
+    }
+  ],
+  "negative_controls": {
+    "frozen_before_execution": true,
+    "mutations": 3,
+    "normal_exit_wrong_outputs": 12,
+    "rows": [
+      {
+        "mutation": "zero_payload",
+        "case": "true-false",
+        "optimization": "O0",
+        "fill": 90,
+        "detected": true,
+        "actual": {
+          "schema": "bagaev-typed-record-result/12",
+          "status": "success",
+          "value_type": "Bool",
+          "value": false,
+          "work": 2,
+          "reason": null,
+          "location": null
+        },
+        "original_expected": {
+          "schema": "bagaev-typed-record-result/12",
+          "status": "success",
+          "value_type": "Bool",
+          "value": true,
+          "work": 2,
+          "reason": null,
+          "location": null
+        },
+        "module_sha256": "e86d9c0c7261df2263b4e413a10a5c0f06f7521287c5bcfb4f02b28c4c2e067f",
+        "wire_sha256": "ab5bd356f98fee60750dc822bf341744093b9ea6692cec08775bfe4bb604e9a8"
+      },
+      {
+        "mutation": "zero_payload",
+        "case": "true-false",
+        "optimization": "O0",
+        "fill": 165,
+        "detected": true,
+        "actual": {
+          "schema": "bagaev-typed-record-result/12",
+          "status": "success",
+          "value_type": "Bool",
+          "value": false,
+          "work": 2,
+          "reason": null,
+          "location": null
+        },
+        "original_expected": {
+          "schema": "bagaev-typed-record-result/12",
+          "status": "success",
+          "value_type": "Bool",
+          "value": true,
+          "work": 2,
+          "reason": null,
+          "location": null
+        },
+        "module_sha256": "e86d9c0c7261df2263b4e413a10a5c0f06f7521287c5bcfb4f02b28c4c2e067f",
+        "wire_sha256": "ab5bd356f98fee60750dc822bf341744093b9ea6692cec08775bfe4bb604e9a8"
+      },
+      {
+        "mutation": "zero_payload",
+        "case": "true-false",
+        "optimization": "O2",
+        "fill": 90,
+        "detected": true,
+        "actual": {
+          "schema": "bagaev-typed-record-result/12",
+          "status": "success",
+          "value_type": "Bool",
+          "value": false,
+          "work": 2,
+          "reason": null,
+          "location": null
+        },
+        "original_expected": {
+          "schema": "bagaev-typed-record-result/12",
+          "status": "success",
+          "value_type": "Bool",
+          "value": true,
+          "work": 2,
+          "reason": null,
+          "location": null
+        },
+        "module_sha256": "e86d9c0c7261df2263b4e413a10a5c0f06f7521287c5bcfb4f02b28c4c2e067f",
+        "wire_sha256": "ab5bd356f98fee60750dc822bf341744093b9ea6692cec08775bfe4bb604e9a8"
+      },
+      {
+        "mutation": "zero_payload",
+        "case": "true-false",
+        "optimization": "O2",
+        "fill": 165,
+        "detected": true,
+        "actual": {
+          "schema": "bagaev-typed-record-result/12",
+          "status": "success",
+          "value_type": "Bool",
+          "value": false,
+          "work": 2,
+          "reason": null,
+          "location": null
+        },
+        "original_expected": {
+          "schema": "bagaev-typed-record-result/12",
+          "status": "success",
+          "value_type": "Bool",
+          "value": true,
+          "work": 2,
+          "reason": null,
+          "location": null
+        },
+        "module_sha256": "e86d9c0c7261df2263b4e413a10a5c0f06f7521287c5bcfb4f02b28c4c2e067f",
+        "wire_sha256": "ab5bd356f98fee60750dc822bf341744093b9ea6692cec08775bfe4bb604e9a8"
+      },
+      {
+        "mutation": "eager_fallback",
+        "case": "lazy-true",
+        "optimization": "O0",
+        "fill": 90,
+        "detected": true,
+        "actual": {
+          "schema": "bagaev-typed-record-result/12",
+          "status": "integer-overflow",
+          "value_type": null,
+          "value": null,
+          "work": 6,
+          "reason": "RR_OVERFLOW",
+          "location": "/program/functions/main/body/2/1"
+        },
+        "original_expected": {
+          "schema": "bagaev-typed-record-result/12",
+          "status": "success",
+          "value_type": "Bool",
+          "value": true,
+          "work": 2,
+          "reason": null,
+          "location": null
+        },
+        "module_sha256": "03abb44b5284f3625791e1a7f37b4b8bb11bf126f7410426e96827e4f40e5298",
+        "wire_sha256": "1c3385bf0078865882b139cd2f4b453765f259a4d3a27c12ea4cd435d54fc860"
+      },
+      {
+        "mutation": "eager_fallback",
+        "case": "lazy-true",
+        "optimization": "O0",
+        "fill": 165,
+        "detected": true,
+        "actual": {
+          "schema": "bagaev-typed-record-result/12",
+          "status": "integer-overflow",
+          "value_type": null,
+          "value": null,
+          "work": 6,
+          "reason": "RR_OVERFLOW",
+          "location": "/program/functions/main/body/2/1"
+        },
+        "original_expected": {
+          "schema": "bagaev-typed-record-result/12",
+          "status": "success",
+          "value_type": "Bool",
+          "value": true,
+          "work": 2,
+          "reason": null,
+          "location": null
+        },
+        "module_sha256": "03abb44b5284f3625791e1a7f37b4b8bb11bf126f7410426e96827e4f40e5298",
+        "wire_sha256": "1c3385bf0078865882b139cd2f4b453765f259a4d3a27c12ea4cd435d54fc860"
+      },
+      {
+        "mutation": "eager_fallback",
+        "case": "lazy-true",
+        "optimization": "O2",
+        "fill": 90,
+        "detected": true,
+        "actual": {
+          "schema": "bagaev-typed-record-result/12",
+          "status": "integer-overflow",
+          "value_type": null,
+          "value": null,
+          "work": 6,
+          "reason": "RR_OVERFLOW",
+          "location": "/program/functions/main/body/2/1"
+        },
+        "original_expected": {
+          "schema": "bagaev-typed-record-result/12",
+          "status": "success",
+          "value_type": "Bool",
+          "value": true,
+          "work": 2,
+          "reason": null,
+          "location": null
+        },
+        "module_sha256": "03abb44b5284f3625791e1a7f37b4b8bb11bf126f7410426e96827e4f40e5298",
+        "wire_sha256": "1c3385bf0078865882b139cd2f4b453765f259a4d3a27c12ea4cd435d54fc860"
+      },
+      {
+        "mutation": "eager_fallback",
+        "case": "lazy-true",
+        "optimization": "O2",
+        "fill": 165,
+        "detected": true,
+        "actual": {
+          "schema": "bagaev-typed-record-result/12",
+          "status": "integer-overflow",
+          "value_type": null,
+          "value": null,
+          "work": 6,
+          "reason": "RR_OVERFLOW",
+          "location": "/program/functions/main/body/2/1"
+        },
+        "original_expected": {
+          "schema": "bagaev-typed-record-result/12",
+          "status": "success",
+          "value_type": "Bool",
+          "value": true,
+          "work": 2,
+          "reason": null,
+          "location": null
+        },
+        "module_sha256": "03abb44b5284f3625791e1a7f37b4b8bb11bf126f7410426e96827e4f40e5298",
+        "wire_sha256": "1c3385bf0078865882b139cd2f4b453765f259a4d3a27c12ea4cd435d54fc860"
+      },
+      {
+        "mutation": "omit_first_tick",
+        "case": "true-false",
+        "optimization": "O0",
+        "fill": 90,
+        "detected": true,
+        "actual": {
+          "schema": "bagaev-typed-record-result/12",
+          "status": "success",
+          "value_type": "Bool",
+          "value": true,
+          "work": 1,
+          "reason": null,
+          "location": null
+        },
+        "original_expected": {
+          "schema": "bagaev-typed-record-result/12",
+          "status": "success",
+          "value_type": "Bool",
+          "value": true,
+          "work": 2,
+          "reason": null,
+          "location": null
+        },
+        "module_sha256": "72a6bfafce149ba160aca13f4c424275bde46056c6005626d3fc6957c2d462d5",
+        "wire_sha256": "db5a5f841eecccf2229e8ea50075625ac0376becad9033e84334d3305c6d91b3"
+      },
+      {
+        "mutation": "omit_first_tick",
+        "case": "true-false",
+        "optimization": "O0",
+        "fill": 165,
+        "detected": true,
+        "actual": {
+          "schema": "bagaev-typed-record-result/12",
+          "status": "success",
+          "value_type": "Bool",
+          "value": true,
+          "work": 1,
+          "reason": null,
+          "location": null
+        },
+        "original_expected": {
+          "schema": "bagaev-typed-record-result/12",
+          "status": "success",
+          "value_type": "Bool",
+          "value": true,
+          "work": 2,
+          "reason": null,
+          "location": null
+        },
+        "module_sha256": "72a6bfafce149ba160aca13f4c424275bde46056c6005626d3fc6957c2d462d5",
+        "wire_sha256": "db5a5f841eecccf2229e8ea50075625ac0376becad9033e84334d3305c6d91b3"
+      },
+      {
+        "mutation": "omit_first_tick",
+        "case": "true-false",
+        "optimization": "O2",
+        "fill": 90,
+        "detected": true,
+        "actual": {
+          "schema": "bagaev-typed-record-result/12",
+          "status": "success",
+          "value_type": "Bool",
+          "value": true,
+          "work": 1,
+          "reason": null,
+          "location": null
+        },
+        "original_expected": {
+          "schema": "bagaev-typed-record-result/12",
+          "status": "success",
+          "value_type": "Bool",
+          "value": true,
+          "work": 2,
+          "reason": null,
+          "location": null
+        },
+        "module_sha256": "72a6bfafce149ba160aca13f4c424275bde46056c6005626d3fc6957c2d462d5",
+        "wire_sha256": "db5a5f841eecccf2229e8ea50075625ac0376becad9033e84334d3305c6d91b3"
+      },
+      {
+        "mutation": "omit_first_tick",
+        "case": "true-false",
+        "optimization": "O2",
+        "fill": 165,
+        "detected": true,
+        "actual": {
+          "schema": "bagaev-typed-record-result/12",
+          "status": "success",
+          "value_type": "Bool",
+          "value": true,
+          "work": 1,
+          "reason": null,
+          "location": null
+        },
+        "original_expected": {
+          "schema": "bagaev-typed-record-result/12",
+          "status": "success",
+          "value_type": "Bool",
+          "value": true,
+          "work": 2,
+          "reason": null,
+          "location": null
+        },
+        "module_sha256": "72a6bfafce149ba160aca13f4c424275bde46056c6005626d3fc6957c2d462d5",
+        "wire_sha256": "db5a5f841eecccf2229e8ea50075625ac0376becad9033e84334d3305c6d91b3"
+      }
+    ],
+    "limitation": "finite named mutations only; compiler failures and crashes do not count"
+  }
+}
