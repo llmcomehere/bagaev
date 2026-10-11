@@ -58,3 +58,5 @@ business calculation. Native qualification remains separate work, not implied
 by parsing, compilation or source integration.
 The [lossless Json preparer](json-argument-prepare.md) separately accepts explicit
 form6 and constructs invocation12 data without runtime or native execution.
+The separate [source-once reference API](probe-prepared-json12.md) supports
+repeated Json-only reference calls with owned inputs and fresh per-call work.
