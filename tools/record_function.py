@@ -14,9 +14,13 @@ def main(argv=None):
         a=p.parse_args(sys.argv[1:] if argv is None else argv)
         edit=wide_edit if a.form=='5' else default_edit
         if a.form=='6':
-            if a.operation=='replace' or a.callee_context:raise transport.Refusal('TOOL_USAGE')
-            import bagaev_record_json_bool_context
-            edit=bagaev_record_json_bool_context
+            if a.callee_context:raise transport.Refusal('TOOL_USAGE')
+            if a.operation=='replace':
+                import bagaev_record_json_bool_change
+                edit=bagaev_record_json_bool_change
+            else:
+                import bagaev_record_json_bool_context
+                edit=bagaev_record_json_bool_context
         if a.callee_context and (a.operation!='replace' or a.form!='5'):raise transport.Refusal('TOOL_USAGE')
         if (a.locations or a.source_body) and (a.operation!='context' or a.form not in ('5','6')):raise transport.Refusal('TOOL_USAGE')
         if a.operation in ('extract','context'):

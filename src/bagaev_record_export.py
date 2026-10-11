@@ -7,6 +7,10 @@ from bagaev_record_draft import DraftError, need, digest
 
 
 def export_source(original, packet, *, base_sha256, target_sha256, form_version='4'):
+    if form_version == '6':
+        import bagaev_record_json_bool_change
+        return bagaev_record_json_bool_change.export_source(original, packet,
+                    base_sha256=base_sha256, target_sha256=target_sha256)
     need(form_version in ('4', '5'), 'EXPORT_FORM')
     edit = wide if form_version == '5' else narrow
     for pin in (base_sha256, target_sha256):
