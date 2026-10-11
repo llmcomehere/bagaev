@@ -250,7 +250,7 @@ Refusals exit 2; OS failure may leave a partial new file. No evaluator is launch
 | Pinned source map | `record_source_map.py S --form 5 --program-pin sha256:BASE [--source-sha256 RAW] [--pointer PTR] --output MAP` |
 | Discovery | `record_capabilities.py --form 5 --revision 5` |
 
-Form6: decode/encode (also named)/inspect, diagnose/format (also width) above;
+Form6: decode/encode (also named)/inspect, diagnose/format (also width), source-map;
 Json preparer selects `--form 6` for lossless invocation12. Generic prepare6 and
 bounds6 refuse `TOOL_USAGE`; other tools stay form5-only. No implicit upgrade.
 

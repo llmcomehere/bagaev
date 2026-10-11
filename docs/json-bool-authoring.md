@@ -9,10 +9,13 @@ Choose `--form 6` explicitly; old tool defaults and versions are unchanged.
   `--width 40..120`. Comments and named calls are retained; complete program
   graph equality is checked. Reformatting is idempotent on the tested cases.
 - `tools/record_json_prepare.py`: lossless Json-only invocation12 data.
+- `tools/record_source_map.py`: expression ranges with required `--program-pin`,
+  optional `--source-sha256` and `--pointer`. Raw layout identity is separate
+  from the complete graph pin; repeated equal literals retain distinct ranges.
 
 Each command needs an input and a new `--output` path; the preparer also needs
 `--arguments`. Generic record_text prepare6 and inspect6 `--bounds` refuse
-`TOOL_USAGE` before reading inputs. Function/draft/export/source-map tools remain
+`TOOL_USAGE` before reading inputs. Function/draft/export tools remain
 on their existing profiles. A diagnostic's `valid_form` is syntax/lowering
 validity only. All tools report no semantic checking or execution admission;
 none runs the program or a compiler. Follow the existing bounded regular-file,
