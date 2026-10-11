@@ -14,9 +14,17 @@ helper parameter order invalidate an old base pin. This is syntax/lowering and
 draft consistency, not semantic checking or programme execution.
 
 The ordinary standalone form6 replacement still refuses named calls whose
-callee declaration is absent. Old form5 behavior remains unchanged. This slice
-adds no command-line flags: form6 `--callee-context` remains unsupported by the
-existing CLI and discovery snapshots. Selecting this API is explicit.
+callee declaration is absent. Old form5 behavior remains unchanged.
+
+The explicit command is `tools/record_function.py replace SOURCE --form 6
+--callee-context --replacement FRAGMENT --base BASE --function-pin FUNCTION
+--output NEW_FILE`. Both pins are mandatory. The receipt records
+`callee_context_base`; semantic checking and execution admission remain false.
+Inputs must be bounded regular files and output must be a fresh path. Invalid
+context/extract selectors refuse before input reads. Stale pins and malformed
+named calls create no output. Discovery revisions are historical snapshots and
+are not extended by this command change. Contextual fragment export is outside
+this route.
 
 Three new tests passed on2026-10-11: literal declaration-order lowering with an
 unchanged helper, base/function pin and scope/signature/no-op refusals, and five

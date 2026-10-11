@@ -36,6 +36,6 @@ class JsonBoolContext(unittest.TestCase):
     self.assertEqual(code,0);self.assertTrue(json.loads(capture.getvalue())['ok'])
     self.assertEqual(json.loads(out.read_bytes())['fragment']['form'],'record-form/6')
    missing=str(d/'missing');out=d/'replace';capture=io.StringIO()
-   with contextlib.redirect_stdout(capture):code=cli.main(['replace',missing,'--form','6','--callee-context','--replacement',missing,'--base','0'*64,'--function-pin','0'*64,'--output',str(out)])
+   with contextlib.redirect_stdout(capture):code=cli.main(['context',missing,'--form','6','--callee-context','--name','main','--output',str(out)])
    self.assertEqual(code,2);self.assertEqual(json.loads(capture.getvalue())['error']['code'],'TOOL_USAGE');self.assertFalse(out.exists())
 if __name__=='__main__':unittest.main()
