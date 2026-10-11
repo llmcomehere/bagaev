@@ -8,13 +8,14 @@ Byte limits, not measured tokens or universal context-fit claims.
 | Task/source | Explicit choice | Important boundary |
 | --- | --- | --- |
 | New readable typed pure code | `record-form/5`, typed-record/11 | Immutable values; bounded first-order computation. |
+| Json Bool | `record-form/6`, typed-record/12 | Lazy projection; reference only. |
 | Existing owned-state component | `component-form/7`, component-source/2, typed-record/10 | Narrower expression vocabulary; explicit state contract and separate receiver. |
 | Existing dynamic JSON/Store program | `bagaev-l2/1`, or explicit `/2` for `filter` | Dynamic language and distinct pins; complete operations below. |
 | Small original dataflow example | `bagaev/l0-program/v1` | Ten operations; all nodes evaluate, including unreachable ones. |
 
-Respect stacks/versions. Production/mobile/GPU/distributed support and cost
-advantage are unproven. Pure code needs no LLM; no I/O, clock, randomness,
-imports, callbacks, dynamic evaluation or mutation.
+Respect versions. Production/mobile/GPU/distributed support and cost advantage
+are unproven. Pure code needs no LLM; no I/O, clock, randomness, imports,
+callbacks, dynamic evaluation or mutation.
 
 ## Start with readable typed source
 
@@ -32,8 +33,8 @@ program {
 }
 ```
 
-Arguments `[[{"amount":3},{"amount":4}]]` give Int64 `7`. Supply one array
-in parameter order. The loop guards actual length.
+Arguments `[[{"amount":3},{"amount":4}]]` give Int64 `7`. Array order matches
+parameters; the loop guards length.
 
 ### Source grammar
 
@@ -42,7 +43,7 @@ space/tab/CR/LF. After the header, `//` outside strings comments through LF/EOF.
 No block comments, interpolation or comments inside/before the header. Comment
 controls except tab/CR refuse. Comments are untrusted layout data, absent from IR.
 
-Semicolon-terminated declarations allow any order and forward references:
+Semicolon-terminated declarations: any order, forward references allowed.
 
 | Declaration | Meaning |
 | --- | --- |
@@ -52,9 +53,9 @@ Semicolon-terminated declarations allow any order and forward references:
 | `variant V { A: T, B: U };` | Nominal closed sum; one payload per alternative. |
 | `list L of R capacity N;` | Nominal list of a declared record type, capacity 0..16. |
 
-Readable identifiers start with an ASCII letter, followed by letters, digits or
-underscore. For accepted execution, function/parameter/local names are at most
-64 bytes; type/field/alternative names at most 32. Reserved expression words are
+Identifiers: ASCII letter then letters/digits/underscore. Accepted execution
+limits function/parameter/local names to 64 bytes, type/field/alternative names
+to 32. Reserved expression words:
 `if then else true false let in match fold with list of capacity omit_none`.
 Keep type names distinct from built-in types and other named types. Duplicate
 fields/functions/types/parameters and unresolved references refuse. There are
@@ -149,6 +150,7 @@ Names select fixed operations.
 | `json.field(j,"key")` | J -> J: field or missing, including for nonobjects. Literal scalar key <=64 UTF-8 bytes. |
 | `json.at(j,i)` | J,I -> J: element or missing, including for nonarrays/invalid indices. |
 | `json.text_or(j,fallback)` | J,T -> T: bounded Text projection or lazy fallback. |
+| `json.bool_or(j,fallback)` (form6/12 only) | J,B -> B: actual Bool or lazy fallback; no coercion. Both operands type-check; operation/operand cost one tick each; fallback charges only if evaluated. |
 
 Check Json kinds before constructing domain values. Missing, null and number
 lexeme categories remain distinct; projection does not validate business rules.
@@ -227,9 +229,9 @@ Join checked nodes and maps only when program pins match, using JSON pointers.
 
 ## Finish one change
 
-Use reviewed tools with execution authority. `-B` only suppresses bytecode writes;
-it is not a sandbox. Inputs: bounded regular nonsymlink files; outputs: new only.
-Refusals exit 2; OS failure may leave a partial new file. No evaluator is launched.
+Use reviewed, authorized tools. `-B` suppresses bytecode writes, not a sandbox.
+Inputs: bounded regular nonsymlink files; outputs: new only. Refusals exit2;
+OS failure may leave partial output. No evaluator launches.
 
 | Need | Command shape (`python3 -B tools/` prefix omitted) |
 | --- | --- |
@@ -247,6 +249,11 @@ Refusals exit 2; OS failure may leave a partial new file. No evaluator is launch
 | Export one changed body | `record_export.py S --form 5 --draft DRAFT --base BASE --target TARGET [layout options below] --output NEW` |
 | Pinned source map | `record_source_map.py S --form 5 --program-pin sha256:BASE [--source-sha256 RAW] [--pointer PTR] --output MAP` |
 | Discovery | `record_capabilities.py --form 5 --revision 5` |
+
+Form6 accepts decode/encode/inspect, diagnose/format, source-map and function
+extract/context with their flags. Json preparer `--form 6`: lossless invocation12.
+Generic prepare/bounds/function replace refuse `TOOL_USAGE`; draft/export/
+discovery stay form5-only. No implicit upgrade.
 
 `--bounds B`: exact entry-parameter map. Int64/Bool: `{"type":T}`;
 TextList: `{"type":"TextList","items":N,"bytes":B}` maxima;
@@ -267,21 +274,19 @@ and checks graph equality/idempotence. Width is a soft Unicode-character goal;
 indivisible text/comments or punctuation may exceed it. Defaults retain old bytes.
 Syntax `valid_form` is not type checking.
 
-Focused context/2 includes a canonical selected-function fragment plus direct
-caller/callee signatures and pins. `--locations` gives context/3 with original
-full-source ranges. `--source-body` gives context/4, including exact original body
-text, body hash and whole-source hash; it implies locations. Surrounding trivia
-is excluded. Canonical fragment text and original-source coordinates differ.
+Context/2: canonical selected-function fragment, direct caller/callee signatures
+and pins. `--locations`: context/3 with original full-source ranges.
+`--source-body`: context/4 with exact body text/hash and whole-source hash;
+implies locations, excludes surrounding trivia. Canonical text differs from
+original-source coordinates.
 
-Replacement changes one existing body only, preserving types, entry, signatures
-and other functions; stale pins and no-op refuse. A standalone fragment requires
-positional external calls because their declarations are absent. Explicit
-`--callee-context` resolves named labels using only the base-pin-checked original
-parameter declarations, without injecting other bodies. It is replace/form5-only.
-Whole-source drafts may add helpers or change multiple bodies but cannot remove
-old functions or change their signatures/type/entry declarations. Delta names
-are sorted. Every draft is detached, `semantic_check:false`,
-`execution_admission:false`; a structurally valid wrong answer is still possible.
+Replacement changes one body, retaining types/entry/signatures/other functions;
+stale pins/no-op refuse. Standalone fragments require positional external calls.
+Replace/form5-only `--callee-context` resolves named labels against base-pin-checked
+original parameter declarations; it injects no bodies. Whole-source drafts may
+add helpers/change bodies, never remove functions or change signatures/types/entry.
+Delta names are sorted. Drafts are detached, `semantic_check:false`,
+`execution_admission:false`; structural validity allows wrong answers.
 
 The focused exporter reconstructs and validates the complete packet and target;
 it refuses helper additions/multiple changed bodies. Default export is canonical.
@@ -292,14 +297,13 @@ when it needs original callee declarations. All require explicit form5/layout
 mode. Leading/trailing fragment trivia is excluded. Full output graph, target,
 size and packet equality are rechecked. Existing outputs are never overwritten.
 
-Freeze expected inputs/results before proposing a change. Review independently
-selected source/target and delta, then check actual behavior/refusals. Blindly
-trusting a candidate-announced target defeats pinning. Source acceptance, executed
-conformance, independent review and measurement differ. [Batch example](inventory-batch-change.md).
+Freeze expected inputs/results; independently select and review source/target
+and delta, then check behavior/refusals. Candidate-announced pins are insufficient.
+Acceptance, conformance, review and measurement differ. [Batch](inventory-batch-change.md).
 
-Prepared APIs reuse checked source. Load [native ABI/ownership](prepared-json11-native.md)
-only for native hosting: exact-kernel admission and buffer safety are separate
-from language/source acceptance; wire consistency is not origin authentication.
+Prepared APIs reuse checked source. [Native hosting](prepared-json11-native.md)
+separately requires exact-kernel admission/buffer safety; wire consistency
+does not authenticate origin.
 
 ## Existing stateful component programs
 
@@ -497,15 +501,13 @@ observations; extract the returned program field before using it as a source.
 
 ## Decide what to try next
 
-For pure authoring, this guide replaces loading the research/history catalog.
-Host ABI, persistence and recovery need only their selected contract. Proposed
-syntax is not accepted code; unknown versions refuse, and changing a header is
-not migration. Record forms 1..4 select profile10/capacity4 with progressively
-added option/omission/Json syntax; form5 selects profile11. Maintain old artifacts
-against their own pinned contracts.
+Pure authoring needs this guide; host ABI/persistence/recovery need their selected
+contracts. Proposals are not accepted syntax. Unknown versions refuse; changing
+a header is not migration. Forms1..4 select profile10/capacity4, adding
+option/omission/Json; form5 selects11, form6 selects12. Keep old contracts pinned.
 
 Semantic authorities for disputed edges: [typed core](probe-record-source.md),
-[profile11](record-wide-profile.md), [Text](probe-text-values.md),
+[profile11](record-wide-profile.md), [12](record-json-bool-proposal.md), [Text](probe-text-values.md),
 [components](probe-component-outcomes.md), [L2](l2.md), [L0](l0.md).
 Size/operator/example tests do not prove prose completeness or model understanding.
 No runtime semantics changed here.
