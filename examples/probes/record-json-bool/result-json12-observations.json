@@ -3018,5 +3018,111 @@
       },
       "json_sha256": "6b3a46b5ab8e6ebd9d8d88e4fe8129a6b8b56ca4ec50e17a22707110d3bda349"
     }
-  ]
+  ],
+  "cli": {
+    "status": "PASS",
+    "calls": 16,
+    "successes_including_help": 4,
+    "refusals": 12,
+    "native_calls": 0,
+    "reference_calls": 0,
+    "observations": [
+      {
+        "id": "bool-true-false",
+        "returncode": 0,
+        "stdout_sha256": "2e080264555b3e302bd9f345e0915b2cfc9d64b7dbd38dd977eca5ea18428d84",
+        "reason": null
+      },
+      {
+        "id": "bool-false-false",
+        "returncode": 0,
+        "stdout_sha256": "915de7932b145e755b441c6339d64c6e8603594f9e537b550ba8c25038deca2b",
+        "reason": null
+      },
+      {
+        "id": "app-both-booleans",
+        "returncode": 0,
+        "stdout_sha256": "32bf74dcfbe8878f329898cc2545ab2c7d0d562d83ecb1234d5ffed84c72b597",
+        "reason": null
+      },
+      {
+        "id": "help",
+        "returncode": 0,
+        "stdout_sha256": "e368db14be6f2d598b09e989ce0eadad902d2ef3aced60c691631a44c20b765b",
+        "reason": null
+      },
+      {
+        "id": "wrong-pin",
+        "returncode": 2,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "reason": "SOURCE_PIN_MISMATCH"
+      },
+      {
+        "id": "bad-pin",
+        "returncode": 2,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "reason": "SOURCE_PIN_FORMAT"
+      },
+      {
+        "id": "duplicate",
+        "returncode": 2,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "reason": "ARGUMENTS"
+      },
+      {
+        "id": "unknown",
+        "returncode": 2,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "reason": "ARGUMENTS"
+      },
+      {
+        "id": "missing",
+        "returncode": 2,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "reason": "ARGUMENTS"
+      },
+      {
+        "id": "malformed-wire",
+        "returncode": 2,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "reason": "RESULT_REFUSED"
+      },
+      {
+        "id": "unbound-failure",
+        "returncode": 2,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "reason": "RESULT_REFUSED"
+      },
+      {
+        "id": "directory",
+        "returncode": 2,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "reason": "SOURCE_FILE"
+      },
+      {
+        "id": "symlink",
+        "returncode": 2,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "reason": "SOURCE_FILE"
+      },
+      {
+        "id": "source-size",
+        "returncode": 2,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "reason": "SOURCE_FILE"
+      },
+      {
+        "id": "wire-size",
+        "returncode": 2,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "reason": "WIRE_FILE"
+      },
+      {
+        "id": "old-profile",
+        "returncode": 2,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "reason": "SOURCE_ADMISSION"
+      }
+    ]
+  }
 }

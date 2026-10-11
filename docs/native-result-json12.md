@@ -35,5 +35,27 @@ record prior wire hashes and projection outcomes. They do not establish
 independent reproduction, performance, provenance or production acceptance.
 
 A separately authorized build can run `native_result_json12_tests.rs` with
-Rust edition2021, warnings denied and `--test-threads=1`. This slice adds no CLI,
+Rust edition2021, warnings denied and `--test-threads=1`. The original library slice adds no CLI; the command below adds no
 workflow, execution admission, dependency or default profile selection.
+
+## Explicit data-reader command
+
+The subsequent CLI slice adds `native_result_json12_main.rs`, built separately
+with Rust edition2021 and warnings denied. Its command is:
+
+```
+native_result_json12 --source program.json --source-pin sha256:HEX --wire result.bin
+```
+
+The three flags occur exactly once; `--help` alone is the only alternative.
+Source and wire are bounded regular, non-symlink files (1MiB and4,325,440bytes).
+The caller-selected lowercase64-hex source pin is checked before reading wire.
+Success prints JSON plus LF. Refusal exits2, leaves stdout empty and prints a
+fixed JSON reason on stderr. The command creates no files and runs no source,
+process or kernel. File-kind checks are not race-free filesystem isolation.
+
+All16 frozen command observations passed: three prior success captures plus
+help; twelve refusals cover wrong/malformed pins, repeated/unknown/missing flags,
+malformed/unbound wire, directory, symlink, both file-size limits and old11 source.
+These are data-reader checks, not new native executions. The observations file
+includes this separate CLI evidence; the original library observations remain.
