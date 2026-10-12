@@ -36,8 +36,8 @@ automatic re-execution is used to recover a lost result.
 
 All three sequential processes passed: 52, 83 and 60 reader/reference calls,
 respectively, with five, one and zero application evaluations. Parent checks
-compare the stored digest across process boundaries and preserve the selected
-executable file and stage source bytes. These 195 calls include source/value
+compare the stored digest across process boundaries and preserve the
+executable-selection file and stage source bytes. These 195 calls include source/value
 checking, not 195 independent business cases. No generated native application
 kernel or model was invoked.
 
