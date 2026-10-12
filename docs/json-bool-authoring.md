@@ -34,7 +34,9 @@ Choose `--form 6` explicitly; old tool defaults and versions are unchanged.
 Each command needs an input and a new `--output` path; the preparer also needs
 `--arguments`. Generic record_text prepare6 and inspect6 `--bounds` refuse
 `TOOL_USAGE` before reading inputs. Form6 `--callee-context` on extract/context and
-`--replacement-source` export refuse before I/O; whole-source draft tools remain on existing
+unpaired authored export selectors refuse before I/O. Explicit paired
+`--replacement-source` and `--callee-context` with pinned layout select the
+[authored-expression route](form6-authored-layout.md); whole-source draft tools remain on existing
 profiles. A diagnostic's `valid_form` is syntax/lowering
 validity only. All tools report no semantic checking or execution admission;
 none runs the program or a compiler. Follow the existing bounded regular-file,
