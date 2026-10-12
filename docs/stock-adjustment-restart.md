@@ -52,3 +52,7 @@ new clock-domain activation or production authorization. Current conditions are
 explicit synthetic host inputs and are never restored as rights from the image.
 Trusted filesystem, SQLite, selected executable and single-writer assumptions
 remain. No timing, memory, cost or availability claim is made.
+
+The complementary [pre-COMMIT interruption](stock-adjustment-rollback.md)
+checks rollback and an explicit retry that can repeat pure evaluation. It keeps
+durable receipt recovery distinct from exactly-once physical execution.
