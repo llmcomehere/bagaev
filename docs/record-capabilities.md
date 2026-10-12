@@ -154,7 +154,7 @@ Select `--form 6 --revision 7` for the subsequent canonical-body layout export
 and checked profile12 node inspector. Revision6 remains its earlier conservative
 snapshot byte-for-byte. Revision7 supplies the required original-layout pin,
 outside-body preservation boundary and matching source-pin/pointer join.
-Authored replacement fragments and callee context remain unsupported on form6.
+This revision7 snapshot does not advertise authored fragments or callee context.
 These discovery additions perform no checking, source evaluation or file writes.
 The inspector must be separately reviewed/built and receives no native execution
 authority from the report.
