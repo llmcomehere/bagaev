@@ -60,3 +60,10 @@ durable receipt recovery distinct from exactly-once physical execution.
 [Cancellation after either cut](stock-adjustment-cancel.md) separately checks
 that a pending uncommitted intent can be cancelled while an already Applied
 adjustment is reported honestly and never undone.
+
+## Current cutoff recovery
+
+The separate [deadline and epoch recovery checks](stock-adjustment-cutoff.md)
+distinguish refusing a new expired intent after a pre-COMMIT cut from reading
+an already committed receipt after a post-COMMIT cut.
+
