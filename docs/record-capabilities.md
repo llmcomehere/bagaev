@@ -1,9 +1,9 @@
 # Discover a pure profile before choosing it
 
 For the newer explicit Boolean-capable route, select
-`python tools/record_capabilities.py --form 6 --revision 8`.
+`python tools/record_capabilities.py --form 6 --revision 9`.
 This additive report describes the accepted profile12 chain; forms4/5 and their
-default reports retain their prior selection and bytes. See revisions6/7/8 below.
+default reports retain their prior selection and bytes. See revisions6 through9 below.
 
 Models and tools can inspect a small structured description before loading a
 whole example. This supports an informed choice of profile; it does not show
@@ -170,3 +170,15 @@ authored export; extract/context with the selector refuse. Revisions1 through7
 and defaults retain their original bytes.
 Two metadata/CLI tests and six revision6/7 compatibility tests passed in the
 bounded local profile; these are data checks, not runtime or model observations.
+
+## Explicit revision 9: authored contextual export
+
+Select `--form 6 --revision 9` to describe paired contextual authored export.
+The metadata requires the draft, base/target pins, original source hash, layout
+selector, replacement source, callee context and a fresh output. It distinguishes
+exact authored expression preservation from canonical-body export. The complete
+independent draft is revalidated; no semantic or execution admission is granted.
+Only the two export-option refusals are removed from revision8. Earlier reports
+and defaults retain their bytes; extract/context selectors still refuse.
+Two new metadata/CLI tests check the literal delta, incompatible forms and
+detached results. This is discoverability, not a runtime or model result.
