@@ -165,7 +165,8 @@ Select `--form 6 --revision 8` to add the explicit contextual replacement CLI
 to revision7. Parameter names come from the exact pinned base, in declaration
 order, without copying helper bodies. Base and function pins and a fresh output
 path are mandatory. The output remains a detached draft with no semantic checking
-or execution admission. Extract/context with the selector and contextual authored
-export still refuse. Revisions1 through7 and defaults retain their original bytes.
+or execution admission. This historical snapshot does not advertise contextual
+authored export; extract/context with the selector refuse. Revisions1 through7
+and defaults retain their original bytes.
 Two metadata/CLI tests and six revision6/7 compatibility tests passed in the
 bounded local profile; these are data checks, not runtime or model observations.
