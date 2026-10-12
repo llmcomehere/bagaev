@@ -138,6 +138,25 @@ def describe_v7(version):
     return value
 
 
+def describe_v8(version):
+    """Opt-in pinned named-callee fragment command; older snapshots unchanged."""
+    value = describe_v7(version)
+    value['schema'] = 'bagaev-record-capabilities/8'
+    value['unsupported_options'].remove('record_function.py --callee-context')
+    value['unsupported_options'].extend(['record_function.py extract/context --callee-context',
+                                         'record_export.py --callee-context'])
+    value['readable_editing']['contextual_replacement'] = {
+        'supported': True, 'tool': 'tools/record_function.py', 'operation': 'replace',
+        'form_flag_value': '6',
+        'required_flags': ['--form','--callee-context','--replacement','--base','--function-pin','--output'],
+        'callee_context': 'parameter names from exact pinned base; no helper bodies copied',
+        'argument_order': 'parameter declaration order',
+        'output': 'detached draft/2, fresh path only',
+        'semantic_check': False, 'execution_admission': False,
+        'guide': 'docs/form6-callee-context.md'}
+    return value
+
+
 def describe_v3(version):
     """Explicit discovery of layout-bound debugging data, without execution."""
     value = describe_v2(version)
