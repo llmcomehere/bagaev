@@ -19,7 +19,7 @@ change. Entry, types, function set, signature and all other bodies are preserved
 Forged metadata, stale pins, scope expansion, additional envelope fields and
 true or non-boolean admission flags are refused. Output files must be new.
 
-Form4 is the default; form5 must be selected explicitly. Each accepts only its
+Form4 is the default; form5 and form6 must be selected explicitly. Each accepts only its
 corresponding focused draft schema. Whole-program drafts with multiple edits or
 added helpers are outside this exporter. The source formatter can subsequently
 change whitespace while retaining decoded program identity.
@@ -44,12 +44,12 @@ reader/reference path/hash and new-output arguments. Establish execution
 permission independently before running it. These are same-maintainer bounded
 conformance observations, not independent reproduction or performance evidence.
 
-## Preserve unrelated source layout (form5 opt-in)
+## Preserve unrelated source layout (form5 or form6 opt-in)
 
 For a focused body change, add `--preserve-layout --source-sha256 HEX` to the
-existing form5 export command. `HEX` is the lowercase SHA-256 of the exact original
+explicit form5 or form6 export command. `HEX` is the lowercase SHA-256 of the exact original
 UTF-8 file, in addition to the existing base and target program pins. Both flags
-are required together, and other forms refuse the option before reading input.
+are required together, and form4 refuses the option before reading input.
 
 The exporter first runs the complete existing focused-draft validation: base,
 target, packet reconstruction, single changed function and unchanged signature.
@@ -65,7 +65,10 @@ coarse/missing ranges and oversized output refuse without partial output. The
 explicit receipt adds `input_source_sha256` and
 `preservation_scope:"outside-changed-function-body"`. Default canonical export
 and its receipt remain unchanged. The pure library entry is
-`export_source_preserving_layout` in `bagaev_record_export`.
+`export_source_preserving_layout` in `bagaev_record_export` for form5 and
+`bagaev_record_json_bool_change` for form6. The separate
+[authored form6 route](form6-authored-layout.md) additionally preserves the
+supplied replacement expression, with its own mandatory paired selectors.
 
 Five layouts of the existing batch-to-total10 change (LF, Unicode comments,
 CRLF, lazy guards and named calls) preserved exact prefix/suffix bytes and the
