@@ -61,5 +61,7 @@ class FocusedChange(unittest.TestCase):
    self.assertEqual(call(export_cli,export)[1]['error']['code'],'RECORD_PATH');self.assertEqual(out.read_bytes(),saved)
    self.assertEqual(original.read_text(),SOURCE);self.assertEqual(fragment.read_text(),REPLACEMENT)
    target=d/'layout';bad=[str(d/'missing'),'--form','6','--draft',str(d/'missing'),'--base',self.base,'--target',expected['target'],'--preserve-layout','--source-sha256','0'*64,'--output',str(target)]
+   # Canonical-body layout export is now supported; authored replacement is not.
+   bad.extend(['--replacement-source',str(d/'missing')])
    self.assertEqual(call(export_cli,bad)[1]['error']['code'],'TOOL_USAGE');self.assertFalse(target.exists())
 if __name__=='__main__':unittest.main()
