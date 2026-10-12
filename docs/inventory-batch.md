@@ -1,8 +1,10 @@
 # Pure ordered inventory batch
 
 This form5 example reserves stock for up to four requests against at most sixteen
-items. It reuses the [limited single-request policy](inventory-json.md) and keeps
-its eleven predecessor functions unchanged. The separate entry is `batch_main`.
+items. It reuses the [cap-five single-request policy](inventory-json-focused-change.md)
+and keeps its eleven predecessor functions unchanged. The separate entry is
+`batch_main`. The [original Json wrapper](inventory-json.md) has no per-order cap
+and remains a separate example.
 The [source](../examples/probes/inventory-batch/Batch.bagaev),
 [contract](../examples/probes/inventory-batch/CONTRACT.md) and
 [32 frozen outcomes](../examples/probes/inventory-batch/cases.json) are public.
