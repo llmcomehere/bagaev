@@ -28,6 +28,12 @@ individually below the byte cap while their retained comments produce an exact
 cap-sized output. That literal output is accepted; one extra authored byte
 refuses `EXPORT_BOUNDS`. This covers the composed output, not merely input caps.
 
+A shared non-entry helper control preserves the original program entry, two
+caller bodies and an unchanged callee while retaining the exact authored helper
+expression. A packet selecting a different function refuses `FUNCTION_PIN`;
+a valid conflicting helper draft reaches `EXPORT_FRAGMENT`. Unchanged caller
+text does not establish unchanged caller behavior or consumer evidence reuse.
+
 ## Explicit CLI transport
 
 `tools/record_export.py ORIGINAL --form 6 --draft DRAFT --base BASE --target
