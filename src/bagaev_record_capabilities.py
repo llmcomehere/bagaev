@@ -157,6 +157,22 @@ def describe_v8(version):
     return value
 
 
+def describe_v9(version):
+    """Explicit authored-expression transport, preserving historical reports."""
+    value = describe_v8(version)
+    value['schema'] = 'bagaev-record-capabilities/9'
+    for option in ('record_export.py --replacement-source','record_export.py --callee-context'):
+        value['unsupported_options'].remove(option)
+    value['readable_editing']['authored_layout_export'] = {
+        'supported': True, 'tool': 'tools/record_export.py', 'form_flag_value': '6',
+        'required_flags': ['--form','--draft','--base','--target','--preserve-layout','--source-sha256','--replacement-source','--callee-context','--output'],
+        'preservation': 'exact authored expression and all outside-body bytes',
+        'independent_draft_revalidated': True, 'output': 'fresh path only',
+        'semantic_check': False, 'execution_admission': False,
+        'guide': 'docs/form6-authored-layout.md'}
+    return value
+
+
 def describe_v3(version):
     """Explicit discovery of layout-bound debugging data, without execution."""
     value = describe_v2(version)

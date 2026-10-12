@@ -8,11 +8,11 @@ def main(argv=None):
     try:
         p=transport.Parser(add_help=False,allow_abbrev=False)
         p.add_argument('--form',choices=('4','5','6'),required=True)
-        p.add_argument('--revision',choices=('1','2','3','4','5','6','7','8'),default='1')
+        p.add_argument('--revision',choices=('1','2','3','4','5','6','7','8','9'),default='1')
         a=p.parse_args(sys.argv[1:] if argv is None else argv)
-        if (a.form == '6') != (a.revision in ('6','7','8')):
+        if (a.form == '6') != (a.revision in ('6','7','8','9')):
             raise transport.Refusal('TOOL_USAGE')
-        print(json.dumps(({'1':capabilities.describe,'2':capabilities.describe_v2,'3':capabilities.describe_v3,'4':capabilities.describe_v4,'5':capabilities.describe_v5,'6':capabilities.describe_v6,'7':capabilities.describe_v7,'8':capabilities.describe_v8}[a.revision](a.form)),sort_keys=True,separators=(',',':')))
+        print(json.dumps(({'1':capabilities.describe,'2':capabilities.describe_v2,'3':capabilities.describe_v3,'4':capabilities.describe_v4,'5':capabilities.describe_v5,'6':capabilities.describe_v6,'7':capabilities.describe_v7,'8':capabilities.describe_v8,'9':capabilities.describe_v9}[a.revision](a.form)),sort_keys=True,separators=(',',':')))
         return 0
     except (transport.Refusal,capabilities.narrow.FormError) as e:
         print(json.dumps({'schema':'bagaev-record-capabilities/1','error':{'code':e.code}},sort_keys=True,separators=(',',':')))
