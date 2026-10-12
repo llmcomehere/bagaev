@@ -54,4 +54,30 @@ class Authored(unittest.TestCase):
     with self.assertRaises(a.DraftError) as e:a.export_authored(source,self.packet,fragment,**kw)
     self.assertEqual(e.exception.code,'EXPORT_BOUNDS')
    else:self.assertEqual(a.export_authored(source,self.packet,fragment,**kw),expected)
+ def test_shared_nonentry_helper_scope(self):
+  prefix='bagaev record-form/6;\r\nprogram { entry main; fn leaf(v: Json, d: Bool) -> Bool = json.bool_or(v, d); fn helper(a: Json, fallback: Bool) -> Bool = '
+  suffix='; fn main(x: Json) -> Bool = helper(x, false); fn other(y: Json) -> Bool = helper(y, true); }\r\n'
+  source=prefix+'leaf(a, fallback)'+suffix
+  body='leaf(\n // fn main(x: Json) -> Bool = false; }\n d: true, v: a)'
+  fragment='bagaev record-form/6; program { entry helper; fn helper(a: Json, fallback: Bool) -> Bool = '+body+'; }'
+  before=a.form.decode(source)
+  base=a.digest(before)
+  packet=a.replace_in_context(source,fragment,base_sha256=base,function_sha256=a.digest(before['functions']['helper']))
+  kw=dict(base_sha256=base,target_sha256=packet['target'],source_sha256=hashlib.sha256(source.encode()).hexdigest())
+  result=a.export_authored(source,packet,fragment,**kw)
+  self.assertEqual(result,(prefix+body+suffix).encode())
+  after=a.form.decode(result)
+  self.assertEqual(after['entry'],'main')
+  self.assertEqual(packet['delta'],{'add':[],'replace':['helper']})
+  self.assertEqual(after['functions']['helper']['body'],['call','leaf',['arg','a'],['bool',True]])
+  for name in ['leaf','main','other']:self.assertEqual(after['functions'][name],before['functions'][name])
+  self.assertFalse(packet['semantic_check']);self.assertFalse(packet['execution_admission'])
+  main_fragment='bagaev record-form/6; program { entry main; fn main(x: Json) -> Bool = true; }'
+  other=a.replace_in_context(source,main_fragment,base_sha256=base,function_sha256=a.digest(before['functions']['main']))
+  with self.assertRaises(a.DraftError) as e:a.export_authored(source,other,fragment,**dict(kw,target_sha256=other['target']))
+  self.assertEqual(e.exception.code,'FUNCTION_PIN')
+  conflicting='bagaev record-form/6; program { entry helper; fn helper(a: Json, fallback: Bool) -> Bool = false; }'
+  other=a.replace_in_context(source,conflicting,base_sha256=base,function_sha256=a.digest(before['functions']['helper']))
+  with self.assertRaises(a.DraftError) as e:a.export_authored(source,other,fragment,**dict(kw,target_sha256=other['target']))
+  self.assertEqual(e.exception.code,'EXPORT_FRAGMENT')
 if __name__=='__main__':unittest.main()
