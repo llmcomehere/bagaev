@@ -8,7 +8,7 @@ Byte limits, not measured tokens or universal context-fit claims.
 | Task/source | Explicit choice | Important boundary |
 | --- | --- | --- |
 | New readable typed pure code | `record-form/5`, typed-record/11 | Immutable values; bounded first-order computation. |
-| Json Bool | `record-form/6`, typed-record/12 | Lazy projection; reference only. |
+| Json Bool | `record-form/6`, typed-record/12 | Lazy Bool; bounded native probes. |
 | Existing owned-state component | `component-form/7`, component-source/2, typed-record/10 | Narrower expression vocabulary; explicit state contract and separate receiver. |
 | Existing dynamic JSON/Store program | `bagaev-l2/1`, or explicit `/2` for `filter` | Dynamic language and distinct pins; complete operations below. |
 | Small original dataflow example | `bagaev/l0-program/v1` | Ten operations; all nodes evaluate, including unreachable ones. |
@@ -252,8 +252,8 @@ OS failure may leave partial output. No evaluator launches.
 
 Form6: decode/encode/inspect, diagnose/format, source-map, function extract/context/
 replace and canonical export. Json preparer `--form 6`: lossless invocation12.
-Generic prepare/bounds, callee-context/layout refuse `TOOL_USAGE`; draft/discovery
-stay form5-only. No implicit upgrade.
+Generic prepare/bounds, callee-context/layout refuse `TOOL_USAGE`.
+Discovery: `--form 6 --revision 6`; whole-source drafts stay form5-only.
 
 `--bounds B`: exact entry-parameter map. Int64/Bool: `{"type":T}`;
 TextList: `{"type":"TextList","items":N,"bytes":B}` maxima;
@@ -263,12 +263,12 @@ Returns a conditional work bound or `UNKNOWN`; no semantic validity or execution
 Typed transport refuses fractions/out-of-Int64 numbers, even inside Json.
 Raw Json preserves number lexemes; entry parameters must all be Json (or absent),
 with exact argument count. Duplicate keys, non-JSON numbers and isolated surrogates refuse.
-Both write invocation/11 data with `schema`, `program`, `arguments`, not a result.
+Form5 writes invocation/11, form6 /12, with `schema`, `program`, `arguments`.
 The Rust reference entry is `examples/probes/backend/rust/record_wide_main.rs`;
 a separately reviewed/built executable consumes `run --input INV`. A compiler,
 result pin or this document never grants permission to execute untrusted code.
 
-Encoding preserves meaning, not layout; `--named-calls` is form5 encode-only.
+Encoding preserves meaning, not layout; `--named-calls` selects form5/6 encoding.
 Formatting preserves comment text/order and named spelling, normalizes whitespace,
 and checks graph equality/idempotence. Width is a soft Unicode-character goal;
 indivisible text/comments or punctuation may exceed it. Defaults retain old bytes.
