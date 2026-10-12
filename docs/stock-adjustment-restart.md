@@ -56,3 +56,7 @@ remain. No timing, memory, cost or availability claim is made.
 The complementary [pre-COMMIT interruption](stock-adjustment-rollback.md)
 checks rollback and an explicit retry that can repeat pure evaluation. It keeps
 durable receipt recovery distinct from exactly-once physical execution.
+
+[Cancellation after either cut](stock-adjustment-cancel.md) separately checks
+that a pending uncommitted intent can be cancelled while an already Applied
+adjustment is reported honestly and never undone.
