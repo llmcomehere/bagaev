@@ -1,9 +1,9 @@
 # Discover a pure profile before choosing it
 
 For the newer explicit Boolean-capable route, select
-`python tools/record_capabilities.py --form 6 --revision 7`.
+`python tools/record_capabilities.py --form 6 --revision 8`.
 This additive report describes the accepted profile12 chain; forms4/5 and their
-default reports retain their prior selection and bytes. See revisions6/7 below.
+default reports retain their prior selection and bytes. See revisions6/7/8 below.
 
 Models and tools can inspect a small structured description before loading a
 whole example. This supports an informed choice of profile; it does not show
@@ -158,3 +158,14 @@ This revision7 snapshot does not advertise authored fragments or callee context.
 These discovery additions perform no checking, source evaluation or file writes.
 The inspector must be separately reviewed/built and receives no native execution
 authority from the report.
+
+## Explicit revision 8: pinned contextual replacement
+
+Select `--form 6 --revision 8` to add the explicit contextual replacement CLI
+to revision7. Parameter names come from the exact pinned base, in declaration
+order, without copying helper bodies. Base and function pins and a fresh output
+path are mandatory. The output remains a detached draft with no semantic checking
+or execution admission. Extract/context with the selector and contextual authored
+export still refuse. Revisions1 through7 and defaults retain their original bytes.
+Two metadata/CLI tests and six revision6/7 compatibility tests passed in the
+bounded local profile; these are data checks, not runtime or model observations.

@@ -253,7 +253,7 @@ OS failure may leave partial output. No evaluator launches.
 Form6: decode/encode/inspect, diagnose/format, source-map, function extract/context/
 replace and pinned layout export. Json preparer `--form 6`: lossless invocation12.
 Generic prepare/bounds refuse; callee-context: replace only.
-Discovery: `--form 6 --revision 6`; whole-source drafts stay form5-only.
+Discovery: `--form 6 --revision 8`; whole-source drafts stay form5-only.
 
 `--bounds B`: exact entry-parameter map. Int64/Bool: `{"type":T}`;
 TextList: `{"type":"TextList","items":N,"bytes":B}` maxima;
