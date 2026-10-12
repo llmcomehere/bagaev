@@ -46,3 +46,7 @@ with `--form 6` to construct invocation12 data. The explicit form6 authoring rou
 is a separate slice in [PR #242](https://github.com/llmcomehere/bagaev/pull/242).
 Select the route supported by the checked-out revision; a profile11 default
 must not implicitly admit this profile12 source.
+
+A [data-only authored change replay](json-active-authoring.md) exercises explicit
+contextual replacement and exact authored-expression export on this source,
+without adding runtime observations or changing its business cases.

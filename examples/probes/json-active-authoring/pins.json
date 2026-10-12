@@ -1,0 +1,7 @@
+{
+  "base": "15917f4579ff2b3c2cd9dba6c9c4310854c1349d123cb47f80e60f597c62c63a",
+  "target": "f71588e06ad8d61e28ddb11fb52d66fae3f04fe5894e3fcb4876a50df9762eb1",
+  "original_source_sha256": "379ccce2b4f6bb0125ef73eed18eacac50b48b5419a55d0178a0a6b98de7a363",
+  "authored_successor_sha256": "0a39ae6a06f16809ccd6b6124b98db5427c280d13959491b3a4f0cbd631adaf6",
+  "scope": "Previously fixed synthetic authoring identities; not an independent business or runtime oracle."
+}

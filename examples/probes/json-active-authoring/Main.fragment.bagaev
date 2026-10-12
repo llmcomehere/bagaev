@@ -1,0 +1,10 @@
+bagaev record-form/6;
+program {
+  record Outcome { total: Int64, valid: Bool };
+
+  entry main;
+
+  fn main(x: Json) -> Outcome = if (true) then (
+ // retained authored comment
+ if (input_shape(x: x)) then (Outcome { total: active_sum(x: x), valid: true }) else (Outcome { total: 0, valid: false })) else (if (input_shape(x: x)) then (Outcome { total: active_sum(x: x), valid: true }) else (Outcome { total: 0, valid: false }));
+}
