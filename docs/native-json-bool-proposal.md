@@ -1,8 +1,10 @@
-# Candidate native12 Boolean projection
+# Bounded native12 Boolean projection
 
-Status: bounded generated-native qualification completed on2026-10-11.
-Integration still requires separate exact-head review and successful CI; these
-finite observations do not establish general or production native12 support.
+Bounded generated-native qualification completed on2026-10-11 and was integrated
+in PR #239. Subsequent changes still require separate exact-head review and
+successful CI. These finite observations do not establish general or production
+native12 support. Source-once calls are a later separate
+[prepared native12 slice](probe-prepared-native12.md).
 
 The [reference Boolean operation](record-json-bool-proposal.md) and
 [JSON active-total application](json-active-total.md) already have finite reference

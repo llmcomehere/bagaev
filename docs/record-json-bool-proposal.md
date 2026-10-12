@@ -1,8 +1,10 @@
-# Explicit Json Boolean projection, candidate profile 12
+# Explicit Json Boolean projection, profile 12 reference slice
 
-Status: finite reference qualification completed on 2026-10-10; see PR #237
-for integration status and exact-head review/CI.
-This does not extend the accepted profile11 native interface or admit execution.
+This page records the reference slice qualified on 2026-10-10 and integrated
+in PR #237. Later [native profile12 qualification](native-json-bool-proposal.md),
+[prepared native calls](probe-prepared-native12.md) and
+[form6 authoring](json-bool-authoring.md) are separate accepted slices.
+The reference evidence below does not extend profile11 or admit execution.
 
 The active-total application needs to distinguish Json true and false. Existing
 profile11 `json.kind` returns `bool` for both, and its other projections do not
@@ -22,7 +24,8 @@ record-form/6 for the separate data codec. The record/list capacities and other
 limits remain those of profile11. Profiles1–11 and record-form/5 keep their
 existing operation set and refuse the new operation/version. No automatic
 migration or fallback is provided. The /8–/11 native emitters explicitly refuse
-the new IR node; no native /12 emitter, binding or adapter is supplied.
+the new IR node. This original reference slice supplied no native /12 emitter,
+binding or adapter; the later native slice is linked above.
 
 [Twenty independently frozen cases](../examples/probes/record-json-bool/cases.json)
 fix complete intended responses for Boolean identity, non-Boolean fallback,
@@ -48,11 +51,12 @@ complete envelopes matched. Four new codec tests and ten selected existing
 codec/application tests were rerun;19 new graphs roundtripped through both
 encoders and12 old graphs retained old-form roundtrips and version refusal.
 This is finite reference evidence, not a full-language conformance proof.
-No generated native module was executed, and no native /12 path is supplied.
+No generated native module was executed in these reference observations.
 
-Before integration: retain separate exact-head review and passing CI. The
-compact guide and general record_text tool still describe the /11 route; extending them
-must retain the compact-reference byte budget. The separately qualified
+Subsequent source changes still require separate exact-head review and passing
+CI. The compact guide and general record_text tool now expose explicit form6;
+older defaults remain unchanged and the compact-reference byte budget remains.
+The separately qualified
 [Json application entry](json-active-total.md) preserves the active-total
 business calculation. Native qualification remains separate work, not implied
 by parsing, compilation or source integration.
