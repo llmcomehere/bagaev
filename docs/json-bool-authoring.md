@@ -46,5 +46,6 @@ spans, missing named functions and exclusive outputs. These are finite layout
 and transport observations, not runtime/native conformance or performance.
 
 See [the compact reference](choose-and-start.md),
+[authored contextual expression library](form6-authored-layout.md),
 [projection semantics](record-json-bool-proposal.md) and
 [lossless preparation](json-argument-prepare.md).
