@@ -251,8 +251,8 @@ OS failure may leave partial output. No evaluator launches.
 | Discovery | `record_capabilities.py --form 5 --revision 5` |
 
 Form6: decode/encode/inspect, diagnose/format, source-map, function extract/context/
-replace and canonical export. Json preparer `--form 6`: lossless invocation12.
-Generic prepare/bounds/layout refuse; callee-context: replace only.
+replace and pinned layout export. Json preparer `--form 6`: lossless invocation12.
+Generic prepare/bounds refuse; callee-context: replace only.
 Discovery: `--form 6 --revision 6`; whole-source drafts stay form5-only.
 
 `--bounds B`: exact entry-parameter map. Int64/Bool: `{"type":T}`;

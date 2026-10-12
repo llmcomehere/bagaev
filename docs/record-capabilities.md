@@ -1,9 +1,9 @@
 # Discover a pure profile before choosing it
 
 For the newer explicit Boolean-capable route, select
-`python tools/record_capabilities.py --form 6 --revision 6`.
+`python tools/record_capabilities.py --form 6 --revision 7`.
 This additive report describes the accepted profile12 chain; forms4/5 and their
-default reports retain their prior selection and bytes. See revision6 below.
+default reports retain their prior selection and bytes. See revisions6/7 below.
 
 Models and tools can inspect a small structured description before loading a
 whole example. This supports an informed choice of profile; it does not show
@@ -147,3 +147,14 @@ Four new data-only tests check literal profile identities, route files and
 refusal boundaries, deterministic detached results and legacy revision5 bytes.
 The existing discovery revision3/4/5 suites are separate compatibility checks.
 Metadata does not prove model preference, semantic completeness or performance.
+
+## Explicit revision 7: form6 layout and checked locations
+
+Select `--form 6 --revision 7` for the subsequent canonical-body layout export
+and checked profile12 node inspector. Revision6 remains its earlier conservative
+snapshot byte-for-byte. Revision7 supplies the required original-layout pin,
+outside-body preservation boundary and matching source-pin/pointer join.
+Authored replacement fragments and callee context remain unsupported on form6.
+These discovery additions perform no checking, source evaluation or file writes.
+The inspector must be separately reviewed/built and receives no native execution
+authority from the report.

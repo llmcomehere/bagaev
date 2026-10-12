@@ -117,6 +117,27 @@ def describe_v6(version):
     return value
 
 
+def describe_v7(version):
+    """Opt-in checked-location and canonical-body layout discovery for form6."""
+    value = describe_v6(version)
+    value['schema'] = 'bagaev-record-capabilities/7'
+    value['unsupported_options'].remove('record_export.py --preserve-layout')
+    value['unsupported_options'].append('record_export.py --replacement-source')
+    value['readable_editing']['layout_export'] = {
+        'supported': True, 'tool': 'tools/record_export.py', 'form_flag_value': '6',
+        'required_flags': ['--form','--draft','--base','--target','--preserve-layout','--source-sha256','--output'],
+        'source_sha256': 'SHA256 of exact original UTF-8 bytes',
+        'preservation': 'all bytes outside changed function body',
+        'replacement': 'canonical expression; body comments may be replaced',
+        'target_graph_revalidated': True, 'guide': 'docs/json-bool-authoring.md'}
+    value['source_debugging'].update(
+        checked_inspector_source='examples/probes/backend/rust/json_source_locations12.rs',
+        checked_report_schema='bagaev-native-source-locations/1',
+        join='equal source_pin and program_pin, then match program_pointer; never map array order',
+        guide='docs/native-source-locations12.md')
+    return value
+
+
 def describe_v3(version):
     """Explicit discovery of layout-bound debugging data, without execution."""
     value = describe_v2(version)
