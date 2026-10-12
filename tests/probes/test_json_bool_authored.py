@@ -36,4 +36,22 @@ class Authored(unittest.TestCase):
   for fragment,code in changes:
    with self.assertRaises((a.DraftError,a.form.FormError)) as e:a.export_authored(SOURCE,self.packet,fragment,**self.kw)
    self.assertEqual(e.exception.code,code)
+ def test_composed_output_byte_boundary(self):
+  limit=a.form.prior.old.BYTE_LIMIT
+  prefix=PREFIX.replace('// сохраняем','// '+'o'*(limit//2))
+  expression='helper(// '+ '\n fallback: true, a: x)'
+  count=limit-len((prefix+expression+SUFFIX).encode())
+  self.assertGreater(count,0)
+  source=prefix+'helper(x, false)'+SUFFIX
+  kw=dict(self.kw,source_sha256=hashlib.sha256(source.encode()).hexdigest())
+  for extra in [0,1]:
+   body=expression.replace('// ','// '+'a'*(count+extra),1)
+   fragment='bagaev record-form/6; program { entry main; fn main(x: Json) -> Bool = '+body+'; }'
+   expected=(prefix+body+SUFFIX).encode()
+   self.assertLess(len(source.encode()),limit);self.assertLess(len(fragment.encode()),limit)
+   self.assertEqual(len(expected),limit+extra)
+   if extra:
+    with self.assertRaises(a.DraftError) as e:a.export_authored(source,self.packet,fragment,**kw)
+    self.assertEqual(e.exception.code,'EXPORT_BOUNDS')
+   else:self.assertEqual(a.export_authored(source,self.packet,fragment,**kw),expected)
 if __name__=='__main__':unittest.main()

@@ -23,6 +23,11 @@ unchanged helper, base/target/source pins, valid contradictory change, no-op,
 signature/scope changes and duplicate named arguments. These are finite data
 checks, not general runtime correctness or performance evidence.
 
+A supplemental composition-boundary test keeps original source and fragment
+individually below the byte cap while their retained comments produce an exact
+cap-sized output. That literal output is accepted; one extra authored byte
+refuses `EXPORT_BOUNDS`. This covers the composed output, not merely input caps.
+
 ## Explicit CLI transport
 
 `tools/record_export.py ORIGINAL --form 6 --draft DRAFT --base BASE --target
