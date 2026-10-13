@@ -57,6 +57,11 @@ class DurableProgrammes:
   result=getattr(o,command)(packet)
   receiver=json.loads(image_codec.capture(o,policy=c['policy'],origin=c['origin'],clock_domain=c['clock_domain']))
   old=copy.deepcopy(v['receiver']);new=copy.deepcopy(receiver);old.pop('clock_floor');new.pop('clock_floor')
+  raw=before['image']
   if image_codec.pin(old)!=image_codec.pin(new):
-   v['receiver']=receiver;raw=envelope.encode(v);storage.compare_and_swap(path,before['generation'],before['digest'],raw)
+   v['receiver']=receiver;raw=envelope.encode(v)
+  # Even a retained/no-op answer must cross the final image boundary after
+  # callbacks. Equal bytes do not exclude an intervening generation (ABA).
+  # The storage CAS preserves G and payload when the image is unchanged.
+  storage.compare_and_swap(path,before['generation'],before['digest'],raw)
   return copy.deepcopy(result)

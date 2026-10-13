@@ -90,3 +90,8 @@ or production access control. No cost, memory, speed or model-choice measurement
 is claimed. See [stateful components](stateful-components.md) for the broader
 outcome/recovery boundaries and [readable authoring](readable-authoring.md) for
 preparing a separately checked change.
+
+A separate [three-process continuation](stock-adjustment-restart.md) now checks
+one selected post-COMMIT exit, fresh-process receipt recovery and a subsequent
+new adjustment. It does not turn the original object-reconstruction observations
+into process-cut evidence or establish power-loss safety.

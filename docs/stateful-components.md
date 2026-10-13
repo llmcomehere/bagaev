@@ -10,6 +10,8 @@ separate from the pure L2/2 filtering language and its saved-source Store.
 The [outcome contract](probe-component-outcomes.md),
 [change/continuation contract](probe-outcome-composition.md) and
 [persistence contract](probe-outcome-persistence.md) own the exact rules.
+The [direct bridge final boundary](outcome-bridge-dispatch.md) covers retained
+results when a nested callback changes the stored image.
 
 ## Express the application rule
 
