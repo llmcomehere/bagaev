@@ -114,3 +114,29 @@ checks the unchanged new-domain activation refusal, original clock selection,
 run/source association and early/late permission denial. This does not establish
 real reboot migration or recover a writable clock. Historical authenticity and
 same-user storage tampering remain outside this trusted-host profile.
+
+### Final observer callback freshness
+
+The [final-read driver](../tests/probes/outcome_persistence_retained_final_checks.py)
+crosses retained Declined, absent and conflicting-intent answers with unchanged,
+changed, same-bytes ABA and changed-plus-denied final callbacks. Its separate
+[literal expectations](../examples/probes/outcome-persistence/retained-view-final-read.json)
+preserve the older fixture and oracle. It reconstructs the actual original
+typed programme image, then performs synchronous serial SQLite changes in the
+second observer callback. Changed and ABA images refuse `VIEW_STALE_IMAGE`;
+final permission denial returns `AccessDenied` without disclosing the answer.
+The nested generation remains 6 or 7 rather than being overwritten or retried.
+
+Twelve cases passed in the bounded reference profile: 576 setup and 132 read
+reader/reference invocations, 24 setup application evaluations, zero application
+evaluations during observation and zero live-condition calls. The unchanged
+retained result is detached. These repeat setup invocations are not additional
+workloads. Temporary changed bytes are valid storage JSON but intentionally not
+a programme image: they must be detected as stale without reconstructing them.
+
+The driver requires explicit separately admitted `--reader`, `--reference`,
+their `--reader-sha256` and `--reference-sha256` identities, and a new absolute
+`--output` directory. It records actual inputs and outputs through the existing
+test host. This is reference reconstruction with serial callback cuts, not a
+native application kernel, production concurrency, authentication, or writable
+clock-migration qualification. No runtime implementation changes are needed.
