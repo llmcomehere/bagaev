@@ -48,13 +48,21 @@ for kind in ('retained','absent','conflicting'):
    return not(cut=='denied' and observed[0]==2)
   def blocked():
    live[0]+=1;raise AssertionError('live conditions invoked')
+  expected=frozen['answers'][kind][cut]
+  answer=None;error_code=None
   with patch.object(view,'_no_live_conditions',blocked):
    try:
     answer=view.observe_retained(db,cfg,bootstrap=S1,run_id='old',packet=envelope.encode(packet),
      checker=n.checker,evaluator=n.evaluator,observer=observer)
-    actual=answer.get('status',answer.get('kind'))
-   except envelope.ProgrammeError as error:actual=error.code
-  expected=frozen['answers'][kind][cut]
+   except envelope.ProgrammeError as error:error_code=error.code
+  if cut in ('changed','aba'):
+   assert answer is None and error_code==expected,(kind,cut,answer,error_code)
+   actual=error_code
+  else:
+   assert error_code is None,(kind,cut,error_code)
+   required=receipt if kind=='retained' and cut=='unchanged' else {'status':expected}
+   assert answer==required,(kind,cut,answer,required)
+   actual=answer.get('status',answer.get('kind'))
   assert actual==expected,(kind,cut,actual,expected)
   after=storage.read(db);generation=frozen['generations'][cut]
   assert after['generation']==generation
