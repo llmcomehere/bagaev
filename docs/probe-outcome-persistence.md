@@ -52,6 +52,37 @@ serial self-exits at four selected dirty-COMMIT boundaries, not power-loss tests
 or coverage of arbitrary crashes. No production durability, multi-host exactly-once,
 historical authenticity, performance or cost advantage follows from these probes.
 
+## Final boundary for calls without a new outcome
+
+The dispatcher checks the complete G/digest boundary after callbacks even when
+submit, observe or cancel returns a retained result without changing the receiver.
+A nested commit must not leave the outer call returning its stale-image answer.
+An ABA sequence that restores identical payload bytes still conflicts because G
+changed. The refusal is STORAGE_CONFLICT; the nested result is preserved and no
+automatic retry occurs. With no intervening commit, the no-op CAS leaves G,
+digest and bytes unchanged, including a clock-floor-only observation.
+
+Six [dispatcher tests](../tests/probes/test_outcome_dispatch_final_cas.py) use
+controlled owner/capture callbacks and actual temporary SQLite files. They cover
+all three no-op commands, ABA, clock-only observation, a single real image change
+and the existing mutating-call conflict. The prior dispatcher failed four
+no-op conflict cases; the corrected dispatcher passed all six test methods.
+These are storage-ordering checks, not new typed-evaluator or native observations,
+real reboot tests or production durability evidence.
+
+The separate [live dispatch driver](../tests/probes/outcome_persistence_dispatch_checks.py)
+uses the same explicit reader/reference/hash arguments as the existing manager
+checks. Each of submit, observe and cancel was also checked with actual typed
+reconstruction: a nested run creation changed G from 2 to 3 while H stayed 0
+and R stayed 7. The outer call refused, preserved the nested run and performed
+no additional application evaluation. An explicit later retry returned the old
+Declined receipt without a write. The portable driver repeated those same three
+cases (129 reader/reference calls, three setup application evaluations), not
+three new independent cases. The unchanged manager regression also passed its
+nine-step trace and eleven refusals (303 reader/reference calls, three application
+evaluations). Qualification receipts in that manager regression remain controlled
+inputs. No generated native application kernel or model was invoked.
+
 ## Lost management responses
 
 The existing start operation remains duplicate-refusing and never repins a run.
