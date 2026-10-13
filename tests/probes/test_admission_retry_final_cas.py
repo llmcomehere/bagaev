@@ -29,6 +29,7 @@ class AdmissionRetryTests(unittest.TestCase):
                                     'receipt': copy.deepcopy(receipt)}]}
             before = storage.create(path, envelope.encode(value))
             nested = []
+            restored = []
 
             def restore(raw, **kwargs):
                 if mode in ('changed', 'aba'):
@@ -38,7 +39,9 @@ class AdmissionRetryTests(unittest.TestCase):
                         other = storage.compare_and_swap(
                             path, other['generation'], other['digest'], before['image'])
                     nested.append(other)
-                return copy.deepcopy(value), object()
+                snapshot = copy.deepcopy(value)
+                restored.append(snapshot)
+                return snapshot, object()
 
             manager = object.__new__(DurableProgrammes)
             manager._settings = lambda: copy.deepcopy(config)
@@ -64,6 +67,7 @@ class AdmissionRetryTests(unittest.TestCase):
                     answer = manager.admit(path, 'M1', proposal)
                     self.assertEqual(answer, receipt)
                     answer['head']['source'] = 'detached'
+                    self.assertEqual(restored[-1]['admissions'][0]['receipt'], receipt)
                     self.assertEqual(value['admissions'][0]['receipt'], receipt)
             expected = {k: nested[-1][k] for k in before} if nested else before
             self.assertEqual(storage.read(path), expected)
