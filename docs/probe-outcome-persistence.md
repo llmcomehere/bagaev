@@ -140,3 +140,24 @@ their `--reader-sha256` and `--reference-sha256` identities, and a new absolute
 test host. This is reference reconstruction with serial callback cuts, not a
 native application kernel, production concurrency, authentication, or writable
 clock-migration qualification. No runtime implementation changes are needed.
+
+## Exact admission retry boundary
+
+An exact retained admission retry also crosses a final G/digest CAS after typed
+reconstruction callbacks. With unchanged storage, the receipt is detached and no
+write, requalification or mutation-authority check occurs. A nested commit or an
+ABA sequence produces STORAGE_CONFLICT and preserves the nested state. The caller
+may explicitly retry later. Changed intent still raises PROGRAMME_INTENT_CONFLICT
+before any receipt is returned; its error precedence is unchanged. This trusted
+host retry API does not replace the separately authorized management observation
+port.
+
+Four [controlled tests](../tests/probes/test_admission_retry_final_cas.py) use
+synthetic restoration callbacks and actual SQLite. The
+[typed driver](../tests/probes/outcome_persistence_admission_retry_checks.py)
+uses explicit reader/reference/hash arguments and checks stable replay, a nested
+run creation during reconstruction, and ABA. Both nested cases returned an old
+receipt on the prior dispatcher and refuse on the corrected dispatcher. Explicit
+later retries return the old receipt without a write. Qualification receipts are
+controlled; there are no application evaluations or generated native kernels.
+These finite serial cases are not production concurrency or crash evidence.
