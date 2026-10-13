@@ -29,6 +29,7 @@ instructions](../AGENTS.md) and authority boundaries always apply.
 | [Model proposals](model.md) | Pure provider-neutral packets, Python/L2 named edits, public continuation and bounded accounting. |
 | [Catalog application](application.md) and [oracle](../examples/beta/catalog-cases.json) | Synthetic application semantics and frozen exact observations for four selected behaviors. |
 | [Frozen P0](p0.md) and [oracle](p0-cases.json) | Frozen historical protocol and exact fixture observations. |
+| [P0 serial receiver subset](p0-serial-receiver.md) | Synthetic current-authority/receipt and response-loss model with an explicit partial frozen-case selection; no production durability or full P0 acceptance. |
 | Issues | Current execution status and discussion. |
 
 If a navigation claim conflicts with its source, use the source and correct this
