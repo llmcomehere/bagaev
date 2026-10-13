@@ -34,7 +34,11 @@ class DurableProgrammes:
   p=envelope.intent(proposal,policy=image_codec.pin(c['policy']),sources={image_codec.pin(s) for s in c['sources']})
   old=next((r for r in v['admissions'] if r['id']==operation_id),None)
   if old is not None:
-   need(image_codec.pin(old['intent'])==image_codec.pin(p),'PROGRAMME_INTENT_CONFLICT');return copy.deepcopy(old['receipt'])
+   need(image_codec.pin(old['intent'])==image_codec.pin(p),'PROGRAMME_INTENT_CONFLICT')
+   # Reconstruction may invoke host callbacks even for a retained admission.
+   # Recheck the full image boundary without writing or requalifying the retry.
+   storage.compare_and_swap(path,before['generation'],before['digest'],before['image'])
+   return copy.deepcopy(old['receipt'])
   need(p['expected']==v['head'],'PROGRAMME_STALE_HEAD');need(len(v['admissions'])<64,'PROGRAMME_ADMISSION_CAPACITY')
   source=next(copy.deepcopy(s) for s in c['sources'] if image_codec.pin(s)==p['target'])
   binding={k:p[k] for k in ('target','policy','assertions','producer','qualification')}
