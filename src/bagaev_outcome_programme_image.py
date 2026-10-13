@@ -37,7 +37,7 @@ def validate(value,*,bootstrap,policy,sources):
  receiver=value['receiver'];need(type(receiver)is dict and type(receiver.get('terminal'))is list,'PROGRAMME_SHAPE')
  # Full receiver validation follows in restore; this association is additional.
  for row in receiver['terminal']:
-  need(type(row)is dict and type(row.get('intent'))is dict and row['intent'].get('source') in run_sources,'PROGRAMME_TERMINAL_SOURCE')
+  need(type(row)is dict and type(row.get('intent'))is dict and type(row['intent'].get('source'))is str and row['intent']['source'] in run_sources,'PROGRAMME_TERMINAL_SOURCE')
  return copy.deepcopy(value)
 def encode(value):
  raw=json.dumps(value,ensure_ascii=False,sort_keys=True,separators=(',',':'),allow_nan=False).encode();storage.validate(raw);return raw
