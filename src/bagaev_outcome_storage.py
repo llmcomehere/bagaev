@@ -24,7 +24,8 @@ class Bridge:
   result=getattr(owner,command)(packet)
   raw=image_codec.capture(owner,policy=c['policy'],origin=c['origin'],clock_domain=c['clock_domain'])
   old=json.loads(before['image']);new=json.loads(raw);old.pop('clock_floor');new.pop('clock_floor')
-  if image_codec.pin(old)!=image_codec.pin(new):
-   # No observable changed result before the complete state/ledger CAS commits.
-   storage.compare_and_swap(path,before['generation'],before['digest'],raw)
+  if image_codec.pin(old)==image_codec.pin(new):raw=before['image']
+  # A retained/no-op result also crosses the final boundary after callbacks.
+  # Reuse the original image so clock-floor-only observations remain no-write.
+  storage.compare_and_swap(path,before['generation'],before['digest'],raw)
   return copy.deepcopy(result)
