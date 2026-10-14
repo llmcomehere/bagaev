@@ -49,6 +49,12 @@ Use ordinary Python assertion-enabled execution, not `-O`.
 
 ## Limits
 
+The separate [bounded JSON ingress](p0-json-ingress.md) adds raw write/transfer
+envelope validation before receiver dispatch. It leaves this frozen oracle and
+the receiver's ordered semantic checks unchanged. Its transport limits and
+supplemental cases are distinct from the 85 frozen model cases. Admission,
+handoff and scenario-event inputs remain trusted synthetic fixtures.
+
 This is finite synthetic model conformance, not proof of liveness or a production
 implementation. It does not establish actual concurrent execution, crash-safe
 storage, external authentication/enforcement, candidate-code execution, model
