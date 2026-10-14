@@ -89,8 +89,14 @@ obligations or universal refinement.
 
 The existing [Store/1](store.md) accepts L2, not typed-record sources. This
 simulation does not bypass its checker, change its schema or present its local
-admission receipts as external application receipts. A real typed admission
-bridge remains an implementation and trust-boundary decision.
+admission receipts as external application receipts. A general Store-compatible
+typed admission bridge remains an implementation and trust-boundary decision.
+
+Later experimental profiles provide bounded source admission through
+[source-bound component change](probe-component-change.md) and
+[source admission and pinned runs](probe-component-programmes.md). They retain
+receiver-specific obligations and trusted host authority. They do not extend
+Store/1 or turn this simulation's controlled premise into production evidence.
 
 ## Inputs and reproduction boundaries
 
