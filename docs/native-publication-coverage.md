@@ -132,3 +132,28 @@ injected synchronization error, partial disk-write, race, crash or power-loss
 claim follows. Read-only build inspection supplements source review; it does
 not prove safety of arbitrary foreign objects. Retained one-shot directories
 must not be reused or cleaned automatically to replay these observations.
+
+## October 14: original CLI with a closed stdout pipe
+
+One later bounded case used the same admitted K-MIN-linked original CLI binary
+and prefill00 invocation. Before process creation, the helper created an anonymous
+OS pipe and closed its only read end. The child received only the write end as
+stdout; the parent closed that end after launch. Stderr was captured separately,
+with a 30-second process deadline. The binary and input hashes were checked before
+execution and their complete bytes remained unchanged afterward.
+
+The [observation](../examples/probes/native-publication/closed-pipe-observation.json)
+records exit1 and exact publication-error stderr. The fresh exclusive witness
+matched the complete frozen canonical K-MIN bytes; the output directory contained
+exactly that witness. No timeout occurred. There was no stdout reader or stdout
+capture, so delivered stdout bytes are unknown, not reported as zero.
+
+This adds one real-process closed-reader observation beyond the earlier scripted
+sink cases. It does not independently identify the failed syscall/errno: complete
+witness bytes could also survive an earlier flush/sync error with the same generic
+diagnostic. Source inspection establishes publication ordering; this case does
+not prove sync succeeded or physical durability. Disk-full, injected sync failures,
+hostile races and process-crash storage behavior remain outside this observation.
+No caller source, kernel, workflow, output guard or execution-profile change was
+needed. Separate source review preceded the one-shot execution; it is not an
+independent empirical reproduction or performance measurement.

@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "case": "CLI-CLOSED-PIPE-01",
+  "exit": 1,
+  "stderr_hex": "756e61626c6520746f20636f6d706c657465207769746e65737320616e6420726573756c74206f75747075740a",
+  "witness_sha256": "a2fb6f6806a18d592394bef13b9f5c1a46a7ef7efeb99dbeb8f1cfdc20d5b400",
+  "witness_exact": true,
+  "input_unchanged": true,
+  "binary_sha256": "b9852ea1c49e7f0523eaf01a6da1f7c8934cf8abe796b3e7abfda56b929c1457",
+  "stdout_delivered_bytes": null,
+  "limits": "One actual closed OS pipe, not disk-full, sync failure, crash durability or independent dispatch instrumentation."
+}
