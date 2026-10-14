@@ -51,7 +51,7 @@ These counts describe the final fresh reconstruction and replay. An earlier
 successful execution is not added as new case coverage. No performance,
 model preference, cost, live inventory or durable transaction claim follows.
 
-The [data packet](../examples/probes/inventory-json-change) includes source,
+The [packet manifest](../examples/probes/inventory-json-change/manifest.json) identifies source,
 fragment, programme, pins, frozen cases and captured work/wire digests.
 Captured observations are not the independent business oracle.
 The [packet helper](../tests/probes/inventory_json_change_packet.py) emits a
