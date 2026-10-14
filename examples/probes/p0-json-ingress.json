@@ -1,0 +1,16 @@
+{
+  "schema": "p0-json-ingress-selection/1",
+  "transport": {"byte_limit": 65536, "container_depth_limit": 64},
+  "oracle_hashes": {
+    "p0-cases.json": "27b67c6e65c184cbd9f553b863d302f70300da6393d59c39e8e5c0241da6c1af",
+    "p0.md": "30cb2b27a3011db96b6ce56e2c441fd04d2532baae0ff1649d1f64626edcbc5a"
+  },
+  "initial": "protocol-base",
+  "write_intent": "write-intent-k",
+  "transfer_intent": "transfer-intent-t1",
+  "write_receipt": "write-receipt-k",
+  "transfer_receipt": "transfer-receipt-t1",
+  "pre_dispatch_invalid": ["truncated", "invalid-utf8", "array-envelope", "missing-intent", "missing-operation-id", "extra-envelope", "session-type", "boolean-epoch", "overflow-epoch", "boolean-task-revision", "unordered-add", "duplicate-add", "unordered-scope", "scope-item-type", "missing-mutation", "nonfinite"],
+  "transport_refusals": ["duplicate-key", "non-bytes", "byte-overflow", "depth-overflow"],
+  "positive_and_ordering": ["write", "write-retry", "transfer", "invalid-tag-current", "invalid-tag-stale-epoch", "exact-byte-limit", "exact-depth-limit"]
+}
