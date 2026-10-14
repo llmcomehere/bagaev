@@ -1,0 +1,12 @@
+{
+  "schema": "bagaev-native-publication-observations/1",
+  "observed_date": "2026-10-14",
+  "production_source_sha256": "3eb991d44f9cfbdb43126638e51c8c50d6eaf6e6089c449f910bd9be63e9989f",
+  "source_revision": "2594745439264b2e0a3f7467e66a1f85cffa47d0",
+  "matrix": {"executed_harness_sha256": "3a711ffa4116242faf7b256247aeeffeabaca7545acddbde8447859e24ba277e", "method": "publication_matrix::original_out_matrix", "test_methods_passed": 1, "cases_passed": ["PUB-01-NEW", "PUB-02-EXISTING", "PUB-03-DIRECTORY", "PUB-04-SYMLINK", "PUB-05-OVERSIZE", "PUB-06-EMPTY", "PUB-07-MISSING-PARENT", "PUB-08-SYMLINK-PARENT"], "complete_tree_comparisons": 8, "exit": 0},
+  "order": {"executed_harness_sha256": "4965f6f70838cb448fb61f4fa145f04abc27053e9234984568da4d5c80d4b722", "method": "publish_order::original_publish_order", "test_methods_passed": 1, "cases_passed": ["ORDER-01", "ORDER-02", "ORDER-03", "ORDER-04"], "exit": 0},
+  "runtime": {"rust": "1.93.0", "address_space_bytes": 2147483648, "cpu_seconds_limit": 290, "file_size_bytes_limit": 134217728, "file_descriptors_limit": 128, "network": "denied"},
+  "public_harness_status": "Module import paths normalized for repository placement; test bodies unchanged. Both repository-layout copies compiled with Rust 1.93.0 edition2021 and listed the selected methods successfully. Zero filesystem cases executed from these copies.",
+  "public_harness_sha256": {"native_publication_matrix.rs": "a43ea6da19f63d93aa21014f0cef0e33b664e5098efa0619a277c09a4a4ce405", "native_publish_order.rs": "326f7f57cc575c24f4af9e043ae43ce46847d4f77e98c43cd5e8598c3549e98a"},
+  "limits": ["One execution of each selected method, no retries or cleanup", "Real local filesystem API with scripted stdout sink, not full CLI or native kernel execution", "No injected sync failure, disk-full, hostile race, power-loss or crash durability claim", "Separate read-only source review; no independent empirical reproduction"]
+}
