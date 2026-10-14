@@ -62,3 +62,9 @@ quality, speed or cost. Component interfaces currently assume the documented
 well-shaped synthetic fixture records; the snapshot checks are not a general
 untrusted-input parser. Real enforcement and the broader comparison passport
 retain their own acceptance requirements.
+
+The supplemental [sender journal model](p0-sender-journal.md) exercises explicit
+save-before-send and restore-exact-intent assumptions using committed in-memory
+images. Stable caller effect handles are model inputs, not inferred semantic
+identity. Fresh authorization still passes through all receiver gates. This
+supplement does not establish real durable storage or process-crash recovery.
