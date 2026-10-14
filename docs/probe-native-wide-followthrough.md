@@ -66,8 +66,8 @@ wire length and digest, then checks its state against the frozen next request.
 An initial request refuses an extraneous predecessor. Recovery after refusal
 requires the saved clear-first success, not the refusal output.
 
-Failure expectations and invocation/binding files are in the
-[packet directory](../examples/probes/native-wide-followthrough).
+The [failure expectations](../examples/probes/native-wide-followthrough/failure-expectations.json)
+and adjacent invocation/binding files form the failure packet.
 Rendered harnesses are unadmitted source, not an execution facility.
 The tools never install, compile, load a kernel or launch a process.
 A separately authorized reproduction uses the same exact-source procedure as
