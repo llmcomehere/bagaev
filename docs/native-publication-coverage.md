@@ -82,3 +82,53 @@ guard. Build each harness with `rustc --edition=2021 --test`; select only its na
 This closes selected real-filesystem API and witness/sink-order observations.
 It does not close full CLI acceptance, partial disk-write retention, disk-full,
 injected synchronization failure, hostile races or crash/power-loss durability.
+
+## October 14: selected original CLI cases
+
+A later six-case pass used the unchanged non-test `native_main.rs` linked to
+the existing K-MIN LLVM kernel, with a fresh direct output directory. This
+exercised actual argument parsing, input-file reading, fixed-kernel binding,
+observation and file/stdout publication. It did not replace the caller with the
+earlier witness-to-stdout adapter.
+
+The [CLI observations](../examples/probes/native-publication/cli-observations.json)
+record exact exit codes, stdout lengths, literal stderr bytes, preserved input
+files and full output-directory comparisons. All six cases passed:
+
+| Case | Input / destination | Expected observed boundary |
+| --- | --- | --- |
+| CLI-01 | Existing K-MIN, prefill00, new witness | Exit0, exact143-byte frozen result, full witness bytes |
+| CLI-02 | Same K-MIN, prefillff, distinct new witness | Same result, full witness bytes with prefillff |
+| CLI-03 | K-MIN, existing witness containing `keep` | Exit1, empty stdout, exact publication error, preserved file |
+| CLI-04 | K-MAX input against the K-MIN-linked caller | Exit1, empty stdout, exact binding refusal, no witness |
+| CLI-05 | Missing input file | Exit1, empty stdout, exact input error, no witness |
+| CLI-06 | Invalid prefill argument | Exit1, empty stdout, exact usage error, no witness |
+
+The independent [kernel oracle](../examples/probes/kernel-oracle.json) freezes
+K-MIN as Int64 minimum with work1 and exact result/ABI bytes. Both successful
+stored witnesses matched canonical bytes, not merely parsed JSON:
+[prefill00](../examples/probes/native-publication/cli-zero.witness.json) and
+[prefillff](../examples/probes/native-publication/cli-ones.witness.json).
+All64 captured input bytes were unchanged and all32 ABI output bytes matched.
+CLI-03 also reaches the native observation before exclusive creation refuses;
+the six cases therefore entail three native calls by source path, with two
+published successful observations. Counts are not externally instrumented.
+
+The selected build used Rust1.93.0 edition2021 and generic x86-64 O2 LLVM21.
+The retained K-MIN LLVM source SHA256 is
+`cd674cb1a027f859662c7ddb1eb45267e526cd013fc8b40893555317b2524bdb`.
+Before execution, separate source/artifact review checked the final ELF,
+single entry and binding symbols, read-only regions, aligned length and the
+1541-byte binding's full program correspondence. Its binding SHA256 is
+`4cc5973b15357bea799c283bde271355efc03c231e7db7d6f7c58c67e25c662a`.
+The caller source SHA256 remained
+`3eb991d44f9cfbdb43126638e51c8c50d6eaf6e6089c449f910bd9be63e9989f`.
+Compilation retained one unnecessary-unsafe warning. No caller-source,
+output-guard, workflow or execution-profile change was made.
+
+This is selected original CLI success/refusal coverage, not full CLI acceptance
+or independent empirical reproduction. No disk-full, real stdout-device fault,
+injected synchronization error, partial disk-write, race, crash or power-loss
+claim follows. Read-only build inspection supplements source review; it does
+not prove safety of arbitrary foreign objects. Retained one-shot directories
+must not be reused or cleaned automatically to replay these observations.

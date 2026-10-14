@@ -1,0 +1,55 @@
+{
+  "status": "PASS",
+  "cases": [
+    {
+      "case": "CLI-01",
+      "exit": 0,
+      "stdout_bytes": 143,
+      "stderr_hex": "",
+      "exact_tree_match": true,
+      "input_files_unchanged": true
+    },
+    {
+      "case": "CLI-02",
+      "exit": 0,
+      "stdout_bytes": 143,
+      "stderr_hex": "",
+      "exact_tree_match": true,
+      "input_files_unchanged": true
+    },
+    {
+      "case": "CLI-03",
+      "exit": 1,
+      "stdout_bytes": 0,
+      "stderr_hex": "756e61626c6520746f20636f6d706c657465207769746e65737320616e6420726573756c74206f75747075740a",
+      "exact_tree_match": true,
+      "input_files_unchanged": true
+    },
+    {
+      "case": "CLI-04",
+      "exit": 1,
+      "stdout_bytes": 0,
+      "stderr_hex": "756e61626c6520746f20636f6d706c65746520626f756e64206e6174697665206f62736572766174696f6e0a",
+      "exact_tree_match": true,
+      "input_files_unchanged": true
+    },
+    {
+      "case": "CLI-05",
+      "exit": 1,
+      "stdout_bytes": 0,
+      "stderr_hex": "756e61626c6520746f207265616420636f6d706c65746520726567756c617220696e7075740a",
+      "exact_tree_match": true,
+      "input_files_unchanged": true
+    },
+    {
+      "case": "CLI-06",
+      "exit": 1,
+      "stdout_bytes": 0,
+      "stderr_hex": "75736167653a2070726f62652d6e617469766520696e766f6b65202d2d696e70757420494e564f434154494f4e5f46494c45202d2d7769746e657373202f6f75742f5749544e4553535f46494c45202d2d70726566696c6c2030307c66660a",
+      "exact_tree_match": true,
+      "input_files_unchanged": true
+    }
+  ],
+  "binary_sha256": "b9852ea1c49e7f0523eaf01a6da1f7c8934cf8abe796b3e7abfda56b929c1457",
+  "limits": "Six selected original CLI observations only; no crash, hostile race, disk-full or injected sync fault. Witness call counts are source-reported, not external instrumentation."
+}
