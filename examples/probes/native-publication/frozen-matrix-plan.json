@@ -1,0 +1,139 @@
+{
+  "schema": "native-publication-plan/1",
+  "selected_api": "native_main::write_new",
+  "source_sha256": "3eb991d44f9cfbdb43126638e51c8c50d6eaf6e6089c449f910bd9be63e9989f",
+  "coverage_document_sha256": "a4d0dbd74cf1462c5d7d83f6f482312018889d724acc6eb9e41f93cec14b509f",
+  "source_main": "0bfe237a09c87ce3772a6fd22e5eab06c829337a",
+  "status": "NOT_RUN",
+  "owned_root": "A newly allocated explicitly authorized direct non-symlink subdirectory under /out; not created by this preparation",
+  "cases": [
+    {
+      "id": "PUB-01-NEW",
+      "target": "new.witness",
+      "initial": {
+        "target": "absent"
+      },
+      "payload_hex": "616263000aff",
+      "expect": {
+        "result": "success",
+        "file_hex": "616263000aff",
+        "sync_all_returned_success": true,
+        "existing_entries_unchanged": true
+      }
+    },
+    {
+      "id": "PUB-02-EXISTING",
+      "target": "existing.witness",
+      "initial": {
+        "target": "regular",
+        "file_hex": "6b656570"
+      },
+      "payload_hex": "7265706c616365",
+      "expect": {
+        "result": "error",
+        "file_hex": "6b656570",
+        "existing_entries_unchanged": true
+      }
+    },
+    {
+      "id": "PUB-03-DIRECTORY",
+      "target": "directory.witness",
+      "initial": {
+        "target": "directory",
+        "child_file_hex": "6b656570"
+      },
+      "payload_hex": "616263",
+      "expect": {
+        "result": "error",
+        "target": "directory",
+        "child_file_hex": "6b656570",
+        "existing_entries_unchanged": true
+      }
+    },
+    {
+      "id": "PUB-04-SYMLINK",
+      "target": "link.witness",
+      "initial": {
+        "target": "symlink",
+        "referent": "owned-sentinel",
+        "referent_hex": "6b656570"
+      },
+      "payload_hex": "616263",
+      "expect": {
+        "result": "error",
+        "target": "same-symlink",
+        "referent_hex": "6b656570",
+        "existing_entries_unchanged": true
+      }
+    },
+    {
+      "id": "PUB-05-OVERSIZE",
+      "target": "oversize.witness",
+      "initial": {
+        "target": "absent"
+      },
+      "payload": {
+        "byte_hex": "61",
+        "length": "WITNESS_LIMIT+1"
+      },
+      "expect": {
+        "result": "error",
+        "error_kind": "InvalidInput",
+        "target": "absent",
+        "existing_entries_unchanged": true
+      }
+    },
+    {
+      "id": "PUB-06-EMPTY",
+      "target": "empty.witness",
+      "initial": {
+        "target": "absent"
+      },
+      "payload_hex": "",
+      "expect": {
+        "result": "success",
+        "file_hex": "",
+        "sync_all_returned_success": true,
+        "existing_entries_unchanged": true
+      }
+    },
+    {
+      "id": "PUB-07-MISSING-PARENT",
+      "target": "absent-parent/new.witness",
+      "initial": {
+        "parent": "absent"
+      },
+      "payload_hex": "616263",
+      "expect": {
+        "result": "error",
+        "parent": "absent",
+        "target": "absent",
+        "existing_entries_unchanged": true
+      }
+    },
+    {
+      "id": "PUB-08-SYMLINK-PARENT",
+      "target": "alias/new.witness",
+      "initial": {
+        "parent": "symlink-to-owned-directory",
+        "referent": "real-owned-directory",
+        "referent_target": "absent"
+      },
+      "payload_hex": "616263",
+      "expect": {
+        "result": "error",
+        "error_kind": "InvalidInput",
+        "parent": "same-symlink",
+        "referent_target": "absent",
+        "existing_entries_unchanged": true
+      }
+    }
+  ],
+  "limits": [
+    "These bytes test file publication, not kernel semantics or result-witness binding.",
+    "No deletion/cleanup is authorized by this plan. Retain files and observations.",
+    "No actual disk-full, sync-failure injection, race, power loss or directory-entry durability claim.",
+    "A successful API return confirms sync_all returned success, not power-loss durability.",
+    "Do not change the /out path guard, mount paths, alter execution profile or use a substituted root to claim original-path coverage."
+  ]
+}
