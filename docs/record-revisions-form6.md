@@ -47,3 +47,26 @@ output preservation. One default canonical package equals the unchanged legacy
 API output. The canonical-size case establishes early oversized-package refusal;
 it does not establish acceptance at the maximum size. No checker or submitted
 program evaluation was performed by these tests.
+
+## Separate-process continuation
+
+`tests/probes/form6_continuation_checks.py` additionally exercises init, append,
+fresh checkout, decode, source-only /12 check and form6 diagnostic mapping as
+separate processes. It requires a separately reviewed checker binary with its
+SHA-256 pin, a separately reviewed diagnostic source tree and a fresh output
+directory. It does not build or download dependencies. The diagnostic tree is
+not hashed by this harness; acceptance assumes the reviewed tree stays unchanged.
+
+```sh
+python -B -S tests/probes/form6_continuation_checks.py \
+  --checker /path/to/reviewed-record-check --checker-sha256 CHECKER_SHA256 \
+  --diagnostic-root /path/to/reviewed-form6-diagnostics --output /new/output
+```
+
+One bounded run passed eleven process calls: two revision writes, two
+checkout/decode/check chains, actual-result location mapping, later-history
+tamper refusal and existing-output refusal. It made two source-only checker
+calls and zero submitted-source evaluations. The first revision checks; the
+retained integer-fallback successor refuses RR_TYPE and maps to its zero.
+Recorded inputs, packages, outputs and checker binary were preserved. This is
+bounded CLI handoff evidence, not complete beta acceptance or crash durability.
