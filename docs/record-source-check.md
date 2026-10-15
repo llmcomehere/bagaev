@@ -1,5 +1,23 @@
 # Check a typed source without executing it
 
+## Explicit form6 / profile12 option
+
+For typed-record/12 program JSON, select `check --profile 12 --input FILE`.
+The unchanged command without this option remains /11; there is no automatic
+profile detection. Decode authored form6 with explicit `--form 6` beforehand.
+The result schema is bagaev-record-source-check/12, with the same input binding, false admission
+and checked/refused/environment distinction. The library adds check_source_v12.
+This checks general source signatures without the Json-only preparation limit.
+
+Eight profile cases passed, including the existing ActiveJson application,
+json.bool_or, wrong-profile refusals, invalid fallback type, unused-helper type
+error and non-Json entry parameters. All13 existing /11 verdicts and2I/O controls
+also passed with the new executable, preserving default output bytes. No source
+program was evaluated. The portable /12 harness reuses the same controls.
+The separate source-location join currently supports /11 envelopes only; selecting
+/12 does not silently broaden that mapper. Profile-specific malformed-option and
+oversized-input cases were not separately rerun beyond shared /11 transport checks.
+
 The experimental source-only checker accepts `bagaev-typed-record/11` program
 JSON, including inventory entry points with Stock, Text and Int64 parameters.
 It does not need runtime arguments. It checks every function, including unused

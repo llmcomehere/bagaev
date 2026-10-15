@@ -52,9 +52,14 @@ fn frame(path: &Path) -> io::Result<Vec<u8>> {
 fn main(){
     let args:Vec<_>=std::env::args_os().skip(1).collect();
     let result=(||->Result<(),&'static str>{
-        if args.len()!=3 || args[0]!="check" || args[1]!="--input" || args[2].is_empty(){return Err("usage: record-check check --input FILE");}
-        let bytes=frame(Path::new(&args[2])).map_err(|_|"unable to read complete input")?;
-        let checked=typed_record::check_source_v11(&bytes)?;
+        let (profile,path)=if args.len()==3 && args[0]=="check" && args[1]=="--input" && !args[2].is_empty(){
+            (11,&args[2])
+        }else if args.len()==5 && args[0]=="check" && args[1]=="--profile" && args[2]=="12" && args[3]=="--input" && !args[4].is_empty(){
+            (12,&args[4])
+        }else{return Err("usage: record-check check --input FILE");};
+        let bytes=frame(Path::new(path)).map_err(|_|"unable to read complete input")?;
+        let checked=if profile==12{typed_record::check_source_v12(&bytes)?}else{typed_record::check_source_v11(&bytes)?};
+        let schema=if profile==12{"bagaev-record-source-check/12"}else{"bagaev-record-source-check/11"};
         let mut out=String::from("{\"execution_admission\":false,\"input_sha256\":");
         if bytes.len()<=transport::FRAME_LIMIT {
             let input_identity=sha256::digest(&bytes);
@@ -66,13 +71,17 @@ fn main(){
                 out.push_str("null,\"program_sha256\":");
                 let identity=source.identity().strip_prefix("sha256:").ok_or("source identity format")?;
                 canonical::quote(identity,&mut out);
-                out.push_str(",\"reason\":null,\"schema\":\"bagaev-record-source-check/11\",\"status\":\"checked\"}\n");
+                out.push_str(",\"reason\":null,\"schema\":");
+                canonical::quote(schema,&mut out);
+                out.push_str(",\"status\":\"checked\"}\n");
             },
             typed_record::SourceCheck::Refused{reason,location}=>{
                 canonical::quote(&location,&mut out);
                 out.push_str(",\"program_sha256\":null,\"reason\":");
                 canonical::quote(reason,&mut out);
-                out.push_str(",\"schema\":\"bagaev-record-source-check/11\",\"status\":\"refused\"}\n");
+                out.push_str(",\"schema\":");
+                canonical::quote(schema,&mut out);
+                out.push_str(",\"status\":\"refused\"}\n");
             },
         }
         let mut stdout=io::stdout().lock();stdout.write_all(out.as_bytes()).map_err(|_|"output write")?;stdout.flush().map_err(|_|"output flush")?;Ok(())
