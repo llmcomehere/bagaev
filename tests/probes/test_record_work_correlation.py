@@ -89,6 +89,28 @@ class Correlation(unittest.TestCase):
             self.assertEqual(result['fits_work_budget'], original['fits_work_budget'])
             self.assertEqual(result['refinement'], 'none')
 
+    def test_concrete_visit_budget_fallback(self):
+        def additions(leaves, special=False):
+            if leaves == 1:
+                return ['list.len', ['arg', 'xs']] if special else ['int', 0]
+            left = leaves // 2
+            return ['add', additions(left, special), additions(leaves - left)]
+        initial = additions(1021, True)  # 2042 visits, balanced depth.
+        yes = ['let', 'scratch', initial, ['arg', 'xs']]  # 2044 visits.
+        tree, args = expression('list.unique', yes=yes), inputs(3, 5, 4, 1)
+        original = baseline(tree, args)  # Exactly 2048 static visits.
+        distributed = ['if', ['arg', 'c'], ['list.unique', yes],
+                       ['list.unique', ['arg', 'ys']]]
+        refused = baseline(distributed, args)  # Exactly 2049 static visits.
+        self.assertEqual(original['status'], 'SUPPORTED')
+        self.assertEqual(original['upper_work'], 2103)
+        self.assertEqual(refused['status'], 'UNKNOWN')
+        self.assertEqual(refused['reason'], 'analysis-bounds')
+        result = analyze(tree, args)
+        self.assertEqual(result['refinement'], 'none')
+        self.assertEqual(result['upper_work'], 2103)
+        self.assertEqual(result['baseline_upper_work'], 2103)
+
 
 if __name__ == '__main__':
     unittest.main()
