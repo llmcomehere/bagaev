@@ -457,10 +457,10 @@ definitions, without pins, validates and derives them. A small complete draft is
 
 For `[{"open":true,"id":"a"},{"open":false,"id":"b"}]`, the specified result is
 `[{"open":true,"id":"a"}]`; missing/non-Bool open fails, it is not silently false.
-Under an authorized profile, `python3 -B -m src.bagaev_filter prepare DRAFT --output P`,
-then `check P` or `run P --input INPUT`. L2/1 uses `src.bagaev`; both support check,
-run, patch, compile, inspect and diff, with separate schemas. Compilation produces
-a source/generator/hash-bound CPython artifact and grants no execution authority.
+Use `python3 -B -m src.bagaev_filter prepare DRAFT --output P`, then check/run/patch/compile.
+For inspect/diff use `src.bagaev_filter_workflow` ([example](filter-inspection.md)).
+L2/1 uses `src.bagaev`. CPython artifacts bind source/generator hashes;
+compilation grants no execution authority.
 CLI JSON input: 1 MiB, depth 128, 65,536 values, finite floats, integer tokens at
 most 4,096 digits. Outputs are fresh. Saved revisions/admission/replay use the
 separate [Store/1](store.md) or explicit [filter saved workflow](filter-saved-workflow.md),
