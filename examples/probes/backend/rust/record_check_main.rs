@@ -55,7 +55,12 @@ fn main(){
         if args.len()!=3 || args[0]!="check" || args[1]!="--input" || args[2].is_empty(){return Err("usage: record-check check --input FILE");}
         let bytes=frame(Path::new(&args[2])).map_err(|_|"unable to read complete input")?;
         let checked=typed_record::check_source_v11(&bytes)?;
-        let mut out=String::from("{\"execution_admission\":false,\"location\":");
+        let mut out=String::from("{\"execution_admission\":false,\"input_sha256\":");
+        if bytes.len()<=transport::FRAME_LIMIT {
+            let input_identity=sha256::digest(&bytes);
+            canonical::quote(input_identity.strip_prefix("sha256:").ok_or("input identity format")?,&mut out);
+        } else { out.push_str("null"); }
+        out.push_str(",\"location\":");
         match checked {
             typed_record::SourceCheck::Checked(source)=>{
                 out.push_str("null,\"program_sha256\":");

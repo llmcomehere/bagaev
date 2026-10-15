@@ -45,9 +45,12 @@ def add(name, value, reason=None, location=None, pin=None):
     cases.append((name, raw, {'execution_admission':False,
         'schema':'bagaev-record-source-check/11','status':'refused' if reason else 'checked',
         'program_sha256':None if reason else (pin or sha(canonical(value))),
-        'reason':reason,'location':location}))
+        'reason':reason,'location':location,'input_sha256':sha(raw) if len(raw)<=1048576 else None}))
 
 add('scalar', base)
+add('scalar-whitespace', b' '+canonical(base)+b'\n', pin=sha(canonical(base)))
+changed=copy.deepcopy(base);changed['functions']['main']['body']=['int',1]
+add('scalar-changed', changed)
 overflow = copy.deepcopy(base); overflow['functions']['main']['body']=['add',['int',9223372036854775807],['int',1]]
 add('well-typed-overflow', overflow)
 bad = copy.deepcopy(base); bad['functions']['main']['body']=['bool',True]

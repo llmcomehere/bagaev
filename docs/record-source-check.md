@@ -24,6 +24,10 @@ the stable checker reason/location. Both are protocol results with exit0.
 Usage, input I/O and checker environment failures exit1 with stderr, without
 manufacturing a source verdict. Input frames are limited to1MiB. Inherited file
 transport assumes stable owned paths; it does not promise hostile-race isolation.
+Each complete in-bound input is bound by `input_sha256`, the bare hash of its
+actual transport bytes. Whitespace changes this hash without changing canonical
+program identity. Oversized input reports null because only a bounded prefix
+was read. This linkage does not authenticate the result producer.
 
 The library entry is `typed_record::check_source_v11`, returning the existing
 SourceCheck checked/refused representation while keeping environment failure
@@ -39,6 +43,9 @@ Two usage/I/O controls verified exit1 and no stdout. Exact output bytes and
 input preservation were checked. The first local attempt exposed an internal
 `sha256:` tag mismatch, corrected to the specified bare hash before the passing
 run. These observations execute the checker, not the submitted programs.
+The input-binding successor passed thirteen verdict cases, adding whitespace
+and changed-program identity controls, plus the same two usage/I/O controls.
+Earlier eleven-case observations are historical, not additional semantic cases.
 
 `tests/probes/record_source_check_v11.py` replays these frozen controls with an
 explicit checker path/hash and a new output directory. A matching binary hash
