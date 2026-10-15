@@ -56,6 +56,22 @@ def _json(raw):
 
 def locate(source, checked_input, result_bytes, *, source_sha256,
            program_sha256, input_sha256, result_sha256):
+    return _locate(source, checked_input, result_bytes, source_sha256=source_sha256,
+        program_sha256=program_sha256, input_sha256=input_sha256, result_sha256=result_sha256,
+        codec=form, mapper=source_map, profile='11', version='1')
+
+
+def locate_form6(source, checked_input, result_bytes, *, source_sha256,
+                 program_sha256, input_sha256, result_sha256):
+    import bagaev_record_json_bool_form as form6
+    from bagaev_record_json_bool_spans import source_map as map6
+    return _locate(source, checked_input, result_bytes, source_sha256=source_sha256,
+        program_sha256=program_sha256, input_sha256=input_sha256, result_sha256=result_sha256,
+        codec=form6, mapper=map6, profile='12', version='2')
+
+
+def _locate(source, checked_input, result_bytes, *, source_sha256,
+            program_sha256, input_sha256, result_sha256, codec, mapper, profile, version):
     for pin in (source_sha256, program_sha256, input_sha256, result_sha256):
         need(type(pin) is str and re.fullmatch('[0-9a-f]{64}', pin) is not None,
              'CHECK_LOCATION_PIN')
@@ -64,13 +80,13 @@ def locate(source, checked_input, result_bytes, *, source_sha256,
                             (submitted, input_sha256, 'CHECK_LOCATION_INPUT_PIN'),
                             (retained, result_sha256, 'CHECK_LOCATION_RESULT_PIN')):
         need(hashlib.sha256(value).hexdigest() == pin, code)
-    program = form.decode(raw)
+    program = codec.decode(raw)
     need(digest(program) == program_sha256 and digest(_json(submitted)) == program_sha256,
          'CHECK_LOCATION_PROGRAM')
     result = _json(retained)
     need(type(result) is dict and set(result) == {'schema','status','program_sha256',
          'input_sha256','reason','location','execution_admission'}, 'CHECK_LOCATION_RESULT')
-    need(result['schema'] == 'bagaev-record-source-check/11' and result['status'] == 'refused'
+    need(result['schema'] == 'bagaev-record-source-check/'+profile and result['status'] == 'refused'
          and result['program_sha256'] is None and result['execution_admission'] is False,
          'CHECK_LOCATION_RESULT')
     need(result['input_sha256'] == input_sha256, 'CHECK_LOCATION_BINDING')
@@ -80,14 +96,14 @@ def locate(source, checked_input, result_bytes, *, source_sha256,
     need(type(pointer) is str and len(pointer) <= 4096 and
          (pointer == '' or re.fullmatch(r'/(?:[^~\x00-\x1f]|~[01])*', pointer) is not None),
          'CHECK_LOCATION_POINTER')
-    mapping = source_map(raw)
+    mapping = mapper(raw)
     need(mapping['program_pin'] == 'sha256:'+program_sha256 and
          mapping['source_sha256'] == source_sha256, 'CHECK_LOCATION_PROGRAM')
     locations = [row for row in mapping['locations'] if row['program_pointer'] == '/program'+pointer]
     mapped = reason in ('RR_TYPE','RR_REFERENCE') and len(locations) == 1
     location = dict(locations[0]) if mapped else None
     excerpt = raw[location['start_byte']:location['end_byte']].decode('utf8') if mapped else None
-    return {'schema':'bagaev-record-check-location/1','status':'mapped' if mapped else 'unmapped',
+    return {'schema':'bagaev-record-check-location/'+version,'status':'mapped' if mapped else 'unmapped',
             'source_sha256':source_sha256,'program_sha256':program_sha256,
             'input_sha256':input_sha256,'result_sha256':result_sha256,
             'reason':reason,'checker_pointer':pointer,'location':location,

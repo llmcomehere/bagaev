@@ -11,11 +11,13 @@ def main(argv=None):
     try:
         parser=transport.Parser(add_help=False,allow_abbrev=False)
         parser.add_argument('source')
+        parser.add_argument('--form',choices=('5','6'),default='5')
         for name in ('checked-input','result','source-sha256','program-sha256',
                      'input-sha256','result-sha256','output'):
             parser.add_argument('--'+name,required=True)
         args=parser.parse_args(argv)
-        result=location.locate(transport.read_input(args.source),
+        locate=location.locate_form6 if args.form=='6' else location.locate
+        result=locate(transport.read_input(args.source),
             transport.read_input(args.checked_input),transport.read_input(args.result),
             source_sha256=args.source_sha256,program_sha256=args.program_sha256,
             input_sha256=args.input_sha256,result_sha256=args.result_sha256)
