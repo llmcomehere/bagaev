@@ -52,3 +52,27 @@ They cover the four accepted failure labels, repeated expressions, Unicode,
 coarse ranges, bounded excerpts, stale pins, missing pointers and the actual
 CLI main path with file preservation. Passing these tests would not establish
 runtime or model benefit.
+
+## Try a retained overflow example
+
+From the repository root, choose a new output path:
+
+```sh
+python tools/record_failure_location.py \
+  examples/probes/record-branch-edit/Before.bagaev \
+  examples/probes/record-failure-location/overflow-capture.json --form 5 \
+  --program-sha256 790c5e3bc358c16e9f831ce79dfa82d0f8013b469a059413fd6079c0e9e8f314 \
+  --arguments-sha256 c3f7c8546d7d1d31d48314475042deacca64377481791bd7d983514abebf5b07 \
+  --source-sha256 44aa09a9c7f6d15e6f50aee101a77f666f0bb38f1fa65eda5818bb9d7f103608 \
+  --output overflow-location.json
+```
+
+The selected expression is `x + 1`, exact-expression, bytes104..109, line1
+columns105..110. The retained error is `RR_OVERFLOW` at work5 for positional
+arguments `[9223372036854775807,true]`. The sample capture is byte-identical
+to the existing capture-comparison overflow `before_file` fixture. Its envelope
+was matched in the earlier reference observations described in the
+[branch-edit walkthrough](record-work-walkthrough.md#equal-cost-can-hide-a-changed-branch).
+This command only reuses that retained data through the new diagnostic path;
+it does not reproduce or authenticate the historical run. A separate CLI-main
+test pins the sample bytes and asserts the literal source range above.

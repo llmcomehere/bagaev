@@ -31,6 +31,35 @@ def fixture(source=SOURCE, status='integer-overflow', reason='RR_OVERFLOW', poin
 
 
 class FailureLocation(unittest.TestCase):
+    def test_prior_overflow_cli_example(self):
+        examples = ROOT / 'examples/probes'
+        source = examples / 'record-branch-edit/Before.bagaev'
+        capture = examples / 'record-failure-location/overflow-capture.json'
+        rows = json.loads((examples / 'record-capture-comparison/cases.json').read_bytes())
+        prior = next(row for row in rows if row['name'] == 'overflow')
+        self.assertEqual(capture.read_text(encoding='utf8'), prior['before_file'])
+        self.assertEqual(hashlib.sha256(source.read_bytes()).hexdigest(),
+                         '44aa09a9c7f6d15e6f50aee101a77f666f0bb38f1fa65eda5818bb9d7f103608')
+        with tempfile.TemporaryDirectory() as directory:
+            output = Path(directory) / 'location.json'
+            stream = io.StringIO()
+            with contextlib.redirect_stdout(stream):
+                code = cli.main([str(source), str(capture), '--form', '5',
+                    '--program-sha256', '790c5e3bc358c16e9f831ce79dfa82d0f8013b469a059413fd6079c0e9e8f314',
+                    '--arguments-sha256', 'c3f7c8546d7d1d31d48314475042deacca64377481791bd7d983514abebf5b07',
+                    '--source-sha256', '44aa09a9c7f6d15e6f50aee101a77f666f0bb38f1fa65eda5818bb9d7f103608',
+                    '--output', str(output)])
+            self.assertEqual(code, 0)
+            result = json.loads(output.read_bytes())
+            self.assertEqual(result['excerpt'], 'x + 1')
+            self.assertEqual(result['result']['reason'], 'RR_OVERFLOW')
+            self.assertEqual(result['result']['work'], 5)
+            location = result['location']
+            self.assertEqual((location['start_byte'], location['end_byte']), (104, 109))
+            self.assertEqual((location['start_line'], location['start_column'],
+                              location['end_line'], location['end_column']), (1, 105, 1, 110))
+            self.assertEqual(location['precision'], 'exact-expression')
+
     def test_four_retained_failure_families(self):
         for status, reason in [('integer-overflow', 'RR_OVERFLOW'),
                                ('list-index', 'RR_INDEX'), ('work-limit', 'RR_WORK'),
