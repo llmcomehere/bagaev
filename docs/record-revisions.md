@@ -25,6 +25,32 @@ escaping, compact comma/colon separators and no trailing newline. Revision IDs
 hash the canonical object containing exactly parent, source_sha256 and
 program_sha256. The first parent is null. The library exposes `package_digest`
 for identity calculation; calculating a hash is not reviewing or approving data.
+Fresh CLI package output is already canonical: its raw SHA-256 supplies
+PACKAGE_A and its `head` field supplies REVISION_A.
+
+## Ready inventory example
+
+[inventory-history.json](../examples/probes/record-revisions/inventory-history.json)
+contains the unchanged public inventory source and five-unit-limit successor.
+Its raw/canonical SHA-256 is
+`5733b994ab4612b572e7b42d848e3849a97ee165a826e51ca081d3b1e2946488`.
+To recover the original into a new file:
+
+```sh
+python -B -S tools/record_revisions.py checkout \
+  examples/probes/record-revisions/inventory-history.json \
+  --revision 6ba1bfd299f66d4cdc546949bc0bedbce636c9eaadc9b0165a82807a20e80e01 \
+  --output restored-original.bagaev
+```
+
+The successor revision is
+`4e184efcce889451e88b1c1ab466eb853cf55bb87f90e0de5582855a84720762`.
+Five additional in-process CLI calls built, inspected and checked out both
+revisions. Both recovered files matched the original public files byte-for-byte;
+revision IDs were independently reconstructed from the specified preimages.
+These calls reuse the existing inventory behavior; they do not execute it.
+
+## Validation boundary
 
 Every operation validates the complete history, including later revisions when
 checking out an earlier one. Append requires the expected package digest and
