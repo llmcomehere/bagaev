@@ -52,6 +52,22 @@ mutation are outside the contract. JSON text parsing is a separate boundary.
 
 ## Implementation and bounded acceptance
 
+The ready [clear-date argument array](../examples/probes/catalog-date-edit/clear-date.arguments.json)
+clears a's known day0 while preserving repeated tags. The expected state omits
+a's date and keeps both entries and tag arrays unchanged; its ID view is [a,b].
+Prepare inert invocation data into a new file:
+
+```sh
+python -B -S tools/record_text.py prepare \
+  examples/probes/catalog-date-edit/Catalog.bagaev --form 5 \
+  --arguments examples/probes/catalog-date-edit/clear-date.arguments.json \
+  --output clear-date.invocation.json
+```
+
+This command does not run the application. A separately authorized reviewed
+profile11 reference can consume that invocation. It is the existing frozen
+clear-zero case, not an additional semantic acceptance case.
+
 - [Readable source](../examples/probes/catalog-date-edit/Catalog.bagaev)
 - [Frozen literal oracle](../examples/probes/catalog-date-edit/cases.json)
 - [Ordinary Python reference](../src/catalog_date_edit_reference.py)
