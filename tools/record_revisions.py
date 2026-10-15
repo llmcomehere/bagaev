@@ -5,7 +5,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'src'))
-import bagaev_record_revisions as revisions
+import bagaev_record_revisions as legacy
 import record_text as transport
 
 
@@ -14,6 +14,7 @@ def main(argv=None):
         parser = transport.Parser(add_help=False, allow_abbrev=False)
         parser.add_argument('operation', choices=('init', 'append', 'inspect', 'checkout'))
         parser.add_argument('input')
+        parser.add_argument('--form', choices=('5', '6'), default='5')
         parser.add_argument('--output', required=True)
         parser.add_argument('--source')
         parser.add_argument('--source-sha256')
@@ -22,6 +23,10 @@ def main(argv=None):
         parser.add_argument('--head')
         parser.add_argument('--revision')
         args = parser.parse_args(argv)
+        if args.form == '6':
+            import bagaev_record_revisions_form6 as revisions
+        else:
+            revisions = legacy
         selected = {name for name in ('source', 'source_sha256', 'program_sha256',
                     'package_sha256', 'head', 'revision') if getattr(args, name) is not None}
         expected = {
@@ -47,7 +52,7 @@ def main(argv=None):
                 output = revisions.checkout(package, args.revision)
         transport.write_output(args.output, output)
         return 0
-    except (transport.Refusal, revisions.RevisionError) as error:
+    except (transport.Refusal, legacy.RevisionError) as error:
         print(error.code, file=sys.stderr)
         return 1
 
