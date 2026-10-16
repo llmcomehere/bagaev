@@ -1,0 +1,2477 @@
+{
+  "schema": "catalog-manual-tags-cases/1",
+  "cases": [
+    {
+      "name": "replace-duplicates",
+      "request": {
+        "interface": "catalog-manual-tags/1",
+        "state": {
+          "entries": [
+            {
+              "id": "a",
+              "title": "Alpha",
+              "manual_tags": [
+                "family"
+              ],
+              "indexed_tags": [
+                "auto"
+              ],
+              "date": 2
+            },
+            {
+              "id": "b",
+              "title": "Beta",
+              "manual_tags": [
+                "z",
+                "a",
+                "z"
+              ],
+              "indexed_tags": [
+                "x",
+                "x"
+              ],
+              "date": 0
+            },
+            {
+              "id": "c",
+              "title": "Gamma",
+              "manual_tags": [],
+              "indexed_tags": []
+            }
+          ]
+        },
+        "entry_id": "a",
+        "tags": [
+          "new",
+          "new"
+        ]
+      },
+      "expected": {
+        "kind": "success",
+        "state": {
+          "entries": [
+            {
+              "id": "a",
+              "title": "Alpha",
+              "manual_tags": [
+                "new"
+              ],
+              "indexed_tags": [
+                "auto"
+              ],
+              "date": 2
+            },
+            {
+              "id": "b",
+              "title": "Beta",
+              "manual_tags": [
+                "z",
+                "a",
+                "z"
+              ],
+              "indexed_tags": [
+                "x",
+                "x"
+              ],
+              "date": 0
+            },
+            {
+              "id": "c",
+              "title": "Gamma",
+              "manual_tags": [],
+              "indexed_tags": []
+            }
+          ]
+        },
+        "entry_ids": [
+          "b",
+          "a",
+          "c"
+        ]
+      }
+    },
+    {
+      "name": "clear-manual",
+      "request": {
+        "interface": "catalog-manual-tags/1",
+        "state": {
+          "entries": [
+            {
+              "id": "a",
+              "title": "Alpha",
+              "manual_tags": [
+                "family"
+              ],
+              "indexed_tags": [
+                "auto"
+              ],
+              "date": 2
+            },
+            {
+              "id": "b",
+              "title": "Beta",
+              "manual_tags": [
+                "z",
+                "a",
+                "z"
+              ],
+              "indexed_tags": [
+                "x",
+                "x"
+              ],
+              "date": 0
+            },
+            {
+              "id": "c",
+              "title": "Gamma",
+              "manual_tags": [],
+              "indexed_tags": []
+            }
+          ]
+        },
+        "entry_id": "a",
+        "tags": []
+      },
+      "expected": {
+        "kind": "success",
+        "state": {
+          "entries": [
+            {
+              "id": "a",
+              "title": "Alpha",
+              "manual_tags": [],
+              "indexed_tags": [
+                "auto"
+              ],
+              "date": 2
+            },
+            {
+              "id": "b",
+              "title": "Beta",
+              "manual_tags": [
+                "z",
+                "a",
+                "z"
+              ],
+              "indexed_tags": [
+                "x",
+                "x"
+              ],
+              "date": 0
+            },
+            {
+              "id": "c",
+              "title": "Gamma",
+              "manual_tags": [],
+              "indexed_tags": []
+            }
+          ]
+        },
+        "entry_ids": [
+          "b",
+          "a",
+          "c"
+        ]
+      }
+    },
+    {
+      "name": "already-same",
+      "request": {
+        "interface": "catalog-manual-tags/1",
+        "state": {
+          "entries": [
+            {
+              "id": "a",
+              "title": "Alpha",
+              "manual_tags": [
+                "family"
+              ],
+              "indexed_tags": [
+                "auto"
+              ],
+              "date": 2
+            },
+            {
+              "id": "b",
+              "title": "Beta",
+              "manual_tags": [
+                "z",
+                "a",
+                "z"
+              ],
+              "indexed_tags": [
+                "x",
+                "x"
+              ],
+              "date": 0
+            },
+            {
+              "id": "c",
+              "title": "Gamma",
+              "manual_tags": [],
+              "indexed_tags": []
+            }
+          ]
+        },
+        "entry_id": "a",
+        "tags": [
+          "family"
+        ]
+      },
+      "expected": {
+        "kind": "success",
+        "state": {
+          "entries": [
+            {
+              "id": "a",
+              "title": "Alpha",
+              "manual_tags": [
+                "family"
+              ],
+              "indexed_tags": [
+                "auto"
+              ],
+              "date": 2
+            },
+            {
+              "id": "b",
+              "title": "Beta",
+              "manual_tags": [
+                "z",
+                "a",
+                "z"
+              ],
+              "indexed_tags": [
+                "x",
+                "x"
+              ],
+              "date": 0
+            },
+            {
+              "id": "c",
+              "title": "Gamma",
+              "manual_tags": [],
+              "indexed_tags": []
+            }
+          ]
+        },
+        "entry_ids": [
+          "b",
+          "a",
+          "c"
+        ]
+      }
+    },
+    {
+      "name": "readd-after-clear",
+      "request": {
+        "interface": "catalog-manual-tags/1",
+        "state": {
+          "entries": [
+            {
+              "id": "a",
+              "title": "Alpha",
+              "manual_tags": [],
+              "indexed_tags": [
+                "auto"
+              ],
+              "date": 2
+            },
+            {
+              "id": "b",
+              "title": "Beta",
+              "manual_tags": [
+                "z",
+                "a",
+                "z"
+              ],
+              "indexed_tags": [
+                "x",
+                "x"
+              ],
+              "date": 0
+            },
+            {
+              "id": "c",
+              "title": "Gamma",
+              "manual_tags": [],
+              "indexed_tags": []
+            }
+          ]
+        },
+        "entry_id": "a",
+        "tags": [
+          "family"
+        ]
+      },
+      "expected": {
+        "kind": "success",
+        "state": {
+          "entries": [
+            {
+              "id": "a",
+              "title": "Alpha",
+              "manual_tags": [
+                "family"
+              ],
+              "indexed_tags": [
+                "auto"
+              ],
+              "date": 2
+            },
+            {
+              "id": "b",
+              "title": "Beta",
+              "manual_tags": [
+                "z",
+                "a",
+                "z"
+              ],
+              "indexed_tags": [
+                "x",
+                "x"
+              ],
+              "date": 0
+            },
+            {
+              "id": "c",
+              "title": "Gamma",
+              "manual_tags": [],
+              "indexed_tags": []
+            }
+          ]
+        },
+        "entry_ids": [
+          "b",
+          "a",
+          "c"
+        ]
+      }
+    },
+    {
+      "name": "repeat-replacement",
+      "request": {
+        "interface": "catalog-manual-tags/1",
+        "state": {
+          "entries": [
+            {
+              "id": "a",
+              "title": "Alpha",
+              "manual_tags": [
+                "new"
+              ],
+              "indexed_tags": [
+                "auto"
+              ],
+              "date": 2
+            },
+            {
+              "id": "b",
+              "title": "Beta",
+              "manual_tags": [
+                "z",
+                "a",
+                "z"
+              ],
+              "indexed_tags": [
+                "x",
+                "x"
+              ],
+              "date": 0
+            },
+            {
+              "id": "c",
+              "title": "Gamma",
+              "manual_tags": [],
+              "indexed_tags": []
+            }
+          ]
+        },
+        "entry_id": "a",
+        "tags": [
+          "new",
+          "new"
+        ]
+      },
+      "expected": {
+        "kind": "success",
+        "state": {
+          "entries": [
+            {
+              "id": "a",
+              "title": "Alpha",
+              "manual_tags": [
+                "new"
+              ],
+              "indexed_tags": [
+                "auto"
+              ],
+              "date": 2
+            },
+            {
+              "id": "b",
+              "title": "Beta",
+              "manual_tags": [
+                "z",
+                "a",
+                "z"
+              ],
+              "indexed_tags": [
+                "x",
+                "x"
+              ],
+              "date": 0
+            },
+            {
+              "id": "c",
+              "title": "Gamma",
+              "manual_tags": [],
+              "indexed_tags": []
+            }
+          ]
+        },
+        "entry_ids": [
+          "b",
+          "a",
+          "c"
+        ]
+      }
+    },
+    {
+      "name": "replacement-order",
+      "request": {
+        "interface": "catalog-manual-tags/1",
+        "state": {
+          "entries": [
+            {
+              "id": "a",
+              "title": "Alpha",
+              "manual_tags": [
+                "family"
+              ],
+              "indexed_tags": [
+                "auto"
+              ],
+              "date": 2
+            },
+            {
+              "id": "b",
+              "title": "Beta",
+              "manual_tags": [
+                "z",
+                "a",
+                "z"
+              ],
+              "indexed_tags": [
+                "x",
+                "x"
+              ],
+              "date": 0
+            },
+            {
+              "id": "c",
+              "title": "Gamma",
+              "manual_tags": [],
+              "indexed_tags": []
+            }
+          ]
+        },
+        "entry_id": "a",
+        "tags": [
+          "z",
+          "a",
+          "z",
+          "b"
+        ]
+      },
+      "expected": {
+        "kind": "success",
+        "state": {
+          "entries": [
+            {
+              "id": "a",
+              "title": "Alpha",
+              "manual_tags": [
+                "a",
+                "b",
+                "z"
+              ],
+              "indexed_tags": [
+                "auto"
+              ],
+              "date": 2
+            },
+            {
+              "id": "b",
+              "title": "Beta",
+              "manual_tags": [
+                "z",
+                "a",
+                "z"
+              ],
+              "indexed_tags": [
+                "x",
+                "x"
+              ],
+              "date": 0
+            },
+            {
+              "id": "c",
+              "title": "Gamma",
+              "manual_tags": [],
+              "indexed_tags": []
+            }
+          ]
+        },
+        "entry_ids": [
+          "b",
+          "a",
+          "c"
+        ]
+      }
+    },
+    {
+      "name": "missing-date-target",
+      "request": {
+        "interface": "catalog-manual-tags/1",
+        "state": {
+          "entries": [
+            {
+              "id": "a",
+              "title": "Alpha",
+              "manual_tags": [
+                "family"
+              ],
+              "indexed_tags": [
+                "auto"
+              ],
+              "date": 2
+            },
+            {
+              "id": "b",
+              "title": "Beta",
+              "manual_tags": [
+                "z",
+                "a",
+                "z"
+              ],
+              "indexed_tags": [
+                "x",
+                "x"
+              ],
+              "date": 0
+            },
+            {
+              "id": "c",
+              "title": "Gamma",
+              "manual_tags": [],
+              "indexed_tags": []
+            }
+          ]
+        },
+        "entry_id": "c",
+        "tags": [
+          "new"
+        ]
+      },
+      "expected": {
+        "kind": "success",
+        "state": {
+          "entries": [
+            {
+              "id": "a",
+              "title": "Alpha",
+              "manual_tags": [
+                "family"
+              ],
+              "indexed_tags": [
+                "auto"
+              ],
+              "date": 2
+            },
+            {
+              "id": "b",
+              "title": "Beta",
+              "manual_tags": [
+                "z",
+                "a",
+                "z"
+              ],
+              "indexed_tags": [
+                "x",
+                "x"
+              ],
+              "date": 0
+            },
+            {
+              "id": "c",
+              "title": "Gamma",
+              "manual_tags": [
+                "new"
+              ],
+              "indexed_tags": []
+            }
+          ]
+        },
+        "entry_ids": [
+          "b",
+          "a",
+          "c"
+        ]
+      }
+    },
+    {
+      "name": "selected-indexed-duplicates-preserved",
+      "request": {
+        "interface": "catalog-manual-tags/1",
+        "state": {
+          "entries": [
+            {
+              "id": "a",
+              "title": "Alpha",
+              "manual_tags": [
+                "family"
+              ],
+              "indexed_tags": [
+                "auto"
+              ],
+              "date": 2
+            },
+            {
+              "id": "b",
+              "title": "Beta",
+              "manual_tags": [
+                "z",
+                "a",
+                "z"
+              ],
+              "indexed_tags": [
+                "x",
+                "x"
+              ],
+              "date": 0
+            },
+            {
+              "id": "c",
+              "title": "Gamma",
+              "manual_tags": [],
+              "indexed_tags": []
+            }
+          ]
+        },
+        "entry_id": "b",
+        "tags": [
+          "new",
+          "new"
+        ]
+      },
+      "expected": {
+        "kind": "success",
+        "state": {
+          "entries": [
+            {
+              "id": "a",
+              "title": "Alpha",
+              "manual_tags": [
+                "family"
+              ],
+              "indexed_tags": [
+                "auto"
+              ],
+              "date": 2
+            },
+            {
+              "id": "b",
+              "title": "Beta",
+              "manual_tags": [
+                "new"
+              ],
+              "indexed_tags": [
+                "x",
+                "x"
+              ],
+              "date": 0
+            },
+            {
+              "id": "c",
+              "title": "Gamma",
+              "manual_tags": [],
+              "indexed_tags": []
+            }
+          ]
+        },
+        "entry_ids": [
+          "b",
+          "a",
+          "c"
+        ]
+      }
+    },
+    {
+      "name": "day31-preserved",
+      "request": {
+        "interface": "catalog-manual-tags/1",
+        "state": {
+          "entries": [
+            {
+              "id": "a",
+              "title": "Alpha",
+              "manual_tags": [
+                "family"
+              ],
+              "indexed_tags": [
+                "auto"
+              ],
+              "date": 31
+            },
+            {
+              "id": "b",
+              "title": "Beta",
+              "manual_tags": [
+                "z",
+                "a",
+                "z"
+              ],
+              "indexed_tags": [
+                "x",
+                "x"
+              ],
+              "date": 0
+            },
+            {
+              "id": "c",
+              "title": "Gamma",
+              "manual_tags": [],
+              "indexed_tags": []
+            }
+          ]
+        },
+        "entry_id": "a",
+        "tags": [
+          "new",
+          "new"
+        ]
+      },
+      "expected": {
+        "kind": "success",
+        "state": {
+          "entries": [
+            {
+              "id": "a",
+              "title": "Alpha",
+              "manual_tags": [
+                "new"
+              ],
+              "indexed_tags": [
+                "auto"
+              ],
+              "date": 31
+            },
+            {
+              "id": "b",
+              "title": "Beta",
+              "manual_tags": [
+                "z",
+                "a",
+                "z"
+              ],
+              "indexed_tags": [
+                "x",
+                "x"
+              ],
+              "date": 0
+            },
+            {
+              "id": "c",
+              "title": "Gamma",
+              "manual_tags": [],
+              "indexed_tags": []
+            }
+          ]
+        },
+        "entry_ids": [
+          "b",
+          "a",
+          "c"
+        ]
+      }
+    },
+    {
+      "name": "equal-date-id-tie",
+      "request": {
+        "interface": "catalog-manual-tags/1",
+        "state": {
+          "entries": [
+            {
+              "id": "a",
+              "title": "Alpha",
+              "manual_tags": [
+                "family"
+              ],
+              "indexed_tags": [
+                "auto"
+              ],
+              "date": 0
+            },
+            {
+              "id": "b",
+              "title": "Beta",
+              "manual_tags": [
+                "z",
+                "a",
+                "z"
+              ],
+              "indexed_tags": [
+                "x",
+                "x"
+              ],
+              "date": 0
+            },
+            {
+              "id": "c",
+              "title": "Gamma",
+              "manual_tags": [],
+              "indexed_tags": []
+            }
+          ]
+        },
+        "entry_id": "a",
+        "tags": [
+          "new",
+          "new"
+        ]
+      },
+      "expected": {
+        "kind": "success",
+        "state": {
+          "entries": [
+            {
+              "id": "a",
+              "title": "Alpha",
+              "manual_tags": [
+                "new"
+              ],
+              "indexed_tags": [
+                "auto"
+              ],
+              "date": 0
+            },
+            {
+              "id": "b",
+              "title": "Beta",
+              "manual_tags": [
+                "z",
+                "a",
+                "z"
+              ],
+              "indexed_tags": [
+                "x",
+                "x"
+              ],
+              "date": 0
+            },
+            {
+              "id": "c",
+              "title": "Gamma",
+              "manual_tags": [],
+              "indexed_tags": []
+            }
+          ]
+        },
+        "entry_ids": [
+          "a",
+          "b",
+          "c"
+        ]
+      }
+    },
+    {
+      "name": "incoming-origin-collision",
+      "request": {
+        "interface": "catalog-manual-tags/1",
+        "state": {
+          "entries": [
+            {
+              "id": "a",
+              "title": "Alpha",
+              "manual_tags": [
+                "family"
+              ],
+              "indexed_tags": [
+                "auto"
+              ],
+              "date": 2
+            },
+            {
+              "id": "b",
+              "title": "Beta",
+              "manual_tags": [
+                "z",
+                "a",
+                "z"
+              ],
+              "indexed_tags": [
+                "x",
+                "x"
+              ],
+              "date": 0
+            },
+            {
+              "id": "c",
+              "title": "Gamma",
+              "manual_tags": [],
+              "indexed_tags": []
+            }
+          ]
+        },
+        "entry_id": "a",
+        "tags": [
+          "auto"
+        ]
+      },
+      "expected": {
+        "kind": "refusal",
+        "reason": "origin-collision"
+      }
+    },
+    {
+      "name": "target-missing",
+      "request": {
+        "interface": "catalog-manual-tags/1",
+        "state": {
+          "entries": [
+            {
+              "id": "a",
+              "title": "Alpha",
+              "manual_tags": [
+                "family"
+              ],
+              "indexed_tags": [
+                "auto"
+              ],
+              "date": 2
+            },
+            {
+              "id": "b",
+              "title": "Beta",
+              "manual_tags": [
+                "z",
+                "a",
+                "z"
+              ],
+              "indexed_tags": [
+                "x",
+                "x"
+              ],
+              "date": 0
+            },
+            {
+              "id": "c",
+              "title": "Gamma",
+              "manual_tags": [],
+              "indexed_tags": []
+            }
+          ]
+        },
+        "entry_id": "missing",
+        "tags": [
+          "new",
+          "new"
+        ]
+      },
+      "expected": {
+        "kind": "refusal",
+        "reason": "entry-not-found"
+      }
+    },
+    {
+      "name": "empty-state-target",
+      "request": {
+        "interface": "catalog-manual-tags/1",
+        "state": {
+          "entries": []
+        },
+        "entry_id": "a",
+        "tags": [
+          "new",
+          "new"
+        ]
+      },
+      "expected": {
+        "kind": "refusal",
+        "reason": "entry-not-found"
+      }
+    },
+    {
+      "name": "five-tags",
+      "request": {
+        "interface": "catalog-manual-tags/1",
+        "state": {
+          "entries": [
+            {
+              "id": "a",
+              "title": "Alpha",
+              "manual_tags": [
+                "family"
+              ],
+              "indexed_tags": [
+                "auto"
+              ],
+              "date": 2
+            },
+            {
+              "id": "b",
+              "title": "Beta",
+              "manual_tags": [
+                "z",
+                "a",
+                "z"
+              ],
+              "indexed_tags": [
+                "x",
+                "x"
+              ],
+              "date": 0
+            },
+            {
+              "id": "c",
+              "title": "Gamma",
+              "manual_tags": [],
+              "indexed_tags": []
+            }
+          ]
+        },
+        "entry_id": "a",
+        "tags": [
+          "a",
+          "b",
+          "c",
+          "d",
+          "e"
+        ]
+      },
+      "expected": {
+        "kind": "refusal",
+        "reason": "invalid-request"
+      }
+    },
+    {
+      "name": "bad-tag",
+      "request": {
+        "interface": "catalog-manual-tags/1",
+        "state": {
+          "entries": [
+            {
+              "id": "a",
+              "title": "Alpha",
+              "manual_tags": [
+                "family"
+              ],
+              "indexed_tags": [
+                "auto"
+              ],
+              "date": 2
+            },
+            {
+              "id": "b",
+              "title": "Beta",
+              "manual_tags": [
+                "z",
+                "a",
+                "z"
+              ],
+              "indexed_tags": [
+                "x",
+                "x"
+              ],
+              "date": 0
+            },
+            {
+              "id": "c",
+              "title": "Gamma",
+              "manual_tags": [],
+              "indexed_tags": []
+            }
+          ]
+        },
+        "entry_id": "a",
+        "tags": [
+          "Bad"
+        ]
+      },
+      "expected": {
+        "kind": "refusal",
+        "reason": "invalid-request"
+      }
+    },
+    {
+      "name": "empty-tag",
+      "request": {
+        "interface": "catalog-manual-tags/1",
+        "state": {
+          "entries": [
+            {
+              "id": "a",
+              "title": "Alpha",
+              "manual_tags": [
+                "family"
+              ],
+              "indexed_tags": [
+                "auto"
+              ],
+              "date": 2
+            },
+            {
+              "id": "b",
+              "title": "Beta",
+              "manual_tags": [
+                "z",
+                "a",
+                "z"
+              ],
+              "indexed_tags": [
+                "x",
+                "x"
+              ],
+              "date": 0
+            },
+            {
+              "id": "c",
+              "title": "Gamma",
+              "manual_tags": [],
+              "indexed_tags": []
+            }
+          ]
+        },
+        "entry_id": "a",
+        "tags": [
+          ""
+        ]
+      },
+      "expected": {
+        "kind": "refusal",
+        "reason": "invalid-request"
+      }
+    },
+    {
+      "name": "bool-tag",
+      "request": {
+        "interface": "catalog-manual-tags/1",
+        "state": {
+          "entries": [
+            {
+              "id": "a",
+              "title": "Alpha",
+              "manual_tags": [
+                "family"
+              ],
+              "indexed_tags": [
+                "auto"
+              ],
+              "date": 2
+            },
+            {
+              "id": "b",
+              "title": "Beta",
+              "manual_tags": [
+                "z",
+                "a",
+                "z"
+              ],
+              "indexed_tags": [
+                "x",
+                "x"
+              ],
+              "date": 0
+            },
+            {
+              "id": "c",
+              "title": "Gamma",
+              "manual_tags": [],
+              "indexed_tags": []
+            }
+          ]
+        },
+        "entry_id": "a",
+        "tags": [
+          true
+        ]
+      },
+      "expected": {
+        "kind": "refusal",
+        "reason": "invalid-request"
+      }
+    },
+    {
+      "name": "tags-not-array",
+      "request": {
+        "interface": "catalog-manual-tags/1",
+        "state": {
+          "entries": [
+            {
+              "id": "a",
+              "title": "Alpha",
+              "manual_tags": [
+                "family"
+              ],
+              "indexed_tags": [
+                "auto"
+              ],
+              "date": 2
+            },
+            {
+              "id": "b",
+              "title": "Beta",
+              "manual_tags": [
+                "z",
+                "a",
+                "z"
+              ],
+              "indexed_tags": [
+                "x",
+                "x"
+              ],
+              "date": 0
+            },
+            {
+              "id": "c",
+              "title": "Gamma",
+              "manual_tags": [],
+              "indexed_tags": []
+            }
+          ]
+        },
+        "entry_id": "a",
+        "tags": "new"
+      },
+      "expected": {
+        "kind": "refusal",
+        "reason": "invalid-request"
+      }
+    },
+    {
+      "name": "unknown-request",
+      "request": {
+        "interface": "catalog-manual-tags/1",
+        "state": {
+          "entries": [
+            {
+              "id": "a",
+              "title": "Alpha",
+              "manual_tags": [
+                "family"
+              ],
+              "indexed_tags": [
+                "auto"
+              ],
+              "date": 2
+            },
+            {
+              "id": "b",
+              "title": "Beta",
+              "manual_tags": [
+                "z",
+                "a",
+                "z"
+              ],
+              "indexed_tags": [
+                "x",
+                "x"
+              ],
+              "date": 0
+            },
+            {
+              "id": "c",
+              "title": "Gamma",
+              "manual_tags": [],
+              "indexed_tags": []
+            }
+          ]
+        },
+        "entry_id": "a",
+        "tags": [
+          "new",
+          "new"
+        ],
+        "extra": false
+      },
+      "expected": {
+        "kind": "refusal",
+        "reason": "invalid-request"
+      }
+    },
+    {
+      "name": "unknown-entry",
+      "request": {
+        "interface": "catalog-manual-tags/1",
+        "state": {
+          "entries": [
+            {
+              "id": "a",
+              "title": "Alpha",
+              "manual_tags": [
+                "family"
+              ],
+              "indexed_tags": [
+                "auto"
+              ],
+              "date": 2
+            },
+            {
+              "id": "b",
+              "title": "Beta",
+              "manual_tags": [
+                "z",
+                "a",
+                "z"
+              ],
+              "indexed_tags": [
+                "x",
+                "x"
+              ],
+              "date": 0
+            },
+            {
+              "id": "c",
+              "title": "Gamma",
+              "manual_tags": [],
+              "indexed_tags": [],
+              "extra": false
+            }
+          ]
+        },
+        "entry_id": "a",
+        "tags": [
+          "new",
+          "new"
+        ]
+      },
+      "expected": {
+        "kind": "refusal",
+        "reason": "invalid-request"
+      }
+    },
+    {
+      "name": "wrong-interface",
+      "request": {
+        "interface": "catalog-manual-tags/2",
+        "state": {
+          "entries": [
+            {
+              "id": "a",
+              "title": "Alpha",
+              "manual_tags": [
+                "family"
+              ],
+              "indexed_tags": [
+                "auto"
+              ],
+              "date": 2
+            },
+            {
+              "id": "b",
+              "title": "Beta",
+              "manual_tags": [
+                "z",
+                "a",
+                "z"
+              ],
+              "indexed_tags": [
+                "x",
+                "x"
+              ],
+              "date": 0
+            },
+            {
+              "id": "c",
+              "title": "Gamma",
+              "manual_tags": [],
+              "indexed_tags": []
+            }
+          ]
+        },
+        "entry_id": "a",
+        "tags": [
+          "new",
+          "new"
+        ]
+      },
+      "expected": {
+        "kind": "refusal",
+        "reason": "invalid-request"
+      }
+    },
+    {
+      "name": "invalid-target",
+      "request": {
+        "interface": "catalog-manual-tags/1",
+        "state": {
+          "entries": [
+            {
+              "id": "a",
+              "title": "Alpha",
+              "manual_tags": [
+                "family"
+              ],
+              "indexed_tags": [
+                "auto"
+              ],
+              "date": 2
+            },
+            {
+              "id": "b",
+              "title": "Beta",
+              "manual_tags": [
+                "z",
+                "a",
+                "z"
+              ],
+              "indexed_tags": [
+                "x",
+                "x"
+              ],
+              "date": 0
+            },
+            {
+              "id": "c",
+              "title": "Gamma",
+              "manual_tags": [],
+              "indexed_tags": []
+            }
+          ]
+        },
+        "entry_id": "Bad",
+        "tags": [
+          "new",
+          "new"
+        ]
+      },
+      "expected": {
+        "kind": "refusal",
+        "reason": "invalid-request"
+      }
+    },
+    {
+      "name": "date-bool",
+      "request": {
+        "interface": "catalog-manual-tags/1",
+        "state": {
+          "entries": [
+            {
+              "id": "a",
+              "title": "Alpha",
+              "manual_tags": [
+                "family"
+              ],
+              "indexed_tags": [
+                "auto"
+              ],
+              "date": 2
+            },
+            {
+              "id": "b",
+              "title": "Beta",
+              "manual_tags": [
+                "z",
+                "a",
+                "z"
+              ],
+              "indexed_tags": [
+                "x",
+                "x"
+              ],
+              "date": 0
+            },
+            {
+              "id": "c",
+              "title": "Gamma",
+              "manual_tags": [],
+              "indexed_tags": [],
+              "date": true
+            }
+          ]
+        },
+        "entry_id": "a",
+        "tags": [
+          "new",
+          "new"
+        ]
+      },
+      "expected": {
+        "kind": "refusal",
+        "reason": "invalid-date"
+      }
+    },
+    {
+      "name": "date-float",
+      "request": {
+        "interface": "catalog-manual-tags/1",
+        "state": {
+          "entries": [
+            {
+              "id": "a",
+              "title": "Alpha",
+              "manual_tags": [
+                "family"
+              ],
+              "indexed_tags": [
+                "auto"
+              ],
+              "date": 2
+            },
+            {
+              "id": "b",
+              "title": "Beta",
+              "manual_tags": [
+                "z",
+                "a",
+                "z"
+              ],
+              "indexed_tags": [
+                "x",
+                "x"
+              ],
+              "date": 0
+            },
+            {
+              "id": "c",
+              "title": "Gamma",
+              "manual_tags": [],
+              "indexed_tags": [],
+              "date": 1.0
+            }
+          ]
+        },
+        "entry_id": "a",
+        "tags": [
+          "new",
+          "new"
+        ]
+      },
+      "expected": {
+        "kind": "refusal",
+        "reason": "invalid-date"
+      }
+    },
+    {
+      "name": "date-null",
+      "request": {
+        "interface": "catalog-manual-tags/1",
+        "state": {
+          "entries": [
+            {
+              "id": "a",
+              "title": "Alpha",
+              "manual_tags": [
+                "family"
+              ],
+              "indexed_tags": [
+                "auto"
+              ],
+              "date": 2
+            },
+            {
+              "id": "b",
+              "title": "Beta",
+              "manual_tags": [
+                "z",
+                "a",
+                "z"
+              ],
+              "indexed_tags": [
+                "x",
+                "x"
+              ],
+              "date": 0
+            },
+            {
+              "id": "c",
+              "title": "Gamma",
+              "manual_tags": [],
+              "indexed_tags": [],
+              "date": null
+            }
+          ]
+        },
+        "entry_id": "a",
+        "tags": [
+          "new",
+          "new"
+        ]
+      },
+      "expected": {
+        "kind": "refusal",
+        "reason": "invalid-date"
+      }
+    },
+    {
+      "name": "date-above",
+      "request": {
+        "interface": "catalog-manual-tags/1",
+        "state": {
+          "entries": [
+            {
+              "id": "a",
+              "title": "Alpha",
+              "manual_tags": [
+                "family"
+              ],
+              "indexed_tags": [
+                "auto"
+              ],
+              "date": 2
+            },
+            {
+              "id": "b",
+              "title": "Beta",
+              "manual_tags": [
+                "z",
+                "a",
+                "z"
+              ],
+              "indexed_tags": [
+                "x",
+                "x"
+              ],
+              "date": 0
+            },
+            {
+              "id": "c",
+              "title": "Gamma",
+              "manual_tags": [],
+              "indexed_tags": [],
+              "date": 32
+            }
+          ]
+        },
+        "entry_id": "a",
+        "tags": [
+          "new",
+          "new"
+        ]
+      },
+      "expected": {
+        "kind": "refusal",
+        "reason": "invalid-date"
+      }
+    },
+    {
+      "name": "date-negative",
+      "request": {
+        "interface": "catalog-manual-tags/1",
+        "state": {
+          "entries": [
+            {
+              "id": "a",
+              "title": "Alpha",
+              "manual_tags": [
+                "family"
+              ],
+              "indexed_tags": [
+                "auto"
+              ],
+              "date": 2
+            },
+            {
+              "id": "b",
+              "title": "Beta",
+              "manual_tags": [
+                "z",
+                "a",
+                "z"
+              ],
+              "indexed_tags": [
+                "x",
+                "x"
+              ],
+              "date": 0
+            },
+            {
+              "id": "c",
+              "title": "Gamma",
+              "manual_tags": [],
+              "indexed_tags": [],
+              "date": -1
+            }
+          ]
+        },
+        "entry_id": "a",
+        "tags": [
+          "new",
+          "new"
+        ]
+      },
+      "expected": {
+        "kind": "refusal",
+        "reason": "invalid-date"
+      }
+    },
+    {
+      "name": "duplicate-id",
+      "request": {
+        "interface": "catalog-manual-tags/1",
+        "state": {
+          "entries": [
+            {
+              "id": "a",
+              "title": "Alpha",
+              "manual_tags": [
+                "family"
+              ],
+              "indexed_tags": [
+                "auto"
+              ],
+              "date": 2
+            },
+            {
+              "id": "b",
+              "title": "Beta",
+              "manual_tags": [
+                "z",
+                "a",
+                "z"
+              ],
+              "indexed_tags": [
+                "x",
+                "x"
+              ],
+              "date": 0
+            },
+            {
+              "id": "a",
+              "title": "Gamma",
+              "manual_tags": [],
+              "indexed_tags": []
+            }
+          ]
+        },
+        "entry_id": "a",
+        "tags": [
+          "new",
+          "new"
+        ]
+      },
+      "expected": {
+        "kind": "refusal",
+        "reason": "duplicate-entry-id"
+      }
+    },
+    {
+      "name": "entry-order",
+      "request": {
+        "interface": "catalog-manual-tags/1",
+        "state": {
+          "entries": [
+            {
+              "id": "b",
+              "title": "Beta",
+              "manual_tags": [
+                "z",
+                "a",
+                "z"
+              ],
+              "indexed_tags": [
+                "x",
+                "x"
+              ],
+              "date": 0
+            },
+            {
+              "id": "a",
+              "title": "Alpha",
+              "manual_tags": [
+                "family"
+              ],
+              "indexed_tags": [
+                "auto"
+              ],
+              "date": 2
+            },
+            {
+              "id": "c",
+              "title": "Gamma",
+              "manual_tags": [],
+              "indexed_tags": []
+            }
+          ]
+        },
+        "entry_id": "a",
+        "tags": [
+          "new",
+          "new"
+        ]
+      },
+      "expected": {
+        "kind": "refusal",
+        "reason": "entry-order"
+      }
+    },
+    {
+      "name": "stored-collision",
+      "request": {
+        "interface": "catalog-manual-tags/1",
+        "state": {
+          "entries": [
+            {
+              "id": "a",
+              "title": "Alpha",
+              "manual_tags": [
+                "family"
+              ],
+              "indexed_tags": [
+                "auto"
+              ],
+              "date": 2
+            },
+            {
+              "id": "b",
+              "title": "Beta",
+              "manual_tags": [
+                "z",
+                "a",
+                "z"
+              ],
+              "indexed_tags": [
+                "x",
+                "x"
+              ],
+              "date": 0
+            },
+            {
+              "id": "c",
+              "title": "Gamma",
+              "manual_tags": [
+                "x"
+              ],
+              "indexed_tags": [
+                "x"
+              ]
+            }
+          ]
+        },
+        "entry_id": "a",
+        "tags": [
+          "new",
+          "new"
+        ]
+      },
+      "expected": {
+        "kind": "refusal",
+        "reason": "origin-collision"
+      }
+    },
+    {
+      "name": "date-before-missing",
+      "request": {
+        "interface": "catalog-manual-tags/1",
+        "state": {
+          "entries": [
+            {
+              "id": "a",
+              "title": "Alpha",
+              "manual_tags": [
+                "family"
+              ],
+              "indexed_tags": [
+                "auto"
+              ],
+              "date": 2
+            },
+            {
+              "id": "b",
+              "title": "Beta",
+              "manual_tags": [
+                "z",
+                "a",
+                "z"
+              ],
+              "indexed_tags": [
+                "x",
+                "x"
+              ],
+              "date": 0
+            },
+            {
+              "id": "c",
+              "title": "Gamma",
+              "manual_tags": [],
+              "indexed_tags": [],
+              "date": true
+            }
+          ]
+        },
+        "entry_id": "missing",
+        "tags": [
+          "new",
+          "new"
+        ]
+      },
+      "expected": {
+        "kind": "refusal",
+        "reason": "invalid-date"
+      }
+    },
+    {
+      "name": "shape-before-date",
+      "request": {
+        "interface": "catalog-manual-tags/1",
+        "state": {
+          "entries": [
+            {
+              "id": "a",
+              "title": "Alpha",
+              "manual_tags": [
+                "family"
+              ],
+              "indexed_tags": [
+                "auto"
+              ],
+              "date": 2
+            },
+            {
+              "id": "b",
+              "title": "Beta",
+              "manual_tags": [
+                "z",
+                "a",
+                "z"
+              ],
+              "indexed_tags": [
+                "x",
+                "x"
+              ],
+              "date": 0
+            },
+            {
+              "id": "c",
+              "title": "Gamma",
+              "manual_tags": [],
+              "indexed_tags": [],
+              "date": true
+            }
+          ]
+        },
+        "entry_id": "a",
+        "tags": [
+          "Bad"
+        ]
+      },
+      "expected": {
+        "kind": "refusal",
+        "reason": "invalid-request"
+      }
+    },
+    {
+      "name": "duplicate-before-collision",
+      "request": {
+        "interface": "catalog-manual-tags/1",
+        "state": {
+          "entries": [
+            {
+              "id": "a",
+              "title": "Alpha",
+              "manual_tags": [
+                "family"
+              ],
+              "indexed_tags": [
+                "auto"
+              ],
+              "date": 2
+            },
+            {
+              "id": "b",
+              "title": "Beta",
+              "manual_tags": [
+                "z",
+                "a",
+                "z"
+              ],
+              "indexed_tags": [
+                "x",
+                "x"
+              ],
+              "date": 0
+            },
+            {
+              "id": "a",
+              "title": "Gamma",
+              "manual_tags": [],
+              "indexed_tags": []
+            }
+          ]
+        },
+        "entry_id": "a",
+        "tags": [
+          "auto"
+        ]
+      },
+      "expected": {
+        "kind": "refusal",
+        "reason": "duplicate-entry-id"
+      }
+    },
+    {
+      "name": "stored-collision-before-missing",
+      "request": {
+        "interface": "catalog-manual-tags/1",
+        "state": {
+          "entries": [
+            {
+              "id": "a",
+              "title": "Alpha",
+              "manual_tags": [
+                "family"
+              ],
+              "indexed_tags": [
+                "auto"
+              ],
+              "date": 2
+            },
+            {
+              "id": "b",
+              "title": "Beta",
+              "manual_tags": [
+                "z",
+                "a",
+                "z"
+              ],
+              "indexed_tags": [
+                "z"
+              ],
+              "date": 0
+            },
+            {
+              "id": "c",
+              "title": "Gamma",
+              "manual_tags": [],
+              "indexed_tags": []
+            }
+          ]
+        },
+        "entry_id": "missing",
+        "tags": [
+          "new",
+          "new"
+        ]
+      },
+      "expected": {
+        "kind": "refusal",
+        "reason": "origin-collision"
+      }
+    },
+    {
+      "name": "order-before-stored-collision",
+      "request": {
+        "interface": "catalog-manual-tags/1",
+        "state": {
+          "entries": [
+            {
+              "id": "b",
+              "title": "Beta",
+              "manual_tags": [
+                "z",
+                "a",
+                "z"
+              ],
+              "indexed_tags": [
+                "z"
+              ],
+              "date": 0
+            },
+            {
+              "id": "a",
+              "title": "Alpha",
+              "manual_tags": [
+                "family"
+              ],
+              "indexed_tags": [
+                "auto"
+              ],
+              "date": 2
+            },
+            {
+              "id": "c",
+              "title": "Gamma",
+              "manual_tags": [],
+              "indexed_tags": []
+            }
+          ]
+        },
+        "entry_id": "a",
+        "tags": [
+          "new",
+          "new"
+        ]
+      },
+      "expected": {
+        "kind": "refusal",
+        "reason": "entry-order"
+      }
+    },
+    {
+      "name": "sixteenth-entry",
+      "request": {
+        "interface": "catalog-manual-tags/1",
+        "state": {
+          "entries": [
+            {
+              "id": "a",
+              "title": "a",
+              "manual_tags": [],
+              "indexed_tags": []
+            },
+            {
+              "id": "b",
+              "title": "b",
+              "manual_tags": [],
+              "indexed_tags": []
+            },
+            {
+              "id": "c",
+              "title": "c",
+              "manual_tags": [],
+              "indexed_tags": []
+            },
+            {
+              "id": "d",
+              "title": "d",
+              "manual_tags": [],
+              "indexed_tags": []
+            },
+            {
+              "id": "e",
+              "title": "e",
+              "manual_tags": [],
+              "indexed_tags": []
+            },
+            {
+              "id": "f",
+              "title": "f",
+              "manual_tags": [],
+              "indexed_tags": []
+            },
+            {
+              "id": "g",
+              "title": "g",
+              "manual_tags": [],
+              "indexed_tags": []
+            },
+            {
+              "id": "h",
+              "title": "h",
+              "manual_tags": [],
+              "indexed_tags": []
+            },
+            {
+              "id": "i",
+              "title": "i",
+              "manual_tags": [],
+              "indexed_tags": []
+            },
+            {
+              "id": "j",
+              "title": "j",
+              "manual_tags": [],
+              "indexed_tags": []
+            },
+            {
+              "id": "k",
+              "title": "k",
+              "manual_tags": [],
+              "indexed_tags": []
+            },
+            {
+              "id": "l",
+              "title": "l",
+              "manual_tags": [],
+              "indexed_tags": []
+            },
+            {
+              "id": "m",
+              "title": "m",
+              "manual_tags": [],
+              "indexed_tags": []
+            },
+            {
+              "id": "n",
+              "title": "n",
+              "manual_tags": [],
+              "indexed_tags": []
+            },
+            {
+              "id": "o",
+              "title": "o",
+              "manual_tags": [],
+              "indexed_tags": []
+            },
+            {
+              "id": "p",
+              "title": "p",
+              "manual_tags": [],
+              "indexed_tags": []
+            }
+          ]
+        },
+        "entry_id": "p",
+        "tags": [
+          "last",
+          "last"
+        ]
+      },
+      "expected": {
+        "kind": "success",
+        "state": {
+          "entries": [
+            {
+              "id": "a",
+              "title": "a",
+              "manual_tags": [],
+              "indexed_tags": []
+            },
+            {
+              "id": "b",
+              "title": "b",
+              "manual_tags": [],
+              "indexed_tags": []
+            },
+            {
+              "id": "c",
+              "title": "c",
+              "manual_tags": [],
+              "indexed_tags": []
+            },
+            {
+              "id": "d",
+              "title": "d",
+              "manual_tags": [],
+              "indexed_tags": []
+            },
+            {
+              "id": "e",
+              "title": "e",
+              "manual_tags": [],
+              "indexed_tags": []
+            },
+            {
+              "id": "f",
+              "title": "f",
+              "manual_tags": [],
+              "indexed_tags": []
+            },
+            {
+              "id": "g",
+              "title": "g",
+              "manual_tags": [],
+              "indexed_tags": []
+            },
+            {
+              "id": "h",
+              "title": "h",
+              "manual_tags": [],
+              "indexed_tags": []
+            },
+            {
+              "id": "i",
+              "title": "i",
+              "manual_tags": [],
+              "indexed_tags": []
+            },
+            {
+              "id": "j",
+              "title": "j",
+              "manual_tags": [],
+              "indexed_tags": []
+            },
+            {
+              "id": "k",
+              "title": "k",
+              "manual_tags": [],
+              "indexed_tags": []
+            },
+            {
+              "id": "l",
+              "title": "l",
+              "manual_tags": [],
+              "indexed_tags": []
+            },
+            {
+              "id": "m",
+              "title": "m",
+              "manual_tags": [],
+              "indexed_tags": []
+            },
+            {
+              "id": "n",
+              "title": "n",
+              "manual_tags": [],
+              "indexed_tags": []
+            },
+            {
+              "id": "o",
+              "title": "o",
+              "manual_tags": [],
+              "indexed_tags": []
+            },
+            {
+              "id": "p",
+              "title": "p",
+              "manual_tags": [
+                "last"
+              ],
+              "indexed_tags": []
+            }
+          ]
+        },
+        "entry_ids": [
+          "a",
+          "b",
+          "c",
+          "d",
+          "e",
+          "f",
+          "g",
+          "h",
+          "i",
+          "j",
+          "k",
+          "l",
+          "m",
+          "n",
+          "o",
+          "p"
+        ]
+      }
+    },
+    {
+      "name": "seventeenth-entry",
+      "request": {
+        "interface": "catalog-manual-tags/1",
+        "state": {
+          "entries": [
+            {
+              "id": "a",
+              "title": "a",
+              "manual_tags": [],
+              "indexed_tags": []
+            },
+            {
+              "id": "b",
+              "title": "b",
+              "manual_tags": [],
+              "indexed_tags": []
+            },
+            {
+              "id": "c",
+              "title": "c",
+              "manual_tags": [],
+              "indexed_tags": []
+            },
+            {
+              "id": "d",
+              "title": "d",
+              "manual_tags": [],
+              "indexed_tags": []
+            },
+            {
+              "id": "e",
+              "title": "e",
+              "manual_tags": [],
+              "indexed_tags": []
+            },
+            {
+              "id": "f",
+              "title": "f",
+              "manual_tags": [],
+              "indexed_tags": []
+            },
+            {
+              "id": "g",
+              "title": "g",
+              "manual_tags": [],
+              "indexed_tags": []
+            },
+            {
+              "id": "h",
+              "title": "h",
+              "manual_tags": [],
+              "indexed_tags": []
+            },
+            {
+              "id": "i",
+              "title": "i",
+              "manual_tags": [],
+              "indexed_tags": []
+            },
+            {
+              "id": "j",
+              "title": "j",
+              "manual_tags": [],
+              "indexed_tags": []
+            },
+            {
+              "id": "k",
+              "title": "k",
+              "manual_tags": [],
+              "indexed_tags": []
+            },
+            {
+              "id": "l",
+              "title": "l",
+              "manual_tags": [],
+              "indexed_tags": []
+            },
+            {
+              "id": "m",
+              "title": "m",
+              "manual_tags": [],
+              "indexed_tags": []
+            },
+            {
+              "id": "n",
+              "title": "n",
+              "manual_tags": [],
+              "indexed_tags": []
+            },
+            {
+              "id": "o",
+              "title": "o",
+              "manual_tags": [],
+              "indexed_tags": []
+            },
+            {
+              "id": "p",
+              "title": "p",
+              "manual_tags": [],
+              "indexed_tags": []
+            },
+            {
+              "id": "q",
+              "title": "q",
+              "manual_tags": [],
+              "indexed_tags": []
+            }
+          ]
+        },
+        "entry_id": "p",
+        "tags": [
+          "last",
+          "last"
+        ]
+      },
+      "expected": {
+        "kind": "refusal",
+        "reason": "invalid-request"
+      }
+    }
+  ],
+  "chains": [
+    {
+      "first": "replace-duplicates",
+      "next": "repeat-replacement"
+    },
+    {
+      "first": "clear-manual",
+      "next": "readd-after-clear"
+    }
+  ]
+}
