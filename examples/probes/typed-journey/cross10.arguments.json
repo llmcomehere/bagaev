@@ -1,0 +1,1 @@
+[{"interface":"inventory-batch/1","requests":[{"amount":5,"sku":"a"},{"amount":5,"sku":"b"}],"stock":[{"available":20,"sku":"a"},{"available":20,"sku":"b"}]}]
