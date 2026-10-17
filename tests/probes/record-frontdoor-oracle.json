@@ -1,0 +1,102 @@
+{
+  "schema": "bagaev-public-record-route-oracle/2",
+  "base_oracle_sha256": "813e590aa3ac60ed831f74affcb6145e464b40ef56b0368167601214a9ff7c33",
+  "base_facade_sha256": "45d30675c437e17eadfdbd2b43b09eaf70c8ae054d61e9370f510c3f0be63166",
+  "routes": {
+    "check": [
+      "record_source_check",
+      []
+    ],
+    "run": [
+      "record_source_run",
+      []
+    ],
+    "inspect": [
+      "record_text",
+      [
+        "inspect",
+        "--form",
+        "5"
+      ]
+    ],
+    "diagnose": [
+      "record_diagnose",
+      []
+    ],
+    "format": [
+      "record_format",
+      []
+    ],
+    "source-map": [
+      "record_source_map",
+      []
+    ],
+    "function": [
+      "record_function",
+      []
+    ],
+    "draft": [
+      "record_draft",
+      []
+    ],
+    "export": [
+      "record_export",
+      []
+    ],
+    "compile-cpython": [
+      "record_cpython_compile",
+      []
+    ],
+    "history": [
+      "record_revisions",
+      []
+    ],
+    "history-store": [
+      "record_history_store",
+      []
+    ],
+    "verify-run": [
+      "record_run_verify",
+      []
+    ],
+    "verify-run-expectation": [
+      "record_run_expectation",
+      []
+    ],
+    "verify-expectation-set": [
+      "record_expectation_set",
+      []
+    ],
+    "check-location": [
+      "record_check_location",
+      []
+    ],
+    "failure-location": [
+      "record_failure_location",
+      []
+    ],
+    "run-cpython": [
+      "record_cpython_run",
+      []
+    ],
+    "verify-cpython-run": [
+      "record_cpython_run_verify",
+      []
+    ],
+    "verify-cpython-run-expectation": [
+      "record_cpython_run_expectation",
+      []
+    ]
+  },
+  "help": "Bagaev authored-record commands\ncheck                  Pinned source-only semantic check\nrun                    Explicit reference execution; separate authority required\ninspect                Data-only inspection; form5 default, explicit --form 6\nfunction               Extract/context/replace; replacement produces a draft packet\ndraft                  Restricted multi-body draft packet; not applied source\nexport                 Validate and export a draft packet to fresh source\ncompile-cpython        Checked form5/profile11 artifact; no generated execution\nrun-cpython            Fresh checked source run; separately reviewed Python pin required\nverify-cpython-run     Retained CPython consistency; no execution or authentication\nverify-cpython-run-expectation  Compare retained CPython data with pinned expectations\nhistory                Portable form5/form6 revision packages\nhistory-store          Local candidate history storage; not admission\nverify-run             Retained source-run consistency\nverify-run-expectation Compare one retained run with supplied expectations\nverify-expectation-set Compare a complete supplied obligation set\ncheck-location         Bound checker refusal to explicit form5/form6 source\nfailure-location       Bound retained runtime failure to pinned source\nformat                 Token-preserving source formatting\ndiagnose               Source syntax diagnostics\nsource-map             Explicit source/program-bound locations\nPass the remaining arguments unchanged to the documented delegate.\nUse Python -B -S with assertions and an authorized execution profile.\nDrafts, artifacts, hashes and consistency checks grant no execution authority.\n",
+  "unknown": {
+    "exit_code": 2,
+    "stdout": "",
+    "stderr": "RECORD_COMMAND\n"
+  },
+  "claims": {
+    "new_runtime_authority": false,
+    "unpublished_routes": false
+  },
+  "invocation": "One command per fresh -B -S process; never reuse reader imports for compilation."
+}
