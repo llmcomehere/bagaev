@@ -111,6 +111,9 @@ def encode(value):
   for n,fields in defs.items():
    ident(n);need(type(fields)is dict,'FORM_PROFILE')
    for k,v in fields.items():ident(k);ident(v)
+ def operand(x):
+  rendered=expr(x)
+  return "("+rendered+")" if x[0]=="if" else rendered
  def expr(x):
   need(type(x)is list and x,'FORM_PROFILE');op=x[0]
   if op=='int' and len(x)==2:need(type(x[1])is int and -(1<<63)<=x[1]<(1<<63),'FORM_PROFILE');return str(x[1])
@@ -120,7 +123,7 @@ def encode(value):
   if op=='field' and len(x)==3:need(type(x[1])is list and x[1] and x[1][0] in ('arg','field'),'FORM_PROFILE');return expr(x[1])+'.'+ident(x[2])
   if op=='list.unique' and len(x)==2:return 'list.unique('+expr(x[1])+')'
   if op=='call' and len(x)>=2:return ident(x[1])+'('+', '.join(expr(a) for a in x[2:])+')'
-  if op=='lt' and len(x)==3:return '('+expr(x[1])+' < '+expr(x[2])+')'
+  if op=='lt' and len(x)==3:return '('+operand(x[1])+' < '+operand(x[2])+')'
   if op=='if' and len(x)==4:return 'if ('+expr(x[1])+') then ('+expr(x[2])+') else ('+expr(x[3])+')'
   if op=='variant' and len(x)==4:
    n=ident(x[1]);alt=ident(x[2]);need(n in p['variants'] and alt in p['variants'][n],'FORM_PROFILE');return n+'.'+alt+'('+expr(x[3])+')'
@@ -135,4 +138,4 @@ def encode(value):
   f=p['functions'][n];shape(f,['params','result','body']);need(type(f['params'])is list,'FORM_PROFILE');params=[]
   for pair in f['params']:need(type(pair)is list and len(pair)==2,'FORM_PROFILE');params.append(ident(pair[0])+': '+ident(pair[1]))
   lines.append('  fn '+ident(n)+'('+', '.join(params)+') -> '+ident(f['result'])+' = '+expr(f['body'])+';')
- lines.append('}');out=('\n'.join(lines)+'\n').encode();need(len(out)<=old.BYTE_LIMIT,'FORM_BOUNDS');return out
+ lines.append('}');out=('\n'.join(lines)+'\n').encode();need(len(out)<=old.BYTE_LIMIT,'FORM_BOUNDS');need(json.dumps(decode(out),sort_keys=True,ensure_ascii=False,separators=(',',':'),allow_nan=False)==json.dumps(value,sort_keys=True,ensure_ascii=False,separators=(',',':'),allow_nan=False),'FORM_PROFILE');return out
