@@ -107,3 +107,28 @@ fresh-process recovery, not uninstrumented OS-fault coverage, fsync/power-loss
 durability, crash-atomic publication or concurrent-head safety. Capture timeout
 and overflow handling were statically reviewed but not exercised by these six
 calls. No application evaluator, database, model or network was invoked.
+
+## Choose portable history or a local transactional store
+
+Use this portable package when you need exact source exchange, detached review
+or checkout in another session. Each append creates a new file; a failed output
+can remain partial, and recovery starts from the intact predecessor at a new path.
+
+For a local history whose logical append must commit as one transaction, use the
+existing [candidate history store](record-history-store.md). It stores the same
+bounded form5/form6 source history in SQLite and supports explicit restore,
+append, inspect, recover, export and checkout. It is a candidate-source store,
+not application state or execution admission. Follow that guide's explicit form,
+pins and accepted rollback-journal profile; do not change SQLite settings to
+force an unsupported environment through its checks.
+
+A commit can succeed even if its acknowledgment fails. Reconcile the current
+package/head before retrying. The existing store qualification distinguishes
+before-commit and after-commit exits; it does not establish power-loss durability
+or exercised hot-journal recovery. Export and checkout still write new portable
+files and can leave partial output on failure. A transactional database commit
+does not make the separate exported file atomically published.
+
+These are two existing routes with different output boundaries. Moving a pinned
+portable package into a new local store uses the store's explicit `restore`
+operation; it does not require a new history schema or another storage backend.
