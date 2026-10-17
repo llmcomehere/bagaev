@@ -37,6 +37,7 @@ def export_source(original, packet, *, base_sha256, target_sha256, form_version=
     part['functions'] = {name: copy.deepcopy(new[name])}
     rebuilt = edit.replace(original, edit.form.encode(part), base_sha256=base_sha256,
                            function_sha256=digest(old[name]))
+    need(type(packet['delta']) is dict and packet['delta'] == rebuilt['delta'], 'EXPORT_PACKET')
     need(digest(packet) == digest(rebuilt), 'EXPORT_PACKET')
     return encoded
 
