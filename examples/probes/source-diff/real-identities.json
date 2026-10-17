@@ -1,0 +1,7 @@
+{
+  "schema":"bagaev-source-diff-known-item-identities/1",
+  "function":"batch_apply",
+  "before_sha256":"7c2d12d8944682ca1ee7717de1a9e5fcc77477a3885472e8f75e032b5bba9c31",
+  "after_sha256":"0d9e166761d67c3d8544c42c381b5cbdeb069b3d29b44688b03671e3fbd951fb",
+  "note":"Before identity was frozen for the prior authored edit; after identity is a mechanical SHA256 of its already retained canonical function data. Neither comes from the new source-diff implementation or a new application execution."
+}
