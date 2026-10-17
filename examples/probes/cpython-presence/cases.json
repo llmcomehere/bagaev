@@ -1,0 +1,38 @@
+{
+  "schema":"bagaev-cpython-presence-ops-oracle/1",
+  "status":"frozen-before-lowering-change",
+  "profile":"bagaev-typed-record/11",
+  "expression_wrapper":"bagaev record-form/5;\nprogram { entry main; fn main(PARAMETERS) -> Bool = EXPRESSION; }\n",
+  "wrapper_rules":{"option_cases":{"parameters":"","arguments_raw":"[]"},"missing_case":{"parameters":"input: Json"},"projected_option_cases":{"parameters":"input: Json","expression":"option.is_some(json.int(input))"},"operand_refusal":{"parameters":"","arguments_raw":"[]"}},
+  "json_program":"bagaev record-form/5;\nprogram { entry main; fn main(input: Json) -> Bool = json.is_text(input); }\n",
+  "json_cases":[
+    {"id":"empty-text","input":"","expected":true,"work":2},
+    {"id":"ascii","input":"abc","expected":true,"work":2},
+    {"id":"unicode","input":"Я😀","expected":true,"work":2},
+    {"id":"ascii256","repeat":{"text":"a","count":256},"expected":true,"work":2},
+    {"id":"ascii257","repeat":{"text":"a","count":257},"expected":false,"work":2},
+    {"id":"emoji256","repeat":{"text":"😀","count":256},"expected":true,"work":2},
+    {"id":"emoji257","repeat":{"text":"😀","count":257},"expected":false,"work":2},
+    {"id":"null","input":null,"expected":false,"work":2},
+    {"id":"boolean","input":true,"expected":false,"work":2},
+    {"id":"integer","input":0,"expected":false,"work":2},
+    {"id":"array","input":[],"expected":false,"work":2},
+    {"id":"object","input":{},"expected":false,"work":2}
+  ],
+  "option_cases":[
+    {"id":"none","expression":"option.is_some(none.int())","expected":false,"work":2},
+    {"id":"zero","expression":"option.is_some(some.int(0))","expected":true,"work":3},
+    {"id":"minimum","expression":"option.is_some(some.int(-9223372036854775808))","expected":true,"work":3},
+    {"id":"maximum","expression":"option.is_some(some.int(9223372036854775807))","expected":true,"work":3}
+  ],
+  "missing_case":{"expression":"json.is_text(json.at(input, 0))","arguments":[[]],"expected":false,"work":4},
+  "projected_option_cases":[
+    {"id":"project-zero","arguments_raw":"[0]","expected":true,"work":4},
+    {"id":"project-wide","arguments_raw":"[18446744073709551616]","expected":false,"work":23},
+    {"id":"project-negative-wide","arguments_raw":"[-9223372036854775809]","expected":false,"work":23},
+    {"id":"project-bool","arguments_raw":"[true]","expected":false,"work":3}
+  ],
+  "operand_refusal":{"expression":"option.is_some(some.int(9223372036854775807 + 1))","status":"integer-overflow","reason":"RR_OVERFLOW","location":"/program/functions/main/body/1/1","work":5},
+  "runtime_only":{"fresh_frame_work":1,"wrong_option_values":[null,true,0],"wrong_json_values":[null,true,0],"expected_exception":"RuntimeAPIError","expected_code":"VALUE_API","work_after_refusal":1},
+  "limits":"repeat is a fixed bounded input constructor, not expected-output computation. All positive outputs are Bool, success, null reason/location. No text-byte surcharge. Existing 12 inventory outcomes remain unchanged."
+}

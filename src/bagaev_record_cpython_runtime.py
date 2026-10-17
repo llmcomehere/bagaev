@@ -248,6 +248,7 @@ class Frame:
         return TextList(tuple(sorted(set(x.items),key=lambda s:s.encode())))
     def none_int(self): return Option(None)
     def some_int(self,n): need(integer(n)); return Option(n)
+    def option_is_some(self,v): need(type(v) is Option); return v.value is not None
     def record(self,name,items):
         need(type(name) is str and name in self.layout.records and type(items) is tuple)
         value=_Record(self.layout,name,items); need(self.layout.valid(value,name)); return value
@@ -276,6 +277,7 @@ class Frame:
     def json_kind(self,v): self._json(v); return v.kind()
     def json_len(self,v): self._json(v); return Option(v.length())
     def json_int(self,v): self._json(v); self.charge(v.int_charge()); return Option(v.integer())
+    def json_is_text(self,v): self._json(v); return v.text() is not None
     def json_field(self,v,key):
         self._json(v)
         try: amount=v.field_charge(key)

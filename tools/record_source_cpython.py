@@ -7,7 +7,7 @@ ROOT=Path(__file__).absolute().parents[1]
 LIMIT=1048576
 PIN=re.compile(r'[0-9a-f]{64}\Z')
 RUNTIMES={'src/bagaev_record_json_view.py':'5649655d5a11c11f8172c4ddcca612ca36a8afe2db40d78a2e628d322ac1a2f9',
-          'src/bagaev_record_cpython_runtime.py':'29a82b43abf8e04f061da7a742b8e537589cf97df2354e769ae62bcedc703031'}
+          'src/bagaev_record_cpython_runtime.py':'aa5ffd5376eec99bdabd3b186373f560ae6b49f9dec798f5539fed10d409d21b'}
 _MARKER=object()
 
 

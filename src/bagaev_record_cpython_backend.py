@@ -34,7 +34,8 @@ HELPERS={'add':('add',2),'sub':('sub',2),'mul':('mul',2),'eq':('eq',2),
  'list.contains':('list_contains',2),'list.unique':('list_unique',1),
  'records.len':('records_len',1),'records.at':('records_at',2),'records.push':('records_push',2),
  'json.kind':('json_kind',1),'json.len':('json_len',1),'json.int':('json_int',1),
- 'json.at':('json_at',2),'none.int':('none_int',0),'some.int':('some_int',1)}
+ 'json.at':('json_at',2),'json.is_text':('json_is_text',1),
+ 'none.int':('none_int',0),'some.int':('some_int',1),'option.is_some':('option_is_some',1)}
 
 
 class _Lowering:
