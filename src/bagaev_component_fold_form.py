@@ -93,6 +93,9 @@ def encode(value):
   for n,fields in defs.items():
    ident(n);need(type(fields)is dict,'FORM_PROFILE')
    for k,v in fields.items():ident(k);ident(v)
+ def operand(x):
+  rendered=expr(x)
+  return "("+rendered+")" if x[0] in ("if","let","match","loop") else rendered
  def expr(x):
   need(type(x)is list and x,'FORM_PROFILE');op=x[0];need(type(op)is str,'FORM_PROFILE')
   if op=='loop' and len(x)==6:
@@ -101,7 +104,7 @@ def encode(value):
   if op=='bool' and len(x)==2:need(type(x[1])is bool,'FORM_PROFILE');return 'true' if x[1] else 'false'
   if op=='text' and len(x)==2:need(type(x[1])is str and not any(0xd800<=ord(c)<=0xdfff for c in x[1]),'FORM_PROFILE');return json.dumps(x[1],ensure_ascii=False)
   if op in ('arg','use') and len(x)==2:return ident(x[1])
-  if op in ('add','sub','mul') and len(x)==3:return '('+expr(x[1])+' '+{'add':'+','sub':'-','mul':'*'}[op]+' '+expr(x[2])+')'
+  if op in ('add','sub','mul') and len(x)==3:return '('+operand(x[1])+' '+{'add':'+','sub':'-','mul':'*'}[op]+' '+operand(x[2])+')'
   if op in INTRINSICS:
    arity=INTRINSICS[op];need((len(x)-1<=64) if arity is None else len(x)==arity+1,'FORM_PROFILE');return op+'('+', '.join(expr(a) for a in x[1:])+')'
   if op=='match' and len(x)==3:
@@ -113,7 +116,7 @@ def encode(value):
   if op=='field' and len(x)==3:need(type(x[1])is list and x[1] and x[1][0] in ('arg','use','field'),'FORM_PROFILE');return expr(x[1])+'.'+ident(x[2])
   if op=='list.unique' and len(x)==2:return 'list.unique('+expr(x[1])+')'
   if op=='call' and len(x)>=2:return ident(x[1])+'('+', '.join(expr(a) for a in x[2:])+')'
-  if op=='lt' and len(x)==3:return '('+expr(x[1])+' < '+expr(x[2])+')'
+  if op=='lt' and len(x)==3:return '('+operand(x[1])+' < '+operand(x[2])+')'
   if op=='if' and len(x)==4:return 'if ('+expr(x[1])+') then ('+expr(x[2])+') else ('+expr(x[3])+')'
   if op=='variant' and len(x)==4:
    n=ident(x[1]);alt=ident(x[2]);need(n+'.'+alt not in INTRINSICS,'FORM_PROFILE');need(n in p['variants'] and alt in p['variants'][n],'FORM_PROFILE');return n+'.'+alt+'('+expr(x[3])+')'
