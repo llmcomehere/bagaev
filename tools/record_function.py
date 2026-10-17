@@ -11,7 +11,9 @@ def main(argv=None):
         p=transport.Parser(add_help=False,allow_abbrev=False)
         p.add_argument('operation',choices=('extract','context','replace'));p.add_argument('input')
         p.add_argument('--callee-context',action='store_true');p.add_argument('--source-body',action='store_true');p.add_argument('--locations',action='store_true');p.add_argument('--form',choices=('4','5','6'),default='4');p.add_argument('--name');p.add_argument('--replacement');p.add_argument('--base');p.add_argument('--function-pin');p.add_argument('--output',required=True)
+        p.add_argument('--compact',action='store_true')
         a=p.parse_args(sys.argv[1:] if argv is None else argv)
+        if a.compact and (a.operation!='context' or a.form!='5' or not a.source_body or a.locations):raise transport.Refusal('TOOL_USAGE')
         edit=wide_edit if a.form=='5' else default_edit
         if a.form=='6':
             if a.operation=='replace':
@@ -25,7 +27,7 @@ def main(argv=None):
         if a.operation in ('extract','context'):
             if a.name is None or any(x is not None for x in (a.replacement,a.base,a.function_pin)):raise transport.Refusal('TOOL_USAGE')
             source=transport.read_input(a.input)
-            value=edit.fragment(source,a.name) if a.operation=='extract' else (edit.source_context(source,a.name) if a.source_body else edit.located_context(source,a.name) if a.locations else edit.context(source,a.name))
+            value=edit.fragment(source,a.name) if a.operation=='extract' else (edit.compact_source_context(source,a.name) if a.compact else edit.source_context(source,a.name) if a.source_body else edit.located_context(source,a.name) if a.locations else edit.context(source,a.name))
         else:
             if a.name is not None or any(x is None for x in (a.replacement,a.base,a.function_pin)):raise transport.Refusal('TOOL_USAGE')
             if a.callee_context and a.form=='6':
