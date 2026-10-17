@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Explicit data-only form4/form5/form6 function fragment replacement tool."""
-import json,sys
+import argparse,json,sys
 import record_text as transport
 import bagaev_record_function as default_edit
 import bagaev_record_wide_function as wide_edit
@@ -8,11 +8,25 @@ import bagaev_record_wide_function as wide_edit
 def main(argv=None):
     edit=default_edit
     try:
-        p=transport.Parser(add_help=False,allow_abbrev=False)
+        p=transport.Parser(prog='record_function.py',add_help=False,allow_abbrev=False,
+                           formatter_class=lambda prog:argparse.HelpFormatter(prog,width=88))
         p.add_argument('operation',choices=('extract','context','replace'));p.add_argument('input')
         p.add_argument('--callee-context',action='store_true');p.add_argument('--source-body',action='store_true');p.add_argument('--locations',action='store_true');p.add_argument('--form',choices=('4','5','6'),default='4');p.add_argument('--name');p.add_argument('--replacement');p.add_argument('--base');p.add_argument('--function-pin');p.add_argument('--output',required=True)
         p.add_argument('--compact',action='store_true')
-        a=p.parse_args(sys.argv[1:] if argv is None else argv)
+        arguments=list(sys.argv[1:] if argv is None else argv)
+        if arguments in (['--help'],['-h']):
+            print(p.format_help(),end='')
+            print('\nUse --help or -h alone; no input/output is read or written for help.\n'
+                  'Default form: 4. Select --form 5 or --form 6 explicitly.\n'
+                  'extract/context require --name; replace requires --replacement, --base and --function-pin.\n'
+                  '--source-body and --locations apply to context in form5/form6.\n'
+                  '--compact requires context --form 5 --source-body and excludes --locations.\n'
+                  '--callee-context applies only to replace in form5/form6.\n'
+                  'All normal commands require --output pointing to a new file.\n'
+                  'Extraction/context are data views; replacement creates a draft, not applied source.\n'
+                  'No semantic check or execution admission is granted by these outputs.')
+            return 0
+        a=p.parse_args(arguments)
         if a.compact and (a.operation!='context' or a.form!='5' or not a.source_body or a.locations):raise transport.Refusal('TOOL_USAGE')
         edit=wide_edit if a.form=='5' else default_edit
         if a.form=='6':
