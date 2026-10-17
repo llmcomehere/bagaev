@@ -1,7 +1,6 @@
 # Compact language reference
 
-Budgets: 32,768 UTF-8 bytes here, 4,096 in README.
-Byte limits, not measured tokens or universal context-fit claims.
+Budgets: 32,768 UTF-8 bytes here, 4,096 in README; not token/context-fit claims.
 
 ## Choose a route from the task
 
@@ -13,9 +12,9 @@ Byte limits, not measured tokens or universal context-fit claims.
 | Existing dynamic JSON/Store program | `bagaev-l2/1`, or explicit `/2` for `filter` | Dynamic language and distinct pins; complete operations below. |
 | Small original dataflow example | `bagaev/l0-program/v1` | Ten operations; all nodes evaluate, including unreachable ones. |
 
-Respect versions. Production/mobile/GPU/distributed support and cost advantage
-are unproven. Pure code needs no LLM; no I/O, clock, randomness, imports,
-callbacks, dynamic evaluation or mutation.
+Respect versions; no production/mobile/GPU/distributed or cost claim.
+Pure code needs no LLM and has no I/O, clock, randomness, imports, callbacks,
+dynamic evaluation or mutation.
 
 ## Start with readable typed source
 
@@ -229,15 +228,16 @@ Join checked nodes and maps only when program pins match, using JSON pointers.
 
 ## Finish one change
 
-Use reviewed, authorized tools. `-B` suppresses bytecode writes, not a sandbox.
-Inputs: bounded regular nonsymlink files; outputs: new only. Refusals exit2;
-OS failure may leave partial output. No evaluator launches.
+Use reviewed, authorized tools; `-B` is not a sandbox. These stages do not evaluate
+programs. Inputs: bounded regular nonsymlink files; outputs: new only.
+Refusals exit2; OS failure may leave partial output.
 
 | Need | Command shape (`python3 -B tools/` prefix omitted) |
 | --- | --- |
 | Decode readable source | `record_text.py decode S --form 5 --output P` |
 | Encode graph | `record_text.py encode P --form 5 [--named-calls] --output S` |
 | Inspect identity | `record_text.py inspect S --form 5 [--bounds B] --output INFO` |
+| Pinned source diff | `record.py diff`; [flags and report](record-source-diff.md). |
 | Prepare typed arguments | `record_text.py prepare S --form 5 --arguments A --output INV` |
 | Prepare raw Json arguments | `record_json_prepare.py S --form 5 --arguments A --output INV` |
 | Syntax context | `record_diagnose.py S --form 5 --output DIAG` |
@@ -297,13 +297,16 @@ when it needs original callee declarations. All require explicit form5/layout
 mode. Leading/trailing fragment trivia is excluded. Full output graph, target,
 size and packet equality are rechecked. Existing outputs are never overwritten.
 
-Freeze expected inputs/results; independently select and review source/target
-and delta, then check behavior/refusals. Candidate-announced pins are insufficient.
-Acceptance, conformance, review and measurement differ. [Batch](inventory-batch-change.md).
+Freeze expected results; independently review source/target/delta and test refusals.
+Candidate pins are insufficient. Acceptance, review and measurement differ.
 
 Prepared APIs reuse checked source. [Native hosting](prepared-json11-native.md)
 separately requires exact-kernel admission/buffer safety; wire consistency
 does not authenticate origin.
+
+[Authored CLI](record-cli.md): structural diff, then [typed change and continuation](typed-journey.md).
+The [CPython companion](typed-journey-cpython.md) separates authorized execution
+from data-only verification. Diff is not semantic equivalence or an apply packet.
 
 ## Existing stateful component programs
 
@@ -501,13 +504,11 @@ observations; extract the returned program field before using it as a source.
 
 ## Decide what to try next
 
-Pure authoring needs this guide; host ABI/persistence/recovery need their selected
-contracts. Proposals are not accepted syntax. Unknown versions refuse; changing
-a header is not migration. Forms1..4 select profile10/capacity4, adding
-option/omission/Json; form5 selects11, form6 selects12. Keep old contracts pinned.
+Host ABI/persistence/recovery require separate contracts. Proposals are not syntax;
+unknown versions refuse; changing headers is not migration. Forms1..4 select
+profile10/capacity4 with option/omission/Json; form5 selects11, form6 selects12.
 
-Semantic authorities for disputed edges: [typed core](probe-record-source.md),
+Semantic authorities: [typed core](probe-record-source.md),
 [profile11](record-wide-profile.md), [12](record-json-bool-proposal.md), [Text](probe-text-values.md),
 [components](probe-component-outcomes.md), [L2](l2.md), [L0](l0.md).
-Size/operator/example tests do not prove prose completeness or model understanding.
-No runtime semantics changed here.
+Tests do not prove prose completeness or model understanding.

@@ -64,5 +64,6 @@ Original code and documentation: [Apache License 2.0](LICENSE). Referenced works
 retain their own terms. Follow [conduct](CODE_OF_CONDUCT.md) and use the
 [security route](SECURITY.md) for sensitive reports.
 
-For authored-record tooling, [the command entrypoint](docs/record-cli.md) exposes
-inspection, editing packets, export, histories and explicit check/compile stages.
+Use the [authored CLI](docs/record-cli.md) to inspect, diff, edit and retain source.
+Follow [one typed change](docs/typed-journey.md), then its
+[CPython continuation](docs/typed-journey-cpython.md) with separate execution approval.
