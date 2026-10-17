@@ -63,3 +63,6 @@ stays in its original reports and Git history rather than this entry page.
 Original code and documentation: [Apache License 2.0](LICENSE). Referenced works
 retain their own terms. Follow [conduct](CODE_OF_CONDUCT.md) and use the
 [security route](SECURITY.md) for sensitive reports.
+
+For authored-record tooling, [the command entrypoint](docs/record-cli.md) exposes
+inspection, editing packets, export, histories and explicit check/compile stages.
