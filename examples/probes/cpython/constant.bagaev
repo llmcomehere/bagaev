@@ -1,0 +1,7 @@
+bagaev record-form/5;
+program {
+
+  entry main;
+
+  fn main() -> Int64 = 7;
+}
