@@ -86,4 +86,30 @@ class OfflineDocsTests(unittest.TestCase):
   self.assertIn('<li value="4">fourth</li>',body)
  def test_unclosed_fence(self):
   with self.assertRaises(B.BuildError):B.render('```\nunfinished\n','README.md',REV)
+ def test_inline_inside_bold(self):
+  cases=(
+   ('**Read the [compact language reference](docs/choose-and-start.md).**','<strong>Read the <a href="docs/choose-and-start.html">compact language reference</a>.</strong>'),
+   ('**Use `x < y` and [guide](docs/choose-and-start.md#types).**','<strong>Use <code>x &lt; y</code> and <a href="docs/choose-and-start.html#types">guide</a>.</strong>'),
+   ('**[<img src=x>](https://example.com?q=1&x=2)**','<strong><a href="https://example.com?q=1&amp;x=2">&lt;img src=x&gt;</a></strong>'),
+   ('**`[x](javascript:alert)`**','<strong><code>[x](javascript:alert)</code></strong>'),
+   ('`**[x](javascript:alert)**`','<code>**[x](javascript:alert)**</code>'),
+   ('**plain <text> & value**','<strong>plain &lt;text&gt; &amp; value</strong>'))
+  for source,expected in cases:
+   with self.subTest(source=source):self.assertEqual(B.inline(source,'README.md',REV),expected)
+ def test_unsafe_links_inside_bold_refuse_before_output(self):
+  for target in ('javascript:alert','data:text/plain,x','file:///tmp/x','//example.com','../private','%2e%2e/private'):
+   with self.subTest(target=target),tempfile.TemporaryDirectory() as d:
+    p=Path(d);root=p/'source';self.fixture(root,'# Example\n\n**[x]('+target+')**\n');out=p/'output'
+    with self.assertRaises(B.BuildError):B.build(root,out,REV)
+    self.assertFalse(out.exists())
+ def test_primary_readme_link_is_an_anchor(self):
+  body,_=B.render((P/'README.md').read_text(),'README.md',REV)
+  self.assertIn('<strong>Read the <a href="docs/choose-and-start.html">compact language reference</a>.</strong>',body)
+  self.assertLessEqual((P/'README.md').stat().st_size,4096)
+ def test_complete_record_list_formula(self):
+  source=(P/'docs/choose-and-start.md').read_text()
+  self.assertLessEqual(len(source.encode('utf-8')),32768)
+  body,_=B.render(source,'docs/choose-and-start.md',REV)
+  self.assertIn('<code>record-list=1+capacity*element_units</code>',body)
+  self.assertNotIn('<li>element units.',body)
 if __name__=='__main__':unittest.main()

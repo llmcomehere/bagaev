@@ -109,8 +109,8 @@ There is no general null type, optional Text, array literal or map type in form5
 Records/variants/lists may refer forward but their combined type graph is acyclic.
 There are at most 8 named types total, 8 fields per record, and 1..8 alternatives
 per variant. Each expanded type is at most 4,096 descriptor units: primitive=1,
-TextList=65, record=1+sum(fields), variant=1+max(payloads), record-list=1+capacity
-* element units. 
+TextList=65, record=1+sum(fields), variant=1+max(payloads),
+`record-list=1+capacity*element_units`.
 
 ### All named intrinsic spellings
 
