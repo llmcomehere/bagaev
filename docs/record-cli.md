@@ -17,6 +17,7 @@ The existing `src/bagaev.py` command family remains the separate L2 interface.
 | `compile-cpython` | `record_cpython_compile.py`: form5/profile11 checked artifact, never generated execution. |
 | `preview-cpython` | `record_cpython_preview.py`: exact form5 compile-packet Python text for review, never execution or authentication. |
 | `run-cpython` | `record_cpython_run.py`: fresh checked source execution with separately reviewed emitted-Python pin; requires its own authorized profile. |
+| `locate-cpython-failure` | `record_cpython_run_location.py`: retained form5/profile11 bundle failure location, descriptive only. |
 | `verify-cpython-run` | `record_cpython_run_verify.py`: nine-file CPython bundle consistency, no execution or authentication. |
 | `verify-cpython-run-expectation` | `record_cpython_run_expectation.py`: raw-argument identity and literal expected-result comparison, no execution. |
 | `history` | `record_revisions.py`: form5 default or explicit form6 portable history. |
@@ -25,7 +26,7 @@ The existing `src/bagaev.py` command family remains the separate L2 interface.
 | `verify-run-expectation` | `record_run_expectation.py`: one run against supplied expectations. |
 | `verify-expectation-set` | `record_expectation_set.py`: complete supplied obligation set, including missing evidence. |
 | `check-location` | `record_check_location.py`: bind a checker refusal to explicit form5/form6 source. |
-| `failure-location` | `record_failure_location.py`: bound retained runtime failure mapping. |
+| `failure-location` | `record_failure_location.py`: older scalar-capture failure mapping; not a CPython run bundle. |
 | `format` | `record_format.py`: token-preserving source formatting. |
 | `diagnose` | `record_diagnose.py`: source syntax diagnostics. |
 | `source-map` | `record_source_map.py`: explicit form5/form6 and source/program identities. |

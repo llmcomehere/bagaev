@@ -16,6 +16,7 @@ cli = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(cli)
 ORACLE = json.loads((ROOT / 'tests/probes/record-frontdoor-oracle.json').read_bytes())
 EXPECTED = {
+    'locate-cpython-failure': ('record_cpython_run_location', []),
     'preview-cpython': ('record_cpython_preview', []),
     'diff': ('record_source_diff', []),
     'run-cpython': ('record_cpython_run', []),
