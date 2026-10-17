@@ -95,6 +95,15 @@ def source_context(source, name):
     return packet
 
 
+def compact_source_context(source, name):
+    """Root-location-only projection; keeps original spelling and identity pins."""
+    packet = source_context(source, name)
+    del packet['source_locations']
+    packet['schema'] = 'bagaev-function-context/5'
+    packet['location_scope'] = 'original-body-root-only; descendant locations omitted'
+    return packet
+
+
 def _context_reader(reader_type, program):
     # Copy only parameter names. No original body is injected into the fragment.
     signatures = {name: tuple(p[0] for p in f['params'])

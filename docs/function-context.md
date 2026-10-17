@@ -25,3 +25,26 @@ is named call, plus an unresolved helper in an unexecuted branch. Two CLI calls
 and unknown-function refusal passed. An initial supplemental expected caller
 list omitted tags_ok; inspection of the existing program confirmed the omission.
 Only that expectation was corrected. No runtime or business oracle changed.
+
+## Optional form5 original-body view
+
+For original spelling without all descendant expression locations, use:
+
+```console
+python3 -B -S tools/record_function.py context Source.bagaev --form 5 --name batch_apply --source-body --compact --output new-context.json
+```
+
+This emits `bagaev-function-context/5`: the same fragment, direct callers/callees,
+source/program/function identity pins and exact original-body text/hash/root
+range as `--source-body`, omitting only `source_locations`. Its `location_scope`
+explicitly says descendant locations are omitted. The root range refers to the
+original full input, not the canonical fragment. Internal source comments remain
+untrusted data. Semantic checking and execution admission remain false.
+
+Without `--compact`, existing outputs are unchanged. Plain `context` is preferable
+when original spelling is unnecessary. Compact mode requires `context --form 5
+--source-body` and refuses `--locations`; form4/form6 are not supported by this
+projection. Input/output bounds and exclusive output creation remain unchanged.
+It first constructs the existing bounded context, so it does not expand accepted
+source sizes or establish reduced computation/memory use. Fewer output bytes are
+not evidence of fewer tokens, reliable model delivery, better answers or cost.
