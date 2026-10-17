@@ -72,7 +72,9 @@ def inline(text, source, revision):
         elif m[2] is not None:
             out.append('<a href="' + html.escape(link(m[3], source, revision), quote=True) + '">' + html.escape(m[2]) + '</a>')
         else:
-            out.append('<strong>' + html.escape(m[4]) + '</strong>')
+            # Bold captures contain no asterisks, so this adds only one level.
+            # Code remains opaque and links retain the same target checks.
+            out.append('<strong>' + inline(m[4], source, revision) + '</strong>')
         start = m.end()
     return ''.join(out) + html.escape(text[start:])
 

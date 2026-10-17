@@ -1,0 +1,1 @@
+[{"interface":"catalog-date-edit/1","state":{"entries":[{"id":"a","title":"A","manual_tags":["z","a","z"],"indexed_tags":["x","x"],"date":0},{"id":"b","title":"B","manual_tags":[],"indexed_tags":[]}]},"entry_id":"a","action":{"kind":"clear"}}]

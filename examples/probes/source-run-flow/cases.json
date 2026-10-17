@@ -1,0 +1,1271 @@
+{
+  "accepted_envelopes": [
+    {
+      "location": null,
+      "reason": null,
+      "schema": "bagaev-typed-record-result/11",
+      "status": "success",
+      "value": -9223372036854775808,
+      "value_type": "Int64",
+      "work": 1
+    },
+    {
+      "location": null,
+      "reason": null,
+      "schema": "bagaev-typed-record-result/11",
+      "status": "success",
+      "value": false,
+      "value_type": "Bool",
+      "work": 1
+    },
+    {
+      "location": null,
+      "reason": null,
+      "schema": "bagaev-typed-record-result/11",
+      "status": "success",
+      "value": "hello",
+      "value_type": "Text",
+      "work": 1
+    },
+    {
+      "location": null,
+      "reason": null,
+      "schema": "bagaev-typed-record-result/11",
+      "status": "success",
+      "value": null,
+      "value_type": "OptionInt64",
+      "work": 1
+    },
+    {
+      "location": null,
+      "reason": null,
+      "schema": "bagaev-typed-record-result/11",
+      "status": "success",
+      "value": [
+        "a",
+        "b"
+      ],
+      "value_type": "TextList",
+      "work": 1
+    },
+    {
+      "location": null,
+      "reason": null,
+      "schema": "bagaev-typed-record-result/11",
+      "status": "success",
+      "value": {
+        "value": 1
+      },
+      "value_type": "Record:Item",
+      "work": 1
+    },
+    {
+      "location": null,
+      "reason": null,
+      "schema": "bagaev-typed-record-result/11",
+      "status": "success",
+      "value": [
+        {
+          "value": 1
+        }
+      ],
+      "value_type": "RecordList:Items",
+      "work": 1
+    },
+    {
+      "location": null,
+      "reason": null,
+      "schema": "bagaev-typed-record-result/11",
+      "status": "success",
+      "value": {
+        "case": "Some",
+        "value": {
+          "value": 1
+        }
+      },
+      "value_type": "Variant:Maybe",
+      "work": 1
+    },
+    {
+      "location": "/program/functions/main/body",
+      "reason": "RR_WORK",
+      "schema": "bagaev-typed-record-result/11",
+      "status": "work-limit",
+      "value": null,
+      "value_type": null,
+      "work": 65520
+    },
+    {
+      "location": "/program/functions/main/body",
+      "reason": "RR_LIST_ITEMS",
+      "schema": "bagaev-typed-record-result/11",
+      "status": "list-bound",
+      "value": null,
+      "value_type": null,
+      "work": 12
+    },
+    {
+      "location": "/program/functions/main/body",
+      "reason": "RR_LIST_BYTES",
+      "schema": "bagaev-typed-record-result/11",
+      "status": "list-bound",
+      "value": null,
+      "value_type": null,
+      "work": 12
+    },
+    {
+      "location": "",
+      "reason": "RR_SHAPE",
+      "schema": "bagaev-typed-record-result/11",
+      "status": "invalid-ir",
+      "value": null,
+      "value_type": null,
+      "work": 0
+    },
+    {
+      "location": "/arguments/0/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\nkey",
+      "reason": "RR_BOUNDS",
+      "schema": "bagaev-typed-record-result/11",
+      "status": "invalid-ir",
+      "value": null,
+      "value_type": null,
+      "work": 0
+    },
+    {
+      "location": null,
+      "reason": null,
+      "schema": "bagaev-typed-record-result/11",
+      "status": "success",
+      "value": true,
+      "value_type": "Bool",
+      "work": 65536
+    },
+    {
+      "location": null,
+      "reason": null,
+      "schema": "bagaev-typed-record-result/11",
+      "status": "success",
+      "value": 9223372036854775807,
+      "value_type": "OptionInt64",
+      "work": 1
+    },
+    {
+      "location": null,
+      "reason": null,
+      "schema": "bagaev-typed-record-result/11",
+      "status": "success",
+      "value": "\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00",
+      "value_type": "Text",
+      "work": 1
+    },
+    {
+      "location": null,
+      "reason": null,
+      "schema": "bagaev-typed-record-result/11",
+      "status": "success",
+      "value": [
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a"
+      ],
+      "value_type": "TextList",
+      "work": 1
+    },
+    {
+      "location": null,
+      "reason": null,
+      "schema": "bagaev-typed-record-result/11",
+      "status": "success",
+      "value": [
+        "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+      ],
+      "value_type": "TextList",
+      "work": 1
+    },
+    {
+      "location": null,
+      "reason": null,
+      "schema": "bagaev-typed-record-result/11",
+      "status": "success",
+      "value": {
+        "f0": 0,
+        "f1": 1,
+        "f2": 2,
+        "f3": 3,
+        "f4": 4,
+        "f5": 5,
+        "f6": 6,
+        "f7": 7
+      },
+      "value_type": "Record:Item",
+      "work": 1
+    },
+    {
+      "location": null,
+      "reason": null,
+      "schema": "bagaev-typed-record-result/11",
+      "status": "success",
+      "value": [
+        {},
+        {},
+        {},
+        {},
+        {},
+        {},
+        {},
+        {},
+        {},
+        {},
+        {},
+        {},
+        {},
+        {},
+        {},
+        {}
+      ],
+      "value_type": "RecordList:Items",
+      "work": 1
+    },
+    {
+      "location": "/program/functions/main/body",
+      "reason": "RR_INDEX",
+      "schema": "bagaev-typed-record-result/11",
+      "status": "list-index",
+      "value": null,
+      "value_type": null,
+      "work": 3
+    },
+    {
+      "location": "/program/functions/main/body",
+      "reason": "RR_RECORD_LIST_ITEMS",
+      "schema": "bagaev-typed-record-result/11",
+      "status": "record-list-bound",
+      "value": null,
+      "value_type": null,
+      "work": 3
+    },
+    {
+      "location": "",
+      "reason": "RR_JSON",
+      "schema": "bagaev-typed-record-result/11",
+      "status": "invalid-ir",
+      "value": null,
+      "value_type": null,
+      "work": 0
+    },
+    {
+      "location": "",
+      "reason": "RR_VERSION",
+      "schema": "bagaev-typed-record-result/11",
+      "status": "invalid-ir",
+      "value": null,
+      "value_type": null,
+      "work": 0
+    },
+    {
+      "location": "",
+      "reason": "RR_REFERENCE",
+      "schema": "bagaev-typed-record-result/11",
+      "status": "invalid-ir",
+      "value": null,
+      "value_type": null,
+      "work": 0
+    },
+    {
+      "location": "",
+      "reason": "RR_CYCLE",
+      "schema": "bagaev-typed-record-result/11",
+      "status": "invalid-ir",
+      "value": null,
+      "value_type": null,
+      "work": 0
+    },
+    {
+      "location": "",
+      "reason": "RR_TYPE",
+      "schema": "bagaev-typed-record-result/11",
+      "status": "invalid-ir",
+      "value": null,
+      "value_type": null,
+      "work": 0
+    },
+    {
+      "location": "",
+      "reason": "RR_ARGUMENT",
+      "schema": "bagaev-typed-record-result/11",
+      "status": "invalid-ir",
+      "value": null,
+      "value_type": null,
+      "work": 0
+    }
+  ],
+  "capture_controls": {
+    "CHECK_FLOW_PROCESS": "RUN_FLOW_PROCESS",
+    "CHECK_FLOW_RESULT": "RUN_FLOW_RESULT"
+  },
+  "preflight_controls": [
+    {
+      "error": "RUN_FLOW_PIN",
+      "fault": "source-pin",
+      "name": "wrong-source-pin"
+    },
+    {
+      "error": "RUN_FLOW_PIN",
+      "fault": "arguments-pin",
+      "name": "wrong-arguments-pin"
+    },
+    {
+      "error": "RUN_FLOW_PIN",
+      "fault": "reference-pin",
+      "name": "wrong-reference-pin"
+    },
+    {
+      "error": "RUN_FLOW_PIN",
+      "fault": "pin-syntax",
+      "name": "invalid-pin-syntax"
+    },
+    {
+      "error": "RUN_FLOW_SOURCE",
+      "name": "invalid-source",
+      "source": "not source"
+    },
+    {
+      "error": "RUN_FLOW_SOURCE",
+      "name": "missing-entry",
+      "source": "bagaev record-form/5; program { entry missing; fn main(x: Json) -> Bool = true; }"
+    },
+    {
+      "arguments": "[1]",
+      "error": "RUN_FLOW_SOURCE",
+      "name": "non-json-entry",
+      "source": "bagaev record-form/5; program { entry main; fn main(x: Int64) -> Bool = true; }"
+    },
+    {
+      "arguments": "[]",
+      "error": "RUN_FLOW_ARGUMENTS",
+      "name": "wrong-arity"
+    },
+    {
+      "arguments": "{}",
+      "error": "RUN_FLOW_ARGUMENTS",
+      "name": "nonarray-arguments"
+    },
+    {
+      "arguments": "[{\"x\":1,\"\\u0078\":2}]",
+      "error": "RUN_FLOW_ARGUMENTS",
+      "name": "escaped-duplicate"
+    },
+    {
+      "arguments": "[NaN]",
+      "error": "RUN_FLOW_ARGUMENTS",
+      "name": "non-json-constant"
+    },
+    {
+      "arguments": "[\"\\ud800\"]",
+      "error": "RUN_FLOW_ARGUMENTS",
+      "name": "unpaired-surrogate"
+    },
+    {
+      "arguments_hex": "ff",
+      "error": "RUN_FLOW_ARGUMENTS",
+      "name": "bad-utf8"
+    },
+    {
+      "arguments": "[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[0]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]",
+      "error": "RUN_FLOW_ARGUMENTS",
+      "name": "deep-arguments"
+    },
+    {
+      "error": "RUN_FLOW_OUTPUT",
+      "fault": "existing-output",
+      "name": "existing-output"
+    }
+  ],
+  "preservation_targets": [
+    "source",
+    "arguments",
+    "reference",
+    "source.bagaev",
+    "arguments.json",
+    "program.json",
+    "invocation.json",
+    "reference.stdout",
+    "reference.stderr"
+  ],
+  "process_controls": [
+    {
+      "code": 1,
+      "error": "RUN_FLOW_PROCESS",
+      "stderr": ""
+    },
+    {
+      "code": 0,
+      "error": "RUN_FLOW_PROCESS",
+      "stderr": "unexpected"
+    }
+  ],
+  "publication_controls": [
+    {
+      "error": "RUN_FLOW_OUTPUT",
+      "fault": "receipt-write",
+      "partial_receipt_possible": true
+    },
+    {
+      "completed_receipt_retained": true,
+      "error": "RUN_FLOW_DELIVERY",
+      "fault": "stdout-delivery"
+    }
+  ],
+  "raw_stdout_controls": [
+    {
+      "error": "RUN_FLOW_RESULT",
+      "hex": "7b",
+      "name": "malformed-json"
+    },
+    {
+      "error": "RUN_FLOW_RESULT",
+      "hex": "ff",
+      "name": "invalid-utf8"
+    },
+    {
+      "error": "RUN_FLOW_RESULT",
+      "hex": "fffe7b0022006c006f0063006100740069006f006e0022003a006e0075006c006c002c00220072006500610073006f006e0022003a006e0075006c006c002c00220073006300680065006d00610022003a0022006200610067006100650076002d00740079007000650064002d007200650063006f00720064002d0072006500730075006c0074002f003100310022002c00220073007400610074007500730022003a002200730075006300630065007300730022002c002200760061006c007500650022003a0074007200750065002c002200760061006c00750065005f00740079007000650022003a00220042006f006f006c0022002c00220077006f0072006b0022003a0031007d00",
+      "name": "utf16"
+    },
+    {
+      "error": "RUN_FLOW_RESULT",
+      "hex": "7b226c6f636174696f6e223a6e756c6c2c22726561736f6e223a6e756c6c2c22736368656d61223a226261676165762d74797065642d7265636f72642d726573756c742f3131222c22737461747573223a2273756363657373222c2276616c7565223a747275652c2276616c75655f74797065223a22426f6f6c222c22776f726b223a312c22776f726b223a317d",
+      "name": "duplicate-key"
+    },
+    {
+      "error": "RUN_FLOW_RESULT",
+      "hex": "7b226c6f636174696f6e223a6e756c6c2c22726561736f6e223a6e756c6c2c22736368656d61223a226261676165762d74797065642d7265636f72642d726573756c742f3131222c22737461747573223a2273756363657373222c2276616c7565223a747275652c2276616c75655f74797065223a22426f6f6c222c22776f726b223a312c22776f5c75303037326b223a317d",
+      "name": "escaped-duplicate-key"
+    },
+    {
+      "error": "RUN_FLOW_RESULT",
+      "hex": "7b22736368656d61223a20226261676165762d74797065642d7265636f72642d726573756c742f3131222c2022737461747573223a202273756363657373222c202276616c75655f74797065223a202254657874222c202276616c7565223a20225c7564383030222c2022776f726b223a20312c2022726561736f6e223a206e756c6c2c20226c6f636174696f6e223a206e756c6c7d",
+      "name": "surrogate"
+    },
+    {
+      "error": "RUN_FLOW_RESULT",
+      "hex": "7b22736368656d61223a20226261676165762d74797065642d7265636f72642d726573756c742f3131222c2022737461747573223a202273756363657373222c202276616c75655f74797065223a20225265636f72643a4974656d222c202276616c7565223a207b2276616c7565223a20312e357d2c2022776f726b223a20312c2022726561736f6e223a206e756c6c2c20226c6f636174696f6e223a206e756c6c7d",
+      "name": "nested-float"
+    },
+    {
+      "error": "RUN_FLOW_RESULT",
+      "hex": "7b22736368656d61223a20226261676165762d74797065642d7265636f72642d726573756c742f3131222c2022737461747573223a202273756363657373222c202276616c75655f74797065223a20225265636f72643a4974656d222c202276616c7565223a207b2276616c7565223a20393232333337323033363835343737353830387d2c2022776f726b223a20312c2022726561736f6e223a206e756c6c2c20226c6f636174696f6e223a206e756c6c7d",
+      "name": "nested-large-int"
+    },
+    {
+      "error": "RUN_FLOW_RESULT",
+      "hex": "7b226c6f636174696f6e223a6e756c6c2c22726561736f6e223a6e756c6c2c22736368656d61223a226261676165762d74797065642d7265636f72642d726573756c742f3131222c22737461747573223a2273756363657373222c2276616c7565223a4e614e2c2276616c75655f74797065223a22426f6f6c222c22776f726b223a317d",
+      "name": "non-json-constant"
+    },
+    {
+      "error": "RUN_FLOW_RESULT",
+      "hex": "7b22736368656d61223a20226261676165762d74797065642d7265636f72642d726573756c742f3131222c2022737461747573223a202273756363657373222c202276616c75655f74797065223a202256617269616e743a4d61796265222c202276616c7565223a207b2263617365223a2022536f6d65222c202276616c7565223a205b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b6e756c6c5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d7d2c2022776f726b223a20312c2022726561736f6e223a206e756c6c2c20226c6f636174696f6e223a206e756c6c7d",
+      "name": "deep-payload"
+    }
+  ],
+  "real_cases": [
+    {
+      "arguments": " [ { \"n\":1e0, \"fraction\":1.0, \"zero\":-0, \"large\":9223372036854775808 } ] \n",
+      "expected": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-record-result/11",
+        "status": "success",
+        "value": true,
+        "value_type": "Bool",
+        "work": 1
+      },
+      "name": "scalar-raw-numbers",
+      "program": {
+        "entry": "main",
+        "functions": {
+          "main": {
+            "body": [
+              "bool",
+              true
+            ],
+            "params": [
+              [
+                "x",
+                "Json"
+              ]
+            ],
+            "result": "Bool"
+          }
+        },
+        "lists": {},
+        "records": {},
+        "schema": "bagaev-typed-record/11",
+        "variants": {}
+      },
+      "source": "bagaev record-form/5; program { entry main; fn main(x: Json) -> Bool = true; }"
+    },
+    {
+      "arguments": "[]",
+      "expected": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-record-result/11",
+        "status": "success",
+        "value": null,
+        "value_type": "OptionInt64",
+        "work": 1
+      },
+      "name": "zero-arity-option",
+      "program": {
+        "entry": "main",
+        "functions": {
+          "main": {
+            "body": [
+              "none.int"
+            ],
+            "params": [],
+            "result": "OptionInt64"
+          }
+        },
+        "lists": {},
+        "records": {},
+        "schema": "bagaev-typed-record/11",
+        "variants": {}
+      },
+      "source": "bagaev record-form/5; program { entry main; fn main() -> OptionInt64 = none.int(); }"
+    },
+    {
+      "arguments": "[null]",
+      "expected": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-record-result/11",
+        "status": "success",
+        "value": {
+          "case": "Ok",
+          "value": true
+        },
+        "value_type": "Variant:Outcome",
+        "work": 2
+      },
+      "name": "structured-success",
+      "program": {
+        "entry": "main",
+        "functions": {
+          "main": {
+            "body": [
+              "variant",
+              "Outcome",
+              "Ok",
+              [
+                "bool",
+                true
+              ]
+            ],
+            "params": [
+              [
+                "x",
+                "Json"
+              ]
+            ],
+            "result": "Outcome"
+          }
+        },
+        "lists": {},
+        "records": {
+          "Refusal": {
+            "kind": "Text",
+            "reason": "Text"
+          }
+        },
+        "schema": "bagaev-typed-record/11",
+        "variants": {
+          "Outcome": {
+            "Error": "Refusal",
+            "Ok": "Bool"
+          }
+        }
+      },
+      "source": "bagaev record-form/5; program { record Refusal { kind: Text, reason: Text }; variant Outcome { Error: Refusal, Ok: Bool }; entry main; fn main(x: Json) -> Outcome = Outcome.Ok(true); }"
+    },
+    {
+      "arguments": "[null]",
+      "expected": {
+        "location": null,
+        "reason": null,
+        "schema": "bagaev-typed-record-result/11",
+        "status": "success",
+        "value": {
+          "case": "Error",
+          "value": {
+            "kind": "refusal",
+            "reason": "synthetic"
+          }
+        },
+        "value_type": "Variant:Outcome",
+        "work": 20
+      },
+      "name": "application-refusal",
+      "program": {
+        "entry": "main",
+        "functions": {
+          "main": {
+            "body": [
+              "variant",
+              "Outcome",
+              "Error",
+              [
+                "record",
+                "Refusal",
+                [
+                  "text",
+                  "refusal"
+                ],
+                [
+                  "text",
+                  "synthetic"
+                ]
+              ]
+            ],
+            "params": [
+              [
+                "x",
+                "Json"
+              ]
+            ],
+            "result": "Outcome"
+          }
+        },
+        "lists": {},
+        "records": {
+          "Refusal": {
+            "kind": "Text",
+            "reason": "Text"
+          }
+        },
+        "schema": "bagaev-typed-record/11",
+        "variants": {
+          "Outcome": {
+            "Error": "Refusal",
+            "Ok": "Bool"
+          }
+        }
+      },
+      "source": "bagaev record-form/5; program { record Refusal { kind: Text, reason: Text }; variant Outcome { Error: Refusal, Ok: Bool }; entry main; fn main(x: Json) -> Outcome = Outcome.Error(Refusal { kind: \"refusal\", reason: \"synthetic\" }); }"
+    },
+    {
+      "arguments": "[{}]",
+      "expected": {
+        "location": "/program/functions/main/body",
+        "reason": "RR_OVERFLOW",
+        "schema": "bagaev-typed-record-result/11",
+        "status": "integer-overflow",
+        "value": null,
+        "value_type": null,
+        "work": 3
+      },
+      "name": "integer-overflow",
+      "program": {
+        "entry": "main",
+        "functions": {
+          "main": {
+            "body": [
+              "add",
+              [
+                "int",
+                9223372036854775807
+              ],
+              [
+                "int",
+                1
+              ]
+            ],
+            "params": [
+              [
+                "x",
+                "Json"
+              ]
+            ],
+            "result": "Int64"
+          }
+        },
+        "lists": {},
+        "records": {},
+        "schema": "bagaev-typed-record/11",
+        "variants": {}
+      },
+      "source": "bagaev record-form/5; program { entry main; fn main(x: Json) -> Int64 = 9223372036854775807 + 1; }"
+    },
+    {
+      "arguments": "[{}]",
+      "expected": {
+        "location": "/program/functions/main/body",
+        "reason": "RR_TYPE",
+        "schema": "bagaev-typed-record-result/11",
+        "status": "invalid-ir",
+        "value": null,
+        "value_type": null,
+        "work": 0
+      },
+      "name": "invalid-body-type",
+      "program": {
+        "entry": "main",
+        "functions": {
+          "main": {
+            "body": [
+              "int",
+              0
+            ],
+            "params": [
+              [
+                "x",
+                "Json"
+              ]
+            ],
+            "result": "Bool"
+          }
+        },
+        "lists": {},
+        "records": {},
+        "schema": "bagaev-typed-record/11",
+        "variants": {}
+      },
+      "source": "bagaev record-form/5; program { entry main; fn main(x: Json) -> Bool = 0; }"
+    },
+    {
+      "arguments": "[{}]",
+      "expected": {
+        "location": "/program/functions/main/result",
+        "reason": "RR_TYPE",
+        "schema": "bagaev-typed-record-result/11",
+        "status": "invalid-ir",
+        "value": null,
+        "value_type": null,
+        "work": 0
+      },
+      "name": "json-result-refusal",
+      "program": {
+        "entry": "main",
+        "functions": {
+          "main": {
+            "body": [
+              "arg",
+              "x"
+            ],
+            "params": [
+              [
+                "x",
+                "Json"
+              ]
+            ],
+            "result": "Json"
+          }
+        },
+        "lists": {},
+        "records": {},
+        "schema": "bagaev-typed-record/11",
+        "variants": {}
+      },
+      "source": "bagaev record-form/5; program { entry main; fn main(x: Json) -> Json = x; }"
+    }
+  ],
+  "rejected_envelopes": [
+    {
+      "location": null,
+      "reason": null,
+      "schema": "bagaev-typed-record-result/12",
+      "status": "success",
+      "value": true,
+      "value_type": "Bool",
+      "work": 1
+    },
+    {
+      "location": null,
+      "reason": null,
+      "schema": "bagaev-typed-record-result/11",
+      "status": "unknown",
+      "value": true,
+      "value_type": "Bool",
+      "work": 1
+    },
+    {
+      "location": null,
+      "reason": null,
+      "schema": "bagaev-typed-record-result/11",
+      "status": "success",
+      "value": true,
+      "value_type": "Bool",
+      "work": true
+    },
+    {
+      "location": null,
+      "reason": null,
+      "schema": "bagaev-typed-record-result/11",
+      "status": "success",
+      "value": true,
+      "value_type": "Bool",
+      "work": 0
+    },
+    {
+      "location": null,
+      "reason": null,
+      "schema": "bagaev-typed-record-result/11",
+      "status": "success",
+      "value": true,
+      "value_type": "Bool",
+      "work": -1
+    },
+    {
+      "location": null,
+      "reason": null,
+      "schema": "bagaev-typed-record-result/11",
+      "status": "success",
+      "value": true,
+      "value_type": "Bool",
+      "work": 65537
+    },
+    {
+      "location": null,
+      "reason": null,
+      "schema": "bagaev-typed-record-result/11",
+      "status": "success",
+      "value": true,
+      "value_type": "Bool",
+      "work": 1.5
+    },
+    {
+      "location": null,
+      "reason": "RR_TYPE",
+      "schema": "bagaev-typed-record-result/11",
+      "status": "success",
+      "value": true,
+      "value_type": "Bool",
+      "work": 1
+    },
+    {
+      "location": "/unexpected",
+      "reason": null,
+      "schema": "bagaev-typed-record-result/11",
+      "status": "success",
+      "value": true,
+      "value_type": "Bool",
+      "work": 1
+    },
+    {
+      "location": null,
+      "reason": null,
+      "schema": "bagaev-typed-record-result/11",
+      "status": "success",
+      "value": true,
+      "value_type": "Json",
+      "work": 1
+    },
+    {
+      "location": null,
+      "reason": null,
+      "schema": "bagaev-typed-record-result/11",
+      "status": "success",
+      "value": true,
+      "value_type": "Other",
+      "work": 1
+    },
+    {
+      "location": null,
+      "reason": null,
+      "schema": "bagaev-typed-record-result/11",
+      "status": "success",
+      "value": 0,
+      "value_type": "Bool",
+      "work": 1
+    },
+    {
+      "extra": false,
+      "location": null,
+      "reason": null,
+      "schema": "bagaev-typed-record-result/11",
+      "status": "success",
+      "value": true,
+      "value_type": "Bool",
+      "work": 1
+    },
+    {
+      "location": null,
+      "reason": null,
+      "schema": "bagaev-typed-record-result/11",
+      "status": "success",
+      "value": true,
+      "value_type": "Int64",
+      "work": 1
+    },
+    {
+      "location": null,
+      "reason": null,
+      "schema": "bagaev-typed-record-result/11",
+      "status": "success",
+      "value": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+      "value_type": "Text",
+      "work": 1
+    },
+    {
+      "location": null,
+      "reason": null,
+      "schema": "bagaev-typed-record-result/11",
+      "status": "success",
+      "value": [
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a"
+      ],
+      "value_type": "TextList",
+      "work": 1
+    },
+    {
+      "location": null,
+      "reason": null,
+      "schema": "bagaev-typed-record-result/11",
+      "status": "success",
+      "value": [
+        "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+      ],
+      "value_type": "TextList",
+      "work": 1
+    },
+    {
+      "location": null,
+      "reason": null,
+      "schema": "bagaev-typed-record-result/11",
+      "status": "success",
+      "value": {
+        "0": 0,
+        "1": 1,
+        "2": 2,
+        "3": 3,
+        "4": 4,
+        "5": 5,
+        "6": 6,
+        "7": 7,
+        "8": 8
+      },
+      "value_type": "Record:Item",
+      "work": 1
+    },
+    {
+      "location": null,
+      "reason": null,
+      "schema": "bagaev-typed-record-result/11",
+      "status": "success",
+      "value": [
+        {},
+        {},
+        {},
+        {},
+        {},
+        {},
+        {},
+        {},
+        {},
+        {},
+        {},
+        {},
+        {},
+        {},
+        {},
+        {},
+        {}
+      ],
+      "value_type": "RecordList:Items",
+      "work": 1
+    },
+    {
+      "location": null,
+      "reason": null,
+      "schema": "bagaev-typed-record-result/11",
+      "status": "success",
+      "value": {
+        "case": "0bad",
+        "value": null
+      },
+      "value_type": "Variant:Maybe",
+      "work": 1
+    },
+    {
+      "location": "/program/functions/main/body",
+      "reason": "RR_WORK",
+      "schema": "bagaev-typed-record-result/11",
+      "status": "work-limit",
+      "value": null,
+      "value_type": null,
+      "work": 0
+    },
+    {
+      "location": "/program/functions/main/body",
+      "reason": "RR_TYPE",
+      "schema": "bagaev-typed-record-result/11",
+      "status": "work-limit",
+      "value": null,
+      "value_type": null,
+      "work": 3
+    },
+    {
+      "location": "",
+      "reason": "RR_TYPE",
+      "schema": "bagaev-typed-record-result/11",
+      "status": "invalid-ir",
+      "value": null,
+      "value_type": null,
+      "work": 1
+    },
+    {
+      "location": "/arguments/0",
+      "reason": "RR_OVERFLOW",
+      "schema": "bagaev-typed-record-result/11",
+      "status": "integer-overflow",
+      "value": null,
+      "value_type": null,
+      "work": 3
+    },
+    {
+      "location": "",
+      "reason": "RR_TYPE",
+      "schema": "bagaev-typed-record-result/11",
+      "status": "invalid-ir",
+      "value": false,
+      "value_type": null,
+      "work": 0
+    },
+    {
+      "location": "",
+      "reason": "RR_TYPE",
+      "schema": "bagaev-typed-record-result/11",
+      "status": "invalid-ir",
+      "value": null,
+      "value_type": "Bool",
+      "work": 0
+    },
+    {
+      "location": null,
+      "reason": "RR_TYPE",
+      "schema": "bagaev-typed-record-result/11",
+      "status": "invalid-ir",
+      "value": null,
+      "value_type": null,
+      "work": 0
+    },
+    {
+      "location": "",
+      "reason": "UNKNOWN",
+      "schema": "bagaev-typed-record-result/11",
+      "status": "invalid-ir",
+      "value": null,
+      "value_type": null,
+      "work": 0
+    },
+    {
+      "reason": null,
+      "schema": "bagaev-typed-record-result/11",
+      "status": "success",
+      "value": true,
+      "value_type": "Bool",
+      "work": 1
+    },
+    {
+      "location": "not-a-pointer",
+      "reason": "RR_TYPE",
+      "schema": "bagaev-typed-record-result/11",
+      "status": "invalid-ir",
+      "value": null,
+      "value_type": null,
+      "work": 0
+    }
+  ],
+  "schema": "record-source-run-fixtures/1",
+  "scope": "literal expectations; no execution, codec or implementation used to generate results",
+  "size_controls": [
+    {
+      "bytes": 1048577,
+      "error": "RUN_FLOW_INPUT",
+      "target": "source"
+    },
+    {
+      "bytes": 1048577,
+      "error": "RUN_FLOW_INPUT",
+      "target": "arguments"
+    },
+    {
+      "bytes": 33554433,
+      "error": "RUN_FLOW_PIN",
+      "target": "reference"
+    },
+    {
+      "argument_bytes": 1048576,
+      "error": "RUN_FLOW_INPUT",
+      "target": "invocation"
+    },
+    {
+      "base": "{\"location\":null,\"reason\":null,\"schema\":\"bagaev-typed-record-result/11\",\"status\":\"success\",\"value\":true,\"value_type\":\"Bool\",\"work\":1}",
+      "bytes": 1048577,
+      "error": "RUN_FLOW_RESULT",
+      "target": "stdout"
+    },
+    {
+      "bytes": 1048577,
+      "error": "RUN_FLOW_OUTPUT",
+      "target": "receipt"
+    }
+  ]
+}
