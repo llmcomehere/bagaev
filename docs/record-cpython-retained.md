@@ -97,3 +97,53 @@ They exercise inert-artifact consistency, literal matching and mismatching,
 type-exact comparison, stale pins, raw argument identity and report overwrite
 refusal. They are a separate process check, not implicitly included by unittest
 discovery, and do not repeat the prior application qualification.
+
+## Locate a retained failure in readable source
+
+Use `tools/record_cpython_run_location.py` for a failed form5/profile11 run.
+It first performs the same nine-file verification above, then maps the retained
+runtime pointer against the verified source bytes. It never executes the Python
+stored in the artifact or reruns the application.
+
+```sh
+python3 -B -S tools/record_cpython_run_location.py RUN_DIRECTORY \
+  --receipt-sha256 RECEIPT_SHA256 --source-sha256 SOURCE_SHA256 \
+  --program-sha256 PROGRAM_SHA256 --arguments-sha256 ARGUMENTS_SHA256 \
+  --runner-sha256 RUNNER_SHA256 --output NEW_LOCATION_REPORT
+```
+
+Select all five pins independently. Use a new output path outside the bundle.
+Even help inherits the runner's fresh `-B -S` profile, with assertions and no
+`PYTHONPATH` or `PYTHONHOME`. These flags do not provide isolation.
+
+The report keeps the verified run identity, runtime status/reason/work and exact
+pointer. A matched expression includes its exact or enclosing precision, UTF-8
+byte range and one-based Unicode-scalar line/columns; the end is exclusive.
+Excerpts contain at most 256 Unicode scalars, with explicit truncation. A valid
+unmatched pointer produces `unmapped` with no invented range. Success is refused
+with `CPY_LOCATION_STATUS`; this command describes failures only.
+
+Matching a location does not authenticate the retained failure or prove causality.
+All semantic-check, authentication, freshness and execution-admission flags stay
+false. The report is bounded to 64 KiB. The old scalar capture locator remains a
+separate command and format. No form6/profile12 support is implied.
+
+On 17 October 2026, three fresh acceptance processes passed 2, 3 and 28 controls
+respectively, including 16 CLI-main calls. One existing operand-overflow packet
+mapped to the independently counted expression `9223372036854775807 + 1`
+at bytes [88,111), line 2, columns [67,90). This reuses a retained observation;
+no application was rerun. The complete report matched a frozen expectation.
+
+Controls covered success refusal, all five stale bindings, missing/tampered
+packets, output preservation, pin/output error precedence, Unicode layout,
+repeated expressions, explicit unmapped pointers, excerpt/report bounds and
+labelled malformed-map seams. No checker, compiler, generated evaluation,
+database or network dispatch was observed. Inputs remained unchanged.
+
+Portable tests in `tests/probes/cpython_location_process_checks.py` use inert,
+synthetic records, including invented failure pointers. They do not claim those
+failures really occurred. Run them separately under an authorized bounded profile:
+
+```sh
+python3 -B -S tests/probes/cpython_location_process_checks.py
+```

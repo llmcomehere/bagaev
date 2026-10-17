@@ -1,7 +1,7 @@
 {
-  "schema": "bagaev-public-record-route-oracle/4",
-  "base_oracle_sha256": "8379cbfb9fc689fbcc4e9631d658c6853e369ce3e9ad428268cd0325c9a8e673",
-  "base_facade_sha256": "d099250f7ce7bfaadcd0f46613cfc236f24143c09f594f208f1e10644ff0b207",
+  "schema": "bagaev-public-record-route-oracle/5",
+  "base_oracle_sha256": "8babeaa03db3007a78112139d5dfc163f715190b84a61cd0fcd423ea53595445",
+  "base_facade_sha256": "1f50e915e736914ccbbf51490904666ac31fc4c11122a0fd959d3a19ab1f8533",
   "routes": {
     "check": [
       "record_source_check",
@@ -94,9 +94,13 @@
     "preview-cpython": [
       "record_cpython_preview",
       []
+    ],
+    "locate-cpython-failure": [
+      "record_cpython_run_location",
+      []
     ]
   },
-  "help": "Bagaev authored-record commands\ncheck                  Pinned source-only semantic check\nrun                    Explicit reference execution; separate authority required\ninspect                Data-only inspection; form5 default, explicit --form 6\ndiff                   Read-only pinned form5 structural comparison, not a patch\nfunction               Extract/context/replace; replacement produces a draft packet\ndraft                  Restricted multi-body draft packet; not applied source\nexport                 Validate and export a draft packet to fresh source\ncompile-cpython        Checked form5/profile11 artifact; no generated execution\npreview-cpython        Extract pinned compile-packet Python as review data only\nrun-cpython            Fresh checked source run; separately reviewed Python pin required\nverify-cpython-run     Retained CPython consistency; no execution or authentication\nverify-cpython-run-expectation  Compare retained CPython data with pinned expectations\nhistory                Portable form5/form6 revision packages\nhistory-store          Local candidate history storage; not admission\nverify-run             Retained source-run consistency\nverify-run-expectation Compare one retained run with supplied expectations\nverify-expectation-set Compare a complete supplied obligation set\ncheck-location         Bound checker refusal to explicit form5/form6 source\nfailure-location       Bound retained runtime failure to pinned source\nformat                 Token-preserving source formatting\ndiagnose               Source syntax diagnostics\nsource-map             Explicit source/program-bound locations\nPass the remaining arguments unchanged to the documented delegate.\nUse Python -B -S with assertions and an authorized execution profile.\nDrafts, artifacts, hashes and consistency checks grant no execution authority.\n",
+  "help": "Bagaev authored-record commands\ncheck                  Pinned source-only semantic check\nrun                    Explicit reference execution; separate authority required\ninspect                Data-only inspection; form5 default, explicit --form 6\ndiff                   Read-only pinned form5 structural comparison, not a patch\nfunction               Extract/context/replace; replacement produces a draft packet\ndraft                  Restricted multi-body draft packet; not applied source\nexport                 Validate and export a draft packet to fresh source\ncompile-cpython        Checked form5/profile11 artifact; no generated execution\npreview-cpython        Extract pinned compile-packet Python as review data only\nrun-cpython            Fresh checked source run; separately reviewed Python pin required\nlocate-cpython-failure  Map retained form5 CPython failure to source; no execution\nverify-cpython-run     Retained CPython consistency; no execution or authentication\nverify-cpython-run-expectation  Compare retained CPython data with pinned expectations\nhistory                Portable form5/form6 revision packages\nhistory-store          Local candidate history storage; not admission\nverify-run             Retained source-run consistency\nverify-run-expectation Compare one retained run with supplied expectations\nverify-expectation-set Compare a complete supplied obligation set\ncheck-location         Bound checker refusal to explicit form5/form6 source\nfailure-location       Bound retained runtime failure to pinned source\nformat                 Token-preserving source formatting\ndiagnose               Source syntax diagnostics\nsource-map             Explicit source/program-bound locations\nPass the remaining arguments unchanged to the documented delegate.\nUse Python -B -S with assertions and an authorized execution profile.\nDrafts, artifacts, hashes and consistency checks grant no execution authority.\n",
   "unknown": {
     "exit_code": 2,
     "stdout": "",
