@@ -19,16 +19,22 @@ neither follows links nor executes examples, source programs or tests.
 
 ## Sources and reproducibility
 
-The fixed input list contains 76 reviewed documentation sources. It includes
+The fixed input list contains 89 reviewed documentation sources. It includes
 readable editing and source maps, batch changes and ordinary/native baselines,
 prepared reference/native calls and source-pinned result reading, alongside the
-existing language and saved-workflow guides. The source selection and safety bounds are
-unchanged. The 76 sources produce 77 HTML pages including the README entry alias,
-plus index.json: 78 files in total. Linked code/examples outside the selection
+existing language and saved-workflow guides. The renderer and safety bounds are
+unchanged. The 89 sources produce 90 HTML pages including the README entry alias,
+plus index.json: 91 files in total. Linked code/examples outside the selection
 remain revision-pinned GitHub links and are not copied into the offline package.
 Each source receives an HTML page. The entry aliases the README view;
 `index.json` records titles, paths, the supplied revision and actual SHA-256
 hashes of source bytes. The license is displayed as escaped plain text.
+
+The authored workflow selection adds its CLI, source-check flow, reference and
+CPython retained readers, expectation comparison, source histories, source diff,
+CPython compilation/preview/run, and typed change/continuation guides. These
+thirteen documents are local reading pages; no example or generated program is
+executed. Newer unpublished expectation-set material is not silently included.
 
 The selected form6 guides cover Boolean authoring, pinned callee fragments,
 authored expression export, ActiveJson reproduction, prepared profile12 calls,
