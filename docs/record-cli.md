@@ -10,6 +10,7 @@ The existing `src/bagaev.py` command family remains the separate L2 interface.
 | `check` | `record_source_check.py`: explicit source, form, checker and pins; no evaluation. |
 | `run` | `record_source_run.py`: reference execution, form5 default or explicit form6; requires its own reviewed execution scope. |
 | `inspect` | `record_text.py inspect --form 5`; pass `--form 6` explicitly for form6. |
+| `diff` | `record_source_diff.py`: pinned form5 source/structural comparison, not semantic equivalence or an apply packet. |
 | `function` | `record_function.py`: extract/context/replace. Replace emits a draft packet. |
 | `draft` | `record_draft.py`: restricted multi-body packet, forms1/4/5 only; not applied source. |
 | `export` | `record_export.py`: validate and export a draft to new source. |
@@ -49,10 +50,11 @@ and then compilation or execution in the same Python process. Existing delegates
 keep their own import-integrity checks; the launcher never clears their caches.
 See [CPython source runs](record-cpython-run.md) and
 [offline CPython readers](record-cpython-retained.md). A matched result or a
-consistent bundle supplies no execution authorization. For comparison commands,
+consistent bundle supplies no execution authorization. For retained-expectation comparisons,
 both matched and mismatched return zero; inspect the report status.
 
-The launcher has no generic authored `diff`, `patch` or LLVM `compile` command.
+The launcher has no generic authored `patch` or LLVM `compile` command.
+The bounded form5 [source diff](record-source-diff.md) reports review data only.
 Use function/draft/export as explicitly named stages; packet creation and source
 application are different actions. Form6 CPython execution is not introduced here.
 Global `--help`/`-h` imports no project module. Empty or unknown commands return2

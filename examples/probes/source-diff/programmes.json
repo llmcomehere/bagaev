@@ -1,0 +1,621 @@
+{
+  "schema": "bagaev-source-diff-literal-programmes/1",
+  "note": "Manually specified decoded programme literals, fixed before the comparison implementation. No form decoder or result-producing code was run to create them.",
+  "cases": [
+    {
+      "id": "equal",
+      "before": {
+        "schema": "bagaev-typed-record/11",
+        "records": {},
+        "lists": {},
+        "variants": {},
+        "entry": "main",
+        "functions": {
+          "main": {
+            "params": [],
+            "result": "Int64",
+            "body": [
+              "int",
+              7
+            ]
+          }
+        }
+      },
+      "after": {
+        "schema": "bagaev-typed-record/11",
+        "records": {},
+        "lists": {},
+        "variants": {},
+        "entry": "main",
+        "functions": {
+          "main": {
+            "params": [],
+            "result": "Int64",
+            "body": [
+              "int",
+              7
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "trivia",
+      "before": {
+        "schema": "bagaev-typed-record/11",
+        "records": {},
+        "lists": {},
+        "variants": {},
+        "entry": "main",
+        "functions": {
+          "main": {
+            "params": [],
+            "result": "Int64",
+            "body": [
+              "int",
+              7
+            ]
+          }
+        }
+      },
+      "after": {
+        "schema": "bagaev-typed-record/11",
+        "records": {},
+        "lists": {},
+        "variants": {},
+        "entry": "main",
+        "functions": {
+          "main": {
+            "params": [],
+            "result": "Int64",
+            "body": [
+              "int",
+              7
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "declaration-order",
+      "before": {
+        "schema": "bagaev-typed-record/11",
+        "records": {},
+        "lists": {},
+        "variants": {},
+        "entry": "main",
+        "functions": {
+          "main": {
+            "params": [],
+            "result": "Int64",
+            "body": [
+              "int",
+              7
+            ]
+          },
+          "unused": {
+            "params": [],
+            "result": "Bool",
+            "body": [
+              "bool",
+              true
+            ]
+          }
+        }
+      },
+      "after": {
+        "schema": "bagaev-typed-record/11",
+        "records": {},
+        "lists": {},
+        "variants": {},
+        "entry": "main",
+        "functions": {
+          "main": {
+            "params": [],
+            "result": "Int64",
+            "body": [
+              "int",
+              7
+            ]
+          },
+          "unused": {
+            "params": [],
+            "result": "Bool",
+            "body": [
+              "bool",
+              true
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "body",
+      "before": {
+        "schema": "bagaev-typed-record/11",
+        "records": {},
+        "lists": {},
+        "variants": {},
+        "entry": "main",
+        "functions": {
+          "main": {
+            "params": [],
+            "result": "Int64",
+            "body": [
+              "int",
+              7
+            ]
+          }
+        }
+      },
+      "after": {
+        "schema": "bagaev-typed-record/11",
+        "records": {},
+        "lists": {},
+        "variants": {},
+        "entry": "main",
+        "functions": {
+          "main": {
+            "params": [],
+            "result": "Int64",
+            "body": [
+              "int",
+              8
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "signature-only",
+      "before": {
+        "schema": "bagaev-typed-record/11",
+        "records": {},
+        "lists": {},
+        "variants": {},
+        "entry": "main",
+        "functions": {
+          "main": {
+            "params": [
+              [
+                "x",
+                "Int64"
+              ]
+            ],
+            "result": "Int64",
+            "body": [
+              "int",
+              7
+            ]
+          }
+        }
+      },
+      "after": {
+        "schema": "bagaev-typed-record/11",
+        "records": {},
+        "lists": {},
+        "variants": {},
+        "entry": "main",
+        "functions": {
+          "main": {
+            "params": [
+              [
+                "x",
+                "Bool"
+              ]
+            ],
+            "result": "Int64",
+            "body": [
+              "int",
+              7
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "signature-and-body",
+      "before": {
+        "schema": "bagaev-typed-record/11",
+        "records": {},
+        "lists": {},
+        "variants": {},
+        "entry": "main",
+        "functions": {
+          "main": {
+            "params": [],
+            "result": "Int64",
+            "body": [
+              "int",
+              7
+            ]
+          }
+        }
+      },
+      "after": {
+        "schema": "bagaev-typed-record/11",
+        "records": {},
+        "lists": {},
+        "variants": {},
+        "entry": "main",
+        "functions": {
+          "main": {
+            "params": [],
+            "result": "Bool",
+            "body": [
+              "bool",
+              true
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "add-function",
+      "before": {
+        "schema": "bagaev-typed-record/11",
+        "records": {},
+        "lists": {},
+        "variants": {},
+        "entry": "main",
+        "functions": {
+          "main": {
+            "params": [],
+            "result": "Int64",
+            "body": [
+              "int",
+              7
+            ]
+          }
+        }
+      },
+      "after": {
+        "schema": "bagaev-typed-record/11",
+        "records": {},
+        "lists": {},
+        "variants": {},
+        "entry": "main",
+        "functions": {
+          "main": {
+            "params": [],
+            "result": "Int64",
+            "body": [
+              "int",
+              7
+            ]
+          },
+          "spare": {
+            "params": [],
+            "result": "Bool",
+            "body": [
+              "bool",
+              false
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "remove-function",
+      "before": {
+        "schema": "bagaev-typed-record/11",
+        "records": {},
+        "lists": {},
+        "variants": {},
+        "entry": "main",
+        "functions": {
+          "main": {
+            "params": [],
+            "result": "Int64",
+            "body": [
+              "int",
+              7
+            ]
+          },
+          "spare": {
+            "params": [],
+            "result": "Bool",
+            "body": [
+              "bool",
+              false
+            ]
+          }
+        }
+      },
+      "after": {
+        "schema": "bagaev-typed-record/11",
+        "records": {},
+        "lists": {},
+        "variants": {},
+        "entry": "main",
+        "functions": {
+          "main": {
+            "params": [],
+            "result": "Int64",
+            "body": [
+              "int",
+              7
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "entry",
+      "before": {
+        "schema": "bagaev-typed-record/11",
+        "records": {},
+        "lists": {},
+        "variants": {},
+        "entry": "main",
+        "functions": {
+          "main": {
+            "params": [],
+            "result": "Int64",
+            "body": [
+              "int",
+              7
+            ]
+          },
+          "other": {
+            "params": [],
+            "result": "Int64",
+            "body": [
+              "int",
+              8
+            ]
+          }
+        }
+      },
+      "after": {
+        "schema": "bagaev-typed-record/11",
+        "records": {},
+        "lists": {},
+        "variants": {},
+        "entry": "other",
+        "functions": {
+          "main": {
+            "params": [],
+            "result": "Int64",
+            "body": [
+              "int",
+              7
+            ]
+          },
+          "other": {
+            "params": [],
+            "result": "Int64",
+            "body": [
+              "int",
+              8
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "record-field",
+      "before": {
+        "schema": "bagaev-typed-record/11",
+        "records": {
+          "R": {
+            "x": "Int64"
+          }
+        },
+        "lists": {},
+        "variants": {},
+        "entry": "main",
+        "functions": {
+          "main": {
+            "params": [],
+            "result": "Int64",
+            "body": [
+              "int",
+              7
+            ]
+          }
+        }
+      },
+      "after": {
+        "schema": "bagaev-typed-record/11",
+        "records": {
+          "R": {
+            "x": "Bool"
+          }
+        },
+        "lists": {},
+        "variants": {},
+        "entry": "main",
+        "functions": {
+          "main": {
+            "params": [],
+            "result": "Int64",
+            "body": [
+              "int",
+              7
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "list-capacity",
+      "before": {
+        "schema": "bagaev-typed-record/11",
+        "records": {
+          "R": {
+            "x": "Int64"
+          }
+        },
+        "lists": {
+          "Rows": {
+            "element": "R",
+            "capacity": 4
+          }
+        },
+        "variants": {},
+        "entry": "main",
+        "functions": {
+          "main": {
+            "params": [],
+            "result": "Int64",
+            "body": [
+              "int",
+              7
+            ]
+          }
+        }
+      },
+      "after": {
+        "schema": "bagaev-typed-record/11",
+        "records": {
+          "R": {
+            "x": "Int64"
+          }
+        },
+        "lists": {
+          "Rows": {
+            "element": "R",
+            "capacity": 5
+          }
+        },
+        "variants": {},
+        "entry": "main",
+        "functions": {
+          "main": {
+            "params": [],
+            "result": "Int64",
+            "body": [
+              "int",
+              7
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "variant-case",
+      "before": {
+        "schema": "bagaev-typed-record/11",
+        "records": {},
+        "lists": {},
+        "variants": {
+          "Choice": {
+            "A": "Int64",
+            "B": "Bool"
+          }
+        },
+        "entry": "main",
+        "functions": {
+          "main": {
+            "params": [],
+            "result": "Int64",
+            "body": [
+              "int",
+              7
+            ]
+          }
+        }
+      },
+      "after": {
+        "schema": "bagaev-typed-record/11",
+        "records": {},
+        "lists": {},
+        "variants": {
+          "Choice": {
+            "A": "Int64",
+            "B": "Text"
+          }
+        },
+        "entry": "main",
+        "functions": {
+          "main": {
+            "params": [],
+            "result": "Int64",
+            "body": [
+              "int",
+              7
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "combined-sorted",
+      "before": {
+        "schema": "bagaev-typed-record/11",
+        "records": {
+          "Old": {
+            "x": "Int64"
+          }
+        },
+        "lists": {},
+        "variants": {},
+        "entry": "main",
+        "functions": {
+          "main": {
+            "params": [],
+            "result": "Int64",
+            "body": [
+              "int",
+              7
+            ]
+          },
+          "z": {
+            "params": [],
+            "result": "Int64",
+            "body": [
+              "int",
+              1
+            ]
+          },
+          "a": {
+            "params": [],
+            "result": "Int64",
+            "body": [
+              "int",
+              2
+            ]
+          }
+        }
+      },
+      "after": {
+        "schema": "bagaev-typed-record/11",
+        "records": {
+          "New": {
+            "x": "Bool"
+          }
+        },
+        "lists": {},
+        "variants": {},
+        "entry": "main",
+        "functions": {
+          "main": {
+            "params": [],
+            "result": "Int64",
+            "body": [
+              "int",
+              7
+            ]
+          },
+          "z": {
+            "params": [],
+            "result": "Int64",
+            "body": [
+              "int",
+              3
+            ]
+          },
+          "a": {
+            "params": [],
+            "result": "Int64",
+            "body": [
+              "int",
+              4
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

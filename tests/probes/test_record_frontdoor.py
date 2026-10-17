@@ -16,6 +16,7 @@ cli = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(cli)
 ORACLE = json.loads((ROOT / 'tests/probes/record-frontdoor-oracle.json').read_bytes())
 EXPECTED = {
+    'diff': ('record_source_diff', []),
     'run-cpython': ('record_cpython_run', []),
     'verify-cpython-run': ('record_cpython_run_verify', []),
     'verify-cpython-run-expectation': ('record_cpython_run_expectation', []),
@@ -84,7 +85,7 @@ class Frontdoor(unittest.TestCase):
                     self.assertEqual(sum(line.split()[0] == route for line in out.getvalue().splitlines() if line.split()), 1)
 
     def test_unknown_no_project_import(self):
-        for argv in ([], ['missing'], ['--help', 'extra'], ['diff'], ['patch'], ['compile']):
+        for argv in ([], ['missing'], ['--help', 'extra'], ['patch'], ['compile']):
             with self.subTest(argv=argv), patch.object(cli.importlib, 'import_module') as load:
                 out, err = io.StringIO(), io.StringIO()
                 with contextlib.redirect_stdout(out), contextlib.redirect_stderr(err):
