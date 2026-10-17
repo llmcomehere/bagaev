@@ -1,5 +1,11 @@
 # Context around a focused function
 
+Use `python3 -B -S tools/record_function.py --help` (or sole `-h`) for the
+supported operations, flags and form defaults without supplying input/output.
+Help returns zero and reads or writes no input/output files; normal commands
+retain their explicit arguments and fresh-output requirement. The tool still
+imports its existing modules, so this is not an import-free help path.
+
 ```console
 python3 -B tools/record_function.py context Catalog.bagaev --name id_ok --output context.json
 ```
