@@ -15,6 +15,7 @@ The existing `src/bagaev.py` command family remains the separate L2 interface.
 | `draft` | `record_draft.py`: restricted multi-body packet, forms1/4/5 only; not applied source. |
 | `export` | `record_export.py`: validate and export a draft to new source. |
 | `compile-cpython` | `record_cpython_compile.py`: form5/profile11 checked artifact, never generated execution. |
+| `preview-cpython` | `record_cpython_preview.py`: exact form5 compile-packet Python text for review, never execution or authentication. |
 | `run-cpython` | `record_cpython_run.py`: fresh checked source execution with separately reviewed emitted-Python pin; requires its own authorized profile. |
 | `verify-cpython-run` | `record_cpython_run_verify.py`: nine-file CPython bundle consistency, no execution or authentication. |
 | `verify-cpython-run-expectation` | `record_cpython_run_expectation.py`: raw-argument identity and literal expected-result comparison, no execution. |

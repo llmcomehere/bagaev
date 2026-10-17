@@ -21,10 +21,12 @@ python -B -S tools/record_cpython_compile.py SOURCE \
   --checker-sha256 CHECKER_SHA256 --output /new/compile-directory
 ```
 
-Review `artifact.json`'s Python text as data. Independently hash those exact UTF-8
-bytes and retain the reviewed hash. Do not execute downloaded code merely
-because a receipt supplies the same hash. Compilation invokes the explicit
-checker but does not execute generated Python.
+Use the [data-only preview](record-cpython-preview.md) to extract `artifact.json`'s
+exact Python bytes as `python.txt`, bound to the selected compile receipt, source
+and program pins. Read that text and independently hash its exact UTF-8 bytes.
+Retain the reviewed hash; never automatically promote the packet's declared
+hash to execution authority. Compilation invokes the explicit checker but does
+not execute generated Python; preview invokes neither.
 
 After separate execution authorization, use the same reviewed source and its
 raw one-element Json argument array (or the entry's documented arity):
