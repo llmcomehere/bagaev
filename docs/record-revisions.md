@@ -75,3 +75,60 @@ and program pins, layout-only refusals,16/17-revision and escaped-size bounds,
 hostile JSON/API inputs, and all four CLI-main operations with existing-output
 preservation. These are bounded in-process observations, not new business
 runtime evidence, independent reproduction or durability qualification.
+
+## Interrupted output and fresh recovery
+
+On 17 October 2026, six fresh data-only child processes exercised the existing
+public inventory fixture. Init created the original revision. During append,
+an instrumented stream at the exact new output path wrote and flushed17 bytes,
+then that child terminated with exit73. The retained bytes matched the exact
+prefix of the published two-revision package; the predecessor stayed unchanged.
+
+A fresh inspect rejected the partial file with `REVISION_JSON`. Reusing its
+occupied path for append returned `RECORD_PATH` and preserved both files.
+Appending from the intact predecessor to a new path then matched the complete
+published package byte-for-byte. Fresh checkout reproduced the successor source
+with SHA256 `8df61c88b2150258a560e019ed4920e3aa8fb393708a9c1f720aa9ae961d7005`.
+The partial file, process logs and both original source files were retained.
+
+The first attempted run stopped before the init write because the probe audit
+omitted a standard-library namedtuple construction. That failure was retained;
+the corrected probe was separately reviewed before the six-process run. No
+revision-library or application behavior was changed to make the test pass.
+
+The probe is `tests/probes/revision_interruption_process_checks.py`. Run it by
+absolute path with Python `-B -S` from a fresh working directory outside the
+checkout, under a separately authorized bounded process profile. It creates
+`revision-interruption-r2/` and refuses reuse; it checks nine pinned dependencies
+and refuses their bytecode-cache directories. `-B -S` is not a sandbox.
+
+This is controlled stream-boundary interruption in a real child followed by
+fresh-process recovery, not uninstrumented OS-fault coverage, fsync/power-loss
+durability, crash-atomic publication or concurrent-head safety. Capture timeout
+and overflow handling were statically reviewed but not exercised by these six
+calls. No application evaluator, database, model or network was invoked.
+
+## Choose portable history or a local transactional store
+
+Use this portable package when you need exact source exchange, detached review
+or checkout in another session. Each append creates a new file; a failed output
+can remain partial, and recovery starts from the intact predecessor at a new path.
+
+For a local history whose logical append must commit as one transaction, use the
+existing [candidate history store](record-history-store.md). It stores the same
+bounded form5/form6 source history in SQLite and supports explicit restore,
+append, inspect, recover, export and checkout. It is a candidate-source store,
+not application state or execution admission. Follow that guide's explicit form,
+pins and accepted rollback-journal profile; do not change SQLite settings to
+force an unsupported environment through its checks.
+
+A commit can succeed even if its acknowledgment fails. Reconcile the current
+package/head before retrying. The existing store qualification distinguishes
+before-commit and after-commit exits; it does not establish power-loss durability
+or exercised hot-journal recovery. Export and checkout still write new portable
+files and can leave partial output on failure. A transactional database commit
+does not make the separate exported file atomically published.
+
+These are two existing routes with different output boundaries. Moving a pinned
+portable package into a new local store uses the store's explicit `restore`
+operation; it does not require a new history schema or another storage backend.
