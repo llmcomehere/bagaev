@@ -939,8 +939,26 @@ pub fn check_source_v10(bytes:&[u8])->Result<SourceCheck,&'static str>{
  }
 }
 
+/// Source-only whole-program /11 checking; no argument preparation or evaluation.
+pub fn check_source_v11(bytes:&[u8])->Result<SourceCheck,&'static str>{
+ match parsed(bytes).and_then(|doc|program(&doc,doc.root,11)) {
+  Ok(source)=>Ok(SourceCheck::Checked(source)),
+  Err(FrontendError::Refusal(r))=>Ok(SourceCheck::Refused{reason:r.reason().name(),location:r.location().to_owned()}),
+  Err(FrontendError::Environment(e))=>Err(e),
+ }
+}
+
 pub fn process_v11(bytes:&[u8])->Result<Vec<u8>,&'static str>{process_profile(bytes,11)}
 pub fn process_v12(bytes:&[u8])->Result<Vec<u8>,&'static str>{process_profile(bytes,12)}
+
+/// Explicit source-only /12 checking, including non-Json entry parameters.
+pub fn check_source_v12(bytes:&[u8])->Result<SourceCheck,&'static str>{
+ match parsed(bytes).and_then(|doc|program(&doc,doc.root,12)) {
+  Ok(source)=>Ok(SourceCheck::Checked(source)),
+  Err(FrontendError::Refusal(r))=>Ok(SourceCheck::Refused{reason:r.reason().name(),location:r.location().to_owned()}),
+  Err(FrontendError::Environment(e))=>Err(e),
+ }
+}
 
 /// Explicit /12 invocation checker. Data validation is not native execution authority.
 pub fn checked_json_invocation_v12(bytes:&[u8])->Result<CheckedJsonInvocation,String>{

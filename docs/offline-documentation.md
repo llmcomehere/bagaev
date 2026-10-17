@@ -22,7 +22,7 @@ neither follows links nor executes examples, source programs or tests.
 The fixed input list contains 76 reviewed documentation sources. It includes
 readable editing and source maps, batch changes and ordinary/native baselines,
 prepared reference/native calls and source-pinned result reading, alongside the
-existing language and saved-workflow guides. The renderer and safety bounds are
+existing language and saved-workflow guides. The source selection and safety bounds are
 unchanged. The 76 sources produce 77 HTML pages including the README entry alias,
 plus index.json: 78 files in total. Linked code/examples outside the selection
 remain revision-pinned GitHub links and are not copied into the offline package.
@@ -52,6 +52,8 @@ remote assets. Navigation does not copy linked files outside the allowlist.
 This small renderer supports headings, paragraphs, inline code, direct links,
 bold text, lists including nested items, tables and fenced code. It is not a
 complete CommonMark implementation: unsupported notation remains visible text.
+Supported bold spans also render direct links and inline code. Link labels remain
+escaped text, and code spans never interpret their contents as links or markup.
 The Markdown source remains authoritative and is linked on every page. Raw
 HTML is escaped; code fences remain inert. No scripts, image embeds, analytics,
 external stylesheets or fonts are emitted.
@@ -77,5 +79,6 @@ The tests exercise deterministic output and provenance, inert malicious-looking
 code/raw HTML, exact link routing, unsafe-link refusal before output creation,
 missing/symlink inputs, revision/no-overwrite refusal, nested lists and unclosed
 fences. Building the accepted selected documents also permits static checks of
+links inside bold spans and the complete record-list size formula, alongside
 local pages/anchors and content hashes. These are static artifact checks, not
 browser visual QA, runtime conformance, release readiness or search evidence.

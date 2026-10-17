@@ -1,0 +1,13 @@
+{
+  "program_sha256": "790c5e3bc358c16e9f831ce79dfa82d0f8013b469a059413fd6079c0e9e8f314",
+  "arguments_sha256": "c3f7c8546d7d1d31d48314475042deacca64377481791bd7d983514abebf5b07",
+  "result": {
+    "schema": "bagaev-typed-record-result/11",
+    "status": "integer-overflow",
+    "value_type": null,
+    "value": null,
+    "work": 5,
+    "reason": "RR_OVERFLOW",
+    "location": "/program/functions/main/body/2"
+  }
+}
