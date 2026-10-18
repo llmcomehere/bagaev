@@ -46,7 +46,7 @@ class OfflineDocsTests(unittest.TestCase):
   self.assertIn(f'{n} sources produce {n+1} HTML pages',text)
   self.assertIn(f'index.json: {n+2} files in total',text)
  def test_current_pure_routes(self):
-  self.assertEqual(len(B.SOURCES),89);self.assertEqual(len(set(B.SOURCES)),89)
+  self.assertEqual(len(B.SOURCES),90);self.assertEqual(len(set(B.SOURCES)),90)
   for name in ('pure-record-drafts', 'pure-change-workflow', 'pure-option-form', 'pure-optional-fields', 'pure-json-form', 'catalog-edit-workflow', 'focused-function-edits', 'function-context', 'record-formatting', 'record-wide-profile', 'catalog-wide', 'wide-function-editing', 'wide-authoring', 'record-draft-export', 'record-capabilities', 'pure-inventory-reservation', 'inventory-focused-change', 'offline-documentation', 'application'):
    self.assertEqual(B.link(name+'.md','docs/choose-and-start.md',REV),name+'.html')
  def test_current_json_native_routes(self):
@@ -62,6 +62,8 @@ class OfflineDocsTests(unittest.TestCase):
    self.assertNotIn(path,B.SOURCES)
    self.assertEqual(B.link('../'+path,'docs/json-active-authoring.md',REV),B.REPOSITORY+'/blob/'+REV+'/'+path)
  def test_link_routes(self):
+  self.assertEqual(B.link('record-history-store.md','docs/record-revisions.md',REV),'record-history-store.html')
+  self.assertEqual(B.link('record-history-store.md#standalone-commands','docs/record-revisions.md',REV),'record-history-store.html#standalone-commands')
   for name in ('record-cli','record-cpython','record-cpython-run','record-cpython-retained','record-cpython-preview','record-source-diff','typed-journey','typed-journey-cpython','record-source-check-flow','record-retained-run','record-revisions','record-revisions-form6','record-expectations'):
    self.assertEqual(B.link(name+'.md','docs/choose-and-start.md',REV),name+'.html')
   self.assertEqual(B.link('docs/typed-journey-cpython.md','README.md',REV),'docs/typed-journey-cpython.html')
