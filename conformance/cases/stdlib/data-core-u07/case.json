@@ -1,0 +1,63 @@
+{
+  "id": "stdlib/data-core-u07",
+  "spec": [
+    "spec/runtime/machine.md#5-примитивы-и-fault",
+    "spec/stdlib/acceptance.md"
+  ],
+  "origin": "model:models/r07-core/fixtures/data-core.json#U07",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "run": {
+    "entry": "main.main"
+  },
+  "expect": {
+    "phase": "run",
+    "effects": [],
+    "outcome": "RETURNED",
+    "value": {
+      "type": "Seq<Int64>",
+      "items": [
+        {
+          "type": "Int64",
+          "value": "3"
+        },
+        {
+          "type": "Int64",
+          "value": "7"
+        },
+        {
+          "type": "Int64",
+          "value": "65"
+        },
+        {
+          "type": "Int64",
+          "value": "240"
+        },
+        {
+          "type": "Int64",
+          "value": "159"
+        },
+        {
+          "type": "Int64",
+          "value": "152"
+        },
+        {
+          "type": "Int64",
+          "value": "128"
+        },
+        {
+          "type": "Int64",
+          "value": "195"
+        },
+        {
+          "type": "Int64",
+          "value": "169"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "id": "parse/empty-attribute-arguments",
+  "spec": [
+    "spec/language/grammar.ebnf"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "expect": {
+    "phase": "parse",
+    "outcome": "PRELAUNCH",
+    "diagnostics": [
+      {
+        "code": "UNEXPECTED_TOKEN",
+        "file": "main.bag",
+        "span": [
+          4,
+          5
+        ]
+      }
+    ]
+  }
+}

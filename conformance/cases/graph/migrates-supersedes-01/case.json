@@ -1,0 +1,123 @@
+{
+  "id": "graph/migrates-supersedes-01",
+  "spec": [
+    "spec/links/08-bagaev-extraction.md#3-рёбра",
+    "spec/links/08-bagaev-extraction.md#4-граф-и-покрытие"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "app.bag"
+  ],
+  "run": {
+    "links": {
+      "op": "graph"
+    }
+  },
+  "expect": {
+    "phase": "graph",
+    "outcome": "GRAPH",
+    "value": {
+      "nodes": [
+        [
+          "app",
+          "module"
+        ],
+        [
+          "app.Bad",
+          "type"
+        ],
+        [
+          "app.Bad.Never",
+          "variant"
+        ],
+        [
+          "app.S",
+          "store"
+        ],
+        [
+          "app.S.t",
+          "table"
+        ],
+        [
+          "app.conv",
+          "migration"
+        ],
+        [
+          "app.get",
+          "query"
+        ],
+        [
+          "app.peek",
+          "query"
+        ],
+        [
+          "app.renamed",
+          "fn"
+        ]
+      ],
+      "edges": [
+        [
+          "migrates",
+          "app.conv",
+          "app.S.t"
+        ],
+        [
+          "reads",
+          "app.get",
+          "app.S.t"
+        ],
+        [
+          "supersedes",
+          "app.renamed",
+          "zz0001"
+        ],
+        [
+          "uses_type",
+          "app.conv",
+          "app.Bad"
+        ]
+      ],
+      "coverage": {
+        "about": "COMPLETE",
+        "calls": "COMPLETE",
+        "checks": "COMPLETE",
+        "consumes": "COMPLETE",
+        "defines": "COMPLETE",
+        "derived_from": "COMPLETE",
+        "emits": "COMPLETE",
+        "implements": "COMPLETE",
+        "migrates": "COMPLETE",
+        "reads": "COMPLETE",
+        "references": "COMPLETE",
+        "requires": "COMPLETE",
+        "supersedes": "PARTIAL",
+        "uses_type": "COMPLETE",
+        "writes": "COMPLETE"
+      },
+      "gaps": [
+        [
+          "app.get",
+          "EXTERNAL_CONSUMERS"
+        ],
+        [
+          "app.peek",
+          "EXTERNAL_CONSUMERS"
+        ],
+        [
+          "app.renamed",
+          "SUPERSEDES_HISTORY_UNCHECKED"
+        ]
+      ],
+      "unused_atoms": [
+        [
+          "app.peek",
+          "reads app.S.t"
+        ]
+      ]
+    }
+  },
+  "note": "supersedes — ребро к строке ID с пробелом до сверки с историей (Ф6); объявленный неиспользуемый атом — запись unused_atoms, не ребро (EFF-12)"
+}

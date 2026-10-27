@@ -1,0 +1,28 @@
+{
+  "id": "effects/table-param-only-in-std",
+  "spec": [
+    "spec/language/effects.md#3-эффект-переменные",
+    "spec/language/checking.md#4-объявления-фазы-type-и-effect"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "expect": {
+    "phase": "check",
+    "outcome": "PRELAUNCH",
+    "diagnostics": [
+      {
+        "code": "TABLE_PARAM_ONLY_IN_STD",
+        "file": "main.bag",
+        "span": [
+          49,
+          68
+        ]
+      }
+    ]
+  }
+}

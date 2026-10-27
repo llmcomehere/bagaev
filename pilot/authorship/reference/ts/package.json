@@ -1,0 +1,10 @@
+{
+  "name": "bagaev-pilot-blog",
+  "private": true,
+  "type": "module",
+  "description": "Вариант A и B опыта авторства: блог на TypeScript strict, node:sqlite, node:test. Без сторонних пакетов.",
+  "scripts": {
+    "check": "tsc -p tsconfig.json",
+    "test": "node --no-warnings --test test/*.test.ts"
+  }
+}

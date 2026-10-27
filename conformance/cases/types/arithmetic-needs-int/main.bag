@@ -1,0 +1,7 @@
+@id("754bpn")
+module main
+
+@id("cc1hd5")
+fn f(s: String) -> Int64 {
+  s * 2
+}

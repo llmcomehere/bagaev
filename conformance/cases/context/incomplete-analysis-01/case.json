@@ -1,0 +1,65 @@
+{
+  "id": "context/incomplete-analysis-01",
+  "spec": [
+    "spec/links/08-bagaev-extraction.md#6-contextpack"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "app.bag",
+    "cand/app.bag"
+  ],
+  "run": {
+    "links": {
+      "op": "context",
+      "candidate": "cand",
+      "context_budget": 20000,
+      "budget": 2
+    }
+  },
+  "expect": {
+    "phase": "context",
+    "outcome": "CONTEXT",
+    "value": {
+      "ready_for_step": false,
+      "blockers": [
+        "ANALYSIS_SCOPE_INCOMPLETE"
+      ],
+      "next_cursor": null,
+      "within_budget": true,
+      "obligations": 5,
+      "coverage": [
+        [
+          "app.double",
+          "expanded"
+        ],
+        [
+          "app.Exact.positive",
+          "expanded"
+        ],
+        [
+          "app.origin",
+          "expanded"
+        ],
+        [
+          "app.quadruple",
+          "pending",
+          "ANALYSIS_FRONTIER"
+        ],
+        [
+          "app.add",
+          "pending",
+          "ANALYSIS_FRONTIER"
+        ],
+        [
+          "app.origin_positive",
+          "pending",
+          "ANALYSIS_FRONTIER"
+        ]
+      ]
+    }
+  },
+  "note": "неполный анализ (бюджет 2): готовности нет, frontier — pending с действием; границ нет — исключений нет"
+}

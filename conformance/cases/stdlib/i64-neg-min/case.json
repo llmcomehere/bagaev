@@ -1,0 +1,31 @@
+{
+  "id": "stdlib/i64-neg-min",
+  "spec": [
+    "spec/stdlib/acceptance.md",
+    "spec/runtime/machine.md#5-примитивы-и-fault"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "run": {
+    "entry": "main.main"
+  },
+  "expect": {
+    "phase": "run",
+    "effects": [],
+    "outcome": "RETURNED",
+    "value": {
+      "type": "Result<Int64,std.i64.ArithmeticError>",
+      "tag": "Err",
+      "payload": {
+        "type": "std.i64.ArithmeticError",
+        "tag": "Overflow"
+      }
+    }
+  },
+  "note": "SA-009"
+}

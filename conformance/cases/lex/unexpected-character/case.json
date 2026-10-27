@@ -1,0 +1,27 @@
+{
+  "id": "lex/unexpected-character",
+  "spec": [
+    "spec/language/lexical.md#5-пунктуация-и-операторы"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "expect": {
+    "phase": "parse",
+    "outcome": "PRELAUNCH",
+    "diagnostics": [
+      {
+        "code": "UNEXPECTED_CHARACTER",
+        "file": "main.bag",
+        "span": [
+          27,
+          28
+        ]
+      }
+    ]
+  }
+}

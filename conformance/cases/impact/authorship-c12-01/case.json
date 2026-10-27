@@ -1,0 +1,180 @@
+{
+  "id": "impact/authorship-c12-01",
+  "spec": [
+    "spec/links/08-bagaev-extraction.md#5-влияние",
+    "spec/kernel/outcomes.md#4-статусы-анализа-и-знаний"
+  ],
+  "origin": "model:models/r07-core/data/authorship-fixtures.json#C12",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "blog/acl.bag",
+    "blog/articles.bag",
+    "blog/authorship.bag",
+    "blog/byline.bag",
+    "blog/db.bag",
+    "blog/editor.bag",
+    "blog/events.bag",
+    "blog/export.bag",
+    "blog/image.bag",
+    "blog/indexer.bag",
+    "blog/migration.bag",
+    "blog/people.bag",
+    "blog/search.bag",
+    "blog/tests.bag",
+    "cand/blog/acl.bag",
+    "cand/blog/articles.bag",
+    "cand/blog/authorship.bag",
+    "cand/blog/byline.bag",
+    "cand/blog/db.bag",
+    "cand/blog/editor.bag",
+    "cand/blog/events.bag",
+    "cand/blog/export.bag",
+    "cand/blog/image.bag",
+    "cand/blog/indexer.bag",
+    "cand/blog/migration.bag",
+    "cand/blog/people.bag",
+    "cand/blog/search.bag",
+    "cand/blog/tests.bag"
+  ],
+  "run": {
+    "links": {
+      "op": "impact",
+      "candidate": "cand",
+      "unavailable": [
+        "blog.export.export_article"
+      ]
+    }
+  },
+  "expect": {
+    "phase": "impact",
+    "outcome": "IMPACT",
+    "value": {
+      "status": "COMPLETE",
+      "readiness": "BLOCKED",
+      "seeds": [
+        [
+          "blog.authorship.ids",
+          "changed"
+        ]
+      ],
+      "in_scope": [
+        [
+          "blog.authorship.ids",
+          0
+        ],
+        [
+          "blog.authorship.includes",
+          1
+        ],
+        [
+          "blog.byline.byline",
+          1
+        ],
+        [
+          "blog.db.Blog",
+          3
+        ],
+        [
+          "blog.db.Blog.author_index",
+          2
+        ],
+        [
+          "blog.indexer.index_authorship",
+          1
+        ],
+        [
+          "blog.search.articles_by",
+          3
+        ]
+      ],
+      "unknown": [
+        [
+          "blog.export.export_article",
+          "ACCESS_BLOCKED"
+        ],
+        [
+          "blog.tests.export_keeps_all_authors",
+          "DEPENDS_ON_UNKNOWN"
+        ]
+      ],
+      "unknown_incomplete": 0,
+      "frontier": [],
+      "obligations": [
+        [
+          "blog.authorship.AttributionComplete.complete",
+          "blog.byline.byline",
+          "requires",
+          "open",
+          [
+            "base",
+            "candidate"
+          ]
+        ],
+        [
+          "blog.authorship.AttributionComplete.complete",
+          "blog.export.export_article",
+          "requires",
+          "unknown",
+          [
+            "base",
+            "candidate"
+          ]
+        ],
+        [
+          "blog.authorship.AttributionComplete.complete",
+          "blog.indexer.index_authorship",
+          "implements",
+          "open",
+          [
+            "base",
+            "candidate"
+          ]
+        ],
+        [
+          "blog.authorship.AttributionComplete.complete",
+          "blog.search.articles_by",
+          "requires",
+          "open",
+          [
+            "base",
+            "candidate"
+          ]
+        ],
+        [
+          "blog.authorship.AttributionComplete.complete",
+          "blog.tests.export_keeps_all_authors",
+          "checks",
+          "unknown",
+          [
+            "base",
+            "candidate"
+          ]
+        ],
+        [
+          "blog.authorship.Authorship",
+          "blog.db.Blog.author_index",
+          "derived_from",
+          "open",
+          [
+            "base",
+            "candidate"
+          ]
+        ]
+      ],
+      "closed": [],
+      "tests_to_run": [
+        "blog.tests.export_keeps_all_authors"
+      ],
+      "gaps": [
+        [
+          "blog.search.articles_by",
+          "EXTERNAL_CONSUMERS"
+        ]
+      ],
+      "watch": {}
+    }
+  },
+  "note": "недоступный экспорт: обязательство O05 unknown, приёмка заблокирована; узлы фикстуры → программа: E.byline → blog.byline.byline, E.export → blog.export.export_article, E.indexer → blog.indexer.index_authorship, E.image_pipeline → blog.image.image_pipeline, E.image_resize → blog.image.resize, E.image_watermark → blog.image.watermark, O05 → обязательство (AttributionComplete.complete, export_article); g_export_requires → requires export_article → complete"
+}

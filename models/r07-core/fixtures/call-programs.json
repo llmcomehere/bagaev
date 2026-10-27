@@ -1,0 +1,2018 @@
+{
+  "format": "r04-call-profile-fixtures/1",
+  "bagaev_execution": false,
+  "research_ast_execution": true,
+  "manual_expected_outputs_are_authored": true,
+  "domain": {
+    "author_ids": [
+      "a",
+      "b",
+      "c"
+    ],
+    "maximum_length": 3,
+    "unique_ids": true,
+    "include_empty": true,
+    "include_missing": true,
+    "additional_read_errors": [
+      "READ_DENIED"
+    ]
+  },
+  "programs": [
+    {
+      "id": "C01_nested_same_target",
+      "entry": {
+        "op": "call",
+        "target": "f",
+        "args": [
+          {
+            "op": "call",
+            "target": "f",
+            "args": [
+              {
+                "op": "read",
+                "view": "count"
+              }
+            ],
+            "type": "int"
+          }
+        ],
+        "type": "int"
+      },
+      "functions": [
+        {
+          "stable_id": "f",
+          "params": [
+            {
+              "name": "x",
+              "type": "int"
+            }
+          ],
+          "return_type": "int",
+          "body": {
+            "op": "var",
+            "name": "x"
+          }
+        }
+      ],
+      "compile_config": {},
+      "expected_type": "int",
+      "expected_required_observations": [
+        "count",
+        "read_status"
+      ],
+      "expected_complete": true,
+      "purpose": "f(f(argument)) evaluates inner argument before outer f becomes active."
+    },
+    {
+      "id": "C02_identity_set",
+      "entry": {
+        "op": "call",
+        "target": "identity",
+        "args": [
+          {
+            "op": "read",
+            "view": "member_set"
+          }
+        ],
+        "type": "member_set"
+      },
+      "functions": [
+        {
+          "stable_id": "identity",
+          "params": [
+            {
+              "name": "items",
+              "type": "member_set"
+            }
+          ],
+          "return_type": "member_set",
+          "body": {
+            "op": "var",
+            "name": "items"
+          }
+        }
+      ],
+      "compile_config": {},
+      "expected_type": "member_set",
+      "expected_required_observations": [
+        "member_set",
+        "read_status"
+      ],
+      "expected_complete": true,
+      "purpose": "Typed collection argument and exact set observation."
+    },
+    {
+      "id": "C03_repeated_parameter",
+      "entry": {
+        "op": "call",
+        "target": "duplicate",
+        "args": [
+          {
+            "op": "emit",
+            "label": "arg",
+            "value": {
+              "op": "read",
+              "view": "count"
+            },
+            "then": {
+              "op": "read",
+              "view": "count"
+            }
+          }
+        ],
+        "type": {
+          "tuple": [
+            "int",
+            "int"
+          ]
+        }
+      },
+      "functions": [
+        {
+          "stable_id": "duplicate",
+          "params": [
+            {
+              "name": "x",
+              "type": "int"
+            }
+          ],
+          "return_type": {
+            "tuple": [
+              "int",
+              "int"
+            ]
+          },
+          "body": {
+            "op": "pair",
+            "left": {
+              "op": "var",
+              "name": "x"
+            },
+            "right": {
+              "op": "var",
+              "name": "x"
+            }
+          }
+        }
+      ],
+      "compile_config": {},
+      "expected_type": {
+        "tuple": [
+          "int",
+          "int"
+        ]
+      },
+      "expected_required_observations": [
+        "count",
+        "read_status"
+      ],
+      "expected_complete": true,
+      "purpose": "A repeated parameter uses one evaluated value and does not repeat its effectful argument."
+    },
+    {
+      "id": "C04_unused_head",
+      "entry": {
+        "op": "call",
+        "target": "ignore",
+        "args": [
+          {
+            "op": "head",
+            "value": {
+              "op": "read",
+              "view": "ordered_members"
+            }
+          }
+        ],
+        "type": "string"
+      },
+      "functions": [
+        {
+          "stable_id": "ignore",
+          "params": [
+            {
+              "name": "unused",
+              "type": "string"
+            }
+          ],
+          "return_type": "string",
+          "body": {
+            "op": "const",
+            "value": "ok"
+          }
+        }
+      ],
+      "compile_config": {},
+      "expected_type": "string",
+      "expected_required_observations": [
+        "ordered_members",
+        "read_status"
+      ],
+      "expected_complete": true,
+      "purpose": "Unused strict argument retains head/read errors and resource dependency."
+    },
+    {
+      "id": "C05_unused_emit",
+      "entry": {
+        "op": "call",
+        "target": "ignore",
+        "args": [
+          {
+            "op": "emit",
+            "label": "arg",
+            "value": {
+              "op": "read",
+              "view": "ordered_members"
+            },
+            "then": {
+              "op": "const",
+              "value": "ignored"
+            }
+          }
+        ],
+        "type": "string"
+      },
+      "functions": [
+        {
+          "stable_id": "ignore",
+          "params": [
+            {
+              "name": "unused",
+              "type": "string"
+            }
+          ],
+          "return_type": "string",
+          "body": {
+            "op": "const",
+            "value": "ok"
+          }
+        }
+      ],
+      "compile_config": {},
+      "expected_type": "string",
+      "expected_required_observations": [
+        "ordered_members",
+        "read_status"
+      ],
+      "expected_complete": true,
+      "purpose": "Unused strict argument retains the complete ordered effect trace."
+    },
+    {
+      "id": "C06_unused_unknown",
+      "entry": {
+        "op": "call",
+        "target": "ignore",
+        "args": [
+          {
+            "op": "unknown",
+            "type": "string",
+            "reason": "fixture_unknown"
+          }
+        ],
+        "type": "string"
+      },
+      "functions": [
+        {
+          "stable_id": "ignore",
+          "params": [
+            {
+              "name": "unused",
+              "type": "string"
+            }
+          ],
+          "return_type": "string",
+          "body": {
+            "op": "const",
+            "value": "ok"
+          }
+        }
+      ],
+      "compile_config": {},
+      "expected_type": "string",
+      "expected_required_observations": [],
+      "expected_complete": false,
+      "purpose": "Unused strict unknown argument prevents entry into the known body."
+    },
+    {
+      "id": "C07_left_to_right_effects",
+      "entry": {
+        "op": "call",
+        "target": "combine",
+        "args": [
+          {
+            "op": "emit",
+            "label": "first",
+            "value": {
+              "op": "const",
+              "value": 1
+            },
+            "then": {
+              "op": "const",
+              "value": 1
+            }
+          },
+          {
+            "op": "emit",
+            "label": "second",
+            "value": {
+              "op": "const",
+              "value": 2
+            },
+            "then": {
+              "op": "const",
+              "value": 2
+            }
+          }
+        ],
+        "type": {
+          "tuple": [
+            "int",
+            "int"
+          ]
+        }
+      },
+      "functions": [
+        {
+          "stable_id": "combine",
+          "params": [
+            {
+              "name": "left",
+              "type": "int"
+            },
+            {
+              "name": "right",
+              "type": "int"
+            }
+          ],
+          "return_type": {
+            "tuple": [
+              "int",
+              "int"
+            ]
+          },
+          "body": {
+            "op": "emit",
+            "label": "body",
+            "value": {
+              "op": "pair",
+              "left": {
+                "op": "var",
+                "name": "left"
+              },
+              "right": {
+                "op": "var",
+                "name": "right"
+              }
+            },
+            "then": {
+              "op": "pair",
+              "left": {
+                "op": "var",
+                "name": "left"
+              },
+              "right": {
+                "op": "var",
+                "name": "right"
+              }
+            }
+          }
+        }
+      ],
+      "compile_config": {},
+      "expected_type": {
+        "tuple": [
+          "int",
+          "int"
+        ]
+      },
+      "expected_required_observations": [],
+      "expected_complete": true,
+      "purpose": "Arguments run once, first then second, followed by the body effect."
+    },
+    {
+      "id": "C08_first_argument_error",
+      "entry": {
+        "op": "call",
+        "target": "combine",
+        "args": [
+          {
+            "op": "emit",
+            "label": "prefix",
+            "value": {
+              "op": "const",
+              "value": true
+            },
+            "then": {
+              "op": "fail",
+              "code": "ARG_STOP",
+              "type": "int"
+            }
+          },
+          {
+            "op": "emit",
+            "label": "second",
+            "value": {
+              "op": "read",
+              "view": "count"
+            },
+            "then": {
+              "op": "const",
+              "value": 2
+            }
+          }
+        ],
+        "type": {
+          "tuple": [
+            "int",
+            "int"
+          ]
+        }
+      },
+      "functions": [
+        {
+          "stable_id": "combine",
+          "params": [
+            {
+              "name": "left",
+              "type": "int"
+            },
+            {
+              "name": "right",
+              "type": "int"
+            }
+          ],
+          "return_type": {
+            "tuple": [
+              "int",
+              "int"
+            ]
+          },
+          "body": {
+            "op": "emit",
+            "label": "body",
+            "value": {
+              "op": "pair",
+              "left": {
+                "op": "var",
+                "name": "left"
+              },
+              "right": {
+                "op": "var",
+                "name": "right"
+              }
+            },
+            "then": {
+              "op": "pair",
+              "left": {
+                "op": "var",
+                "name": "left"
+              },
+              "right": {
+                "op": "var",
+                "name": "right"
+              }
+            }
+          }
+        }
+      ],
+      "compile_config": {},
+      "expected_type": {
+        "tuple": [
+          "int",
+          "int"
+        ]
+      },
+      "expected_required_observations": [
+        "count",
+        "read_status"
+      ],
+      "expected_complete": true,
+      "purpose": "Known error retains the first prefix and prevents later arguments/body despite conservative union."
+    },
+    {
+      "id": "C09_first_argument_unknown",
+      "entry": {
+        "op": "call",
+        "target": "combine",
+        "args": [
+          {
+            "op": "unknown",
+            "type": "int",
+            "reason": "fixture_unknown"
+          },
+          {
+            "op": "emit",
+            "label": "second",
+            "value": {
+              "op": "read",
+              "view": "count"
+            },
+            "then": {
+              "op": "const",
+              "value": 2
+            }
+          }
+        ],
+        "type": {
+          "tuple": [
+            "int",
+            "int"
+          ]
+        }
+      },
+      "functions": [
+        {
+          "stable_id": "combine",
+          "params": [
+            {
+              "name": "left",
+              "type": "int"
+            },
+            {
+              "name": "right",
+              "type": "int"
+            }
+          ],
+          "return_type": {
+            "tuple": [
+              "int",
+              "int"
+            ]
+          },
+          "body": {
+            "op": "emit",
+            "label": "body",
+            "value": {
+              "op": "pair",
+              "left": {
+                "op": "var",
+                "name": "left"
+              },
+              "right": {
+                "op": "var",
+                "name": "right"
+              }
+            },
+            "then": {
+              "op": "pair",
+              "left": {
+                "op": "var",
+                "name": "left"
+              },
+              "right": {
+                "op": "var",
+                "name": "right"
+              }
+            }
+          }
+        }
+      ],
+      "compile_config": {},
+      "expected_type": {
+        "tuple": [
+          "int",
+          "int"
+        ]
+      },
+      "expected_required_observations": [
+        "count",
+        "read_status"
+      ],
+      "expected_complete": false,
+      "purpose": "Unknown first argument prevents later argument/body effects."
+    },
+    {
+      "id": "C10_parameter_capture",
+      "entry": {
+        "op": "let",
+        "name": "x",
+        "value": {
+          "op": "const",
+          "value": "caller"
+        },
+        "body": {
+          "op": "call",
+          "target": "pair",
+          "args": [
+            {
+              "op": "const",
+              "value": "parameter"
+            },
+            {
+              "op": "var",
+              "name": "x"
+            }
+          ],
+          "type": {
+            "tuple": [
+              "string",
+              "string"
+            ]
+          }
+        }
+      },
+      "functions": [
+        {
+          "stable_id": "pair",
+          "params": [
+            {
+              "name": "x",
+              "type": "string"
+            },
+            {
+              "name": "y",
+              "type": "string"
+            }
+          ],
+          "return_type": {
+            "tuple": [
+              "string",
+              "string"
+            ]
+          },
+          "body": {
+            "op": "pair",
+            "left": {
+              "op": "var",
+              "name": "x"
+            },
+            "right": {
+              "op": "var",
+              "name": "y"
+            }
+          }
+        }
+      ],
+      "compile_config": {},
+      "expected_type": {
+        "tuple": [
+          "string",
+          "string"
+        ]
+      },
+      "expected_required_observations": [],
+      "expected_complete": true,
+      "purpose": "The second argument sees caller x; binding first parameter x cannot capture it."
+    },
+    {
+      "id": "C11_callee_shadow",
+      "entry": {
+        "op": "let",
+        "name": "x",
+        "value": {
+          "op": "const",
+          "value": "caller"
+        },
+        "body": {
+          "op": "call",
+          "target": "shadow",
+          "args": [
+            {
+              "op": "var",
+              "name": "x"
+            }
+          ],
+          "type": {
+            "tuple": [
+              "string",
+              "string"
+            ]
+          }
+        }
+      },
+      "functions": [
+        {
+          "stable_id": "shadow",
+          "params": [
+            {
+              "name": "x",
+              "type": "string"
+            }
+          ],
+          "return_type": {
+            "tuple": [
+              "string",
+              "string"
+            ]
+          },
+          "body": {
+            "op": "pair",
+            "left": {
+              "op": "let",
+              "name": "x",
+              "value": {
+                "op": "const",
+                "value": "inner"
+              },
+              "body": {
+                "op": "var",
+                "name": "x"
+              }
+            },
+            "right": {
+              "op": "var",
+              "name": "x"
+            }
+          }
+        }
+      ],
+      "compile_config": {},
+      "expected_type": {
+        "tuple": [
+          "string",
+          "string"
+        ]
+      },
+      "expected_required_observations": [],
+      "expected_complete": true,
+      "purpose": "Local let shadows a parameter only inside its own lexical body."
+    },
+    {
+      "id": "C12_transitive_size",
+      "entry": {
+        "op": "call",
+        "target": "f",
+        "args": [],
+        "type": "int"
+      },
+      "functions": [
+        {
+          "stable_id": "f",
+          "params": [],
+          "return_type": "int",
+          "body": {
+            "op": "call",
+            "target": "g",
+            "args": [],
+            "type": "int"
+          }
+        },
+        {
+          "stable_id": "g",
+          "params": [],
+          "return_type": "int",
+          "body": {
+            "op": "call",
+            "target": "h",
+            "args": [],
+            "type": "int"
+          }
+        },
+        {
+          "stable_id": "h",
+          "params": [],
+          "return_type": "int",
+          "body": {
+            "op": "size",
+            "value": {
+              "op": "read",
+              "view": "ordered_members"
+            }
+          }
+        }
+      ],
+      "compile_config": {},
+      "expected_type": "int",
+      "expected_required_observations": [
+        "ordered_members",
+        "read_status"
+      ],
+      "expected_complete": true,
+      "purpose": "Exact three-function closure; verified expansion exposes an R03 exact law redex."
+    },
+    {
+      "id": "C13_control_parameter",
+      "entry": {
+        "op": "call",
+        "target": "choose",
+        "args": [
+          {
+            "op": "eq",
+            "left": {
+              "op": "head",
+              "value": {
+                "op": "read",
+                "view": "ordered_members"
+              }
+            },
+            "right": {
+              "op": "const",
+              "value": "a"
+            }
+          },
+          {
+            "op": "read",
+            "view": "count"
+          }
+        ],
+        "type": "int"
+      },
+      "functions": [
+        {
+          "stable_id": "choose",
+          "params": [
+            {
+              "name": "condition",
+              "type": "bool"
+            },
+            {
+              "name": "value",
+              "type": "int"
+            }
+          ],
+          "return_type": "int",
+          "body": {
+            "op": "if",
+            "condition": {
+              "op": "var",
+              "name": "condition"
+            },
+            "then": {
+              "op": "var",
+              "name": "value"
+            },
+            "else": {
+              "op": "const",
+              "value": 0
+            }
+          }
+        }
+      ],
+      "compile_config": {},
+      "expected_type": "int",
+      "expected_required_observations": [
+        "count",
+        "ordered_members",
+        "read_status"
+      ],
+      "expected_complete": true,
+      "purpose": "An order-dependent strict argument controls the result while count stays equal."
+    },
+    {
+      "id": "C14_unreachable_unknown",
+      "entry": {
+        "op": "call",
+        "target": "f",
+        "args": [],
+        "type": "int"
+      },
+      "functions": [
+        {
+          "stable_id": "f",
+          "params": [],
+          "return_type": "int",
+          "body": {
+            "op": "if",
+            "condition": {
+              "op": "const",
+              "value": true
+            },
+            "then": {
+              "op": "const",
+              "value": 7
+            },
+            "else": {
+              "op": "unknown",
+              "type": "int",
+              "reason": "fixture_unknown"
+            }
+          }
+        }
+      ],
+      "compile_config": {},
+      "expected_type": "int",
+      "expected_required_observations": [],
+      "expected_complete": false,
+      "purpose": "Unselected unknown branch is not executed but prevents a complete static summary."
+    },
+    {
+      "id": "C15_unreachable_read",
+      "entry": {
+        "op": "call",
+        "target": "f",
+        "args": [],
+        "type": "int"
+      },
+      "functions": [
+        {
+          "stable_id": "f",
+          "params": [],
+          "return_type": "int",
+          "body": {
+            "op": "if",
+            "condition": {
+              "op": "const",
+              "value": true
+            },
+            "then": {
+              "op": "const",
+              "value": 7
+            },
+            "else": {
+              "op": "read",
+              "view": "count"
+            }
+          }
+        }
+      ],
+      "compile_config": {},
+      "expected_type": "int",
+      "expected_required_observations": [
+        "count",
+        "read_status"
+      ],
+      "expected_complete": true,
+      "purpose": "Unselected read remains a conservative dependency; no false claim of minimality."
+    },
+    {
+      "id": "C16_unreferenced_function",
+      "entry": {
+        "op": "const",
+        "value": 5
+      },
+      "functions": [
+        {
+          "stable_id": "unused",
+          "params": [],
+          "return_type": "int",
+          "body": {
+            "op": "opaque",
+            "name": "unreferenced_external",
+            "type": "int"
+          }
+        }
+      ],
+      "compile_config": {},
+      "expected_type": "int",
+      "expected_required_observations": [],
+      "expected_complete": true,
+      "purpose": "A valid but unreferenced declaration is outside the entry closure."
+    },
+    {
+      "id": "C17_nested_call_effects",
+      "entry": {
+        "op": "call",
+        "target": "combine",
+        "args": [
+          {
+            "op": "call",
+            "target": "inner",
+            "args": [
+              {
+                "op": "emit",
+                "label": "first",
+                "value": {
+                  "op": "read",
+                  "view": "count"
+                },
+                "then": {
+                  "op": "const",
+                  "value": 7
+                }
+              }
+            ],
+            "type": "int"
+          },
+          {
+            "op": "emit",
+            "label": "second",
+            "value": {
+              "op": "read",
+              "view": "count"
+            },
+            "then": {
+              "op": "const",
+              "value": 2
+            }
+          }
+        ],
+        "type": {
+          "tuple": [
+            "int",
+            "int"
+          ]
+        }
+      },
+      "functions": [
+        {
+          "stable_id": "combine",
+          "params": [
+            {
+              "name": "left",
+              "type": "int"
+            },
+            {
+              "name": "right",
+              "type": "int"
+            }
+          ],
+          "return_type": {
+            "tuple": [
+              "int",
+              "int"
+            ]
+          },
+          "body": {
+            "op": "emit",
+            "label": "body",
+            "value": {
+              "op": "pair",
+              "left": {
+                "op": "var",
+                "name": "left"
+              },
+              "right": {
+                "op": "var",
+                "name": "right"
+              }
+            },
+            "then": {
+              "op": "pair",
+              "left": {
+                "op": "var",
+                "name": "left"
+              },
+              "right": {
+                "op": "var",
+                "name": "right"
+              }
+            }
+          }
+        },
+        {
+          "stable_id": "inner",
+          "params": [
+            {
+              "name": "x",
+              "type": "int"
+            }
+          ],
+          "return_type": "int",
+          "body": {
+            "op": "emit",
+            "label": "inner",
+            "value": {
+              "op": "var",
+              "name": "x"
+            },
+            "then": {
+              "op": "var",
+              "name": "x"
+            }
+          }
+        }
+      ],
+      "compile_config": {},
+      "expected_type": {
+        "tuple": [
+          "int",
+          "int"
+        ]
+      },
+      "expected_required_observations": [
+        "count",
+        "read_status"
+      ],
+      "expected_complete": true,
+      "purpose": "Nested call completes its argument/body effects before the next outer argument."
+    },
+    {
+      "id": "C18_status_argument",
+      "entry": {
+        "op": "call",
+        "target": "identity",
+        "args": [
+          {
+            "op": "read",
+            "view": "read_status"
+          }
+        ],
+        "type": "string"
+      },
+      "functions": [
+        {
+          "stable_id": "identity",
+          "params": [
+            {
+              "name": "status",
+              "type": "string"
+            }
+          ],
+          "return_type": "string",
+          "body": {
+            "op": "var",
+            "name": "status"
+          }
+        }
+      ],
+      "compile_config": {},
+      "expected_type": "string",
+      "expected_required_observations": [
+        "read_status"
+      ],
+      "expected_complete": true,
+      "purpose": "A total status observation crosses a typed call without being promoted to a read failure."
+    }
+  ],
+  "manual_cases": [
+    {
+      "id": "M01_nested_same_target_permutation",
+      "program": "C01_nested_same_target",
+      "before": {
+        "members": [
+          "a",
+          "b"
+        ]
+      },
+      "after": {
+        "members": [
+          "b",
+          "a"
+        ]
+      },
+      "expected_before": {
+        "status": "ok",
+        "value": 2,
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_after": {
+        "status": "ok",
+        "value": 2,
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_decision": "EXCLUDED",
+      "purpose": "Nested same target is not recursion."
+    },
+    {
+      "id": "M02_nested_same_target_insertion",
+      "program": "C01_nested_same_target",
+      "before": {
+        "members": [
+          "a"
+        ]
+      },
+      "after": {
+        "members": [
+          "a",
+          "b"
+        ]
+      },
+      "expected_before": {
+        "status": "ok",
+        "value": 1,
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_after": {
+        "status": "ok",
+        "value": 2,
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_decision": "RECHECK",
+      "purpose": "Count changes through two strict calls."
+    },
+    {
+      "id": "M03_set_permutation",
+      "program": "C02_identity_set",
+      "before": {
+        "members": [
+          "a",
+          "b"
+        ]
+      },
+      "after": {
+        "members": [
+          "b",
+          "a"
+        ]
+      },
+      "expected_before": {
+        "status": "ok",
+        "value": {
+          "$set": [
+            "a",
+            "b"
+          ]
+        },
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_after": {
+        "status": "ok",
+        "value": {
+          "$set": [
+            "a",
+            "b"
+          ]
+        },
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_decision": "EXCLUDED",
+      "purpose": "Set identity is insensitive to order."
+    },
+    {
+      "id": "M04_set_replacement",
+      "program": "C02_identity_set",
+      "before": {
+        "members": [
+          "a"
+        ]
+      },
+      "after": {
+        "members": [
+          "b"
+        ]
+      },
+      "expected_before": {
+        "status": "ok",
+        "value": {
+          "$set": [
+            "a"
+          ]
+        },
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_after": {
+        "status": "ok",
+        "value": {
+          "$set": [
+            "b"
+          ]
+        },
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_decision": "RECHECK",
+      "purpose": "Equal cardinality does not preserve the set."
+    },
+    {
+      "id": "M05_repeat_argument_once",
+      "program": "C03_repeated_parameter",
+      "before": {
+        "members": [
+          "a"
+        ]
+      },
+      "after": {
+        "members": [
+          "a",
+          "b"
+        ]
+      },
+      "expected_before": {
+        "status": "ok",
+        "value": [
+          1,
+          1
+        ],
+        "error": null,
+        "trace": [
+          {
+            "label": "arg",
+            "value": 1
+          }
+        ],
+        "complete": true
+      },
+      "expected_after": {
+        "status": "ok",
+        "value": [
+          2,
+          2
+        ],
+        "error": null,
+        "trace": [
+          {
+            "label": "arg",
+            "value": 2
+          }
+        ],
+        "complete": true
+      },
+      "expected_decision": "RECHECK",
+      "purpose": "One argument evaluation supplies both parameter occurrences."
+    },
+    {
+      "id": "M06_repeat_argument_read_failure",
+      "program": "C03_repeated_parameter",
+      "before": null,
+      "after": {
+        "members": [
+          "a"
+        ]
+      },
+      "expected_before": {
+        "status": "error",
+        "value": null,
+        "error": "MISSING_RESOURCE",
+        "trace": [],
+        "complete": true
+      },
+      "expected_after": {
+        "status": "ok",
+        "value": [
+          1,
+          1
+        ],
+        "error": null,
+        "trace": [
+          {
+            "label": "arg",
+            "value": 1
+          }
+        ],
+        "complete": true
+      },
+      "expected_decision": "RECHECK",
+      "purpose": "A failing argument emits nothing and does not enter the body."
+    },
+    {
+      "id": "M07_unused_head_error",
+      "program": "C04_unused_head",
+      "before": {
+        "members": []
+      },
+      "after": {
+        "members": [
+          "a"
+        ]
+      },
+      "expected_before": {
+        "status": "error",
+        "value": null,
+        "error": "EMPTY_HEAD",
+        "trace": [],
+        "complete": true
+      },
+      "expected_after": {
+        "status": "ok",
+        "value": "ok",
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_decision": "RECHECK",
+      "purpose": "Unused does not mean lazy."
+    },
+    {
+      "id": "M08_unused_read_failure",
+      "program": "C04_unused_head",
+      "before": null,
+      "after": {
+        "members": [
+          "a"
+        ]
+      },
+      "expected_before": {
+        "status": "error",
+        "value": null,
+        "error": "MISSING_RESOURCE",
+        "trace": [],
+        "complete": true
+      },
+      "expected_after": {
+        "status": "ok",
+        "value": "ok",
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_decision": "RECHECK",
+      "purpose": "Strict unused read dependency is retained."
+    },
+    {
+      "id": "M09_unused_explicit_read_error",
+      "program": "C04_unused_head",
+      "before": {
+        "members": [],
+        "read_error": "READ_DENIED"
+      },
+      "after": {
+        "members": [
+          "a"
+        ]
+      },
+      "expected_before": {
+        "status": "error",
+        "value": null,
+        "error": "READ_DENIED",
+        "trace": [],
+        "complete": true
+      },
+      "expected_after": {
+        "status": "ok",
+        "value": "ok",
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_decision": "RECHECK",
+      "purpose": "A provider read error remains observable through an unused argument."
+    },
+    {
+      "id": "M10_unused_emit_order",
+      "program": "C05_unused_emit",
+      "before": {
+        "members": [
+          "a",
+          "b"
+        ]
+      },
+      "after": {
+        "members": [
+          "b",
+          "a"
+        ]
+      },
+      "expected_before": {
+        "status": "ok",
+        "value": "ok",
+        "error": null,
+        "trace": [
+          {
+            "label": "arg",
+            "value": [
+              "a",
+              "b"
+            ]
+          }
+        ],
+        "complete": true
+      },
+      "expected_after": {
+        "status": "ok",
+        "value": "ok",
+        "error": null,
+        "trace": [
+          {
+            "label": "arg",
+            "value": [
+              "b",
+              "a"
+            ]
+          }
+        ],
+        "complete": true
+      },
+      "expected_decision": "RECHECK",
+      "purpose": "The result stays equal while the ordered effect trace changes."
+    },
+    {
+      "id": "M11_unused_unknown",
+      "program": "C06_unused_unknown",
+      "before": {
+        "members": []
+      },
+      "after": {
+        "members": [
+          "a"
+        ]
+      },
+      "expected_before": {
+        "status": "unknown",
+        "value": null,
+        "error": null,
+        "trace": [],
+        "complete": false
+      },
+      "expected_after": {
+        "status": "unknown",
+        "value": null,
+        "error": null,
+        "trace": [],
+        "complete": false
+      },
+      "expected_decision": "UNKNOWN",
+      "purpose": "Equal unknown prefixes cannot certify exclusion."
+    },
+    {
+      "id": "M12_strict_argument_order",
+      "program": "C07_left_to_right_effects",
+      "before": null,
+      "after": {
+        "members": [
+          "a",
+          "b"
+        ]
+      },
+      "expected_before": {
+        "status": "ok",
+        "value": [
+          1,
+          2
+        ],
+        "error": null,
+        "trace": [
+          {
+            "label": "first",
+            "value": 1
+          },
+          {
+            "label": "second",
+            "value": 2
+          },
+          {
+            "label": "body",
+            "value": [
+              1,
+              2
+            ]
+          }
+        ],
+        "complete": true
+      },
+      "expected_after": {
+        "status": "ok",
+        "value": [
+          1,
+          2
+        ],
+        "error": null,
+        "trace": [
+          {
+            "label": "first",
+            "value": 1
+          },
+          {
+            "label": "second",
+            "value": 2
+          },
+          {
+            "label": "body",
+            "value": [
+              1,
+              2
+            ]
+          }
+        ],
+        "complete": true
+      },
+      "expected_decision": "EXCLUDED",
+      "purpose": "Exactly first, second, then body; resource unused."
+    },
+    {
+      "id": "M13_error_short_circuit",
+      "program": "C08_first_argument_error",
+      "before": {
+        "members": [
+          "a"
+        ]
+      },
+      "after": {
+        "members": [
+          "a",
+          "b"
+        ]
+      },
+      "expected_before": {
+        "status": "error",
+        "value": null,
+        "error": "ARG_STOP",
+        "trace": [
+          {
+            "label": "prefix",
+            "value": true
+          }
+        ],
+        "complete": true
+      },
+      "expected_after": {
+        "status": "error",
+        "value": null,
+        "error": "ARG_STOP",
+        "trace": [
+          {
+            "label": "prefix",
+            "value": true
+          }
+        ],
+        "complete": true
+      },
+      "expected_decision": "RECHECK",
+      "purpose": "No second/body events; static union can conservatively recheck."
+    },
+    {
+      "id": "M14_unknown_short_circuit",
+      "program": "C09_first_argument_unknown",
+      "before": {
+        "members": [
+          "a"
+        ]
+      },
+      "after": {
+        "members": [
+          "a",
+          "b"
+        ]
+      },
+      "expected_before": {
+        "status": "unknown",
+        "value": null,
+        "error": null,
+        "trace": [],
+        "complete": false
+      },
+      "expected_after": {
+        "status": "unknown",
+        "value": null,
+        "error": null,
+        "trace": [],
+        "complete": false
+      },
+      "expected_decision": "UNKNOWN",
+      "purpose": "No effects after the first unknown argument."
+    },
+    {
+      "id": "M15_caller_parameter_capture",
+      "program": "C10_parameter_capture",
+      "before": null,
+      "after": {
+        "members": [
+          "a",
+          "b"
+        ]
+      },
+      "expected_before": {
+        "status": "ok",
+        "value": [
+          "parameter",
+          "caller"
+        ],
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_after": {
+        "status": "ok",
+        "value": [
+          "parameter",
+          "caller"
+        ],
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_decision": "EXCLUDED",
+      "purpose": "Second argument must use caller lexical environment."
+    },
+    {
+      "id": "M16_callee_shadow_scope",
+      "program": "C11_callee_shadow",
+      "before": null,
+      "after": {
+        "members": [
+          "a",
+          "b"
+        ]
+      },
+      "expected_before": {
+        "status": "ok",
+        "value": [
+          "inner",
+          "caller"
+        ],
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_after": {
+        "status": "ok",
+        "value": [
+          "inner",
+          "caller"
+        ],
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_decision": "EXCLUDED",
+      "purpose": "Inner let does not overwrite the enclosing parameter."
+    },
+    {
+      "id": "M17_transitive_size_permutation",
+      "program": "C12_transitive_size",
+      "before": {
+        "members": [
+          "a",
+          "b"
+        ]
+      },
+      "after": {
+        "members": [
+          "b",
+          "a"
+        ]
+      },
+      "expected_before": {
+        "status": "ok",
+        "value": 2,
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_after": {
+        "status": "ok",
+        "value": 2,
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_decision": "RECHECK",
+      "purpose": "Baseline union retains order before optional verified R03 refinement."
+    },
+    {
+      "id": "M18_transitive_size_insertion",
+      "program": "C12_transitive_size",
+      "before": {
+        "members": [
+          "a"
+        ]
+      },
+      "after": {
+        "members": [
+          "a",
+          "b"
+        ]
+      },
+      "expected_before": {
+        "status": "ok",
+        "value": 1,
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_after": {
+        "status": "ok",
+        "value": 2,
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_decision": "RECHECK",
+      "purpose": "Transitive result actually changes."
+    },
+    {
+      "id": "M19_control_argument",
+      "program": "C13_control_parameter",
+      "before": {
+        "members": [
+          "a",
+          "b"
+        ]
+      },
+      "after": {
+        "members": [
+          "b",
+          "a"
+        ]
+      },
+      "expected_before": {
+        "status": "ok",
+        "value": 2,
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_after": {
+        "status": "ok",
+        "value": 0,
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_decision": "RECHECK",
+      "purpose": "Order changes the strict condition while count remains two."
+    },
+    {
+      "id": "M20_unreachable_unknown",
+      "program": "C14_unreachable_unknown",
+      "before": null,
+      "after": {
+        "members": [
+          "a",
+          "b"
+        ]
+      },
+      "expected_before": {
+        "status": "ok",
+        "value": 7,
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_after": {
+        "status": "ok",
+        "value": 7,
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_decision": "UNKNOWN",
+      "purpose": "Runtime known outcomes do not close a statically unknown branch."
+    },
+    {
+      "id": "M21_unreachable_read",
+      "program": "C15_unreachable_read",
+      "before": null,
+      "after": {
+        "members": [
+          "a",
+          "b"
+        ]
+      },
+      "expected_before": {
+        "status": "ok",
+        "value": 7,
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_after": {
+        "status": "ok",
+        "value": 7,
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_decision": "RECHECK",
+      "purpose": "Static branch union intentionally overapproximates execution."
+    },
+    {
+      "id": "M22_unreferenced_unknown_declaration",
+      "program": "C16_unreferenced_function",
+      "before": null,
+      "after": {
+        "members": [
+          "a",
+          "b"
+        ]
+      },
+      "expected_before": {
+        "status": "ok",
+        "value": 5,
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_after": {
+        "status": "ok",
+        "value": 5,
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_decision": "EXCLUDED",
+      "purpose": "Unreferenced declaration is outside the static entry closure."
+    },
+    {
+      "id": "M23_nested_call_trace",
+      "program": "C17_nested_call_effects",
+      "before": {
+        "members": [
+          "a"
+        ]
+      },
+      "after": {
+        "members": [
+          "a",
+          "b"
+        ]
+      },
+      "expected_before": {
+        "status": "ok",
+        "value": [
+          7,
+          2
+        ],
+        "error": null,
+        "trace": [
+          {
+            "label": "first",
+            "value": 1
+          },
+          {
+            "label": "inner",
+            "value": 7
+          },
+          {
+            "label": "second",
+            "value": 1
+          },
+          {
+            "label": "body",
+            "value": [
+              7,
+              2
+            ]
+          }
+        ],
+        "complete": true
+      },
+      "expected_after": {
+        "status": "ok",
+        "value": [
+          7,
+          2
+        ],
+        "error": null,
+        "trace": [
+          {
+            "label": "first",
+            "value": 2
+          },
+          {
+            "label": "inner",
+            "value": 7
+          },
+          {
+            "label": "second",
+            "value": 2
+          },
+          {
+            "label": "body",
+            "value": [
+              7,
+              2
+            ]
+          }
+        ],
+        "complete": true
+      },
+      "expected_decision": "RECHECK",
+      "purpose": "Complete inner call precedes the next outer argument."
+    },
+    {
+      "id": "M24_total_status_argument",
+      "program": "C18_status_argument",
+      "before": null,
+      "after": {
+        "members": []
+      },
+      "expected_before": {
+        "status": "ok",
+        "value": "error:MISSING_RESOURCE",
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_after": {
+        "status": "ok",
+        "value": "ok",
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_decision": "RECHECK",
+      "purpose": "Status is an ordinary string result, not a thrown error."
+    },
+    {
+      "id": "M25_same_read_error_status",
+      "program": "C18_status_argument",
+      "before": {
+        "members": [],
+        "read_error": "READ_DENIED"
+      },
+      "after": {
+        "members": [
+          "a"
+        ],
+        "read_error": "READ_DENIED"
+      },
+      "expected_before": {
+        "status": "ok",
+        "value": "error:READ_DENIED",
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_after": {
+        "status": "ok",
+        "value": "error:READ_DENIED",
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_decision": "EXCLUDED",
+      "purpose": "Same error status hides irrelevant stored members in this exact resource comparison."
+    }
+  ],
+  "notes": [
+    "Calls belong to a separate finite research semantics, not bagaev source.",
+    "Expected outcomes are authored literals; neither call engine nor lowering generated them.",
+    "Every operand and call argument is strict and left-to-right; params are value bindings in a fresh lexical environment.",
+    "Unknown execution is a known prefix only; EXCLUDED requires complete static support and equal full observed outcomes.",
+    "The finite corpus does not prove arbitrary recursion, higher-order code, external provider semantics, or universal compiler correctness."
+  ]
+}

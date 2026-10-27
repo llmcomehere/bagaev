@@ -1,0 +1,8 @@
+@id("xxwzwj")
+module main
+use lib.{open}
+
+@id("ebyqgk")
+fn open() -> Int64 {
+  3
+}

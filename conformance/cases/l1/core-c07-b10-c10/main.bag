@@ -1,0 +1,8 @@
+@id("6jc5jn")
+module main
+use std.i64
+
+@id("vacdhn")
+pub fn main() -> Int64 {
+  (fn(unused: Result<Int64, i64.ArithmeticError>) => 7)(i64.div(1, 0))
+}

@@ -1,0 +1,9 @@
+@id("vvb4va")
+module main
+
+@id("8rh0n8")
+fn f() -> ()
+  uses { host clock.now }
+{
+  ()
+}

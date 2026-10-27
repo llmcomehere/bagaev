@@ -1,0 +1,43 @@
+/// Люди: идентификатор, отображаемое имя, адрес почты.
+@id("c525ak")
+module blog.people
+
+use std.map
+
+@id("ckc13s")
+pub type PersonId = opaque String
+
+@id("4m69dv")
+pub type Person = record {
+  @id("re7qrb") id: PersonId,
+  @id("nmzxv1") display_name: String,
+  @id("f48950") email: String,
+}
+
+@id("78nftr")
+pub fn person_id(raw: String) -> PersonId {
+  PersonId(raw)
+}
+
+@id("g1cqms")
+pub fn id_text(p: PersonId) -> String {
+  match p {
+    PersonId(s) => s,
+  }
+}
+
+@id("k415f3")
+pub fn display_name(people: Map<PersonId, Person>, p: PersonId) -> String {
+  match map.get(people, p) {
+    Some(person) => person.display_name,
+    None => id_text(p),
+  }
+}
+
+@id("zthdbf")
+pub fn email_of(people: Map<PersonId, Person>, p: PersonId) -> Option<String> {
+  match map.get(people, p) {
+    Some(person) => Some(person.email),
+    None => None,
+  }
+}

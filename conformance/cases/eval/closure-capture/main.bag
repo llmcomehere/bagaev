@@ -1,0 +1,10 @@
+@id("qfm10v")
+module main
+
+@id("pdafmm")
+pub fn main() -> Int64 {
+  let add = fn(a: Int64) => fn(b: Int64) => a + b;
+  let inc = add(1);
+  let add10 = add(10);
+  inc(add10(5))
+}

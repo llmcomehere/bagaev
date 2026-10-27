@@ -1,0 +1,8 @@
+@id("m8vbp9")
+module main
+use std.i64
+
+@id("fs5zwm")
+pub fn main() -> Int64 {
+  (fn() => 7)()
+}

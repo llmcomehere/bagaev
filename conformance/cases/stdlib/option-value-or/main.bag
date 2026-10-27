@@ -1,0 +1,8 @@
+@id("m4wk7z")
+module main
+use std.option
+
+@id("cvbf25")
+pub fn main() -> Int64 {
+  option.value_or(Some(5), 9)
+}

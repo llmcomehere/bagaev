@@ -1,0 +1,27 @@
+{
+  "id": "parse/record-update-without-fields",
+  "spec": [
+    "spec/language/surface.md#6-правила-разбора-которые-грамматика-не-выражает"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "expect": {
+    "phase": "parse",
+    "outcome": "PRELAUNCH",
+    "diagnostics": [
+      {
+        "code": "RECORD_UPDATE_WITHOUT_FIELDS",
+        "file": "main.bag",
+        "span": [
+          33,
+          36
+        ]
+      }
+    ]
+  }
+}

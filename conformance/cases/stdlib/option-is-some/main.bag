@@ -1,0 +1,9 @@
+@id("2rsh38")
+module main
+use std.option
+
+@id("snhagj")
+pub fn main() -> Bool {
+  let n: Option<Int64> = None;
+  option.is_some(n)
+}

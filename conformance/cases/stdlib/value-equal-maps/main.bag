@@ -1,0 +1,9 @@
+@id("a25wqr")
+module main
+use std.value
+
+@id("2j9hre")
+pub fn main() -> Bool {
+  let m: Map<Int64, Option<Int64>> = Map { 1 => None };
+  value.equal(m, m)
+}

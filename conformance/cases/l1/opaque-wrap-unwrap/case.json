@@ -1,0 +1,36 @@
+{
+  "id": "l1/opaque-wrap-unwrap",
+  "spec": [
+    "spec/runtime/machine.md#4-закрытый-каталог-правил",
+    "spec/ir/bir.md#2-формы"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L1",
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "run": {
+    "entry": "main.main"
+  },
+  "expect": {
+    "phase": "run",
+    "effects": [],
+    "outcome": "RETURNED",
+    "value": {
+      "type": "Int64",
+      "value": "7"
+    },
+    "steps": 6,
+    "trace_l1": [
+      "MATCH_ENTER",
+      "VARIANT_ENTER",
+      "CONST",
+      "VARIANT_WRAP",
+      "MATCH_ARM",
+      "VAR"
+    ]
+  }
+}

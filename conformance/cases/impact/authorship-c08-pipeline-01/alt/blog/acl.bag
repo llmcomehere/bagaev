@@ -1,0 +1,35 @@
+/// Права редактора — отдельные данные; авторство их не даёт (O06).
+@id("b407af")
+module blog.acl
+
+use std.map
+
+@id("zn88p6")
+pub type ActorId = opaque String
+
+@id("p06x2z")
+pub type Roles = record {
+  @id("wej8fa") editor: Bool,
+}
+
+@id("van73b")
+pub type AclError = enum {
+  @id("nztb6e") NotAnEditor(ActorId),
+}
+
+@id("t4z56z")
+pub fn actor_id(raw: String) -> ActorId {
+  ActorId(raw)
+}
+
+@id("rxd81j")
+pub fn require_editor(acl: Map<ActorId, Roles>, actor: ActorId) -> Result<(), AclError> {
+  match map.get(acl, actor) {
+    Some(r) => if r.editor {
+      Ok(())
+    } else {
+      Err(AclError.NotAnEditor(actor))
+    },
+    None => Err(AclError.NotAnEditor(actor)),
+  }
+}

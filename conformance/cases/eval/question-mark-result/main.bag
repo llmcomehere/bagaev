@@ -1,0 +1,15 @@
+@id("3ysq4v")
+module main
+use std.i64
+
+@id("2rtxhq")
+fn sum(a: String, b: String) -> Result<Int64, i64.ParseIntError> {
+  let x = i64.parse_decimal(a)?;
+  let y = i64.parse_decimal(b)?;
+  Ok(x + y)
+}
+
+@id("gfakdy")
+pub fn main() -> Result<Int64, i64.ParseIntError> {
+  sum("40", "x")
+}

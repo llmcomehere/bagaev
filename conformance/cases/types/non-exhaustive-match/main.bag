@@ -1,0 +1,15 @@
+@id("6sj900")
+module main
+
+@id("ztea1c")
+type Shape = enum {
+  @id("42q5cm") Circle(Int64),
+  @id("nkqfyv") Square(Int64),
+}
+
+@id("54b0sz")
+fn f(s: Shape) -> Int64 {
+  match s {
+    Shape.Circle(r) => r,
+  }
+}

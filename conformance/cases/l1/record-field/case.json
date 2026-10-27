@@ -1,0 +1,37 @@
+{
+  "id": "l1/record-field",
+  "spec": [
+    "spec/runtime/machine.md#4-закрытый-каталог-правил",
+    "spec/ir/bir.md#2-формы"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L1",
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "run": {
+    "entry": "main.main"
+  },
+  "expect": {
+    "phase": "run",
+    "effects": [],
+    "outcome": "RETURNED",
+    "value": {
+      "type": "Int64",
+      "value": "1"
+    },
+    "steps": 7,
+    "trace_l1": [
+      "FIELD_ENTER",
+      "RECORD_ENTER",
+      "CONST",
+      "RECORD_NEXT",
+      "CONST",
+      "RECORD_BUILD",
+      "FIELD_GET"
+    ]
+  }
+}

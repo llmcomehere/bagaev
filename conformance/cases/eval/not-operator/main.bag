@@ -1,0 +1,7 @@
+@id("r59qw7")
+module main
+
+@id("1s1tgj")
+pub fn main() -> Bool {
+  not (1 > 2) and not false
+}

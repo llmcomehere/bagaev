@@ -1,0 +1,7 @@
+@id("j865mp")
+module main
+
+@id("7hwnv9")
+event Ev {
+  @id("k0wnem") f: fn() -> (),
+}

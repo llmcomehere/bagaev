@@ -1,0 +1,18 @@
+@id("6jzdyf")
+module main
+
+@id("awea80")
+fn f(n: Int64) -> Int64 {
+  let x = {
+    if n > 2 {
+      return 100
+    }
+    n
+  };
+  x + 1
+}
+
+@id("hs52a9")
+pub fn main() -> Int64 {
+  f(3)
+}

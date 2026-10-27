@@ -1,0 +1,43 @@
+{
+  "id": "stdlib/data-core-i01",
+  "spec": [
+    "spec/runtime/machine.md#5-примитивы-и-fault",
+    "spec/stdlib/acceptance.md"
+  ],
+  "origin": "model:models/r07-core/fixtures/data-core.json#I01",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "run": {
+    "entry": "main.main"
+  },
+  "expect": {
+    "phase": "run",
+    "effects": [],
+    "outcome": "RETURNED",
+    "value": {
+      "type": "Result<String,std.data.DataError>",
+      "tag": "Err",
+      "payload": {
+        "type": "std.data.DataError",
+        "fields": {
+          "code": {
+            "type": "std.data.DataErrorCode",
+            "tag": "Utf8Surrogate"
+          },
+          "first": {
+            "type": "Int64",
+            "value": "1"
+          },
+          "second": {
+            "type": "Int64",
+            "value": "-1"
+          }
+        }
+      }
+    }
+  }
+}

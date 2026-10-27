@@ -1,0 +1,4 @@
+@id("czesb3")
+module b
+
+use a

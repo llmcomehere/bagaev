@@ -1,0 +1,8 @@
+@id("mtsg6a")
+module main
+
+@id("hq4h2w")
+fn f() -> Int64 {
+  let x = 1;
+  x(2)
+}

@@ -1,0 +1,9 @@
+@id("xpntvy")
+module main
+
+use lib
+
+@id("yc9g4z")
+fn f() -> lib.Id {
+  lib.Id("x")
+}

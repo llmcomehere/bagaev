@@ -1,0 +1,9 @@
+@id("c8vbds")
+module main
+use std.result
+
+@id("t9p2na")
+pub fn main() -> Result<Int64, String> {
+  let r: Result<Int64, String> = Err("e");
+  result.map(r, fn(x: Int64) => x + 1)
+}

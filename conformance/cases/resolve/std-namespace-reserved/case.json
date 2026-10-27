@@ -1,0 +1,31 @@
+{
+  "id": "resolve/std-namespace-reserved",
+  "spec": [
+    "spec/language/surface.md#2-файл-модуль-имена",
+    "spec/language/checking.md#1-проект"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "std/seq.bag"
+  ],
+  "expect": {
+    "phase": "check",
+    "outcome": "PRELAUNCH",
+    "diagnostics": [
+      {
+        "code": "DUPLICATE_DECLARATION",
+        "file": "std/seq.bag",
+        "span": [
+          21,
+          28
+        ],
+        "data": {
+          "name": "std.seq"
+        }
+      }
+    ]
+  }
+}

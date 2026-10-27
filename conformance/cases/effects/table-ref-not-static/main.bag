@@ -1,0 +1,25 @@
+@id("xa7pkc")
+module main
+
+@id("t4ph82")
+type Article = record {
+  @id("pn2kaw") title: String,
+}
+
+@id("3443wv")
+store Blog {
+  @id("74z861") table articles: Map<Int64, Article>
+}
+
+@id("b3h5x8")
+event Renamed {
+  @id("sb7byw") id: Int64,
+  @id("dv6t26") title: String,
+}
+
+@id("qwg7fr")
+fn f() -> ()
+  uses { reads Blog.articles }
+{
+  let t = Blog.articles;
+}

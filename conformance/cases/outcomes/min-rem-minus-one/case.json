@@ -1,0 +1,26 @@
+{
+  "id": "outcomes/min-rem-minus-one",
+  "spec": [
+    "spec/runtime/machine.md#5-примитивы-и-fault",
+    "spec/language/surface.md#4-выражения"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "run": {
+    "entry": "main.main"
+  },
+  "expect": {
+    "phase": "run",
+    "effects": [],
+    "outcome": "RETURNED",
+    "value": {
+      "type": "Int64",
+      "value": "0"
+    }
+  }
+}

@@ -1,0 +1,154 @@
+{
+  "id": "impact/unavailable-unreached-01",
+  "spec": [
+    "spec/links/08-bagaev-extraction.md#5-влияние"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "app.bag",
+    "cand/app.bag"
+  ],
+  "run": {
+    "links": {
+      "op": "impact",
+      "candidate": "cand",
+      "unavailable": [
+        "app.alone"
+      ],
+      "watch": [
+        "app.alone"
+      ]
+    }
+  },
+  "expect": {
+    "phase": "impact",
+    "outcome": "IMPACT",
+    "value": {
+      "status": "COMPLETE",
+      "readiness": "BLOCKED",
+      "seeds": [
+        [
+          "app.double",
+          "changed"
+        ]
+      ],
+      "in_scope": [
+        [
+          "app.Added",
+          3
+        ],
+        [
+          "app.S",
+          4
+        ],
+        [
+          "app.S.copy",
+          5
+        ],
+        [
+          "app.S.totals",
+          3
+        ],
+        [
+          "app.add",
+          2
+        ],
+        [
+          "app.double",
+          0
+        ],
+        [
+          "app.on_added",
+          4
+        ],
+        [
+          "app.origin",
+          1
+        ],
+        [
+          "app.origin_positive",
+          2
+        ],
+        [
+          "app.quadruple",
+          1
+        ],
+        [
+          "app.total",
+          6
+        ]
+      ],
+      "unknown": [
+        [
+          "app.alone",
+          "ACCESS_BLOCKED"
+        ]
+      ],
+      "unknown_incomplete": 0,
+      "frontier": [],
+      "obligations": [
+        [
+          "app.Counting",
+          "app.S.copy",
+          "derived_from",
+          "open",
+          [
+            "base",
+            "candidate"
+          ]
+        ],
+        [
+          "app.Exact.positive",
+          "app.add",
+          "requires",
+          "open",
+          [
+            "base",
+            "candidate"
+          ]
+        ],
+        [
+          "app.Exact.positive",
+          "app.origin",
+          "implements",
+          "open",
+          [
+            "base",
+            "candidate"
+          ]
+        ],
+        [
+          "app.Exact.positive",
+          "app.origin_positive",
+          "checks",
+          "open",
+          [
+            "base",
+            "candidate"
+          ]
+        ]
+      ],
+      "closed": [],
+      "tests_to_run": [
+        "app.origin_positive"
+      ],
+      "gaps": [
+        [
+          "app.add",
+          "EXTERNAL_CONSUMERS"
+        ],
+        [
+          "app.total",
+          "EXTERNAL_CONSUMERS"
+        ]
+      ],
+      "watch": {
+        "app.alone": "unknown"
+      }
+    }
+  },
+  "note": "недоступная сущность — unknown, даже если обход до неё не доходит: её нельзя исключить по содержимому (ревью m5 H4)"
+}

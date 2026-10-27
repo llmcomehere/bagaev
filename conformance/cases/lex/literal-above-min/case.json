@@ -1,0 +1,27 @@
+{
+  "id": "lex/literal-above-min",
+  "spec": [
+    "spec/language/lexical.md#4-литералы"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "expect": {
+    "phase": "parse",
+    "outcome": "PRELAUNCH",
+    "diagnostics": [
+      {
+        "code": "INT_LITERAL_OUT_OF_RANGE",
+        "file": "main.bag",
+        "span": [
+          28,
+          47
+        ]
+      }
+    ]
+  }
+}

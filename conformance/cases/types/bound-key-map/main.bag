@@ -1,0 +1,7 @@
+@id("6685my")
+module main
+
+@id("dzxpf6")
+fn f(a: Map<Int64, Int64>, b: Map<Int64, Int64>) -> Bool {
+  a < b
+}

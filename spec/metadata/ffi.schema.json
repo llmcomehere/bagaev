@@ -1,0 +1,2302 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:bagaev:r23:ffi-metadata:1",
+  "title": "R23 closed synthetic FFI metadata capsule",
+  "description": "Shape and local declared-link constraints only. ExactRef fields are synthetic identifiers without referenced artifact preimages; no native, authority, OS, recursive-type, or production proof.",
+  "type": "object",
+  "properties": {
+    "schema_revision": {
+      "const": "R23-FFI-METADATA-CAPSULE-0.1"
+    },
+    "claim_scope": {
+      "const": "synthetic_shape_and_local_links_only"
+    },
+    "synthetic_refs": {
+      "const": true
+    },
+    "externals": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/ExternalRef"
+      },
+      "minItems": 1,
+      "maxItems": 128,
+      "uniqueItems": true
+    },
+    "objects": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Entry"
+      },
+      "minItems": 4,
+      "maxItems": 64
+    },
+    "root": {
+      "$ref": "#/$defs/CallBindingRef"
+    }
+  },
+  "required": [
+    "schema_revision",
+    "claim_scope",
+    "synthetic_refs",
+    "externals",
+    "objects",
+    "root"
+  ],
+  "additionalProperties": false,
+  "$defs": {
+    "Identifier": {
+      "type": "string",
+      "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,63}$",
+      "maxLength": 64
+    },
+    "Token": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{32}$",
+      "not": {
+        "const": "00000000000000000000000000000000"
+      }
+    },
+    "UInt64": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 18446744073709551615
+    },
+    "PositiveUInt64": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 18446744073709551615
+    },
+    "AdapterManifestRef": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "const": "AdapterManifest"
+        },
+        "schema_revision": {
+          "const": "1"
+        },
+        "byte_length": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 4294967295
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      },
+      "required": [
+        "kind",
+        "schema_revision",
+        "byte_length",
+        "sha256"
+      ],
+      "additionalProperties": false
+    },
+    "FunctionContractRef": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "const": "FunctionContract"
+        },
+        "schema_revision": {
+          "const": "1"
+        },
+        "byte_length": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 4294967295
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      },
+      "required": [
+        "kind",
+        "schema_revision",
+        "byte_length",
+        "sha256"
+      ],
+      "additionalProperties": false
+    },
+    "ResourceTypeContractRef": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "const": "ResourceTypeContract"
+        },
+        "schema_revision": {
+          "const": "1"
+        },
+        "byte_length": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 4294967295
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      },
+      "required": [
+        "kind",
+        "schema_revision",
+        "byte_length",
+        "sha256"
+      ],
+      "additionalProperties": false
+    },
+    "CallbackContractRef": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "const": "CallbackContract"
+        },
+        "schema_revision": {
+          "const": "1"
+        },
+        "byte_length": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 4294967295
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      },
+      "required": [
+        "kind",
+        "schema_revision",
+        "byte_length",
+        "sha256"
+      ],
+      "additionalProperties": false
+    },
+    "PlatformAdmissionRef": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "const": "PlatformAdmission"
+        },
+        "schema_revision": {
+          "const": "1"
+        },
+        "byte_length": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 4294967295
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      },
+      "required": [
+        "kind",
+        "schema_revision",
+        "byte_length",
+        "sha256"
+      ],
+      "additionalProperties": false
+    },
+    "CallBindingRef": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "const": "CallBinding"
+        },
+        "schema_revision": {
+          "const": "1"
+        },
+        "byte_length": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 4294967295
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      },
+      "required": [
+        "kind",
+        "schema_revision",
+        "byte_length",
+        "sha256"
+      ],
+      "additionalProperties": false
+    },
+    "InterfaceDeclarationRef": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "const": "InterfaceDeclaration"
+        },
+        "schema_revision": {
+          "const": "1"
+        },
+        "byte_length": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 4294967295
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      },
+      "required": [
+        "kind",
+        "schema_revision",
+        "byte_length",
+        "sha256"
+      ],
+      "additionalProperties": false
+    },
+    "ResourceDeclarationRef": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "const": "ResourceDeclaration"
+        },
+        "schema_revision": {
+          "const": "1"
+        },
+        "byte_length": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 4294967295
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      },
+      "required": [
+        "kind",
+        "schema_revision",
+        "byte_length",
+        "sha256"
+      ],
+      "additionalProperties": false
+    },
+    "CallbackSignatureRef": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "const": "CallbackSignature"
+        },
+        "schema_revision": {
+          "const": "1"
+        },
+        "byte_length": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 4294967295
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      },
+      "required": [
+        "kind",
+        "schema_revision",
+        "byte_length",
+        "sha256"
+      ],
+      "additionalProperties": false
+    },
+    "WireTypeRef": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "const": "WireType"
+        },
+        "schema_revision": {
+          "const": "1"
+        },
+        "byte_length": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 4294967295
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      },
+      "required": [
+        "kind",
+        "schema_revision",
+        "byte_length",
+        "sha256"
+      ],
+      "additionalProperties": false
+    },
+    "WireTypeRegistryRef": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "const": "WireTypeRegistry"
+        },
+        "schema_revision": {
+          "const": "1"
+        },
+        "byte_length": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 4294967295
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      },
+      "required": [
+        "kind",
+        "schema_revision",
+        "byte_length",
+        "sha256"
+      ],
+      "additionalProperties": false
+    },
+    "CodecContractRef": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "const": "CodecContract"
+        },
+        "schema_revision": {
+          "const": "1"
+        },
+        "byte_length": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 4294967295
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      },
+      "required": [
+        "kind",
+        "schema_revision",
+        "byte_length",
+        "sha256"
+      ],
+      "additionalProperties": false
+    },
+    "LimitsContractRef": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "const": "LimitsContract"
+        },
+        "schema_revision": {
+          "const": "1"
+        },
+        "byte_length": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 4294967295
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      },
+      "required": [
+        "kind",
+        "schema_revision",
+        "byte_length",
+        "sha256"
+      ],
+      "additionalProperties": false
+    },
+    "OperationContractRef": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "const": "OperationContract"
+        },
+        "schema_revision": {
+          "const": "1"
+        },
+        "byte_length": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 4294967295
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      },
+      "required": [
+        "kind",
+        "schema_revision",
+        "byte_length",
+        "sha256"
+      ],
+      "additionalProperties": false
+    },
+    "WorkerImageRef": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "const": "WorkerImage"
+        },
+        "schema_revision": {
+          "const": "1"
+        },
+        "byte_length": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 4294967295
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      },
+      "required": [
+        "kind",
+        "schema_revision",
+        "byte_length",
+        "sha256"
+      ],
+      "additionalProperties": false
+    },
+    "DependencyClosureRef": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "const": "DependencyClosure"
+        },
+        "schema_revision": {
+          "const": "1"
+        },
+        "byte_length": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 4294967295
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      },
+      "required": [
+        "kind",
+        "schema_revision",
+        "byte_length",
+        "sha256"
+      ],
+      "additionalProperties": false
+    },
+    "NativeShimRef": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "const": "NativeShim"
+        },
+        "schema_revision": {
+          "const": "1"
+        },
+        "byte_length": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 4294967295
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      },
+      "required": [
+        "kind",
+        "schema_revision",
+        "byte_length",
+        "sha256"
+      ],
+      "additionalProperties": false
+    },
+    "SandboxFactoryRef": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "const": "SandboxFactory"
+        },
+        "schema_revision": {
+          "const": "1"
+        },
+        "byte_length": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 4294967295
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      },
+      "required": [
+        "kind",
+        "schema_revision",
+        "byte_length",
+        "sha256"
+      ],
+      "additionalProperties": false
+    },
+    "BrokerImplementationRef": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "const": "BrokerImplementation"
+        },
+        "schema_revision": {
+          "const": "1"
+        },
+        "byte_length": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 4294967295
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      },
+      "required": [
+        "kind",
+        "schema_revision",
+        "byte_length",
+        "sha256"
+      ],
+      "additionalProperties": false
+    },
+    "PlatformPolicyRef": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "const": "PlatformPolicy"
+        },
+        "schema_revision": {
+          "const": "1"
+        },
+        "byte_length": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 4294967295
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      },
+      "required": [
+        "kind",
+        "schema_revision",
+        "byte_length",
+        "sha256"
+      ],
+      "additionalProperties": false
+    },
+    "PlatformEvidenceRef": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "const": "PlatformEvidence"
+        },
+        "schema_revision": {
+          "const": "1"
+        },
+        "byte_length": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 4294967295
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      },
+      "required": [
+        "kind",
+        "schema_revision",
+        "byte_length",
+        "sha256"
+      ],
+      "additionalProperties": false
+    },
+    "SourceOriginRef": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "const": "SourceOrigin"
+        },
+        "schema_revision": {
+          "const": "1"
+        },
+        "byte_length": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 4294967295
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      },
+      "required": [
+        "kind",
+        "schema_revision",
+        "byte_length",
+        "sha256"
+      ],
+      "additionalProperties": false
+    },
+    "PreparedInputVectorRef": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "const": "PreparedInputVector"
+        },
+        "schema_revision": {
+          "const": "1"
+        },
+        "byte_length": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 4294967295
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      },
+      "required": [
+        "kind",
+        "schema_revision",
+        "byte_length",
+        "sha256"
+      ],
+      "additionalProperties": false
+    },
+    "OperationIntentRef": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "const": "OperationIntent"
+        },
+        "schema_revision": {
+          "const": "1"
+        },
+        "byte_length": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 4294967295
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      },
+      "required": [
+        "kind",
+        "schema_revision",
+        "byte_length",
+        "sha256"
+      ],
+      "additionalProperties": false
+    },
+    "LocalRef": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/AdapterManifestRef"
+        },
+        {
+          "$ref": "#/$defs/FunctionContractRef"
+        },
+        {
+          "$ref": "#/$defs/ResourceTypeContractRef"
+        },
+        {
+          "$ref": "#/$defs/CallbackContractRef"
+        },
+        {
+          "$ref": "#/$defs/PlatformAdmissionRef"
+        },
+        {
+          "$ref": "#/$defs/CallBindingRef"
+        }
+      ]
+    },
+    "ExternalRef": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/InterfaceDeclarationRef"
+        },
+        {
+          "$ref": "#/$defs/ResourceDeclarationRef"
+        },
+        {
+          "$ref": "#/$defs/CallbackSignatureRef"
+        },
+        {
+          "$ref": "#/$defs/WireTypeRef"
+        },
+        {
+          "$ref": "#/$defs/WireTypeRegistryRef"
+        },
+        {
+          "$ref": "#/$defs/CodecContractRef"
+        },
+        {
+          "$ref": "#/$defs/LimitsContractRef"
+        },
+        {
+          "$ref": "#/$defs/OperationContractRef"
+        },
+        {
+          "$ref": "#/$defs/WorkerImageRef"
+        },
+        {
+          "$ref": "#/$defs/DependencyClosureRef"
+        },
+        {
+          "$ref": "#/$defs/NativeShimRef"
+        },
+        {
+          "$ref": "#/$defs/SandboxFactoryRef"
+        },
+        {
+          "$ref": "#/$defs/BrokerImplementationRef"
+        },
+        {
+          "$ref": "#/$defs/PlatformPolicyRef"
+        },
+        {
+          "$ref": "#/$defs/PlatformEvidenceRef"
+        },
+        {
+          "$ref": "#/$defs/SourceOriginRef"
+        },
+        {
+          "$ref": "#/$defs/PreparedInputVectorRef"
+        },
+        {
+          "$ref": "#/$defs/OperationIntentRef"
+        }
+      ]
+    },
+    "Mode": {
+      "type": "string",
+      "enum": [
+        "OWN",
+        "BORROW_SHARED",
+        "BORROW_EXCLUSIVE"
+      ]
+    },
+    "Origins": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/SourceOriginRef"
+      },
+      "minItems": 1,
+      "maxItems": 8,
+      "uniqueItems": true
+    },
+    "CurrentChecks": {
+      "type": "object",
+      "properties": {
+        "dispatch": {
+          "const": "current_authority_under_serialized_gate"
+        },
+        "broker_request": {
+          "const": "actual_resource_lease_and_current_authority_each_request"
+        },
+        "callback_admission": {
+          "const": "caller_current_bound_parent_intersection"
+        },
+        "receipt_read": {
+          "const": "current_read_authority"
+        },
+        "authority_unavailable": {
+          "const": "deny_new_effects"
+        }
+      },
+      "required": [
+        "dispatch",
+        "broker_request",
+        "callback_admission",
+        "receipt_read",
+        "authority_unavailable"
+      ],
+      "additionalProperties": false
+    },
+    "Lifecycle": {
+      "type": "object",
+      "properties": {
+        "reserve": {
+          "const": "atomic_all_slots"
+        },
+        "ownership_commit": {
+          "const": "dispatch_only"
+        },
+        "cancel_before_dispatch": {
+          "const": "release_reservations_no_send"
+        },
+        "cancel_after_dispatch": {
+          "const": "terminate_caller_keep_obligations"
+        },
+        "reply_release": {
+          "const": "independent"
+        },
+        "publication": {
+          "const": "atomic_all_outputs"
+        },
+        "late_reply": {
+          "const": "no_caller_revival_cleanup_only"
+        },
+        "release": {
+          "const": "verified_quiescence"
+        },
+        "external_outcome": {
+          "const": "separate_authoritative_receipt_required"
+        },
+        "automatic_retry": {
+          "const": "forbidden"
+        },
+        "replay": {
+          "const": "journal_only_no_live_effects"
+        },
+        "budget": {
+          "const": "shared_caller_and_callbacks"
+        }
+      },
+      "required": [
+        "reserve",
+        "ownership_commit",
+        "cancel_before_dispatch",
+        "cancel_after_dispatch",
+        "reply_release",
+        "publication",
+        "late_reply",
+        "release",
+        "external_outcome",
+        "automatic_retry",
+        "replay",
+        "budget"
+      ],
+      "additionalProperties": false
+    },
+    "DataInput": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "$ref": "#/$defs/Identifier"
+        },
+        "kind": {
+          "const": "DATA"
+        },
+        "direction": {
+          "const": "IN"
+        },
+        "type_ref": {
+          "$ref": "#/$defs/WireTypeRef"
+        },
+        "codec_ref": {
+          "$ref": "#/$defs/CodecContractRef"
+        },
+        "transfer": {
+          "const": "copy"
+        },
+        "publication": {
+          "const": "input_snapshot"
+        },
+        "type_admission": {
+          "const": "external_ground_WireData_check_required"
+        }
+      },
+      "required": [
+        "name",
+        "kind",
+        "direction",
+        "type_ref",
+        "codec_ref",
+        "transfer",
+        "publication",
+        "type_admission"
+      ],
+      "additionalProperties": false
+    },
+    "DataOutput": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "$ref": "#/$defs/Identifier"
+        },
+        "kind": {
+          "const": "DATA"
+        },
+        "direction": {
+          "const": "OUT"
+        },
+        "type_ref": {
+          "$ref": "#/$defs/WireTypeRef"
+        },
+        "codec_ref": {
+          "$ref": "#/$defs/CodecContractRef"
+        },
+        "transfer": {
+          "const": "copy"
+        },
+        "publication": {
+          "const": "atomic_output"
+        },
+        "type_admission": {
+          "const": "external_ground_WireData_check_required"
+        }
+      },
+      "required": [
+        "name",
+        "kind",
+        "direction",
+        "type_ref",
+        "codec_ref",
+        "transfer",
+        "publication",
+        "type_admission"
+      ],
+      "additionalProperties": false
+    },
+    "ResourceInput": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "$ref": "#/$defs/Identifier"
+        },
+        "kind": {
+          "const": "RESOURCE"
+        },
+        "direction": {
+          "const": "IN"
+        },
+        "declaration_ref": {
+          "$ref": "#/$defs/ResourceDeclarationRef"
+        },
+        "mode": {
+          "$ref": "#/$defs/Mode"
+        },
+        "lifetime": {
+          "type": "string",
+          "enum": [
+            "until_verified_quiescence",
+            "call_until_return_or_consume"
+          ]
+        }
+      },
+      "required": [
+        "name",
+        "kind",
+        "direction",
+        "declaration_ref",
+        "mode",
+        "lifetime"
+      ],
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "mode": {
+                "const": "OWN"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "lifetime": {
+                "const": "call_until_return_or_consume"
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "lifetime": {
+                "const": "until_verified_quiescence"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "ResourceOutput": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "$ref": "#/$defs/Identifier"
+        },
+        "kind": {
+          "const": "RESOURCE"
+        },
+        "direction": {
+          "const": "OUT"
+        },
+        "declaration_ref": {
+          "$ref": "#/$defs/ResourceDeclarationRef"
+        },
+        "mode": {
+          "const": "OWN"
+        },
+        "lifetime": {
+          "const": "caller_owned_until_explicit_close"
+        },
+        "publication": {
+          "const": "new_token_after_prior_owner_quiescence"
+        }
+      },
+      "required": [
+        "name",
+        "kind",
+        "direction",
+        "declaration_ref",
+        "mode",
+        "lifetime",
+        "publication"
+      ],
+      "additionalProperties": false
+    },
+    "CallbackInput": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "$ref": "#/$defs/Identifier"
+        },
+        "kind": {
+          "const": "CALLBACK"
+        },
+        "direction": {
+          "const": "IN"
+        },
+        "signature_ref": {
+          "$ref": "#/$defs/CallbackSignatureRef"
+        },
+        "mode": {
+          "const": "scoped_token"
+        },
+        "lifetime": {
+          "const": "parent_call_until_quiescence"
+        }
+      },
+      "required": [
+        "name",
+        "kind",
+        "direction",
+        "signature_ref",
+        "mode",
+        "lifetime"
+      ],
+      "additionalProperties": false
+    },
+    "InputSlot": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/DataInput"
+        },
+        {
+          "$ref": "#/$defs/ResourceInput"
+        },
+        {
+          "$ref": "#/$defs/CallbackInput"
+        }
+      ]
+    },
+    "CallbackParameter": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/DataInput"
+        },
+        {
+          "$ref": "#/$defs/ResourceInput"
+        }
+      ]
+    },
+    "OutputSlot": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/DataOutput"
+        },
+        {
+          "$ref": "#/$defs/ResourceOutput"
+        }
+      ]
+    },
+    "Inputs": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/InputSlot"
+      },
+      "minItems": 0,
+      "maxItems": 256
+    },
+    "Outputs": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/OutputSlot"
+      },
+      "minItems": 0,
+      "maxItems": 256
+    },
+    "Limits": {
+      "type": "object",
+      "properties": {
+        "frame_body_bytes": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 16777216
+        },
+        "wire_bytes": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 8388608
+        },
+        "string_bytes": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 4194304
+        },
+        "collection_entries": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 65536
+        },
+        "type_nodes": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 65536
+        },
+        "value_nodes": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 262144
+        },
+        "arena_units": {
+          "type": "integer",
+          "minimum": 32,
+          "maximum": 67108864
+        },
+        "per_call_arena_units": {
+          "type": "integer",
+          "minimum": 32,
+          "maximum": 134217728
+        },
+        "stack_depth": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 1024
+        },
+        "slots_per_call": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 256
+        },
+        "resources_per_call": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 256
+        },
+        "callbacks_per_call": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 64
+        },
+        "session_calls": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 4096
+        },
+        "pending_ingress_frames": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 1024
+        },
+        "callback_depth": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 32
+        },
+        "callback_invocations": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1024
+        },
+        "callback_queue": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1024
+        }
+      },
+      "required": [
+        "frame_body_bytes",
+        "wire_bytes",
+        "string_bytes",
+        "collection_entries",
+        "type_nodes",
+        "value_nodes",
+        "arena_units",
+        "per_call_arena_units",
+        "stack_depth",
+        "slots_per_call",
+        "resources_per_call",
+        "callbacks_per_call",
+        "session_calls",
+        "pending_ingress_frames",
+        "callback_depth",
+        "callback_invocations",
+        "callback_queue"
+      ],
+      "additionalProperties": false
+    },
+    "PlatformProperties": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "isolated_address_space",
+          "no_inherited_business_authority",
+          "controls_before_untrusted_initializer",
+          "broker_only_business_io",
+          "whole_worker_group_fence",
+          "bounded_physical_resources"
+        ]
+      },
+      "minItems": 6,
+      "maxItems": 6,
+      "uniqueItems": true
+    },
+    "Selector": {
+      "type": "object",
+      "properties": {
+        "operation_ref": {
+          "$ref": "#/$defs/OperationContractRef"
+        },
+        "input_slot": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 255
+        },
+        "required_mode": {
+          "$ref": "#/$defs/Mode"
+        },
+        "resource_check": {
+          "const": "actual_bound_resource"
+        }
+      },
+      "required": [
+        "operation_ref",
+        "input_slot",
+        "required_mode",
+        "resource_check"
+      ],
+      "additionalProperties": false
+    },
+    "FunctionContract": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "const": "FunctionContract"
+        },
+        "schema_revision": {
+          "const": "1"
+        },
+        "function_id": {
+          "$ref": "#/$defs/Identifier"
+        },
+        "adapter_id": {
+          "$ref": "#/$defs/Identifier"
+        },
+        "interface_ref": {
+          "$ref": "#/$defs/InterfaceDeclarationRef"
+        },
+        "wire_registry_ref": {
+          "$ref": "#/$defs/WireTypeRegistryRef"
+        },
+        "codec_contract_ref": {
+          "$ref": "#/$defs/CodecContractRef"
+        },
+        "limits_contract_ref": {
+          "$ref": "#/$defs/LimitsContractRef"
+        },
+        "inputs": {
+          "$ref": "#/$defs/Inputs"
+        },
+        "outputs": {
+          "$ref": "#/$defs/Outputs"
+        },
+        "effect_bound": {
+          "type": "object",
+          "properties": {
+            "host_call": {
+              "const": true
+            },
+            "broker_operations": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/OperationContractRef"
+              },
+              "minItems": 0,
+              "maxItems": 32,
+              "uniqueItems": true
+            },
+            "cleanup_operations": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/OperationContractRef"
+              },
+              "minItems": 0,
+              "maxItems": 32,
+              "uniqueItems": true
+            },
+            "callback_signatures": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/CallbackSignatureRef"
+              },
+              "minItems": 0,
+              "maxItems": 64,
+              "uniqueItems": true
+            }
+          },
+          "required": [
+            "host_call",
+            "broker_operations",
+            "cleanup_operations",
+            "callback_signatures"
+          ],
+          "additionalProperties": false
+        },
+        "selectors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Selector"
+          },
+          "minItems": 0,
+          "maxItems": 256,
+          "uniqueItems": true
+        },
+        "current_checks": {
+          "$ref": "#/$defs/CurrentChecks"
+        },
+        "lifecycle": {
+          "$ref": "#/$defs/Lifecycle"
+        },
+        "ordinary_error_policy": {
+          "const": "declared_Result_Err_is_ordinary_value"
+        },
+        "boundary_faults": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "AdapterContractFault",
+              "InvalidHandle",
+              "StaleHandle",
+              "CallbackExpired",
+              "ReentrantCallDenied",
+              "ResourceBusy",
+              "AUTHORITY_UNAVAILABLE"
+            ]
+          },
+          "minItems": 1,
+          "maxItems": 7,
+          "uniqueItems": true
+        },
+        "required_platform_properties": {
+          "$ref": "#/$defs/PlatformProperties"
+        },
+        "origin_refs": {
+          "$ref": "#/$defs/Origins"
+        }
+      },
+      "required": [
+        "kind",
+        "schema_revision",
+        "function_id",
+        "adapter_id",
+        "interface_ref",
+        "wire_registry_ref",
+        "codec_contract_ref",
+        "limits_contract_ref",
+        "inputs",
+        "outputs",
+        "effect_bound",
+        "selectors",
+        "current_checks",
+        "lifecycle",
+        "ordinary_error_policy",
+        "boundary_faults",
+        "required_platform_properties",
+        "origin_refs"
+      ],
+      "additionalProperties": false
+    },
+    "ResourceOperation": {
+      "type": "object",
+      "properties": {
+        "operation_id": {
+          "$ref": "#/$defs/Identifier"
+        },
+        "role": {
+          "type": "string",
+          "enum": [
+            "read",
+            "mutate",
+            "close"
+          ]
+        },
+        "contract_ref": {
+          "$ref": "#/$defs/OperationContractRef"
+        },
+        "allowed_modes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Mode"
+          },
+          "minItems": 1,
+          "maxItems": 3,
+          "uniqueItems": true
+        },
+        "current_check": {
+          "const": "actual_resource_and_authority_each_dispatch"
+        }
+      },
+      "required": [
+        "operation_id",
+        "role",
+        "contract_ref",
+        "allowed_modes",
+        "current_check"
+      ],
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "role": {
+                "const": "mutate"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "allowed_modes": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "OWN",
+                    "BORROW_EXCLUSIVE"
+                  ]
+                },
+                "minItems": 1,
+                "maxItems": 2,
+                "uniqueItems": true
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "role": {
+                "const": "close"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "allowed_modes": {
+                "const": [
+                  "OWN"
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    "ResourceTypeContract": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "const": "ResourceTypeContract"
+        },
+        "schema_revision": {
+          "const": "1"
+        },
+        "resource_type_id": {
+          "$ref": "#/$defs/Identifier"
+        },
+        "adapter_id": {
+          "$ref": "#/$defs/Identifier"
+        },
+        "interface_ref": {
+          "$ref": "#/$defs/InterfaceDeclarationRef"
+        },
+        "declaration_ref": {
+          "$ref": "#/$defs/ResourceDeclarationRef"
+        },
+        "allowed_modes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Mode"
+          },
+          "minItems": 1,
+          "maxItems": 3,
+          "uniqueItems": true,
+          "contains": {
+            "const": "OWN"
+          }
+        },
+        "operations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ResourceOperation"
+          },
+          "minItems": 1,
+          "maxItems": 32,
+          "uniqueItems": true
+        },
+        "close_policy": {
+          "type": "object",
+          "properties": {
+            "operation_ref": {
+              "$ref": "#/$defs/OperationContractRef"
+            },
+            "requires_no_active_or_reserved_leases": {
+              "const": true
+            },
+            "receipt_read": {
+              "const": "current_read_authority"
+            },
+            "repeat": {
+              "const": "historical_receipt_no_new_generation"
+            },
+            "unknown_outcome": {
+              "const": "retain_pending_obligation"
+            }
+          },
+          "required": [
+            "operation_ref",
+            "requires_no_active_or_reserved_leases",
+            "receipt_read",
+            "repeat",
+            "unknown_outcome"
+          ],
+          "additionalProperties": false
+        },
+        "lifetime": {
+          "type": "object",
+          "properties": {
+            "generation": {
+              "const": "UInt64"
+            },
+            "exhaustion": {
+              "const": "retire_no_wrap"
+            },
+            "move_return": {
+              "const": "distinct_new_ownership_transfer"
+            },
+            "release": {
+              "const": "verified_quiescence"
+            },
+            "gc": {
+              "const": "broker_cleanup_obligation"
+            },
+            "quiescence_proves_effect_absence": {
+              "const": false
+            }
+          },
+          "required": [
+            "generation",
+            "exhaustion",
+            "move_return",
+            "release",
+            "gc",
+            "quiescence_proves_effect_absence"
+          ],
+          "additionalProperties": false
+        },
+        "origin_refs": {
+          "$ref": "#/$defs/Origins"
+        }
+      },
+      "required": [
+        "kind",
+        "schema_revision",
+        "resource_type_id",
+        "adapter_id",
+        "interface_ref",
+        "declaration_ref",
+        "allowed_modes",
+        "operations",
+        "close_policy",
+        "lifetime",
+        "origin_refs"
+      ],
+      "additionalProperties": false
+    },
+    "CallbackContract": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "const": "CallbackContract"
+        },
+        "schema_revision": {
+          "const": "1"
+        },
+        "signature_id": {
+          "$ref": "#/$defs/Identifier"
+        },
+        "adapter_id": {
+          "$ref": "#/$defs/Identifier"
+        },
+        "interface_ref": {
+          "$ref": "#/$defs/InterfaceDeclarationRef"
+        },
+        "signature_ref": {
+          "$ref": "#/$defs/CallbackSignatureRef"
+        },
+        "wire_registry_ref": {
+          "$ref": "#/$defs/WireTypeRegistryRef"
+        },
+        "codec_contract_ref": {
+          "$ref": "#/$defs/CodecContractRef"
+        },
+        "inputs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/CallbackParameter"
+          },
+          "minItems": 0,
+          "maxItems": 256
+        },
+        "outputs": {
+          "$ref": "#/$defs/Outputs"
+        },
+        "effect_bound": {
+          "type": "object",
+          "properties": {
+            "broker_operations": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/OperationContractRef"
+              },
+              "minItems": 0,
+              "maxItems": 32,
+              "uniqueItems": true
+            },
+            "nested_host_calls": {
+              "const": "registered_contracts_only"
+            }
+          },
+          "required": [
+            "broker_operations",
+            "nested_host_calls"
+          ],
+          "additionalProperties": false
+        },
+        "lifetime": {
+          "type": "object",
+          "properties": {
+            "registration": {
+              "const": "parent_call_scoped"
+            },
+            "admission_closes": {
+              "const": "caller_termination_or_return"
+            },
+            "capture_release": {
+              "const": "children_complete_and_producer_quiescent"
+            },
+            "returned_token": {
+              "const": "forbidden"
+            },
+            "cross_session": {
+              "const": "forbidden"
+            },
+            "duplicate_sequence": {
+              "const": "stored_outcome_no_reexecution"
+            }
+          },
+          "required": [
+            "registration",
+            "admission_closes",
+            "capture_release",
+            "returned_token",
+            "cross_session",
+            "duplicate_sequence"
+          ],
+          "additionalProperties": false
+        },
+        "scheduling": {
+          "type": "object",
+          "properties": {
+            "thread_entry": {
+              "const": "single_VM_queue"
+            },
+            "allowed_parent_states": {
+              "const": [
+                "WAITING",
+                "DECODING"
+              ]
+            },
+            "budget": {
+              "const": "shared_parent_no_reset"
+            },
+            "authority": {
+              "const": "caller_current_bound_parent_intersection"
+            },
+            "reentrancy": {
+              "const": "bounded_wait_graph_no_cycle"
+            },
+            "child_stop": {
+              "const": "same_parent_terminal_failure"
+            },
+            "fault_delivery": {
+              "const": "supervisor_control_plane_maintenance_only_no_business_effects"
+            }
+          },
+          "required": [
+            "thread_entry",
+            "allowed_parent_states",
+            "budget",
+            "authority",
+            "reentrancy",
+            "child_stop",
+            "fault_delivery"
+          ],
+          "additionalProperties": false
+        },
+        "limits": {
+          "type": "object",
+          "properties": {
+            "max_depth": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 32
+            },
+            "max_invocations": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 1024
+            },
+            "queue_capacity": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 1024
+            }
+          },
+          "required": [
+            "max_depth",
+            "max_invocations",
+            "queue_capacity"
+          ],
+          "additionalProperties": false
+        },
+        "origin_refs": {
+          "$ref": "#/$defs/Origins"
+        }
+      },
+      "required": [
+        "kind",
+        "schema_revision",
+        "signature_id",
+        "adapter_id",
+        "interface_ref",
+        "signature_ref",
+        "wire_registry_ref",
+        "codec_contract_ref",
+        "inputs",
+        "outputs",
+        "effect_bound",
+        "lifetime",
+        "scheduling",
+        "limits",
+        "origin_refs"
+      ],
+      "additionalProperties": false
+    },
+    "PlatformAdmission": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "const": "PlatformAdmission"
+        },
+        "schema_revision": {
+          "const": "1"
+        },
+        "platform_id": {
+          "$ref": "#/$defs/Identifier"
+        },
+        "target_triple": {
+          "$ref": "#/$defs/Identifier"
+        },
+        "factory_ref": {
+          "$ref": "#/$defs/SandboxFactoryRef"
+        },
+        "broker_ref": {
+          "$ref": "#/$defs/BrokerImplementationRef"
+        },
+        "policy_ref": {
+          "$ref": "#/$defs/PlatformPolicyRef"
+        },
+        "evidence_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/PlatformEvidenceRef"
+          },
+          "minItems": 1,
+          "maxItems": 16,
+          "uniqueItems": true
+        },
+        "required_properties": {
+          "$ref": "#/$defs/PlatformProperties"
+        },
+        "admission_status": {
+          "const": "static_contract_evidence_not_revalidated"
+        },
+        "bootstrap": {
+          "const": "controls_before_untrusted_initializer"
+        },
+        "actual_launch": {
+          "const": "separate_supervisor_LaunchReceipt_required"
+        },
+        "authority_validation": {
+          "const": "current_per_operation"
+        },
+        "capacity": {
+          "type": "object",
+          "properties": {
+            "worker_memory_bytes": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 1099511627776
+            },
+            "worker_cpu_ms": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 86400000
+            },
+            "max_threads": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 256
+            },
+            "max_processes": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 64
+            },
+            "max_fds": {
+              "type": "integer",
+              "minimum": 3,
+              "maximum": 4096
+            },
+            "ingress_bytes": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 16777216
+            },
+            "kill_scope": {
+              "const": "whole_worker_group"
+            }
+          },
+          "required": [
+            "worker_memory_bytes",
+            "worker_cpu_ms",
+            "max_threads",
+            "max_processes",
+            "max_fds",
+            "ingress_bytes",
+            "kill_scope"
+          ],
+          "additionalProperties": false
+        },
+        "origin_refs": {
+          "$ref": "#/$defs/Origins"
+        }
+      },
+      "required": [
+        "kind",
+        "schema_revision",
+        "platform_id",
+        "target_triple",
+        "factory_ref",
+        "broker_ref",
+        "policy_ref",
+        "evidence_refs",
+        "required_properties",
+        "admission_status",
+        "bootstrap",
+        "actual_launch",
+        "authority_validation",
+        "capacity",
+        "origin_refs"
+      ],
+      "additionalProperties": false
+    },
+    "AdapterManifest": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "const": "AdapterManifest"
+        },
+        "schema_revision": {
+          "const": "1"
+        },
+        "adapter_id": {
+          "$ref": "#/$defs/Identifier"
+        },
+        "interface_ref": {
+          "$ref": "#/$defs/InterfaceDeclarationRef"
+        },
+        "target_triple": {
+          "$ref": "#/$defs/Identifier"
+        },
+        "worker_image_ref": {
+          "$ref": "#/$defs/WorkerImageRef"
+        },
+        "dependency_closure_ref": {
+          "$ref": "#/$defs/DependencyClosureRef"
+        },
+        "native_shim_ref": {
+          "$ref": "#/$defs/NativeShimRef"
+        },
+        "platform_admission_ref": {
+          "$ref": "#/$defs/PlatformAdmissionRef"
+        },
+        "wire_registry_ref": {
+          "$ref": "#/$defs/WireTypeRegistryRef"
+        },
+        "codec_contract_ref": {
+          "$ref": "#/$defs/CodecContractRef"
+        },
+        "limits_contract_ref": {
+          "$ref": "#/$defs/LimitsContractRef"
+        },
+        "functions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/FunctionContractRef"
+          },
+          "minItems": 1,
+          "maxItems": 32,
+          "uniqueItems": true
+        },
+        "resources": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ResourceTypeContractRef"
+          },
+          "minItems": 0,
+          "maxItems": 32,
+          "uniqueItems": true
+        },
+        "callbacks": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/CallbackContractRef"
+          },
+          "minItems": 0,
+          "maxItems": 32,
+          "uniqueItems": true
+        },
+        "allowed_broker_operations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/OperationContractRef"
+          },
+          "minItems": 0,
+          "maxItems": 32,
+          "uniqueItems": true
+        },
+        "limits": {
+          "$ref": "#/$defs/Limits"
+        },
+        "loading": {
+          "const": "pinned_closure_no_dynamic_search"
+        },
+        "execution": {
+          "const": "brokered_worker"
+        },
+        "native_pointer_transfer": {
+          "const": "forbidden"
+        },
+        "origin_refs": {
+          "$ref": "#/$defs/Origins"
+        }
+      },
+      "required": [
+        "kind",
+        "schema_revision",
+        "adapter_id",
+        "interface_ref",
+        "target_triple",
+        "worker_image_ref",
+        "dependency_closure_ref",
+        "native_shim_ref",
+        "platform_admission_ref",
+        "wire_registry_ref",
+        "codec_contract_ref",
+        "limits_contract_ref",
+        "functions",
+        "resources",
+        "callbacks",
+        "allowed_broker_operations",
+        "limits",
+        "loading",
+        "execution",
+        "native_pointer_transfer",
+        "origin_refs"
+      ],
+      "additionalProperties": false
+    },
+    "ResourceBinding": {
+      "type": "object",
+      "properties": {
+        "input_slot": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 255
+        },
+        "declaration_ref": {
+          "$ref": "#/$defs/ResourceDeclarationRef"
+        },
+        "authority_domain": {
+          "$ref": "#/$defs/Token"
+        },
+        "session_epoch": {
+          "$ref": "#/$defs/PositiveUInt64"
+        },
+        "slot_id": {
+          "$ref": "#/$defs/UInt64"
+        },
+        "generation": {
+          "$ref": "#/$defs/PositiveUInt64"
+        },
+        "token": {
+          "$ref": "#/$defs/Token"
+        },
+        "lease_id": {
+          "$ref": "#/$defs/Token"
+        },
+        "mode": {
+          "$ref": "#/$defs/Mode"
+        }
+      },
+      "required": [
+        "input_slot",
+        "declaration_ref",
+        "authority_domain",
+        "session_epoch",
+        "slot_id",
+        "generation",
+        "token",
+        "lease_id",
+        "mode"
+      ],
+      "additionalProperties": false
+    },
+    "CallbackBinding": {
+      "type": "object",
+      "properties": {
+        "input_slot": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 255
+        },
+        "signature_ref": {
+          "$ref": "#/$defs/CallbackSignatureRef"
+        },
+        "token": {
+          "$ref": "#/$defs/Token"
+        },
+        "generation": {
+          "$ref": "#/$defs/PositiveUInt64"
+        },
+        "session_epoch": {
+          "$ref": "#/$defs/PositiveUInt64"
+        },
+        "parent_call_id": {
+          "$ref": "#/$defs/Token"
+        },
+        "max_invocations": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 1024
+        }
+      },
+      "required": [
+        "input_slot",
+        "signature_ref",
+        "token",
+        "generation",
+        "session_epoch",
+        "parent_call_id",
+        "max_invocations"
+      ],
+      "additionalProperties": false
+    },
+    "CallBinding": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "const": "CallBinding"
+        },
+        "schema_revision": {
+          "const": "1"
+        },
+        "source_origin_ref": {
+          "$ref": "#/$defs/SourceOriginRef"
+        },
+        "source_node": {
+          "$ref": "#/$defs/Identifier"
+        },
+        "execution_id": {
+          "$ref": "#/$defs/Token"
+        },
+        "occurrence": {
+          "$ref": "#/$defs/UInt64"
+        },
+        "session_epoch": {
+          "$ref": "#/$defs/PositiveUInt64"
+        },
+        "call_id": {
+          "$ref": "#/$defs/Token"
+        },
+        "manifest_ref": {
+          "$ref": "#/$defs/AdapterManifestRef"
+        },
+        "function_ref": {
+          "$ref": "#/$defs/FunctionContractRef"
+        },
+        "interface_ref": {
+          "$ref": "#/$defs/InterfaceDeclarationRef"
+        },
+        "platform_admission_ref": {
+          "$ref": "#/$defs/PlatformAdmissionRef"
+        },
+        "prepared_input_ref": {
+          "$ref": "#/$defs/PreparedInputVectorRef"
+        },
+        "expected_inputs": {
+          "$ref": "#/$defs/Inputs"
+        },
+        "expected_outputs": {
+          "$ref": "#/$defs/Outputs"
+        },
+        "resource_bindings": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ResourceBinding"
+          },
+          "minItems": 0,
+          "maxItems": 256,
+          "uniqueItems": true
+        },
+        "callback_bindings": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/CallbackBinding"
+          },
+          "minItems": 0,
+          "maxItems": 64,
+          "uniqueItems": true
+        },
+        "operation_intent_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/OperationIntentRef"
+          },
+          "minItems": 0,
+          "maxItems": 32,
+          "uniqueItems": true
+        },
+        "current_checks": {
+          "$ref": "#/$defs/CurrentChecks"
+        },
+        "binding_authority": {
+          "const": "ledger_validation_required_not_inferred_from_hash"
+        }
+      },
+      "required": [
+        "kind",
+        "schema_revision",
+        "source_origin_ref",
+        "source_node",
+        "execution_id",
+        "occurrence",
+        "session_epoch",
+        "call_id",
+        "manifest_ref",
+        "function_ref",
+        "interface_ref",
+        "platform_admission_ref",
+        "prepared_input_ref",
+        "expected_inputs",
+        "expected_outputs",
+        "resource_bindings",
+        "callback_bindings",
+        "operation_intent_refs",
+        "current_checks",
+        "binding_authority"
+      ],
+      "additionalProperties": false
+    },
+    "MetadataDocument": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/AdapterManifest"
+        },
+        {
+          "$ref": "#/$defs/FunctionContract"
+        },
+        {
+          "$ref": "#/$defs/ResourceTypeContract"
+        },
+        {
+          "$ref": "#/$defs/CallbackContract"
+        },
+        {
+          "$ref": "#/$defs/PlatformAdmission"
+        },
+        {
+          "$ref": "#/$defs/CallBinding"
+        }
+      ]
+    },
+    "Entry": {
+      "type": "object",
+      "properties": {
+        "ref": {
+          "$ref": "#/$defs/LocalRef"
+        },
+        "document": {
+          "$ref": "#/$defs/MetadataDocument"
+        }
+      },
+      "required": [
+        "ref",
+        "document"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

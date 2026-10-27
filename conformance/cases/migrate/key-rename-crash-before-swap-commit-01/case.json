@@ -1,0 +1,230 @@
+{
+  "id": "migrate/key-rename-crash-before-swap-commit-01",
+  "spec": [
+    "spec/runtime/host.md#2-привязка-схемы",
+    "spec/runtime/host.md#7-миграция",
+    "spec/runtime/host.md#8-сбои-и-восстановление"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "app.bag",
+    "v2/app.bag"
+  ],
+  "run": {
+    "steps": [
+      {
+        "op": "seed",
+        "table": "app.S.items",
+        "rows": [
+          [
+            {
+              "type": "app.Envelope",
+              "fields": {
+                "part": {
+                  "type": "Option<app.OldKey>",
+                  "tag": "Some",
+                  "payload": {
+                    "type": "app.OldKey",
+                    "value": {
+                      "type": "String",
+                      "value": "a"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "type": "Int64",
+              "value": "7"
+            }
+          ]
+        ]
+      },
+      {
+        "op": "migrate",
+        "crash_at": "before_swap_commit",
+        "program": "v2"
+      },
+      {
+        "op": "query",
+        "entry": "app.get",
+        "args": [
+          {
+            "type": "String",
+            "value": "a"
+          }
+        ]
+      },
+      {
+        "op": "query",
+        "entry": "app.get",
+        "args": [
+          {
+            "type": "String",
+            "value": "a"
+          }
+        ],
+        "program": "v2"
+      },
+      {
+        "op": "migrate",
+        "program": "v2"
+      },
+      {
+        "op": "query",
+        "entry": "app.get",
+        "args": [
+          {
+            "type": "String",
+            "value": "a"
+          }
+        ],
+        "program": "v2"
+      },
+      {
+        "op": "command",
+        "entry": "app.put",
+        "args": [
+          {
+            "type": "String",
+            "value": "a"
+          },
+          {
+            "type": "Int64",
+            "value": "8"
+          }
+        ],
+        "namespace": "app",
+        "key": "key-000000000001",
+        "program": "v2"
+      },
+      {
+        "op": "command",
+        "entry": "app.remove",
+        "args": [
+          {
+            "type": "String",
+            "value": "a"
+          }
+        ],
+        "namespace": "app",
+        "key": "key-000000000002",
+        "program": "v2"
+      },
+      {
+        "op": "query",
+        "entry": "app.get",
+        "args": [
+          {
+            "type": "String",
+            "value": "a"
+          }
+        ],
+        "program": "v2"
+      }
+    ],
+    "state_program": "v2"
+  },
+  "expect": {
+    "phase": "migrate",
+    "outcome": "COMPLETED",
+    "value": [
+      {
+        "outcome": "COMMITTED",
+        "rows": 1,
+        "state_version": 1
+      },
+      {
+        "outcome": "CRASHED",
+        "at": "before_swap_commit"
+      },
+      {
+        "outcome": "RETURNED",
+        "value": {
+          "type": "Option<Int64>",
+          "tag": "Some",
+          "payload": {
+            "type": "Int64",
+            "value": "7"
+          }
+        }
+      },
+      {
+        "outcome": "REFUSED",
+        "code": "SCHEMA_BINDING_MISMATCH"
+      },
+      {
+        "outcome": "APPLIED",
+        "epoch": 1,
+        "state_version": 2,
+        "rows": 0,
+        "tables": [
+          {
+            "table": "app.S.items",
+            "id": "aa0003",
+            "action": "keep"
+          }
+        ],
+        "events": []
+      },
+      {
+        "outcome": "RETURNED",
+        "value": {
+          "type": "Option<Int64>",
+          "tag": "Some",
+          "payload": {
+            "type": "Int64",
+            "value": "7"
+          }
+        }
+      },
+      {
+        "value": {
+          "type": "Result<Unit,String>",
+          "tag": "Ok",
+          "payload": {
+            "type": "Unit"
+          }
+        },
+        "outcome": "COMMITTED",
+        "final": true,
+        "replayed": false,
+        "state_version": 3
+      },
+      {
+        "value": {
+          "type": "Result<Unit,String>",
+          "tag": "Ok",
+          "payload": {
+            "type": "Unit"
+          }
+        },
+        "outcome": "COMMITTED",
+        "final": true,
+        "replayed": false,
+        "state_version": 4
+      },
+      {
+        "outcome": "RETURNED",
+        "value": {
+          "type": "Option<Int64>",
+          "tag": "None"
+        }
+      }
+    ],
+    "state": {
+      "state_version": 4,
+      "epoch": 1,
+      "tables": {
+        "app.S.items": []
+      },
+      "outbox": [],
+      "inbox": [],
+      "pending": []
+    }
+  },
+  "note": "сбой до фиксации оставляет прежние ключи и привязку, после фиксации — новые; повтор не создаёт дублей"
+}

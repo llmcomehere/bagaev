@@ -1,0 +1,267 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://bagaev.local/spec/links/graph.schema.json",
+  "title": "bagaev link graph (LINKS-1, языконезависимая форма)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "format",
+    "extractor_rev",
+    "source",
+    "nodes",
+    "edges",
+    "coverage",
+    "gaps",
+    "unused_atoms"
+  ],
+  "properties": {
+    "format": {
+      "const": "bagaev-graph/1"
+    },
+    "extractor_rev": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "nodes": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/node"
+      }
+    },
+    "edges": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/edge"
+      }
+    },
+    "coverage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kinds",
+        "scope",
+        "external_boundaries"
+      ],
+      "properties": {
+        "kinds": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "status",
+              "basis"
+            ],
+            "properties": {
+              "status": {
+                "enum": [
+                  "COMPLETE",
+                  "PARTIAL"
+                ]
+              },
+              "basis": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "scope": {
+          "type": "string"
+        },
+        "external_boundaries": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "gaps": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "entity",
+          "reason"
+        ],
+        "properties": {
+          "entity": {
+            "type": "string"
+          },
+          "reason": {
+            "type": "string",
+            "pattern": "^[A-Z][A-Z0-9_]*$"
+          },
+          "target": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "unused_atoms": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "entity",
+          "atom"
+        ],
+        "properties": {
+          "entity": {
+            "type": "string"
+          },
+          "atom": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "span": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": {
+        "type": "string",
+        "pattern": "^(0|[1-9][0-9]*)$"
+      }
+    },
+    "node": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "kind",
+        "name",
+        "file",
+        "span",
+        "rev",
+        "pub"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "kind": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "file": {
+          "type": "string"
+        },
+        "span": {
+          "$ref": "#/$defs/span"
+        },
+        "rev": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "sig": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "pub": {
+          "type": "boolean"
+        },
+        "head": {
+          "$ref": "#/$defs/span"
+        }
+      }
+    },
+    "edge": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "kind",
+        "src",
+        "dst",
+        "site",
+        "provenance"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "defines",
+            "calls",
+            "references",
+            "uses_type",
+            "reads",
+            "writes",
+            "emits",
+            "consumes",
+            "migrates",
+            "implements",
+            "requires",
+            "checks",
+            "about",
+            "derived_from",
+            "supersedes"
+          ]
+        },
+        "src": {
+          "type": "string"
+        },
+        "dst": {
+          "type": "string",
+          "minLength": 1
+        },
+        "site": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "file",
+            "span"
+          ],
+          "properties": {
+            "file": {
+              "type": "string"
+            },
+            "span": {
+              "$ref": "#/$defs/span"
+            }
+          }
+        },
+        "provenance": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "origin",
+            "rule",
+            "extractor"
+          ],
+          "properties": {
+            "origin": {
+              "enum": [
+                "structural",
+                "declared"
+              ]
+            },
+            "rule": {
+              "type": "string"
+            },
+            "extractor": {
+              "type": "string"
+            }
+          }
+        },
+        "qualifiers": {
+          "type": "object"
+        }
+      }
+    }
+  }
+}

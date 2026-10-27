@@ -1,0 +1,41 @@
+{
+  "format": "bagaev-pilot-preregistration/1",
+  "status": "DRAFT",
+  "pilot_status": "NOT_RUN",
+  "model_family": "Claude",
+  "model_id": null,
+  "model_decision": "pending_user",
+  "live_enabled": false,
+  "seed": 20261027,
+  "repetitions": 5,
+  "minimum_repetitions": 3,
+  "cases": ["C01", "C04", "C05", "C06", "C08", "C10", "C11", "C12"],
+  "arms": ["A", "B", "C"],
+  "limits": {
+    "turns": 80,
+    "context_tokens": 24000,
+    "total_tokens": 160000,
+    "wall_seconds": 900,
+    "tool_seconds": 30,
+    "attempt_usd": null,
+    "study_usd": null,
+    "money_decision": "pending_user"
+  },
+  "hypotheses": {
+    "H1": "false_accepts_C == 0 and false_accepts_C <= false_accepts_B and false_accepts_C <= false_accepts_A",
+    "H2": "full_cost_C <= 0.8 * full_cost_B on C08/C10/C11, with equal safety and no lower completion",
+    "H3": "completed_C >= completed_B"
+  },
+  "cost": {
+    "primary_unit": "USD full cost",
+    "human_usd_per_hour": null,
+    "compute_usd_per_second": null,
+    "rates_status": "pending_before_freeze",
+    "include": ["guide", "all_repeated_context", "model_output", "tools", "analyzer", "initial_relationship_preparation", "relationship_maintenance", "human_intervention", "failed_and_stopped_attempts"],
+    "preparation_allocation": "equal across the 40 scheduled tasks per arm; report raw and allocated costs"
+  },
+  "bootstrap": {"resamples": 10000, "confidence": 0.95, "seed": 20261028, "unit": "paired repetition blocks", "significance_claims_if_n_lt_10": false},
+  "hidden_commitment_registry": "pilot/authorship/closed-commitments.json",
+  "pending_gates": ["exact_claude_model", "money_budget_and_rates", "complete_closed_task_suite", "closed_C08_C11_adapters", "writability_v2", "live_adapter_and_token_accounting_review", "independent_m7_review", "pilot_freeze_1", "explicit_F8_authorization"],
+  "measurements": {"attempts": null, "false_accepts": null, "completed": null, "tokens": null, "cost_usd": null}
+}

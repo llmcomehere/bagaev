@@ -1,0 +1,17 @@
+{
+  "id": "resolve/links-to-contract-rules",
+  "spec": [
+    "spec/language/surface.md#3-объявления-и-идентичность"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "expect": {
+    "phase": "check",
+    "outcome": "ACCEPTED"
+  }
+}

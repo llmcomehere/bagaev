@@ -1,0 +1,47 @@
+@id("cq0001")
+module app
+
+use std.test
+
+@id("cq0002")
+pub entity Greeting {
+  purpose "Приветствие пользователю"
+  terms ["привет"]
+  not_about ["прощание"]
+}
+
+@id("cq0003")
+pub contract Polite about Greeting {
+  @id("cq0004") rule nonempty "приветствие не пустое"
+}
+
+@id("cq0005")
+pub fn greet(name: String) -> String
+  implements Polite.nonempty
+{
+  "Привет, " ++ name
+}
+
+@id("cq0006")
+pub fn shout(name: String) -> String {
+  greet(name) ++ "!"
+}
+
+@id("cq0007")
+fn helper(n: Int64) -> Int64 {
+  n + 1
+}
+
+@id("cq0008")
+test greet_nonempty
+  checks Polite.nonempty
+{
+  test.expect("не пусто", greet("x") != "")
+}
+
+@id("cq0009")
+test greet_has_name
+  checks Polite.nonempty
+{
+  test.expect("имя", greet("Иван") == "Привет, Иван")
+}

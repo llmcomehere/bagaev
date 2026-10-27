@@ -1,0 +1,9 @@
+@id("p1etvs")
+module main
+use std.bytes
+use std.data
+
+@id("4b6q66")
+pub fn main() -> Result<Bytes, data.BoundsError> {
+  bytes.slice(b"\xf0\x9f\x98\x80", 0, 1)
+}

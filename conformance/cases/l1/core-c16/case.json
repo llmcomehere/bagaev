@@ -1,0 +1,43 @@
+{
+  "id": "l1/core-c16",
+  "spec": [
+    "spec/runtime/machine.md#7-соответствие-core-01",
+    "spec/runtime/machine.md#4-закрытый-каталог-правил"
+  ],
+  "origin": "model:models/r07-core/fixtures/core-machine.json#C16",
+  "levels": [
+    "L1",
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "run": {
+    "entry": "main.main"
+  },
+  "expect": {
+    "phase": "run",
+    "effects": [],
+    "outcome": "RETURNED",
+    "value": {
+      "type": "Result<Result<Int64,std.i64.ArithmeticError>,std.i64.ArithmeticError>",
+      "tag": "Ok",
+      "payload": {
+        "type": "Result<Int64,std.i64.ArithmeticError>",
+        "tag": "Err",
+        "payload": {
+          "type": "std.i64.ArithmeticError",
+          "tag": "Overflow"
+        }
+      }
+    },
+    "steps": 5,
+    "trace_l1": [
+      "VARIANT_ENTER",
+      "VARIANT_ENTER",
+      "CONST",
+      "VARIANT_WRAP",
+      "VARIANT_WRAP"
+    ]
+  }
+}

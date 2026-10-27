@@ -1,0 +1,22 @@
+@id("7kz2tx")
+module probe
+
+use main
+use std.store
+
+@id("t7wat5")
+store P {
+  @id("q102fs") table t: Map<Int64, Int64>
+}
+
+@id("bp09ze")
+fn pure(xs: Seq<Int64>) -> Seq<Int64> {
+  main.map_all(xs, fn(x) => x + 1)
+}
+
+@id("6cq3p7")
+fn reading(xs: Seq<Int64>) -> Seq<Option<Int64>>
+  uses { reads P.t }
+{
+  main.map_all(xs, fn(k) => store.get(P.t, k))
+}

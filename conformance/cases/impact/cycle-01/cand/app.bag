@@ -1,0 +1,25 @@
+@id("cy0001")
+module app
+
+@id("cy0002")
+fn even(n: Int64) -> Bool {
+  if n == 0 {
+    true
+  } else {
+    odd(n - 1)
+  }
+}
+
+@id("cy0003")
+fn odd(n: Int64) -> Bool {
+  if n == 0 {
+    1 == 2
+  } else {
+    even(n - 1)
+  }
+}
+
+@id("cy0004")
+pub fn parity(n: Int64) -> Bool {
+  even(n)
+}

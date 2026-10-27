@@ -1,0 +1,57 @@
+{
+  "id": "data/map-entries-in-key-order",
+  "spec": [
+    "spec/kernel/canonical.md#4-наблюдаемое-значение",
+    "spec/language/data-values.md#6-полный-порядок-key"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "run": {
+    "entry": "main.main"
+  },
+  "expect": {
+    "phase": "run",
+    "effects": [],
+    "outcome": "RETURNED",
+    "value": {
+      "type": "Map<String,Int64>",
+      "entries": [
+        [
+          {
+            "type": "String",
+            "value": "a"
+          },
+          {
+            "type": "Int64",
+            "value": "1"
+          }
+        ],
+        [
+          {
+            "type": "String",
+            "value": "ab"
+          },
+          {
+            "type": "Int64",
+            "value": "3"
+          }
+        ],
+        [
+          {
+            "type": "String",
+            "value": "b"
+          },
+          {
+            "type": "Int64",
+            "value": "2"
+          }
+        ]
+      ]
+    }
+  }
+}

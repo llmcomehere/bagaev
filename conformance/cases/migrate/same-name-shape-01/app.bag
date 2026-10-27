@@ -1,0 +1,34 @@
+@id("aa0001")
+module app
+
+use std.store
+
+@id("aa0008")
+pub type BumpError = enum {
+  @id("aa0009") NonPositive,
+  @id("aa000a") TooLarge,
+}
+
+@id("aa0005")
+pub event Bumped {
+  @id("aa0006") name: String,
+  @id("aa0007") total: Int64,
+}
+
+@id("ab0001")
+pub type Tally = record {
+  @id("ab0002") total: Int64,
+}
+
+@id("aa0002")
+pub store S {
+  @id("aa0003") table counts: Map<String, Tally>
+  @id("aa0004") table seen: Map<String, Int64>
+}
+
+@id("aa000c")
+pub query get(name: String) -> Option<Tally>
+  uses { reads S.counts }
+{
+  store.get(S.counts, name)
+}

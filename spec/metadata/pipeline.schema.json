@@ -1,0 +1,2766 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:bagaev:r21:pipeline:0.1",
+  "title": "R21 pipeline metadata shapes, not upstream language IR or semantic proof",
+  "$defs": {
+    "Id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128,
+      "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,127}(?![\\s\\S])"
+    },
+    "Text": {
+      "type": "string",
+      "maxLength": 4096
+    },
+    "Hash": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+    },
+    "U64": {
+      "type": "string",
+      "pattern": "^(?:0|[1-9][0-9]{0,18}|1[0-7][0-9]{18}|18[0-3][0-9]{17}|184[0-3][0-9]{16}|1844[0-5][0-9]{15}|18446[0-6][0-9]{14}|184467[0-3][0-9]{13}|1844674[0-3][0-9]{12}|184467440[0-6][0-9]{10}|1844674407[0-2][0-9]{9}|18446744073[0-6][0-9]{8}|1844674407370[0-8][0-9]{6}|18446744073709[0-4][0-9]{5}|184467440737095[0-4][0-9]{4}|18446744073709550[0-9]{3}|18446744073709551[0-5][0-9]{2}|1844674407370955160[0-9]{1}|1844674407370955161[0-4]|18446744073709551615)(?![\\s\\S])"
+    },
+    "Stage": {
+      "enum": [
+        "parse",
+        "resolve",
+        "type",
+        "effect",
+        "lower",
+        "link",
+        "emit"
+      ]
+    },
+    "ObjectRef": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "$ref": "#/$defs/Id"
+        },
+        "format": {
+          "$ref": "#/$defs/Id"
+        },
+        "codec": {
+          "$ref": "#/$defs/Id"
+        },
+        "sha256": {
+          "$ref": "#/$defs/Hash"
+        },
+        "bytes": {
+          "$ref": "#/$defs/U64"
+        }
+      },
+      "required": [
+        "kind",
+        "format",
+        "codec",
+        "sha256",
+        "bytes"
+      ],
+      "additionalProperties": false
+    },
+    "RoleRef": {
+      "type": "object",
+      "properties": {
+        "role": {
+          "$ref": "#/$defs/Id"
+        },
+        "ref": {
+          "$ref": "#/$defs/ObjectRef"
+        }
+      },
+      "required": [
+        "role",
+        "ref"
+      ],
+      "additionalProperties": false
+    },
+    "RoleContract": {
+      "type": "object",
+      "properties": {
+        "role": {
+          "$ref": "#/$defs/Id"
+        },
+        "format_contract_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "FormatContract"
+                }
+              }
+            }
+          ]
+        }
+      },
+      "required": [
+        "role",
+        "format_contract_ref"
+      ],
+      "additionalProperties": false
+    },
+    "NodeRef": {
+      "type": "object",
+      "properties": {
+        "payload_ref": {
+          "$ref": "#/$defs/ObjectRef"
+        },
+        "local_node_id": {
+          "$ref": "#/$defs/Id"
+        }
+      },
+      "required": [
+        "payload_ref",
+        "local_node_id"
+      ],
+      "additionalProperties": false
+    },
+    "File": {
+      "type": "object",
+      "properties": {
+        "file_id": {
+          "$ref": "#/$defs/Id"
+        },
+        "path": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1024,
+          "pattern": "^[A-Za-z0-9._-]+(?:/[A-Za-z0-9._-]+)*(?![\\s\\S])"
+        },
+        "role": {
+          "enum": [
+            "SOURCE",
+            "AUTHORED_CONFIG",
+            "ATTACHMENT"
+          ]
+        },
+        "media_type": {
+          "$ref": "#/$defs/Text"
+        },
+        "content_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "Content"
+                }
+              }
+            }
+          ]
+        }
+      },
+      "required": [
+        "file_id",
+        "path",
+        "role",
+        "media_type",
+        "content_ref"
+      ],
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "role": {
+                "const": "SOURCE"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "media_type": {
+                "const": "text/x-bagaev; charset=utf-8"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "SourceAnchor": {
+      "type": "object",
+      "properties": {
+        "anchor_kind": {
+          "const": "SOURCE"
+        },
+        "source_bundle_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "SourceBundle"
+                }
+              }
+            }
+          ]
+        },
+        "file_id": {
+          "$ref": "#/$defs/Id"
+        },
+        "content_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "Content"
+                }
+              }
+            }
+          ]
+        },
+        "start": {
+          "$ref": "#/$defs/U64"
+        },
+        "end": {
+          "$ref": "#/$defs/U64"
+        },
+        "range_kind": {
+          "enum": [
+            "UTF8_TEXT_RANGE",
+            "RAW_BYTE_RANGE"
+          ]
+        },
+        "recovery": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "anchor_kind",
+        "source_bundle_ref",
+        "file_id",
+        "content_ref",
+        "start",
+        "end",
+        "range_kind",
+        "recovery"
+      ],
+      "additionalProperties": false
+    },
+    "ArtifactAnchor": {
+      "type": "object",
+      "properties": {
+        "anchor_kind": {
+          "const": "ARTIFACT"
+        },
+        "payload_ref": {
+          "$ref": "#/$defs/ObjectRef"
+        },
+        "local_node_id": {
+          "$ref": "#/$defs/Id"
+        }
+      },
+      "required": [
+        "anchor_kind",
+        "payload_ref",
+        "local_node_id"
+      ],
+      "additionalProperties": false
+    },
+    "ProjectAnchor": {
+      "type": "object",
+      "properties": {
+        "anchor_kind": {
+          "const": "PROJECT"
+        },
+        "plan_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "PipelinePlan"
+                }
+              }
+            }
+          ]
+        },
+        "reason": {
+          "$ref": "#/$defs/Id"
+        }
+      },
+      "required": [
+        "anchor_kind",
+        "plan_ref",
+        "reason"
+      ],
+      "additionalProperties": false
+    },
+    "Anchor": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/SourceAnchor"
+        },
+        {
+          "$ref": "#/$defs/ArtifactAnchor"
+        },
+        {
+          "$ref": "#/$defs/ProjectAnchor"
+        }
+      ]
+    },
+    "Parameter": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "$ref": "#/$defs/Id"
+        },
+        "value_type": {
+          "enum": [
+            "TEXT",
+            "ID",
+            "U64",
+            "REF"
+          ]
+        },
+        "value": {}
+      },
+      "required": [
+        "name",
+        "value_type",
+        "value"
+      ],
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "value_type": {
+                "const": "TEXT"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "value": {
+                "$ref": "#/$defs/Text"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "value_type": {
+                "const": "ID"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "value": {
+                "$ref": "#/$defs/Id"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "value_type": {
+                "const": "U64"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "value": {
+                "$ref": "#/$defs/U64"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "value_type": {
+                "const": "REF"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "value": {
+                "$ref": "#/$defs/ObjectRef"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "Diagnostic": {
+      "type": "object",
+      "properties": {
+        "diagnostic_id": {
+          "$ref": "#/$defs/Id"
+        },
+        "ordinal": {
+          "$ref": "#/$defs/U64"
+        },
+        "code": {
+          "$ref": "#/$defs/Id"
+        },
+        "error_contract_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "ErrorContract"
+                }
+              }
+            }
+          ]
+        },
+        "severity": {
+          "enum": [
+            "ERROR",
+            "WARNING",
+            "INFO"
+          ]
+        },
+        "category": {
+          "enum": [
+            "SOURCE",
+            "INPUT",
+            "TOOL",
+            "LIMIT",
+            "CANCEL",
+            "POLICY"
+          ]
+        },
+        "primary": {
+          "$ref": "#/$defs/Anchor"
+        },
+        "related": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Anchor"
+          },
+          "minItems": 0,
+          "maxItems": 32
+        },
+        "params": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Parameter"
+          },
+          "minItems": 0,
+          "maxItems": 32
+        },
+        "cause_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Id"
+          },
+          "minItems": 0,
+          "maxItems": 32
+        }
+      },
+      "required": [
+        "diagnostic_id",
+        "ordinal",
+        "code",
+        "error_contract_ref",
+        "severity",
+        "category",
+        "primary",
+        "related",
+        "params",
+        "cause_ids"
+      ],
+      "additionalProperties": false
+    },
+    "OriginEntry": {
+      "type": "object",
+      "properties": {
+        "output_node_id": {
+          "$ref": "#/$defs/Id"
+        },
+        "role": {
+          "enum": [
+            "DIRECT",
+            "GENERATED",
+            "MERGED",
+            "DUPLICATED",
+            "NO_SOURCE"
+          ]
+        },
+        "input_nodes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/NodeRef"
+          },
+          "minItems": 0,
+          "maxItems": 1024
+        },
+        "source_ranges": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/SourceAnchor"
+          },
+          "minItems": 0,
+          "maxItems": 1024
+        },
+        "rule_id": {
+          "$ref": "#/$defs/Id"
+        },
+        "reason": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Id"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "output_node_id",
+        "role",
+        "input_nodes",
+        "source_ranges",
+        "rule_id",
+        "reason"
+      ],
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "role": {
+                "const": "DIRECT"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "input_nodes": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/NodeRef"
+                },
+                "minItems": 1,
+                "maxItems": 1024
+              },
+              "source_ranges": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/SourceAnchor"
+                },
+                "minItems": 1,
+                "maxItems": 1024
+              },
+              "reason": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "role": {
+                "const": "NO_SOURCE"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "source_ranges": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/SourceAnchor"
+                },
+                "minItems": 0,
+                "maxItems": 0
+              },
+              "reason": {
+                "$ref": "#/$defs/Id"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "role": {
+                "const": "MERGED"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "input_nodes": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/NodeRef"
+                },
+                "minItems": 2,
+                "maxItems": 1024
+              }
+            }
+          }
+        }
+      ]
+    },
+    "ReadDependency": {
+      "type": "object",
+      "properties": {
+        "role": {
+          "enum": [
+            "SOURCE_BYTES",
+            "SCOPE_INVENTORY",
+            "PACKAGE_INTERFACE",
+            "TYPE_CONTRACT",
+            "EFFECT_CONTRACT",
+            "TARGET_ABI",
+            "TOOL_BUILD",
+            "OUTPUT_CODEC",
+            "LIMIT_PROFILE"
+          ]
+        },
+        "ref": {
+          "$ref": "#/$defs/ObjectRef"
+        }
+      },
+      "required": [
+        "role",
+        "ref"
+      ],
+      "additionalProperties": false
+    },
+    "Lookup": {
+      "type": "object",
+      "properties": {
+        "scope_inventory_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "ScopeInventory"
+                }
+              }
+            }
+          ]
+        },
+        "namespace": {
+          "$ref": "#/$defs/Id"
+        },
+        "spelling": {
+          "$ref": "#/$defs/Text"
+        },
+        "outcome": {
+          "enum": [
+            "FOUND",
+            "ABSENT",
+            "AMBIGUOUS"
+          ]
+        },
+        "entity_ref": {
+          "anyOf": [
+            {
+              "allOf": [
+                {
+                  "$ref": "#/$defs/ObjectRef"
+                },
+                {
+                  "properties": {
+                    "kind": {
+                      "const": "Entity"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "scope_inventory_ref",
+        "namespace",
+        "spelling",
+        "outcome",
+        "entity_ref"
+      ],
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "outcome": {
+                "const": "FOUND"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "entity_ref": {
+                "allOf": [
+                  {
+                    "$ref": "#/$defs/ObjectRef"
+                  },
+                  {
+                    "properties": {
+                      "kind": {
+                        "const": "Entity"
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "entity_ref": {
+                "type": "null"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "Edit": {
+      "type": "object",
+      "properties": {
+        "file_id": {
+          "$ref": "#/$defs/Id"
+        },
+        "old_content_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "Content"
+                }
+              }
+            }
+          ]
+        },
+        "start": {
+          "$ref": "#/$defs/U64"
+        },
+        "end": {
+          "$ref": "#/$defs/U64"
+        },
+        "expected_slice_sha256": {
+          "$ref": "#/$defs/Hash"
+        },
+        "replacement_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "Content"
+                }
+              }
+            }
+          ]
+        }
+      },
+      "required": [
+        "file_id",
+        "old_content_ref",
+        "start",
+        "end",
+        "expected_slice_sha256",
+        "replacement_ref"
+      ],
+      "additionalProperties": false
+    },
+    "SourceBundle": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "const": "SourceBundle"
+        },
+        "format": {
+          "const": "R21-META-0.1"
+        },
+        "project_identity_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "ProjectIdentity"
+                }
+              }
+            }
+          ]
+        },
+        "files": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/File"
+          },
+          "minItems": 0,
+          "maxItems": 4096
+        },
+        "identity_attachment_ref": {
+          "anyOf": [
+            {
+              "allOf": [
+                {
+                  "$ref": "#/$defs/ObjectRef"
+                },
+                {
+                  "properties": {
+                    "kind": {
+                      "const": "IdentityAttachment"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "kind",
+        "format",
+        "project_identity_ref",
+        "files",
+        "identity_attachment_ref"
+      ],
+      "additionalProperties": false
+    },
+    "PipelinePlan": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "const": "PipelinePlan"
+        },
+        "format": {
+          "const": "R21-META-0.1"
+        },
+        "source_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "SourceBundle"
+                }
+              }
+            }
+          ]
+        },
+        "source_binding_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "SourceVersionBinding"
+                }
+              }
+            }
+          ]
+        },
+        "meaning_lock_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "MeaningLock"
+                }
+              }
+            }
+          ]
+        },
+        "environment_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "Environment"
+                }
+              }
+            }
+          ]
+        },
+        "lock_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "DependencyLock"
+                }
+              }
+            }
+          ]
+        },
+        "interface_closure_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "PackageInterfaceClosure"
+                }
+              }
+            }
+          ]
+        },
+        "target_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "TargetProfile"
+                }
+              }
+            }
+          ]
+        },
+        "compiler_build_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "ToolBuild"
+                }
+              }
+            }
+          ]
+        },
+        "stage_contracts": {
+          "type": "object",
+          "properties": {
+            "parse": {
+              "allOf": [
+                {
+                  "$ref": "#/$defs/ObjectRef"
+                },
+                {
+                  "properties": {
+                    "kind": {
+                      "const": "StageContract"
+                    }
+                  }
+                }
+              ]
+            },
+            "resolve": {
+              "allOf": [
+                {
+                  "$ref": "#/$defs/ObjectRef"
+                },
+                {
+                  "properties": {
+                    "kind": {
+                      "const": "StageContract"
+                    }
+                  }
+                }
+              ]
+            },
+            "type": {
+              "allOf": [
+                {
+                  "$ref": "#/$defs/ObjectRef"
+                },
+                {
+                  "properties": {
+                    "kind": {
+                      "const": "StageContract"
+                    }
+                  }
+                }
+              ]
+            },
+            "effect": {
+              "allOf": [
+                {
+                  "$ref": "#/$defs/ObjectRef"
+                },
+                {
+                  "properties": {
+                    "kind": {
+                      "const": "StageContract"
+                    }
+                  }
+                }
+              ]
+            },
+            "lower": {
+              "allOf": [
+                {
+                  "$ref": "#/$defs/ObjectRef"
+                },
+                {
+                  "properties": {
+                    "kind": {
+                      "const": "StageContract"
+                    }
+                  }
+                }
+              ]
+            },
+            "link": {
+              "allOf": [
+                {
+                  "$ref": "#/$defs/ObjectRef"
+                },
+                {
+                  "properties": {
+                    "kind": {
+                      "const": "StageContract"
+                    }
+                  }
+                }
+              ]
+            },
+            "emit": {
+              "allOf": [
+                {
+                  "$ref": "#/$defs/ObjectRef"
+                },
+                {
+                  "properties": {
+                    "kind": {
+                      "const": "StageContract"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "required": [
+            "parse",
+            "resolve",
+            "type",
+            "effect",
+            "lower",
+            "link",
+            "emit"
+          ],
+          "additionalProperties": false
+        },
+        "diagnostic_contract_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "DiagnosticContract"
+                }
+              }
+            }
+          ]
+        },
+        "limits_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "LimitsContract"
+                }
+              }
+            }
+          ]
+        },
+        "mode": {
+          "enum": [
+            "CHECK",
+            "EDITOR",
+            "EMIT"
+          ]
+        },
+        "entry_ref": {
+          "anyOf": [
+            {
+              "allOf": [
+                {
+                  "$ref": "#/$defs/ObjectRef"
+                },
+                {
+                  "properties": {
+                    "kind": {
+                      "const": "Entity"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "kind",
+        "format",
+        "source_ref",
+        "source_binding_ref",
+        "meaning_lock_ref",
+        "environment_ref",
+        "lock_ref",
+        "interface_closure_ref",
+        "target_ref",
+        "compiler_build_ref",
+        "stage_contracts",
+        "diagnostic_contract_ref",
+        "limits_ref",
+        "mode",
+        "entry_ref"
+      ],
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "mode": {
+                "const": "EMIT"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "entry_ref": {
+                "allOf": [
+                  {
+                    "$ref": "#/$defs/ObjectRef"
+                  },
+                  {
+                    "properties": {
+                      "kind": {
+                        "const": "Entity"
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    "CompileInvocation": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "const": "CompileInvocation"
+        },
+        "format": {
+          "const": "R21-META-0.1"
+        },
+        "recipe_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "BuildRecipe"
+                }
+              }
+            }
+          ]
+        },
+        "pipeline_plan_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "PipelinePlan"
+                }
+              }
+            }
+          ]
+        },
+        "invocation_contract_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "InvocationContract"
+                }
+              }
+            }
+          ]
+        }
+      },
+      "required": [
+        "kind",
+        "format",
+        "recipe_ref",
+        "pipeline_plan_ref",
+        "invocation_contract_ref"
+      ],
+      "additionalProperties": false
+    },
+    "StageContract": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "const": "StageContract"
+        },
+        "format": {
+          "const": "R21-META-0.1"
+        },
+        "stage": {
+          "$ref": "#/$defs/Stage"
+        },
+        "semantic_rule_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "SemanticContract"
+                }
+              }
+            }
+          ]
+        },
+        "input_formats": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/RoleContract"
+          },
+          "minItems": 1,
+          "maxItems": 32
+        },
+        "output_formats": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/RoleContract"
+          },
+          "minItems": 1,
+          "maxItems": 32
+        },
+        "provider_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "ToolBuild"
+                }
+              }
+            }
+          ]
+        },
+        "checker_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "ToolBuild"
+                }
+              }
+            }
+          ]
+        },
+        "feature_coverage_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "FeatureCoverage"
+                }
+              }
+            }
+          ]
+        },
+        "read_policy_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "ReadPolicy"
+                }
+              }
+            }
+          ]
+        },
+        "limits_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "LimitsContract"
+                }
+              }
+            }
+          ]
+        },
+        "work_contract_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "CompileWorkContract"
+                }
+              }
+            }
+          ]
+        },
+        "error_contract_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "ErrorContract"
+                }
+              }
+            }
+          ]
+        },
+        "origin_contract_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "OriginContract"
+                }
+              }
+            }
+          ]
+        },
+        "diagnostic_contract_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "DiagnosticContract"
+                }
+              }
+            }
+          ]
+        },
+        "cache_policy": {
+          "const": "EXACT_INPUTS"
+        }
+      },
+      "required": [
+        "kind",
+        "format",
+        "stage",
+        "semantic_rule_ref",
+        "input_formats",
+        "output_formats",
+        "provider_ref",
+        "checker_ref",
+        "feature_coverage_ref",
+        "read_policy_ref",
+        "limits_ref",
+        "work_contract_ref",
+        "error_contract_ref",
+        "origin_contract_ref",
+        "diagnostic_contract_ref",
+        "cache_policy"
+      ],
+      "additionalProperties": false
+    },
+    "StageResult": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "const": "StageResult"
+        },
+        "format": {
+          "const": "R21-META-0.1"
+        },
+        "plan_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "PipelinePlan"
+                }
+              }
+            }
+          ]
+        },
+        "stage": {
+          "$ref": "#/$defs/Stage"
+        },
+        "stage_contract_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "StageContract"
+                }
+              }
+            }
+          ]
+        },
+        "status": {
+          "enum": [
+            "OK",
+            "EDITOR_PARTIAL",
+            "INVALID",
+            "INPUT_NOT_READY",
+            "UNSUPPORTED",
+            "LIMIT",
+            "CANCELED",
+            "INTERNAL_ERROR",
+            "UNTRUSTED"
+          ]
+        },
+        "inputs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/RoleRef"
+          },
+          "minItems": 0,
+          "maxItems": 64
+        },
+        "outputs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/RoleRef"
+          },
+          "minItems": 0,
+          "maxItems": 16
+        },
+        "diagnostics_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "DiagnosticBatch"
+                }
+              }
+            }
+          ]
+        },
+        "read_set_ref": {
+          "anyOf": [
+            {
+              "allOf": [
+                {
+                  "$ref": "#/$defs/ObjectRef"
+                },
+                {
+                  "properties": {
+                    "kind": {
+                      "const": "ReadSet"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "origin_map_ref": {
+          "anyOf": [
+            {
+              "allOf": [
+                {
+                  "$ref": "#/$defs/ObjectRef"
+                },
+                {
+                  "properties": {
+                    "kind": {
+                      "const": "OriginMap"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "origin_output_role": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Id"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "complete": {
+          "type": "boolean"
+        },
+        "work_units": {
+          "$ref": "#/$defs/U64"
+        },
+        "blame": {
+          "enum": [
+            "NONE",
+            "SOURCE",
+            "INPUT",
+            "TOOL",
+            "LIMIT",
+            "CANCEL",
+            "POLICY"
+          ]
+        }
+      },
+      "required": [
+        "kind",
+        "format",
+        "plan_ref",
+        "stage",
+        "stage_contract_ref",
+        "status",
+        "inputs",
+        "outputs",
+        "diagnostics_ref",
+        "read_set_ref",
+        "origin_map_ref",
+        "origin_output_role",
+        "complete",
+        "work_units",
+        "blame"
+      ],
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "OK"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "complete": {
+                "const": true
+              },
+              "blame": {
+                "const": "NONE"
+              },
+              "outputs": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/RoleRef"
+                },
+                "minItems": 1,
+                "maxItems": 16
+              },
+              "read_set_ref": {
+                "allOf": [
+                  {
+                    "$ref": "#/$defs/ObjectRef"
+                  },
+                  {
+                    "properties": {
+                      "kind": {
+                        "const": "ReadSet"
+                      }
+                    }
+                  }
+                ]
+              },
+              "origin_map_ref": {
+                "allOf": [
+                  {
+                    "$ref": "#/$defs/ObjectRef"
+                  },
+                  {
+                    "properties": {
+                      "kind": {
+                        "const": "OriginMap"
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "complete": {
+                "const": false
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "not": {
+                  "enum": [
+                    "OK",
+                    "EDITOR_PARTIAL"
+                  ]
+                }
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "outputs": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/RoleRef"
+                },
+                "minItems": 0,
+                "maxItems": 0
+              },
+              "origin_map_ref": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "EDITOR_PARTIAL"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "outputs": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "role": {
+                      "enum": [
+                        "recovery_cst",
+                        "editor_analysis"
+                      ]
+                    },
+                    "ref": {
+                      "$ref": "#/$defs/ObjectRef"
+                    }
+                  },
+                  "required": [
+                    "role",
+                    "ref"
+                  ],
+                  "additionalProperties": false
+                },
+                "minItems": 1,
+                "maxItems": 2
+              },
+              "blame": {
+                "const": "SOURCE"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "DiagnosticBatch": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "const": "DiagnosticBatch"
+        },
+        "format": {
+          "const": "R21-META-0.1"
+        },
+        "plan_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "PipelinePlan"
+                }
+              }
+            }
+          ]
+        },
+        "source_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "SourceBundle"
+                }
+              }
+            }
+          ]
+        },
+        "meaning_lock_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "MeaningLock"
+                }
+              }
+            }
+          ]
+        },
+        "stage": {
+          "enum": [
+            "preflight",
+            "parse",
+            "resolve",
+            "type",
+            "effect",
+            "lower",
+            "link",
+            "emit"
+          ]
+        },
+        "diagnostic_contract_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "DiagnosticContract"
+                }
+              }
+            }
+          ]
+        },
+        "diagnostics": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Diagnostic"
+          },
+          "minItems": 0,
+          "maxItems": 4096
+        },
+        "has_source_error": {
+          "type": "boolean"
+        },
+        "source_error_lower_bound": {
+          "$ref": "#/$defs/U64"
+        },
+        "truncated": {
+          "type": "boolean"
+        },
+        "total_lower_bound": {
+          "$ref": "#/$defs/U64"
+        },
+        "truncation_reason": {
+          "anyOf": [
+            {
+              "enum": [
+                "ENTRY_LIMIT",
+                "BYTE_LIMIT"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "kind",
+        "format",
+        "plan_ref",
+        "source_ref",
+        "meaning_lock_ref",
+        "stage",
+        "diagnostic_contract_ref",
+        "diagnostics",
+        "has_source_error",
+        "source_error_lower_bound",
+        "truncated",
+        "total_lower_bound",
+        "truncation_reason"
+      ],
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "truncated": {
+                "const": false
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "truncation_reason": {
+                "type": "null"
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "truncation_reason": {
+                "enum": [
+                  "ENTRY_LIMIT",
+                  "BYTE_LIMIT"
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    "OriginMap": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "const": "OriginMap"
+        },
+        "format": {
+          "const": "R21-META-0.1"
+        },
+        "output_payload_ref": {
+          "$ref": "#/$defs/ObjectRef"
+        },
+        "source_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "SourceBundle"
+                }
+              }
+            }
+          ]
+        },
+        "source_contract_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "FormatContract"
+                }
+              }
+            }
+          ]
+        },
+        "transform_contract_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "SemanticContract"
+                }
+              }
+            }
+          ]
+        },
+        "input_payload_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ObjectRef"
+          },
+          "minItems": 1,
+          "maxItems": 64
+        },
+        "node_inventory_sha256": {
+          "$ref": "#/$defs/Hash"
+        },
+        "entries": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/OriginEntry"
+          },
+          "minItems": 0,
+          "maxItems": 1000000
+        }
+      },
+      "required": [
+        "kind",
+        "format",
+        "output_payload_ref",
+        "source_ref",
+        "source_contract_ref",
+        "transform_contract_ref",
+        "input_payload_refs",
+        "node_inventory_sha256",
+        "entries"
+      ],
+      "additionalProperties": false
+    },
+    "ReadSet": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "const": "ReadSet"
+        },
+        "format": {
+          "const": "R21-META-0.1"
+        },
+        "plan_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "PipelinePlan"
+                }
+              }
+            }
+          ]
+        },
+        "stage": {
+          "$ref": "#/$defs/Stage"
+        },
+        "dependencies": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ReadDependency"
+          },
+          "minItems": 0,
+          "maxItems": 4000000
+        },
+        "lookups": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Lookup"
+          },
+          "minItems": 0,
+          "maxItems": 1000000
+        },
+        "enforcement": {
+          "enum": [
+            "DECLARED_ONLY",
+            "ENFORCED"
+          ]
+        },
+        "enforcement_evidence_ref": {
+          "anyOf": [
+            {
+              "allOf": [
+                {
+                  "$ref": "#/$defs/ObjectRef"
+                },
+                {
+                  "properties": {
+                    "kind": {
+                      "const": "BuildEvidence"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "kind",
+        "format",
+        "plan_ref",
+        "stage",
+        "dependencies",
+        "lookups",
+        "enforcement",
+        "enforcement_evidence_ref"
+      ],
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "enforcement": {
+                "const": "ENFORCED"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "enforcement_evidence_ref": {
+                "allOf": [
+                  {
+                    "$ref": "#/$defs/ObjectRef"
+                  },
+                  {
+                    "properties": {
+                      "kind": {
+                        "const": "BuildEvidence"
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    "CacheEntry": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "const": "CacheEntry"
+        },
+        "format": {
+          "const": "R21-META-0.1"
+        },
+        "query_key": {
+          "$ref": "#/$defs/Hash"
+        },
+        "query_body_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "QueryBody"
+                }
+              }
+            }
+          ]
+        },
+        "result_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "StageResult"
+                }
+              }
+            }
+          ]
+        },
+        "read_set_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "ReadSet"
+                }
+              }
+            }
+          ]
+        },
+        "payload_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ObjectRef"
+          },
+          "minItems": 1,
+          "maxItems": 64
+        },
+        "evidence_refs": {
+          "type": "array",
+          "items": {
+            "allOf": [
+              {
+                "$ref": "#/$defs/ObjectRef"
+              },
+              {
+                "properties": {
+                  "kind": {
+                    "const": "VerificationEvidence"
+                  }
+                }
+              }
+            ]
+          },
+          "minItems": 0,
+          "maxItems": 64
+        },
+        "admission_mode": {
+          "enum": [
+            "RECOMPUTE_CHECK",
+            "ADMITTED_PRODUCER_CHECK"
+          ]
+        },
+        "cache_policy": {
+          "const": "EXACT_INPUTS"
+        }
+      },
+      "required": [
+        "kind",
+        "format",
+        "query_key",
+        "query_body_ref",
+        "result_ref",
+        "read_set_ref",
+        "payload_refs",
+        "evidence_refs",
+        "admission_mode",
+        "cache_policy"
+      ],
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "admission_mode": {
+                "const": "ADMITTED_PRODUCER_CHECK"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "evidence_refs": {
+                "type": "array",
+                "items": {
+                  "allOf": [
+                    {
+                      "$ref": "#/$defs/ObjectRef"
+                    },
+                    {
+                      "properties": {
+                        "kind": {
+                          "const": "VerificationEvidence"
+                        }
+                      }
+                    }
+                  ]
+                },
+                "minItems": 1,
+                "maxItems": 64
+              }
+            }
+          }
+        }
+      ]
+    },
+    "PipelineResult": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "const": "PipelineResult"
+        },
+        "format": {
+          "const": "R21-META-0.1"
+        },
+        "plan_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "PipelinePlan"
+                }
+              }
+            }
+          ]
+        },
+        "status": {
+          "enum": [
+            "CHECKED",
+            "EMITTED",
+            "EDITOR_PARTIAL",
+            "INVALID",
+            "INPUT_NOT_READY",
+            "UNSUPPORTED",
+            "LIMIT",
+            "CANCELED",
+            "INTERNAL_ERROR",
+            "UNTRUSTED"
+          ]
+        },
+        "completed_stages": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "stage": {
+                "$ref": "#/$defs/Stage"
+              },
+              "result_ref": {
+                "allOf": [
+                  {
+                    "$ref": "#/$defs/ObjectRef"
+                  },
+                  {
+                    "properties": {
+                      "kind": {
+                        "const": "StageResult"
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            "required": [
+              "stage",
+              "result_ref"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 0,
+          "maxItems": 7
+        },
+        "failed_stage_result_ref": {
+          "anyOf": [
+            {
+              "allOf": [
+                {
+                  "$ref": "#/$defs/ObjectRef"
+                },
+                {
+                  "properties": {
+                    "kind": {
+                      "const": "StageResult"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "diagnostic_batch_refs": {
+          "type": "array",
+          "items": {
+            "allOf": [
+              {
+                "$ref": "#/$defs/ObjectRef"
+              },
+              {
+                "properties": {
+                  "kind": {
+                    "const": "DiagnosticBatch"
+                  }
+                }
+              }
+            ]
+          },
+          "minItems": 0,
+          "maxItems": 8
+        },
+        "executable_ref": {
+          "anyOf": [
+            {
+              "allOf": [
+                {
+                  "$ref": "#/$defs/ObjectRef"
+                },
+                {
+                  "properties": {
+                    "kind": {
+                      "const": "ExecutableImage"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "loader_validation_ref": {
+          "anyOf": [
+            {
+              "allOf": [
+                {
+                  "$ref": "#/$defs/ObjectRef"
+                },
+                {
+                  "properties": {
+                    "kind": {
+                      "const": "EmitValidation"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "kind",
+        "format",
+        "plan_ref",
+        "status",
+        "completed_stages",
+        "failed_stage_result_ref",
+        "diagnostic_batch_refs",
+        "executable_ref",
+        "loader_validation_ref"
+      ],
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "EMITTED"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "executable_ref": {
+                "allOf": [
+                  {
+                    "$ref": "#/$defs/ObjectRef"
+                  },
+                  {
+                    "properties": {
+                      "kind": {
+                        "const": "ExecutableImage"
+                      }
+                    }
+                  }
+                ]
+              },
+              "loader_validation_ref": {
+                "allOf": [
+                  {
+                    "$ref": "#/$defs/ObjectRef"
+                  },
+                  {
+                    "properties": {
+                      "kind": {
+                        "const": "EmitValidation"
+                      }
+                    }
+                  }
+                ]
+              },
+              "failed_stage_result_ref": {
+                "type": "null"
+              },
+              "completed_stages": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "stage": {
+                      "$ref": "#/$defs/Stage"
+                    },
+                    "result_ref": {
+                      "allOf": [
+                        {
+                          "$ref": "#/$defs/ObjectRef"
+                        },
+                        {
+                          "properties": {
+                            "kind": {
+                              "const": "StageResult"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "required": [
+                    "stage",
+                    "result_ref"
+                  ],
+                  "additionalProperties": false
+                },
+                "minItems": 7,
+                "maxItems": 7
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "executable_ref": {
+                "type": "null"
+              },
+              "loader_validation_ref": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "CHECKED",
+                  "EMITTED"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "failed_stage_result_ref": {
+                "type": "null"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "FixCandidate": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "const": "FixCandidate"
+        },
+        "format": {
+          "const": "R21-META-0.1"
+        },
+        "diagnostic_batch_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "DiagnosticBatch"
+                }
+              }
+            }
+          ]
+        },
+        "base_source_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "SourceBundle"
+                }
+              }
+            }
+          ]
+        },
+        "base_binding_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "SourceVersionBinding"
+                }
+              }
+            }
+          ]
+        },
+        "expected_generation": {
+          "$ref": "#/$defs/U64"
+        },
+        "edits": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Edit"
+          },
+          "minItems": 1,
+          "maxItems": 4096
+        },
+        "rationale_diagnostic_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Id"
+          },
+          "minItems": 1,
+          "maxItems": 4096
+        }
+      },
+      "required": [
+        "kind",
+        "format",
+        "diagnostic_batch_ref",
+        "base_source_ref",
+        "base_binding_ref",
+        "expected_generation",
+        "edits",
+        "rationale_diagnostic_ids"
+      ],
+      "additionalProperties": false
+    },
+    "CompileAttempt": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "const": "CompileAttempt"
+        },
+        "format": {
+          "const": "R21-META-0.1"
+        },
+        "attempt_id": {
+          "$ref": "#/$defs/Id"
+        },
+        "invocation_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "CompileInvocation"
+                }
+              }
+            }
+          ]
+        },
+        "plan_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "PipelinePlan"
+                }
+              }
+            }
+          ]
+        },
+        "result_ref": {
+          "anyOf": [
+            {
+              "allOf": [
+                {
+                  "$ref": "#/$defs/ObjectRef"
+                },
+                {
+                  "properties": {
+                    "kind": {
+                      "const": "PipelineResult"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "status": {
+          "enum": [
+            "CHECKED",
+            "EMITTED",
+            "EDITOR_PARTIAL",
+            "INVALID",
+            "INPUT_NOT_READY",
+            "UNSUPPORTED",
+            "LIMIT",
+            "CANCELED",
+            "INTERNAL_ERROR",
+            "UNTRUSTED"
+          ]
+        },
+        "work": {
+          "type": "object",
+          "properties": {
+            "preflight": {
+              "$ref": "#/$defs/U64"
+            },
+            "cache": {
+              "$ref": "#/$defs/U64"
+            },
+            "provider": {
+              "$ref": "#/$defs/U64"
+            },
+            "check": {
+              "$ref": "#/$defs/U64"
+            },
+            "publication": {
+              "$ref": "#/$defs/U64"
+            },
+            "total": {
+              "$ref": "#/$defs/U64"
+            }
+          },
+          "required": [
+            "preflight",
+            "cache",
+            "provider",
+            "check",
+            "publication",
+            "total"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "kind",
+        "format",
+        "attempt_id",
+        "invocation_ref",
+        "plan_ref",
+        "result_ref",
+        "status",
+        "work"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "oneOf": [
+    {
+      "$ref": "#/$defs/CompileAttempt"
+    },
+    {
+      "$ref": "#/$defs/SourceBundle"
+    },
+    {
+      "$ref": "#/$defs/PipelinePlan"
+    },
+    {
+      "$ref": "#/$defs/CompileInvocation"
+    },
+    {
+      "$ref": "#/$defs/StageContract"
+    },
+    {
+      "$ref": "#/$defs/StageResult"
+    },
+    {
+      "$ref": "#/$defs/DiagnosticBatch"
+    },
+    {
+      "$ref": "#/$defs/OriginMap"
+    },
+    {
+      "$ref": "#/$defs/ReadSet"
+    },
+    {
+      "$ref": "#/$defs/CacheEntry"
+    },
+    {
+      "$ref": "#/$defs/PipelineResult"
+    },
+    {
+      "$ref": "#/$defs/FixCandidate"
+    }
+  ]
+}

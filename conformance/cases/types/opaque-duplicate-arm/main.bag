@@ -1,0 +1,13 @@
+@id("r3bnrx")
+module main
+
+@id("tshmxa")
+type Cell = opaque Int64
+
+@id("3sgddz")
+fn f(c: Cell) -> Int64 {
+  match c {
+    Cell(a) => a,
+    Cell(b) => b,
+  }
+}

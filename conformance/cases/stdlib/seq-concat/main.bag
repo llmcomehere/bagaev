@@ -1,0 +1,8 @@
+@id("2sqab4")
+module main
+use std.seq
+
+@id("dgqy7a")
+pub fn main() -> Seq<Int64> {
+  seq.concat([1, 2], [3])
+}

@@ -1,0 +1,180 @@
+{
+  "id": "store/err-final-receipt-01",
+  "spec": [
+    "spec/runtime/host.md#3-команда",
+    "spec/runtime/host.md#1-хранилище",
+    "spec/kernel/outcomes.md#3-исход-точки-входа"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "app.bag"
+  ],
+  "run": {
+    "steps": [
+      {
+        "op": "command",
+        "entry": "app.bump",
+        "args": [
+          {
+            "type": "String",
+            "value": "a"
+          },
+          {
+            "type": "Int64",
+            "value": "0"
+          }
+        ],
+        "namespace": "app",
+        "key": "key-000000000001"
+      },
+      {
+        "op": "command",
+        "entry": "app.bump",
+        "args": [
+          {
+            "type": "String",
+            "value": "a"
+          },
+          {
+            "type": "Int64",
+            "value": "0"
+          }
+        ],
+        "namespace": "app",
+        "key": "key-000000000001"
+      },
+      {
+        "op": "status",
+        "namespace": "app",
+        "key": "key-000000000001"
+      },
+      {
+        "op": "command",
+        "entry": "app.bump",
+        "args": [
+          {
+            "type": "String",
+            "value": "b"
+          },
+          {
+            "type": "Int64",
+            "value": "150"
+          }
+        ],
+        "namespace": "app",
+        "key": "key-000000000002"
+      },
+      {
+        "op": "query",
+        "entry": "app.get",
+        "args": [
+          {
+            "type": "String",
+            "value": "b"
+          }
+        ]
+      },
+      {
+        "op": "status",
+        "namespace": "app",
+        "key": "key-000000000002"
+      }
+    ]
+  },
+  "expect": {
+    "phase": "store",
+    "outcome": "COMPLETED",
+    "value": [
+      {
+        "value": {
+          "type": "Result<Int64,app.BumpError>",
+          "tag": "Err",
+          "payload": {
+            "type": "app.BumpError",
+            "tag": "NonPositive"
+          }
+        },
+        "outcome": "ABORTED",
+        "final": true,
+        "replayed": false,
+        "state_version": 1
+      },
+      {
+        "value": {
+          "type": "Result<Int64,app.BumpError>",
+          "tag": "Err",
+          "payload": {
+            "type": "app.BumpError",
+            "tag": "NonPositive"
+          }
+        },
+        "outcome": "ABORTED",
+        "final": true,
+        "replayed": true,
+        "state_version": 1
+      },
+      {
+        "value": {
+          "type": "Result<Int64,app.BumpError>",
+          "tag": "Err",
+          "payload": {
+            "type": "app.BumpError",
+            "tag": "NonPositive"
+          }
+        },
+        "outcome": "RESULT",
+        "receipt_outcome": "ABORTED",
+        "state_version": 1
+      },
+      {
+        "value": {
+          "type": "Result<Int64,app.BumpError>",
+          "tag": "Err",
+          "payload": {
+            "type": "app.BumpError",
+            "tag": "TooLarge"
+          }
+        },
+        "outcome": "ABORTED",
+        "final": true,
+        "replayed": false,
+        "state_version": 2
+      },
+      {
+        "outcome": "RETURNED",
+        "value": {
+          "type": "Option<Int64>",
+          "tag": "None"
+        }
+      },
+      {
+        "value": {
+          "type": "Result<Int64,app.BumpError>",
+          "tag": "Err",
+          "payload": {
+            "type": "app.BumpError",
+            "tag": "TooLarge"
+          }
+        },
+        "outcome": "RESULT",
+        "receipt_outcome": "ABORTED",
+        "state_version": 2
+      }
+    ],
+    "state": {
+      "state_version": 2,
+      "epoch": 0,
+      "tables": {
+        "app.S.counts": [],
+        "app.S.seen": []
+      },
+      "outbox": [],
+      "inbox": [],
+      "pending": []
+    }
+  },
+  "note": "Err — окончательный исход с квитанцией; запись тела до Err откатана, событий нет; StateVersion растёт (HST-03)"
+}

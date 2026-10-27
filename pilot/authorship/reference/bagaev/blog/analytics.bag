@@ -1,0 +1,25 @@
+/// Счётчик просмотров статей.
+@id("g52n8v")
+module blog.analytics
+
+use std.store
+use std.option
+use blog.db.{Blog}
+use blog.articles
+
+@id("zsa2nd")
+pub command record_view(article: String) -> Result<Int64, String>
+  uses { reads Blog.views, writes Blog.views }
+{
+  let a = articles.article_id(article);
+  let n = option.value_or(store.get(Blog.views, a), 0) + 1;
+  store.put(Blog.views, a, n);
+  Ok(n)
+}
+
+@id("gxjfwn")
+pub query views_of(article: String) -> Int64
+  uses { reads Blog.views }
+{
+  option.value_or(store.get(Blog.views, articles.article_id(article)), 0)
+}

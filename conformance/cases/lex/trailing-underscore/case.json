@@ -1,0 +1,27 @@
+{
+  "id": "lex/trailing-underscore",
+  "spec": [
+    "spec/language/lexical.md#4-литералы"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "expect": {
+    "phase": "parse",
+    "outcome": "PRELAUNCH",
+    "diagnostics": [
+      {
+        "code": "MALFORMED_NUMBER",
+        "file": "main.bag",
+        "span": [
+          27,
+          30
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "id": "stdlib/map-put-keeps-old",
+  "spec": [
+    "spec/stdlib/acceptance.md",
+    "spec/runtime/machine.md#5-примитивы-и-fault"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "run": {
+    "entry": "main.main"
+  },
+  "expect": {
+    "phase": "run",
+    "effects": [],
+    "outcome": "RETURNED",
+    "value": {
+      "type": "Option<String>",
+      "tag": "Some",
+      "payload": {
+        "type": "String",
+        "value": "a"
+      }
+    }
+  },
+  "note": "SA-031"
+}

@@ -1,0 +1,7 @@
+@id("v9np5q")
+module main
+
+@id("bgv4mf")
+fn f(x: Float) -> () {
+  ()
+}

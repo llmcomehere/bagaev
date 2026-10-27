@@ -1,0 +1,28 @@
+@id("a5n1wr")
+module main
+
+@id("23c9fr")
+entity Thing {
+  purpose "x"
+}
+
+@id("j6nxvd")
+contract Shape about Thing {
+  @id("0dac5p") rule a "первое"
+  @id("j02ae1") rule b "второе"
+}
+
+@id("zq1z3c")
+fn f() -> Int64
+  implements Shape.a, Shape
+  requires Thing
+{
+  1
+}
+
+@id("58vnmv")
+test t
+  checks Shape.b
+{
+  ()
+}

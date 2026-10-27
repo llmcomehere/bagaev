@@ -1,0 +1,14 @@
+module main
+
+use std.seq
+
+pub fn max_or(xs: Seq<Int64>, d: Int64) -> Int64 {
+  match seq.get(xs, 0) {
+    None => d,
+    Some(first) => seq.fold(xs, first, fn(m, x) => if x > m {
+      x
+    } else {
+      m
+    }),
+  }
+}

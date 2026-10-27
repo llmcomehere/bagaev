@@ -1,0 +1,25 @@
+/// Профиль человека: статьи, где он указан автором, по данным статей.
+@id("8m1n0b")
+module blog.profile
+
+use std.store
+use std.seq
+use std.map
+use blog.db.{Blog}
+use blog.people
+use blog.articles
+use blog.authorship.{AttributionComplete}
+
+@id("7xxbyp")
+pub query profile_articles(person: String) -> Seq<String>
+  uses { reads Blog.articles }
+  requires AttributionComplete.complete
+{
+  let p = people.person_id(person);
+  let none: Seq<String> = [];
+  seq.fold(map.entries(store.all(Blog.articles)), none, fn(acc, e) => if e.value.author == p {
+    seq.append(acc, articles.id_text(e.key))
+  } else {
+    acc
+  })
+}

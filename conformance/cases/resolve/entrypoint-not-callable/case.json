@@ -1,0 +1,31 @@
+{
+  "id": "resolve/entrypoint-not-callable",
+  "spec": [
+    "spec/language/surface.md#2-файл-модуль-имена",
+    "spec/language/checking.md#3-имена-и-объявления-фаза-resolve"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "expect": {
+    "phase": "check",
+    "outcome": "PRELAUNCH",
+    "diagnostics": [
+      {
+        "code": "ENTRYPOINT_NOT_CALLABLE",
+        "file": "main.bag",
+        "span": [
+          107,
+          108
+        ],
+        "data": {
+          "name": "q"
+        }
+      }
+    ]
+  }
+}

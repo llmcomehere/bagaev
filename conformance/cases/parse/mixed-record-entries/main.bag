@@ -1,0 +1,4 @@
+module m
+fn f() -> () {
+  let x = T { a: 1, 2 => 3 };
+}

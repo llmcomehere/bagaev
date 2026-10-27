@@ -1,0 +1,99 @@
+{
+  "id": "context/full-01",
+  "spec": [
+    "spec/links/08-bagaev-extraction.md#6-contextpack"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "app.bag",
+    "cand/app.bag"
+  ],
+  "run": {
+    "links": {
+      "op": "context",
+      "candidate": "cand",
+      "context_budget": 20000
+    }
+  },
+  "expect": {
+    "phase": "context",
+    "outcome": "CONTEXT",
+    "value": {
+      "ready_for_step": true,
+      "blockers": [],
+      "next_cursor": null,
+      "within_budget": true,
+      "obligations": 4,
+      "coverage": [
+        [
+          "app.double",
+          "expanded"
+        ],
+        [
+          "app.Counting",
+          "expanded"
+        ],
+        [
+          "app.Exact.positive",
+          "expanded"
+        ],
+        [
+          "app.origin",
+          "expanded"
+        ],
+        [
+          "app.quadruple",
+          "expanded"
+        ],
+        [
+          "app.add",
+          "expanded"
+        ],
+        [
+          "app.origin_positive",
+          "expanded"
+        ],
+        [
+          "app.S.totals",
+          "expanded"
+        ],
+        [
+          "app.Added",
+          "expanded"
+        ],
+        [
+          "app.S",
+          "expanded"
+        ],
+        [
+          "app.on_added",
+          "expanded"
+        ],
+        [
+          "app.S.copy",
+          "expanded"
+        ],
+        [
+          "app.total",
+          "expanded"
+        ],
+        [
+          "app.Point",
+          "boundary"
+        ],
+        [
+          "app.Added.name",
+          "boundary"
+        ],
+        [
+          "app.apply",
+          "boundary"
+        ]
+      ]
+    }
+  },
+  "note": "порядок: семена; цели открытых обязательств; область по (расстоянию, EntityId); границы — исключённые зависимости"
+}

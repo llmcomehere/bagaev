@@ -1,0 +1,12 @@
+@id("rkr1xf")
+module main
+use std.i64
+
+@id("kkpzca")
+pub fn main() -> Int64 {
+  if true {
+    7
+  } else {
+    9
+  }
+}

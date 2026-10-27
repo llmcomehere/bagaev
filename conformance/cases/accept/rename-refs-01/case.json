@@ -1,0 +1,264 @@
+{
+  "id": "accept/rename-refs-01",
+  "spec": [
+    "spec/protocol/agent-protocol.md#3-sourceedit-и-идентичность",
+    "spec/protocol/agent-protocol.md#6-workstate"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "app.bag"
+  ],
+  "run": {
+    "change": {
+      "principal": "agent",
+      "steps": [
+        {
+          "request": {
+            "operation": "change_begin",
+            "idempotency_key": "b1-kkkkkkkkkkkkkkkkkkkk",
+            "arguments": {
+              "intent": "изменение"
+            }
+          }
+        },
+        {
+          "request": {
+            "operation": "apply",
+            "change_id": "$change",
+            "expected_work_revision": 1,
+            "idempotency_key": "a1-kkkkkkkkkkkkkkkkkkkk",
+            "arguments": {
+              "source_edit": {
+                "files": [
+                  {
+                    "path": "app.bag",
+                    "base_sha256": "$sha:app.bag",
+                    "whole_file": "@id(\"cq0001\")\nmodule app\n\nuse std.test\n\n@id(\"cq0002\")\npub entity Greeting {\n  purpose \"Приветствие пользователю\"\n  terms [\"привет\"]\n  not_about [\"прощание\"]\n}\n\n@id(\"cq0003\")\npub contract Polite about Greeting {\n  @id(\"cq0004\") rule nonempty \"приветствие не пустое\"\n}\n\n@id(\"cq0005\")\npub fn salute(name: String) -> String\n  implements Polite.nonempty\n{\n  \"Привет, \" ++ name\n}\n\n@id(\"cq0006\")\npub fn shout(name: String) -> String {\n  salute(name) ++ \"!\"\n}\n\n@id(\"cq0007\")\nfn helper(n: Int64) -> Int64 {\n  n + 1\n}\n\n@id(\"cq0008\")\ntest greet_nonempty\n  checks Polite.nonempty\n{\n  test.expect(\"не пусто\", salute(\"x\") != \"\")\n}\n"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "request": {
+            "operation": "verify",
+            "change_id": "$change",
+            "expected_work_revision": 2,
+            "idempotency_key": "v1-kkkkkkkkkkkkkkkkkkkk",
+            "arguments": {}
+          }
+        },
+        {
+          "request": {
+            "operation": "work_resume",
+            "change_id": "$change",
+            "arguments": {}
+          }
+        },
+        {
+          "request": {
+            "operation": "contract_update",
+            "change_id": "$change",
+            "expected_work_revision": 3,
+            "idempotency_key": "k1-kkkkkkkkkkkkkkkkkkkk",
+            "arguments": {
+              "ops": [
+                {
+                  "op": "replace_test",
+                  "test": "app.greet_nonempty",
+                  "reason": "тест следует за переименованием"
+                },
+                {
+                  "op": "add_clause",
+                  "id": "c1",
+                  "claim": "тест проверяет переименованную функцию",
+                  "method": {
+                    "test": "app.greet_nonempty"
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "request": {
+            "operation": "work_resume",
+            "change_id": "$change",
+            "arguments": {}
+          }
+        },
+        {
+          "request": {
+            "operation": "accept",
+            "change_id": "$change",
+            "expected_work_revision": 4,
+            "idempotency_key": "c1-kkkkkkkkkkkkkkkkkkkk",
+            "arguments": {}
+          }
+        }
+      ]
+    }
+  },
+  "expect": {
+    "phase": "accept",
+    "outcome": "COMPLETED",
+    "value": [
+      {
+        "status": "succeeded",
+        "replayed": false,
+        "work_revision": 1
+      },
+      {
+        "status": "succeeded",
+        "replayed": false,
+        "work_revision": 2,
+        "touched": {
+          "app.bag": [
+            [
+              0,
+              686
+            ]
+          ]
+        },
+        "identity": {
+          "lineage": [],
+          "removed": [],
+          "added": [],
+          "renamed": [
+            "cq0005"
+          ]
+        },
+        "draft": false,
+        "diagnostics": []
+      },
+      {
+        "status": "succeeded",
+        "replayed": false,
+        "work_revision": 3,
+        "evidence": [
+          [
+            "app.greet_nonempty",
+            "PASS"
+          ]
+        ]
+      },
+      {
+        "status": "succeeded",
+        "replayed": false,
+        "work_revision": 3,
+        "needs_rebase": false,
+        "ready_for_acceptance": false,
+        "contract_revision": 1,
+        "status_": "open",
+        "blockers": [
+          "OBLIGATION_OPEN",
+          "OBLIGATION_OPEN"
+        ],
+        "obligations": [
+          [
+            "app.Polite.nonempty",
+            "app.greet_nonempty",
+            "checks",
+            "open",
+            "base-test-changed"
+          ],
+          [
+            "app.Polite.nonempty",
+            "app.salute",
+            "implements",
+            "open",
+            "base-test-changed"
+          ]
+        ],
+        "clauses": []
+      },
+      {
+        "status": "succeeded",
+        "replayed": false,
+        "work_revision": 4,
+        "contract_revision": 2,
+        "clauses": [
+          "c1"
+        ],
+        "replaced": [],
+        "assumptions": [],
+        "allowed": null,
+        "replaced_tests": [
+          "app.greet_nonempty"
+        ],
+        "policy_pins": []
+      },
+      {
+        "status": "succeeded",
+        "replayed": false,
+        "work_revision": 4,
+        "needs_rebase": false,
+        "ready_for_acceptance": true,
+        "contract_revision": 2,
+        "status_": "open",
+        "blockers": [],
+        "obligations": [
+          [
+            "app.Polite.nonempty",
+            "app.greet_nonempty",
+            "checks",
+            "supported",
+            "tests"
+          ],
+          [
+            "app.Polite.nonempty",
+            "app.salute",
+            "implements",
+            "supported",
+            "tests"
+          ]
+        ],
+        "clauses": [
+          [
+            "c1",
+            "supported",
+            "tests"
+          ]
+        ]
+      },
+      {
+        "status": "succeeded",
+        "replayed": false,
+        "work_revision": 5,
+        "obligations": [
+          [
+            "checks",
+            "cq0004",
+            "cq0008",
+            "supported",
+            "tests"
+          ],
+          [
+            "implements",
+            "cq0004",
+            "cq0005",
+            "supported",
+            "tests"
+          ]
+        ],
+        "replaced_clauses": [],
+        "replaced_tests": [
+          [
+            "app.greet_nonempty",
+            "тест следует за переименованием"
+          ]
+        ],
+        "coverage_gaps": [],
+        "lineage": []
+      }
+    ],
+    "state": {
+      "head_revision": 2
+    }
+  },
+  "note": "переименование greet в salute с правкой вызывающих: ID и связи (implements, checks) сохраняются — пары обязательств те же по ID с новым именем (T02-C01). Текст теста изменился, поэтому тест — выбывший метод: нужна явная замена (CHG-13)"
+}

@@ -1,0 +1,23 @@
+{
+  "id": "W11",
+  "kind": "write",
+  "title": "Команда с проверкой",
+  "c_target": "shop/api.bag",
+  "t_target": "shop/api.ts",
+  "c_expect": {
+    "decls": {
+      "set_price": {
+        "kind": "command",
+        "params": [
+          "String",
+          "Int64"
+        ],
+        "ret": "Result<(), shop.api.PriceError>",
+        "actual": [
+          "reads shop.db.Shop.items",
+          "writes shop.db.Shop.items"
+        ]
+      }
+    }
+  }
+}

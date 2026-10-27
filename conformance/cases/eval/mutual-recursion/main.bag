@@ -1,0 +1,25 @@
+@id("4993ms")
+module main
+
+@id("kt1kgx")
+fn is_even(n: Int64) -> Bool {
+  if n == 0 {
+    true
+  } else {
+    is_odd(n - 1)
+  }
+}
+
+@id("ca8efv")
+fn is_odd(n: Int64) -> Bool {
+  if n == 0 {
+    false
+  } else {
+    is_even(n - 1)
+  }
+}
+
+@id("bp8wtr")
+pub fn main() -> Bool {
+  is_even(10)
+}

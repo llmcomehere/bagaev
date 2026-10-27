@@ -1,0 +1,91 @@
+{
+  "id": "impact/authorship-c08-scope-01",
+  "spec": [
+    "spec/links/08-bagaev-extraction.md#5-влияние"
+  ],
+  "origin": "model:models/r07-core/data/authorship-fixtures.json#C08",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "blog/acl.bag",
+    "blog/articles.bag",
+    "blog/authorship.bag",
+    "blog/byline.bag",
+    "blog/db.bag",
+    "blog/editor.bag",
+    "blog/events.bag",
+    "blog/export.bag",
+    "blog/image.bag",
+    "blog/indexer.bag",
+    "blog/migration.bag",
+    "blog/people.bag",
+    "blog/search.bag",
+    "blog/tests.bag",
+    "cand/blog/acl.bag",
+    "cand/blog/articles.bag",
+    "cand/blog/authorship.bag",
+    "cand/blog/byline.bag",
+    "cand/blog/db.bag",
+    "cand/blog/editor.bag",
+    "cand/blog/events.bag",
+    "cand/blog/export.bag",
+    "cand/blog/image.bag",
+    "cand/blog/indexer.bag",
+    "cand/blog/migration.bag",
+    "cand/blog/people.bag",
+    "cand/blog/search.bag",
+    "cand/blog/tests.bag"
+  ],
+  "run": {
+    "links": {
+      "op": "impact",
+      "candidate": "cand"
+    }
+  },
+  "expect": {
+    "phase": "impact",
+    "outcome": "IMPACT",
+    "value": {
+      "status": "COMPLETE",
+      "readiness": "NO_OPEN_OBLIGATIONS",
+      "seeds": [
+        [
+          "blog.image.image_pipeline",
+          "changed"
+        ],
+        [
+          "blog.image",
+          "changed"
+        ],
+        [
+          "blog.image.watermark",
+          "added"
+        ]
+      ],
+      "in_scope": [
+        [
+          "blog.image",
+          0
+        ],
+        [
+          "blog.image.image_pipeline",
+          0
+        ],
+        [
+          "blog.image.watermark",
+          0
+        ]
+      ],
+      "unknown": [],
+      "unknown_incomplete": 0,
+      "frontier": [],
+      "obligations": [],
+      "closed": [],
+      "tests_to_run": [],
+      "gaps": [],
+      "watch": {}
+    }
+  },
+  "note": "в области — конвейер и водяной знак (и заголовок модуля: изменились use); узлы фикстуры → программа: E.byline → blog.byline.byline, E.export → blog.export.export_article, E.indexer → blog.indexer.index_authorship, E.image_pipeline → blog.image.image_pipeline, E.image_resize → blog.image.resize, E.image_watermark → blog.image.watermark, O05 → обязательство (AttributionComplete.complete, export_article); g_export_requires → requires export_article → complete"
+}

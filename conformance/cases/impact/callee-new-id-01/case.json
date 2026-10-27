@@ -1,0 +1,158 @@
+{
+  "id": "impact/callee-new-id-01",
+  "spec": [
+    "spec/links/08-bagaev-extraction.md#2-узлы-и-ревизии",
+    "spec/links/08-bagaev-extraction.md#5-влияние"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "app.bag",
+    "cand/app.bag"
+  ],
+  "run": {
+    "links": {
+      "op": "impact",
+      "candidate": "cand"
+    }
+  },
+  "expect": {
+    "phase": "impact",
+    "outcome": "IMPACT",
+    "value": {
+      "status": "COMPLETE",
+      "readiness": "ELIGIBLE_IF_ALL_OBLIGATIONS_PASS",
+      "seeds": [
+        [
+          "app.double",
+          "removed"
+        ],
+        [
+          "app.origin",
+          "edge-removed"
+        ],
+        [
+          "app.quadruple",
+          "edge-removed"
+        ],
+        [
+          "app.double",
+          "added"
+        ]
+      ],
+      "in_scope": [
+        [
+          "app.Added",
+          2
+        ],
+        [
+          "app.S",
+          3
+        ],
+        [
+          "app.S.copy",
+          4
+        ],
+        [
+          "app.S.totals",
+          2
+        ],
+        [
+          "app.add",
+          1
+        ],
+        [
+          "app.double",
+          0
+        ],
+        [
+          "app.double",
+          0
+        ],
+        [
+          "app.on_added",
+          3
+        ],
+        [
+          "app.origin",
+          0
+        ],
+        [
+          "app.origin_positive",
+          1
+        ],
+        [
+          "app.quadruple",
+          0
+        ],
+        [
+          "app.total",
+          5
+        ]
+      ],
+      "unknown": [],
+      "unknown_incomplete": 0,
+      "frontier": [],
+      "obligations": [
+        [
+          "app.Counting",
+          "app.S.copy",
+          "derived_from",
+          "open",
+          [
+            "base",
+            "candidate"
+          ]
+        ],
+        [
+          "app.Exact.positive",
+          "app.add",
+          "requires",
+          "open",
+          [
+            "base",
+            "candidate"
+          ]
+        ],
+        [
+          "app.Exact.positive",
+          "app.origin",
+          "implements",
+          "open",
+          [
+            "base",
+            "candidate"
+          ]
+        ],
+        [
+          "app.Exact.positive",
+          "app.origin_positive",
+          "checks",
+          "open",
+          [
+            "base",
+            "candidate"
+          ]
+        ]
+      ],
+      "closed": [],
+      "tests_to_run": [
+        "app.origin_positive"
+      ],
+      "gaps": [
+        [
+          "app.add",
+          "EXTERNAL_CONSUMERS"
+        ],
+        [
+          "app.total",
+          "EXTERNAL_CONSUMERS"
+        ]
+      ],
+      "watch": {}
+    }
+  },
+  "note": "у вызывающих тот же текст, но рёбра ведут к новому ID: они — семена по разнице рёбер (LNK-08-13)"
+}

@@ -1,0 +1,57 @@
+{
+  "id": "impact/cycle-01",
+  "spec": [
+    "spec/links/08-bagaev-extraction.md#5-влияние"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "app.bag",
+    "cand/app.bag"
+  ],
+  "run": {
+    "links": {
+      "op": "impact",
+      "candidate": "cand"
+    }
+  },
+  "expect": {
+    "phase": "impact",
+    "outcome": "IMPACT",
+    "value": {
+      "status": "COMPLETE",
+      "readiness": "NO_OPEN_OBLIGATIONS",
+      "seeds": [
+        [
+          "app.odd",
+          "changed"
+        ]
+      ],
+      "in_scope": [
+        [
+          "app.even",
+          1
+        ],
+        [
+          "app.odd",
+          0
+        ],
+        [
+          "app.parity",
+          2
+        ]
+      ],
+      "unknown": [],
+      "unknown_incomplete": 0,
+      "frontier": [],
+      "obligations": [],
+      "closed": [],
+      "tests_to_run": [],
+      "gaps": [],
+      "watch": {}
+    }
+  },
+  "note": "взаимная рекурсия: обход конечен, каждая сущность обрабатывается один раз"
+}

@@ -1,0 +1,49 @@
+/// Авторская атрибуция статьи и её контракты.
+@id("b2zqya")
+module blog.authorship
+
+use std.seq
+use std.map
+use std.option
+use blog.people.{PersonId, Person}
+
+@id("bv189g")
+pub entity Authorship {
+  purpose "Авторская атрибуция статьи: кто указан автором статьи."
+  terms ["автор", "подпись", "byline", "атрибуция"]
+  not_about ["совместное редактирование", "права редактора", "автор комментария"]
+}
+
+@id("4e637s")
+pub contract AuthorshipShape about Authorship {
+  @id("hbvrkk") rule single "у статьи ровно один автор"
+  @id("ybfxgv") rule existing "автор — существующий человек"
+}
+
+@id("q6g88q")
+pub contract AttributionComplete about Authorship {
+  @id("h4sc87") rule complete "потребитель передаёт атрибуцию полностью"
+}
+
+@id("184rnh")
+pub type AuthorError = enum {
+  @id("qfdr16") NotExactlyOne,
+  @id("ge7jg0") UnknownPerson(PersonId),
+}
+
+/// Проверка запрошенного списка: ровно один существующий человек.
+@id("2ckbyp")
+pub fn check_author(ids: Seq<PersonId>, people: Map<PersonId, Person>) -> Result<PersonId, AuthorError>
+  implements AuthorshipShape.single, AuthorshipShape.existing
+{
+  match seq.get(ids, 0) {
+    None => Err(AuthorError.NotExactlyOne),
+    Some(p) => if seq.length(ids) != 1 {
+      Err(AuthorError.NotExactlyOne)
+    } else if option.is_some(map.get(people, p)) {
+      Ok(p)
+    } else {
+      Err(AuthorError.UnknownPerson(p))
+    },
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "id": "lex/invalid-utf8",
+  "spec": [
+    "spec/language/lexical.md#1-кодировка-и-символы"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "expect": {
+    "phase": "parse",
+    "outcome": "PRELAUNCH",
+    "diagnostics": [
+      {
+        "code": "INVALID_UTF8",
+        "file": "main.bag",
+        "span": [
+          12,
+          13
+        ]
+      }
+    ]
+  }
+}

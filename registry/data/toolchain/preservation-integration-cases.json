@@ -1,0 +1,382 @@
+{
+  "profile": "R22-PRODUCTION-INTEGRATION-1",
+  "production_execution": false,
+  "actual_observation_ref": null,
+  "scope": "Whole original T13-C03 route; cases are concrete planned production checks, not executed or credited from finite model.",
+  "cases": [
+    {
+      "id": "IC22-01",
+      "title": "Scalar folding at every prefix",
+      "expected": "CORE i64.add(2,3) retains five registered transitions and Ok(5); all budgets/cancel cuts match",
+      "independent_expected_method": "Independent source evaluator and authored five-step trace, then admitted target interpreter",
+      "blocking_inputs": [
+        "Closed scalar rule, actual reference lowering and target forms"
+      ],
+      "status": "NOT_RUN",
+      "actual_observation_ref": null
+    },
+    {
+      "id": "IC22-02",
+      "title": "Ordinary arithmetic error",
+      "expected": "Overflow/DivisionByZero stays Result.Err; subsequent strict argument/effect still occurs unless explicit source branch says otherwise",
+      "independent_expected_method": "Independent typed Result interpreter with handwritten Err/control examples",
+      "blocking_inputs": [
+        "Full primitive/Result/host contracts"
+      ],
+      "status": "NOT_RUN",
+      "actual_observation_ref": null
+    },
+    {
+      "id": "IC22-03",
+      "title": "Unselected invalid source",
+      "expected": "Static error in unselected branch is rejected before optimizer",
+      "independent_expected_method": "Independent type checker or manually proven malformed derivation",
+      "blocking_inputs": [
+        "Actual typed V1 parser/checker"
+      ],
+      "status": "NOT_RUN",
+      "actual_observation_ref": null
+    },
+    {
+      "id": "IC22-04",
+      "title": "Local completion and caller continuation",
+      "expected": "Finishing replay region resumes BASE_K and does not prematurely terminate entire program",
+      "independent_expected_method": "Nested let/call examples with independently authored continuation states",
+      "blocking_inputs": [
+        "Actual CORE continuation adapter"
+      ],
+      "status": "NOT_RUN",
+      "actual_observation_ref": null
+    },
+    {
+      "id": "IC22-05",
+      "title": "Nested replay flatten",
+      "expected": "Parent replay around optimized child has exactly original costs/state, no double counting",
+      "independent_expected_method": "Reference subtree trace vs separately decoded candidate schedule",
+      "blocking_inputs": [
+        "Nested target form composition"
+      ],
+      "status": "NOT_RUN",
+      "actual_observation_ref": null
+    },
+    {
+      "id": "IC22-06",
+      "title": "Lexical shadowing and binder facts",
+      "expected": "Same spelling or changed initializer cannot reuse wrong scalar fact",
+      "independent_expected_method": "Authored nested scopes/BinderIds; independently inspect resulting full values and traces",
+      "blocking_inputs": [
+        "Full resolved IR and scope derivation"
+      ],
+      "status": "NOT_RUN",
+      "actual_observation_ref": null
+    },
+    {
+      "id": "IC22-07",
+      "title": "Capture and generic scope",
+      "expected": "No propagation from caller into closure captures; generic type env preserved",
+      "independent_expected_method": "Independent closure interpreter and exact nominal type checks",
+      "blocking_inputs": [
+        "Closure/type specialization contracts"
+      ],
+      "status": "NOT_RUN",
+      "actual_observation_ref": null
+    },
+    {
+      "id": "IC22-08",
+      "title": "Repeated dynamic occurrences",
+      "expected": "Repeated calls reuse recipes but keep distinct occurrence/source invocation identities",
+      "independent_expected_method": "Authored occurrence sequence from independent evaluator",
+      "blocking_inputs": [
+        "Runtime call-instance identity contract"
+      ],
+      "status": "NOT_RUN",
+      "actual_observation_ref": null
+    },
+    {
+      "id": "IC22-09",
+      "title": "Recursion and logical limits",
+      "expected": "Self/mutual recursion retains frames, prefix and common budget; no TCO by accident",
+      "independent_expected_method": "Independent stepper at each selected recursion cut; additional general simulation proof",
+      "blocking_inputs": [
+        "Full recursive runtime and frame capacity"
+      ],
+      "status": "NOT_RUN",
+      "actual_observation_ref": null
+    },
+    {
+      "id": "IC22-10",
+      "title": "DATA bridge budget",
+      "expected": "Entering a data job never resets budget; source operands evaluated first",
+      "independent_expected_method": "Independent combined CORE/DATA evaluator with explicit bridge rule table",
+      "blocking_inputs": [
+        "Exact missing CORE/DATA integration contract"
+      ],
+      "status": "NOT_RUN",
+      "actual_observation_ref": null
+    },
+    {
+      "id": "IC22-11",
+      "title": "Map order and late error",
+      "expected": "All specified operands execute in source order before duplicate-key outcome",
+      "independent_expected_method": "Independent ordered constructor evaluation and data-work oracle",
+      "blocking_inputs": [
+        "Real nominal collection evaluator"
+      ],
+      "status": "NOT_RUN",
+      "actual_observation_ref": null
+    },
+    {
+      "id": "IC22-12",
+      "title": "Text/bytes work",
+      "expected": "Scalar/octet traversal, early comparison exit and codec errors retain charges/cursors",
+      "independent_expected_method": "Independent byte/scalar trace fixtures, not host length shortcut",
+      "blocking_inputs": [
+        "Full DATA interpreter and error offsets"
+      ],
+      "status": "NOT_RUN",
+      "actual_observation_ref": null
+    },
+    {
+      "id": "IC22-13",
+      "title": "Returned closure relation",
+      "expected": "Different physical code refs must carry valid source/capture relation; wrong capture rejected",
+      "independent_expected_method": "Apply returned functions under distinguishing typed contexts",
+      "blocking_inputs": [
+        "Closure observational relation and caller contexts"
+      ],
+      "status": "NOT_RUN",
+      "actual_observation_ref": null
+    },
+    {
+      "id": "IC22-14",
+      "title": "Current authority",
+      "expected": "Revocation before dispatch blocks both paths at same logical boundary",
+      "independent_expected_method": "Deterministic authority strategy and adapter mock with independently recorded dispatch log",
+      "blocking_inputs": [
+        "Actual capability lifecycle adapter"
+      ],
+      "status": "NOT_RUN",
+      "actual_observation_ref": null
+    },
+    {
+      "id": "IC22-15",
+      "title": "Cancel with uncertain effect",
+      "expected": "Dispatched action may settle after Cancelled; termination unchanged and prefix retained",
+      "independent_expected_method": "Independent effect state-machine journal and late receipt input",
+      "blocking_inputs": [
+        "Actual dispatch/reply/settlement runtime"
+      ],
+      "status": "NOT_RUN",
+      "actual_observation_ref": null
+    },
+    {
+      "id": "IC22-16",
+      "title": "Deopt after dispatch",
+      "expected": "Switch to reference at published boundary never repeats sent action",
+      "independent_expected_method": "External call-count recorder and independent reconstructed state inspection",
+      "blocking_inputs": [
+        "Actual deopt adapter and effect state machine"
+      ],
+      "status": "NOT_RUN",
+      "actual_observation_ref": null
+    },
+    {
+      "id": "IC22-17",
+      "title": "Deopt budget/terminal",
+      "expected": "Same step count/remaining/cancel state; terminal instance cannot resume",
+      "independent_expected_method": "Exact before/after state comparison and adversarial reset descriptor",
+      "blocking_inputs": [
+        "Runtime reconstruction implementation"
+      ],
+      "status": "NOT_RUN",
+      "actual_observation_ref": null
+    },
+    {
+      "id": "IC22-18",
+      "title": "Forged checkpoint successor",
+      "expected": "Correct rule IDs and cost totals with wrong intermediate value/K are rejected",
+      "independent_expected_method": "Mutated successor recipe, independently computed local reference states",
+      "blocking_inputs": [
+        "Production semantic certificate checker"
+      ],
+      "status": "NOT_RUN",
+      "actual_observation_ref": null
+    },
+    {
+      "id": "IC22-19",
+      "title": "Forged subject and self-consistent hash",
+      "expected": "Wrong source/candidate with recalculated hashes cannot pass rule replay",
+      "independent_expected_method": "Independent checker and exact immutable object preimages",
+      "blocking_inputs": [
+        "Production immutable store and checker"
+      ],
+      "status": "NOT_RUN",
+      "actual_observation_ref": null
+    },
+    {
+      "id": "IC22-20",
+      "title": "Composition identities",
+      "expected": "Invariant source_subject/origin; C2 input equals C1 candidate; internal forms validated through parent",
+      "independent_expected_method": "Three-artifact derivation plus wrong-parent/changed-observation controls",
+      "blocking_inputs": [
+        "Parent chain and target form validation"
+      ],
+      "status": "NOT_RUN",
+      "actual_observation_ref": null
+    },
+    {
+      "id": "IC22-21",
+      "title": "Scope constraints",
+      "expected": "Empty/conflicting interval/enum/ref intersection or unknown predicate cannot grant full equivalence",
+      "independent_expected_method": "Independent finite set/interval algebra and malformed constraint fixtures",
+      "blocking_inputs": [
+        "Actual semantic scope validator"
+      ],
+      "status": "NOT_RUN",
+      "actual_observation_ref": null
+    },
+    {
+      "id": "IC22-22",
+      "title": "Failure versus KEEP",
+      "expected": "Only local non-applicability/cap permits KEEP; global checker limit/cancel/invariant fault terminates",
+      "independent_expected_method": "Injected statuses with independent expected phase/blame and retained counters",
+      "blocking_inputs": [
+        "Actual optimizer driver and shared budget"
+      ],
+      "status": "NOT_RUN",
+      "actual_observation_ref": null
+    },
+    {
+      "id": "IC22-23",
+      "title": "Physical guard honesty",
+      "expected": "ImplementationStop never passes as semantic equivalence; capacity shrink changes claim",
+      "independent_expected_method": "Separate capacity-bound target and reference runners",
+      "blocking_inputs": [
+        "Published TargetCapacityContract"
+      ],
+      "status": "NOT_RUN",
+      "actual_observation_ref": null
+    },
+    {
+      "id": "IC22-24",
+      "title": "Full form dispatcher",
+      "expected": "Every bound V1 form handled; missing required contract blocks; unknown form never silently kept",
+      "independent_expected_method": "Registry enumeration and injected unknown/missing entry",
+      "blocking_inputs": [
+        "Complete V1 FormRegistry/evaluators"
+      ],
+      "status": "NOT_RUN",
+      "actual_observation_ref": null
+    },
+    {
+      "id": "IC22-25",
+      "title": "New versus old loader",
+      "expected": "New target accepted only under new exact P5/P6/P7/runtime admission; old loader rejects",
+      "independent_expected_method": "Independent decoder implementations with exact target profiles",
+      "blocking_inputs": [
+        "Real stage contracts and loader"
+      ],
+      "status": "NOT_RUN",
+      "actual_observation_ref": null
+    },
+    {
+      "id": "IC22-26",
+      "title": "Origin maps both outputs",
+      "expected": "Candidate primary and reference seed have distinct exact coverage; missing/swapped map rejected",
+      "independent_expected_method": "Independently enumerate nodes in both actual payloads",
+      "blocking_inputs": [
+        "OutputMapSet and STAGERESULT-OPT implementation"
+      ],
+      "status": "NOT_RUN",
+      "actual_observation_ref": null
+    },
+    {
+      "id": "IC22-27",
+      "title": "Actual emitted bytes",
+      "expected": "Alter executable while retaining good IR certificate must be detected",
+      "independent_expected_method": "Independent emitted image decode/link comparison",
+      "blocking_inputs": [
+        "Real emitter and independent loader"
+      ],
+      "status": "NOT_RUN",
+      "actual_observation_ref": null
+    },
+    {
+      "id": "IC22-28",
+      "title": "BuildPlan predeclared input",
+      "expected": "Generated request/certificate/receipt cannot appear as preexisting inputs of same attempt",
+      "independent_expected_method": "Before/after durable inventory records and independently checked DAG",
+      "blocking_inputs": [
+        "BuildPlan/BuildObservations production adapters"
+      ],
+      "status": "NOT_RUN",
+      "actual_observation_ref": null
+    },
+    {
+      "id": "IC22-29",
+      "title": "Current cache admission",
+      "expected": "Old valid receipt with changed checker/rules/target/limits or current cancellation is not reused blindly",
+      "independent_expected_method": "Pinned old/new contexts and independent current-budget/accounting checks",
+      "blocking_inputs": [
+        "Production verification cache"
+      ],
+      "status": "NOT_RUN",
+      "actual_observation_ref": null
+    },
+    {
+      "id": "IC22-30",
+      "title": "Source lineage change",
+      "expected": "Comment/identity/context changes preserve exact new source binding; no normalized-hash shortcut",
+      "independent_expected_method": "Exact two snapshots and independent source/lock closure validation",
+      "blocking_inputs": [
+        "SourceBundle/MeaningLock production codec"
+      ],
+      "status": "NOT_RUN",
+      "actual_observation_ref": null
+    },
+    {
+      "id": "IC22-31",
+      "title": "Truncated diagnostics",
+      "expected": "Hidden failures/coverage obligations remain failure even when UI shows zero details",
+      "independent_expected_method": "Independent complete receipt versus intentionally truncated presentation",
+      "blocking_inputs": [
+        "Diagnostic integration"
+      ],
+      "status": "NOT_RUN",
+      "actual_observation_ref": null
+    },
+    {
+      "id": "IC22-32",
+      "title": "No new internal divergence",
+      "expected": "Each target physical segment terminates under declared measure; finite tests alone cannot admit unbounded stuttering",
+      "independent_expected_method": "Per-form mathematical progress obligation plus executed bounded watchdog witnesses",
+      "blocking_inputs": [
+        "Production target semantics and proof/check method"
+      ],
+      "status": "NOT_RUN",
+      "actual_observation_ref": null
+    },
+    {
+      "id": "IC22-33",
+      "title": "Authority of compilation result",
+      "expected": "Optimization success does not accept source, deploy, mutate head or create capability",
+      "independent_expected_method": "Audit of side-effect boundaries plus independent unchanged-state assertions",
+      "blocking_inputs": [
+        "Actual project acceptance/runtime adapters"
+      ],
+      "status": "NOT_RUN",
+      "actual_observation_ref": null
+    },
+    {
+      "id": "IC22-34",
+      "title": "Reproducible artifact and complete counters",
+      "expected": "Same exact inputs produce same candidate; work includes validation/recompute; no host calls during compile",
+      "independent_expected_method": "Independent two executions and complete operation/accounting capture",
+      "blocking_inputs": [
+        "Complete compiler driver and object store"
+      ],
+      "status": "NOT_RUN",
+      "actual_observation_ref": null
+    }
+  ]
+}

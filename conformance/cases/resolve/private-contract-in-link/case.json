@@ -1,0 +1,33 @@
+{
+  "id": "resolve/private-contract-in-link",
+  "spec": [
+    "spec/language/surface.md#3-объявления-и-идентичность",
+    "spec/language/checking.md#3-имена-и-объявления-фаза-resolve"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "a.bag",
+    "b.bag"
+  ],
+  "expect": {
+    "phase": "check",
+    "outcome": "PRELAUNCH",
+    "diagnostics": [
+      {
+        "code": "PRIVATE_ITEM",
+        "file": "b.bag",
+        "span": [
+          76,
+          77
+        ],
+        "data": {
+          "name": "C",
+          "module": "a"
+        }
+      }
+    ]
+  }
+}

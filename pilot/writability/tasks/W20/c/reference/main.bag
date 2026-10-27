@@ -1,0 +1,20 @@
+module main
+
+use std.seq
+use std.map
+use std.option
+
+pub fn dedupe<T: Key>(xs: Seq<T>) -> Seq<T> {
+  go(xs, 0, Map {}, [])
+}
+
+fn go<T: Key>(xs: Seq<T>, i: Int64, seen: Map<T, Bool>, out: Seq<T>) -> Seq<T> {
+  match seq.get(xs, i) {
+    None => out,
+    Some(x) => if option.is_some(map.get(seen, x)) {
+      go(xs, i + 1, seen, out)
+    } else {
+      go(xs, i + 1, map.put(seen, x, true), seq.append(out, x))
+    },
+  }
+}

@@ -1,0 +1,15 @@
+@id("nzjk7v")
+module probe
+
+use main
+
+@id("3c7xmm")
+fn check(a: Int64) -> Bool {
+  match main.validate_age(a) {
+    Ok(_) => true,
+    Err(e) => match e {
+      main.AgeError.Negative => false,
+      main.AgeError.TooLarge(_) => false,
+    },
+  }
+}

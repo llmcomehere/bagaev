@@ -1,0 +1,15 @@
+@id("q96504")
+module main
+
+@id("k17dwy")
+type Point = record {
+  @id("dkmtbn") x: Int64,
+  @id("qxctzk") y: Int64,
+}
+
+@id("rqnw6f")
+pub fn main() -> Int64 {
+  let p = Point { x: 1, y: 2 };
+  let q = Point { ..p, y: 5 };
+  q.x * 10 + q.y
+}

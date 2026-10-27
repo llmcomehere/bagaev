@@ -1,0 +1,104 @@
+{
+  "id": "edit/stale-source-01",
+  "spec": [
+    "spec/protocol/agent-protocol.md#3-sourceedit-и-идентичность"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "app.bag"
+  ],
+  "run": {
+    "change": {
+      "principal": "agent",
+      "steps": [
+        {
+          "request": {
+            "operation": "change_begin",
+            "idempotency_key": "b1-kkkkkkkkkkkkkkkkkkkk",
+            "arguments": {
+              "intent": "изменение"
+            }
+          }
+        },
+        {
+          "request": {
+            "operation": "apply",
+            "change_id": "$change",
+            "expected_work_revision": 1,
+            "idempotency_key": "a1-kkkkkkkkkkkkkkkkkkkk",
+            "arguments": {
+              "source_edit": {
+                "files": [
+                  {
+                    "path": "app.bag",
+                    "base_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+                    "edits": [
+                      {
+                        "old_text": "n + 1",
+                        "text": "n + 2"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "request": {
+            "operation": "apply",
+            "change_id": "$change",
+            "expected_work_revision": 1,
+            "idempotency_key": "a2-kkkkkkkkkkkkkkkkkkkk",
+            "arguments": {
+              "source_edit": {
+                "files": [
+                  {
+                    "path": "nope.bag",
+                    "base_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+                    "edits": [
+                      {
+                        "old_text": "x",
+                        "text": "y"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "expect": {
+    "phase": "edit",
+    "outcome": "COMPLETED",
+    "value": [
+      {
+        "status": "succeeded",
+        "replayed": false,
+        "work_revision": 1
+      },
+      {
+        "status": "blocked",
+        "replayed": false,
+        "code": "STALE_SOURCE",
+        "data": {
+          "path": "app.bag"
+        }
+      },
+      {
+        "status": "blocked",
+        "replayed": false,
+        "code": "STALE_SOURCE",
+        "data": {
+          "path": "nope.bag"
+        }
+      }
+    ]
+  }
+}

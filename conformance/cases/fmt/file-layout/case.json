@@ -1,0 +1,20 @@
+{
+  "id": "fmt/file-layout",
+  "spec": [
+    "spec/language/format.md#файл"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "expect": {
+    "phase": "fmt",
+    "outcome": "FORMATTED",
+    "value": {
+      "main.bag": "module m\n\nuse std.seq\nuse std.map\n\n@id(\"aaaaaa\")\nfn f() -> Int64 {\n  1\n}\n\n@id(\"bbbbbb\")\nfn g() -> Int64 {\n  2\n}\n"
+    }
+  }
+}

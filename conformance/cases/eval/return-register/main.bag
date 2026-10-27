@@ -1,0 +1,24 @@
+@id("r0gf08")
+module main
+
+@id("5c208s")
+fn one() -> Int64 {
+  return 1;
+}
+
+@id("qyvhqx")
+fn id(v: Int64) -> Int64 {
+  v
+}
+
+@id("axrppx")
+fn f(x: Int64) -> Int64 {
+  let a = id(x);
+  return a + 1;
+}
+
+@id("dxzsb0")
+pub fn main() -> Int64 {
+  let a = one();
+  a * 100 + f(59)
+}

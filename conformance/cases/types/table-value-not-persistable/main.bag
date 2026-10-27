@@ -1,0 +1,7 @@
+@id("eqqgxj")
+module main
+
+@id("3bq7vv")
+store S {
+  @id("me4bys") table t: Map<Int64, fn() -> ()>
+}

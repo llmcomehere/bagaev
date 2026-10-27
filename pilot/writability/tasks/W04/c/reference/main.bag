@@ -1,0 +1,24 @@
+module main
+
+use std.i64
+
+pub type AddError = enum {
+  BadNumber(String),
+  Overflow,
+}
+
+pub fn add_decimal(a: String, b: String) -> Result<Int64, AddError> {
+  let x = parse(a)?;
+  let y = parse(b)?;
+  match i64.add(x, y) {
+    Ok(v) => Ok(v),
+    Err(_) => Err(AddError.Overflow),
+  }
+}
+
+fn parse(s: String) -> Result<Int64, AddError> {
+  match i64.parse_decimal(s) {
+    Ok(v) => Ok(v),
+    Err(_) => Err(AddError.BadNumber(s)),
+  }
+}

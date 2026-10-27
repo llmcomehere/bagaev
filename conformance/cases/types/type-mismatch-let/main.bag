@@ -1,0 +1,7 @@
+@id("tzkfdt")
+module main
+
+@id("q4q2kn")
+fn f() -> () {
+  let s: String = 1;
+}

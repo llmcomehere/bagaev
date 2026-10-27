@@ -1,0 +1,7 @@
+@id("8ww3bp")
+module main
+
+@id("z80tz6")
+fn f(xs: Seq<Int64>) -> Int64 {
+  seq.length(xs)
+}

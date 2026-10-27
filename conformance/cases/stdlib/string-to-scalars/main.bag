@@ -1,0 +1,8 @@
+@id("cnys80")
+module main
+use std.string
+
+@id("rx0n25")
+pub fn main() -> Seq<Int64> {
+  string.to_scalars("😀")
+}

@@ -1,0 +1,37 @@
+{
+  "id": "impact/why-excluded-recheck-stale-01",
+  "spec": [
+    "spec/links/08-bagaev-extraction.md#5-влияние"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "alt/app.bag",
+    "app.bag",
+    "cand/app.bag"
+  ],
+  "run": {
+    "links": {
+      "op": "why",
+      "candidate": "cand",
+      "entity": "app.alone",
+      "recheck": "alt"
+    }
+  },
+  "expect": {
+    "phase": "impact",
+    "outcome": "WHY",
+    "value": {
+      "outcome": "EXCLUDED",
+      "basis": [
+        "D83b-no-dependency-path"
+      ],
+      "recheck": [
+        "stale"
+      ]
+    }
+  },
+  "note": "прежнее основание исключения перепроверяется по другой версии: alone стал вызывать double — stale"
+}

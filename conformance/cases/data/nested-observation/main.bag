@@ -1,0 +1,20 @@
+@id("jm121d")
+module main
+
+@id("aesze0")
+type Point = record {
+  @id("k2ac8r") x: Int64,
+  @id("ag6b2w") y: Int64,
+}
+
+@id("vhn095")
+type Shape = enum {
+  @id("xmq254") Dot,
+  @id("rd7qxm") Square(Int64),
+  @id("mneqhh") Rect(Point),
+}
+
+@id("fh4rab")
+pub fn main() -> Seq<Shape> {
+  [Shape.Rect(Point { x: 1, y: 2 }), Shape.Dot]
+}

@@ -1,0 +1,2653 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:bagaev:r19:metadata:0.1",
+  "title": "R19 metadata shapes; not semantic admission",
+  "description": "Research shape schema. No trust, semantic preservation, ref resolution, uint64 range or complete protocol inference follows from validation. Other F18 meta kinds require exact schemas in production registry.",
+  "oneOf": [
+    {
+      "$ref": "#/$defs/FormatContract"
+    },
+    {
+      "$ref": "#/$defs/ArtifactEnvelope"
+    },
+    {
+      "$ref": "#/$defs/MeaningLock"
+    },
+    {
+      "$ref": "#/$defs/CompatibilityClaim"
+    },
+    {
+      "$ref": "#/$defs/MigrationPlan"
+    },
+    {
+      "$ref": "#/$defs/CandidateBody"
+    },
+    {
+      "$ref": "#/$defs/PreservationCertificate"
+    },
+    {
+      "$ref": "#/$defs/PreparedEnvelope"
+    }
+  ],
+  "$defs": {
+    "FormatContract": {
+      "type": "object",
+      "properties": {
+        "schema": {
+          "const": "R19-METADATA-0.1"
+        },
+        "kind": {
+          "const": "FormatContract"
+        },
+        "family_id": {
+          "enum": [
+            "F01",
+            "F02",
+            "F03",
+            "F04",
+            "F05",
+            "F06",
+            "F07",
+            "F08",
+            "F09",
+            "F10",
+            "F11",
+            "F12",
+            "F13",
+            "F14",
+            "F15",
+            "F16",
+            "F17",
+            "F18"
+          ]
+        },
+        "kind_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:/-]*(?![\\s\\S])"
+        },
+        "format_label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "wire_contract_ref": {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "WireContract"
+            },
+            "sha256": {
+              "type": "string",
+              "minLength": 64,
+              "maxLength": 64,
+              "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+            }
+          },
+          "required": [
+            "kind",
+            "sha256"
+          ],
+          "additionalProperties": false
+        },
+        "schema_contract_ref": {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "SchemaContract"
+            },
+            "sha256": {
+              "type": "string",
+              "minLength": 64,
+              "maxLength": 64,
+              "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+            }
+          },
+          "required": [
+            "kind",
+            "sha256"
+          ],
+          "additionalProperties": false
+        },
+        "semantic_contract_ref": {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "SemanticContract"
+            },
+            "sha256": {
+              "type": "string",
+              "minLength": 64,
+              "maxLength": 64,
+              "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+            }
+          },
+          "required": [
+            "kind",
+            "sha256"
+          ],
+          "additionalProperties": false
+        },
+        "canonicalization_ref": {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "CanonicalizationContract"
+            },
+            "sha256": {
+              "type": "string",
+              "minLength": 64,
+              "maxLength": 64,
+              "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+            }
+          },
+          "required": [
+            "kind",
+            "sha256"
+          ],
+          "additionalProperties": false
+        },
+        "reference_extractor_ref": {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "ReferenceExtractor"
+            },
+            "sha256": {
+              "type": "string",
+              "minLength": 64,
+              "maxLength": 64,
+              "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+            }
+          },
+          "required": [
+            "kind",
+            "sha256"
+          ],
+          "additionalProperties": false
+        },
+        "invariant_checker_ref": {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "InvariantChecker"
+            },
+            "sha256": {
+              "type": "string",
+              "minLength": 64,
+              "maxLength": 64,
+              "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+            }
+          },
+          "required": [
+            "kind",
+            "sha256"
+          ],
+          "additionalProperties": false
+        },
+        "extension_policy_ref": {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "ExtensionPolicy"
+            },
+            "sha256": {
+              "type": "string",
+              "minLength": 64,
+              "maxLength": 64,
+              "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+            }
+          },
+          "required": [
+            "kind",
+            "sha256"
+          ],
+          "additionalProperties": false
+        },
+        "limits_ref": {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "LimitsContract"
+            },
+            "sha256": {
+              "type": "string",
+              "minLength": 64,
+              "maxLength": 64,
+              "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+            }
+          },
+          "required": [
+            "kind",
+            "sha256"
+          ],
+          "additionalProperties": false
+        },
+        "error_contract_ref": {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "ErrorContract"
+            },
+            "sha256": {
+              "type": "string",
+              "minLength": 64,
+              "maxLength": 64,
+              "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+            }
+          },
+          "required": [
+            "kind",
+            "sha256"
+          ],
+          "additionalProperties": false
+        },
+        "lifecycle_policy_ref": {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "LifecyclePolicy"
+            },
+            "sha256": {
+              "type": "string",
+              "minLength": 64,
+              "maxLength": 64,
+              "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+            }
+          },
+          "required": [
+            "kind",
+            "sha256"
+          ],
+          "additionalProperties": false
+        },
+        "required_feature_contracts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "const": "FeatureContract"
+              },
+              "sha256": {
+                "type": "string",
+                "minLength": 64,
+                "maxLength": 64,
+                "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+              }
+            },
+            "required": [
+              "kind",
+              "sha256"
+            ],
+            "additionalProperties": false
+          },
+          "maxItems": 4096,
+          "uniqueItems": true
+        },
+        "operation_domains": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 8,
+          "items": {
+            "type": "object",
+            "properties": {
+              "operation": {
+                "enum": [
+                  "COPY_OPAQUE",
+                  "INSPECT_METADATA",
+                  "DECODE_VALUE",
+                  "REWRITE",
+                  "EXECUTE",
+                  "RESUME",
+                  "VERIFY_EVIDENCE",
+                  "REUSE_EVIDENCE"
+                ]
+              },
+              "domain_ref": {
+                "type": "object",
+                "properties": {
+                  "kind": {
+                    "const": "OperationDomain"
+                  },
+                  "sha256": {
+                    "type": "string",
+                    "minLength": 64,
+                    "maxLength": 64,
+                    "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+                  }
+                },
+                "required": [
+                  "kind",
+                  "sha256"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "operation",
+              "domain_ref"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": [
+        "schema",
+        "kind",
+        "family_id",
+        "kind_id",
+        "format_label",
+        "wire_contract_ref",
+        "schema_contract_ref",
+        "semantic_contract_ref",
+        "canonicalization_ref",
+        "reference_extractor_ref",
+        "invariant_checker_ref",
+        "extension_policy_ref",
+        "limits_ref",
+        "error_contract_ref",
+        "lifecycle_policy_ref",
+        "required_feature_contracts",
+        "operation_domains"
+      ],
+      "additionalProperties": false
+    },
+    "ArtifactEnvelope": {
+      "type": "object",
+      "properties": {
+        "schema": {
+          "const": "R19-METADATA-0.1"
+        },
+        "kind": {
+          "const": "ArtifactEnvelope"
+        },
+        "family_id": {
+          "enum": [
+            "F01",
+            "F02",
+            "F03",
+            "F04",
+            "F05",
+            "F06",
+            "F07",
+            "F08",
+            "F09",
+            "F10",
+            "F11",
+            "F12",
+            "F13",
+            "F14",
+            "F15",
+            "F16",
+            "F17",
+            "F18"
+          ]
+        },
+        "kind_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:/-]*(?![\\s\\S])"
+        },
+        "format_contract_ref": {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "FormatContract"
+            },
+            "sha256": {
+              "type": "string",
+              "minLength": 64,
+              "maxLength": 64,
+              "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+            }
+          },
+          "required": [
+            "kind",
+            "sha256"
+          ],
+          "additionalProperties": false
+        },
+        "payload_ref": {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "Payload"
+            },
+            "sha256": {
+              "type": "string",
+              "minLength": 64,
+              "maxLength": 64,
+              "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+            }
+          },
+          "required": [
+            "kind",
+            "sha256"
+          ],
+          "additionalProperties": false
+        },
+        "dependency_roots": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 128,
+                "pattern": "^[A-Za-z][A-Za-z0-9_.:/-]*(?![\\s\\S])"
+              },
+              "sha256": {
+                "type": "string",
+                "minLength": 64,
+                "maxLength": 64,
+                "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+              }
+            },
+            "required": [
+              "kind",
+              "sha256"
+            ],
+            "additionalProperties": false
+          },
+          "maxItems": 4096,
+          "uniqueItems": true
+        },
+        "declared_features": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "const": "FeatureContract"
+              },
+              "sha256": {
+                "type": "string",
+                "minLength": 64,
+                "maxLength": 64,
+                "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+              }
+            },
+            "required": [
+              "kind",
+              "sha256"
+            ],
+            "additionalProperties": false
+          },
+          "maxItems": 4096,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "schema",
+        "kind",
+        "family_id",
+        "kind_id",
+        "format_contract_ref",
+        "payload_ref",
+        "dependency_roots",
+        "declared_features"
+      ],
+      "additionalProperties": false
+    },
+    "MeaningLock": {
+      "type": "object",
+      "properties": {
+        "schema": {
+          "const": "R19-METADATA-0.1"
+        },
+        "kind": {
+          "const": "MeaningLock"
+        },
+        "grammar_ref": {
+          "oneOf": [
+            {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "const": "GrammarContract"
+                },
+                "sha256": {
+                  "type": "string",
+                  "minLength": 64,
+                  "maxLength": 64,
+                  "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+                }
+              },
+              "required": [
+                "kind",
+                "sha256"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "not_applicable": {
+                  "const": true
+                },
+                "basis_ref": {
+                  "type": "object",
+                  "properties": {
+                    "kind": {
+                      "const": "NotApplicableBasis"
+                    },
+                    "sha256": {
+                      "type": "string",
+                      "minLength": 64,
+                      "maxLength": 64,
+                      "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "sha256"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "required": [
+                "not_applicable",
+                "basis_ref"
+              ],
+              "additionalProperties": false
+            }
+          ]
+        },
+        "name_resolution_ref": {
+          "oneOf": [
+            {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "const": "NameResolutionContract"
+                },
+                "sha256": {
+                  "type": "string",
+                  "minLength": 64,
+                  "maxLength": 64,
+                  "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+                }
+              },
+              "required": [
+                "kind",
+                "sha256"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "not_applicable": {
+                  "const": true
+                },
+                "basis_ref": {
+                  "type": "object",
+                  "properties": {
+                    "kind": {
+                      "const": "NotApplicableBasis"
+                    },
+                    "sha256": {
+                      "type": "string",
+                      "minLength": 64,
+                      "maxLength": 64,
+                      "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "sha256"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "required": [
+                "not_applicable",
+                "basis_ref"
+              ],
+              "additionalProperties": false
+            }
+          ]
+        },
+        "type_value_ref": {
+          "oneOf": [
+            {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "const": "TypeValueContract"
+                },
+                "sha256": {
+                  "type": "string",
+                  "minLength": 64,
+                  "maxLength": 64,
+                  "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+                }
+              },
+              "required": [
+                "kind",
+                "sha256"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "not_applicable": {
+                  "const": true
+                },
+                "basis_ref": {
+                  "type": "object",
+                  "properties": {
+                    "kind": {
+                      "const": "NotApplicableBasis"
+                    },
+                    "sha256": {
+                      "type": "string",
+                      "minLength": 64,
+                      "maxLength": 64,
+                      "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "sha256"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "required": [
+                "not_applicable",
+                "basis_ref"
+              ],
+              "additionalProperties": false
+            }
+          ]
+        },
+        "primitive_error_ref": {
+          "oneOf": [
+            {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "const": "PrimitiveErrorContract"
+                },
+                "sha256": {
+                  "type": "string",
+                  "minLength": 64,
+                  "maxLength": 64,
+                  "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+                }
+              },
+              "required": [
+                "kind",
+                "sha256"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "not_applicable": {
+                  "const": true
+                },
+                "basis_ref": {
+                  "type": "object",
+                  "properties": {
+                    "kind": {
+                      "const": "NotApplicableBasis"
+                    },
+                    "sha256": {
+                      "type": "string",
+                      "minLength": 64,
+                      "maxLength": 64,
+                      "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "sha256"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "required": [
+                "not_applicable",
+                "basis_ref"
+              ],
+              "additionalProperties": false
+            }
+          ]
+        },
+        "evaluation_ref": {
+          "oneOf": [
+            {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "const": "EvaluationContract"
+                },
+                "sha256": {
+                  "type": "string",
+                  "minLength": 64,
+                  "maxLength": 64,
+                  "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+                }
+              },
+              "required": [
+                "kind",
+                "sha256"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "not_applicable": {
+                  "const": true
+                },
+                "basis_ref": {
+                  "type": "object",
+                  "properties": {
+                    "kind": {
+                      "const": "NotApplicableBasis"
+                    },
+                    "sha256": {
+                      "type": "string",
+                      "minLength": 64,
+                      "maxLength": 64,
+                      "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "sha256"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "required": [
+                "not_applicable",
+                "basis_ref"
+              ],
+              "additionalProperties": false
+            }
+          ]
+        },
+        "effect_adapter_ref": {
+          "oneOf": [
+            {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "const": "EffectAdapterContract"
+                },
+                "sha256": {
+                  "type": "string",
+                  "minLength": 64,
+                  "maxLength": 64,
+                  "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+                }
+              },
+              "required": [
+                "kind",
+                "sha256"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "not_applicable": {
+                  "const": true
+                },
+                "basis_ref": {
+                  "type": "object",
+                  "properties": {
+                    "kind": {
+                      "const": "NotApplicableBasis"
+                    },
+                    "sha256": {
+                      "type": "string",
+                      "minLength": 64,
+                      "maxLength": 64,
+                      "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "sha256"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "required": [
+                "not_applicable",
+                "basis_ref"
+              ],
+              "additionalProperties": false
+            }
+          ]
+        },
+        "budget_cancel_ref": {
+          "oneOf": [
+            {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "const": "BudgetCancelContract"
+                },
+                "sha256": {
+                  "type": "string",
+                  "minLength": 64,
+                  "maxLength": 64,
+                  "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+                }
+              },
+              "required": [
+                "kind",
+                "sha256"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "not_applicable": {
+                  "const": true
+                },
+                "basis_ref": {
+                  "type": "object",
+                  "properties": {
+                    "kind": {
+                      "const": "NotApplicableBasis"
+                    },
+                    "sha256": {
+                      "type": "string",
+                      "minLength": 64,
+                      "maxLength": 64,
+                      "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "sha256"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "required": [
+                "not_applicable",
+                "basis_ref"
+              ],
+              "additionalProperties": false
+            }
+          ]
+        },
+        "scheduler_ref": {
+          "oneOf": [
+            {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "const": "SchedulerContract"
+                },
+                "sha256": {
+                  "type": "string",
+                  "minLength": 64,
+                  "maxLength": 64,
+                  "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+                }
+              },
+              "required": [
+                "kind",
+                "sha256"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "not_applicable": {
+                  "const": true
+                },
+                "basis_ref": {
+                  "type": "object",
+                  "properties": {
+                    "kind": {
+                      "const": "NotApplicableBasis"
+                    },
+                    "sha256": {
+                      "type": "string",
+                      "minLength": 64,
+                      "maxLength": 64,
+                      "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "sha256"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "required": [
+                "not_applicable",
+                "basis_ref"
+              ],
+              "additionalProperties": false
+            }
+          ]
+        },
+        "lowering_ref": {
+          "oneOf": [
+            {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "const": "LoweringContract"
+                },
+                "sha256": {
+                  "type": "string",
+                  "minLength": 64,
+                  "maxLength": 64,
+                  "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+                }
+              },
+              "required": [
+                "kind",
+                "sha256"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "not_applicable": {
+                  "const": true
+                },
+                "basis_ref": {
+                  "type": "object",
+                  "properties": {
+                    "kind": {
+                      "const": "NotApplicableBasis"
+                    },
+                    "sha256": {
+                      "type": "string",
+                      "minLength": 64,
+                      "maxLength": 64,
+                      "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "sha256"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "required": [
+                "not_applicable",
+                "basis_ref"
+              ],
+              "additionalProperties": false
+            }
+          ]
+        },
+        "target_abi_ref": {
+          "oneOf": [
+            {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "const": "TargetAbiContract"
+                },
+                "sha256": {
+                  "type": "string",
+                  "minLength": 64,
+                  "maxLength": 64,
+                  "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+                }
+              },
+              "required": [
+                "kind",
+                "sha256"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "not_applicable": {
+                  "const": true
+                },
+                "basis_ref": {
+                  "type": "object",
+                  "properties": {
+                    "kind": {
+                      "const": "NotApplicableBasis"
+                    },
+                    "sha256": {
+                      "type": "string",
+                      "minLength": 64,
+                      "maxLength": 64,
+                      "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "sha256"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "required": [
+                "not_applicable",
+                "basis_ref"
+              ],
+              "additionalProperties": false
+            }
+          ]
+        },
+        "package_interfaces_ref": {
+          "oneOf": [
+            {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "const": "PackageInterfaceClosure"
+                },
+                "sha256": {
+                  "type": "string",
+                  "minLength": 64,
+                  "maxLength": 64,
+                  "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+                }
+              },
+              "required": [
+                "kind",
+                "sha256"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "not_applicable": {
+                  "const": true
+                },
+                "basis_ref": {
+                  "type": "object",
+                  "properties": {
+                    "kind": {
+                      "const": "NotApplicableBasis"
+                    },
+                    "sha256": {
+                      "type": "string",
+                      "minLength": 64,
+                      "maxLength": 64,
+                      "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "sha256"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "required": [
+                "not_applicable",
+                "basis_ref"
+              ],
+              "additionalProperties": false
+            }
+          ]
+        },
+        "locale_normalization_ref": {
+          "oneOf": [
+            {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "const": "LocaleNormalizationContract"
+                },
+                "sha256": {
+                  "type": "string",
+                  "minLength": 64,
+                  "maxLength": 64,
+                  "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+                }
+              },
+              "required": [
+                "kind",
+                "sha256"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "not_applicable": {
+                  "const": true
+                },
+                "basis_ref": {
+                  "type": "object",
+                  "properties": {
+                    "kind": {
+                      "const": "NotApplicableBasis"
+                    },
+                    "sha256": {
+                      "type": "string",
+                      "minLength": 64,
+                      "maxLength": 64,
+                      "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "sha256"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "required": [
+                "not_applicable",
+                "basis_ref"
+              ],
+              "additionalProperties": false
+            }
+          ]
+        },
+        "declared_inputs_ref": {
+          "oneOf": [
+            {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "const": "InputContractClosure"
+                },
+                "sha256": {
+                  "type": "string",
+                  "minLength": 64,
+                  "maxLength": 64,
+                  "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+                }
+              },
+              "required": [
+                "kind",
+                "sha256"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "not_applicable": {
+                  "const": true
+                },
+                "basis_ref": {
+                  "type": "object",
+                  "properties": {
+                    "kind": {
+                      "const": "NotApplicableBasis"
+                    },
+                    "sha256": {
+                      "type": "string",
+                      "minLength": 64,
+                      "maxLength": 64,
+                      "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "sha256"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "required": [
+                "not_applicable",
+                "basis_ref"
+              ],
+              "additionalProperties": false
+            }
+          ]
+        }
+      },
+      "required": [
+        "schema",
+        "kind",
+        "grammar_ref",
+        "name_resolution_ref",
+        "type_value_ref",
+        "primitive_error_ref",
+        "evaluation_ref",
+        "effect_adapter_ref",
+        "budget_cancel_ref",
+        "scheduler_ref",
+        "lowering_ref",
+        "target_abi_ref",
+        "package_interfaces_ref",
+        "locale_normalization_ref",
+        "declared_inputs_ref"
+      ],
+      "additionalProperties": false
+    },
+    "CompatibilityClaim": {
+      "type": "object",
+      "properties": {
+        "schema": {
+          "const": "R19-METADATA-0.1"
+        },
+        "kind": {
+          "const": "CompatibilityClaim"
+        },
+        "input_contract_ref": {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "FormatContract"
+            },
+            "sha256": {
+              "type": "string",
+              "minLength": 64,
+              "maxLength": 64,
+              "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+            }
+          },
+          "required": [
+            "kind",
+            "sha256"
+          ],
+          "additionalProperties": false
+        },
+        "reader_build_ref": {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "ToolBuild"
+            },
+            "sha256": {
+              "type": "string",
+              "minLength": 64,
+              "maxLength": 64,
+              "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+            }
+          },
+          "required": [
+            "kind",
+            "sha256"
+          ],
+          "additionalProperties": false
+        },
+        "operation": {
+          "enum": [
+            "COPY_OPAQUE",
+            "INSPECT_METADATA",
+            "DECODE_VALUE",
+            "REWRITE",
+            "EXECUTE",
+            "RESUME",
+            "VERIFY_EVIDENCE",
+            "REUSE_EVIDENCE"
+          ]
+        },
+        "domain_ref": {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "OperationDomain"
+            },
+            "sha256": {
+              "type": "string",
+              "minLength": 64,
+              "maxLength": 64,
+              "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+            }
+          },
+          "required": [
+            "kind",
+            "sha256"
+          ],
+          "additionalProperties": false
+        },
+        "relation_kind": {
+          "enum": [
+            "EQUALITY",
+            "OBSERVATIONAL_EQUIVALENCE",
+            "REFINEMENT",
+            "REPRESENTATION_SUPPORT"
+          ]
+        },
+        "target_contract_ref": {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128,
+              "pattern": "^[A-Za-z][A-Za-z0-9_.:/-]*(?![\\s\\S])"
+            },
+            "sha256": {
+              "type": "string",
+              "minLength": 64,
+              "maxLength": 64,
+              "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+            }
+          },
+          "required": [
+            "kind",
+            "sha256"
+          ],
+          "additionalProperties": false
+        },
+        "observation_ref": {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "ObservationContract"
+            },
+            "sha256": {
+              "type": "string",
+              "minLength": 64,
+              "maxLength": 64,
+              "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+            }
+          },
+          "required": [
+            "kind",
+            "sha256"
+          ],
+          "additionalProperties": false
+        },
+        "assumptions_ref": {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "AssumptionSet"
+            },
+            "sha256": {
+              "type": "string",
+              "minLength": 64,
+              "maxLength": 64,
+              "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+            }
+          },
+          "required": [
+            "kind",
+            "sha256"
+          ],
+          "additionalProperties": false
+        },
+        "method_ref": {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "VerificationMethod"
+            },
+            "sha256": {
+              "type": "string",
+              "minLength": 64,
+              "maxLength": 64,
+              "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+            }
+          },
+          "required": [
+            "kind",
+            "sha256"
+          ],
+          "additionalProperties": false
+        },
+        "evidence_refs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "const": "Evidence"
+              },
+              "sha256": {
+                "type": "string",
+                "minLength": 64,
+                "maxLength": 64,
+                "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+              }
+            },
+            "required": [
+              "kind",
+              "sha256"
+            ],
+            "additionalProperties": false
+          },
+          "maxItems": 4096,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "schema",
+        "kind",
+        "input_contract_ref",
+        "reader_build_ref",
+        "operation",
+        "domain_ref",
+        "relation_kind",
+        "target_contract_ref",
+        "observation_ref",
+        "assumptions_ref",
+        "method_ref",
+        "evidence_refs"
+      ],
+      "additionalProperties": false
+    },
+    "MigrationPlan": {
+      "type": "object",
+      "properties": {
+        "schema": {
+          "const": "R19-METADATA-0.1"
+        },
+        "kind": {
+          "const": "MigrationPlan"
+        },
+        "intent_ref": {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "MigrationIntent"
+            },
+            "sha256": {
+              "type": "string",
+              "minLength": 64,
+              "maxLength": 64,
+              "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+            }
+          },
+          "required": [
+            "kind",
+            "sha256"
+          ],
+          "additionalProperties": false
+        },
+        "source_project_binding_ref": {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "ProjectBinding"
+            },
+            "sha256": {
+              "type": "string",
+              "minLength": 64,
+              "maxLength": 64,
+              "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+            }
+          },
+          "required": [
+            "kind",
+            "sha256"
+          ],
+          "additionalProperties": false
+        },
+        "source_generation": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 20,
+          "pattern": "^(0|[1-9][0-9]{0,19})(?![\\s\\S])"
+        },
+        "source_semantic_state_root": {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "SemanticState"
+            },
+            "sha256": {
+              "type": "string",
+              "minLength": 64,
+              "maxLength": 64,
+              "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+            }
+          },
+          "required": [
+            "kind",
+            "sha256"
+          ],
+          "additionalProperties": false
+        },
+        "source_participant_vector_ref": {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "ParticipantVector"
+            },
+            "sha256": {
+              "type": "string",
+              "minLength": 64,
+              "maxLength": 64,
+              "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+            }
+          },
+          "required": [
+            "kind",
+            "sha256"
+          ],
+          "additionalProperties": false
+        },
+        "source_meaning_bindings_ref": {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "SourceMeaningBindings"
+            },
+            "sha256": {
+              "type": "string",
+              "minLength": 64,
+              "maxLength": 64,
+              "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+            }
+          },
+          "required": [
+            "kind",
+            "sha256"
+          ],
+          "additionalProperties": false
+        },
+        "target_binding_requirements_ref": {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "TargetBindingRequirements"
+            },
+            "sha256": {
+              "type": "string",
+              "minLength": 64,
+              "maxLength": 64,
+              "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+            }
+          },
+          "required": [
+            "kind",
+            "sha256"
+          ],
+          "additionalProperties": false
+        },
+        "exact_registry_ref": {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "RegistrySnapshot"
+            },
+            "sha256": {
+              "type": "string",
+              "minLength": 64,
+              "maxLength": 64,
+              "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+            }
+          },
+          "required": [
+            "kind",
+            "sha256"
+          ],
+          "additionalProperties": false
+        },
+        "current_policy_requirements_ref": {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "PolicyRequirements"
+            },
+            "sha256": {
+              "type": "string",
+              "minLength": 64,
+              "maxLength": 64,
+              "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+            }
+          },
+          "required": [
+            "kind",
+            "sha256"
+          ],
+          "additionalProperties": false
+        },
+        "mode": {
+          "enum": [
+            "STORAGE_REENCODE",
+            "ENVIRONMENT_REPIN",
+            "SEMANTIC_CHANGE",
+            "CONTINUATION_REENCODE"
+          ]
+        },
+        "transform_steps": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 256,
+          "items": {
+            "type": "object",
+            "properties": {
+              "input_contract_ref": {
+                "type": "object",
+                "properties": {
+                  "kind": {
+                    "const": "FormatContract"
+                  },
+                  "sha256": {
+                    "type": "string",
+                    "minLength": 64,
+                    "maxLength": 64,
+                    "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+                  }
+                },
+                "required": [
+                  "kind",
+                  "sha256"
+                ],
+                "additionalProperties": false
+              },
+              "output_contract_ref": {
+                "type": "object",
+                "properties": {
+                  "kind": {
+                    "const": "FormatContract"
+                  },
+                  "sha256": {
+                    "type": "string",
+                    "minLength": 64,
+                    "maxLength": 64,
+                    "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+                  }
+                },
+                "required": [
+                  "kind",
+                  "sha256"
+                ],
+                "additionalProperties": false
+              },
+              "implementation_ref": {
+                "type": "object",
+                "properties": {
+                  "kind": {
+                    "const": "TransformBuild"
+                  },
+                  "sha256": {
+                    "type": "string",
+                    "minLength": 64,
+                    "maxLength": 64,
+                    "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+                  }
+                },
+                "required": [
+                  "kind",
+                  "sha256"
+                ],
+                "additionalProperties": false
+              },
+              "domain_ref": {
+                "type": "object",
+                "properties": {
+                  "kind": {
+                    "const": "OperationDomain"
+                  },
+                  "sha256": {
+                    "type": "string",
+                    "minLength": 64,
+                    "maxLength": 64,
+                    "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+                  }
+                },
+                "required": [
+                  "kind",
+                  "sha256"
+                ],
+                "additionalProperties": false
+              },
+              "identity_mapping_ref": {
+                "type": "object",
+                "properties": {
+                  "kind": {
+                    "const": "IdentityMappingRules"
+                  },
+                  "sha256": {
+                    "type": "string",
+                    "minLength": 64,
+                    "maxLength": 64,
+                    "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+                  }
+                },
+                "required": [
+                  "kind",
+                  "sha256"
+                ],
+                "additionalProperties": false
+              },
+              "preservation_ref": {
+                "type": "object",
+                "properties": {
+                  "kind": {
+                    "const": "PreservationContract"
+                  },
+                  "sha256": {
+                    "type": "string",
+                    "minLength": 64,
+                    "maxLength": 64,
+                    "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+                  }
+                },
+                "required": [
+                  "kind",
+                  "sha256"
+                ],
+                "additionalProperties": false
+              },
+              "checker_ref": {
+                "type": "object",
+                "properties": {
+                  "kind": {
+                    "const": "CheckerBuild"
+                  },
+                  "sha256": {
+                    "type": "string",
+                    "minLength": 64,
+                    "maxLength": 64,
+                    "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+                  }
+                },
+                "required": [
+                  "kind",
+                  "sha256"
+                ],
+                "additionalProperties": false
+              },
+              "loss_policy": {
+                "const": "NO_PROTECTED_LOSS"
+              }
+            },
+            "required": [
+              "input_contract_ref",
+              "output_contract_ref",
+              "implementation_ref",
+              "domain_ref",
+              "identity_mapping_ref",
+              "preservation_ref",
+              "checker_ref",
+              "loss_policy"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "affected_closure_ref": {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "DependencyClosure"
+            },
+            "sha256": {
+              "type": "string",
+              "minLength": 64,
+              "maxLength": 64,
+              "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+            }
+          },
+          "required": [
+            "kind",
+            "sha256"
+          ],
+          "additionalProperties": false
+        },
+        "unaffected_boundary_ref": {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "UnaffectedBoundary"
+            },
+            "sha256": {
+              "type": "string",
+              "minLength": 64,
+              "maxLength": 64,
+              "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+            }
+          },
+          "required": [
+            "kind",
+            "sha256"
+          ],
+          "additionalProperties": false
+        },
+        "protected_inventory_ref": {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "ProtectedInventory"
+            },
+            "sha256": {
+              "type": "string",
+              "minLength": 64,
+              "maxLength": 64,
+              "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+            }
+          },
+          "required": [
+            "kind",
+            "sha256"
+          ],
+          "additionalProperties": false
+        },
+        "identity_mapping_rules_ref": {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "IdentityMappingRules"
+            },
+            "sha256": {
+              "type": "string",
+              "minLength": 64,
+              "maxLength": 64,
+              "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+            }
+          },
+          "required": [
+            "kind",
+            "sha256"
+          ],
+          "additionalProperties": false
+        },
+        "resource_limits_ref": {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "ResourceLimits"
+            },
+            "sha256": {
+              "type": "string",
+              "minLength": 64,
+              "maxLength": 64,
+              "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+            }
+          },
+          "required": [
+            "kind",
+            "sha256"
+          ],
+          "additionalProperties": false
+        },
+        "final_cut_policy_ref": {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "FinalCutPolicy"
+            },
+            "sha256": {
+              "type": "string",
+              "minLength": 64,
+              "maxLength": 64,
+              "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+            }
+          },
+          "required": [
+            "kind",
+            "sha256"
+          ],
+          "additionalProperties": false
+        },
+        "abort_policy_ref": {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "AbortPolicy"
+            },
+            "sha256": {
+              "type": "string",
+              "minLength": 64,
+              "maxLength": 64,
+              "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+            }
+          },
+          "required": [
+            "kind",
+            "sha256"
+          ],
+          "additionalProperties": false
+        },
+        "activation_policy_ref": {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "ActivationPolicy"
+            },
+            "sha256": {
+              "type": "string",
+              "minLength": 64,
+              "maxLength": 64,
+              "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+            }
+          },
+          "required": [
+            "kind",
+            "sha256"
+          ],
+          "additionalProperties": false
+        },
+        "preservation_contract_refs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "const": "PreservationContract"
+              },
+              "sha256": {
+                "type": "string",
+                "minLength": 64,
+                "maxLength": 64,
+                "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+              }
+            },
+            "required": [
+              "kind",
+              "sha256"
+            ],
+            "additionalProperties": false
+          },
+          "maxItems": 4096,
+          "uniqueItems": true
+        },
+        "change_declaration_ref": {
+          "oneOf": [
+            {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "const": "ChangeDeclaration"
+                },
+                "sha256": {
+                  "type": "string",
+                  "minLength": 64,
+                  "maxLength": 64,
+                  "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+                }
+              },
+              "required": [
+                "kind",
+                "sha256"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "not_applicable": {
+                  "const": true
+                },
+                "basis_ref": {
+                  "type": "object",
+                  "properties": {
+                    "kind": {
+                      "const": "NotApplicableBasis"
+                    },
+                    "sha256": {
+                      "type": "string",
+                      "minLength": 64,
+                      "maxLength": 64,
+                      "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "sha256"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "required": [
+                "not_applicable",
+                "basis_ref"
+              ],
+              "additionalProperties": false
+            }
+          ]
+        },
+        "required_checkers": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "const": "CheckerBuild"
+              },
+              "sha256": {
+                "type": "string",
+                "minLength": 64,
+                "maxLength": 64,
+                "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+              }
+            },
+            "required": [
+              "kind",
+              "sha256"
+            ],
+            "additionalProperties": false
+          },
+          "maxItems": 4096,
+          "uniqueItems": true
+        },
+        "required_target_pins": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "const": "DependencyPin"
+              },
+              "sha256": {
+                "type": "string",
+                "minLength": 64,
+                "maxLength": 64,
+                "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+              }
+            },
+            "required": [
+              "kind",
+              "sha256"
+            ],
+            "additionalProperties": false
+          },
+          "maxItems": 4096,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "schema",
+        "kind",
+        "intent_ref",
+        "source_project_binding_ref",
+        "source_generation",
+        "source_semantic_state_root",
+        "source_participant_vector_ref",
+        "source_meaning_bindings_ref",
+        "target_binding_requirements_ref",
+        "exact_registry_ref",
+        "current_policy_requirements_ref",
+        "mode",
+        "transform_steps",
+        "affected_closure_ref",
+        "unaffected_boundary_ref",
+        "protected_inventory_ref",
+        "identity_mapping_rules_ref",
+        "resource_limits_ref",
+        "final_cut_policy_ref",
+        "abort_policy_ref",
+        "activation_policy_ref",
+        "preservation_contract_refs",
+        "change_declaration_ref",
+        "required_checkers",
+        "required_target_pins"
+      ],
+      "additionalProperties": false
+    },
+    "CandidateBody": {
+      "type": "object",
+      "properties": {
+        "schema": {
+          "const": "R19-METADATA-0.1"
+        },
+        "kind": {
+          "const": "CandidateBody"
+        },
+        "plan_ref": {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "MigrationPlan"
+            },
+            "sha256": {
+              "type": "string",
+              "minLength": 64,
+              "maxLength": 64,
+              "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+            }
+          },
+          "required": [
+            "kind",
+            "sha256"
+          ],
+          "additionalProperties": false
+        },
+        "before_root": {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "SemanticState"
+            },
+            "sha256": {
+              "type": "string",
+              "minLength": 64,
+              "maxLength": 64,
+              "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+            }
+          },
+          "required": [
+            "kind",
+            "sha256"
+          ],
+          "additionalProperties": false
+        },
+        "after_root": {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "SemanticState"
+            },
+            "sha256": {
+              "type": "string",
+              "minLength": 64,
+              "maxLength": 64,
+              "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+            }
+          },
+          "required": [
+            "kind",
+            "sha256"
+          ],
+          "additionalProperties": false
+        },
+        "project_binding_ref": {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "ProjectBinding"
+            },
+            "sha256": {
+              "type": "string",
+              "minLength": 64,
+              "maxLength": 64,
+              "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+            }
+          },
+          "required": [
+            "kind",
+            "sha256"
+          ],
+          "additionalProperties": false
+        },
+        "format_map_ref": {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "FormatMap"
+            },
+            "sha256": {
+              "type": "string",
+              "minLength": 64,
+              "maxLength": 64,
+              "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+            }
+          },
+          "required": [
+            "kind",
+            "sha256"
+          ],
+          "additionalProperties": false
+        },
+        "identity_map_ref": {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "IdentityMap"
+            },
+            "sha256": {
+              "type": "string",
+              "minLength": 64,
+              "maxLength": 64,
+              "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+            }
+          },
+          "required": [
+            "kind",
+            "sha256"
+          ],
+          "additionalProperties": false
+        },
+        "protected_inventory_refs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "const": "ProtectedInventory"
+              },
+              "sha256": {
+                "type": "string",
+                "minLength": 64,
+                "maxLength": 64,
+                "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+              }
+            },
+            "required": [
+              "kind",
+              "sha256"
+            ],
+            "additionalProperties": false
+          },
+          "maxItems": 4096,
+          "uniqueItems": true
+        },
+        "change_loss_report_ref": {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "ChangeLossReport"
+            },
+            "sha256": {
+              "type": "string",
+              "minLength": 64,
+              "maxLength": 64,
+              "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+            }
+          },
+          "required": [
+            "kind",
+            "sha256"
+          ],
+          "additionalProperties": false
+        },
+        "derived_index_descriptions_ref": {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "DerivedIndexDescriptions"
+            },
+            "sha256": {
+              "type": "string",
+              "minLength": 64,
+              "maxLength": 64,
+              "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+            }
+          },
+          "required": [
+            "kind",
+            "sha256"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "schema",
+        "kind",
+        "plan_ref",
+        "before_root",
+        "after_root",
+        "project_binding_ref",
+        "format_map_ref",
+        "identity_map_ref",
+        "protected_inventory_refs",
+        "change_loss_report_ref",
+        "derived_index_descriptions_ref"
+      ],
+      "additionalProperties": false
+    },
+    "PreservationCertificate": {
+      "type": "object",
+      "properties": {
+        "schema": {
+          "const": "R19-METADATA-0.1"
+        },
+        "kind": {
+          "const": "PreservationCertificate"
+        },
+        "plan_ref": {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "MigrationPlan"
+            },
+            "sha256": {
+              "type": "string",
+              "minLength": 64,
+              "maxLength": 64,
+              "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+            }
+          },
+          "required": [
+            "kind",
+            "sha256"
+          ],
+          "additionalProperties": false
+        },
+        "candidate_body_ref": {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "CandidateBody"
+            },
+            "sha256": {
+              "type": "string",
+              "minLength": 64,
+              "maxLength": 64,
+              "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+            }
+          },
+          "required": [
+            "kind",
+            "sha256"
+          ],
+          "additionalProperties": false
+        },
+        "before_root": {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "SemanticState"
+            },
+            "sha256": {
+              "type": "string",
+              "minLength": 64,
+              "maxLength": 64,
+              "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+            }
+          },
+          "required": [
+            "kind",
+            "sha256"
+          ],
+          "additionalProperties": false
+        },
+        "after_root": {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "SemanticState"
+            },
+            "sha256": {
+              "type": "string",
+              "minLength": 64,
+              "maxLength": 64,
+              "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+            }
+          },
+          "required": [
+            "kind",
+            "sha256"
+          ],
+          "additionalProperties": false
+        },
+        "relation_kind": {
+          "enum": [
+            "EQUALITY",
+            "OBSERVATIONAL_EQUIVALENCE",
+            "REFINEMENT",
+            "PROTECTED_STATE_AND_DECLARED_CHANGE"
+          ]
+        },
+        "domain_ref": {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "OperationDomain"
+            },
+            "sha256": {
+              "type": "string",
+              "minLength": 64,
+              "maxLength": 64,
+              "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+            }
+          },
+          "required": [
+            "kind",
+            "sha256"
+          ],
+          "additionalProperties": false
+        },
+        "observation_ref": {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "ObservationContract"
+            },
+            "sha256": {
+              "type": "string",
+              "minLength": 64,
+              "maxLength": 64,
+              "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+            }
+          },
+          "required": [
+            "kind",
+            "sha256"
+          ],
+          "additionalProperties": false
+        },
+        "assumptions_ref": {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "AssumptionSet"
+            },
+            "sha256": {
+              "type": "string",
+              "minLength": 64,
+              "maxLength": 64,
+              "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+            }
+          },
+          "required": [
+            "kind",
+            "sha256"
+          ],
+          "additionalProperties": false
+        },
+        "checker_build_ref": {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "CheckerBuild"
+            },
+            "sha256": {
+              "type": "string",
+              "minLength": 64,
+              "maxLength": 64,
+              "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+            }
+          },
+          "required": [
+            "kind",
+            "sha256"
+          ],
+          "additionalProperties": false
+        },
+        "method_ref": {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "VerificationMethod"
+            },
+            "sha256": {
+              "type": "string",
+              "minLength": 64,
+              "maxLength": 64,
+              "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+            }
+          },
+          "required": [
+            "kind",
+            "sha256"
+          ],
+          "additionalProperties": false
+        },
+        "verdict": {
+          "enum": [
+            "PASS",
+            "FAIL",
+            "UNKNOWN"
+          ]
+        },
+        "evidence_refs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "const": "Evidence"
+              },
+              "sha256": {
+                "type": "string",
+                "minLength": 64,
+                "maxLength": 64,
+                "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+              }
+            },
+            "required": [
+              "kind",
+              "sha256"
+            ],
+            "additionalProperties": false
+          },
+          "maxItems": 4096,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "schema",
+        "kind",
+        "plan_ref",
+        "candidate_body_ref",
+        "before_root",
+        "after_root",
+        "relation_kind",
+        "domain_ref",
+        "observation_ref",
+        "assumptions_ref",
+        "checker_build_ref",
+        "method_ref",
+        "verdict",
+        "evidence_refs"
+      ],
+      "additionalProperties": false
+    },
+    "PreparedEnvelope": {
+      "type": "object",
+      "properties": {
+        "schema": {
+          "const": "R19-METADATA-0.1"
+        },
+        "kind": {
+          "const": "PreparedEnvelope"
+        },
+        "candidate_body_ref": {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "CandidateBody"
+            },
+            "sha256": {
+              "type": "string",
+              "minLength": 64,
+              "maxLength": 64,
+              "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+            }
+          },
+          "required": [
+            "kind",
+            "sha256"
+          ],
+          "additionalProperties": false
+        },
+        "certificate_refs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "const": "PreservationCertificate"
+              },
+              "sha256": {
+                "type": "string",
+                "minLength": 64,
+                "maxLength": 64,
+                "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+              }
+            },
+            "required": [
+              "kind",
+              "sha256"
+            ],
+            "additionalProperties": false
+          },
+          "maxItems": 4096,
+          "uniqueItems": true
+        },
+        "final_cut_certificate_ref": {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "FinalCutCertificate"
+            },
+            "sha256": {
+              "type": "string",
+              "minLength": 64,
+              "maxLength": 64,
+              "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+            }
+          },
+          "required": [
+            "kind",
+            "sha256"
+          ],
+          "additionalProperties": false
+        },
+        "durable_target_pins": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "const": "DependencyPin"
+              },
+              "sha256": {
+                "type": "string",
+                "minLength": 64,
+                "maxLength": 64,
+                "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+              }
+            },
+            "required": [
+              "kind",
+              "sha256"
+            ],
+            "additionalProperties": false
+          },
+          "maxItems": 4096,
+          "uniqueItems": true
+        },
+        "capacity_reservation_ref": {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "CapacityReservation"
+            },
+            "sha256": {
+              "type": "string",
+              "minLength": 64,
+              "maxLength": 64,
+              "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+            }
+          },
+          "required": [
+            "kind",
+            "sha256"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "schema",
+        "kind",
+        "candidate_body_ref",
+        "certificate_refs",
+        "final_cut_certificate_ref",
+        "durable_target_pins",
+        "capacity_reservation_ref"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

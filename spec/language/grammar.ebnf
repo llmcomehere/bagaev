@@ -1,0 +1,157 @@
+(* GRAMMAR-1 — грамматика исходника bagaev V1, r26.
+   Статус: контракт V1 (D66–D68).
+   Лексика: spec/language/lexical.md. Смысл конструкций и статические правила: spec/language/surface.md.
+
+   Нотация:
+     Name = выражение ;      правило
+     "текст"                 токен: пунктуация, зарезервированное или контекстное слово
+     IDENT INT STRING BYTES  классы токенов; EOF — конец файла
+     A | B   выбор   ( … ) группа   [ … ] необязательно   { … } ноль или более повторений
+
+   Директивы для tools/grammar_lint.py: *)
+
+(* @start File *)
+(* @tokens IDENT INT STRING BYTES EOF *)
+(* @reserved module use as pub fn let if else match return emit and or not true false *)
+(* @contextual type record enum opaque entity contract about rule purpose terms not_about store table derived_from event command handler query migration on test uses reads writes emits host implements requires checks supersedes *)
+
+(* Неоднозначности, которые grammar_lint видит как конфликты LL(1). Каждая разрешена правилом разбора:
+   @resolved TrailingComma: в списках вида X { "," X } [ "," ] запятая продолжает список, если за ней начинается X; иначе это завершающая запятая.
+   @resolved BlockLikeStatement: в позиции оператора блока выражение if/match/{…} заканчивает оператор (как в Rust); его значение обязано быть Unit (surface.md §6). Если такое выражение стоит последним в блоке, оно — хвостовое выражение блока.
+   @resolved RecordInCondition: в условии if и в выражении match запись Path { … } не разбирается — это выражено цепочкой CondExpr ниже; «{» после условия начинает блок или тело match. Литерал записи там берётся в скобки (surface.md §6).
+   @resolved ReturnValue: после return значение есть, если следующий токен может начинать выражение; токены ; } , ) завершают return без значения.
+   @resolved RecordEntry: в теле записи IDENT ":" — поле, ".." — база обновления, иначе — пара карты Expr "=>" Expr (lookahead 2).
+   @resolved UsesBinding: uses после типа функции относится к ближайшему fn-типу; чтобы отнести его к внешней декларации, тип функции берётся в скобки.
+   @resolved MatchArmComma: запятая между ветвями match может быть опущена только после ветви, тело которой — блок (surface.md §6).
+   @resolved PathVsField: точка после имени разбирается как постфиксное обращение; чем является цепочка a.b.c (модулем, типом, вариантом, таблицей или полем), решает разрешение имён (surface.md §4).
+   @resolved UseSegments: группа { … } допустима только последним сегментом use, as — только без группы (проверка после разбора, INVALID_USE_GROUP).
+   @resolved TypeArgsClose: токен ">=" сразу после аргументов типа (let x: Option<Int64>= None) парсер разбивает на ">" и "=" (как Rust); в выражениях ">=" — оператор. *)
+
+(* Правила, в которых grammar_lint находит LL(1)-конфликт, и объяснения из списка выше:
+   @acknowledged ArgList:TrailingComma Attribute:TrailingComma EffectRow:TrailingComma EventDecl:TrailingComma
+   Generics:TrailingComma Lambda:TrailingComma ParamList:TrailingComma RecordBody:TrailingComma SeqLiteral:TrailingComma
+   StringList:TrailingComma TypeArgs:TrailingComma TypeBody:TrailingComma TypeParams:TrailingComma UseSegment:TrailingComma
+   FnType:TrailingComma+UsesBinding MatchExpr:MatchArmComma+TrailingComma Block:BlockLikeStatement ExprStmt:BlockLikeStatement
+   RecordEntry:RecordEntry ReturnExpr:ReturnValue *)
+
+(* ---------------------------------------------------------------- файл и модули *)
+
+File          = ModuleHeader { UseDecl } { Item } EOF ;
+ModuleHeader  = { Attribute } "module" IDENT { "." IDENT } ;
+UseDecl       = "use" IDENT { "." UseSegment } [ "as" IDENT ] ;
+UseSegment    = IDENT | "{" UseName { "," UseName } [ "," ] "}" ;
+UseName       = IDENT [ "as" IDENT ] ;
+
+Attribute     = "@" IDENT "(" AttrArg { "," AttrArg } [ "," ] ")" ;
+AttrArg       = STRING | INT | IDENT ;
+
+Item          = { Attribute } [ "pub" ] ItemBody ;
+ItemBody      = FnDecl | TypeDecl | EntityDecl | ContractDecl | StoreDecl | EventDecl
+              | CommandDecl | HandlerDecl | QueryDecl | MigrationDecl | TestDecl ;
+
+(* ---------------------------------------------------------------- функции и точки входа *)
+
+FnDecl        = "fn" IDENT [ Generics ] "(" [ ParamList ] ")" "->" Type [ UsesClause ] { LinkClause } Block ;
+CommandDecl   = "command" IDENT "(" [ ParamList ] ")" "->" Type [ UsesClause ] { LinkClause } Block ;
+QueryDecl     = "query" IDENT "(" [ ParamList ] ")" "->" Type [ UsesClause ] { LinkClause } Block ;
+HandlerDecl   = "handler" IDENT "(" Param ")" [ UsesClause ] { LinkClause } Block ;
+MigrationDecl = "migration" IDENT "on" Path "(" Param ")" "->" Type Block ;
+TestDecl      = "test" IDENT [ UsesClause ] { LinkClause } Block ;
+
+Generics      = "<" GenericParam { "," GenericParam } [ "," ] ">" ;
+GenericParam  = IDENT [ ":" BoundList ] | "!" IDENT ;
+BoundList     = IDENT { "+" IDENT } ;
+ParamList     = Param { "," Param } [ "," ] ;
+Param         = IDENT ":" Type ;
+
+UsesClause    = "uses" EffectRow ;
+EffectRow     = "{" [ EffectItem { "," EffectItem } [ "," ] ] [ "|" IDENT ] "}" | IDENT ;
+EffectItem    = ( "reads" | "writes" | "emits" | "host" ) Path ;
+
+LinkClause    = LinkKind Path { "," Path } | "supersedes" STRING { "," STRING } ;
+LinkKind      = "implements" | "requires" | "checks" ;
+
+Path          = IDENT { "." IDENT } ;
+
+(* ---------------------------------------------------------------- типы *)
+
+TypeDecl      = "type" IDENT [ TypeParams ] "=" TypeBody ;
+TypeParams    = "<" TypeParam { "," TypeParam } [ "," ] ">" ;
+TypeParam     = IDENT [ ":" BoundList ] ;
+TypeBody      = "record" "{" [ FieldDecl { "," FieldDecl } [ "," ] ] "}"
+              | "enum" "{" VariantDecl { "," VariantDecl } [ "," ] "}"
+              | "opaque" Type ;
+FieldDecl     = { Attribute } IDENT ":" Type ;
+VariantDecl   = { Attribute } IDENT [ "(" Type ")" ] ;
+
+Type          = Path [ TypeArgs ] | FnType | "(" [ Type ] ")" ;
+TypeArgs      = "<" Type { "," Type } [ "," ] ">" ;
+FnType        = "fn" "(" [ Type { "," Type } [ "," ] ] ")" "->" Type [ "uses" EffectRow ] ;
+
+(* ---------------------------------------------------------------- сущности, контракты, данные *)
+
+EntityDecl    = "entity" IDENT "{" { EntityClause } "}" ;
+EntityClause  = "purpose" STRING | "terms" StringList | "not_about" StringList ;
+StringList    = "[" [ STRING { "," STRING } [ "," ] ] "]" ;
+
+ContractDecl  = "contract" IDENT "about" Path "{" { RuleDecl } "}" ;
+RuleDecl      = { Attribute } "rule" IDENT STRING ;
+
+StoreDecl     = "store" IDENT "{" { TableDecl } "}" ;
+TableDecl     = { Attribute } "table" IDENT ":" Type [ "derived_from" Path ] ;
+
+EventDecl     = "event" IDENT "{" [ FieldDecl { "," FieldDecl } [ "," ] ] "}" ;
+
+(* ---------------------------------------------------------------- блоки и операторы *)
+
+Block         = "{" { Statement } [ Expr ] "}" ;
+Statement     = LetStmt | ExprStmt ;
+LetStmt       = "let" ( IDENT | "_" ) [ ":" Type ] "=" Expr ";" ;
+ExprStmt      = BlockLikeExpr [ ";" ] | Expr ";" ;
+BlockLikeExpr = Block | IfExpr | MatchExpr ;
+
+(* ---------------------------------------------------------------- выражения, по возрастанию приоритета *)
+
+Expr          = ReturnExpr | EmitExpr | Lambda | OrExpr ;
+ReturnExpr    = "return" [ Expr ] ;
+EmitExpr      = "emit" Path RecordBody ;
+Lambda        = "fn" "(" [ LambdaParam { "," LambdaParam } [ "," ] ] ")" "=>" Expr ;
+LambdaParam   = IDENT [ ":" Type ] ;
+
+OrExpr        = AndExpr { "or" AndExpr } ;
+AndExpr       = NotExpr { "and" NotExpr } ;
+NotExpr       = "not" NotExpr | CmpExpr ;
+CmpExpr       = ConcatExpr [ CmpOp ConcatExpr ] ;
+CmpOp         = "==" | "!=" | "<" | "<=" | ">" | ">=" ;
+ConcatExpr    = AddExpr { "++" AddExpr } ;
+AddExpr       = MulExpr { ( "+" | "-" ) MulExpr } ;
+MulExpr       = UnaryExpr { ( "*" | "/" | "%" ) UnaryExpr } ;
+UnaryExpr     = "-" UnaryExpr | PostfixExpr ;
+PostfixExpr   = Primary { PostfixOp } ;
+PostfixOp     = "(" [ ArgList ] ")" | "." IDENT | "?" | RecordBody ;
+ArgList       = Expr { "," Expr } [ "," ] ;
+
+Primary       = Literal | IDENT | "(" [ Expr ] ")" | SeqLiteral | BlockLikeExpr ;
+Literal       = INT | STRING | BYTES | "true" | "false" ;
+SeqLiteral    = "[" [ Expr { "," Expr } [ "," ] ] "]" ;
+
+RecordBody    = "{" [ RecordEntry { "," RecordEntry } [ "," ] ] "}" ;
+RecordEntry   = IDENT ":" Expr | ".." Expr | Expr "=>" Expr ;
+
+IfExpr        = "if" CondExpr Block [ "else" ( IfExpr | Block ) ] ;
+MatchExpr     = "match" CondExpr "{" [ MatchArm { [ "," ] MatchArm } [ "," ] ] "}" ;
+
+(* Условие if и выражение match: те же выражения без литерала записи на верхнем уровне (SURF-52).
+   В скобках "(" Expr ")" литерал записи снова допустим. *)
+CondExpr      = CondAnd { "or" CondAnd } ;
+CondAnd       = CondNot { "and" CondNot } ;
+CondNot       = "not" CondNot | CondCmp ;
+CondCmp       = CondConcat [ CmpOp CondConcat ] ;
+CondConcat    = CondAdd { "++" CondAdd } ;
+CondAdd       = CondMul { ( "+" | "-" ) CondMul } ;
+CondMul       = CondUnary { ( "*" | "/" | "%" ) CondUnary } ;
+CondUnary     = "-" CondUnary | CondPostfix ;
+CondPostfix   = Primary { CondPostfixOp } ;
+CondPostfixOp = "(" [ ArgList ] ")" | "." IDENT | "?" ;
+MatchArm      = Pattern "=>" Expr ;
+Pattern       = Path [ "(" ( IDENT | "_" ) ")" ] ;

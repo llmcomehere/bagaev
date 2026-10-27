@@ -1,0 +1,97 @@
+{
+  "id": "protocol/request-invalid-01",
+  "spec": [
+    "spec/protocol/agent-protocol.md#7-операции-протокола"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "app.bag"
+  ],
+  "run": {
+    "change": {
+      "principal": "agent",
+      "steps": [
+        {
+          "request": {
+            "operation": "change_begin",
+            "arguments": {
+              "intent": "x"
+            }
+          }
+        },
+        {
+          "request": {
+            "operation": "deploy",
+            "arguments": {}
+          }
+        },
+        {
+          "request": {
+            "operation": "change_begin",
+            "idempotency_key": "b1-kkkkkkkkkkkkkkkkkkkk",
+            "principal": "root",
+            "arguments": {
+              "intent": "x"
+            }
+          }
+        },
+        {
+          "request": {
+            "operation": "work_resume",
+            "change_id": "ch-nope",
+            "arguments": {}
+          }
+        },
+        {
+          "request": {
+            "operation": "apply",
+            "change_id": "ch-nope",
+            "idempotency_key": "a1-kkkkkkkkkkkkkkkkkkkk",
+            "arguments": {}
+          }
+        }
+      ]
+    }
+  },
+  "expect": {
+    "phase": "protocol",
+    "outcome": "COMPLETED",
+    "value": [
+      {
+        "status": "failed",
+        "replayed": false,
+        "code": "REQUEST_INVALID"
+      },
+      {
+        "status": "failed",
+        "replayed": false,
+        "code": "UNKNOWN_OPERATION",
+        "data": {
+          "operation": "deploy"
+        }
+      },
+      {
+        "status": "failed",
+        "replayed": false,
+        "code": "REQUEST_INVALID"
+      },
+      {
+        "status": "failed",
+        "replayed": false,
+        "code": "UNKNOWN_CHANGE",
+        "data": {
+          "change_id": "ch-nope"
+        }
+      },
+      {
+        "status": "failed",
+        "replayed": false,
+        "code": "REQUEST_INVALID"
+      }
+    ]
+  },
+  "note": "нет ключа; неизвестная операция; поле principal в запросе; неизвестная работа; запись без ожидаемой ревизии"
+}

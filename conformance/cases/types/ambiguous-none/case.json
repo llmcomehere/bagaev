@@ -1,0 +1,32 @@
+{
+  "id": "types/ambiguous-none",
+  "spec": [
+    "spec/language/surface.md#4-выражения",
+    "spec/language/types.md#5-специализация-и-generalization",
+    "spec/language/checking.md#5-тела-фазы-type-и-effect"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "expect": {
+    "phase": "check",
+    "outcome": "PRELAUNCH",
+    "diagnostics": [
+      {
+        "code": "AMBIGUOUS_TYPE_ARGUMENT",
+        "file": "main.bag",
+        "span": [
+          66,
+          70
+        ],
+        "data": {
+          "param": "T"
+        }
+      }
+    ]
+  }
+}

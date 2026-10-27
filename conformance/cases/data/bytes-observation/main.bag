@@ -1,0 +1,7 @@
+@id("trtm1r")
+module main
+
+@id("m3hw6p")
+pub fn main() -> Bytes {
+  b"\x00\xff" ++ b"A"
+}

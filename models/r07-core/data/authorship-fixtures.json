@@ -1,0 +1,1194 @@
+{
+  "fixture_format": "authorship-experiment-examples/0.1",
+  "artifact_kind": "ILLUSTRATIVE_FIXTURE_SPEC",
+  "execution_status": "NOT_RUN",
+  "description": "Предлагаемые входы, ожидаемые результаты и дефектные варианты первого опыта. Это не журнал запуска, не реальные SnapshotId и не принятая спецификация runtime.",
+  "id_semantics": {
+    "program_labels": "S0/S1/Sx/S0w — символические метки, не хеши снимков.",
+    "state_labels": "D0/D1/D2/D3 — символические стадии состояния.",
+    "diagnostics": "Коды в примерах проектные; сверяются с нормативным реестром."
+  },
+  "scope": {
+    "authorship": "attribution_only",
+    "collaborative_editing": false,
+    "author_membership_grants_edit_permission": false,
+    "execution_profile": "proposed_single_process_local_events",
+    "external_exactly_once_claimed": false
+  },
+  "chosen_rules": {
+    "minimum_authors": 1,
+    "ordered": true,
+    "unique_person_ids": true,
+    "must_reference_existing_person": true,
+    "legacy_single_author_mapping": "author_id -> [author_id]",
+    "search_result_order": "article_id ascending",
+    "event_delivery": "at_least_once_local_with_transactional_inbox",
+    "display_separator": " · "
+  },
+  "program_shape_examples": {
+    "syntax_status": "Поясняющие записи, не исполняемый исходник bagaev.",
+    "semantic_entity": {
+      "entity_id": "E.authorship",
+      "old_revision": "r1",
+      "new_revision": "r2",
+      "old_alias": "article.author",
+      "new_alias": "article.authors"
+    },
+    "old_schema": {
+      "schema_label": "ArticleV1",
+      "authorship_field": "author_id",
+      "field_type": "PersonId"
+    },
+    "new_schema": {
+      "schema_label": "ArticleV2",
+      "authorship_field": "author_ids",
+      "field_type": "NonEmptyOrderedUniqueSequence<PersonId>"
+    },
+    "export_signature_before": "export(article_id) -> String",
+    "export_signature_after": "export(article_id) -> String",
+    "export_wire_contract": "JSON object; v2 authors is an ordered array of person_id/display_name objects."
+  },
+  "obligations": [
+    {
+      "obligation_id": "O01",
+      "required": true,
+      "claim": "Авторов хотя бы один; каждый человек существует; порядок сохраняется; повторы запрещены; неверная запись не меняет состояние."
+    },
+    {
+      "obligation_id": "O02",
+      "required": true,
+      "claim": "Миграция сохраняет прежнего автора, статью и редакторские права."
+    },
+    {
+      "obligation_id": "O03",
+      "required": true,
+      "claim": "Подпись и профиль отражают всех соавторов; порядок подписи соответствует данным."
+    },
+    {
+      "obligation_id": "O04",
+      "required": true,
+      "claim": "После обработки события поиск и сохранённый индекс учитывают каждого соавтора."
+    },
+    {
+      "obligation_id": "O05",
+      "required": true,
+      "claim": "Экспорт сохраняет полный состав авторов и его порядок."
+    },
+    {
+      "obligation_id": "O06",
+      "required": true,
+      "claim": "Авторство не предоставляет редакторских полномочий."
+    },
+    {
+      "obligation_id": "O07",
+      "required": true,
+      "claim": "Повтор события не создаёт повторных результатов; незавершённая доставка видна."
+    },
+    {
+      "obligation_id": "O08",
+      "required": true,
+      "claim": "Исключение изображения имеет применимое основание и пересматривается при изменении предпосылок."
+    },
+    {
+      "obligation_id": "O09",
+      "required": true,
+      "claim": "Приёмка относится к точному кандидату и актуальной базе, обязательное неизвестное блокирует её."
+    },
+    {
+      "obligation_id": "O10",
+      "required": true,
+      "claim": "Продолжение сохраняет открытые обязательства и проверяет применимость прежних оснований."
+    }
+  ],
+  "people": [
+    {
+      "person_id": "p_alina",
+      "display_name": "Алина Петрова"
+    },
+    {
+      "person_id": "p_boris",
+      "display_name": "Борис Соколов"
+    },
+    {
+      "person_id": "p_vera",
+      "display_name": "Вера Морозова"
+    }
+  ],
+  "actors": [
+    {
+      "actor_id": "u_editor",
+      "person_id": null,
+      "roles": [
+        "editor"
+      ]
+    },
+    {
+      "actor_id": "u_boris",
+      "person_id": "p_boris",
+      "roles": []
+    }
+  ],
+  "base_graph": {
+    "format_status": "Illustrative declared graph, not output of a running extractor.",
+    "freeze_before_measured_tasks": true,
+    "nodes": [
+      {
+        "entity_id": "E.authorship",
+        "revision_label": "r1",
+        "kind": "semantic_relation"
+      },
+      {
+        "entity_id": "C.authorship_shape",
+        "revision_label": "r1",
+        "kind": "contract"
+      },
+      {
+        "entity_id": "C.attribution_complete",
+        "revision_label": "r1",
+        "kind": "contract"
+      },
+      {
+        "entity_id": "D.articles",
+        "revision_label": "r1",
+        "kind": "data_schema"
+      },
+      {
+        "entity_id": "D.people",
+        "revision_label": "r1",
+        "kind": "data_schema"
+      },
+      {
+        "entity_id": "D.author_index",
+        "revision_label": "r1",
+        "kind": "projection_schema"
+      },
+      {
+        "entity_id": "E.editor",
+        "revision_label": "r1",
+        "kind": "operation"
+      },
+      {
+        "entity_id": "E.byline",
+        "revision_label": "r1",
+        "kind": "operation"
+      },
+      {
+        "entity_id": "E.export",
+        "revision_label": "r1",
+        "kind": "operation"
+      },
+      {
+        "entity_id": "E.author_profile",
+        "revision_label": "r1",
+        "kind": "operation"
+      },
+      {
+        "entity_id": "E.author_search",
+        "revision_label": "r1",
+        "kind": "operation"
+      },
+      {
+        "entity_id": "E.indexer",
+        "revision_label": "r1",
+        "kind": "operation"
+      },
+      {
+        "entity_id": "Event.authorship",
+        "revision_label": "r1",
+        "kind": "event_schema"
+      },
+      {
+        "entity_id": "E.image_pipeline",
+        "revision_label": "r1",
+        "kind": "operation"
+      },
+      {
+        "entity_id": "E.image_resize",
+        "revision_label": "r1",
+        "kind": "operation"
+      }
+    ],
+    "edges": [
+      {
+        "edge_id": "g_authorship_shape",
+        "kind": "requires",
+        "source": "E.authorship",
+        "target": "C.authorship_shape",
+        "origin": "illustrative_declaration"
+      },
+      {
+        "edge_id": "g_articles_shape",
+        "kind": "requires",
+        "source": "D.articles",
+        "target": "C.authorship_shape",
+        "origin": "illustrative_declaration"
+      },
+      {
+        "edge_id": "g_editor_writes",
+        "kind": "writes",
+        "source": "E.editor",
+        "target": "D.articles",
+        "origin": "illustrative_declaration"
+      },
+      {
+        "edge_id": "g_editor_emits",
+        "kind": "emits",
+        "source": "E.editor",
+        "target": "Event.authorship",
+        "origin": "illustrative_declaration"
+      },
+      {
+        "edge_id": "g_event_derived",
+        "kind": "derived_from",
+        "source": "Event.authorship",
+        "target": "E.authorship",
+        "origin": "illustrative_declaration"
+      },
+      {
+        "edge_id": "g_indexer_consumes",
+        "kind": "consumes",
+        "source": "E.indexer",
+        "target": "Event.authorship",
+        "origin": "illustrative_declaration"
+      },
+      {
+        "edge_id": "g_indexer_writes",
+        "kind": "writes",
+        "source": "E.indexer",
+        "target": "D.author_index",
+        "origin": "illustrative_declaration"
+      },
+      {
+        "edge_id": "g_index_derived",
+        "kind": "derived_from",
+        "source": "D.author_index",
+        "target": "E.authorship",
+        "origin": "illustrative_declaration"
+      },
+      {
+        "edge_id": "g_search_reads",
+        "kind": "reads",
+        "source": "E.author_search",
+        "target": "D.author_index",
+        "origin": "illustrative_declaration"
+      },
+      {
+        "edge_id": "g_profile_calls",
+        "kind": "calls",
+        "source": "E.author_profile",
+        "target": "E.author_search",
+        "origin": "illustrative_declaration"
+      },
+      {
+        "edge_id": "g_export_reads",
+        "kind": "reads",
+        "source": "E.export",
+        "target": "D.articles",
+        "origin": "illustrative_declaration"
+      },
+      {
+        "edge_id": "g_export_requires",
+        "kind": "requires",
+        "source": "E.export",
+        "target": "C.attribution_complete",
+        "origin": "illustrative_declaration"
+      },
+      {
+        "edge_id": "g_export_names",
+        "kind": "reads",
+        "source": "E.export",
+        "target": "D.people",
+        "origin": "illustrative_declaration"
+      },
+      {
+        "edge_id": "g_byline_reads",
+        "kind": "reads",
+        "source": "E.byline",
+        "target": "D.articles",
+        "origin": "illustrative_declaration"
+      },
+      {
+        "edge_id": "g_byline_requires",
+        "kind": "requires",
+        "source": "E.byline",
+        "target": "C.attribution_complete",
+        "origin": "illustrative_declaration"
+      },
+      {
+        "edge_id": "g_byline_names",
+        "kind": "reads",
+        "source": "E.byline",
+        "target": "D.people",
+        "origin": "illustrative_declaration"
+      },
+      {
+        "edge_id": "g_complete_shape",
+        "kind": "requires",
+        "source": "C.attribution_complete",
+        "target": "C.authorship_shape",
+        "origin": "illustrative_declaration"
+      },
+      {
+        "edge_id": "g_image_calls_resize",
+        "kind": "calls",
+        "source": "E.image_pipeline",
+        "target": "E.image_resize",
+        "origin": "illustrative_declaration"
+      }
+    ]
+  },
+  "source_old_state": {
+    "state_label": "D0",
+    "article_schema_label": "ArticleV1",
+    "projection_schema_label": "AuthorIndexV1",
+    "articles": [
+      {
+        "article_id": "a_101",
+        "article_revision": 1,
+        "title": "Типы и связи",
+        "author_id": "p_alina",
+        "editor_ids": [
+          "u_editor"
+        ]
+      },
+      {
+        "article_id": "a_102",
+        "article_revision": 1,
+        "title": "Поиск по данным",
+        "author_id": "p_boris",
+        "editor_ids": [
+          "u_editor"
+        ]
+      }
+    ],
+    "author_index": {
+      "p_alina": [
+        "a_101"
+      ],
+      "p_boris": [
+        "a_102"
+      ],
+      "p_vera": []
+    },
+    "inbox_completed_event_ids": []
+  },
+  "expected_state_after_migration": {
+    "state_label": "D1",
+    "article_schema_label": "ArticleV2",
+    "projection_schema_label": "AuthorIndexV2",
+    "articles": [
+      {
+        "article_id": "a_101",
+        "article_revision": 1,
+        "title": "Типы и связи",
+        "author_ids": [
+          "p_alina"
+        ],
+        "editor_ids": [
+          "u_editor"
+        ]
+      },
+      {
+        "article_id": "a_102",
+        "article_revision": 1,
+        "title": "Поиск по данным",
+        "author_ids": [
+          "p_boris"
+        ],
+        "editor_ids": [
+          "u_editor"
+        ]
+      }
+    ],
+    "author_index": {
+      "p_alina": [
+        "a_101"
+      ],
+      "p_boris": [
+        "a_102"
+      ],
+      "p_vera": []
+    },
+    "inbox_completed_event_ids": [],
+    "migration_note": "Projection is explicitly rebuilt/validated for v2 even when its membership entries happen to be unchanged."
+  },
+  "command_set_authors": {
+    "command_id": "cmd_set_authors_a101",
+    "idempotency_key": "cmd_set_authors_a101",
+    "actor_id": "u_editor",
+    "article_id": "a_101",
+    "expected_article_revision": 1,
+    "author_ids": [
+      "p_boris",
+      "p_alina"
+    ]
+  },
+  "expected_emitted_event": {
+    "event_id": "ev_a101_r2",
+    "event_type": "ArticleAuthorshipChanged",
+    "schema_label": "AuthorshipEventV2",
+    "causation_id": "cmd_set_authors_a101",
+    "article_id": "a_101",
+    "article_revision": 2,
+    "author_ids": [
+      "p_boris",
+      "p_alina"
+    ]
+  },
+  "expected_state_after_write_before_delivery": {
+    "state_label": "D2",
+    "article_schema_label": "ArticleV2",
+    "projection_schema_label": "AuthorIndexV2",
+    "articles": [
+      {
+        "article_id": "a_101",
+        "article_revision": 2,
+        "title": "Типы и связи",
+        "author_ids": [
+          "p_boris",
+          "p_alina"
+        ],
+        "editor_ids": [
+          "u_editor"
+        ]
+      },
+      {
+        "article_id": "a_102",
+        "article_revision": 1,
+        "title": "Поиск по данным",
+        "author_ids": [
+          "p_boris"
+        ],
+        "editor_ids": [
+          "u_editor"
+        ]
+      }
+    ],
+    "author_index": {
+      "p_alina": [
+        "a_101"
+      ],
+      "p_boris": [
+        "a_102"
+      ],
+      "p_vera": []
+    },
+    "outbox_pending_event_ids": [
+      "ev_a101_r2"
+    ],
+    "inbox_completed_event_ids": [],
+    "transition_complete": false
+  },
+  "expected_state_after_event_delivery": {
+    "state_label": "D3",
+    "article_schema_label": "ArticleV2",
+    "projection_schema_label": "AuthorIndexV2",
+    "articles": [
+      {
+        "article_id": "a_101",
+        "article_revision": 2,
+        "title": "Типы и связи",
+        "author_ids": [
+          "p_boris",
+          "p_alina"
+        ],
+        "editor_ids": [
+          "u_editor"
+        ]
+      },
+      {
+        "article_id": "a_102",
+        "article_revision": 1,
+        "title": "Поиск по данным",
+        "author_ids": [
+          "p_boris"
+        ],
+        "editor_ids": [
+          "u_editor"
+        ]
+      }
+    ],
+    "author_index": {
+      "p_alina": [
+        "a_101"
+      ],
+      "p_boris": [
+        "a_101",
+        "a_102"
+      ],
+      "p_vera": []
+    },
+    "outbox_pending_event_ids": [],
+    "inbox_completed_event_ids": [
+      "ev_a101_r2"
+    ],
+    "transition_complete": true
+  },
+  "expected_observations": {
+    "bylines": {
+      "a_101": "Борис Соколов · Алина Петрова",
+      "a_102": "Борис Соколов"
+    },
+    "search_by_person_id": {
+      "p_alina": [
+        "a_101"
+      ],
+      "p_boris": [
+        "a_101",
+        "a_102"
+      ],
+      "p_vera": []
+    },
+    "profile_article_ids_by_person_id": {
+      "p_alina": [
+        "a_101"
+      ],
+      "p_boris": [
+        "a_101",
+        "a_102"
+      ],
+      "p_vera": []
+    },
+    "decoded_export_json": {
+      "a_101": {
+        "article_id": "a_101",
+        "title": "Типы и связи",
+        "authors": [
+          {
+            "person_id": "p_boris",
+            "display_name": "Борис Соколов"
+          },
+          {
+            "person_id": "p_alina",
+            "display_name": "Алина Петрова"
+          }
+        ]
+      },
+      "a_102": {
+        "article_id": "a_102",
+        "title": "Поиск по данным",
+        "authors": [
+          {
+            "person_id": "p_boris",
+            "display_name": "Борис Соколов"
+          }
+        ]
+      }
+    },
+    "export_comparison_note": "Compare decoded fields and array order; insignificant JSON object key order is not a failure."
+  },
+  "invalid_author_requests": [
+    {
+      "author_ids": [],
+      "diagnostic_example": "EMPTY_AUTHORS"
+    },
+    {
+      "author_ids": [
+        "p_alina",
+        "p_alina"
+      ],
+      "diagnostic_example": "DUPLICATE_AUTHOR"
+    },
+    {
+      "author_ids": [
+        "p_missing"
+      ],
+      "diagnostic_example": "UNKNOWN_PERSON"
+    }
+  ],
+  "mutant_examples": {
+    "export_first_author_only": {
+      "description": "Defect input for the verifier, not observed program output.",
+      "decoded_json": {
+        "article_id": "a_101",
+        "title": "Типы и связи",
+        "authors": [
+          {
+            "person_id": "p_boris",
+            "display_name": "Борис Соколов"
+          }
+        ]
+      }
+    },
+    "export_old_constant": {
+      "description": "Constant old export; no longer reads the article or people. The preservation obligation remains.",
+      "decoded_json": {
+        "article_id": "a_101",
+        "title": "Типы и связи",
+        "author": {
+          "person_id": "p_alina",
+          "display_name": "Алина Петрова"
+        }
+      }
+    },
+    "old_projection_claimed_complete": {
+      "projection_schema_label": "AuthorIndexV1",
+      "author_index": {
+        "p_alina": [
+          "a_101"
+        ],
+        "p_boris": [
+          "a_102"
+        ],
+        "p_vera": []
+      },
+      "inbox_completed_event_ids": [
+        "ev_a101_r2"
+      ],
+      "claimed_transition_complete": true
+    }
+  },
+  "checkpoint_before_search_and_export": {
+    "fixture_status": "synthetic_checkpoint_for_testing",
+    "base_program_label": "S0",
+    "candidate_program_label": "S1",
+    "session_id": "session_A",
+    "open_obligations": [
+      "O04",
+      "O05"
+    ],
+    "frontier": [
+      "E.indexer",
+      "E.export"
+    ],
+    "acceptance_allowed": false
+  },
+  "boundary_image_pipeline_pure": {
+    "fixture_status": "synthetic_boundary_input_not_real_evidence",
+    "program_label": "S0",
+    "claim": "image_pipeline does not consume authorship",
+    "premises": {
+      "image_pipeline_revision": "r1",
+      "image_resize_revision": "r1",
+      "watermark_enabled": false,
+      "inputs": [
+        "image_bytes",
+        "width",
+        "height"
+      ],
+      "declared_effects": []
+    },
+    "expected_use": "Applicable only if exact premises and required coverage hold."
+  },
+  "watermark_variant": {
+    "program_label": "S0w",
+    "image_pipeline_revision": "r2",
+    "image_resize_revision": "r1",
+    "watermark_enabled": true,
+    "additional_nodes": [
+      {
+        "entity_id": "E.image_watermark",
+        "revision_label": "r1",
+        "kind": "operation"
+      }
+    ],
+    "additional_edges": [
+      {
+        "edge_id": "g_image_calls_watermark",
+        "kind": "calls",
+        "source": "E.image_pipeline",
+        "target": "E.image_watermark",
+        "origin": "illustrative_declaration"
+      },
+      {
+        "edge_id": "g_watermark_reads_articles",
+        "kind": "reads",
+        "source": "E.image_watermark",
+        "target": "D.articles",
+        "origin": "illustrative_declaration"
+      },
+      {
+        "edge_id": "g_watermark_reads_names",
+        "kind": "reads",
+        "source": "E.image_watermark",
+        "target": "D.people",
+        "origin": "illustrative_declaration"
+      },
+      {
+        "edge_id": "g_watermark_requires_attribution",
+        "kind": "requires",
+        "source": "E.image_watermark",
+        "target": "C.attribution_complete",
+        "origin": "illustrative_declaration"
+      }
+    ],
+    "expected_watermark_text_for_a_101_after_change": "Борис Соколов · Алина Петрова",
+    "resize_internals_still_pure": true
+  },
+  "scenarios": [
+    {
+      "case_id": "C01",
+      "title": "Основное изменение",
+      "obligations": [
+        "O01",
+        "O02",
+        "O03",
+        "O04",
+        "O05",
+        "O06",
+        "O07",
+        "O08",
+        "O09",
+        "O10"
+      ],
+      "setup": {
+        "starting_state": "D0",
+        "steps": [
+          "migrate_to_D1",
+          "apply_cmd_set_authors_a101",
+          "deliver_ev_a101_r2",
+          "check_all_consumers"
+        ]
+      },
+      "expected": {
+        "state_label": "D3",
+        "candidate_readiness": "ELIGIBLE_IF_ALL_OBLIGATIONS_PASS",
+        "observations_ref": "expected_observations"
+      },
+      "actual_status": "NOT_RUN",
+      "actual_result": null
+    },
+    {
+      "case_id": "C02",
+      "title": "Недопустимый список авторов",
+      "obligations": [
+        "O01"
+      ],
+      "setup": {
+        "state_label": "D1",
+        "actor_id": "u_editor",
+        "requests_ref": "invalid_author_requests"
+      },
+      "expected": {
+        "state_unchanged": true,
+        "no_new_outbox_event": true,
+        "each_request_rejected": true
+      },
+      "actual_status": "NOT_RUN",
+      "actual_result": null
+    },
+    {
+      "case_id": "C03",
+      "title": "Атрибуция отдельно от прав",
+      "obligations": [
+        "O06"
+      ],
+      "setup": {
+        "state_label": "D3",
+        "actor_id": "u_boris",
+        "article_id": "a_101",
+        "requested_author_ids": [
+          "p_boris"
+        ]
+      },
+      "expected": {
+        "diagnostic_example": "PERMISSION_DENIED",
+        "state_unchanged": true,
+        "no_new_outbox_event": true
+      },
+      "actual_status": "NOT_RUN",
+      "actual_result": null
+    },
+    {
+      "case_id": "C04",
+      "title": "Стабильная сигнатура и потеря второго автора",
+      "obligations": [
+        "O05",
+        "O09"
+      ],
+      "setup": {
+        "state_label": "D3",
+        "signature_label": "export(article_id) -> String",
+        "mutant_export_ref": "export_first_author_only"
+      },
+      "expected": {
+        "acceptance_allowed": false,
+        "failing_obligation": "O05",
+        "type_success_is_insufficient": true
+      },
+      "actual_status": "NOT_RUN",
+      "actual_result": null
+    },
+    {
+      "case_id": "C05",
+      "title": "Снятое ребро старого графа",
+      "obligations": [
+        "O05",
+        "O09"
+      ],
+      "setup": {
+        "base_program_label": "S0",
+        "candidate_program_label": "S1_bad_constant_export",
+        "remove_candidate_edges": [
+          "g_export_reads",
+          "g_export_names",
+          "g_export_requires"
+        ],
+        "mutant_export_ref": "export_old_constant"
+      },
+      "expected": {
+        "acceptance_allowed": false,
+        "required_historical_edge": "g_export_reads",
+        "historical_edge_origin": "base",
+        "obligation_still_open": "O05",
+        "edge_removal_does_not_justify_exclusion": true
+      },
+      "actual_status": "NOT_RUN",
+      "actual_result": null
+    },
+    {
+      "case_id": "C06",
+      "title": "Продолжение в новой сессии",
+      "obligations": [
+        "O04",
+        "O05",
+        "O10"
+      ],
+      "setup": {
+        "candidate_program_label": "S1",
+        "checkpoint_ref": "checkpoint_before_search_and_export",
+        "new_session_id": "session_B"
+      },
+      "expected": {
+        "preserved_open_obligations": [
+          "O04",
+          "O05"
+        ],
+        "acceptance_allowed_before_closure": false,
+        "revalidate_evidence_applicability": true
+      },
+      "actual_status": "NOT_RUN",
+      "actual_result": null
+    },
+    {
+      "case_id": "C07",
+      "title": "Изменение head до приёмки",
+      "obligations": [
+        "O09"
+      ],
+      "setup": {
+        "expected_base_label": "S0",
+        "actual_head_label": "Sx",
+        "candidate_program_label": "S1"
+      },
+      "expected": {
+        "acceptance_allowed": false,
+        "diagnostic_example": "STALE_BASE",
+        "head_after_attempt": "Sx"
+      },
+      "actual_status": "NOT_RUN",
+      "actual_result": null
+    },
+    {
+      "case_id": "C08",
+      "title": "Watermark меняет предпосылку исключения",
+      "obligations": [
+        "O08",
+        "O09"
+      ],
+      "setup": {
+        "base_program_label": "S0",
+        "variant_program_label": "S0w",
+        "variant_ref": "watermark_variant",
+        "cached_boundary_ref": "boundary_image_pipeline_pure"
+      },
+      "expected": {
+        "cached_boundary_applicability": "stale",
+        "in_scope_entities": [
+          "E.image_pipeline",
+          "E.image_watermark"
+        ],
+        "resize_internals_may_remain_excluded": true,
+        "acceptance_allowed_with_only_cached_boundary": false
+      },
+      "actual_status": "NOT_RUN",
+      "actual_result": null
+    },
+    {
+      "case_id": "C09",
+      "title": "Старая сохранённая проекция",
+      "obligations": [
+        "O02",
+        "O04",
+        "O09"
+      ],
+      "setup": {
+        "articles_ref": "expected_state_after_event_delivery.articles",
+        "mutant_projection_ref": "old_projection_claimed_complete",
+        "checkpoint": "after_delivery_claimed_complete"
+      },
+      "expected": {
+        "acceptance_allowed": false,
+        "query_person_id": "p_boris",
+        "required_article_ids": [
+          "a_101",
+          "a_102"
+        ],
+        "mutant_article_ids": [
+          "a_102"
+        ]
+      },
+      "actual_status": "NOT_RUN",
+      "actual_result": null
+    },
+    {
+      "case_id": "C10",
+      "title": "Локальная смена разделителя подписи",
+      "obligations": [
+        "O03",
+        "O08",
+        "O09"
+      ],
+      "setup": {
+        "state_label": "D3",
+        "allowed_change": "byline_separator",
+        "old_separator": " · ",
+        "new_separator": " / "
+      },
+      "expected": {
+        "byline_a_101": "Борис Соколов / Алина Петрова",
+        "changed_entity": "E.byline",
+        "state_unchanged": true,
+        "candidate_readiness": "ELIGIBLE_IF_ALL_OBLIGATIONS_PASS",
+        "excluded_internals_if_certificates_applicable": [
+          "E.export",
+          "E.indexer",
+          "E.image_resize"
+        ]
+      },
+      "actual_status": "NOT_RUN",
+      "actual_result": null
+    },
+    {
+      "case_id": "C11",
+      "title": "Недостаточный бюджет анализа",
+      "obligations": [
+        "O04",
+        "O05",
+        "O09"
+      ],
+      "setup": {
+        "analysis_remaining_steps": 0,
+        "pending_entities": [
+          "E.indexer",
+          "E.export"
+        ]
+      },
+      "expected": {
+        "impact_status": "INCOMPLETE",
+        "frontier": [
+          "E.indexer",
+          "E.export"
+        ],
+        "required_obligation_status": "unknown",
+        "acceptance_allowed": false
+      },
+      "actual_status": "NOT_RUN",
+      "actual_result": null
+    },
+    {
+      "case_id": "C12",
+      "title": "Недоступная существенная зависимость",
+      "obligations": [
+        "O05",
+        "O09"
+      ],
+      "setup": {
+        "unavailable_entity": "E.export",
+        "access_result": "READ_UNAVAILABLE",
+        "alternative_sufficient_evidence": false
+      },
+      "expected": {
+        "required_obligation": "O05",
+        "required_obligation_status": "unknown",
+        "acceptance_allowed": false
+      },
+      "actual_status": "NOT_RUN",
+      "actual_result": null
+    },
+    {
+      "case_id": "C13",
+      "title": "Повтор локального события",
+      "obligations": [
+        "O04",
+        "O07"
+      ],
+      "setup": {
+        "state_label": "D2",
+        "deliveries": [
+          "ev_a101_r2",
+          "ev_a101_r2"
+        ]
+      },
+      "expected": {
+        "completed_inbox_event_ids": [
+          "ev_a101_r2"
+        ],
+        "completed_inbox_count_for_event": 1,
+        "author_index": {
+          "p_alina": [
+            "a_101"
+          ],
+          "p_boris": [
+            "a_101",
+            "a_102"
+          ],
+          "p_vera": []
+        },
+        "candidate_readiness": "ELIGIBLE_IF_ALL_OBLIGATIONS_PASS"
+      },
+      "actual_status": "NOT_RUN",
+      "actual_result": null
+    }
+  ],
+  "comparison_plan": {
+    "A": "Proposed TypeScript baseline with compiler/language server, structural editing, tests, search and organized context.",
+    "B": "Same ordinary language and strong tools, plus comparable graph, contracts and continuation records.",
+    "C": "bagaev declared profile; reference interpreter permitted.",
+    "same_across_arms": [
+      "business_requirements",
+      "source_fixture_data",
+      "task_set",
+      "model_version",
+      "token_limit",
+      "time_limit",
+      "cost_limit",
+      "stop_policy"
+    ],
+    "count_setup_and_maintenance_cost": true,
+    "proposed_pilot_attempts_per_arm": 3,
+    "pilot_is_statistical_proof": false,
+    "public_examples_are_not_hidden_measurement_set": true,
+    "freeze_before_measurement": [
+      "graph",
+      "contracts",
+      "model_and_tools",
+      "task_budget",
+      "attempt_count",
+      "oracle",
+      "practical_advantage_thresholds"
+    ],
+    "mandatory_false_accept_limit_on_listed_cases": 0,
+    "positive_cases_must_be_completable": [
+      "C01",
+      "C10",
+      "C13"
+    ],
+    "decisions_required_in_T01_T15": {
+      "model_version": null,
+      "token_limit": null,
+      "time_limit": null,
+      "cost_limit": null,
+      "practical_advantage_thresholds": null
+    },
+    "measurement_can_start_with_unresolved_decisions": false
+  },
+  "illustrative_impact_report": {
+    "illustrative": true,
+    "status": "INCOMPLETE",
+    "candidate_label": "S1",
+    "in_scope_obligations": [
+      "O04",
+      "O05"
+    ],
+    "frontier": [
+      "E.indexer",
+      "E.export"
+    ],
+    "reason": "ANALYSIS_BUDGET_EXHAUSTED",
+    "acceptance_allowed": false
+  },
+  "results": [
+    {
+      "arm": "A",
+      "status": "NOT_RUN",
+      "executed_attempts": null,
+      "false_accepts": null,
+      "false_rejections": null,
+      "completed_tasks": null,
+      "total_cost": null,
+      "total_tokens": null,
+      "wall_time_seconds": null,
+      "attempt_records": []
+    },
+    {
+      "arm": "B",
+      "status": "NOT_RUN",
+      "executed_attempts": null,
+      "false_accepts": null,
+      "false_rejections": null,
+      "completed_tasks": null,
+      "total_cost": null,
+      "total_tokens": null,
+      "wall_time_seconds": null,
+      "attempt_records": []
+    },
+    {
+      "arm": "C",
+      "status": "NOT_RUN",
+      "executed_attempts": null,
+      "false_accepts": null,
+      "false_rejections": null,
+      "completed_tasks": null,
+      "total_cost": null,
+      "total_tokens": null,
+      "wall_time_seconds": null,
+      "attempt_records": []
+    }
+  ],
+  "pure_image_fixture": {
+    "fixture_status": "illustrative_input_and_expected_output_not_executed",
+    "operation_entity": "E.image_resize",
+    "algorithm_for_this_fixture": "Nearest-neighbour sampling: source_x=floor(target_x*source_width/target_width), source_y=floor(target_y*source_height/target_height).",
+    "input": {
+      "pixel_format": "RGBA8",
+      "width": 2,
+      "height": 2,
+      "pixels_row_major": [
+        [
+          255,
+          0,
+          0,
+          255
+        ],
+        [
+          0,
+          255,
+          0,
+          255
+        ],
+        [
+          0,
+          0,
+          255,
+          255
+        ],
+        [
+          255,
+          255,
+          255,
+          255
+        ]
+      ]
+    },
+    "requested_output_size": {
+      "width": 1,
+      "height": 1
+    },
+    "expected_output": {
+      "pixel_format": "RGBA8",
+      "width": 1,
+      "height": 1,
+      "pixels_row_major": [
+        [
+          255,
+          0,
+          0,
+          255
+        ]
+      ]
+    },
+    "author_input_or_lookup_permitted": false,
+    "watermark_note": "Watermark text is a separate stage. The pure resize stage retains these inputs and expected output."
+  }
+}

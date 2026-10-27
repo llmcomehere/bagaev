@@ -1,0 +1,32 @@
+{
+  "id": "resolve/first-error-by-phase",
+  "spec": [
+    "spec/language/surface.md#6-правила-разбора-которые-грамматика-не-выражает",
+    "spec/language/checking.md#1-проект"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "a.bag",
+    "b.bag"
+  ],
+  "expect": {
+    "phase": "check",
+    "outcome": "PRELAUNCH",
+    "diagnostics": [
+      {
+        "code": "UNKNOWN_NAME",
+        "file": "b.bag",
+        "span": [
+          58,
+          65
+        ],
+        "data": {
+          "name": "missing"
+        }
+      }
+    ]
+  }
+}

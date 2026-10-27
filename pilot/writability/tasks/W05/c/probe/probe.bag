@@ -1,0 +1,9 @@
+@id("xpm9mt")
+module probe
+
+use main
+
+@id("dcw8t0")
+fn check(xs: Seq<String>) -> Int64 {
+  main.count_if(xs, fn(s) => s == "a")
+}

@@ -1,0 +1,12 @@
+@id("85zwss")
+module main
+
+@id("n3zyy1")
+type Id = opaque Int64
+
+@id("nw6m9a")
+pub fn main() -> Int64 {
+  match Id(7) {
+    Id(v) => v,
+  }
+}

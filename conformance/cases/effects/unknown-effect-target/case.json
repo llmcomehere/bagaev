@@ -1,0 +1,31 @@
+{
+  "id": "effects/unknown-effect-target",
+  "spec": [
+    "spec/language/effects.md#1-атомы",
+    "spec/language/checking.md#4-объявления-фазы-type-и-effect"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "expect": {
+    "phase": "check",
+    "outcome": "PRELAUNCH",
+    "diagnostics": [
+      {
+        "code": "UNKNOWN_EFFECT_TARGET",
+        "file": "main.bag",
+        "span": [
+          314,
+          327
+        ],
+        "data": {
+          "path": "Blog.comments"
+        }
+      }
+    ]
+  }
+}

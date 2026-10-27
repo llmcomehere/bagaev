@@ -1,0 +1,174 @@
+{
+  "format": "R18-RECOVERY-INTEGRATION-PLAN-1",
+  "scope": "Future actual language/storage/runtime/authority integration; not executed by finite model.",
+  "cases": [
+    {
+      "id": "RI-01",
+      "fault_or_action": "Полный исторический snapshot и tail C..H",
+      "expected": "Exact state/roots/coverage на H; только readonly",
+      "status": "NOT_RUN",
+      "actual_evidence": null
+    },
+    {
+      "id": "RI-02",
+      "fault_or_action": "Полное воспроизведение source/environment/data",
+      "expected": "Реальный decode/check/build, expected outputs; PROGRAM_REPRODUCED только после сравнения",
+      "status": "NOT_RUN",
+      "actual_evidence": null
+    },
+    {
+      "id": "RI-03",
+      "fault_or_action": "Resume старого H при текущем J>H",
+      "expected": "Exact catchup до frozen J, новая эпоха, сохранённые долги",
+      "status": "NOT_RUN",
+      "actual_evidence": null
+    },
+    {
+      "id": "RI-04",
+      "fault_or_action": "Удалена роль из manifest, остальные hashes правильны",
+      "expected": "ROLE_MISSING; нет полного результата",
+      "status": "NOT_RUN",
+      "actual_evidence": null
+    },
+    {
+      "id": "RI-05",
+      "fault_or_action": "Удалена транзитивная package/data dependency",
+      "expected": "CLOSURE_GAP; без PATH/network latest fallback",
+      "status": "NOT_RUN",
+      "actual_evidence": null
+    },
+    {
+      "id": "RI-06",
+      "fault_or_action": "Пропуск, дубликат, перестановка и fork в tail",
+      "expected": "JOURNAL_GAP/FORK; ни один вариант не допускает writer",
+      "status": "NOT_RUN",
+      "actual_evidence": null
+    },
+    {
+      "id": "RI-07",
+      "fault_or_action": "UNKNOWN существовал до C, затем исчез из checkpoint",
+      "expected": "OBLIGATION_MISMATCH или UNPROVEN_CAPTURE_COMPLETENESS",
+      "status": "NOT_RUN",
+      "actual_evidence": null
+    },
+    {
+      "id": "RI-08",
+      "fault_or_action": "Snapshot разных stores снят в несогласованные моменты",
+      "expected": "Participant correlation mismatch; CAPTURE_INCOMPLETE",
+      "status": "NOT_RUN",
+      "actual_evidence": null
+    },
+    {
+      "id": "RI-09",
+      "fault_or_action": "Effect отправлен до barrier, remote ответ после него",
+      "expected": "Один прежний intent остаётся UNKNOWN; replay не отправляет его",
+      "status": "NOT_RUN",
+      "actual_evidence": null
+    },
+    {
+      "id": "RI-10",
+      "fault_or_action": "Reservation есть, local commit возможен, подтверждения нет",
+      "expected": "QUARANTINED до допустимой классификации; absence не ABORTED",
+      "status": "NOT_RUN",
+      "actual_evidence": null
+    },
+    {
+      "id": "RI-11",
+      "fault_or_action": "Current anchor изменился после validation",
+      "expected": "CURRENT_FRONTIER_CHANGED; stale candidate не активирован",
+      "status": "NOT_RUN",
+      "actual_evidence": null
+    },
+    {
+      "id": "RI-12",
+      "fault_or_action": "Старый worker пишет после fence/restore",
+      "expected": "Отказ в реальной commit/dispatch boundary, включая поздний worker",
+      "status": "NOT_RUN",
+      "actual_evidence": null
+    },
+    {
+      "id": "RI-13",
+      "fault_or_action": "Crash до/во время FENCING и до PREPARED",
+      "expected": "Gates закрыты; same-attempt continuation; старая эпоха не оживает",
+      "status": "NOT_RUN",
+      "actual_evidence": null
+    },
+    {
+      "id": "RI-14",
+      "fault_or_action": "Crash после authority commit до local activation",
+      "expected": "Lookup того же attempt; exact candidate activates либо остаётся CLOSED",
+      "status": "NOT_RUN",
+      "actual_evidence": null
+    },
+    {
+      "id": "RI-15",
+      "fault_or_action": "Потерян ответ local activate и повтор запроса",
+      "expected": "Один bound result/epoch; historical receipt после current read auth",
+      "status": "NOT_RUN",
+      "actual_evidence": null
+    },
+    {
+      "id": "RI-16",
+      "fault_or_action": "Две recovery attempts и конфликтующий retry digest",
+      "expected": "Один активный reservation; conflict не перезаписывает намерение",
+      "status": "NOT_RUN",
+      "actual_evidence": null
+    },
+    {
+      "id": "RI-17",
+      "fault_or_action": "Candidate bytes/environment изменились после PREPARED",
+      "expected": "CANDIDATE_CHANGED, commit/activation запрещены",
+      "status": "NOT_RUN",
+      "actual_evidence": null
+    },
+    {
+      "id": "RI-18",
+      "fault_or_action": "Rollback архива authority, counters или retired keys",
+      "expected": "Stale authority/monotonicity отказ; старые адреса не допускаются заново",
+      "status": "NOT_RUN",
+      "actual_evidence": null
+    },
+    {
+      "id": "RI-19",
+      "fault_or_action": "Удалён reverse index и отдельно canonical edge",
+      "expected": "Index перестроен без потерь; edge loss отдельно блокирует полный graph recovery",
+      "status": "NOT_RUN",
+      "actual_evidence": null
+    },
+    {
+      "id": "RI-20",
+      "fault_or_action": "Старый PASS, иной working head, новые watch/session",
+      "expected": "PASS остаётся историческим; applicability пересчитана, старые cursors invalidated",
+      "status": "NOT_RUN",
+      "actual_evidence": null
+    },
+    {
+      "id": "RI-21",
+      "fault_or_action": "Отсутствует checkpoint job, secret или environment byte",
+      "expected": "Точный suspended/binding/closure отказ; budget не обнулён",
+      "status": "NOT_RUN",
+      "actual_evidence": null
+    },
+    {
+      "id": "RI-22",
+      "fault_or_action": "Неизвестный формат или скрытая semantic migration",
+      "expected": "FORMAT_UNSUPPORTED/MIGRATION_REQUIRED, без reinterpretation",
+      "status": "NOT_RUN",
+      "actual_evidence": null
+    },
+    {
+      "id": "RI-23",
+      "fault_or_action": "Crash публикации, partial upload, потерян pin release",
+      "expected": "Нет ложного SEALED; неизвестный pin не снят по TTL",
+      "status": "NOT_RUN",
+      "actual_evidence": null
+    },
+    {
+      "id": "RI-24",
+      "fault_or_action": "Disk-full, limit/epoch overflow, permission revoke",
+      "expected": "Gates остаются закрыты; no eviction debts; no leaked historical receipt",
+      "status": "NOT_RUN",
+      "actual_evidence": null
+    }
+  ]
+}

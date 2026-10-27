@@ -1,0 +1,70 @@
+/// Обработчик события пересчитывает индекс «человек → статьи» (O04).
+/// Повтор доставки того же события дедуплицируется хостом (O07, C13).
+@id("2hxq1p")
+module blog.indexer
+
+use std.store
+use std.seq
+use std.map
+use std.option
+use blog.db.{Blog}
+use blog.people.{PersonId}
+use blog.articles.{ArticleId}
+use blog.authorship
+use blog.authorship.{AttributionComplete}
+use blog.events.{AuthorshipChanged}
+
+@id("z1ac6c")
+handler index_authorship(ev: AuthorshipChanged)
+  uses { reads Blog.author_index, writes Blog.author_index }
+  implements AttributionComplete.complete
+{
+  let index = remove_article(store.all(Blog.author_index), ev.article);
+  store.replace_all(Blog.author_index, add_article(index, authorship.ids(ev.authors), 0, ev.article));
+}
+
+@id("6swhs1")
+fn remove_article(index: Map<PersonId, Seq<ArticleId>>, a: ArticleId) -> Map<PersonId, Seq<ArticleId>> {
+  without_from(index, map.entries(index), 0, a)
+}
+
+@id("0vtqwf")
+fn without_from(
+  index: Map<PersonId, Seq<ArticleId>>,
+  entries: Seq<map.Entry<PersonId, Seq<ArticleId>>>,
+  i: Int64,
+  a: ArticleId,
+) -> Map<PersonId, Seq<ArticleId>> {
+  match seq.get(entries, i) {
+    None => index,
+    Some(e) => without_from(map.put(index, e.key, drop(e.value, 0, a, [])), entries, i + 1, a),
+  }
+}
+
+@id("7xpxq2")
+fn drop(xs: Seq<ArticleId>, i: Int64, a: ArticleId, acc: Seq<ArticleId>) -> Seq<ArticleId> {
+  match seq.get(xs, i) {
+    None => acc,
+    Some(x) => drop(xs, i + 1, a, if x == a {
+      acc
+    } else {
+      seq.append(acc, x)
+    }),
+  }
+}
+
+@id("00fava")
+fn add_article(
+  index: Map<PersonId, Seq<ArticleId>>,
+  people: Seq<PersonId>,
+  i: Int64,
+  a: ArticleId,
+) -> Map<PersonId, Seq<ArticleId>> {
+  match seq.get(people, i) {
+    None => index,
+    Some(p) => {
+      let current = option.value_or(map.get(index, p), []);
+      add_article(map.put(index, p, seq.append(current, a)), people, i + 1, a)
+    },
+  }
+}

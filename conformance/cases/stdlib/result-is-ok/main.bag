@@ -1,0 +1,9 @@
+@id("jt2c3d")
+module main
+use std.result
+
+@id("1qf6jm")
+pub fn main() -> Bool {
+  let r: Result<String, Int64> = Err(7);
+  result.is_ok(r)
+}

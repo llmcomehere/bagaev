@@ -1,0 +1,25 @@
+@id("7kgt3q")
+module main
+use std.store
+use std.seq
+
+@id("vqb17e")
+type Article = record {
+  @id("wpjk63") title: String,
+}
+
+@id("dtjm1f")
+store Blog {
+  @id("1kyc5q") table articles: Map<Int64, Article>
+}
+
+@id("xzjygs")
+event Renamed {
+  @id("abp6dc") id: Int64,
+  @id("pwayjp") title: String,
+}
+
+@id("k2bb0a")
+fn titles(ids: Seq<Int64>) -> Seq<Option<Article>> {
+  seq.map(ids, fn(id) => store.get(Blog.articles, id))
+}

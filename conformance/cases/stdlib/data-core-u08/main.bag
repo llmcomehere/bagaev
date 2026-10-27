@@ -1,0 +1,13 @@
+@id("pmp478")
+module main
+use std.utf8
+use std.string
+use std.bytes
+use std.seq
+
+@id("xsjre0")
+pub fn main() -> Seq<Int64> {
+  let s = "";
+  let b = utf8.encode(s);
+  seq.concat([string.scalar_length(s), bytes.length(b)], bytes.to_octets(b))
+}

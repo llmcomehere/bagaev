@@ -1,0 +1,102 @@
+{
+  "id": "context/blocked-01",
+  "spec": [
+    "spec/links/08-bagaev-extraction.md#6-contextpack"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "app.bag",
+    "cand/app.bag"
+  ],
+  "run": {
+    "links": {
+      "op": "context",
+      "candidate": "cand",
+      "context_budget": 20000,
+      "unavailable": [
+        "app.add"
+      ]
+    }
+  },
+  "expect": {
+    "phase": "context",
+    "outcome": "CONTEXT",
+    "value": {
+      "ready_for_step": false,
+      "blockers": [
+        "ACCESS_BLOCKED"
+      ],
+      "next_cursor": null,
+      "within_budget": true,
+      "obligations": 4,
+      "coverage": [
+        [
+          "app.double",
+          "expanded"
+        ],
+        [
+          "app.Exact.positive",
+          "expanded"
+        ],
+        [
+          "app.origin",
+          "expanded"
+        ],
+        [
+          "app.quadruple",
+          "expanded"
+        ],
+        [
+          "app.origin_positive",
+          "expanded"
+        ],
+        [
+          "app.Point",
+          "boundary"
+        ],
+        [
+          "app.apply",
+          "boundary"
+        ],
+        [
+          "app.S",
+          "pending",
+          "UNKNOWN"
+        ],
+        [
+          "app.S.totals",
+          "pending",
+          "UNKNOWN"
+        ],
+        [
+          "app.S.copy",
+          "pending",
+          "UNKNOWN"
+        ],
+        [
+          "app.Added",
+          "pending",
+          "UNKNOWN"
+        ],
+        [
+          "app.add",
+          "blocked",
+          "ACCESS_BLOCKED"
+        ],
+        [
+          "app.on_added",
+          "pending",
+          "UNKNOWN"
+        ],
+        [
+          "app.total",
+          "pending",
+          "UNKNOWN"
+        ]
+      ]
+    }
+  }
+}

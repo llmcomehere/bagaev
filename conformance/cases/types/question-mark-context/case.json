@@ -1,0 +1,31 @@
+{
+  "id": "types/question-mark-context",
+  "spec": [
+    "spec/language/surface.md#4-выражения",
+    "spec/language/checking.md#5-тела-фазы-type-и-effect"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "expect": {
+    "phase": "check",
+    "outcome": "PRELAUNCH",
+    "diagnostics": [
+      {
+        "code": "QUESTION_MARK_CONTEXT",
+        "file": "main.bag",
+        "span": [
+          101,
+          103
+        ],
+        "data": {
+          "expected": "Option<_>"
+        }
+      }
+    ]
+  }
+}

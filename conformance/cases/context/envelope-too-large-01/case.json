@@ -1,0 +1,25 @@
+{
+  "id": "context/envelope-too-large-01",
+  "spec": [
+    "spec/links/08-bagaev-extraction.md#6-contextpack"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "app.bag",
+    "cand/app.bag"
+  ],
+  "run": {
+    "links": {
+      "op": "context",
+      "candidate": "cand",
+      "context_budget": 10
+    }
+  },
+  "expect": {
+    "phase": "context",
+    "outcome": "REFUSED"
+  }
+}

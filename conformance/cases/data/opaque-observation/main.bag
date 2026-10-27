@@ -1,0 +1,10 @@
+@id("794p1c")
+module main
+
+@id("8zwby6")
+type Id = opaque String
+
+@id("9pdztx")
+pub fn main() -> Id {
+  Id("k")
+}

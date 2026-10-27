@@ -1,0 +1,25 @@
+@id("sa70pc")
+module main
+
+@id("fqq4kg")
+type Article = record {
+  @id("2x4c9m") title: String,
+}
+
+@id("k2ehff")
+store Blog {
+  @id("f66hbh") table articles: Map<Int64, Article>
+}
+
+@id("sdaxgv")
+event Renamed {
+  @id("63qej1") id: Int64,
+  @id("h7bt3q") title: String,
+}
+
+@id("aka6tb")
+pub query q() -> ()
+  uses { reads Blog.articles, writes Blog.articles }
+{
+  ()
+}

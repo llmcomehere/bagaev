@@ -1,0 +1,101 @@
+{
+  "id": "impact/rule-changed-01",
+  "spec": [
+    "spec/links/08-bagaev-extraction.md#5-влияние"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "app.bag",
+    "cand/app.bag"
+  ],
+  "run": {
+    "links": {
+      "op": "impact",
+      "candidate": "cand",
+      "with_tests": true
+    }
+  },
+  "expect": {
+    "phase": "impact",
+    "outcome": "IMPACT",
+    "value": {
+      "status": "COMPLETE",
+      "readiness": "ELIGIBLE_IF_ALL_OBLIGATIONS_PASS",
+      "seeds": [
+        [
+          "app.Exact",
+          "changed"
+        ],
+        [
+          "app.Exact.positive",
+          "changed"
+        ]
+      ],
+      "in_scope": [
+        [
+          "app.Exact",
+          0
+        ],
+        [
+          "app.Exact.positive",
+          0
+        ]
+      ],
+      "unknown": [],
+      "unknown_incomplete": 0,
+      "frontier": [],
+      "obligations": [
+        [
+          "app.Counting",
+          "app.Exact",
+          "about",
+          "open",
+          [
+            "base",
+            "candidate"
+          ]
+        ],
+        [
+          "app.Exact.positive",
+          "app.add",
+          "requires",
+          "open",
+          [
+            "base",
+            "candidate"
+          ]
+        ],
+        [
+          "app.Exact.positive",
+          "app.origin",
+          "implements",
+          "open",
+          [
+            "base",
+            "candidate"
+          ]
+        ],
+        [
+          "app.Exact.positive",
+          "app.origin_positive",
+          "checks",
+          "open",
+          [
+            "base",
+            "candidate"
+          ]
+        ]
+      ],
+      "closed": [],
+      "tests_to_run": [
+        "app.origin_positive"
+      ],
+      "gaps": [],
+      "watch": {}
+    }
+  },
+  "note": "новый текст правила открывает все его обязательства; код не меняется — распространения по коду нет"
+}

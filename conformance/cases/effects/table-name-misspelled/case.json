@@ -1,0 +1,32 @@
+{
+  "id": "effects/table-name-misspelled",
+  "spec": [
+    "spec/language/effects.md#3-эффект-переменные",
+    "spec/language/surface.md#2-файл-модуль-имена",
+    "spec/language/checking.md#3-имена-и-объявления-фаза-resolve"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "expect": {
+    "phase": "check",
+    "outcome": "PRELAUNCH",
+    "diagnostics": [
+      {
+        "code": "UNKNOWN_NAME",
+        "file": "main.bag",
+        "span": [
+          376,
+          383
+        ],
+        "data": {
+          "name": "artcles"
+        }
+      }
+    ]
+  }
+}

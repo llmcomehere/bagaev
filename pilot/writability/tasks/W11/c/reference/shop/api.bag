@@ -1,0 +1,24 @@
+module shop.api
+
+use std.store
+use shop.db.{Shop, Item}
+
+pub type PriceError = enum {
+  Negative,
+  UnknownItem,
+}
+
+pub command set_price(name: String, value: Int64) -> Result<(), PriceError>
+  uses { reads Shop.items, writes Shop.items }
+{
+  if value < 0 {
+    return Err(PriceError.Negative)
+  }
+  match store.get(Shop.items, name) {
+    None => Err(PriceError.UnknownItem),
+    Some(it) => {
+      store.put(Shop.items, name, Item { ..it, price: value });
+      Ok(())
+    },
+  }
+}

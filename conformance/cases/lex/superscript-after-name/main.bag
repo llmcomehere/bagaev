@@ -1,0 +1,2 @@
+module m
+fn f(x: Int64) -> Int64 { x² }

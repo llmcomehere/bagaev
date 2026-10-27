@@ -1,0 +1,24 @@
+{
+  "id": "W13",
+  "kind": "write",
+  "title": "Контракт, реализация и тест",
+  "c_target": "pricing.bag",
+  "t_target": "pricing.ts",
+  "c_expect": {
+    "links": {
+      "round_price": {
+        "implements": [
+          "PriceRules.non_negative",
+          "PriceRules.rounding"
+        ]
+      },
+      "round_price_rules": {
+        "checks": [
+          "PriceRules.non_negative",
+          "PriceRules.rounding"
+        ]
+      }
+    },
+    "keep_ids_from_context": "pricing.bag"
+  }
+}

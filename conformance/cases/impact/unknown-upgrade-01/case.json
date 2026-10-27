@@ -1,0 +1,149 @@
+{
+  "id": "impact/unknown-upgrade-01",
+  "spec": [
+    "spec/links/08-bagaev-extraction.md#5-влияние"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "app.bag",
+    "cand/app.bag"
+  ],
+  "run": {
+    "links": {
+      "op": "impact",
+      "candidate": "cand",
+      "unavailable": [
+        "app.Point"
+      ]
+    }
+  },
+  "expect": {
+    "phase": "impact",
+    "outcome": "IMPACT",
+    "value": {
+      "status": "COMPLETE",
+      "readiness": "BLOCKED",
+      "seeds": [
+        [
+          "app.double",
+          "changed"
+        ]
+      ],
+      "in_scope": [
+        [
+          "app.Added",
+          3
+        ],
+        [
+          "app.S",
+          4
+        ],
+        [
+          "app.S.copy",
+          5
+        ],
+        [
+          "app.S.totals",
+          3
+        ],
+        [
+          "app.add",
+          2
+        ],
+        [
+          "app.double",
+          0
+        ],
+        [
+          "app.on_added",
+          4
+        ],
+        [
+          "app.origin",
+          1
+        ],
+        [
+          "app.origin_positive",
+          2
+        ],
+        [
+          "app.quadruple",
+          1
+        ],
+        [
+          "app.total",
+          6
+        ]
+      ],
+      "unknown": [
+        [
+          "app.Point",
+          "ACCESS_BLOCKED"
+        ]
+      ],
+      "unknown_incomplete": 0,
+      "frontier": [],
+      "obligations": [
+        [
+          "app.Counting",
+          "app.S.copy",
+          "derived_from",
+          "open",
+          [
+            "base",
+            "candidate"
+          ]
+        ],
+        [
+          "app.Exact.positive",
+          "app.add",
+          "requires",
+          "open",
+          [
+            "base",
+            "candidate"
+          ]
+        ],
+        [
+          "app.Exact.positive",
+          "app.origin",
+          "implements",
+          "open",
+          [
+            "base",
+            "candidate"
+          ]
+        ],
+        [
+          "app.Exact.positive",
+          "app.origin_positive",
+          "checks",
+          "open",
+          [
+            "base",
+            "candidate"
+          ]
+        ]
+      ],
+      "closed": [],
+      "tests_to_run": [
+        "app.origin_positive"
+      ],
+      "gaps": [
+        [
+          "app.add",
+          "EXTERNAL_CONSUMERS"
+        ],
+        [
+          "app.total",
+          "EXTERNAL_CONSUMERS"
+        ]
+      ],
+      "watch": {}
+    }
+  },
+  "note": "add сначала достигнут через недоступный Point (unknown, расстояние 1), затем через изменённый double (расстояние 2) — известно затронутое сильнее unknown"
+}

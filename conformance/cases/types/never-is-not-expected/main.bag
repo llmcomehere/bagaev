@@ -1,0 +1,7 @@
+@id("mzzy3s")
+module main
+
+@id("24k4bs")
+fn f() -> Never {
+  1
+}

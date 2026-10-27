@@ -1,0 +1,33 @@
+{
+  "id": "l1/core-c06-b13-c4",
+  "spec": [
+    "spec/runtime/machine.md#7-соответствие-core-01",
+    "spec/runtime/machine.md#3-шаг"
+  ],
+  "origin": "model:models/r07-core/fixtures/core-machine.json#bounded_matrix",
+  "levels": [
+    "L1",
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "run": {
+    "entry": "main.main",
+    "fuel": 13,
+    "cancel_at": 4
+  },
+  "expect": {
+    "phase": "run",
+    "effects": [],
+    "outcome": "SEMANTIC_STOP",
+    "code": "CANCELLED",
+    "steps": 4,
+    "trace_l1": [
+      "CALL_ENTER",
+      "LAMBDA",
+      "CALL_ARGS",
+      "CONST"
+    ]
+  }
+}

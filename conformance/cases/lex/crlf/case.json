@@ -1,0 +1,17 @@
+{
+  "id": "lex/crlf",
+  "spec": [
+    "spec/language/lexical.md#1-кодировка-и-символы"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "expect": {
+    "phase": "parse",
+    "outcome": "ACCEPTED"
+  }
+}

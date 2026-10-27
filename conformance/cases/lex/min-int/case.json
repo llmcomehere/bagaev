@@ -1,0 +1,17 @@
+{
+  "id": "lex/min-int",
+  "spec": [
+    "spec/language/lexical.md#4-литералы"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "expect": {
+    "phase": "parse",
+    "outcome": "ACCEPTED"
+  }
+}

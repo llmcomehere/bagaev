@@ -1,0 +1,8 @@
+@id("r0t79c")
+module main
+use std.i64
+
+@id("b0r6qb")
+pub fn main() -> fn(Int64) -> Int64 {
+  fn(x: Int64) => x
+}

@@ -1,0 +1,8 @@
+@id("q431ws")
+module main
+
+@id("sydgtb")
+type P = record {
+  @id("0r9jax") x: Int64,
+  @id("pv0t3z") x: Bool,
+}

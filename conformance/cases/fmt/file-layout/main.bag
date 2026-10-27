@@ -1,0 +1,12 @@
+module m
+
+
+use std.seq
+
+use std.map   
+@id("aaaaaa")
+fn f() -> Int64 { 1 }
+
+
+
+@id("bbbbbb") fn g() -> Int64 { 2 }

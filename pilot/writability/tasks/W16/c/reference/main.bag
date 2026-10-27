@@ -1,0 +1,24 @@
+@id("qzrt4d")
+module main
+
+use std.store
+use std.option
+
+@id("0wr5f8")
+pub store Catalog {
+  @id("xpd7pn") table discounts: Map<String, Int64>
+}
+
+@id("vkaj3w")
+pub fn final_price(name: String, base: Int64) -> Int64
+  uses { reads Catalog.discounts }
+{
+  base - option.value_or(store.get(Catalog.discounts, name), 0)
+}
+
+@id("asce8v")
+pub query quote(name: String, base: Int64) -> Int64
+  uses { reads Catalog.discounts }
+{
+  final_price(name, base)
+}

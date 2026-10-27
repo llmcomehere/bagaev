@@ -1,0 +1,17 @@
+{
+  "id": "types/result-explicitly-ignored",
+  "spec": [
+    "spec/language/surface.md#6-правила-разбора-которые-грамматика-не-выражает"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "expect": {
+    "phase": "check",
+    "outcome": "ACCEPTED"
+  }
+}

@@ -1,0 +1,1821 @@
+{
+  "format": "r03-research-law-fixtures/1",
+  "bagaev_execution": false,
+  "research_ast_execution": true,
+  "machine_checked_universal_proof": false,
+  "manual_expected_outputs_are_authored": true,
+  "base_fixture_ref": "fixtures/programs.json",
+  "reuse_all_base_programs": true,
+  "resource_domain_source": "fixtures/programs.json#/domain",
+  "programs": [
+    {
+      "id": "set_identity",
+      "ast": {
+        "op": "to_set",
+        "value": {
+          "op": "read",
+          "view": "member_set"
+        }
+      },
+      "compile_config": {}
+    },
+    {
+      "id": "nested_count",
+      "ast": {
+        "op": "size",
+        "value": {
+          "op": "to_set",
+          "value": {
+            "op": "read",
+            "view": "ordered_members"
+          }
+        }
+      },
+      "compile_config": {}
+    },
+    {
+      "id": "nested_set",
+      "ast": {
+        "op": "to_set",
+        "value": {
+          "op": "to_set",
+          "value": {
+            "op": "read",
+            "view": "ordered_members"
+          }
+        }
+      },
+      "compile_config": {}
+    },
+    {
+      "id": "emit_ordered_then_count",
+      "ast": {
+        "op": "emit",
+        "label": "authors",
+        "value": {
+          "op": "read",
+          "view": "ordered_members"
+        },
+        "then": {
+          "op": "size",
+          "value": {
+            "op": "read",
+            "view": "ordered_members"
+          }
+        }
+      },
+      "compile_config": {}
+    },
+    {
+      "id": "emit_set_then_const",
+      "ast": {
+        "op": "emit",
+        "label": "authors",
+        "value": {
+          "op": "to_set",
+          "value": {
+            "op": "read",
+            "view": "ordered_members"
+          }
+        },
+        "then": {
+          "op": "const",
+          "value": "ok"
+        }
+      },
+      "compile_config": {}
+    },
+    {
+      "id": "strict_size_then_const",
+      "ast": {
+        "op": "let",
+        "name": "unused",
+        "value": {
+          "op": "size",
+          "value": {
+            "op": "read",
+            "view": "ordered_members"
+          }
+        },
+        "body": {
+          "op": "const",
+          "value": "ok"
+        }
+      },
+      "compile_config": {}
+    },
+    {
+      "id": "strict_head_then_count",
+      "ast": {
+        "op": "let",
+        "name": "unused",
+        "value": {
+          "op": "head",
+          "value": {
+            "op": "read",
+            "view": "ordered_members"
+          }
+        },
+        "body": {
+          "op": "size",
+          "value": {
+            "op": "read",
+            "view": "ordered_members"
+          }
+        }
+      },
+      "compile_config": {}
+    },
+    {
+      "id": "conditional_head_count",
+      "ast": {
+        "op": "if",
+        "condition": {
+          "op": "eq",
+          "left": {
+            "op": "head",
+            "value": {
+              "op": "read",
+              "view": "ordered_members"
+            }
+          },
+          "right": {
+            "op": "const",
+            "value": "a"
+          }
+        },
+        "then": {
+          "op": "size",
+          "value": {
+            "op": "read",
+            "view": "ordered_members"
+          }
+        },
+        "else": {
+          "op": "const",
+          "value": 0
+        }
+      },
+      "compile_config": {}
+    },
+    {
+      "id": "literal_false_branch_preserved",
+      "ast": {
+        "op": "if",
+        "condition": {
+          "op": "const",
+          "value": false
+        },
+        "then": {
+          "op": "seq",
+          "items": [
+            {
+              "op": "head",
+              "value": {
+                "op": "read",
+                "view": "ordered_members"
+              }
+            },
+            {
+              "op": "const",
+              "value": 0
+            }
+          ]
+        },
+        "else": {
+          "op": "size",
+          "value": {
+            "op": "read",
+            "view": "ordered_members"
+          }
+        }
+      },
+      "compile_config": {}
+    },
+    {
+      "id": "size_bound_variable",
+      "ast": {
+        "op": "let",
+        "name": "members",
+        "value": {
+          "op": "read",
+          "view": "ordered_members"
+        },
+        "body": {
+          "op": "size",
+          "value": {
+            "op": "var",
+            "name": "members"
+          }
+        }
+      },
+      "compile_config": {}
+    },
+    {
+      "id": "size_effectful_arg",
+      "ast": {
+        "op": "size",
+        "value": {
+          "op": "emit",
+          "label": "probe",
+          "value": {
+            "op": "const",
+            "value": "ran"
+          },
+          "then": {
+            "op": "read",
+            "view": "ordered_members"
+          }
+        }
+      },
+      "compile_config": {}
+    },
+    {
+      "id": "opaque_size",
+      "ast": {
+        "op": "size",
+        "value": {
+          "op": "opaque",
+          "name": "unknown_members",
+          "type": "ordered_members",
+          "kind": "external"
+        }
+      },
+      "compile_config": {}
+    },
+    {
+      "id": "tuple_three_laws",
+      "ast": {
+        "op": "tuple",
+        "items": [
+          {
+            "op": "size",
+            "value": {
+              "op": "read",
+              "view": "ordered_members"
+            }
+          },
+          {
+            "op": "to_set",
+            "value": {
+              "op": "read",
+              "view": "ordered_members"
+            }
+          },
+          {
+            "op": "size",
+            "value": {
+              "op": "read",
+              "view": "member_set"
+            }
+          }
+        ]
+      },
+      "compile_config": {}
+    },
+    {
+      "id": "config_same_count",
+      "ast": {
+        "op": "if",
+        "condition": {
+          "op": "config",
+          "key": "enabled"
+        },
+        "then": {
+          "op": "size",
+          "value": {
+            "op": "read",
+            "view": "ordered_members"
+          }
+        },
+        "else": {
+          "op": "read",
+          "view": "count"
+        }
+      },
+      "compile_config": {
+        "enabled": true
+      }
+    },
+    {
+      "id": "effect_then_fail_then_count",
+      "ast": {
+        "op": "seq",
+        "items": [
+          {
+            "op": "emit",
+            "label": "warm",
+            "value": {
+              "op": "const",
+              "value": "yes"
+            },
+            "then": {
+              "op": "const",
+              "value": null
+            }
+          },
+          {
+            "op": "fail",
+            "code": "STOP",
+            "type": "int"
+          },
+          {
+            "op": "size",
+            "value": {
+              "op": "read",
+              "view": "ordered_members"
+            }
+          }
+        ]
+      },
+      "compile_config": {}
+    }
+  ],
+  "normalization_expectations": [
+    {
+      "program_ref": "r02:size_ordered",
+      "expected_normalized_ast": {
+        "op": "read",
+        "view": "count"
+      },
+      "expected_rule_ids": [
+        "SIZE_ORDERED_TO_COUNT"
+      ],
+      "expected_paths": [
+        []
+      ],
+      "expected_refined_observations": [
+        "count",
+        "read_status"
+      ],
+      "expected_complete": true
+    },
+    {
+      "program_ref": "r02:to_set_ordered",
+      "expected_normalized_ast": {
+        "op": "read",
+        "view": "member_set"
+      },
+      "expected_rule_ids": [
+        "TO_SET_ORDERED_TO_MEMBER_SET"
+      ],
+      "expected_paths": [
+        []
+      ],
+      "expected_refined_observations": [
+        "member_set",
+        "read_status"
+      ],
+      "expected_complete": true
+    },
+    {
+      "program_ref": "r02:size_set",
+      "expected_normalized_ast": {
+        "op": "read",
+        "view": "count"
+      },
+      "expected_rule_ids": [
+        "SIZE_MEMBER_SET_TO_COUNT"
+      ],
+      "expected_paths": [
+        []
+      ],
+      "expected_refined_observations": [
+        "count",
+        "read_status"
+      ],
+      "expected_complete": true
+    },
+    {
+      "program_ref": "law:set_identity",
+      "expected_normalized_ast": {
+        "op": "read",
+        "view": "member_set"
+      },
+      "expected_rule_ids": [
+        "TO_SET_MEMBER_SET_IDENTITY"
+      ],
+      "expected_paths": [
+        []
+      ],
+      "expected_refined_observations": [
+        "member_set",
+        "read_status"
+      ],
+      "expected_complete": true
+    },
+    {
+      "program_ref": "law:nested_count",
+      "expected_normalized_ast": {
+        "op": "read",
+        "view": "count"
+      },
+      "expected_rule_ids": [
+        "TO_SET_ORDERED_TO_MEMBER_SET",
+        "SIZE_MEMBER_SET_TO_COUNT"
+      ],
+      "expected_paths": [
+        [
+          "value"
+        ],
+        []
+      ],
+      "expected_refined_observations": [
+        "count",
+        "read_status"
+      ],
+      "expected_complete": true
+    },
+    {
+      "program_ref": "law:nested_set",
+      "expected_normalized_ast": {
+        "op": "read",
+        "view": "member_set"
+      },
+      "expected_rule_ids": [
+        "TO_SET_ORDERED_TO_MEMBER_SET",
+        "TO_SET_MEMBER_SET_IDENTITY"
+      ],
+      "expected_paths": [
+        [
+          "value"
+        ],
+        []
+      ],
+      "expected_refined_observations": [
+        "member_set",
+        "read_status"
+      ],
+      "expected_complete": true
+    },
+    {
+      "program_ref": "law:emit_ordered_then_count",
+      "expected_normalized_ast": {
+        "op": "emit",
+        "label": "authors",
+        "value": {
+          "op": "read",
+          "view": "ordered_members"
+        },
+        "then": {
+          "op": "read",
+          "view": "count"
+        }
+      },
+      "expected_rule_ids": [
+        "SIZE_ORDERED_TO_COUNT"
+      ],
+      "expected_paths": [
+        [
+          "then"
+        ]
+      ],
+      "expected_refined_observations": [
+        "count",
+        "ordered_members",
+        "read_status"
+      ],
+      "expected_complete": true
+    },
+    {
+      "program_ref": "law:emit_set_then_const",
+      "expected_normalized_ast": {
+        "op": "emit",
+        "label": "authors",
+        "value": {
+          "op": "read",
+          "view": "member_set"
+        },
+        "then": {
+          "op": "const",
+          "value": "ok"
+        }
+      },
+      "expected_rule_ids": [
+        "TO_SET_ORDERED_TO_MEMBER_SET"
+      ],
+      "expected_paths": [
+        [
+          "value"
+        ]
+      ],
+      "expected_refined_observations": [
+        "member_set",
+        "read_status"
+      ],
+      "expected_complete": true
+    },
+    {
+      "program_ref": "law:strict_size_then_const",
+      "expected_normalized_ast": {
+        "op": "let",
+        "name": "unused",
+        "value": {
+          "op": "read",
+          "view": "count"
+        },
+        "body": {
+          "op": "const",
+          "value": "ok"
+        }
+      },
+      "expected_rule_ids": [
+        "SIZE_ORDERED_TO_COUNT"
+      ],
+      "expected_paths": [
+        [
+          "value"
+        ]
+      ],
+      "expected_refined_observations": [
+        "count",
+        "read_status"
+      ],
+      "expected_complete": true
+    },
+    {
+      "program_ref": "law:strict_head_then_count",
+      "expected_normalized_ast": {
+        "op": "let",
+        "name": "unused",
+        "value": {
+          "op": "head",
+          "value": {
+            "op": "read",
+            "view": "ordered_members"
+          }
+        },
+        "body": {
+          "op": "read",
+          "view": "count"
+        }
+      },
+      "expected_rule_ids": [
+        "SIZE_ORDERED_TO_COUNT"
+      ],
+      "expected_paths": [
+        [
+          "body"
+        ]
+      ],
+      "expected_refined_observations": [
+        "count",
+        "ordered_members",
+        "read_status"
+      ],
+      "expected_complete": true
+    },
+    {
+      "program_ref": "law:conditional_head_count",
+      "expected_normalized_ast": {
+        "op": "if",
+        "condition": {
+          "op": "eq",
+          "left": {
+            "op": "head",
+            "value": {
+              "op": "read",
+              "view": "ordered_members"
+            }
+          },
+          "right": {
+            "op": "const",
+            "value": "a"
+          }
+        },
+        "then": {
+          "op": "read",
+          "view": "count"
+        },
+        "else": {
+          "op": "const",
+          "value": 0
+        }
+      },
+      "expected_rule_ids": [
+        "SIZE_ORDERED_TO_COUNT"
+      ],
+      "expected_paths": [
+        [
+          "then"
+        ]
+      ],
+      "expected_refined_observations": [
+        "count",
+        "ordered_members",
+        "read_status"
+      ],
+      "expected_complete": true
+    },
+    {
+      "program_ref": "law:literal_false_branch_preserved",
+      "expected_normalized_ast": {
+        "op": "if",
+        "condition": {
+          "op": "const",
+          "value": false
+        },
+        "then": {
+          "op": "seq",
+          "items": [
+            {
+              "op": "head",
+              "value": {
+                "op": "read",
+                "view": "ordered_members"
+              }
+            },
+            {
+              "op": "const",
+              "value": 0
+            }
+          ]
+        },
+        "else": {
+          "op": "read",
+          "view": "count"
+        }
+      },
+      "expected_rule_ids": [
+        "SIZE_ORDERED_TO_COUNT"
+      ],
+      "expected_paths": [
+        [
+          "else"
+        ]
+      ],
+      "expected_refined_observations": [
+        "count",
+        "ordered_members",
+        "read_status"
+      ],
+      "expected_complete": true
+    },
+    {
+      "program_ref": "law:size_bound_variable",
+      "expected_normalized_ast": {
+        "op": "let",
+        "name": "members",
+        "value": {
+          "op": "read",
+          "view": "ordered_members"
+        },
+        "body": {
+          "op": "size",
+          "value": {
+            "op": "var",
+            "name": "members"
+          }
+        }
+      },
+      "expected_rule_ids": [],
+      "expected_paths": [],
+      "expected_refined_observations": [
+        "ordered_members",
+        "read_status"
+      ],
+      "expected_complete": true
+    },
+    {
+      "program_ref": "law:size_effectful_arg",
+      "expected_normalized_ast": {
+        "op": "size",
+        "value": {
+          "op": "emit",
+          "label": "probe",
+          "value": {
+            "op": "const",
+            "value": "ran"
+          },
+          "then": {
+            "op": "read",
+            "view": "ordered_members"
+          }
+        }
+      },
+      "expected_rule_ids": [],
+      "expected_paths": [],
+      "expected_refined_observations": [
+        "ordered_members",
+        "read_status"
+      ],
+      "expected_complete": true
+    },
+    {
+      "program_ref": "law:opaque_size",
+      "expected_normalized_ast": {
+        "op": "size",
+        "value": {
+          "op": "opaque",
+          "name": "unknown_members",
+          "type": "ordered_members",
+          "kind": "external"
+        }
+      },
+      "expected_rule_ids": [],
+      "expected_paths": [],
+      "expected_refined_observations": [],
+      "expected_complete": false
+    },
+    {
+      "program_ref": "law:tuple_three_laws",
+      "expected_normalized_ast": {
+        "op": "tuple",
+        "items": [
+          {
+            "op": "read",
+            "view": "count"
+          },
+          {
+            "op": "read",
+            "view": "member_set"
+          },
+          {
+            "op": "read",
+            "view": "count"
+          }
+        ]
+      },
+      "expected_rule_ids": [
+        "SIZE_ORDERED_TO_COUNT",
+        "TO_SET_ORDERED_TO_MEMBER_SET",
+        "SIZE_MEMBER_SET_TO_COUNT"
+      ],
+      "expected_paths": [
+        [
+          "items",
+          0
+        ],
+        [
+          "items",
+          1
+        ],
+        [
+          "items",
+          2
+        ]
+      ],
+      "expected_refined_observations": [
+        "count",
+        "member_set",
+        "read_status"
+      ],
+      "expected_complete": true
+    },
+    {
+      "program_ref": "law:config_same_count",
+      "expected_normalized_ast": {
+        "op": "if",
+        "condition": {
+          "op": "config",
+          "key": "enabled"
+        },
+        "then": {
+          "op": "read",
+          "view": "count"
+        },
+        "else": {
+          "op": "read",
+          "view": "count"
+        }
+      },
+      "expected_rule_ids": [
+        "SIZE_ORDERED_TO_COUNT"
+      ],
+      "expected_paths": [
+        [
+          "then"
+        ]
+      ],
+      "expected_refined_observations": [
+        "count",
+        "read_status"
+      ],
+      "expected_complete": true
+    },
+    {
+      "program_ref": "law:effect_then_fail_then_count",
+      "expected_normalized_ast": {
+        "op": "seq",
+        "items": [
+          {
+            "op": "emit",
+            "label": "warm",
+            "value": {
+              "op": "const",
+              "value": "yes"
+            },
+            "then": {
+              "op": "const",
+              "value": null
+            }
+          },
+          {
+            "op": "fail",
+            "code": "STOP",
+            "type": "int"
+          },
+          {
+            "op": "read",
+            "view": "count"
+          }
+        ]
+      },
+      "expected_rule_ids": [
+        "SIZE_ORDERED_TO_COUNT"
+      ],
+      "expected_paths": [
+        [
+          "items",
+          2
+        ]
+      ],
+      "expected_refined_observations": [
+        "count",
+        "read_status"
+      ],
+      "expected_complete": true
+    }
+  ],
+  "manual_cases": [
+    {
+      "id": "L01_count_permutation",
+      "program_ref": "r02:size_ordered",
+      "before": {
+        "members": [
+          "a",
+          "b"
+        ]
+      },
+      "after": {
+        "members": [
+          "b",
+          "a"
+        ]
+      },
+      "expected_before": {
+        "status": "ok",
+        "value": 2,
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_after": {
+        "status": "ok",
+        "value": 2,
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_r02_decision": "RECHECK",
+      "expected_refined_decision": "EXCLUDED",
+      "purpose": "Exact size/order law removes only order sensitivity."
+    },
+    {
+      "id": "L02_set_permutation",
+      "program_ref": "r02:to_set_ordered",
+      "before": {
+        "members": [
+          "a",
+          "b"
+        ]
+      },
+      "after": {
+        "members": [
+          "b",
+          "a"
+        ]
+      },
+      "expected_before": {
+        "status": "ok",
+        "value": {
+          "$set": [
+            "a",
+            "b"
+          ]
+        },
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_after": {
+        "status": "ok",
+        "value": {
+          "$set": [
+            "a",
+            "b"
+          ]
+        },
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_r02_decision": "RECHECK",
+      "expected_refined_decision": "EXCLUDED",
+      "purpose": "Exact to_set/order law retains membership observation."
+    },
+    {
+      "id": "L03_count_identity_replacement",
+      "program_ref": "r02:size_set",
+      "before": {
+        "members": [
+          "a"
+        ]
+      },
+      "after": {
+        "members": [
+          "b"
+        ]
+      },
+      "expected_before": {
+        "status": "ok",
+        "value": 1,
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_after": {
+        "status": "ok",
+        "value": 1,
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_r02_decision": "RECHECK",
+      "expected_refined_decision": "EXCLUDED",
+      "purpose": "Changing IDs with the same cardinality does not change size."
+    },
+    {
+      "id": "L04_count_insertion",
+      "program_ref": "r02:size_ordered",
+      "before": {
+        "members": [
+          "a"
+        ]
+      },
+      "after": {
+        "members": [
+          "a",
+          "b"
+        ]
+      },
+      "expected_before": {
+        "status": "ok",
+        "value": 1,
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_after": {
+        "status": "ok",
+        "value": 2,
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_r02_decision": "RECHECK",
+      "expected_refined_decision": "RECHECK",
+      "purpose": "Insertion still invalidates count."
+    },
+    {
+      "id": "L05_set_replacement",
+      "program_ref": "r02:to_set_ordered",
+      "before": {
+        "members": [
+          "a"
+        ]
+      },
+      "after": {
+        "members": [
+          "b"
+        ]
+      },
+      "expected_before": {
+        "status": "ok",
+        "value": {
+          "$set": [
+            "a"
+          ]
+        },
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_after": {
+        "status": "ok",
+        "value": {
+          "$set": [
+            "b"
+          ]
+        },
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_r02_decision": "RECHECK",
+      "expected_refined_decision": "RECHECK",
+      "purpose": "Replacing a member still invalidates the set."
+    },
+    {
+      "id": "L06_missing_to_empty",
+      "program_ref": "r02:size_ordered",
+      "before": null,
+      "after": {
+        "members": []
+      },
+      "expected_before": {
+        "status": "error",
+        "value": null,
+        "error": "MISSING_RESOURCE",
+        "trace": [],
+        "complete": true
+      },
+      "expected_after": {
+        "status": "ok",
+        "value": 0,
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_r02_decision": "RECHECK",
+      "expected_refined_decision": "RECHECK",
+      "purpose": "Empty and missing are not observationally interchangeable."
+    },
+    {
+      "id": "L07_changed_read_error",
+      "program_ref": "r02:size_ordered",
+      "before": {
+        "members": [],
+        "read_error": "READ_DENIED"
+      },
+      "after": {
+        "members": [],
+        "read_error": "TRANSIENT"
+      },
+      "expected_before": {
+        "status": "error",
+        "value": null,
+        "error": "READ_DENIED",
+        "trace": [],
+        "complete": true
+      },
+      "expected_after": {
+        "status": "error",
+        "value": null,
+        "error": "TRANSIENT",
+        "trace": [],
+        "complete": true
+      },
+      "expected_r02_decision": "RECHECK",
+      "expected_refined_decision": "RECHECK",
+      "purpose": "A rewrite must preserve the exact read error code."
+    },
+    {
+      "id": "L08_empty_set_to_missing",
+      "program_ref": "r02:to_set_ordered",
+      "before": {
+        "members": []
+      },
+      "after": null,
+      "expected_before": {
+        "status": "ok",
+        "value": {
+          "$set": []
+        },
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_after": {
+        "status": "error",
+        "value": null,
+        "error": "MISSING_RESOURCE",
+        "trace": [],
+        "complete": true
+      },
+      "expected_r02_decision": "RECHECK",
+      "expected_refined_decision": "RECHECK",
+      "purpose": "Set conversion preserves failure of the underlying read."
+    },
+    {
+      "id": "L09_identity_law_permutation",
+      "program_ref": "law:set_identity",
+      "before": {
+        "members": [
+          "a",
+          "b"
+        ]
+      },
+      "after": {
+        "members": [
+          "b",
+          "a"
+        ]
+      },
+      "expected_before": {
+        "status": "ok",
+        "value": {
+          "$set": [
+            "a",
+            "b"
+          ]
+        },
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_after": {
+        "status": "ok",
+        "value": {
+          "$set": [
+            "a",
+            "b"
+          ]
+        },
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_r02_decision": "EXCLUDED",
+      "expected_refined_decision": "EXCLUDED",
+      "purpose": "Identity law is supported without inventing a precision gain."
+    },
+    {
+      "id": "L10_nested_count_replacement",
+      "program_ref": "law:nested_count",
+      "before": {
+        "members": [
+          "a"
+        ]
+      },
+      "after": {
+        "members": [
+          "b"
+        ]
+      },
+      "expected_before": {
+        "status": "ok",
+        "value": 1,
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_after": {
+        "status": "ok",
+        "value": 1,
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_r02_decision": "RECHECK",
+      "expected_refined_decision": "EXCLUDED",
+      "purpose": "Bottom-up composition uses two exact supported rewrites."
+    },
+    {
+      "id": "L11_nested_set_permutation",
+      "program_ref": "law:nested_set",
+      "before": {
+        "members": [
+          "a",
+          "b"
+        ]
+      },
+      "after": {
+        "members": [
+          "b",
+          "a"
+        ]
+      },
+      "expected_before": {
+        "status": "ok",
+        "value": {
+          "$set": [
+            "a",
+            "b"
+          ]
+        },
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_after": {
+        "status": "ok",
+        "value": {
+          "$set": [
+            "a",
+            "b"
+          ]
+        },
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_r02_decision": "RECHECK",
+      "expected_refined_decision": "EXCLUDED",
+      "purpose": "Second rewrite sees the intermediate tree, not a stale original path."
+    },
+    {
+      "id": "L12_preserved_ordered_emit",
+      "program_ref": "law:emit_ordered_then_count",
+      "before": {
+        "members": [
+          "a",
+          "b"
+        ]
+      },
+      "after": {
+        "members": [
+          "b",
+          "a"
+        ]
+      },
+      "expected_before": {
+        "status": "ok",
+        "value": 2,
+        "error": null,
+        "trace": [
+          {
+            "label": "authors",
+            "value": [
+              "a",
+              "b"
+            ]
+          }
+        ],
+        "complete": true
+      },
+      "expected_after": {
+        "status": "ok",
+        "value": 2,
+        "error": null,
+        "trace": [
+          {
+            "label": "authors",
+            "value": [
+              "b",
+              "a"
+            ]
+          }
+        ],
+        "complete": true
+      },
+      "expected_r02_decision": "RECHECK",
+      "expected_refined_decision": "RECHECK",
+      "purpose": "Constant count does not erase an ordered effect payload."
+    },
+    {
+      "id": "L13_normalized_effect_payload",
+      "program_ref": "law:emit_set_then_const",
+      "before": {
+        "members": [
+          "a",
+          "b"
+        ]
+      },
+      "after": {
+        "members": [
+          "b",
+          "a"
+        ]
+      },
+      "expected_before": {
+        "status": "ok",
+        "value": "ok",
+        "error": null,
+        "trace": [
+          {
+            "label": "authors",
+            "value": {
+              "$set": [
+                "a",
+                "b"
+              ]
+            }
+          }
+        ],
+        "complete": true
+      },
+      "expected_after": {
+        "status": "ok",
+        "value": "ok",
+        "error": null,
+        "trace": [
+          {
+            "label": "authors",
+            "value": {
+              "$set": [
+                "a",
+                "b"
+              ]
+            }
+          }
+        ],
+        "complete": true
+      },
+      "expected_r02_decision": "RECHECK",
+      "expected_refined_decision": "EXCLUDED",
+      "purpose": "Normalization inside a pure payload preserves the emitted value."
+    },
+    {
+      "id": "L14_strict_initializer_permutation",
+      "program_ref": "law:strict_size_then_const",
+      "before": {
+        "members": [
+          "a",
+          "b"
+        ]
+      },
+      "after": {
+        "members": [
+          "b",
+          "a"
+        ]
+      },
+      "expected_before": {
+        "status": "ok",
+        "value": "ok",
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_after": {
+        "status": "ok",
+        "value": "ok",
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_r02_decision": "RECHECK",
+      "expected_refined_decision": "EXCLUDED",
+      "purpose": "A retained strict initializer can use a justified narrower observation."
+    },
+    {
+      "id": "L15_strict_initializer_missing",
+      "program_ref": "law:strict_size_then_const",
+      "before": null,
+      "after": {
+        "members": [
+          "a"
+        ]
+      },
+      "expected_before": {
+        "status": "error",
+        "value": null,
+        "error": "MISSING_RESOURCE",
+        "trace": [],
+        "complete": true
+      },
+      "expected_after": {
+        "status": "ok",
+        "value": "ok",
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_r02_decision": "RECHECK",
+      "expected_refined_decision": "RECHECK",
+      "purpose": "Unused initializer errors remain visible."
+    },
+    {
+      "id": "L16_strict_head_error",
+      "program_ref": "law:strict_head_then_count",
+      "before": {
+        "members": []
+      },
+      "after": {
+        "members": [
+          "a"
+        ]
+      },
+      "expected_before": {
+        "status": "error",
+        "value": null,
+        "error": "EMPTY_HEAD",
+        "trace": [],
+        "complete": true
+      },
+      "expected_after": {
+        "status": "ok",
+        "value": 1,
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_r02_decision": "RECHECK",
+      "expected_refined_decision": "RECHECK",
+      "purpose": "The count law must not erase a separate failing head initializer."
+    },
+    {
+      "id": "L17_retained_head_conservatism",
+      "program_ref": "law:strict_head_then_count",
+      "before": {
+        "members": [
+          "a",
+          "b"
+        ]
+      },
+      "after": {
+        "members": [
+          "b",
+          "a"
+        ]
+      },
+      "expected_before": {
+        "status": "ok",
+        "value": 2,
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_after": {
+        "status": "ok",
+        "value": 2,
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_r02_decision": "RECHECK",
+      "expected_refined_decision": "RECHECK",
+      "purpose": "No liveness-based removal of the unused strict head is attempted."
+    },
+    {
+      "id": "L18_control_dependency",
+      "program_ref": "law:conditional_head_count",
+      "before": {
+        "members": [
+          "a",
+          "b"
+        ]
+      },
+      "after": {
+        "members": [
+          "b",
+          "a"
+        ]
+      },
+      "expected_before": {
+        "status": "ok",
+        "value": 2,
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_after": {
+        "status": "ok",
+        "value": 0,
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_r02_decision": "RECHECK",
+      "expected_refined_decision": "RECHECK",
+      "purpose": "Order-dependent branch selection remains an observation."
+    },
+    {
+      "id": "L19_unused_branch_retained",
+      "program_ref": "law:literal_false_branch_preserved",
+      "before": {
+        "members": [
+          "a",
+          "b"
+        ]
+      },
+      "after": {
+        "members": [
+          "b",
+          "a"
+        ]
+      },
+      "expected_before": {
+        "status": "ok",
+        "value": 2,
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_after": {
+        "status": "ok",
+        "value": 2,
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_r02_decision": "RECHECK",
+      "expected_refined_decision": "RECHECK",
+      "purpose": "This catalog does not eliminate branches or their static use."
+    },
+    {
+      "id": "L20_variable_is_not_literal_redex",
+      "program_ref": "law:size_bound_variable",
+      "before": {
+        "members": [
+          "a",
+          "b"
+        ]
+      },
+      "after": {
+        "members": [
+          "b",
+          "a"
+        ]
+      },
+      "expected_before": {
+        "status": "ok",
+        "value": 2,
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_after": {
+        "status": "ok",
+        "value": 2,
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_r02_decision": "RECHECK",
+      "expected_refined_decision": "RECHECK",
+      "purpose": "Exact syntactic laws do not silently become alias analysis."
+    },
+    {
+      "id": "L21_effectful_argument_not_redex",
+      "program_ref": "law:size_effectful_arg",
+      "before": {
+        "members": [
+          "a",
+          "b"
+        ]
+      },
+      "after": {
+        "members": [
+          "b",
+          "a"
+        ]
+      },
+      "expected_before": {
+        "status": "ok",
+        "value": 2,
+        "error": null,
+        "trace": [
+          {
+            "label": "probe",
+            "value": "ran"
+          }
+        ],
+        "complete": true
+      },
+      "expected_after": {
+        "status": "ok",
+        "value": 2,
+        "error": null,
+        "trace": [
+          {
+            "label": "probe",
+            "value": "ran"
+          }
+        ],
+        "complete": true
+      },
+      "expected_r02_decision": "RECHECK",
+      "expected_refined_decision": "RECHECK",
+      "purpose": "The rule does not match through an effectful argument."
+    },
+    {
+      "id": "L22_unknown_call_stays_unknown",
+      "program_ref": "law:opaque_size",
+      "before": {
+        "members": [
+          "a",
+          "b"
+        ]
+      },
+      "after": {
+        "members": [
+          "b",
+          "a"
+        ]
+      },
+      "expected_before": {
+        "status": "unknown",
+        "value": null,
+        "error": null,
+        "trace": [],
+        "complete": false
+      },
+      "expected_after": {
+        "status": "unknown",
+        "value": null,
+        "error": null,
+        "trace": [],
+        "complete": false
+      },
+      "expected_r02_decision": "UNKNOWN",
+      "expected_refined_decision": "UNKNOWN",
+      "purpose": "Two unknown outcomes never justify equivalence or exclusion."
+    },
+    {
+      "id": "L23_tuple_paths",
+      "program_ref": "law:tuple_three_laws",
+      "before": {
+        "members": [
+          "a",
+          "b"
+        ]
+      },
+      "after": {
+        "members": [
+          "b",
+          "a"
+        ]
+      },
+      "expected_before": {
+        "status": "ok",
+        "value": [
+          2,
+          {
+            "$set": [
+              "a",
+              "b"
+            ]
+          },
+          2
+        ],
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_after": {
+        "status": "ok",
+        "value": [
+          2,
+          {
+            "$set": [
+              "a",
+              "b"
+            ]
+          },
+          2
+        ],
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_r02_decision": "RECHECK",
+      "expected_refined_decision": "EXCLUDED",
+      "purpose": "Array-index paths apply independently inside one typed tuple."
+    },
+    {
+      "id": "L24_frozen_config",
+      "program_ref": "law:config_same_count",
+      "before": {
+        "members": [
+          "a",
+          "b"
+        ]
+      },
+      "after": {
+        "members": [
+          "b",
+          "a"
+        ]
+      },
+      "expected_before": {
+        "status": "ok",
+        "value": 2,
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_after": {
+        "status": "ok",
+        "value": 2,
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_r02_decision": "RECHECK",
+      "expected_refined_decision": "EXCLUDED",
+      "purpose": "The exact fixed configuration stays part of the proof context."
+    },
+    {
+      "id": "L25_failure_and_effect_order",
+      "program_ref": "law:effect_then_fail_then_count",
+      "before": {
+        "members": [
+          "a",
+          "b"
+        ]
+      },
+      "after": {
+        "members": [
+          "b",
+          "a"
+        ]
+      },
+      "expected_before": {
+        "status": "error",
+        "value": null,
+        "error": "STOP",
+        "trace": [
+          {
+            "label": "warm",
+            "value": "yes"
+          }
+        ],
+        "complete": true
+      },
+      "expected_after": {
+        "status": "error",
+        "value": null,
+        "error": "STOP",
+        "trace": [
+          {
+            "label": "warm",
+            "value": "yes"
+          }
+        ],
+        "complete": true
+      },
+      "expected_r02_decision": "RECHECK",
+      "expected_refined_decision": "EXCLUDED",
+      "purpose": "Normalization after a failure does not remove or move earlier effects/errors."
+    },
+    {
+      "id": "L26_same_failure_conservative",
+      "program_ref": "law:effect_then_fail_then_count",
+      "before": {
+        "members": [
+          "a"
+        ]
+      },
+      "after": null,
+      "expected_before": {
+        "status": "error",
+        "value": null,
+        "error": "STOP",
+        "trace": [
+          {
+            "label": "warm",
+            "value": "yes"
+          }
+        ],
+        "complete": true
+      },
+      "expected_after": {
+        "status": "error",
+        "value": null,
+        "error": "STOP",
+        "trace": [
+          {
+            "label": "warm",
+            "value": "yes"
+          }
+        ],
+        "complete": true
+      },
+      "expected_r02_decision": "RECHECK",
+      "expected_refined_decision": "RECHECK",
+      "purpose": "Conservative static reads may remain after a guaranteed failure."
+    },
+    {
+      "id": "L27_head_is_not_size",
+      "program_ref": "r02:head",
+      "before": {
+        "members": [
+          "a",
+          "b"
+        ]
+      },
+      "after": {
+        "members": [
+          "b",
+          "a"
+        ]
+      },
+      "expected_before": {
+        "status": "ok",
+        "value": "a",
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_after": {
+        "status": "ok",
+        "value": "b",
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_r02_decision": "RECHECK",
+      "expected_refined_decision": "RECHECK",
+      "purpose": "No order-to-set narrowing is allowed for head."
+    }
+  ],
+  "notes": [
+    "These are exact rules for a closed research AST, not laws inferred from finite tests.",
+    "The inherited 31 R02 ASTs and these additional contexts share the same finite resource domain for decision comparisons.",
+    "Expected ASTs, paths, observations and decisions are authored independently of laws.py.",
+    "A read error change outside the bounded resource corpus is covered as an explicit manual case.",
+    "Equivalent-edit certificates are checked separately; ordinary assessment keeps original code revision guards."
+  ]
+}

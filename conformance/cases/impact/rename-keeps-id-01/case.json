@@ -1,0 +1,50 @@
+{
+  "id": "impact/rename-keeps-id-01",
+  "spec": [
+    "spec/links/08-bagaev-extraction.md#2-узлы-и-ревизии",
+    "spec/links/08-bagaev-extraction.md#5-влияние"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "app.bag",
+    "cand/app.bag"
+  ],
+  "run": {
+    "links": {
+      "op": "impact",
+      "candidate": "cand"
+    }
+  },
+  "expect": {
+    "phase": "impact",
+    "outcome": "IMPACT",
+    "value": {
+      "status": "COMPLETE",
+      "readiness": "NO_OPEN_OBLIGATIONS",
+      "seeds": [
+        [
+          "app.lonely",
+          "changed"
+        ]
+      ],
+      "in_scope": [
+        [
+          "app.lonely",
+          0
+        ]
+      ],
+      "unknown": [],
+      "unknown_incomplete": 0,
+      "frontier": [],
+      "obligations": [],
+      "closed": [],
+      "tests_to_run": [],
+      "gaps": [],
+      "watch": {}
+    }
+  },
+  "note": "переименование сохраняет EntityId: одна изменённая сущность, а не удаление и создание"
+}

@@ -1,0 +1,106 @@
+{
+  "id": "impact/authorship-c10-01",
+  "spec": [
+    "spec/links/08-bagaev-extraction.md#5-влияние"
+  ],
+  "origin": "model:models/r07-core/data/authorship-fixtures.json#C10",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "blog/acl.bag",
+    "blog/articles.bag",
+    "blog/authorship.bag",
+    "blog/byline.bag",
+    "blog/db.bag",
+    "blog/editor.bag",
+    "blog/events.bag",
+    "blog/export.bag",
+    "blog/image.bag",
+    "blog/indexer.bag",
+    "blog/migration.bag",
+    "blog/people.bag",
+    "blog/search.bag",
+    "blog/tests.bag",
+    "cand/blog/acl.bag",
+    "cand/blog/articles.bag",
+    "cand/blog/authorship.bag",
+    "cand/blog/byline.bag",
+    "cand/blog/db.bag",
+    "cand/blog/editor.bag",
+    "cand/blog/events.bag",
+    "cand/blog/export.bag",
+    "cand/blog/image.bag",
+    "cand/blog/indexer.bag",
+    "cand/blog/migration.bag",
+    "cand/blog/people.bag",
+    "cand/blog/search.bag",
+    "cand/blog/tests.bag"
+  ],
+  "run": {
+    "links": {
+      "op": "impact",
+      "candidate": "cand",
+      "watch": [
+        "blog.export.export_article",
+        "blog.indexer.index_authorship",
+        "blog.image.resize"
+      ]
+    }
+  },
+  "expect": {
+    "phase": "impact",
+    "outcome": "IMPACT",
+    "value": {
+      "status": "COMPLETE",
+      "readiness": "ELIGIBLE_IF_ALL_OBLIGATIONS_PASS",
+      "seeds": [
+        [
+          "blog.byline.byline",
+          "changed"
+        ]
+      ],
+      "in_scope": [
+        [
+          "blog.byline.byline",
+          0
+        ]
+      ],
+      "unknown": [],
+      "unknown_incomplete": 0,
+      "frontier": [],
+      "obligations": [
+        [
+          "blog.authorship.AttributionComplete.complete",
+          "blog.byline.byline",
+          "requires",
+          "open",
+          [
+            "base",
+            "candidate"
+          ]
+        ]
+      ],
+      "closed": [],
+      "tests_to_run": [
+        "blog.tests.export_keeps_all_authors"
+      ],
+      "gaps": [],
+      "watch": {
+        "blog.export.export_article": [
+          "excluded_with_basis",
+          "D83b-no-dependency-path"
+        ],
+        "blog.indexer.index_authorship": [
+          "excluded_with_basis",
+          "D83b-no-dependency-path"
+        ],
+        "blog.image.resize": [
+          "excluded_with_basis",
+          "D83b-no-dependency-path"
+        ]
+      }
+    }
+  },
+  "note": "смена разделителя подписи; узлы фикстуры → программа: E.byline → blog.byline.byline, E.export → blog.export.export_article, E.indexer → blog.indexer.index_authorship, E.image_pipeline → blog.image.image_pipeline, E.image_resize → blog.image.resize, E.image_watermark → blog.image.watermark, O05 → обязательство (AttributionComplete.complete, export_article); g_export_requires → requires export_article → complete"
+}

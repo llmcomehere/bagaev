@@ -1,0 +1,10 @@
+@id("9jsgje")
+module main
+
+@id("zqcc28")
+type Cell = opaque Int64
+
+@id("msmgsh")
+fn f(c: Cell) -> () {
+  match c {}
+}

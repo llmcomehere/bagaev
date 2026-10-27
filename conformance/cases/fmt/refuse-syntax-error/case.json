@@ -1,0 +1,27 @@
+{
+  "id": "fmt/refuse-syntax-error",
+  "spec": [
+    "spec/language/format.md#отказ"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "expect": {
+    "phase": "fmt",
+    "outcome": "PRELAUNCH",
+    "diagnostics": [
+      {
+        "code": "UNEXPECTED_TOKEN",
+        "file": "main.bag",
+        "span": [
+          16,
+          18
+        ]
+      }
+    ]
+  }
+}

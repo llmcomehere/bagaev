@@ -1,0 +1,41 @@
+@id("y9fqek")
+module main
+use std.seq
+use std.string
+use std.i64
+
+@id("14jhs0")
+fn twice<T>(x: T, f: fn(T) -> T) -> T {
+  f(f(x))
+}
+
+@id("6mxb9n")
+fn total(xs: Seq<Int64>) -> Int64 {
+  seq.fold(xs, 0, fn(acc, x) => acc + x)
+}
+
+@id("rakwbq")
+fn lengths(xs: Seq<String>) -> Seq<Int64> {
+  seq.map(xs, fn(s) => string.scalar_length(s))
+}
+
+@id("3rmn38")
+fn first_or(xs: Seq<Int64>, d: Int64) -> Int64 {
+  match seq.get(xs, 0) {
+    Some(v) => v,
+    None => d,
+  }
+}
+
+@id("j1nd4z")
+fn parse_sum(a: String, b: String) -> Result<Int64, i64.ParseIntError> {
+  let x = i64.parse_decimal(a)?;
+  let y = i64.parse_decimal(b)?;
+  Ok(twice(x + y, fn(v) => v))
+}
+
+@id("qdw3pf")
+fn head(xs: Seq<Int64>) -> Option<Int64> {
+  let x = seq.get(xs, 0)?;
+  Some(x)
+}

@@ -1,0 +1,31 @@
+{
+  "id": "stdlib/seq-slice-empty",
+  "spec": [
+    "spec/stdlib/acceptance.md",
+    "spec/runtime/machine.md#5-примитивы-и-fault"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "run": {
+    "entry": "main.main"
+  },
+  "expect": {
+    "phase": "run",
+    "effects": [],
+    "outcome": "RETURNED",
+    "value": {
+      "type": "Result<Seq<Int64>,std.data.BoundsError>",
+      "tag": "Ok",
+      "payload": {
+        "type": "Seq<Int64>",
+        "items": []
+      }
+    }
+  },
+  "note": "SA-024"
+}

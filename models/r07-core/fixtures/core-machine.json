@@ -1,0 +1,4103 @@
+{
+  "schema": "bagaev-core-fixtures/0.1",
+  "profile_revision": "core-machine/r06-v1",
+  "authorship": "Program outcomes and finite traces are written from the approved CORE charge table; no model-generated expected values.",
+  "scope": {
+    "bagaev_execution": false,
+    "research_core_execution": true,
+    "universal_proof": false,
+    "host_effects": false,
+    "unbounded_ast_enumeration": false,
+    "function_descriptor_is_closure_equality": false
+  },
+  "programs": [
+    {
+      "id": "C01",
+      "focus": "CONST has one charge; terminal is free",
+      "program": {
+        "source_id": "C01",
+        "revision": "authored-v1",
+        "result_type": "Int64",
+        "entry": {
+          "op": "const",
+          "nid": "n",
+          "type": "Int64",
+          "value": 7
+        },
+        "profile_revision": "core-machine/r06-v1"
+      },
+      "expected": {
+        "termination": "RETURNED",
+        "code": "RETURNED",
+        "value": {
+          "type": "Int64",
+          "value": 7
+        },
+        "steps": 1,
+        "trace": [
+          [
+            "CONST",
+            "n"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "C02",
+      "focus": "strict annotated let and lexical lookup",
+      "program": {
+        "source_id": "C02",
+        "revision": "authored-v1",
+        "result_type": "Int64",
+        "entry": {
+          "op": "let",
+          "nid": "let",
+          "binder": "x",
+          "type": "Int64",
+          "value": {
+            "op": "const",
+            "nid": "init",
+            "type": "Int64",
+            "value": 7
+          },
+          "body": {
+            "op": "var",
+            "nid": "use",
+            "binder": "x",
+            "type_args": []
+          }
+        },
+        "profile_revision": "core-machine/r06-v1"
+      },
+      "expected": {
+        "termination": "RETURNED",
+        "code": "RETURNED",
+        "value": {
+          "type": "Int64",
+          "value": 7
+        },
+        "steps": 4,
+        "trace": [
+          [
+            "LET_ENTER",
+            "let"
+          ],
+          [
+            "CONST",
+            "init"
+          ],
+          [
+            "LET_BIND",
+            "let"
+          ],
+          [
+            "VAR",
+            "use"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "C03",
+      "focus": "then selected; else excluded from dynamic trace",
+      "program": {
+        "source_id": "C03",
+        "revision": "authored-v1",
+        "result_type": "Int64",
+        "entry": {
+          "op": "if",
+          "nid": "if",
+          "condition": {
+            "op": "const",
+            "nid": "cond",
+            "type": "Bool",
+            "value": true
+          },
+          "then": {
+            "op": "const",
+            "nid": "yes",
+            "type": "Int64",
+            "value": 7
+          },
+          "else": {
+            "op": "const",
+            "nid": "no",
+            "type": "Int64",
+            "value": 9
+          }
+        },
+        "profile_revision": "core-machine/r06-v1"
+      },
+      "expected": {
+        "termination": "RETURNED",
+        "code": "RETURNED",
+        "value": {
+          "type": "Int64",
+          "value": 7
+        },
+        "steps": 4,
+        "trace": [
+          [
+            "IF_ENTER",
+            "if"
+          ],
+          [
+            "CONST",
+            "cond"
+          ],
+          [
+            "IF_THEN",
+            "if"
+          ],
+          [
+            "CONST",
+            "yes"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "C04",
+      "focus": "else selected; then excluded from dynamic trace",
+      "program": {
+        "source_id": "C04",
+        "revision": "authored-v1",
+        "result_type": "Int64",
+        "entry": {
+          "op": "if",
+          "nid": "if",
+          "condition": {
+            "op": "const",
+            "nid": "cond",
+            "type": "Bool",
+            "value": false
+          },
+          "then": {
+            "op": "const",
+            "nid": "yes",
+            "type": "Int64",
+            "value": 7
+          },
+          "else": {
+            "op": "const",
+            "nid": "no",
+            "type": "Int64",
+            "value": 9
+          }
+        },
+        "profile_revision": "core-machine/r06-v1"
+      },
+      "expected": {
+        "termination": "RETURNED",
+        "code": "RETURNED",
+        "value": {
+          "type": "Int64",
+          "value": 9
+        },
+        "steps": 4,
+        "trace": [
+          [
+            "IF_ENTER",
+            "if"
+          ],
+          [
+            "CONST",
+            "cond"
+          ],
+          [
+            "IF_ELSE",
+            "if"
+          ],
+          [
+            "CONST",
+            "no"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "C05",
+      "focus": "zero-argument closure has CALL_BODY without CALL_ARGS",
+      "program": {
+        "source_id": "C05",
+        "revision": "authored-v1",
+        "result_type": "Int64",
+        "entry": {
+          "op": "call",
+          "nid": "call",
+          "fn": {
+            "op": "lambda",
+            "nid": "lambda",
+            "params": [],
+            "result_type": "Int64",
+            "body": {
+              "op": "const",
+              "nid": "body",
+              "type": "Int64",
+              "value": 7
+            }
+          },
+          "args": []
+        },
+        "profile_revision": "core-machine/r06-v1"
+      },
+      "expected": {
+        "termination": "RETURNED",
+        "code": "RETURNED",
+        "value": {
+          "type": "Int64",
+          "value": 7
+        },
+        "steps": 4,
+        "trace": [
+          [
+            "CALL_ENTER",
+            "call"
+          ],
+          [
+            "LAMBDA",
+            "lambda"
+          ],
+          [
+            "CALL_BODY",
+            "call"
+          ],
+          [
+            "CONST",
+            "body"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "C06",
+      "focus": "both arguments strict; second argument unused; source order visible",
+      "program": {
+        "source_id": "C06",
+        "revision": "authored-v1",
+        "result_type": "Int64",
+        "entry": {
+          "op": "call",
+          "nid": "call",
+          "fn": {
+            "op": "lambda",
+            "nid": "lambda",
+            "params": [
+              {
+                "binder": "x",
+                "type": "Int64"
+              },
+              {
+                "binder": "unused",
+                "type": "Int64"
+              }
+            ],
+            "result_type": "Int64",
+            "body": {
+              "op": "var",
+              "nid": "body",
+              "binder": "x",
+              "type_args": []
+            }
+          },
+          "args": [
+            {
+              "op": "const",
+              "nid": "first",
+              "type": "Int64",
+              "value": 7
+            },
+            {
+              "op": "const",
+              "nid": "second",
+              "type": "Int64",
+              "value": 9
+            }
+          ]
+        },
+        "profile_revision": "core-machine/r06-v1"
+      },
+      "expected": {
+        "termination": "RETURNED",
+        "code": "RETURNED",
+        "value": {
+          "type": "Int64",
+          "value": 7
+        },
+        "steps": 8,
+        "trace": [
+          [
+            "CALL_ENTER",
+            "call"
+          ],
+          [
+            "LAMBDA",
+            "lambda"
+          ],
+          [
+            "CALL_ARGS",
+            "call"
+          ],
+          [
+            "CONST",
+            "first"
+          ],
+          [
+            "CALL_NEXT",
+            "call"
+          ],
+          [
+            "CONST",
+            "second"
+          ],
+          [
+            "CALL_BODY",
+            "call"
+          ],
+          [
+            "VAR",
+            "body"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "C07",
+      "focus": "Err is an ordinary fully evaluated unused argument",
+      "program": {
+        "source_id": "C07",
+        "revision": "authored-v1",
+        "result_type": "Int64",
+        "entry": {
+          "op": "call",
+          "nid": "call",
+          "fn": {
+            "op": "lambda",
+            "nid": "lambda",
+            "params": [
+              {
+                "binder": "unused",
+                "type": {
+                  "tag": "result",
+                  "ok": "Int64"
+                }
+              }
+            ],
+            "result_type": "Int64",
+            "body": {
+              "op": "const",
+              "nid": "body",
+              "type": "Int64",
+              "value": 7
+            }
+          },
+          "args": [
+            {
+              "op": "prim",
+              "nid": "divide",
+              "name": "i64.div",
+              "args": [
+                {
+                  "op": "const",
+                  "nid": "one",
+                  "type": "Int64",
+                  "value": 1
+                },
+                {
+                  "op": "const",
+                  "nid": "zero",
+                  "type": "Int64",
+                  "value": 0
+                }
+              ]
+            }
+          ]
+        },
+        "profile_revision": "core-machine/r06-v1"
+      },
+      "expected": {
+        "termination": "RETURNED",
+        "code": "RETURNED",
+        "value": {
+          "type": "Int64",
+          "value": 7
+        },
+        "steps": 10,
+        "trace": [
+          [
+            "CALL_ENTER",
+            "call"
+          ],
+          [
+            "LAMBDA",
+            "lambda"
+          ],
+          [
+            "CALL_ARGS",
+            "call"
+          ],
+          [
+            "PRIM_ENTER",
+            "divide"
+          ],
+          [
+            "CONST",
+            "one"
+          ],
+          [
+            "PRIM_NEXT",
+            "divide"
+          ],
+          [
+            "CONST",
+            "zero"
+          ],
+          [
+            "PRIM_APPLY",
+            "divide"
+          ],
+          [
+            "CALL_BODY",
+            "call"
+          ],
+          [
+            "CONST",
+            "body"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "C08",
+      "focus": "f(f(x)); nested strict call and repeated activation",
+      "program": {
+        "source_id": "C08",
+        "revision": "authored-v1",
+        "result_type": "Int64",
+        "entry": {
+          "op": "let",
+          "nid": "let",
+          "binder": "f",
+          "type": {
+            "tag": "fn",
+            "params": [
+              "Int64"
+            ],
+            "result": "Int64"
+          },
+          "value": {
+            "op": "lambda",
+            "nid": "lambda",
+            "params": [
+              {
+                "binder": "x",
+                "type": "Int64"
+              }
+            ],
+            "result_type": "Int64",
+            "body": {
+              "op": "var",
+              "nid": "body",
+              "binder": "x",
+              "type_args": []
+            }
+          },
+          "body": {
+            "op": "call",
+            "nid": "outer",
+            "fn": {
+              "op": "var",
+              "nid": "outer-f",
+              "binder": "f",
+              "type_args": []
+            },
+            "args": [
+              {
+                "op": "call",
+                "nid": "inner",
+                "fn": {
+                  "op": "var",
+                  "nid": "inner-f",
+                  "binder": "f",
+                  "type_args": []
+                },
+                "args": [
+                  {
+                    "op": "const",
+                    "nid": "arg",
+                    "type": "Int64",
+                    "value": 5
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "profile_revision": "core-machine/r06-v1"
+      },
+      "expected": {
+        "termination": "RETURNED",
+        "code": "RETURNED",
+        "value": {
+          "type": "Int64",
+          "value": 5
+        },
+        "steps": 14,
+        "trace": [
+          [
+            "LET_ENTER",
+            "let"
+          ],
+          [
+            "LAMBDA",
+            "lambda"
+          ],
+          [
+            "LET_BIND",
+            "let"
+          ],
+          [
+            "CALL_ENTER",
+            "outer"
+          ],
+          [
+            "VAR",
+            "outer-f"
+          ],
+          [
+            "CALL_ARGS",
+            "outer"
+          ],
+          [
+            "CALL_ENTER",
+            "inner"
+          ],
+          [
+            "VAR",
+            "inner-f"
+          ],
+          [
+            "CALL_ARGS",
+            "inner"
+          ],
+          [
+            "CONST",
+            "arg"
+          ],
+          [
+            "CALL_BODY",
+            "inner"
+          ],
+          [
+            "VAR",
+            "body"
+          ],
+          [
+            "CALL_BODY",
+            "outer"
+          ],
+          [
+            "VAR",
+            "body"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "C09",
+      "focus": "escaped lexical capture; second factory activation cannot mutate the first",
+      "program": {
+        "source_id": "C09",
+        "revision": "authored-v1",
+        "result_type": "Int64",
+        "entry": {
+          "op": "let",
+          "nid": "factory-let",
+          "binder": "factory",
+          "type": {
+            "tag": "fn",
+            "params": [
+              "Int64"
+            ],
+            "result": {
+              "tag": "fn",
+              "params": [],
+              "result": "Int64"
+            }
+          },
+          "value": {
+            "op": "lambda",
+            "nid": "factory-lambda",
+            "params": [
+              {
+                "binder": "capture",
+                "type": "Int64"
+              }
+            ],
+            "result_type": {
+              "tag": "fn",
+              "params": [],
+              "result": "Int64"
+            },
+            "body": {
+              "op": "lambda",
+              "nid": "captured-lambda",
+              "params": [],
+              "result_type": "Int64",
+              "body": {
+                "op": "var",
+                "nid": "captured-read",
+                "binder": "capture",
+                "type_args": []
+              }
+            }
+          },
+          "body": {
+            "op": "let",
+            "nid": "saved-let",
+            "binder": "saved",
+            "type": {
+              "tag": "fn",
+              "params": [],
+              "result": "Int64"
+            },
+            "value": {
+              "op": "call",
+              "nid": "make-seven",
+              "fn": {
+                "op": "var",
+                "nid": "factory-seven",
+                "binder": "factory",
+                "type_args": []
+              },
+              "args": [
+                {
+                  "op": "const",
+                  "nid": "seven",
+                  "type": "Int64",
+                  "value": 7
+                }
+              ]
+            },
+            "body": {
+              "op": "let",
+              "nid": "other-let",
+              "binder": "other",
+              "type": {
+                "tag": "fn",
+                "params": [],
+                "result": "Int64"
+              },
+              "value": {
+                "op": "call",
+                "nid": "make-nine",
+                "fn": {
+                  "op": "var",
+                  "nid": "factory-nine",
+                  "binder": "factory",
+                  "type_args": []
+                },
+                "args": [
+                  {
+                    "op": "const",
+                    "nid": "nine",
+                    "type": "Int64",
+                    "value": 9
+                  }
+                ]
+              },
+              "body": {
+                "op": "call",
+                "nid": "invoke",
+                "fn": {
+                  "op": "var",
+                  "nid": "saved-ref",
+                  "binder": "saved",
+                  "type_args": []
+                },
+                "args": []
+              }
+            }
+          }
+        },
+        "profile_revision": "core-machine/r06-v1"
+      },
+      "expected": {
+        "termination": "RETURNED",
+        "code": "RETURNED",
+        "value": {
+          "type": "Int64",
+          "value": 7
+        },
+        "steps": 23,
+        "trace": [
+          [
+            "LET_ENTER",
+            "factory-let"
+          ],
+          [
+            "LAMBDA",
+            "factory-lambda"
+          ],
+          [
+            "LET_BIND",
+            "factory-let"
+          ],
+          [
+            "LET_ENTER",
+            "saved-let"
+          ],
+          [
+            "CALL_ENTER",
+            "make-seven"
+          ],
+          [
+            "VAR",
+            "factory-seven"
+          ],
+          [
+            "CALL_ARGS",
+            "make-seven"
+          ],
+          [
+            "CONST",
+            "seven"
+          ],
+          [
+            "CALL_BODY",
+            "make-seven"
+          ],
+          [
+            "LAMBDA",
+            "captured-lambda"
+          ],
+          [
+            "LET_BIND",
+            "saved-let"
+          ],
+          [
+            "LET_ENTER",
+            "other-let"
+          ],
+          [
+            "CALL_ENTER",
+            "make-nine"
+          ],
+          [
+            "VAR",
+            "factory-nine"
+          ],
+          [
+            "CALL_ARGS",
+            "make-nine"
+          ],
+          [
+            "CONST",
+            "nine"
+          ],
+          [
+            "CALL_BODY",
+            "make-nine"
+          ],
+          [
+            "LAMBDA",
+            "captured-lambda"
+          ],
+          [
+            "LET_BIND",
+            "other-let"
+          ],
+          [
+            "CALL_ENTER",
+            "invoke"
+          ],
+          [
+            "VAR",
+            "saved-ref"
+          ],
+          [
+            "CALL_BODY",
+            "invoke"
+          ],
+          [
+            "VAR",
+            "captured-read"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "C10",
+      "focus": "executed mutual recursion f->g->f with captured outer value",
+      "program": {
+        "source_id": "C10",
+        "revision": "authored-v1",
+        "result_type": "Int64",
+        "entry": {
+          "op": "let",
+          "nid": "capture-let",
+          "binder": "outer",
+          "type": "Int64",
+          "value": {
+            "op": "const",
+            "nid": "capture-value",
+            "type": "Int64",
+            "value": 7
+          },
+          "body": {
+            "op": "letrec",
+            "nid": "group",
+            "type_params": [],
+            "functions": [
+              {
+                "binder": "f",
+                "params": [
+                  {
+                    "binder": "f-b",
+                    "type": "Bool"
+                  }
+                ],
+                "result_type": "Int64",
+                "body": {
+                  "op": "if",
+                  "nid": "f-if",
+                  "condition": {
+                    "op": "var",
+                    "nid": "f-condition",
+                    "binder": "f-b",
+                    "type_args": []
+                  },
+                  "then": {
+                    "op": "var",
+                    "nid": "f-capture",
+                    "binder": "outer",
+                    "type_args": []
+                  },
+                  "else": {
+                    "op": "call",
+                    "nid": "f-to-g",
+                    "fn": {
+                      "op": "var",
+                      "nid": "g-ref",
+                      "binder": "g",
+                      "type_args": []
+                    },
+                    "args": [
+                      {
+                        "op": "const",
+                        "nid": "f-true",
+                        "type": "Bool",
+                        "value": true
+                      }
+                    ]
+                  }
+                }
+              },
+              {
+                "binder": "g",
+                "params": [
+                  {
+                    "binder": "g-b",
+                    "type": "Bool"
+                  }
+                ],
+                "result_type": "Int64",
+                "body": {
+                  "op": "if",
+                  "nid": "g-if",
+                  "condition": {
+                    "op": "var",
+                    "nid": "g-condition",
+                    "binder": "g-b",
+                    "type_args": []
+                  },
+                  "then": {
+                    "op": "call",
+                    "nid": "g-to-f",
+                    "fn": {
+                      "op": "var",
+                      "nid": "f-inner",
+                      "binder": "f",
+                      "type_args": []
+                    },
+                    "args": [
+                      {
+                        "op": "const",
+                        "nid": "g-true",
+                        "type": "Bool",
+                        "value": true
+                      }
+                    ]
+                  },
+                  "else": {
+                    "op": "var",
+                    "nid": "g-capture",
+                    "binder": "outer",
+                    "type_args": []
+                  }
+                }
+              }
+            ],
+            "body": {
+              "op": "call",
+              "nid": "start",
+              "fn": {
+                "op": "var",
+                "nid": "f-start",
+                "binder": "f",
+                "type_args": []
+              },
+              "args": [
+                {
+                  "op": "const",
+                  "nid": "false",
+                  "type": "Bool",
+                  "value": false
+                }
+              ]
+            }
+          }
+        },
+        "profile_revision": "core-machine/r06-v1"
+      },
+      "expected": {
+        "termination": "RETURNED",
+        "code": "RETURNED",
+        "value": {
+          "type": "Int64",
+          "value": 7
+        },
+        "steps": 29,
+        "trace": [
+          [
+            "LET_ENTER",
+            "capture-let"
+          ],
+          [
+            "CONST",
+            "capture-value"
+          ],
+          [
+            "LET_BIND",
+            "capture-let"
+          ],
+          [
+            "LETREC",
+            "group"
+          ],
+          [
+            "CALL_ENTER",
+            "start"
+          ],
+          [
+            "VAR",
+            "f-start"
+          ],
+          [
+            "CALL_ARGS",
+            "start"
+          ],
+          [
+            "CONST",
+            "false"
+          ],
+          [
+            "CALL_BODY",
+            "start"
+          ],
+          [
+            "IF_ENTER",
+            "f-if"
+          ],
+          [
+            "VAR",
+            "f-condition"
+          ],
+          [
+            "IF_ELSE",
+            "f-if"
+          ],
+          [
+            "CALL_ENTER",
+            "f-to-g"
+          ],
+          [
+            "VAR",
+            "g-ref"
+          ],
+          [
+            "CALL_ARGS",
+            "f-to-g"
+          ],
+          [
+            "CONST",
+            "f-true"
+          ],
+          [
+            "CALL_BODY",
+            "f-to-g"
+          ],
+          [
+            "IF_ENTER",
+            "g-if"
+          ],
+          [
+            "VAR",
+            "g-condition"
+          ],
+          [
+            "IF_THEN",
+            "g-if"
+          ],
+          [
+            "CALL_ENTER",
+            "g-to-f"
+          ],
+          [
+            "VAR",
+            "f-inner"
+          ],
+          [
+            "CALL_ARGS",
+            "g-to-f"
+          ],
+          [
+            "CONST",
+            "g-true"
+          ],
+          [
+            "CALL_BODY",
+            "g-to-f"
+          ],
+          [
+            "IF_ENTER",
+            "f-if"
+          ],
+          [
+            "VAR",
+            "f-condition"
+          ],
+          [
+            "IF_THEN",
+            "f-if"
+          ],
+          [
+            "VAR",
+            "f-capture"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "C11",
+      "focus": "separate Int64 and Bool instantiations of one rank-1 scheme",
+      "program": {
+        "source_id": "C11",
+        "revision": "authored-v1",
+        "result_type": "Bool",
+        "entry": {
+          "op": "letrec",
+          "nid": "group",
+          "type_params": [
+            "T"
+          ],
+          "functions": [
+            {
+              "binder": "id",
+              "params": [
+                {
+                  "binder": "x",
+                  "type": {
+                    "tag": "var",
+                    "id": "T"
+                  }
+                }
+              ],
+              "result_type": {
+                "tag": "var",
+                "id": "T"
+              },
+              "body": {
+                "op": "var",
+                "nid": "id-body",
+                "binder": "x",
+                "type_args": []
+              }
+            }
+          ],
+          "body": {
+            "op": "let",
+            "nid": "int-let",
+            "binder": "saved-int",
+            "type": "Int64",
+            "value": {
+              "op": "call",
+              "nid": "int-call",
+              "fn": {
+                "op": "var",
+                "nid": "int-id",
+                "binder": "id",
+                "type_args": [
+                  "Int64"
+                ]
+              },
+              "args": [
+                {
+                  "op": "const",
+                  "nid": "int-arg",
+                  "type": "Int64",
+                  "value": 7
+                }
+              ]
+            },
+            "body": {
+              "op": "call",
+              "nid": "bool-call",
+              "fn": {
+                "op": "var",
+                "nid": "bool-id",
+                "binder": "id",
+                "type_args": [
+                  "Bool"
+                ]
+              },
+              "args": [
+                {
+                  "op": "const",
+                  "nid": "bool-arg",
+                  "type": "Bool",
+                  "value": true
+                }
+              ]
+            }
+          }
+        },
+        "profile_revision": "core-machine/r06-v1"
+      },
+      "expected": {
+        "termination": "RETURNED",
+        "code": "RETURNED",
+        "value": {
+          "type": "Bool",
+          "value": true
+        },
+        "steps": 15,
+        "trace": [
+          [
+            "LETREC",
+            "group"
+          ],
+          [
+            "LET_ENTER",
+            "int-let"
+          ],
+          [
+            "CALL_ENTER",
+            "int-call"
+          ],
+          [
+            "VAR",
+            "int-id"
+          ],
+          [
+            "CALL_ARGS",
+            "int-call"
+          ],
+          [
+            "CONST",
+            "int-arg"
+          ],
+          [
+            "CALL_BODY",
+            "int-call"
+          ],
+          [
+            "VAR",
+            "id-body"
+          ],
+          [
+            "LET_BIND",
+            "int-let"
+          ],
+          [
+            "CALL_ENTER",
+            "bool-call"
+          ],
+          [
+            "VAR",
+            "bool-id"
+          ],
+          [
+            "CALL_ARGS",
+            "bool-call"
+          ],
+          [
+            "CONST",
+            "bool-arg"
+          ],
+          [
+            "CALL_BODY",
+            "bool-call"
+          ],
+          [
+            "VAR",
+            "id-body"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "C12",
+      "focus": "explicit instantiation with a monomorphic function type",
+      "program": {
+        "source_id": "C12",
+        "revision": "authored-v1",
+        "result_type": "Int64",
+        "entry": {
+          "op": "letrec",
+          "nid": "group",
+          "type_params": [
+            "T"
+          ],
+          "functions": [
+            {
+              "binder": "id",
+              "params": [
+                {
+                  "binder": "x",
+                  "type": {
+                    "tag": "var",
+                    "id": "T"
+                  }
+                }
+              ],
+              "result_type": {
+                "tag": "var",
+                "id": "T"
+              },
+              "body": {
+                "op": "var",
+                "nid": "id-body",
+                "binder": "x",
+                "type_args": []
+              }
+            }
+          ],
+          "body": {
+            "op": "call",
+            "nid": "outer",
+            "fn": {
+              "op": "call",
+              "nid": "inner",
+              "fn": {
+                "op": "var",
+                "nid": "specialize",
+                "binder": "id",
+                "type_args": [
+                  {
+                    "tag": "fn",
+                    "params": [
+                      "Int64"
+                    ],
+                    "result": "Int64"
+                  }
+                ]
+              },
+              "args": [
+                {
+                  "op": "lambda",
+                  "nid": "arg-lambda",
+                  "params": [
+                    {
+                      "binder": "y",
+                      "type": "Int64"
+                    }
+                  ],
+                  "result_type": "Int64",
+                  "body": {
+                    "op": "var",
+                    "nid": "lambda-body",
+                    "binder": "y",
+                    "type_args": []
+                  }
+                }
+              ]
+            },
+            "args": [
+              {
+                "op": "const",
+                "nid": "number",
+                "type": "Int64",
+                "value": 8
+              }
+            ]
+          }
+        },
+        "profile_revision": "core-machine/r06-v1"
+      },
+      "expected": {
+        "termination": "RETURNED",
+        "code": "RETURNED",
+        "value": {
+          "type": "Int64",
+          "value": 8
+        },
+        "steps": 12,
+        "trace": [
+          [
+            "LETREC",
+            "group"
+          ],
+          [
+            "CALL_ENTER",
+            "outer"
+          ],
+          [
+            "CALL_ENTER",
+            "inner"
+          ],
+          [
+            "VAR",
+            "specialize"
+          ],
+          [
+            "CALL_ARGS",
+            "inner"
+          ],
+          [
+            "LAMBDA",
+            "arg-lambda"
+          ],
+          [
+            "CALL_BODY",
+            "inner"
+          ],
+          [
+            "VAR",
+            "id-body"
+          ],
+          [
+            "CALL_ARGS",
+            "outer"
+          ],
+          [
+            "CONST",
+            "number"
+          ],
+          [
+            "CALL_BODY",
+            "outer"
+          ],
+          [
+            "VAR",
+            "lambda-body"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "C13",
+      "focus": "recursive group references are monomorphic at current instantiation",
+      "program": {
+        "source_id": "C13",
+        "revision": "authored-v1",
+        "result_type": "Int64",
+        "entry": {
+          "op": "letrec",
+          "nid": "group",
+          "type_params": [
+            "T"
+          ],
+          "functions": [
+            {
+              "binder": "id",
+              "params": [
+                {
+                  "binder": "x",
+                  "type": {
+                    "tag": "var",
+                    "id": "T"
+                  }
+                },
+                {
+                  "binder": "done",
+                  "type": "Bool"
+                }
+              ],
+              "result_type": {
+                "tag": "var",
+                "id": "T"
+              },
+              "body": {
+                "op": "if",
+                "nid": "if",
+                "condition": {
+                  "op": "var",
+                  "nid": "condition",
+                  "binder": "done",
+                  "type_args": []
+                },
+                "then": {
+                  "op": "var",
+                  "nid": "result",
+                  "binder": "x",
+                  "type_args": []
+                },
+                "else": {
+                  "op": "call",
+                  "nid": "recur",
+                  "fn": {
+                    "op": "var",
+                    "nid": "self",
+                    "binder": "id",
+                    "type_args": []
+                  },
+                  "args": [
+                    {
+                      "op": "var",
+                      "nid": "same-x",
+                      "binder": "x",
+                      "type_args": []
+                    },
+                    {
+                      "op": "const",
+                      "nid": "true",
+                      "type": "Bool",
+                      "value": true
+                    }
+                  ]
+                }
+              }
+            }
+          ],
+          "body": {
+            "op": "call",
+            "nid": "start",
+            "fn": {
+              "op": "var",
+              "nid": "specialize",
+              "binder": "id",
+              "type_args": [
+                "Int64"
+              ]
+            },
+            "args": [
+              {
+                "op": "const",
+                "nid": "arg",
+                "type": "Int64",
+                "value": 9
+              },
+              {
+                "op": "const",
+                "nid": "false",
+                "type": "Bool",
+                "value": false
+              }
+            ]
+          }
+        },
+        "profile_revision": "core-machine/r06-v1"
+      },
+      "expected": {
+        "termination": "RETURNED",
+        "code": "RETURNED",
+        "value": {
+          "type": "Int64",
+          "value": 9
+        },
+        "steps": 22,
+        "trace": [
+          [
+            "LETREC",
+            "group"
+          ],
+          [
+            "CALL_ENTER",
+            "start"
+          ],
+          [
+            "VAR",
+            "specialize"
+          ],
+          [
+            "CALL_ARGS",
+            "start"
+          ],
+          [
+            "CONST",
+            "arg"
+          ],
+          [
+            "CALL_NEXT",
+            "start"
+          ],
+          [
+            "CONST",
+            "false"
+          ],
+          [
+            "CALL_BODY",
+            "start"
+          ],
+          [
+            "IF_ENTER",
+            "if"
+          ],
+          [
+            "VAR",
+            "condition"
+          ],
+          [
+            "IF_ELSE",
+            "if"
+          ],
+          [
+            "CALL_ENTER",
+            "recur"
+          ],
+          [
+            "VAR",
+            "self"
+          ],
+          [
+            "CALL_ARGS",
+            "recur"
+          ],
+          [
+            "VAR",
+            "same-x"
+          ],
+          [
+            "CALL_NEXT",
+            "recur"
+          ],
+          [
+            "CONST",
+            "true"
+          ],
+          [
+            "CALL_BODY",
+            "recur"
+          ],
+          [
+            "IF_ENTER",
+            "if"
+          ],
+          [
+            "VAR",
+            "condition"
+          ],
+          [
+            "IF_THEN",
+            "if"
+          ],
+          [
+            "VAR",
+            "result"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "C14",
+      "focus": "explicit error match; ArithmeticError payload is ordinary data",
+      "program": {
+        "source_id": "C14",
+        "revision": "authored-v1",
+        "result_type": "ArithmeticError",
+        "entry": {
+          "op": "match_result",
+          "nid": "match",
+          "value": {
+            "op": "prim",
+            "nid": "divide",
+            "name": "i64.div",
+            "args": [
+              {
+                "op": "const",
+                "nid": "five",
+                "type": "Int64",
+                "value": 5
+              },
+              {
+                "op": "const",
+                "nid": "zero",
+                "type": "Int64",
+                "value": 0
+              }
+            ]
+          },
+          "ok_binder": "ok",
+          "ok_body": {
+            "op": "const",
+            "nid": "ok-body",
+            "type": "ArithmeticError",
+            "value": "Overflow"
+          },
+          "err_binder": "err",
+          "err_body": {
+            "op": "var",
+            "nid": "err-body",
+            "binder": "err",
+            "type_args": []
+          }
+        },
+        "profile_revision": "core-machine/r06-v1"
+      },
+      "expected": {
+        "termination": "RETURNED",
+        "code": "RETURNED",
+        "value": {
+          "type": "ArithmeticError",
+          "value": "DivisionByZero"
+        },
+        "steps": 8,
+        "trace": [
+          [
+            "MATCH_ENTER",
+            "match"
+          ],
+          [
+            "PRIM_ENTER",
+            "divide"
+          ],
+          [
+            "CONST",
+            "five"
+          ],
+          [
+            "PRIM_NEXT",
+            "divide"
+          ],
+          [
+            "CONST",
+            "zero"
+          ],
+          [
+            "PRIM_APPLY",
+            "divide"
+          ],
+          [
+            "MATCH_ERR",
+            "match"
+          ],
+          [
+            "VAR",
+            "err-body"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "C15",
+      "focus": "Ok constructor and exhaustive match",
+      "program": {
+        "source_id": "C15",
+        "revision": "authored-v1",
+        "result_type": "Int64",
+        "entry": {
+          "op": "match_result",
+          "nid": "match",
+          "value": {
+            "op": "result",
+            "nid": "result",
+            "tag": "Ok",
+            "ok_type": "Int64",
+            "value": {
+              "op": "const",
+              "nid": "payload",
+              "type": "Int64",
+              "value": 42
+            }
+          },
+          "ok_binder": "ok",
+          "ok_body": {
+            "op": "var",
+            "nid": "ok-body",
+            "binder": "ok",
+            "type_args": []
+          },
+          "err_binder": "err",
+          "err_body": {
+            "op": "const",
+            "nid": "err-body",
+            "type": "Int64",
+            "value": 0
+          }
+        },
+        "profile_revision": "core-machine/r06-v1"
+      },
+      "expected": {
+        "termination": "RETURNED",
+        "code": "RETURNED",
+        "value": {
+          "type": "Int64",
+          "value": 42
+        },
+        "steps": 6,
+        "trace": [
+          [
+            "MATCH_ENTER",
+            "match"
+          ],
+          [
+            "RESULT_ENTER",
+            "result"
+          ],
+          [
+            "CONST",
+            "payload"
+          ],
+          [
+            "RESULT_WRAP",
+            "result"
+          ],
+          [
+            "MATCH_OK",
+            "match"
+          ],
+          [
+            "VAR",
+            "ok-body"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "C16",
+      "focus": "nested Result.Err is not implicitly propagated",
+      "program": {
+        "source_id": "C16",
+        "revision": "authored-v1",
+        "result_type": {
+          "tag": "result",
+          "ok": {
+            "tag": "result",
+            "ok": "Int64"
+          }
+        },
+        "entry": {
+          "op": "result",
+          "nid": "outer",
+          "tag": "Ok",
+          "ok_type": {
+            "tag": "result",
+            "ok": "Int64"
+          },
+          "value": {
+            "op": "result",
+            "nid": "inner",
+            "tag": "Err",
+            "ok_type": "Int64",
+            "value": {
+              "op": "const",
+              "nid": "payload",
+              "type": "ArithmeticError",
+              "value": "Overflow"
+            }
+          }
+        },
+        "profile_revision": "core-machine/r06-v1"
+      },
+      "expected": {
+        "termination": "RETURNED",
+        "code": "RETURNED",
+        "value": {
+          "type": {
+            "tag": "result",
+            "ok": {
+              "tag": "result",
+              "ok": "Int64"
+            }
+          },
+          "tag": "Ok",
+          "value": {
+            "type": {
+              "tag": "result",
+              "ok": "Int64"
+            },
+            "tag": "Err",
+            "value": {
+              "type": "ArithmeticError",
+              "value": "Overflow"
+            }
+          }
+        },
+        "steps": 5,
+        "trace": [
+          [
+            "RESULT_ENTER",
+            "outer"
+          ],
+          [
+            "RESULT_ENTER",
+            "inner"
+          ],
+          [
+            "CONST",
+            "payload"
+          ],
+          [
+            "RESULT_WRAP",
+            "inner"
+          ],
+          [
+            "RESULT_WRAP",
+            "outer"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "C17",
+      "focus": "function observation is diagnostic code view; codec must reject it",
+      "program": {
+        "source_id": "C17",
+        "revision": "authored-v1",
+        "result_type": {
+          "tag": "fn",
+          "params": [
+            "Int64"
+          ],
+          "result": "Int64"
+        },
+        "entry": {
+          "op": "lambda",
+          "nid": "lambda",
+          "params": [
+            {
+              "binder": "x",
+              "type": "Int64"
+            }
+          ],
+          "result_type": "Int64",
+          "body": {
+            "op": "var",
+            "nid": "body",
+            "binder": "x",
+            "type_args": []
+          }
+        },
+        "profile_revision": "core-machine/r06-v1"
+      },
+      "expected": {
+        "termination": "RETURNED",
+        "code": "RETURNED",
+        "value": {
+          "type": {
+            "tag": "fn",
+            "params": [
+              "Int64"
+            ],
+            "result": "Int64"
+          },
+          "kind": "Function",
+          "code": {
+            "content_digest": "$content_digest",
+            "node_id": "lambda",
+            "member": null
+          }
+        },
+        "steps": 1,
+        "trace": [
+          [
+            "LAMBDA",
+            "lambda"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "C18",
+      "focus": "Unit data value",
+      "program": {
+        "source_id": "C18",
+        "revision": "authored-v1",
+        "result_type": "Unit",
+        "entry": {
+          "op": "const",
+          "nid": "unit",
+          "type": "Unit",
+          "value": null
+        },
+        "profile_revision": "core-machine/r06-v1"
+      },
+      "expected": {
+        "termination": "RETURNED",
+        "code": "RETURNED",
+        "value": {
+          "type": "Unit",
+          "value": null
+        },
+        "steps": 1,
+        "trace": [
+          [
+            "CONST",
+            "unit"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "A01",
+      "focus": "independently authored checked arithmetic boundary",
+      "program": {
+        "source_id": "A01",
+        "revision": "authored-v1",
+        "result_type": "Bool",
+        "entry": {
+          "op": "prim",
+          "nid": "primitive",
+          "name": "i64.eq",
+          "args": [
+            {
+              "op": "const",
+              "nid": "left",
+              "type": "Int64",
+              "value": -2
+            },
+            {
+              "op": "const",
+              "nid": "right",
+              "type": "Int64",
+              "value": -2
+            }
+          ]
+        },
+        "profile_revision": "core-machine/r06-v1"
+      },
+      "expected": {
+        "termination": "RETURNED",
+        "code": "RETURNED",
+        "value": {
+          "type": "Bool",
+          "value": true
+        },
+        "steps": 5,
+        "trace": [
+          [
+            "PRIM_ENTER",
+            "primitive"
+          ],
+          [
+            "CONST",
+            "left"
+          ],
+          [
+            "PRIM_NEXT",
+            "primitive"
+          ],
+          [
+            "CONST",
+            "right"
+          ],
+          [
+            "PRIM_APPLY",
+            "primitive"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "A02",
+      "focus": "independently authored checked arithmetic boundary",
+      "program": {
+        "source_id": "A02",
+        "revision": "authored-v1",
+        "result_type": "Bool",
+        "entry": {
+          "op": "prim",
+          "nid": "primitive",
+          "name": "i64.lt",
+          "args": [
+            {
+              "op": "const",
+              "nid": "left",
+              "type": "Int64",
+              "value": -2
+            },
+            {
+              "op": "const",
+              "nid": "right",
+              "type": "Int64",
+              "value": 1
+            }
+          ]
+        },
+        "profile_revision": "core-machine/r06-v1"
+      },
+      "expected": {
+        "termination": "RETURNED",
+        "code": "RETURNED",
+        "value": {
+          "type": "Bool",
+          "value": true
+        },
+        "steps": 5,
+        "trace": [
+          [
+            "PRIM_ENTER",
+            "primitive"
+          ],
+          [
+            "CONST",
+            "left"
+          ],
+          [
+            "PRIM_NEXT",
+            "primitive"
+          ],
+          [
+            "CONST",
+            "right"
+          ],
+          [
+            "PRIM_APPLY",
+            "primitive"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "A03",
+      "focus": "independently authored checked arithmetic boundary",
+      "program": {
+        "source_id": "A03",
+        "revision": "authored-v1",
+        "result_type": {
+          "tag": "result",
+          "ok": "Int64"
+        },
+        "entry": {
+          "op": "prim",
+          "nid": "primitive",
+          "name": "i64.add",
+          "args": [
+            {
+              "op": "const",
+              "nid": "left",
+              "type": "Int64",
+              "value": 9223372036854775807
+            },
+            {
+              "op": "const",
+              "nid": "right",
+              "type": "Int64",
+              "value": 1
+            }
+          ]
+        },
+        "profile_revision": "core-machine/r06-v1"
+      },
+      "expected": {
+        "termination": "RETURNED",
+        "code": "RETURNED",
+        "value": {
+          "type": {
+            "tag": "result",
+            "ok": "Int64"
+          },
+          "tag": "Err",
+          "value": {
+            "type": "ArithmeticError",
+            "value": "Overflow"
+          }
+        },
+        "steps": 5,
+        "trace": [
+          [
+            "PRIM_ENTER",
+            "primitive"
+          ],
+          [
+            "CONST",
+            "left"
+          ],
+          [
+            "PRIM_NEXT",
+            "primitive"
+          ],
+          [
+            "CONST",
+            "right"
+          ],
+          [
+            "PRIM_APPLY",
+            "primitive"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "A04",
+      "focus": "independently authored checked arithmetic boundary",
+      "program": {
+        "source_id": "A04",
+        "revision": "authored-v1",
+        "result_type": {
+          "tag": "result",
+          "ok": "Int64"
+        },
+        "entry": {
+          "op": "prim",
+          "nid": "primitive",
+          "name": "i64.sub",
+          "args": [
+            {
+              "op": "const",
+              "nid": "left",
+              "type": "Int64",
+              "value": -9223372036854775808
+            },
+            {
+              "op": "const",
+              "nid": "right",
+              "type": "Int64",
+              "value": 1
+            }
+          ]
+        },
+        "profile_revision": "core-machine/r06-v1"
+      },
+      "expected": {
+        "termination": "RETURNED",
+        "code": "RETURNED",
+        "value": {
+          "type": {
+            "tag": "result",
+            "ok": "Int64"
+          },
+          "tag": "Err",
+          "value": {
+            "type": "ArithmeticError",
+            "value": "Overflow"
+          }
+        },
+        "steps": 5,
+        "trace": [
+          [
+            "PRIM_ENTER",
+            "primitive"
+          ],
+          [
+            "CONST",
+            "left"
+          ],
+          [
+            "PRIM_NEXT",
+            "primitive"
+          ],
+          [
+            "CONST",
+            "right"
+          ],
+          [
+            "PRIM_APPLY",
+            "primitive"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "A05",
+      "focus": "independently authored checked arithmetic boundary",
+      "program": {
+        "source_id": "A05",
+        "revision": "authored-v1",
+        "result_type": {
+          "tag": "result",
+          "ok": "Int64"
+        },
+        "entry": {
+          "op": "prim",
+          "nid": "primitive",
+          "name": "i64.div",
+          "args": [
+            {
+              "op": "const",
+              "nid": "left",
+              "type": "Int64",
+              "value": -9223372036854775808
+            },
+            {
+              "op": "const",
+              "nid": "right",
+              "type": "Int64",
+              "value": -1
+            }
+          ]
+        },
+        "profile_revision": "core-machine/r06-v1"
+      },
+      "expected": {
+        "termination": "RETURNED",
+        "code": "RETURNED",
+        "value": {
+          "type": {
+            "tag": "result",
+            "ok": "Int64"
+          },
+          "tag": "Err",
+          "value": {
+            "type": "ArithmeticError",
+            "value": "Overflow"
+          }
+        },
+        "steps": 5,
+        "trace": [
+          [
+            "PRIM_ENTER",
+            "primitive"
+          ],
+          [
+            "CONST",
+            "left"
+          ],
+          [
+            "PRIM_NEXT",
+            "primitive"
+          ],
+          [
+            "CONST",
+            "right"
+          ],
+          [
+            "PRIM_APPLY",
+            "primitive"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "A06",
+      "focus": "independently authored checked arithmetic boundary",
+      "program": {
+        "source_id": "A06",
+        "revision": "authored-v1",
+        "result_type": {
+          "tag": "result",
+          "ok": "Int64"
+        },
+        "entry": {
+          "op": "prim",
+          "nid": "primitive",
+          "name": "i64.rem",
+          "args": [
+            {
+              "op": "const",
+              "nid": "left",
+              "type": "Int64",
+              "value": -9223372036854775808
+            },
+            {
+              "op": "const",
+              "nid": "right",
+              "type": "Int64",
+              "value": -1
+            }
+          ]
+        },
+        "profile_revision": "core-machine/r06-v1"
+      },
+      "expected": {
+        "termination": "RETURNED",
+        "code": "RETURNED",
+        "value": {
+          "type": {
+            "tag": "result",
+            "ok": "Int64"
+          },
+          "tag": "Ok",
+          "value": {
+            "type": "Int64",
+            "value": 0
+          }
+        },
+        "steps": 5,
+        "trace": [
+          [
+            "PRIM_ENTER",
+            "primitive"
+          ],
+          [
+            "CONST",
+            "left"
+          ],
+          [
+            "PRIM_NEXT",
+            "primitive"
+          ],
+          [
+            "CONST",
+            "right"
+          ],
+          [
+            "PRIM_APPLY",
+            "primitive"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "A07",
+      "focus": "independently authored checked arithmetic boundary",
+      "program": {
+        "source_id": "A07",
+        "revision": "authored-v1",
+        "result_type": {
+          "tag": "result",
+          "ok": "Int64"
+        },
+        "entry": {
+          "op": "prim",
+          "nid": "primitive",
+          "name": "i64.div",
+          "args": [
+            {
+              "op": "const",
+              "nid": "left",
+              "type": "Int64",
+              "value": -7
+            },
+            {
+              "op": "const",
+              "nid": "right",
+              "type": "Int64",
+              "value": 3
+            }
+          ]
+        },
+        "profile_revision": "core-machine/r06-v1"
+      },
+      "expected": {
+        "termination": "RETURNED",
+        "code": "RETURNED",
+        "value": {
+          "type": {
+            "tag": "result",
+            "ok": "Int64"
+          },
+          "tag": "Ok",
+          "value": {
+            "type": "Int64",
+            "value": -2
+          }
+        },
+        "steps": 5,
+        "trace": [
+          [
+            "PRIM_ENTER",
+            "primitive"
+          ],
+          [
+            "CONST",
+            "left"
+          ],
+          [
+            "PRIM_NEXT",
+            "primitive"
+          ],
+          [
+            "CONST",
+            "right"
+          ],
+          [
+            "PRIM_APPLY",
+            "primitive"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "A08",
+      "focus": "independently authored checked arithmetic boundary",
+      "program": {
+        "source_id": "A08",
+        "revision": "authored-v1",
+        "result_type": {
+          "tag": "result",
+          "ok": "Int64"
+        },
+        "entry": {
+          "op": "prim",
+          "nid": "primitive",
+          "name": "i64.rem",
+          "args": [
+            {
+              "op": "const",
+              "nid": "left",
+              "type": "Int64",
+              "value": -7
+            },
+            {
+              "op": "const",
+              "nid": "right",
+              "type": "Int64",
+              "value": 3
+            }
+          ]
+        },
+        "profile_revision": "core-machine/r06-v1"
+      },
+      "expected": {
+        "termination": "RETURNED",
+        "code": "RETURNED",
+        "value": {
+          "type": {
+            "tag": "result",
+            "ok": "Int64"
+          },
+          "tag": "Ok",
+          "value": {
+            "type": "Int64",
+            "value": -1
+          }
+        },
+        "steps": 5,
+        "trace": [
+          [
+            "PRIM_ENTER",
+            "primitive"
+          ],
+          [
+            "CONST",
+            "left"
+          ],
+          [
+            "PRIM_NEXT",
+            "primitive"
+          ],
+          [
+            "CONST",
+            "right"
+          ],
+          [
+            "PRIM_APPLY",
+            "primitive"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "A09",
+      "focus": "independently authored checked arithmetic boundary",
+      "program": {
+        "source_id": "A09",
+        "revision": "authored-v1",
+        "result_type": {
+          "tag": "result",
+          "ok": "Int64"
+        },
+        "entry": {
+          "op": "prim",
+          "nid": "primitive",
+          "name": "i64.div",
+          "args": [
+            {
+              "op": "const",
+              "nid": "left",
+              "type": "Int64",
+              "value": 7
+            },
+            {
+              "op": "const",
+              "nid": "right",
+              "type": "Int64",
+              "value": -3
+            }
+          ]
+        },
+        "profile_revision": "core-machine/r06-v1"
+      },
+      "expected": {
+        "termination": "RETURNED",
+        "code": "RETURNED",
+        "value": {
+          "type": {
+            "tag": "result",
+            "ok": "Int64"
+          },
+          "tag": "Ok",
+          "value": {
+            "type": "Int64",
+            "value": -2
+          }
+        },
+        "steps": 5,
+        "trace": [
+          [
+            "PRIM_ENTER",
+            "primitive"
+          ],
+          [
+            "CONST",
+            "left"
+          ],
+          [
+            "PRIM_NEXT",
+            "primitive"
+          ],
+          [
+            "CONST",
+            "right"
+          ],
+          [
+            "PRIM_APPLY",
+            "primitive"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "A10",
+      "focus": "independently authored checked arithmetic boundary",
+      "program": {
+        "source_id": "A10",
+        "revision": "authored-v1",
+        "result_type": {
+          "tag": "result",
+          "ok": "Int64"
+        },
+        "entry": {
+          "op": "prim",
+          "nid": "primitive",
+          "name": "i64.rem",
+          "args": [
+            {
+              "op": "const",
+              "nid": "left",
+              "type": "Int64",
+              "value": 7
+            },
+            {
+              "op": "const",
+              "nid": "right",
+              "type": "Int64",
+              "value": -3
+            }
+          ]
+        },
+        "profile_revision": "core-machine/r06-v1"
+      },
+      "expected": {
+        "termination": "RETURNED",
+        "code": "RETURNED",
+        "value": {
+          "type": {
+            "tag": "result",
+            "ok": "Int64"
+          },
+          "tag": "Ok",
+          "value": {
+            "type": "Int64",
+            "value": 1
+          }
+        },
+        "steps": 5,
+        "trace": [
+          [
+            "PRIM_ENTER",
+            "primitive"
+          ],
+          [
+            "CONST",
+            "left"
+          ],
+          [
+            "PRIM_NEXT",
+            "primitive"
+          ],
+          [
+            "CONST",
+            "right"
+          ],
+          [
+            "PRIM_APPLY",
+            "primitive"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "A11",
+      "focus": "independently authored checked arithmetic boundary",
+      "program": {
+        "source_id": "A11",
+        "revision": "authored-v1",
+        "result_type": {
+          "tag": "result",
+          "ok": "Int64"
+        },
+        "entry": {
+          "op": "prim",
+          "nid": "primitive",
+          "name": "i64.rem",
+          "args": [
+            {
+              "op": "const",
+              "nid": "left",
+              "type": "Int64",
+              "value": 1
+            },
+            {
+              "op": "const",
+              "nid": "right",
+              "type": "Int64",
+              "value": 0
+            }
+          ]
+        },
+        "profile_revision": "core-machine/r06-v1"
+      },
+      "expected": {
+        "termination": "RETURNED",
+        "code": "RETURNED",
+        "value": {
+          "type": {
+            "tag": "result",
+            "ok": "Int64"
+          },
+          "tag": "Err",
+          "value": {
+            "type": "ArithmeticError",
+            "value": "DivisionByZero"
+          }
+        },
+        "steps": 5,
+        "trace": [
+          [
+            "PRIM_ENTER",
+            "primitive"
+          ],
+          [
+            "CONST",
+            "left"
+          ],
+          [
+            "PRIM_NEXT",
+            "primitive"
+          ],
+          [
+            "CONST",
+            "right"
+          ],
+          [
+            "PRIM_APPLY",
+            "primitive"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "A12",
+      "focus": "independently authored checked arithmetic boundary",
+      "program": {
+        "source_id": "A12",
+        "revision": "authored-v1",
+        "result_type": {
+          "tag": "result",
+          "ok": "Int64"
+        },
+        "entry": {
+          "op": "prim",
+          "nid": "primitive",
+          "name": "i64.add",
+          "args": [
+            {
+              "op": "const",
+              "nid": "left",
+              "type": "Int64",
+              "value": 40
+            },
+            {
+              "op": "const",
+              "nid": "right",
+              "type": "Int64",
+              "value": 2
+            }
+          ]
+        },
+        "profile_revision": "core-machine/r06-v1"
+      },
+      "expected": {
+        "termination": "RETURNED",
+        "code": "RETURNED",
+        "value": {
+          "type": {
+            "tag": "result",
+            "ok": "Int64"
+          },
+          "tag": "Ok",
+          "value": {
+            "type": "Int64",
+            "value": 42
+          }
+        },
+        "steps": 5,
+        "trace": [
+          [
+            "PRIM_ENTER",
+            "primitive"
+          ],
+          [
+            "CONST",
+            "left"
+          ],
+          [
+            "PRIM_NEXT",
+            "primitive"
+          ],
+          [
+            "CONST",
+            "right"
+          ],
+          [
+            "PRIM_APPLY",
+            "primitive"
+          ]
+        ]
+      }
+    }
+  ],
+  "negative_programs": [
+    {
+      "id": "N01",
+      "focus": "Bool is not Int64",
+      "program": {
+        "source_id": "N01",
+        "revision": "authored-v1",
+        "result_type": "Int64",
+        "entry": {
+          "op": "const",
+          "nid": "x",
+          "type": "Int64",
+          "value": true
+        },
+        "profile_revision": "core-machine/r06-v1"
+      },
+      "expected_code": "INVALID_LITERAL",
+      "expected_kind": "PrelaunchDiagnostic"
+    },
+    {
+      "id": "N02",
+      "focus": "if condition must be Bool",
+      "program": {
+        "source_id": "N02",
+        "revision": "authored-v1",
+        "result_type": "Int64",
+        "entry": {
+          "op": "if",
+          "nid": "if",
+          "condition": {
+            "op": "const",
+            "nid": "condition",
+            "type": "Int64",
+            "value": 1
+          },
+          "then": {
+            "op": "const",
+            "nid": "yes",
+            "type": "Int64",
+            "value": 1
+          },
+          "else": {
+            "op": "const",
+            "nid": "no",
+            "type": "Int64",
+            "value": 2
+          }
+        },
+        "profile_revision": "core-machine/r06-v1"
+      },
+      "expected_code": "TYPE_MISMATCH",
+      "expected_kind": "PrelaunchDiagnostic"
+    },
+    {
+      "id": "N03",
+      "focus": "both branches typecheck even when not executed",
+      "program": {
+        "source_id": "N03",
+        "revision": "authored-v1",
+        "result_type": "Int64",
+        "entry": {
+          "op": "if",
+          "nid": "if",
+          "condition": {
+            "op": "const",
+            "nid": "condition",
+            "type": "Bool",
+            "value": true
+          },
+          "then": {
+            "op": "const",
+            "nid": "yes",
+            "type": "Int64",
+            "value": 1
+          },
+          "else": {
+            "op": "const",
+            "nid": "no",
+            "type": "Bool",
+            "value": false
+          }
+        },
+        "profile_revision": "core-machine/r06-v1"
+      },
+      "expected_code": "TYPE_MISMATCH",
+      "expected_kind": "PrelaunchDiagnostic"
+    },
+    {
+      "id": "N04",
+      "focus": "call arity",
+      "program": {
+        "source_id": "N04",
+        "revision": "authored-v1",
+        "result_type": "Int64",
+        "entry": {
+          "op": "call",
+          "nid": "call",
+          "fn": {
+            "op": "lambda",
+            "nid": "lambda",
+            "params": [
+              {
+                "binder": "x",
+                "type": "Int64"
+              }
+            ],
+            "result_type": "Int64",
+            "body": {
+              "op": "var",
+              "nid": "body",
+              "binder": "x",
+              "type_args": []
+            }
+          },
+          "args": []
+        },
+        "profile_revision": "core-machine/r06-v1"
+      },
+      "expected_code": "CALL_ARITY",
+      "expected_kind": "PrelaunchDiagnostic"
+    },
+    {
+      "id": "N05",
+      "focus": "argument type",
+      "program": {
+        "source_id": "N05",
+        "revision": "authored-v1",
+        "result_type": "Int64",
+        "entry": {
+          "op": "call",
+          "nid": "call",
+          "fn": {
+            "op": "lambda",
+            "nid": "lambda",
+            "params": [
+              {
+                "binder": "x",
+                "type": "Int64"
+              }
+            ],
+            "result_type": "Int64",
+            "body": {
+              "op": "var",
+              "nid": "body",
+              "binder": "x",
+              "type_args": []
+            }
+          },
+          "args": [
+            {
+              "op": "const",
+              "nid": "arg",
+              "type": "Bool",
+              "value": true
+            }
+          ]
+        },
+        "profile_revision": "core-machine/r06-v1"
+      },
+      "expected_code": "TYPE_MISMATCH",
+      "expected_kind": "PrelaunchDiagnostic"
+    },
+    {
+      "id": "N06",
+      "focus": "free variable",
+      "program": {
+        "source_id": "N06",
+        "revision": "authored-v1",
+        "result_type": "Int64",
+        "entry": {
+          "op": "var",
+          "nid": "read",
+          "binder": "absent",
+          "type_args": []
+        },
+        "profile_revision": "core-machine/r06-v1"
+      },
+      "expected_code": "UNBOUND_VARIABLE",
+      "expected_kind": "PrelaunchDiagnostic"
+    },
+    {
+      "id": "N07",
+      "focus": "duplicate NodeId",
+      "program": {
+        "source_id": "N07",
+        "revision": "authored-v1",
+        "result_type": "Int64",
+        "entry": {
+          "op": "let",
+          "nid": "let",
+          "binder": "x",
+          "type": "Int64",
+          "value": {
+            "op": "const",
+            "nid": "duplicate",
+            "type": "Int64",
+            "value": 1
+          },
+          "body": {
+            "op": "var",
+            "nid": "duplicate",
+            "binder": "x",
+            "type_args": []
+          }
+        },
+        "profile_revision": "core-machine/r06-v1"
+      },
+      "expected_code": "DUPLICATE_NODE_ID",
+      "expected_kind": "PrelaunchDiagnostic"
+    },
+    {
+      "id": "N08",
+      "focus": "duplicate BinderId",
+      "program": {
+        "source_id": "N08",
+        "revision": "authored-v1",
+        "result_type": {
+          "tag": "fn",
+          "params": [
+            "Int64"
+          ],
+          "result": "Int64"
+        },
+        "entry": {
+          "op": "let",
+          "nid": "let",
+          "binder": "x",
+          "type": "Int64",
+          "value": {
+            "op": "const",
+            "nid": "initial",
+            "type": "Int64",
+            "value": 1
+          },
+          "body": {
+            "op": "lambda",
+            "nid": "lambda",
+            "params": [
+              {
+                "binder": "x",
+                "type": "Int64"
+              }
+            ],
+            "result_type": "Int64",
+            "body": {
+              "op": "var",
+              "nid": "body",
+              "binder": "x",
+              "type_args": []
+            }
+          }
+        },
+        "profile_revision": "core-machine/r06-v1"
+      },
+      "expected_code": "DUPLICATE_BINDER",
+      "expected_kind": "PrelaunchDiagnostic"
+    },
+    {
+      "id": "N09",
+      "focus": "explicit type arguments required for scheme",
+      "program": {
+        "source_id": "N09",
+        "revision": "authored-v1",
+        "result_type": {
+          "tag": "fn",
+          "params": [
+            "Int64"
+          ],
+          "result": "Int64"
+        },
+        "entry": {
+          "op": "letrec",
+          "nid": "group",
+          "type_params": [
+            "T"
+          ],
+          "functions": [
+            {
+              "binder": "id",
+              "params": [
+                {
+                  "binder": "x",
+                  "type": {
+                    "tag": "var",
+                    "id": "T"
+                  }
+                }
+              ],
+              "result_type": {
+                "tag": "var",
+                "id": "T"
+              },
+              "body": {
+                "op": "var",
+                "nid": "id-body",
+                "binder": "x",
+                "type_args": []
+              }
+            }
+          ],
+          "body": {
+            "op": "var",
+            "nid": "use",
+            "binder": "id",
+            "type_args": []
+          }
+        },
+        "profile_revision": "core-machine/r06-v1"
+      },
+      "expected_code": "TYPE_ARGUMENT_ARITY",
+      "expected_kind": "PrelaunchDiagnostic"
+    },
+    {
+      "id": "N10",
+      "focus": "excessive explicit type arguments",
+      "program": {
+        "source_id": "N10",
+        "revision": "authored-v1",
+        "result_type": {
+          "tag": "fn",
+          "params": [
+            "Int64"
+          ],
+          "result": "Int64"
+        },
+        "entry": {
+          "op": "letrec",
+          "nid": "group",
+          "type_params": [
+            "T"
+          ],
+          "functions": [
+            {
+              "binder": "id",
+              "params": [
+                {
+                  "binder": "x",
+                  "type": {
+                    "tag": "var",
+                    "id": "T"
+                  }
+                }
+              ],
+              "result_type": {
+                "tag": "var",
+                "id": "T"
+              },
+              "body": {
+                "op": "var",
+                "nid": "id-body",
+                "binder": "x",
+                "type_args": []
+              }
+            }
+          ],
+          "body": {
+            "op": "var",
+            "nid": "use",
+            "binder": "id",
+            "type_args": [
+              "Int64",
+              "Bool"
+            ]
+          }
+        },
+        "profile_revision": "core-machine/r06-v1"
+      },
+      "expected_code": "TYPE_ARGUMENT_ARITY",
+      "expected_kind": "PrelaunchDiagnostic"
+    },
+    {
+      "id": "N11",
+      "focus": "free type variable",
+      "program": {
+        "source_id": "N11",
+        "revision": "authored-v1",
+        "result_type": {
+          "tag": "var",
+          "id": "Free"
+        },
+        "entry": {
+          "op": "const",
+          "nid": "const",
+          "type": "Int64",
+          "value": 1
+        },
+        "profile_revision": "core-machine/r06-v1"
+      },
+      "expected_code": "UNBOUND_TYPE_VARIABLE",
+      "expected_kind": "PrelaunchDiagnostic"
+    },
+    {
+      "id": "N12",
+      "focus": "generic definition checked rigidly even if only Int64 call exists",
+      "program": {
+        "source_id": "N12",
+        "revision": "authored-v1",
+        "result_type": "Int64",
+        "entry": {
+          "op": "letrec",
+          "nid": "group",
+          "type_params": [
+            "T"
+          ],
+          "functions": [
+            {
+              "binder": "bad",
+              "params": [
+                {
+                  "binder": "x",
+                  "type": {
+                    "tag": "var",
+                    "id": "T"
+                  }
+                }
+              ],
+              "result_type": {
+                "tag": "var",
+                "id": "T"
+              },
+              "body": {
+                "op": "const",
+                "nid": "bad-return",
+                "type": "Int64",
+                "value": 7
+              }
+            }
+          ],
+          "body": {
+            "op": "call",
+            "nid": "call",
+            "fn": {
+              "op": "var",
+              "nid": "bad-ref",
+              "binder": "bad",
+              "type_args": [
+                "Int64"
+              ]
+            },
+            "args": [
+              {
+                "op": "const",
+                "nid": "arg",
+                "type": "Int64",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "profile_revision": "core-machine/r06-v1"
+      },
+      "expected_code": "TYPE_MISMATCH",
+      "expected_kind": "PrelaunchDiagnostic"
+    },
+    {
+      "id": "N13",
+      "focus": "rigid T cannot silently become Int64",
+      "program": {
+        "source_id": "N13",
+        "revision": "authored-v1",
+        "result_type": {
+          "tag": "result",
+          "ok": "Int64"
+        },
+        "entry": {
+          "op": "letrec",
+          "nid": "group",
+          "type_params": [
+            "T"
+          ],
+          "functions": [
+            {
+              "binder": "bad",
+              "params": [
+                {
+                  "binder": "x",
+                  "type": {
+                    "tag": "var",
+                    "id": "T"
+                  }
+                }
+              ],
+              "result_type": {
+                "tag": "result",
+                "ok": "Int64"
+              },
+              "body": {
+                "op": "prim",
+                "nid": "add",
+                "name": "i64.add",
+                "args": [
+                  {
+                    "op": "var",
+                    "nid": "use",
+                    "binder": "x",
+                    "type_args": []
+                  },
+                  {
+                    "op": "const",
+                    "nid": "one",
+                    "type": "Int64",
+                    "value": 1
+                  }
+                ]
+              }
+            }
+          ],
+          "body": {
+            "op": "call",
+            "nid": "call",
+            "fn": {
+              "op": "var",
+              "nid": "bad-ref",
+              "binder": "bad",
+              "type_args": [
+                "Int64"
+              ]
+            },
+            "args": [
+              {
+                "op": "const",
+                "nid": "arg",
+                "type": "Int64",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "profile_revision": "core-machine/r06-v1"
+      },
+      "expected_code": "TYPE_MISMATCH",
+      "expected_kind": "PrelaunchDiagnostic"
+    },
+    {
+      "id": "N14",
+      "focus": "polymorphic recursion cannot supply new type arguments",
+      "program": {
+        "source_id": "N14",
+        "revision": "authored-v1",
+        "result_type": "Int64",
+        "entry": {
+          "op": "letrec",
+          "nid": "group",
+          "type_params": [
+            "T"
+          ],
+          "functions": [
+            {
+              "binder": "bad",
+              "params": [
+                {
+                  "binder": "x",
+                  "type": {
+                    "tag": "var",
+                    "id": "T"
+                  }
+                }
+              ],
+              "result_type": {
+                "tag": "var",
+                "id": "T"
+              },
+              "body": {
+                "op": "call",
+                "nid": "recursive",
+                "fn": {
+                  "op": "var",
+                  "nid": "self",
+                  "binder": "bad",
+                  "type_args": [
+                    {
+                      "tag": "var",
+                      "id": "T"
+                    }
+                  ]
+                },
+                "args": [
+                  {
+                    "op": "var",
+                    "nid": "arg",
+                    "binder": "x",
+                    "type_args": []
+                  }
+                ]
+              }
+            }
+          ],
+          "body": {
+            "op": "call",
+            "nid": "start",
+            "fn": {
+              "op": "var",
+              "nid": "bad-ref",
+              "binder": "bad",
+              "type_args": [
+                "Int64"
+              ]
+            },
+            "args": [
+              {
+                "op": "const",
+                "nid": "initial",
+                "type": "Int64",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "profile_revision": "core-machine/r06-v1"
+      },
+      "expected_code": "TYPE_ARGUMENT_ARITY",
+      "expected_kind": "PrelaunchDiagnostic"
+    },
+    {
+      "id": "N15",
+      "focus": "higher-rank forall is outside monotype grammar",
+      "program": {
+        "source_id": "N15",
+        "revision": "authored-v1",
+        "result_type": {
+          "tag": "forall",
+          "params": [
+            "T"
+          ],
+          "body": {
+            "tag": "fn",
+            "params": [
+              {
+                "tag": "var",
+                "id": "T"
+              }
+            ],
+            "result": {
+              "tag": "var",
+              "id": "T"
+            }
+          }
+        },
+        "entry": {
+          "op": "const",
+          "nid": "const",
+          "type": "Int64",
+          "value": 1
+        },
+        "profile_revision": "core-machine/r06-v1"
+      },
+      "expected_code": "INVALID_TYPE",
+      "expected_kind": "PrelaunchDiagnostic"
+    },
+    {
+      "id": "N16",
+      "focus": "match is exhaustive and closed",
+      "program": {
+        "source_id": "N16",
+        "revision": "authored-v1",
+        "result_type": "Int64",
+        "entry": {
+          "op": "match_result",
+          "nid": "match",
+          "value": {
+            "op": "result",
+            "nid": "result",
+            "tag": "Ok",
+            "ok_type": "Int64",
+            "value": {
+              "op": "const",
+              "nid": "payload",
+              "type": "Int64",
+              "value": 1
+            }
+          },
+          "ok_binder": "ok",
+          "ok_body": {
+            "op": "var",
+            "nid": "yes",
+            "binder": "ok",
+            "type_args": []
+          },
+          "err_binder": "err"
+        },
+        "profile_revision": "core-machine/r06-v1"
+      },
+      "expected_code": "MISSING_FIELD",
+      "expected_kind": "PrelaunchDiagnostic"
+    },
+    {
+      "id": "N17",
+      "focus": "unknown expression form",
+      "program": {
+        "source_id": "N17",
+        "revision": "authored-v1",
+        "result_type": "Int64",
+        "entry": {
+          "op": "magic",
+          "nid": "x"
+        },
+        "profile_revision": "core-machine/r06-v1"
+      },
+      "expected_code": "UNKNOWN_FORM",
+      "expected_kind": "PrelaunchDiagnostic"
+    },
+    {
+      "id": "N18",
+      "focus": "unknown AST field",
+      "program": {
+        "source_id": "N18",
+        "revision": "authored-v1",
+        "result_type": "Int64",
+        "entry": {
+          "op": "const",
+          "nid": "const",
+          "type": "Int64",
+          "value": 1,
+          "hint": "trust"
+        },
+        "profile_revision": "core-machine/r06-v1"
+      },
+      "expected_code": "UNKNOWN_FIELD",
+      "expected_kind": "PrelaunchDiagnostic"
+    },
+    {
+      "id": "N19",
+      "focus": "unsupported profile",
+      "program": {
+        "source_id": "N19",
+        "revision": "authored-v1",
+        "result_type": "Int64",
+        "entry": {
+          "op": "const",
+          "nid": "const",
+          "type": "Int64",
+          "value": 1
+        },
+        "profile_revision": "core-machine/not-supported"
+      },
+      "expected_code": "UNSUPPORTED_PROFILE",
+      "expected_kind": "PrelaunchDiagnostic"
+    },
+    {
+      "id": "N20",
+      "focus": "duplicate type parameter IDs",
+      "program": {
+        "source_id": "N20",
+        "revision": "authored-v1",
+        "result_type": "Int64",
+        "entry": {
+          "op": "letrec",
+          "nid": "group",
+          "type_params": [
+            "T",
+            "T"
+          ],
+          "functions": [
+            {
+              "binder": "f",
+              "params": [],
+              "result_type": "Int64",
+              "body": {
+                "op": "const",
+                "nid": "body",
+                "type": "Int64",
+                "value": 1
+              }
+            }
+          ],
+          "body": {
+            "op": "call",
+            "nid": "call",
+            "fn": {
+              "op": "var",
+              "nid": "f-ref",
+              "binder": "f",
+              "type_args": [
+                "Int64",
+                "Int64"
+              ]
+            },
+            "args": []
+          }
+        },
+        "profile_revision": "core-machine/r06-v1"
+      },
+      "expected_code": "DUPLICATE_TYPE_PARAMETER",
+      "expected_kind": "PrelaunchDiagnostic"
+    },
+    {
+      "id": "N21",
+      "focus": "Int64 literal bound",
+      "program": {
+        "source_id": "N21",
+        "revision": "authored-v1",
+        "result_type": "Int64",
+        "entry": {
+          "op": "const",
+          "nid": "const",
+          "type": "Int64",
+          "value": 9223372036854775808
+        },
+        "profile_revision": "core-machine/r06-v1"
+      },
+      "expected_code": "INVALID_LITERAL",
+      "expected_kind": "PrelaunchDiagnostic"
+    },
+    {
+      "id": "N22",
+      "focus": "invalid Unicode scalar in ID",
+      "program": {
+        "source_id": "N22",
+        "revision": "authored-v1",
+        "result_type": "Int64",
+        "entry": {
+          "op": "const",
+          "nid": "\ud800",
+          "type": "Int64",
+          "value": 1
+        },
+        "profile_revision": "core-machine/r06-v1"
+      },
+      "expected_code": "INVALID_UNICODE_SCALAR",
+      "expected_kind": "PrelaunchDiagnostic"
+    },
+    {
+      "id": "N23",
+      "focus": "unknown primitive",
+      "program": {
+        "source_id": "N23",
+        "revision": "authored-v1",
+        "result_type": {
+          "tag": "result",
+          "ok": "Int64"
+        },
+        "entry": {
+          "op": "prim",
+          "nid": "prim",
+          "name": "i64.multiply",
+          "args": [
+            {
+              "op": "const",
+              "nid": "a",
+              "type": "Int64",
+              "value": 2
+            },
+            {
+              "op": "const",
+              "nid": "b",
+              "type": "Int64",
+              "value": 3
+            }
+          ]
+        },
+        "profile_revision": "core-machine/r06-v1"
+      },
+      "expected_code": "UNKNOWN_PRIMITIVE",
+      "expected_kind": "PrelaunchDiagnostic"
+    },
+    {
+      "id": "N24",
+      "focus": "Result tag is closed",
+      "program": {
+        "source_id": "N24",
+        "revision": "authored-v1",
+        "result_type": {
+          "tag": "result",
+          "ok": "Int64"
+        },
+        "entry": {
+          "op": "result",
+          "nid": "result",
+          "tag": "Success",
+          "ok_type": "Int64",
+          "value": {
+            "op": "const",
+            "nid": "payload",
+            "type": "Int64",
+            "value": 1
+          }
+        },
+        "profile_revision": "core-machine/r06-v1"
+      },
+      "expected_code": "INVALID_RESULT_TAG",
+      "expected_kind": "PrelaunchDiagnostic"
+    },
+    {
+      "id": "N25",
+      "focus": "Err payload is ArithmeticError",
+      "program": {
+        "source_id": "N25",
+        "revision": "authored-v1",
+        "result_type": {
+          "tag": "result",
+          "ok": "Int64"
+        },
+        "entry": {
+          "op": "result",
+          "nid": "result",
+          "tag": "Err",
+          "ok_type": "Int64",
+          "value": {
+            "op": "const",
+            "nid": "payload",
+            "type": "Int64",
+            "value": 1
+          }
+        },
+        "profile_revision": "core-machine/r06-v1"
+      },
+      "expected_code": "TYPE_MISMATCH",
+      "expected_kind": "PrelaunchDiagnostic"
+    }
+  ],
+  "divergence": {
+    "id": "D01",
+    "program": {
+      "source_id": "D01",
+      "revision": "authored-v1",
+      "result_type": "Int64",
+      "entry": {
+        "op": "letrec",
+        "nid": "group",
+        "type_params": [],
+        "functions": [
+          {
+            "binder": "loop",
+            "params": [],
+            "result_type": "Int64",
+            "body": {
+              "op": "call",
+              "nid": "recursive",
+              "fn": {
+                "op": "var",
+                "nid": "self",
+                "binder": "loop",
+                "type_args": []
+              },
+              "args": []
+            }
+          }
+        ],
+        "body": {
+          "op": "call",
+          "nid": "start",
+          "fn": {
+            "op": "var",
+            "nid": "entry-fn",
+            "binder": "loop",
+            "type_args": []
+          },
+          "args": []
+        }
+      },
+      "profile_revision": "core-machine/r06-v1"
+    },
+    "prefix": [
+      [
+        "LETREC",
+        "group"
+      ],
+      [
+        "CALL_ENTER",
+        "start"
+      ],
+      [
+        "VAR",
+        "entry-fn"
+      ],
+      [
+        "CALL_BODY",
+        "start"
+      ]
+    ],
+    "period": [
+      [
+        "CALL_ENTER",
+        "recursive"
+      ],
+      [
+        "VAR",
+        "self"
+      ],
+      [
+        "CALL_BODY",
+        "recursive"
+      ]
+    ],
+    "budgets": [
+      0,
+      1,
+      7,
+      31,
+      128,
+      2048
+    ],
+    "cancel_at": [
+      null,
+      0,
+      1,
+      7,
+      31,
+      128
+    ]
+  },
+  "bounded_matrix": {
+    "program_ids": [
+      "C01",
+      "C06",
+      "C07",
+      "C08",
+      "C14",
+      "C15"
+    ],
+    "budgets": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16
+    ],
+    "cancel_at": [
+      null,
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16
+    ],
+    "cancel_request_id": "matrix-cancel",
+    "domain": "Exact Cartesian product; all points enumerated, not a sample."
+  },
+  "mutants": [
+    {
+      "id": "M01",
+      "defect": "dynamic caller scope instead of lexical capture",
+      "program_id": "C09"
+    },
+    {
+      "id": "M02",
+      "defect": "zero budget guard before visible cancellation",
+      "program_id": "C01",
+      "budget": 0,
+      "cancel_at": 0
+    },
+    {
+      "id": "M03",
+      "defect": "reverse evaluation of strict call arguments",
+      "program_id": "C06"
+    }
+  ],
+  "codec_cases": [
+    {
+      "id": "K01",
+      "program": {
+        "revision": "authored-v1",
+        "result_type": {
+          "tag": "result",
+          "ok": {
+            "tag": "fn",
+            "params": [
+              "Int64"
+            ],
+            "result": "Int64"
+          }
+        },
+        "profile_revision": "core-machine/r06-v1",
+        "source_id": "K01",
+        "entry": {
+          "op": "result",
+          "nid": "wrap",
+          "tag": "Ok",
+          "ok_type": {
+            "tag": "fn",
+            "params": [
+              "Int64"
+            ],
+            "result": "Int64"
+          },
+          "value": {
+            "op": "lambda",
+            "nid": "lambda",
+            "params": [
+              {
+                "binder": "x",
+                "type": "Int64"
+              }
+            ],
+            "result_type": "Int64",
+            "body": {
+              "op": "var",
+              "nid": "body",
+              "binder": "x",
+              "type_args": []
+            }
+          }
+        }
+      },
+      "expected": {
+        "termination": "RETURNED",
+        "code": "RETURNED",
+        "value": {
+          "type": {
+            "tag": "result",
+            "ok": {
+              "tag": "fn",
+              "params": [
+                "Int64"
+              ],
+              "result": "Int64"
+            }
+          },
+          "tag": "Ok",
+          "value": {
+            "type": {
+              "tag": "fn",
+              "params": [
+                "Int64"
+              ],
+              "result": "Int64"
+            },
+            "kind": "Function",
+            "code": {
+              "content_digest": "$content_digest",
+              "node_id": "lambda",
+              "member": null
+            }
+          }
+        },
+        "steps": 3,
+        "trace": [
+          [
+            "RESULT_ENTER",
+            "wrap"
+          ],
+          [
+            "LAMBDA",
+            "lambda"
+          ],
+          [
+            "RESULT_WRAP",
+            "wrap"
+          ]
+        ]
+      },
+      "codec_error": "NON_PERSISTABLE_VALUE",
+      "codec_kind": "CodecDiagnostic"
+    },
+    {
+      "id": "K02",
+      "program": {
+        "revision": "authored-v1",
+        "result_type": {
+          "tag": "result",
+          "ok": {
+            "tag": "fn",
+            "params": [
+              "Int64"
+            ],
+            "result": "Int64"
+          }
+        },
+        "profile_revision": "core-machine/r06-v1",
+        "source_id": "K02",
+        "entry": {
+          "op": "result",
+          "nid": "wrap",
+          "tag": "Err",
+          "ok_type": {
+            "tag": "fn",
+            "params": [
+              "Int64"
+            ],
+            "result": "Int64"
+          },
+          "value": {
+            "op": "const",
+            "nid": "error",
+            "type": "ArithmeticError",
+            "value": "Overflow"
+          }
+        }
+      },
+      "expected": {
+        "termination": "RETURNED",
+        "code": "RETURNED",
+        "value": {
+          "type": {
+            "tag": "result",
+            "ok": {
+              "tag": "fn",
+              "params": [
+                "Int64"
+              ],
+              "result": "Int64"
+            }
+          },
+          "tag": "Err",
+          "value": {
+            "type": "ArithmeticError",
+            "value": "Overflow"
+          }
+        },
+        "steps": 3,
+        "trace": [
+          [
+            "RESULT_ENTER",
+            "wrap"
+          ],
+          [
+            "CONST",
+            "error"
+          ],
+          [
+            "RESULT_WRAP",
+            "wrap"
+          ]
+        ]
+      },
+      "codec_error": "NON_PERSISTABLE_VALUE",
+      "codec_kind": "CodecDiagnostic"
+    }
+  ],
+  "physical_boundary": {
+    "id": "D02",
+    "program": {
+      "source_id": "D02",
+      "revision": "authored-v1",
+      "result_type": "Int64",
+      "entry": {
+        "op": "letrec",
+        "nid": "group",
+        "type_params": [],
+        "functions": [
+          {
+            "binder": "loop",
+            "params": [],
+            "result_type": "Int64",
+            "body": {
+              "op": "let",
+              "nid": "wait-let",
+              "binder": "wait",
+              "type": "Int64",
+              "value": {
+                "op": "call",
+                "nid": "recursive",
+                "fn": {
+                  "op": "var",
+                  "nid": "self",
+                  "binder": "loop",
+                  "type_args": []
+                },
+                "args": []
+              },
+              "body": {
+                "op": "const",
+                "nid": "unreachable",
+                "type": "Int64",
+                "value": 0
+              }
+            }
+          }
+        ],
+        "body": {
+          "op": "call",
+          "nid": "start",
+          "fn": {
+            "op": "var",
+            "nid": "entry-fn",
+            "binder": "loop",
+            "type_args": []
+          },
+          "args": []
+        }
+      },
+      "profile_revision": "core-machine/r06-v1"
+    },
+    "budget": 65536,
+    "expected_code": "CONTINUATION_LIMIT",
+    "expected_termination": "IMPLEMENTATION_STOP",
+    "expected_steps": 16385,
+    "expected_continuation_limit": 4096,
+    "prefix": [
+      [
+        "LETREC",
+        "group"
+      ],
+      [
+        "CALL_ENTER",
+        "start"
+      ],
+      [
+        "VAR",
+        "entry-fn"
+      ],
+      [
+        "CALL_BODY",
+        "start"
+      ]
+    ],
+    "period": [
+      [
+        "LET_ENTER",
+        "wait-let"
+      ],
+      [
+        "CALL_ENTER",
+        "recursive"
+      ],
+      [
+        "VAR",
+        "self"
+      ],
+      [
+        "CALL_BODY",
+        "recursive"
+      ]
+    ],
+    "claim": "One published implementation guard, not a proof of V1 resource policy or a semantic budget stop."
+  }
+}

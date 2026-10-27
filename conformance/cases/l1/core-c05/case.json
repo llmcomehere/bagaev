@@ -1,0 +1,34 @@
+{
+  "id": "l1/core-c05",
+  "spec": [
+    "spec/runtime/machine.md#7-соответствие-core-01",
+    "spec/runtime/machine.md#4-закрытый-каталог-правил"
+  ],
+  "origin": "model:models/r07-core/fixtures/core-machine.json#C05",
+  "levels": [
+    "L1",
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "run": {
+    "entry": "main.main"
+  },
+  "expect": {
+    "phase": "run",
+    "effects": [],
+    "outcome": "RETURNED",
+    "value": {
+      "type": "Int64",
+      "value": "7"
+    },
+    "steps": 4,
+    "trace_l1": [
+      "CALL_ENTER",
+      "LAMBDA",
+      "CALL_BODY",
+      "CONST"
+    ]
+  }
+}

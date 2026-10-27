@@ -1,0 +1,12 @@
+@id("4hw03z")
+module main
+
+@id("za088g")
+fn spin(n: Int64) -> Int64 {
+  spin(n)
+}
+
+@id("5g0z4a")
+pub fn main() -> Int64 {
+  spin(0)
+}

@@ -1,0 +1,7 @@
+@id("ywnyxq")
+module main
+
+@id("f2c24n")
+pub fn main() -> Int64 {
+  7 % 0
+}

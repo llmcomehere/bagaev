@@ -1,0 +1,7 @@
+@id("80hnpw")
+module main
+
+@id("wxjts5")
+fn f(a: Int64) -> Bool {
+  a and true
+}

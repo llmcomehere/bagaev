@@ -1,0 +1,18 @@
+{
+  "id": "parse/items-and-links",
+  "spec": [
+    "spec/language/grammar.ebnf",
+    "spec/language/surface.md#2-файл-модуль-имена"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "expect": {
+    "phase": "parse",
+    "outcome": "ACCEPTED"
+  }
+}

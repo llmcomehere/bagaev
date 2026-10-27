@@ -1,0 +1,13 @@
+@id("tm7dnr")
+module main
+
+@id("a6w3gq")
+type Point = record {
+  @id("4ndsrg") x: Int64,
+  @id("s4dtv9") y: Int64,
+}
+
+@id("m36gpx")
+pub fn main() -> Bool {
+  Point { x: 1, y: 2 } == Point { y: 2, x: 1 } and [Some(1), None] == [Some(1), None] and Map { 1 => "a" } == Map { 1 => "a" }
+}

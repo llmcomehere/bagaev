@@ -1,0 +1,7 @@
+@id("kb2x42")
+module main
+
+@id("ABCDEF")
+fn f() -> Int64 {
+  1
+}

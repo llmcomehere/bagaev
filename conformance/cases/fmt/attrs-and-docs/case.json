@@ -1,0 +1,20 @@
+{
+  "id": "fmt/attrs-and-docs",
+  "spec": [
+    "spec/language/format.md#объявления"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "expect": {
+    "phase": "fmt",
+    "outcome": "FORMATTED",
+    "value": {
+      "main.bag": "module m\n\n/// Точка.\n@id(\"aaaaaa\")\npub type T = record {\n  @id(\"bbbbbb\") a: Int64,\n  @id(\"cccccc\") b: Bool,\n}\n"
+    }
+  }
+}

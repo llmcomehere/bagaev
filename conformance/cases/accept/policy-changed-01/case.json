@@ -1,0 +1,216 @@
+{
+  "id": "accept/policy-changed-01",
+  "spec": [
+    "spec/protocol/agent-protocol.md#4-changecontract-и-политика",
+    "spec/protocol/agent-protocol.md#6-workstate"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "app.bag"
+  ],
+  "run": {
+    "change": {
+      "principal": "agent",
+      "steps": [
+        {
+          "request": {
+            "operation": "change_begin",
+            "idempotency_key": "b1-kkkkkkkkkkkkkkkkkkkk",
+            "arguments": {
+              "intent": "изменение"
+            }
+          }
+        },
+        {
+          "request": {
+            "operation": "apply",
+            "change_id": "$change",
+            "expected_work_revision": 1,
+            "idempotency_key": "a1-kkkkkkkkkkkkkkkkkkkk",
+            "arguments": {
+              "source_edit": {
+                "files": [
+                  {
+                    "path": "app.bag",
+                    "base_sha256": "$sha:app.bag",
+                    "edits": [
+                      {
+                        "old_text": "  n + 1\n",
+                        "text": "  n + 2\n"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "op": "policy",
+          "policy": {
+            "obligations": {
+              "about": [
+                "assumption",
+                "tests"
+              ]
+            }
+          }
+        },
+        {
+          "request": {
+            "operation": "work_resume",
+            "change_id": "$change",
+            "arguments": {}
+          }
+        },
+        {
+          "request": {
+            "operation": "accept",
+            "change_id": "$change",
+            "expected_work_revision": 2,
+            "idempotency_key": "c1-kkkkkkkkkkkkkkkkkkkk",
+            "arguments": {}
+          }
+        },
+        {
+          "request": {
+            "operation": "contract_update",
+            "change_id": "$change",
+            "expected_work_revision": 2,
+            "idempotency_key": "k1-kkkkkkkkkkkkkkkkkkkk",
+            "arguments": {
+              "ops": [
+                {
+                  "op": "pin_policy"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "request": {
+            "operation": "contract_update",
+            "change_id": "$change",
+            "expected_work_revision": 2,
+            "idempotency_key": "k2-kkkkkkkkkkkkkkkkkkkk",
+            "arguments": {
+              "ops": [
+                {
+                  "op": "pin_policy",
+                  "reason": "новая политика проекта"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "request": {
+            "operation": "accept",
+            "change_id": "$change",
+            "expected_work_revision": 3,
+            "idempotency_key": "c2-kkkkkkkkkkkkkkkkkkkk",
+            "arguments": {}
+          }
+        }
+      ]
+    }
+  },
+  "expect": {
+    "phase": "accept",
+    "outcome": "COMPLETED",
+    "value": [
+      {
+        "status": "succeeded",
+        "replayed": false,
+        "work_revision": 1
+      },
+      {
+        "status": "succeeded",
+        "replayed": false,
+        "work_revision": 2,
+        "touched": {
+          "app.bag": [
+            [
+              558,
+              566
+            ]
+          ]
+        },
+        "identity": {
+          "lineage": [],
+          "removed": [],
+          "added": [],
+          "renamed": []
+        },
+        "draft": false,
+        "diagnostics": []
+      },
+      {
+        "status": "policy_changed"
+      },
+      {
+        "status": "succeeded",
+        "replayed": false,
+        "work_revision": 2,
+        "needs_rebase": false,
+        "ready_for_acceptance": false,
+        "contract_revision": 1,
+        "status_": "open",
+        "blockers": [
+          "POLICY_CHANGED"
+        ],
+        "obligations": [],
+        "clauses": []
+      },
+      {
+        "status": "blocked",
+        "replayed": false,
+        "code": "OPEN_OBLIGATIONS",
+        "data": {
+          "blockers": [
+            "POLICY_CHANGED"
+          ]
+        }
+      },
+      {
+        "status": "failed",
+        "replayed": false,
+        "code": "REQUEST_INVALID",
+        "data": {
+          "op": 0
+        }
+      },
+      {
+        "status": "succeeded",
+        "replayed": false,
+        "work_revision": 3,
+        "contract_revision": 2,
+        "clauses": [],
+        "replaced": [],
+        "assumptions": [],
+        "allowed": null,
+        "replaced_tests": [],
+        "policy_pins": [
+          "новая политика проекта"
+        ]
+      },
+      {
+        "status": "succeeded",
+        "replayed": false,
+        "work_revision": 4,
+        "obligations": [],
+        "replaced_clauses": [],
+        "replaced_tests": [],
+        "coverage_gaps": [],
+        "lineage": []
+      }
+    ],
+    "state": {
+      "head_revision": 2
+    }
+  },
+  "note": "работа закрепляет ревизию политики (A05 шаг 3): смена политики — блокер, пока её не закрепят заново с причиной (ревью m6 M6)"
+}

@@ -1,0 +1,87 @@
+{
+  "id": "protocol/search-authorship-01",
+  "spec": [
+    "spec/protocol/agent-protocol.md#7-операции-протокола"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "blog/acl.bag",
+    "blog/articles.bag",
+    "blog/authorship.bag",
+    "blog/byline.bag",
+    "blog/db.bag",
+    "blog/editor.bag",
+    "blog/events.bag",
+    "blog/export.bag",
+    "blog/image.bag",
+    "blog/indexer.bag",
+    "blog/migration.bag",
+    "blog/people.bag",
+    "blog/search.bag",
+    "blog/tests.bag"
+  ],
+  "run": {
+    "change": {
+      "principal": "agent",
+      "steps": [
+        {
+          "request": {
+            "operation": "search",
+            "arguments": {
+              "query": "атрибуция автор"
+            }
+          }
+        },
+        {
+          "request": {
+            "operation": "search",
+            "arguments": {
+              "query": "совместное редактирование статьи"
+            }
+          }
+        }
+      ]
+    }
+  },
+  "expect": {
+    "phase": "protocol",
+    "outcome": "COMPLETED",
+    "value": [
+      {
+        "status": "succeeded",
+        "replayed": false,
+        "candidates": [
+          [
+            "blog.authorship.Authorship",
+            2,
+            [
+              "purpose_or_terms"
+            ]
+          ]
+        ],
+        "ambiguous": false,
+        "selection": "none"
+      },
+      {
+        "status": "succeeded",
+        "replayed": false,
+        "candidates": [
+          [
+            "blog.authorship.Authorship",
+            0,
+            [
+              "not_about",
+              "purpose_or_terms"
+            ]
+          ]
+        ],
+        "ambiguous": true,
+        "selection": "none"
+      }
+    ]
+  },
+  "note": "на примере authorship: запрос о совместном редактировании совпадает со словом purpose, но not_about даёт отрицательное основание — кандидат, а не выбор (T11-C01, T11-C02)"
+}

@@ -1,0 +1,8 @@
+@id("rrm4xa")
+module main
+use std.bytes
+
+@id("jk37yr")
+pub fn main() -> Int64 {
+  bytes.length(b"\xf0\x9f\x98\x80")
+}

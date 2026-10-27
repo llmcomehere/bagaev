@@ -1,0 +1,8 @@
+@id("ztm0hm")
+module main
+use std.i64
+
+@id("en0wbn")
+pub fn main() -> () {
+  ()
+}

@@ -1,0 +1,7 @@
+@id("kcw21x")
+module main
+
+@id("dscmsf")
+fn f(t: Table<Int64, Int64>) -> () {
+  ()
+}

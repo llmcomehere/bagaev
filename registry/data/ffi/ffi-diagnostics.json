@@ -1,0 +1,80 @@
+{
+  "format": "R23-FFI-DIAGNOSTICS-1",
+  "categories": {
+    "prelaunch": [
+      "UnknownAdapter",
+      "IncompatibleABI",
+      "UnknownFunction",
+      "InvalidSignature",
+      "MissingPlatformAdmission",
+      "INPUT_NOT_READY",
+      "UNSUPPORTED_PROFILE",
+      "UNSUPPORTED_PLATFORM"
+    ],
+    "boundary": [
+      "AdapterContractFault",
+      "InvalidHandle",
+      "StaleHandle",
+      "ClosedHandle",
+      "MovedHandle",
+      "ResourceBusy",
+      "CallbackExpired",
+      "ReentrantCallDenied",
+      "AUTHORITY_UNAVAILABLE",
+      "AuthorityDenied",
+      "ResourceLimit",
+      "ReplayInputMissing",
+      "ReplayBindingMismatch",
+      "ProtocolFault"
+    ],
+    "semantic_stop": [
+      "Cancelled",
+      "BudgetExceeded"
+    ],
+    "implementation_stop": [
+      "ImplementationStop",
+      "CapacityExceeded",
+      "HostOutOfMemory",
+      "PhysicalTimeout",
+      "InternalInvariantFault"
+    ],
+    "ordinary_value": [
+      "DeclaredResultErr"
+    ],
+    "knowledge": [
+      "NotDispatched",
+      "MayHaveRun",
+      "Committed",
+      "Failed",
+      "ConfirmedNotApplied",
+      "ReleasePending",
+      "CleanupPending"
+    ]
+  },
+  "wire_fault_codes": [
+    "AdapterContractFault",
+    "InvalidHandle",
+    "StaleHandle",
+    "ClosedHandle",
+    "MovedHandle",
+    "ResourceBusy",
+    "CallbackExpired",
+    "ReentrantCallDenied",
+    "AUTHORITY_UNAVAILABLE",
+    "AuthorityDenied",
+    "ResourceLimit",
+    "ReplayInputMissing",
+    "ReplayBindingMismatch",
+    "ProtocolFault",
+    "Cancelled",
+    "BudgetExceeded",
+    "ImplementationStop",
+    "CapacityExceeded",
+    "HostOutOfMemory",
+    "PhysicalTimeout",
+    "InternalInvariantFault"
+  ],
+  "unknown_wire_fault_code": "AdapterContractFault",
+  "domain_Err_is_boundary_fault": false,
+  "knowledge_is_termination": false
+}

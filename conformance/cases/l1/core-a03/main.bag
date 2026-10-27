@@ -1,0 +1,8 @@
+@id("h2gbpd")
+module main
+use std.i64
+
+@id("m28ttc")
+pub fn main() -> Result<Int64, i64.ArithmeticError> {
+  i64.add(9223372036854775807, 1)
+}

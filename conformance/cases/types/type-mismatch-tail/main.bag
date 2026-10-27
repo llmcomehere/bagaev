@@ -1,0 +1,7 @@
+@id("nrqmcb")
+module main
+
+@id("f005fw")
+fn f() -> Bool {
+  42
+}

@@ -1,0 +1,9 @@
+@id("0r2aec")
+module main
+use std.utf8
+use std.data
+
+@id("f3e1qb")
+pub fn main() -> Result<String, data.DataError> {
+  utf8.decode(b"\x80")
+}

@@ -1,0 +1,8 @@
+@id("m902ya")
+module main
+use std.i64
+
+@id("axqkn0")
+pub fn main() -> Bool {
+  i64.eq(-2, -2)
+}

@@ -1,0 +1,316 @@
+{
+  "id": "accept/new-rule-01",
+  "spec": [
+    "spec/protocol/agent-protocol.md#4-changecontract-и-политика",
+    "spec/protocol/agent-protocol.md#5-свидетельства",
+    "spec/protocol/agent-protocol.md#6-workstate"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "app.bag"
+  ],
+  "run": {
+    "change": {
+      "principal": "agent",
+      "steps": [
+        {
+          "request": {
+            "operation": "change_begin",
+            "idempotency_key": "b1-kkkkkkkkkkkkkkkkkkkk",
+            "arguments": {
+              "intent": "изменение"
+            }
+          }
+        },
+        {
+          "request": {
+            "operation": "apply",
+            "change_id": "$change",
+            "expected_work_revision": 1,
+            "idempotency_key": "a1-kkkkkkkkkkkkkkkkkkkk",
+            "arguments": {
+              "source_edit": {
+                "files": [
+                  {
+                    "path": "app.bag",
+                    "base_sha256": "$sha:app.bag",
+                    "edits": [
+                      {
+                        "old_text": "@id(\"cq0004\") rule nonempty \"приветствие не пустое\"",
+                        "text": "@id(\"cq0004\") rule nonempty \"приветствие не пустое\"\n  @id(\"cq000c\") rule bang \"крик с восклицанием\""
+                      },
+                      {
+                        "old_text": "pub fn shout(name: String) -> String {",
+                        "text": "pub fn shout(name: String) -> String\n  implements Polite.bang\n{"
+                      },
+                      {
+                        "old_text": "@id(\"cq0008\")",
+                        "text": "@id(\"cq000d\")\ntest shout_bang\n  checks Polite.bang\n{\n  test.expect(\"!\", shout(\"x\") != \"\")\n}\n\n@id(\"cq0008\")"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "request": {
+            "operation": "verify",
+            "change_id": "$change",
+            "expected_work_revision": 2,
+            "idempotency_key": "v1-kkkkkkkkkkkkkkkkkkkk",
+            "arguments": {}
+          }
+        },
+        {
+          "request": {
+            "operation": "work_resume",
+            "change_id": "$change",
+            "arguments": {}
+          }
+        },
+        {
+          "request": {
+            "operation": "contract_update",
+            "change_id": "$change",
+            "expected_work_revision": 3,
+            "idempotency_key": "k1-kkkkkkkkkkkkkkkkkkkk",
+            "arguments": {
+              "ops": [
+                {
+                  "op": "add_clause",
+                  "id": "bang",
+                  "claim": "shout кричит",
+                  "method": {
+                    "test": "app.shout_bang"
+                  }
+                },
+                {
+                  "op": "assume",
+                  "obligation": [
+                    "about",
+                    "cq0002",
+                    "cq0003"
+                  ],
+                  "reason": "новое правило того же смысла"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "request": {
+            "operation": "work_resume",
+            "change_id": "$change",
+            "arguments": {}
+          }
+        },
+        {
+          "request": {
+            "operation": "accept",
+            "change_id": "$change",
+            "expected_work_revision": 4,
+            "idempotency_key": "c1-kkkkkkkkkkkkkkkkkkkk",
+            "arguments": {}
+          }
+        }
+      ]
+    }
+  },
+  "expect": {
+    "phase": "accept",
+    "outcome": "COMPLETED",
+    "value": [
+      {
+        "status": "succeeded",
+        "replayed": false,
+        "work_revision": 1
+      },
+      {
+        "status": "succeeded",
+        "replayed": false,
+        "work_revision": 2,
+        "touched": {
+          "app.bag": [
+            [
+              250,
+              385
+            ],
+            [
+              515,
+              578
+            ],
+            [
+              659,
+              765
+            ]
+          ]
+        },
+        "identity": {
+          "lineage": [],
+          "removed": [],
+          "added": [
+            "cq000c",
+            "cq000d"
+          ],
+          "renamed": []
+        },
+        "draft": false,
+        "diagnostics": []
+      },
+      {
+        "status": "succeeded",
+        "replayed": false,
+        "work_revision": 3,
+        "evidence": [
+          [
+            "app.greet_nonempty",
+            "PASS"
+          ],
+          [
+            "app.shout_bang",
+            "PASS"
+          ]
+        ]
+      },
+      {
+        "status": "succeeded",
+        "replayed": false,
+        "work_revision": 3,
+        "needs_rebase": false,
+        "ready_for_acceptance": false,
+        "contract_revision": 1,
+        "status_": "open",
+        "blockers": [
+          "OBLIGATION_OPEN",
+          "OBLIGATION_OPEN",
+          "OBLIGATION_OPEN"
+        ],
+        "obligations": [
+          [
+            "app.Greeting",
+            "app.Polite",
+            "about",
+            "open",
+            "no-method"
+          ],
+          [
+            "app.Polite.bang",
+            "app.shout",
+            "implements",
+            "open",
+            "no-method-tests"
+          ],
+          [
+            "app.Polite.bang",
+            "app.shout_bang",
+            "checks",
+            "open",
+            "no-method-tests"
+          ]
+        ],
+        "clauses": []
+      },
+      {
+        "status": "succeeded",
+        "replayed": false,
+        "work_revision": 4,
+        "contract_revision": 2,
+        "clauses": [
+          "bang"
+        ],
+        "replaced": [],
+        "assumptions": [
+          [
+            "about",
+            "cq0002",
+            "cq0003"
+          ]
+        ],
+        "allowed": null,
+        "replaced_tests": [],
+        "policy_pins": []
+      },
+      {
+        "status": "succeeded",
+        "replayed": false,
+        "work_revision": 4,
+        "needs_rebase": false,
+        "ready_for_acceptance": true,
+        "contract_revision": 2,
+        "status_": "open",
+        "blockers": [],
+        "obligations": [
+          [
+            "app.Greeting",
+            "app.Polite",
+            "about",
+            "supported",
+            "assumption"
+          ],
+          [
+            "app.Polite.bang",
+            "app.shout",
+            "implements",
+            "supported",
+            "tests"
+          ],
+          [
+            "app.Polite.bang",
+            "app.shout_bang",
+            "checks",
+            "supported",
+            "tests"
+          ]
+        ],
+        "clauses": [
+          [
+            "bang",
+            "supported",
+            "tests"
+          ]
+        ]
+      },
+      {
+        "status": "succeeded",
+        "replayed": false,
+        "work_revision": 5,
+        "obligations": [
+          [
+            "about",
+            "cq0002",
+            "cq0003",
+            "supported",
+            "assumption"
+          ],
+          [
+            "checks",
+            "cq000c",
+            "cq000d",
+            "supported",
+            "tests"
+          ],
+          [
+            "implements",
+            "cq000c",
+            "cq0006",
+            "supported",
+            "tests"
+          ]
+        ],
+        "replaced_clauses": [],
+        "replaced_tests": [],
+        "coverage_gaps": [],
+        "lineage": []
+      }
+    ],
+    "state": {
+      "head_revision": 2
+    }
+  },
+  "note": "новое правило: тестов базы у него нет; обязательства закрывает новый тест, только когда он назван методом условия контракта (CHG-13; ревью m6 H5). Изменение контракта Polite — обязательство about, оно закрывается предположением"
+}

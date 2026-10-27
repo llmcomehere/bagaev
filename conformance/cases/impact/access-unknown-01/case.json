@@ -1,0 +1,137 @@
+{
+  "id": "impact/access-unknown-01",
+  "spec": [
+    "spec/links/08-bagaev-extraction.md#5-влияние",
+    "spec/kernel/outcomes.md#4-статусы-анализа-и-знаний"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "app.bag",
+    "cand/app.bag"
+  ],
+  "run": {
+    "links": {
+      "op": "impact",
+      "candidate": "cand",
+      "unavailable": [
+        "app.add"
+      ]
+    }
+  },
+  "expect": {
+    "phase": "impact",
+    "outcome": "IMPACT",
+    "value": {
+      "status": "COMPLETE",
+      "readiness": "BLOCKED",
+      "seeds": [
+        [
+          "app.double",
+          "changed"
+        ]
+      ],
+      "in_scope": [
+        [
+          "app.double",
+          0
+        ],
+        [
+          "app.origin",
+          1
+        ],
+        [
+          "app.origin_positive",
+          2
+        ],
+        [
+          "app.quadruple",
+          1
+        ]
+      ],
+      "unknown": [
+        [
+          "app.Added",
+          "DEPENDS_ON_UNKNOWN"
+        ],
+        [
+          "app.S",
+          "DEPENDS_ON_UNKNOWN"
+        ],
+        [
+          "app.S.copy",
+          "DEPENDS_ON_UNKNOWN"
+        ],
+        [
+          "app.S.totals",
+          "DEPENDS_ON_UNKNOWN"
+        ],
+        [
+          "app.add",
+          "ACCESS_BLOCKED"
+        ],
+        [
+          "app.on_added",
+          "DEPENDS_ON_UNKNOWN"
+        ],
+        [
+          "app.total",
+          "DEPENDS_ON_UNKNOWN"
+        ]
+      ],
+      "unknown_incomplete": 0,
+      "frontier": [],
+      "obligations": [
+        [
+          "app.Counting",
+          "app.S.copy",
+          "derived_from",
+          "unknown",
+          [
+            "base",
+            "candidate"
+          ]
+        ],
+        [
+          "app.Exact.positive",
+          "app.add",
+          "requires",
+          "unknown",
+          [
+            "base",
+            "candidate"
+          ]
+        ],
+        [
+          "app.Exact.positive",
+          "app.origin",
+          "implements",
+          "open",
+          [
+            "base",
+            "candidate"
+          ]
+        ],
+        [
+          "app.Exact.positive",
+          "app.origin_positive",
+          "checks",
+          "open",
+          [
+            "base",
+            "candidate"
+          ]
+        ]
+      ],
+      "closed": [],
+      "tests_to_run": [
+        "app.origin_positive"
+      ],
+      "gaps": [],
+      "watch": {}
+    }
+  },
+  "note": "недоступная сущность — TOP: она и всё, что от неё зависит, unknown; исключения через неё нет"
+}

@@ -1,0 +1,7 @@
+@id("ctcy9b")
+module main
+
+@id("acwmmc")
+pub fn main() -> Int64 {
+  (-7 % 3) * 10 + 7 % -3
+}

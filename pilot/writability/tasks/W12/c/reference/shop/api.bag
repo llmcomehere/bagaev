@@ -1,0 +1,26 @@
+module shop.api
+
+use std.store
+use std.seq
+use std.option
+use shop.db.{Shop, Item, PriceChanged}
+
+pub command reprice(name: String, value: Int64) -> Result<(), String>
+  uses { reads Shop.items, writes Shop.items, emits PriceChanged }
+{
+  match store.get(Shop.items, name) {
+    None => Err("нет товара"),
+    Some(it) => {
+      store.put(Shop.items, name, Item { ..it, price: value });
+      emit PriceChanged { name: name, old: it.price, new: value };
+      Ok(())
+    },
+  }
+}
+
+handler on_price_changed(ev: PriceChanged)
+  uses { reads Shop.history, writes Shop.history }
+{
+  let prev = option.value_or(store.get(Shop.history, ev.name), []);
+  store.put(Shop.history, ev.name, seq.append(prev, ev.new));
+}

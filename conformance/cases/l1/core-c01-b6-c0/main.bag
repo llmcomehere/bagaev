@@ -1,0 +1,8 @@
+@id("9077fh")
+module main
+use std.i64
+
+@id("yj0ve3")
+pub fn main() -> Int64 {
+7
+}

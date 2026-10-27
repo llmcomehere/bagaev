@@ -1,0 +1,2 @@
+module m
+fn f(r: Result<Int64, E>) -> Int64 { match r { Err(E.A) => 1, Ok(_) => 0 } }

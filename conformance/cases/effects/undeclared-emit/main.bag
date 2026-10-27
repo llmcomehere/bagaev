@@ -1,0 +1,24 @@
+@id("p6e0af")
+module main
+
+@id("qr1760")
+type Article = record {
+  @id("gxs6s7") title: String,
+}
+
+@id("twnn8r")
+store Blog {
+  @id("r4f214") table articles: Map<Int64, Article>
+}
+
+@id("a32w5e")
+event Renamed {
+  @id("9wm10c") id: Int64,
+  @id("y7fg34") title: String,
+}
+
+@id("dsw81f")
+pub command c() -> Result<(), String> {
+  emit Renamed { id: 1, title: "t" };
+  Ok(())
+}

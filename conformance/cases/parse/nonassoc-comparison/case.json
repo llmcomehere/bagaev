@@ -1,0 +1,27 @@
+{
+  "id": "parse/nonassoc-comparison",
+  "spec": [
+    "spec/language/surface.md#6-правила-разбора-которые-грамматика-не-выражает"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "expect": {
+    "phase": "parse",
+    "outcome": "PRELAUNCH",
+    "diagnostics": [
+      {
+        "code": "NONASSOC_COMPARISON",
+        "file": "main.bag",
+        "span": [
+          60,
+          61
+        ]
+      }
+    ]
+  }
+}

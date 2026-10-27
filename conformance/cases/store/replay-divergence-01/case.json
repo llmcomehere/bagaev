@@ -1,0 +1,119 @@
+{
+  "id": "store/replay-divergence-01",
+  "spec": [
+    "spec/runtime/host.md#6-журнал-и-replay"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "app.bag",
+    "v5/app.bag"
+  ],
+  "run": {
+    "steps": [
+      {
+        "op": "command",
+        "entry": "app.bump",
+        "args": [
+          {
+            "type": "String",
+            "value": "a"
+          },
+          {
+            "type": "Int64",
+            "value": "2"
+          }
+        ],
+        "namespace": "app",
+        "key": "key-000000000001"
+      },
+      {
+        "op": "replay",
+        "ref": "app:key-000000000001",
+        "program": "v5"
+      },
+      {
+        "op": "replay",
+        "ref": "app:key-000000000001"
+      }
+    ],
+    "state_program": ""
+  },
+  "expect": {
+    "phase": "store",
+    "outcome": "COMPLETED",
+    "value": [
+      {
+        "value": {
+          "type": "Result<Int64,app.BumpError>",
+          "tag": "Ok",
+          "payload": {
+            "type": "Int64",
+            "value": "2"
+          }
+        },
+        "outcome": "COMMITTED",
+        "final": true,
+        "replayed": false,
+        "state_version": 1
+      },
+      {
+        "outcome": "REPLAY_DIVERGENCE",
+        "ref": "app:key-000000000001"
+      },
+      {
+        "outcome": "REPLAY_MATCH",
+        "ref": "app:key-000000000001",
+        "operations": 3
+      }
+    ],
+    "state": {
+      "state_version": 1,
+      "epoch": 0,
+      "tables": {
+        "app.S.counts": [
+          [
+            {
+              "type": "String",
+              "value": "a"
+            },
+            {
+              "type": "Int64",
+              "value": "2"
+            }
+          ]
+        ],
+        "app.S.seen": []
+      },
+      "outbox": [
+        {
+          "seq": 1,
+          "event": "app.Bumped",
+          "payload": {
+            "type": "app.Bumped",
+            "fields": {
+              "name": {
+                "type": "String",
+                "value": "a"
+              },
+              "total": {
+                "type": "Int64",
+                "value": "2"
+              }
+            }
+          }
+        }
+      ],
+      "inbox": [],
+      "pending": [
+        {
+          "handler": "app.remember",
+          "seq": 1
+        }
+      ]
+    }
+  },
+  "note": "программа той же схемы пишет другое значение: replay сверяет аргументы записи и видит расхождение (HST-13)"
+}

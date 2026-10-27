@@ -1,0 +1,9 @@
+@id("7j9qd5")
+module probe
+
+use main
+
+@id("vhf6q6")
+fn check(ws: Seq<String>) -> Map<String, Int64> {
+  main.frequencies(ws)
+}

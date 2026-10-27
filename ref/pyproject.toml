@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "bagaev-ref"
+version = "0.0.0"
+description = "Эталонная реализация языка bagaev (исполнимая спецификация)"
+requires-python = ">=3.11"
+dependencies = []
+
+[project.scripts]
+bag = "bagaev_ref.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["bagaev_ref*"]

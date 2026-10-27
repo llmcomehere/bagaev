@@ -1,0 +1,28 @@
+{
+  "id": "lex/control-in-bytes",
+  "spec": [
+    "spec/language/lexical.md#1-кодировка-и-символы",
+    "spec/language/lexical.md#4-литералы"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "expect": {
+    "phase": "parse",
+    "outcome": "PRELAUNCH",
+    "diagnostics": [
+      {
+        "code": "FORBIDDEN_CHARACTER",
+        "file": "main.bag",
+        "span": [
+          30,
+          31
+        ]
+      }
+    ]
+  }
+}

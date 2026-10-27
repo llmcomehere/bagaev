@@ -1,0 +1,94 @@
+{
+  "id": "store/replay-01",
+  "spec": [
+    "spec/runtime/host.md#6-журнал-и-replay"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "app.bag"
+  ],
+  "run": {
+    "steps": [
+      {
+        "op": "command",
+        "entry": "app.bump",
+        "args": [
+          {
+            "type": "String",
+            "value": "a"
+          },
+          {
+            "type": "Int64",
+            "value": "2"
+          }
+        ],
+        "namespace": "app",
+        "key": "key-000000000001"
+      },
+      {
+        "op": "deliver"
+      },
+      {
+        "op": "replay",
+        "ref": "app:key-000000000001"
+      },
+      {
+        "op": "replay",
+        "ref": "app.remember:1"
+      },
+      {
+        "op": "replay",
+        "ref": "app:key-000000000002"
+      }
+    ]
+  },
+  "expect": {
+    "phase": "store",
+    "outcome": "COMPLETED",
+    "value": [
+      {
+        "value": {
+          "type": "Result<Int64,app.BumpError>",
+          "tag": "Ok",
+          "payload": {
+            "type": "Int64",
+            "value": "2"
+          }
+        },
+        "outcome": "COMMITTED",
+        "final": true,
+        "replayed": false,
+        "state_version": 1
+      },
+      {
+        "outcome": "DELIVERED",
+        "deliveries": [
+          {
+            "handler": "app.remember",
+            "seq": 1,
+            "outcome": "COMMITTED",
+            "replayed": false,
+            "state_version": 2
+          }
+        ]
+      },
+      {
+        "outcome": "REPLAY_MATCH",
+        "ref": "app:key-000000000001",
+        "operations": 3
+      },
+      {
+        "outcome": "REPLAY_MATCH",
+        "ref": "app.remember:1",
+        "operations": 1
+      },
+      {
+        "outcome": "ABSENT_AT_READ",
+        "ref": "app:key-000000000002"
+      }
+    ]
+  }
+}

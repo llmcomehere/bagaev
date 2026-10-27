@@ -1,0 +1,2 @@
+module m
+fn f(table: Int64, type: Int64, test: Int64) -> Int64 { let query = table + type; query + test }

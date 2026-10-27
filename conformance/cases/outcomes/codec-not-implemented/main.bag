@@ -1,0 +1,8 @@
+@id("p8j6kz")
+module main
+use std.codec
+
+@id("2j2wgv")
+pub fn main() -> Bytes {
+  codec.encode(1)
+}

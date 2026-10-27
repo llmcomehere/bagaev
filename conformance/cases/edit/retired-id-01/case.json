@@ -1,0 +1,173 @@
+{
+  "id": "edit/retired-id-01",
+  "spec": [
+    "spec/protocol/agent-protocol.md#3-sourceedit-и-идентичность",
+    "spec/protocol/agent-protocol.md#8-приёмка"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "app.bag"
+  ],
+  "run": {
+    "change": {
+      "principal": "agent",
+      "steps": [
+        {
+          "request": {
+            "operation": "change_begin",
+            "idempotency_key": "b1-kkkkkkkkkkkkkkkkkkkk",
+            "arguments": {
+              "intent": "изменение"
+            }
+          }
+        },
+        {
+          "request": {
+            "operation": "apply",
+            "change_id": "$change",
+            "expected_work_revision": 1,
+            "idempotency_key": "a1-kkkkkkkkkkkkkkkkkkkk",
+            "arguments": {
+              "source_edit": {
+                "files": [
+                  {
+                    "path": "app.bag",
+                    "base_sha256": "$sha:app.bag",
+                    "whole_file": "@id(\"cq0001\")\nmodule app\n\nuse std.test\n\n@id(\"cq0002\")\npub entity Greeting {\n  purpose \"Приветствие пользователю\"\n  terms [\"привет\"]\n  not_about [\"прощание\"]\n}\n\n@id(\"cq0003\")\npub contract Polite about Greeting {\n  @id(\"cq0004\") rule nonempty \"приветствие не пустое\"\n}\n\n@id(\"cq0005\")\npub fn greet(name: String) -> String\n  implements Polite.nonempty\n{\n  \"Привет, \" ++ name\n}\n\n@id(\"cq0006\")\npub fn shout(name: String) -> String {\n  greet(name) ++ \"!\"\n}\n\n@id(\"cq0008\")\ntest greet_nonempty\n  checks Polite.nonempty\n{\n  test.expect(\"не пусто\", greet(\"x\") != \"\")\n}\n"
+                  }
+                ],
+                "identity_ops": [
+                  {
+                    "op": "delete",
+                    "id": "cq0007",
+                    "reason": "не используется"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "request": {
+            "operation": "accept",
+            "change_id": "$change",
+            "expected_work_revision": 2,
+            "idempotency_key": "c1-kkkkkkkkkkkkkkkkkkkk",
+            "arguments": {}
+          }
+        },
+        {
+          "request": {
+            "operation": "change_begin",
+            "idempotency_key": "b2-kkkkkkkkkkkkkkkkkkkk",
+            "arguments": {
+              "intent": "изменение"
+            }
+          }
+        },
+        {
+          "request": {
+            "operation": "apply",
+            "change_id": "$change2",
+            "expected_work_revision": 1,
+            "idempotency_key": "a2-kkkkkkkkkkkkkkkkkkkk",
+            "arguments": {
+              "source_edit": {
+                "files": [
+                  {
+                    "path": "app.bag",
+                    "base_sha256": "$sha:app.bag",
+                    "whole_file": "@id(\"cq0001\")\nmodule app\n\nuse std.test\n\n@id(\"cq0002\")\npub entity Greeting {\n  purpose \"Приветствие пользователю\"\n  terms [\"привет\"]\n  not_about [\"прощание\"]\n}\n\n@id(\"cq0003\")\npub contract Polite about Greeting {\n  @id(\"cq0004\") rule nonempty \"приветствие не пустое\"\n}\n\n@id(\"cq0005\")\npub fn greet(name: String) -> String\n  implements Polite.nonempty\n{\n  \"Привет, \" ++ name\n}\n\n@id(\"cq0006\")\npub fn shout(name: String) -> String {\n  greet(name) ++ \"!\"\n}\n\n@id(\"cq0007\")\nfn helper(n: Int64) -> Int64 {\n  n + 1\n}\n\n@id(\"cq0008\")\ntest greet_nonempty\n  checks Polite.nonempty\n{\n  test.expect(\"не пусто\", greet(\"x\") != \"\")\n}\n"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "expect": {
+    "phase": "edit",
+    "outcome": "COMPLETED",
+    "value": [
+      {
+        "status": "succeeded",
+        "replayed": false,
+        "work_revision": 1
+      },
+      {
+        "status": "succeeded",
+        "replayed": false,
+        "work_revision": 2,
+        "touched": {
+          "app.bag": [
+            [
+              0,
+              627
+            ]
+          ]
+        },
+        "identity": {
+          "lineage": [
+            {
+              "op": "delete",
+              "predecessors": [
+                "cq0007"
+              ],
+              "successors": [],
+              "reason": "не используется"
+            }
+          ],
+          "removed": [
+            "cq0007"
+          ],
+          "added": [],
+          "renamed": []
+        },
+        "draft": false,
+        "diagnostics": []
+      },
+      {
+        "status": "succeeded",
+        "replayed": false,
+        "work_revision": 3,
+        "obligations": [],
+        "replaced_clauses": [],
+        "replaced_tests": [],
+        "coverage_gaps": [],
+        "lineage": [
+          [
+            "delete",
+            [
+              "cq0007"
+            ],
+            []
+          ]
+        ]
+      },
+      {
+        "status": "succeeded",
+        "replayed": false,
+        "work_revision": 1
+      },
+      {
+        "status": "blocked",
+        "replayed": false,
+        "code": "ENTITY_ID_RETIRED",
+        "data": {
+          "ids": [
+            "cq0007"
+          ]
+        }
+      }
+    ],
+    "state": {
+      "head_revision": 2
+    }
+  },
+  "note": "ID, удалённый принятой работой, не используется повторно (01 §7A)"
+}

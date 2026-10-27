@@ -1,0 +1,7 @@
+@id("5sn3wd")
+module main
+
+@id("s1wags")
+store S {
+  @id("cgw13d") table t: Seq<Int64>
+}

@@ -1,0 +1,150 @@
+{
+  "id": "store/receipt-before-stale-guard-01",
+  "spec": [
+    "spec/runtime/host.md#3-команда"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "app.bag"
+  ],
+  "run": {
+    "steps": [
+      {
+        "op": "command",
+        "entry": "app.bump",
+        "args": [
+          {
+            "type": "String",
+            "value": "a"
+          },
+          {
+            "type": "Int64",
+            "value": "1"
+          }
+        ],
+        "namespace": "app",
+        "key": "key-000000000001",
+        "expected_state_version": 0
+      },
+      {
+        "op": "command",
+        "entry": "app.bump",
+        "args": [
+          {
+            "type": "String",
+            "value": "a"
+          },
+          {
+            "type": "Int64",
+            "value": "1"
+          }
+        ],
+        "namespace": "app",
+        "key": "key-000000000001",
+        "expected_state_version": 0
+      },
+      {
+        "op": "command",
+        "entry": "app.bump",
+        "args": [
+          {
+            "type": "String",
+            "value": "a"
+          },
+          {
+            "type": "Int64",
+            "value": "1"
+          }
+        ],
+        "namespace": "app",
+        "key": "key-000000000001"
+      },
+      {
+        "op": "command",
+        "entry": "app.bump",
+        "args": [
+          {
+            "type": "String",
+            "value": "a"
+          },
+          {
+            "type": "Int64",
+            "value": "2"
+          }
+        ],
+        "namespace": "app",
+        "key": "key-000000000002",
+        "expected_state_version": 0
+      },
+      {
+        "op": "status",
+        "namespace": "app",
+        "key": "key-000000000002"
+      }
+    ]
+  },
+  "expect": {
+    "phase": "store",
+    "outcome": "COMPLETED",
+    "value": [
+      {
+        "value": {
+          "type": "Result<Int64,app.BumpError>",
+          "tag": "Ok",
+          "payload": {
+            "type": "Int64",
+            "value": "1"
+          }
+        },
+        "outcome": "COMMITTED",
+        "final": true,
+        "replayed": false,
+        "state_version": 1
+      },
+      {
+        "value": {
+          "type": "Result<Int64,app.BumpError>",
+          "tag": "Ok",
+          "payload": {
+            "type": "Int64",
+            "value": "1"
+          }
+        },
+        "outcome": "COMMITTED",
+        "final": true,
+        "replayed": true,
+        "state_version": 1
+      },
+      {
+        "value": {
+          "type": "Result<Int64,app.BumpError>",
+          "tag": "Ok",
+          "payload": {
+            "type": "Int64",
+            "value": "1"
+          }
+        },
+        "outcome": "COMMITTED",
+        "final": true,
+        "replayed": true,
+        "state_version": 1
+      },
+      {
+        "outcome": "REFUSED",
+        "code": "STALE_STATE",
+        "data": {
+          "expected": 0,
+          "actual": 1
+        }
+      },
+      {
+        "outcome": "ABSENT_AT_READ",
+        "state_version": 1
+      }
+    ]
+  },
+  "note": "квитанция ищется до guard версии (D44); guard не входит в дайджест запроса; отказ guard'а ключ не резервирует"
+}

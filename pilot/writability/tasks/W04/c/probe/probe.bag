@@ -1,0 +1,17 @@
+@id("5vzp58")
+module probe
+
+use main
+
+@id("bvxxa4")
+fn check() -> Result<Int64, main.AddError> {
+  main.add_decimal("1", "2")
+}
+
+@id("ffqk4d")
+fn names(e: main.AddError) -> String {
+  match e {
+    main.AddError.BadNumber(s) => s,
+    main.AddError.Overflow => "overflow",
+  }
+}

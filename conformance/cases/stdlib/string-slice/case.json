@@ -1,0 +1,31 @@
+{
+  "id": "stdlib/string-slice",
+  "spec": [
+    "spec/stdlib/acceptance.md",
+    "spec/runtime/machine.md#5-примитивы-и-fault"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "run": {
+    "entry": "main.main"
+  },
+  "expect": {
+    "phase": "run",
+    "effects": [],
+    "outcome": "RETURNED",
+    "value": {
+      "type": "Result<String,std.data.BoundsError>",
+      "tag": "Ok",
+      "payload": {
+        "type": "String",
+        "value": "😀"
+      }
+    }
+  },
+  "note": "SA-035"
+}

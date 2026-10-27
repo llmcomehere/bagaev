@@ -1,0 +1,225 @@
+{
+  "id": "protocol/idempotency-01",
+  "spec": [
+    "spec/protocol/agent-protocol.md#7-операции-протокола"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "app.bag"
+  ],
+  "run": {
+    "change": {
+      "principal": "agent",
+      "steps": [
+        {
+          "request": {
+            "operation": "change_begin",
+            "idempotency_key": "b1-kkkkkkkkkkkkkkkkkkkk",
+            "arguments": {
+              "intent": "изменение"
+            }
+          }
+        },
+        {
+          "request": {
+            "operation": "change_begin",
+            "idempotency_key": "b1-kkkkkkkkkkkkkkkkkkkk",
+            "arguments": {
+              "intent": "изменение"
+            }
+          }
+        },
+        {
+          "request": {
+            "operation": "change_begin",
+            "idempotency_key": "b1-kkkkkkkkkkkkkkkkkkkk",
+            "arguments": {
+              "intent": "другое"
+            }
+          }
+        },
+        {
+          "request": {
+            "operation": "apply",
+            "change_id": "$change",
+            "expected_work_revision": 5,
+            "idempotency_key": "a1-kkkkkkkkkkkkkkkkkkkk",
+            "arguments": {
+              "source_edit": {
+                "files": [
+                  {
+                    "path": "app.bag",
+                    "base_sha256": "e358cedc91cbb4470e548532ac3376a420afc5f40cb53ab9cbb5897c178ce546",
+                    "edits": [
+                      {
+                        "old_text": "\"Привет, \" ++ name",
+                        "text": "\"Здравствуй, \" ++ name"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "request": {
+            "operation": "apply",
+            "change_id": "$change",
+            "expected_work_revision": 1,
+            "idempotency_key": "a1-kkkkkkkkkkkkkkkkkkkk",
+            "arguments": {
+              "source_edit": {
+                "files": [
+                  {
+                    "path": "app.bag",
+                    "base_sha256": "e358cedc91cbb4470e548532ac3376a420afc5f40cb53ab9cbb5897c178ce546",
+                    "edits": [
+                      {
+                        "old_text": "\"Привет, \" ++ name",
+                        "text": "\"Здравствуй, \" ++ name"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "request": {
+            "operation": "apply",
+            "change_id": "$change",
+            "expected_work_revision": 1,
+            "idempotency_key": "a1-kkkkkkkkkkkkkkkkkkkk",
+            "arguments": {
+              "source_edit": {
+                "files": [
+                  {
+                    "path": "app.bag",
+                    "base_sha256": "e358cedc91cbb4470e548532ac3376a420afc5f40cb53ab9cbb5897c178ce546",
+                    "edits": [
+                      {
+                        "old_text": "\"Привет, \" ++ name",
+                        "text": "\"Здравствуй, \" ++ name"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "request": {
+            "operation": "apply",
+            "change_id": "$change",
+            "expected_work_revision": 2,
+            "idempotency_key": "a1-kkkkkkkkkkkkkkkkkkkk",
+            "arguments": {
+              "source_edit": {
+                "files": [
+                  {
+                    "path": "app.bag",
+                    "base_sha256": "e358cedc91cbb4470e548532ac3376a420afc5f40cb53ab9cbb5897c178ce546",
+                    "edits": [
+                      {
+                        "old_text": "\"Привет, \" ++ name",
+                        "text": "\"Здравствуй, \" ++ name"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "expect": {
+    "phase": "protocol",
+    "outcome": "COMPLETED",
+    "value": [
+      {
+        "status": "succeeded",
+        "replayed": false,
+        "work_revision": 1
+      },
+      {
+        "status": "succeeded",
+        "replayed": true,
+        "work_revision": 1
+      },
+      {
+        "status": "blocked",
+        "replayed": false,
+        "code": "IDEMPOTENCY_CONFLICT",
+        "data": {
+          "key": "b1-kkkkkkkkkkkkkkkkkkkk",
+          "namespace": "project"
+        }
+      },
+      {
+        "status": "blocked",
+        "replayed": false,
+        "code": "WORK_CONFLICT"
+      },
+      {
+        "status": "succeeded",
+        "replayed": false,
+        "work_revision": 2,
+        "touched": {
+          "app.bag": [
+            [
+              408,
+              440
+            ]
+          ]
+        },
+        "identity": {
+          "lineage": [],
+          "removed": [],
+          "added": [],
+          "renamed": []
+        },
+        "draft": false,
+        "diagnostics": []
+      },
+      {
+        "status": "succeeded",
+        "replayed": true,
+        "work_revision": 2,
+        "touched": {
+          "app.bag": [
+            [
+              408,
+              440
+            ]
+          ]
+        },
+        "identity": {
+          "lineage": [],
+          "removed": [],
+          "added": [],
+          "renamed": []
+        },
+        "draft": false,
+        "diagnostics": []
+      },
+      {
+        "status": "blocked",
+        "replayed": false,
+        "code": "IDEMPOTENCY_CONFLICT",
+        "data": {
+          "key": "a1-kkkkkkkkkkkkkkkkkkkk",
+          "namespace": "<change>"
+        }
+      }
+    ]
+  },
+  "note": "тот же ключ и запрос — квитанция; другой запрос (в том числе другая ожидаемая ревизия) — конфликт; отказ guard'а ключ не резервирует"
+}

@@ -1,0 +1,11 @@
+@id("2zcwxx")
+module main
+use std.i64
+
+@id("c2d5y1")
+pub fn main() -> i64.ArithmeticError {
+  match i64.div(5, 0) {
+    Ok(ok) => i64.ArithmeticError.Overflow,
+    Err(err) => err,
+  }
+}

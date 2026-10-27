@@ -1,0 +1,47 @@
+{
+  "id": "data/nested-observation",
+  "spec": [
+    "spec/kernel/canonical.md#4-наблюдаемое-значение"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "run": {
+    "entry": "main.main"
+  },
+  "expect": {
+    "phase": "run",
+    "effects": [],
+    "outcome": "RETURNED",
+    "value": {
+      "type": "Seq<main.Shape>",
+      "items": [
+        {
+          "type": "main.Shape",
+          "tag": "Rect",
+          "payload": {
+            "type": "main.Point",
+            "fields": {
+              "x": {
+                "type": "Int64",
+                "value": "1"
+              },
+              "y": {
+                "type": "Int64",
+                "value": "2"
+              }
+            }
+          }
+        },
+        {
+          "type": "main.Shape",
+          "tag": "Dot"
+        }
+      ]
+    }
+  }
+}

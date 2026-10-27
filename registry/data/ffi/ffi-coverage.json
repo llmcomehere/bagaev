@@ -1,0 +1,121 @@
+{
+  "format": "R23-FFI-COVERAGE-1",
+  "scope": "WHOLE_ORIGINAL_T13_C04_WITHIN_V1",
+  "dimension_count": 10,
+  "dimensions": [
+    {
+      "id": "identity",
+      "contract_scope": "Exact adapters, executable closure and interfaces",
+      "cases": [
+        "IC23-01",
+        "IC23-02"
+      ],
+      "production_validation": "NOT_RUN"
+    },
+    {
+      "id": "types_codec",
+      "contract_scope": "Ground DATA, phantom/forbidden payloads, exact codec",
+      "cases": [
+        "IC23-07",
+        "IC23-08",
+        "IC23-09",
+        "IC23-29"
+      ],
+      "production_validation": "NOT_RUN"
+    },
+    {
+      "id": "effects_authority",
+      "contract_scope": "Declared effects, broker mediation and current authority",
+      "cases": [
+        "IC23-03",
+        "IC23-04",
+        "IC23-05",
+        "IC23-27"
+      ],
+      "production_validation": "NOT_RUN"
+    },
+    {
+      "id": "ownership",
+      "contract_scope": "Copies, alias reservations, shared/exclusive/move, return",
+      "cases": [
+        "IC23-06",
+        "IC23-11",
+        "IC23-12",
+        "IC23-13",
+        "IC23-18",
+        "IC23-19",
+        "IC23-21"
+      ],
+      "production_validation": "NOT_RUN"
+    },
+    {
+      "id": "lifetime_cleanup",
+      "contract_scope": "Quiescence, close, orphan cleanup, epochs",
+      "cases": [
+        "IC23-16",
+        "IC23-20",
+        "IC23-22",
+        "IC23-23",
+        "IC23-39"
+      ],
+      "production_validation": "NOT_RUN"
+    },
+    {
+      "id": "calls_stops",
+      "contract_scope": "Logical steps, cancel and dispatch windows",
+      "cases": [
+        "IC23-10",
+        "IC23-14",
+        "IC23-15",
+        "IC23-17"
+      ],
+      "production_validation": "NOT_RUN"
+    },
+    {
+      "id": "callbacks",
+      "contract_scope": "Closures, threads, lifetime, reentrancy and duplicates",
+      "cases": [
+        "IC23-24",
+        "IC23-25",
+        "IC23-26",
+        "IC23-28"
+      ],
+      "production_validation": "NOT_RUN"
+    },
+    {
+      "id": "native_platform",
+      "contract_scope": "Shim, unwinding, isolation, startup and actual admission",
+      "cases": [
+        "IC23-30",
+        "IC23-31",
+        "IC23-32",
+        "IC23-33",
+        "IC23-40"
+      ],
+      "production_validation": "NOT_RUN"
+    },
+    {
+      "id": "journal_recovery",
+      "contract_scope": "Replay, settlement knowledge, durable semantics",
+      "cases": [
+        "IC23-35",
+        "IC23-36",
+        "IC23-42"
+      ],
+      "production_validation": "NOT_RUN"
+    },
+    {
+      "id": "toolchain_limits",
+      "contract_scope": "Optimization, update, queues and exact frames",
+      "cases": [
+        "IC23-34",
+        "IC23-37",
+        "IC23-38",
+        "IC23-41"
+      ],
+      "production_validation": "NOT_RUN"
+    }
+  ],
+  "complete_V1_implementation_available": false,
+  "finite_model_is_whole_criterion": false
+}

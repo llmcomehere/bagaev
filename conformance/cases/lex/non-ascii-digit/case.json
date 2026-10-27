@@ -1,0 +1,27 @@
+{
+  "id": "lex/non-ascii-digit",
+  "spec": [
+    "spec/language/lexical.md#4-литералы"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "expect": {
+    "phase": "parse",
+    "outcome": "PRELAUNCH",
+    "diagnostics": [
+      {
+        "code": "UNEXPECTED_CHARACTER",
+        "file": "main.bag",
+        "span": [
+          27,
+          29
+        ]
+      }
+    ]
+  }
+}

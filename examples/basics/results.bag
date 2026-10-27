@@ -1,0 +1,47 @@
+/// Option и Result как значения; `?` — явное раннее завершение (D73).
+@id("pfrswn")
+module results
+
+use std.i64
+use std.seq
+
+@id("1xvq6m")
+pub type ParseError = enum {
+  @id("a2f79b") Empty,
+  @id("5a2k9n") NotANumber(String),
+}
+
+@id("jgvd5h")
+pub fn parse(s: String) -> Result<Int64, ParseError> {
+  if s == "" {
+    return Err(ParseError.Empty)
+  }
+  match i64.parse_decimal(s) {
+    Ok(v) => Ok(v),
+    Err(_) => Err(ParseError.NotANumber(s)),
+  }
+}
+
+@id("zf6ewz")
+pub fn sum_two(a: String, b: String) -> Result<Int64, ParseError> {
+  let x = parse(a)?;
+  let y = parse(b)?;
+  Ok(x + y)
+}
+
+@id("wpg3dr")
+pub fn first(xs: Seq<Int64>) -> Option<Int64> {
+  let head = seq.get(xs, 0)?;
+  Some(head * 10)
+}
+
+@id("6mm1y0")
+pub fn main() -> Int64 {
+  match sum_two("40", "2") {
+    Ok(v) => v,
+    Err(e) => match e {
+      ParseError.Empty => -1,
+      ParseError.NotANumber(_) => -2,
+    },
+  }
+}

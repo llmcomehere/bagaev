@@ -1,0 +1,23 @@
+{
+  "id": "outcomes/codec-not-implemented",
+  "spec": [
+    "spec/runtime/machine.md#5-примитивы-и-fault",
+    "spec/kernel/outcomes.md#1-исход-запуска-программы"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "run": {
+    "entry": "main.main"
+  },
+  "expect": {
+    "phase": "run",
+    "effects": [],
+    "outcome": "IMPLEMENTATION_STOP",
+    "code": "NOT_IMPLEMENTED"
+  }
+}

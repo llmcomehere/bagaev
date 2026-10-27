@@ -1,0 +1,7 @@
+@id("82fbgt")
+module main
+
+@id("v9w7v9")
+fn f() -> () {
+  let xs = [];
+}

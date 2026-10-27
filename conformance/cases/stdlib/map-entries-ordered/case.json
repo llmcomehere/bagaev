@@ -1,0 +1,54 @@
+{
+  "id": "stdlib/map-entries-ordered",
+  "spec": [
+    "spec/stdlib/acceptance.md",
+    "spec/runtime/machine.md#5-примитивы-и-fault"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "run": {
+    "entry": "main.main"
+  },
+  "expect": {
+    "phase": "run",
+    "effects": [],
+    "outcome": "RETURNED",
+    "value": {
+      "type": "Seq<std.map.Entry<Int64,String>>",
+      "items": [
+        {
+          "type": "std.map.Entry<Int64,String>",
+          "fields": {
+            "key": {
+              "type": "Int64",
+              "value": "1"
+            },
+            "value": {
+              "type": "String",
+              "value": "a"
+            }
+          }
+        },
+        {
+          "type": "std.map.Entry<Int64,String>",
+          "fields": {
+            "key": {
+              "type": "Int64",
+              "value": "3"
+            },
+            "value": {
+              "type": "String",
+              "value": "c"
+            }
+          }
+        }
+      ]
+    }
+  },
+  "note": "SA-030"
+}

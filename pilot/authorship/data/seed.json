@@ -1,0 +1,64 @@
+{
+  "format": "bagaev-pilot-seed/1",
+  "source": "registry/data/core/authorship-fixtures.json#source_old_state; почта — дополнение пилота (contract.md §2)",
+  "people": [
+    {
+      "person_id": "p_alina",
+      "display_name": "Алина Петрова",
+      "email": "alina@blog.test"
+    },
+    {
+      "person_id": "p_boris",
+      "display_name": "Борис Соколов",
+      "email": "boris@blog.test"
+    },
+    {
+      "person_id": "p_vera",
+      "display_name": "Вера Морозова",
+      "email": "vera@blog.test"
+    }
+  ],
+  "actors": [
+    {
+      "actor_id": "u_editor",
+      "person_id": null,
+      "roles": [
+        "editor"
+      ]
+    },
+    {
+      "actor_id": "u_boris",
+      "person_id": "p_boris",
+      "roles": []
+    }
+  ],
+  "articles": [
+    {
+      "article_id": "a_101",
+      "article_revision": 1,
+      "title": "Типы и связи",
+      "author_id": "p_alina",
+      "editor_ids": [
+        "u_editor"
+      ]
+    },
+    {
+      "article_id": "a_102",
+      "article_revision": 1,
+      "title": "Поиск по данным",
+      "author_id": "p_boris",
+      "editor_ids": [
+        "u_editor"
+      ]
+    }
+  ],
+  "author_index": {
+    "p_alina": [
+      "a_101"
+    ],
+    "p_boris": [
+      "a_102"
+    ],
+    "p_vera": []
+  }
+}

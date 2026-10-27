@@ -1,0 +1,20 @@
+{
+  "id": "fmt/comments",
+  "spec": [
+    "spec/language/format.md#комментарии"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "expect": {
+    "phase": "fmt",
+    "outcome": "FORMATTED",
+    "value": {
+      "main.bag": "module m\n\n// о функции\nfn f() -> Int64 {\n  // после скобки\n  // аргумент\n  // хвост\n  let x = g(1, 2);\n  // хвост хвоста\n  x\n  // перед закрытием\n}\n// в конце\n"
+    }
+  }
+}

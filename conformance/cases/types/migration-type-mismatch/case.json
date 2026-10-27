@@ -1,0 +1,33 @@
+{
+  "id": "types/migration-type-mismatch",
+  "spec": [
+    "spec/language/surface.md#3-объявления-и-идентичность",
+    "spec/language/checking.md#4-объявления-фазы-type-и-effect"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "expect": {
+    "phase": "check",
+    "outcome": "PRELAUNCH",
+    "diagnostics": [
+      {
+        "code": "MIGRATION_TYPE_MISMATCH",
+        "file": "main.bag",
+        "span": [
+          290,
+          308
+        ],
+        "data": {
+          "actual": "Result<main.V1, String>",
+          "table": "S.t",
+          "expected": "main.V2"
+        }
+      }
+    ]
+  }
+}

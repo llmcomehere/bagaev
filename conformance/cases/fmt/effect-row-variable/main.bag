@@ -1,0 +1,5 @@
+module m
+
+fn h<T, !e>(g: fn(T) -> T uses e) -> () uses {host Clock.now, reads S.a | e} { () }
+
+fn k<!e>(g: fn() -> () uses {| e}) -> () uses e { g() }

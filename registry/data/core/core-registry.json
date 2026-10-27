@@ -1,0 +1,378 @@
+{
+  "schema_version": "bagaev-core-registry/0.1",
+  "iteration": "R06",
+  "status": "research_profile_contract",
+  "profile": "CORE-0.1",
+  "profile_revision": "core-machine/r06-v1",
+  "primitive_revision": "core-i64/r06-v1",
+  "authoritative_api_ref": "experiments/core-machine/API.md",
+  "full_v1": false,
+  "source_frontend_implemented": false,
+  "common_fields": [
+    "op",
+    "nid"
+  ],
+  "forms": [
+    {
+      "op": "const",
+      "required_fields": [
+        "op",
+        "nid",
+        "type",
+        "value"
+      ],
+      "unknown_fields": "reject",
+      "charged_rules": [
+        "CONST"
+      ],
+      "type_rule": "literal has its exact scalar type"
+    },
+    {
+      "op": "var",
+      "required_fields": [
+        "op",
+        "nid",
+        "binder",
+        "type_args"
+      ],
+      "unknown_fields": "reject",
+      "charged_rules": [
+        "VAR"
+      ],
+      "type_rule": "resolved monotype or explicit rank-1 instantiation"
+    },
+    {
+      "op": "let",
+      "required_fields": [
+        "op",
+        "nid",
+        "binder",
+        "type",
+        "value",
+        "body"
+      ],
+      "unknown_fields": "reject",
+      "charged_rules": [
+        "LET_ENTER",
+        "LET_BIND"
+      ],
+      "type_rule": "initializer matches annotated monotype; body has its inferred type"
+    },
+    {
+      "op": "if",
+      "required_fields": [
+        "op",
+        "nid",
+        "condition",
+        "then",
+        "else"
+      ],
+      "unknown_fields": "reject",
+      "charged_rules": [
+        "IF_ENTER",
+        "IF_THEN",
+        "IF_ELSE"
+      ],
+      "type_rule": "condition Bool; branches same type"
+    },
+    {
+      "op": "lambda",
+      "required_fields": [
+        "op",
+        "nid",
+        "params",
+        "result_type",
+        "body"
+      ],
+      "unknown_fields": "reject",
+      "charged_rules": [
+        "LAMBDA"
+      ],
+      "type_rule": "checked body matches explicit result; lexical capture"
+    },
+    {
+      "op": "call",
+      "required_fields": [
+        "op",
+        "nid",
+        "fn",
+        "args"
+      ],
+      "unknown_fields": "reject",
+      "charged_rules": [
+        "CALL_ENTER",
+        "CALL_ARGS",
+        "CALL_NEXT",
+        "CALL_BODY"
+      ],
+      "type_rule": "callee Fn; exact arity/arg types; result is function result"
+    },
+    {
+      "op": "letrec",
+      "required_fields": [
+        "op",
+        "nid",
+        "type_params",
+        "functions",
+        "body"
+      ],
+      "unknown_fields": "reject",
+      "charged_rules": [
+        "LETREC"
+      ],
+      "type_rule": "shared rigid group parameters; signatures checked before outside schemes"
+    },
+    {
+      "op": "prim",
+      "required_fields": [
+        "op",
+        "nid",
+        "name",
+        "args"
+      ],
+      "unknown_fields": "reject",
+      "charged_rules": [
+        "PRIM_ENTER",
+        "PRIM_NEXT",
+        "PRIM_APPLY"
+      ],
+      "type_rule": "exact binary Int64 signature"
+    },
+    {
+      "op": "result",
+      "required_fields": [
+        "op",
+        "nid",
+        "tag",
+        "ok_type",
+        "value"
+      ],
+      "unknown_fields": "reject",
+      "charged_rules": [
+        "RESULT_ENTER",
+        "RESULT_WRAP"
+      ],
+      "type_rule": "Ok payload:ok_type; Err payload:ArithmeticError"
+    },
+    {
+      "op": "match_result",
+      "required_fields": [
+        "op",
+        "nid",
+        "value",
+        "ok_binder",
+        "ok_body",
+        "err_binder",
+        "err_body"
+      ],
+      "unknown_fields": "reject",
+      "charged_rules": [
+        "MATCH_ENTER",
+        "MATCH_OK",
+        "MATCH_ERR"
+      ],
+      "type_rule": "Result scrutinee; both branches same type"
+    }
+  ],
+  "scalar_types": [
+    "Bool",
+    "Int64",
+    "Unit",
+    "ArithmeticError"
+  ],
+  "type_constructors": {
+    "var": [
+      "tag",
+      "id"
+    ],
+    "fn": [
+      "tag",
+      "params",
+      "result"
+    ],
+    "result": [
+      "tag",
+      "ok"
+    ]
+  },
+  "auxiliary_records": {
+    "parameter": [
+      "binder",
+      "type"
+    ],
+    "recursive_function": [
+      "binder",
+      "params",
+      "result_type",
+      "body"
+    ]
+  },
+  "charged_rules": [
+    {
+      "id": "CONST",
+      "steps": 1
+    },
+    {
+      "id": "VAR",
+      "steps": 1
+    },
+    {
+      "id": "LET_ENTER",
+      "steps": 1
+    },
+    {
+      "id": "LET_BIND",
+      "steps": 1
+    },
+    {
+      "id": "IF_ENTER",
+      "steps": 1
+    },
+    {
+      "id": "IF_THEN",
+      "steps": 1
+    },
+    {
+      "id": "IF_ELSE",
+      "steps": 1
+    },
+    {
+      "id": "LAMBDA",
+      "steps": 1
+    },
+    {
+      "id": "CALL_ENTER",
+      "steps": 1
+    },
+    {
+      "id": "CALL_ARGS",
+      "steps": 1
+    },
+    {
+      "id": "CALL_NEXT",
+      "steps": 1
+    },
+    {
+      "id": "CALL_BODY",
+      "steps": 1
+    },
+    {
+      "id": "LETREC",
+      "steps": 1
+    },
+    {
+      "id": "PRIM_ENTER",
+      "steps": 1
+    },
+    {
+      "id": "PRIM_NEXT",
+      "steps": 1
+    },
+    {
+      "id": "PRIM_APPLY",
+      "steps": 1
+    },
+    {
+      "id": "RESULT_ENTER",
+      "steps": 1
+    },
+    {
+      "id": "RESULT_WRAP",
+      "steps": 1
+    },
+    {
+      "id": "MATCH_ENTER",
+      "steps": 1
+    },
+    {
+      "id": "MATCH_OK",
+      "steps": 1
+    },
+    {
+      "id": "MATCH_ERR",
+      "steps": 1
+    }
+  ],
+  "terminal_charge": 0,
+  "boundary_order": [
+    "terminal",
+    "visible_cancellation",
+    "zero_step_budget",
+    "charged_transition"
+  ],
+  "primitives": [
+    {
+      "name": "i64.eq",
+      "arity": 2,
+      "params": [
+        "Int64",
+        "Int64"
+      ],
+      "result": "Bool"
+    },
+    {
+      "name": "i64.lt",
+      "arity": 2,
+      "params": [
+        "Int64",
+        "Int64"
+      ],
+      "result": "Bool"
+    },
+    {
+      "name": "i64.add",
+      "arity": 2,
+      "params": [
+        "Int64",
+        "Int64"
+      ],
+      "result": {
+        "tag": "result",
+        "ok": "Int64"
+      }
+    },
+    {
+      "name": "i64.sub",
+      "arity": 2,
+      "params": [
+        "Int64",
+        "Int64"
+      ],
+      "result": {
+        "tag": "result",
+        "ok": "Int64"
+      }
+    },
+    {
+      "name": "i64.div",
+      "arity": 2,
+      "params": [
+        "Int64",
+        "Int64"
+      ],
+      "result": {
+        "tag": "result",
+        "ok": "Int64"
+      }
+    },
+    {
+      "name": "i64.rem",
+      "arity": 2,
+      "params": [
+        "Int64",
+        "Int64"
+      ],
+      "result": {
+        "tag": "result",
+        "ok": "Int64"
+      }
+    }
+  ],
+  "scope_notes": [
+    "Fully annotated structural research IR, no source grammar/CST/inference implementation",
+    "Explicit group forall; monomorphic ordinary let/lambda and internal recursive references",
+    "Pure kernel only; no host, effects, storage, threads, capabilities or model calls",
+    "Core fields are not full V1 canonical wire encoding",
+    "No equality/persistence for Function values; observation is diagnostic only"
+  ]
+}

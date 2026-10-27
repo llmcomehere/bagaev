@@ -1,0 +1,17 @@
+{
+  "id": "lex/comments",
+  "spec": [
+    "spec/language/lexical.md#2-пробелы-и-комментарии"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "expect": {
+    "phase": "parse",
+    "outcome": "ACCEPTED"
+  }
+}

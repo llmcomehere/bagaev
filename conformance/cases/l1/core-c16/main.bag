@@ -1,0 +1,8 @@
+@id("dx70nz")
+module main
+use std.i64
+
+@id("grw3cf")
+pub fn main() -> Result<Result<Int64, i64.ArithmeticError>, i64.ArithmeticError> {
+  Ok(Err(i64.ArithmeticError.Overflow))
+}

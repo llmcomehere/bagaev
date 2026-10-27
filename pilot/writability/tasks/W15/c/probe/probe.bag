@@ -1,0 +1,9 @@
+@id("tqcf3m")
+module probe
+
+use main
+
+@id("9p3kzf")
+fn check(a: main.Article) -> String {
+  a.name
+}

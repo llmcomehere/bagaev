@@ -1,0 +1,158 @@
+{
+  "id": "accept/scope-01",
+  "spec": [
+    "spec/protocol/agent-protocol.md#4-changecontract-и-политика",
+    "spec/protocol/agent-protocol.md#6-workstate"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "app.bag"
+  ],
+  "run": {
+    "change": {
+      "principal": "agent",
+      "steps": [
+        {
+          "request": {
+            "operation": "change_begin",
+            "idempotency_key": "b1-kkkkkkkkkkkkkkkkkkkk",
+            "arguments": {
+              "intent": "изменение"
+            }
+          }
+        },
+        {
+          "request": {
+            "operation": "contract_update",
+            "change_id": "$change",
+            "expected_work_revision": 1,
+            "idempotency_key": "k1-kkkkkkkkkkkkkkkkkkkk",
+            "arguments": {
+              "ops": [
+                {
+                  "op": "scope",
+                  "allowed": [
+                    "app.helper"
+                  ]
+                }
+              ]
+            }
+          }
+        },
+        {
+          "request": {
+            "operation": "apply",
+            "change_id": "$change",
+            "expected_work_revision": 2,
+            "idempotency_key": "a1-kkkkkkkkkkkkkkkkkkkk",
+            "arguments": {
+              "source_edit": {
+                "files": [
+                  {
+                    "path": "app.bag",
+                    "base_sha256": "$sha:app.bag",
+                    "edits": [
+                      {
+                        "old_text": "\"Привет, \" ++ name",
+                        "text": "\"Здравствуй, \" ++ name"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "request": {
+            "operation": "verify",
+            "change_id": "$change",
+            "expected_work_revision": 3,
+            "idempotency_key": "v1-kkkkkkkkkkkkkkkkkkkk",
+            "arguments": {}
+          }
+        },
+        {
+          "request": {
+            "operation": "accept",
+            "change_id": "$change",
+            "expected_work_revision": 4,
+            "idempotency_key": "c1-kkkkkkkkkkkkkkkkkkkk",
+            "arguments": {}
+          }
+        }
+      ]
+    }
+  },
+  "expect": {
+    "phase": "accept",
+    "outcome": "COMPLETED",
+    "value": [
+      {
+        "status": "succeeded",
+        "replayed": false,
+        "work_revision": 1
+      },
+      {
+        "status": "succeeded",
+        "replayed": false,
+        "work_revision": 2,
+        "contract_revision": 2,
+        "clauses": [],
+        "replaced": [],
+        "assumptions": [],
+        "allowed": [
+          "app.helper"
+        ],
+        "replaced_tests": [],
+        "policy_pins": []
+      },
+      {
+        "status": "succeeded",
+        "replayed": false,
+        "work_revision": 3,
+        "touched": {
+          "app.bag": [
+            [
+              408,
+              440
+            ]
+          ]
+        },
+        "identity": {
+          "lineage": [],
+          "removed": [],
+          "added": [],
+          "renamed": []
+        },
+        "draft": false,
+        "diagnostics": []
+      },
+      {
+        "status": "succeeded",
+        "replayed": false,
+        "work_revision": 4,
+        "evidence": [
+          [
+            "app.greet_nonempty",
+            "PASS"
+          ]
+        ]
+      },
+      {
+        "status": "blocked",
+        "replayed": false,
+        "code": "OPEN_OBLIGATIONS",
+        "data": {
+          "blockers": [
+            "SCOPE_EXCEEDED"
+          ]
+        }
+      }
+    ]
+  },
+  "note": "изменение вне области контракта блокирует приёмку"
+}

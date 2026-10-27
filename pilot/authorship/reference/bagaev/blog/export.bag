@@ -1,0 +1,42 @@
+/// Экспорт статьи в JSON для внешних систем.
+@id("m424x0")
+module blog.export
+
+use std.store
+use std.json
+use std.seq
+use blog.db.{Blog}
+use blog.people.{PersonId, Person}
+use blog.people
+use blog.articles.{Article}
+use blog.articles
+use blog.authorship.{AttributionComplete}
+
+@id("xwr95b")
+pub fn export_article(a: Article, all_people: Map<PersonId, Person>) -> String
+  requires AttributionComplete.complete
+{
+  "{\"article_id\":" ++ json.quote(articles.id_text(a.id))
+    ++ ",\"authors\":[" ++ authors_json(a.authors, all_people) ++ "]"
+    ++ ",\"title\":" ++ json.quote(a.title) ++ "}"
+}
+
+@id("8fj7jz")
+fn authors_json(xs: Seq<PersonId>, all_people: Map<PersonId, Person>) -> String {
+  seq.fold(xs, "", fn(acc, p) => (if acc == "" {
+    ""
+  } else {
+    acc ++ ","
+  }) ++ "{\"display_name\":" ++ json.quote(people.display_name(all_people, p)) ++ ",\"person_id\":"
+    ++ json.quote(people.id_text(p)) ++ "}")
+}
+
+@id("8wpass")
+pub query export_of(article: String) -> String
+  uses { reads Blog.articles, reads Blog.people }
+{
+  match store.get(Blog.articles, articles.article_id(article)) {
+    Some(a) => export_article(a, store.all(Blog.people)),
+    None => "",
+  }
+}

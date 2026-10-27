@@ -1,0 +1,92 @@
+{
+  "id": "migrate/plan-invalid-01",
+  "spec": [
+    "spec/runtime/host.md#7-миграция"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "app.bag",
+    "v3/app.bag",
+    "v4/app.bag"
+  ],
+  "run": {
+    "steps": [
+      {
+        "op": "seed",
+        "table": "app.S.counts",
+        "rows": [
+          [
+            {
+              "type": "String",
+              "value": "a"
+            },
+            {
+              "type": "Int64",
+              "value": "5"
+            }
+          ]
+        ]
+      },
+      {
+        "op": "migrate",
+        "action": "plan",
+        "program": "v3"
+      },
+      {
+        "op": "migrate",
+        "action": "plan",
+        "program": "v4"
+      }
+    ],
+    "state_program": ""
+  },
+  "expect": {
+    "phase": "migrate",
+    "outcome": "COMPLETED",
+    "value": [
+      {
+        "outcome": "COMMITTED",
+        "rows": 1,
+        "state_version": 1
+      },
+      {
+        "outcome": "REFUSED",
+        "code": "MIGRATION_PLAN_INVALID",
+        "data": {
+          "problems": [
+            {
+              "table": "app.S.counts",
+              "id": "aa0003",
+              "reason": "KEY_TYPE_CHANGED",
+              "from": "String",
+              "to": "Int64"
+            },
+            {
+              "table": "app.S.seen",
+              "id": "aa0004",
+              "reason": "TABLE_REMOVED"
+            }
+          ]
+        }
+      },
+      {
+        "outcome": "REFUSED",
+        "code": "MIGRATION_PLAN_INVALID",
+        "data": {
+          "problems": [
+            {
+              "table": "app.S.counts",
+              "id": "aa0003",
+              "reason": "MIGRATION_MISSING",
+              "from": "Int64",
+              "to": "app.Tally"
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

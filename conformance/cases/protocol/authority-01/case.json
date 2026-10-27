@@ -1,0 +1,153 @@
+{
+  "id": "protocol/authority-01",
+  "spec": [
+    "spec/protocol/agent-protocol.md#7-операции-протокола"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "app.bag"
+  ],
+  "run": {
+    "change": {
+      "principal": "agent",
+      "steps": [
+        {
+          "request": {
+            "operation": "change_begin",
+            "idempotency_key": "b1-kkkkkkkkkkkkkkkkkkkk",
+            "arguments": {
+              "intent": "изменение"
+            }
+          }
+        },
+        {
+          "request": {
+            "operation": "apply",
+            "change_id": "$change",
+            "expected_work_revision": 1,
+            "idempotency_key": "a1-kkkkkkkkkkkkkkkkkkkk",
+            "arguments": {
+              "source_edit": {
+                "files": [
+                  {
+                    "path": "app.bag",
+                    "base_sha256": "$sha:app.bag",
+                    "edits": [
+                      {
+                        "old_text": "  n + 1\n",
+                        "text": "  n + 2\n"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "request": {
+            "operation": "accept",
+            "change_id": "$change",
+            "expected_work_revision": 2,
+            "idempotency_key": "c1-kkkkkkkkkkkkkkkkkkkk",
+            "arguments": {}
+          }
+        },
+        {
+          "request": {
+            "operation": "accept",
+            "change_id": "$change",
+            "expected_work_revision": 2,
+            "idempotency_key": "c2-kkkkkkkkkkkkkkkkkkkk",
+            "arguments": {}
+          },
+          "principal": "reviewer"
+        },
+        {
+          "request": {
+            "operation": "change_begin",
+            "idempotency_key": "r9-kkkkkkkkkkkkkkkkkkkk",
+            "arguments": {
+              "intent": "изменение"
+            }
+          }
+        }
+      ],
+      "policy": {
+        "principals": {
+          "agent": [
+            "read",
+            "change_begin",
+            "apply",
+            "verify"
+          ],
+          "reviewer": [
+            "*"
+          ]
+        }
+      }
+    }
+  },
+  "expect": {
+    "phase": "protocol",
+    "outcome": "COMPLETED",
+    "value": [
+      {
+        "status": "succeeded",
+        "replayed": false,
+        "work_revision": 1
+      },
+      {
+        "status": "succeeded",
+        "replayed": false,
+        "work_revision": 2,
+        "touched": {
+          "app.bag": [
+            [
+              558,
+              566
+            ]
+          ]
+        },
+        "identity": {
+          "lineage": [],
+          "removed": [],
+          "added": [],
+          "renamed": []
+        },
+        "draft": false,
+        "diagnostics": []
+      },
+      {
+        "status": "blocked",
+        "replayed": false,
+        "code": "ACCESS_DENIED",
+        "data": {
+          "operation": "accept"
+        }
+      },
+      {
+        "status": "succeeded",
+        "replayed": false,
+        "work_revision": 3,
+        "obligations": [],
+        "replaced_clauses": [],
+        "replaced_tests": [],
+        "coverage_gaps": [],
+        "lineage": []
+      },
+      {
+        "status": "succeeded",
+        "replayed": false,
+        "work_revision": 1
+      }
+    ],
+    "state": {
+      "head_revision": 2
+    }
+  },
+  "note": "полномочие задаёт политика по субъекту транспорта; субъект запросом не назначается"
+}

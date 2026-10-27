@@ -1,0 +1,12 @@
+@id("t4ecam")
+module main
+
+@id("8q77ew")
+fn g(x: Int64) -> Int64 {
+  x
+}
+
+@id("amwb0n")
+fn f() -> Int64 {
+  g("7")
+}

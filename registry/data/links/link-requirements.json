@@ -1,0 +1,1008 @@
+{
+  "schema_version": "1.0",
+  "specification": "LNK-0.4",
+  "specification_status": "DRAFT",
+  "date": "2026-10-22",
+  "model_report": "results/link-model/report.json",
+  "requirements": [
+    {
+      "id": "LNK-001",
+      "requirement": "Прямой и обратный индекс представляют точные канонические факты; порча содержимого обнаруживается",
+      "owner_tasks": [
+        "T08"
+      ],
+      "spec_refs": [
+        "spec/links/01-records-and-invariants.md",
+        "spec/links/07-call-composition.md"
+      ],
+      "verification_status": "model_checked_fragment",
+      "model_case_refs": [
+        "H21_indexed_query_equals_full_scan",
+        "H27_same_generation_wrong_index_content_rejected",
+        "H28_corrupted_rows_with_valid_metadata_rejected",
+        "H29_dropped_unknown_fact_ids_rejected"
+      ],
+      "model_check_refs": [],
+      "scope_note": "Ручные индексные случаи",
+      "normative_acceptance": "not_accepted",
+      "additional_evidence": [
+        {
+          "iteration": "R04",
+          "report_ref": "results/call-profile/report.json",
+          "sections": [
+            "project_rebuild_cases"
+          ],
+          "scope": "Full-rebuild reverse queries and detection of forged saved analyses; no persistent indexed maintenance claim. Only this fragment is checked; normative_acceptance remains not_accepted."
+        }
+      ]
+    },
+    {
+      "id": "LNK-002",
+      "requirement": "Смешанные поколения отвергаются; согласованные исторические поколения читаются",
+      "owner_tasks": [
+        "T08"
+      ],
+      "spec_refs": [
+        "spec/links/01-records-and-invariants.md"
+      ],
+      "verification_status": "model_checked_fragment",
+      "model_case_refs": [
+        "H16_mixed_index_generations_rejected",
+        "H17_consistent_historical_generations_remain_readable"
+      ],
+      "model_check_refs": [],
+      "scope_note": "H16/H17",
+      "normative_acceptance": "not_accepted"
+    },
+    {
+      "id": "LNK-003",
+      "requirement": "Alias не заменяет устойчивую идентичность",
+      "owner_tasks": [
+        "T02",
+        "T03"
+      ],
+      "spec_refs": [
+        "spec/links/01-records-and-invariants.md"
+      ],
+      "verification_status": "model_checked_fragment",
+      "model_case_refs": [
+        "H20_nonreflective_alias_preserves_identity"
+      ],
+      "model_check_refs": [],
+      "scope_note": "H20, только без наблюдения служебных имён",
+      "normative_acceptance": "not_accepted"
+    },
+    {
+      "id": "LNK-004",
+      "requirement": "Новый потребитель инвалидирует прежний пустой ответ",
+      "owner_tasks": [
+        "T08"
+      ],
+      "spec_refs": [
+        "spec/links/02-extraction-and-refresh.md",
+        "spec/links/07-call-composition.md"
+      ],
+      "verification_status": "model_checked_fragment",
+      "model_case_refs": [
+        "H01_new_consumer_after_empty_result"
+      ],
+      "model_check_refs": [
+        "mutants/M1_returned_items_only_cache"
+      ],
+      "scope_note": "H01 и намеренная мутация M1",
+      "normative_acceptance": "not_accepted",
+      "additional_evidence": [
+        {
+          "iteration": "R04",
+          "report_ref": "results/call-profile/report.json",
+          "sections": [
+            "project_rebuild_cases"
+          ],
+          "scope": "A new registered consumer changes the premise of an earlier empty reverse query. Only this fragment is checked; normative_acceptance remains not_accepted."
+        }
+      ]
+    },
+    {
+      "id": "LNK-005",
+      "requirement": "Прежний nonmatch после правки пересматривается при неизменном составе",
+      "owner_tasks": [
+        "T08"
+      ],
+      "spec_refs": [
+        "spec/links/02-extraction-and-refresh.md",
+        "spec/links/07-call-composition.md"
+      ],
+      "verification_status": "model_checked_fragment",
+      "model_case_refs": [
+        "H02_existing_nonconsumer_becomes_consumer"
+      ],
+      "model_check_refs": [],
+      "scope_note": "H02",
+      "normative_acceptance": "not_accepted",
+      "additional_evidence": [
+        {
+          "iteration": "R04",
+          "report_ref": "results/call-profile/report.json",
+          "sections": [
+            "project_rebuild_cases"
+          ],
+          "scope": "A nonconsumer edited into a caller is found after full rebuild with changed exact premises. Only this fragment is checked; normative_acceptance remains not_accepted."
+        }
+      ]
+    },
+    {
+      "id": "LNK-006",
+      "requirement": "Перечисление корней и производителей отслеживается; новые входы обнаруживаются",
+      "owner_tasks": [
+        "T08"
+      ],
+      "spec_refs": [
+        "spec/links/02-extraction-and-refresh.md",
+        "spec/links/07-call-composition.md"
+      ],
+      "verification_status": "specified_not_executed",
+      "model_case_refs": [],
+      "model_check_refs": [],
+      "scope_note": "Описано; настоящего extractor ещё нет",
+      "normative_acceptance": "not_accepted",
+      "additional_evidence": [
+        {
+          "iteration": "R04",
+          "report_ref": "results/call-profile/report.json",
+          "sections": [
+            "project_rebuild_cases"
+          ],
+          "scope": "Project manifest includes the complete provided consumer set; no external discovery or incremental claim. Only this fragment is checked; normative_acceptance remains not_accepted."
+        }
+      ]
+    },
+    {
+      "id": "LNK-007",
+      "requirement": "Lookup miss зависит от слота; последующая вставка/удаление пересматривает результат",
+      "owner_tasks": [
+        "T08"
+      ],
+      "spec_refs": [
+        "spec/links/02-extraction-and-refresh.md",
+        "spec/links/07-call-composition.md"
+      ],
+      "verification_status": "specified_not_executed",
+      "model_case_refs": [],
+      "model_check_refs": [],
+      "scope_note": "Описано; отдельный lookup API ещё не исполнен",
+      "normative_acceptance": "not_accepted",
+      "additional_evidence": [
+        {
+          "iteration": "R04",
+          "report_ref": "results/call-profile/report.json",
+          "sections": [
+            "revision_and_unknown_cases",
+            "project_rebuild_cases"
+          ],
+          "scope": "Static MISSING bindings remain in transitive closure and reverse queries across insertion/removal. Only this fragment is checked; normative_acceptance remains not_accepted."
+        }
+      ]
+    },
+    {
+      "id": "LNK-008",
+      "requirement": "Динамический footprint заменяется даже при прежнем результате",
+      "owner_tasks": [
+        "T08"
+      ],
+      "spec_refs": [
+        "spec/links/02-extraction-and-refresh.md"
+      ],
+      "verification_status": "specified_not_executed",
+      "model_case_refs": [],
+      "model_check_refs": [],
+      "scope_note": "Описано; вложенный query engine ещё не исполнен",
+      "normative_acceptance": "not_accepted"
+    },
+    {
+      "id": "LNK-009",
+      "requirement": "Config и версия извлекателя входят в основания reuse",
+      "owner_tasks": [
+        "T08"
+      ],
+      "spec_refs": [
+        "spec/links/02-extraction-and-refresh.md",
+        "spec/links/06-law-checking.md",
+        "spec/links/07-call-composition.md"
+      ],
+      "verification_status": "model_checked_fragment",
+      "model_case_refs": [
+        "H04_same_source_facts_changed_compile_config",
+        "H07_exact_pinned_false_can_exclude",
+        "H08_unpinned_false_retains_may_edge",
+        "H18_unchanged_declared_extraction_reuses",
+        "H19_different_extractor_invalidates"
+      ],
+      "model_check_refs": [],
+      "scope_note": "H04/H07/H08/H18/H19",
+      "normative_acceptance": "not_accepted",
+      "additional_evidence": [
+        {
+          "iteration": "R03",
+          "report_ref": "results/law-profile/report.json",
+          "sections": [
+            "proof_boundary_and_partial_cases"
+          ],
+          "scope": "Fixed OBS laws and finite original-program outcomes; source bindings, incompleteness and requirement obligations remain explicit. Only this fragment is checked; normative_acceptance remains not_accepted."
+        },
+        {
+          "iteration": "R04",
+          "report_ref": "results/call-profile/report.json",
+          "sections": [
+            "revision_and_unknown_cases",
+            "type_and_expansion_boundary_cases"
+          ],
+          "scope": "Exact config/provider/source/closure and expansion inputs are checked; unsupported provider remains incomplete. Only this fragment is checked; normative_acceptance remains not_accepted."
+        }
+      ]
+    },
+    {
+      "id": "LNK-010",
+      "requirement": "Runtime-false и неизвестный guard сохраняют возможную связь",
+      "owner_tasks": [
+        "T08"
+      ],
+      "spec_refs": [
+        "spec/links/02-extraction-and-refresh.md",
+        "spec/links/07-call-composition.md"
+      ],
+      "verification_status": "model_checked_fragment",
+      "model_case_refs": [
+        "H05_runtime_false_is_not_global_false",
+        "H06_unknown_guard_retains_may_edge"
+      ],
+      "model_check_refs": [],
+      "scope_note": "H05/H06",
+      "normative_acceptance": "not_accepted",
+      "additional_evidence": [
+        {
+          "iteration": "R04",
+          "report_ref": "results/call-profile/report.json",
+          "sections": [
+            "composed_summary_contracts",
+            "manual_execution_cases"
+          ],
+          "scope": "Both branches and all strict arguments retain resource/error/effect dependencies; unknown in an unselected branch remains incomplete. Only this fragment is checked; normative_acceptance remains not_accepted."
+        }
+      ]
+    },
+    {
+      "id": "LNK-011",
+      "requirement": "Равенство для reuse учитывает coverage, gaps и значимое происхождение",
+      "owner_tasks": [
+        "T08"
+      ],
+      "spec_refs": [
+        "spec/links/02-extraction-and-refresh.md",
+        "spec/links/07-call-composition.md"
+      ],
+      "verification_status": "model_checked_fragment",
+      "model_case_refs": [
+        "H10_empty_query_in_incomplete_scope_is_incomplete",
+        "H18_unchanged_declared_extraction_reuses"
+      ],
+      "model_check_refs": [],
+      "scope_note": "Конечная модель учитывает свои поля; полный QueryResult ещё не реализован",
+      "normative_acceptance": "not_accepted",
+      "additional_evidence": [
+        {
+          "iteration": "R04",
+          "report_ref": "results/call-profile/report.json",
+          "sections": [
+            "revision_and_unknown_cases",
+            "project_rebuild_cases"
+          ],
+          "scope": "Reachable definition/signature revisions and missing bindings are part of semantic premises; full project provenance is retained separately. Only this fragment is checked; normative_acceptance remains not_accepted."
+        }
+      ]
+    },
+    {
+      "id": "LNK-012",
+      "requirement": "Удалённые отношения не теряются из анализа old/new",
+      "owner_tasks": [
+        "T08"
+      ],
+      "spec_refs": [
+        "spec/links/03-impact-and-context.md",
+        "spec/links/07-call-composition.md"
+      ],
+      "verification_status": "model_checked_fragment",
+      "model_case_refs": [
+        "H03_removed_reader_seen_in_old_graph"
+      ],
+      "model_check_refs": [],
+      "scope_note": "H03",
+      "normative_acceptance": "not_accepted",
+      "additional_evidence": [
+        {
+          "iteration": "R04",
+          "report_ref": "results/call-profile/report.json",
+          "sections": [
+            "project_rebuild_cases"
+          ],
+          "scope": "All 36 ordered transitions of six saved project states compare old/new consumer ID union, including deletion. Only this fragment is checked; normative_acceptance remains not_accepted."
+        }
+      ]
+    },
+    {
+      "id": "LNK-013",
+      "requirement": "Неполный delta или UseSummary расширяет влияние до TOP",
+      "owner_tasks": [
+        "T05",
+        "T09"
+      ],
+      "spec_refs": [
+        "spec/links/03-impact-and-context.md",
+        "spec/links/05-executable-profile.md",
+        "spec/links/06-law-checking.md",
+        "spec/links/07-call-composition.md"
+      ],
+      "verification_status": "model_checked_fragment",
+      "model_case_refs": [
+        "H13_unverified_delta_propagates_TOP",
+        "H14_incomplete_footprint_propagates_TOP"
+      ],
+      "model_check_refs": [
+        "mutants/M2_declared_facets_treated_as_verified"
+      ],
+      "scope_note": "H13/H14 и намеренная мутация M2",
+      "normative_acceptance": "not_accepted",
+      "additional_evidence": [
+        {
+          "iteration": "R02",
+          "report_ref": "results/observation-profile/report.json",
+          "sections": [
+            "bounded_observation_checks",
+            "mutants"
+          ],
+          "scope": "Fixed research AST and finite resource/registry domain; normative_acceptance remains not_accepted"
+        },
+        {
+          "iteration": "R03",
+          "report_ref": "results/law-profile/report.json",
+          "sections": [
+            "bounded_comparison",
+            "equivalent_edit_cases"
+          ],
+          "scope": "Fixed OBS laws and finite original-program outcomes; source bindings, incompleteness and requirement obligations remain explicit. Only this fragment is checked; normative_acceptance remains not_accepted."
+        },
+        {
+          "iteration": "R04",
+          "report_ref": "results/call-profile/report.json",
+          "sections": [
+            "revision_and_unknown_cases",
+            "bounded_same_corpus"
+          ],
+          "scope": "Incomplete static call use yields UNKNOWN; 972 same-corpus decisions remain unknown. Only this fragment is checked; normative_acceptance remains not_accepted."
+        }
+      ]
+    },
+    {
+      "id": "LNK-014",
+      "requirement": "Объявленная узкая область не подменяет полное основание",
+      "owner_tasks": [
+        "T05",
+        "T09"
+      ],
+      "spec_refs": [
+        "spec/links/01-records-and-invariants.md",
+        "spec/links/06-law-checking.md",
+        "spec/links/07-call-composition.md"
+      ],
+      "verification_status": "model_checked_fragment",
+      "model_case_refs": [
+        "H11_underdeclared_delta_rejected",
+        "H12_underdeclared_consumer_footprint_rejected"
+      ],
+      "model_check_refs": [],
+      "scope_note": "H11/H12, синтетические certificates",
+      "normative_acceptance": "not_accepted",
+      "additional_evidence": [
+        {
+          "iteration": "R03",
+          "report_ref": "results/law-profile/report.json",
+          "sections": [
+            "proof_boundary_and_partial_cases",
+            "mutants"
+          ],
+          "scope": "Fixed OBS laws and finite original-program outcomes; source bindings, incompleteness and requirement obligations remain explicit. Only this fragment is checked; normative_acceptance remains not_accepted."
+        },
+        {
+          "iteration": "R04",
+          "report_ref": "results/call-profile/report.json",
+          "sections": [
+            "type_and_expansion_boundary_cases",
+            "actual_mutants"
+          ],
+          "scope": "Forged/stale expansion and unsound drop/duplicate-argument transformations are rejected or distinguished by actual outcomes. Only this fragment is checked; normative_acceptance remains not_accepted."
+        }
+      ]
+    },
+    {
+      "id": "LNK-015",
+      "requirement": "Несовместимый observation registry не допускает исключение",
+      "owner_tasks": [
+        "T05",
+        "T09"
+      ],
+      "spec_refs": [
+        "spec/links/03-impact-and-context.md",
+        "spec/links/06-law-checking.md",
+        "spec/links/07-call-composition.md"
+      ],
+      "verification_status": "model_checked_fragment",
+      "model_case_refs": [
+        "H15_facet_registry_mismatch_is_unknown"
+      ],
+      "model_check_refs": [],
+      "scope_note": "H15",
+      "normative_acceptance": "not_accepted",
+      "additional_evidence": [
+        {
+          "iteration": "R03",
+          "report_ref": "results/law-profile/report.json",
+          "sections": [
+            "proof_boundary_and_partial_cases",
+            "equivalent_edit_cases"
+          ],
+          "scope": "Fixed OBS laws and finite original-program outcomes; source bindings, incompleteness and requirement obligations remain explicit. Only this fragment is checked; normative_acceptance remains not_accepted."
+        },
+        {
+          "iteration": "R04",
+          "report_ref": "results/call-profile/report.json",
+          "sections": [
+            "revision_and_unknown_cases"
+          ],
+          "scope": "Unsupported provider does not become compatible merely because its revision string is unchanged. Only this fragment is checked; normative_acceptance remains not_accepted."
+        }
+      ]
+    },
+    {
+      "id": "LNK-016",
+      "requirement": "Непересечение допустимо только при полных совместимых bounds",
+      "owner_tasks": [
+        "T05",
+        "T09"
+      ],
+      "spec_refs": [
+        "spec/links/03-impact-and-context.md",
+        "spec/links/05-executable-profile.md",
+        "spec/links/06-law-checking.md",
+        "spec/links/07-call-composition.md"
+      ],
+      "verification_status": "model_checked_fragment",
+      "model_case_refs": [
+        "H22_two_complete_disjoint_bounds_allow_stop",
+        "H23_verified_overlap_requires_review"
+      ],
+      "model_check_refs": [
+        "bounded/facet_bound_cases"
+      ],
+      "scope_note": "H22/H23 и конечный перебор",
+      "normative_acceptance": "not_accepted",
+      "additional_evidence": [
+        {
+          "iteration": "R02",
+          "report_ref": "results/observation-profile/report.json",
+          "sections": [
+            "bounded_observation_checks"
+          ],
+          "scope": "Fixed research AST and finite resource/registry domain; normative_acceptance remains not_accepted"
+        },
+        {
+          "iteration": "R03",
+          "report_ref": "results/law-profile/report.json",
+          "sections": [
+            "bounded_comparison"
+          ],
+          "scope": "Fixed OBS laws and finite original-program outcomes; source bindings, incompleteness and requirement obligations remain explicit. Only this fragment is checked; normative_acceptance remains not_accepted."
+        },
+        {
+          "iteration": "R04",
+          "report_ref": "results/call-profile/report.json",
+          "sections": [
+            "bounded_same_corpus"
+          ],
+          "scope": "All 5832 same-corpus pairs compare EXCLUDED with complete independently executed outcomes; finite scope only. Only this fragment is checked; normative_acceptance remains not_accepted."
+        }
+      ]
+    },
+    {
+      "id": "LNK-017",
+      "requirement": "Неизвестная цель и неполная область не превращаются в полное отсутствие",
+      "owner_tasks": [
+        "T08"
+      ],
+      "spec_refs": [
+        "spec/links/03-impact-and-context.md",
+        "spec/links/05-executable-profile.md",
+        "spec/links/07-call-composition.md"
+      ],
+      "verification_status": "model_checked_fragment",
+      "model_case_refs": [
+        "H09_dynamic_unknown_target_is_not_absence",
+        "H10_empty_query_in_incomplete_scope_is_incomplete"
+      ],
+      "model_check_refs": [],
+      "scope_note": "H09/H10",
+      "normative_acceptance": "not_accepted",
+      "additional_evidence": [
+        {
+          "iteration": "R02",
+          "report_ref": "results/observation-profile/report.json",
+          "sections": [
+            "program_contracts",
+            "project_cases"
+          ],
+          "scope": "Fixed research AST and finite resource/registry domain; normative_acceptance remains not_accepted"
+        },
+        {
+          "iteration": "R04",
+          "report_ref": "results/call-profile/report.json",
+          "sections": [
+            "revision_and_unknown_cases",
+            "project_rebuild_cases"
+          ],
+          "scope": "Missing/external/cyclic/opaque targets remain incomplete; empty known result does not imply absence of unknown consumers. Only this fragment is checked; normative_acceptance remains not_accepted."
+        }
+      ]
+    },
+    {
+      "id": "LNK-018",
+      "requirement": "Delta выходов потребителя без проверенного transfer остаётся TOP",
+      "owner_tasks": [
+        "T08"
+      ],
+      "spec_refs": [
+        "spec/links/03-impact-and-context.md"
+      ],
+      "verification_status": "model_checked_fragment",
+      "model_case_refs": [
+        "H24_missing_output_transfer_propagates_TOP"
+      ],
+      "model_check_refs": [],
+      "scope_note": "H24",
+      "normative_acceptance": "not_accepted"
+    },
+    {
+      "id": "LNK-019",
+      "requirement": "Основание одной обязанности не закрывает другие обязанности и downstream-данные",
+      "owner_tasks": [
+        "T09",
+        "T10"
+      ],
+      "spec_refs": [
+        "spec/links/03-impact-and-context.md",
+        "spec/links/06-law-checking.md",
+        "spec/links/07-call-composition.md"
+      ],
+      "verification_status": "specified_not_executed",
+      "model_case_refs": [],
+      "model_check_refs": [],
+      "scope_note": "Уточнено после концептуальной проверки; не исполнено",
+      "normative_acceptance": "not_accepted",
+      "additional_evidence": [
+        {
+          "iteration": "R03",
+          "report_ref": "results/law-profile/report.json",
+          "sections": [
+            "equivalent_edit_cases"
+          ],
+          "scope": "Fixed OBS laws and finite original-program outcomes; source bindings, incompleteness and requirement obligations remain explicit. Only this fragment is checked; normative_acceptance remains not_accepted."
+        },
+        {
+          "iteration": "R04",
+          "report_ref": "results/call-profile/report.json",
+          "sections": [
+            "revision_and_unknown_cases"
+          ],
+          "scope": "Requirement metadata remains OPEN/REMOVAL_OPEN/UNCHANGED_UNASSESSED; behavior equality is not satisfaction. Only this fragment is checked; normative_acceptance remains not_accepted."
+        }
+      ]
+    },
+    {
+      "id": "LNK-020",
+      "requirement": "validateOrTOP выполняется до dedup; используется accumulated state и UNSEEN",
+      "owner_tasks": [
+        "T09"
+      ],
+      "spec_refs": [
+        "spec/links/03-impact-and-context.md"
+      ],
+      "verification_status": "specified_not_executed",
+      "model_case_refs": [],
+      "model_check_refs": [],
+      "scope_note": "Полный LNK-I01 ещё не исполнен",
+      "normative_acceptance": "not_accepted"
+    },
+    {
+      "id": "LNK-021",
+      "requirement": "Вселенная ключей конечна; неподдержанный scope transfer сохраняет frontier",
+      "owner_tasks": [
+        "T09"
+      ],
+      "spec_refs": [
+        "spec/links/03-impact-and-context.md"
+      ],
+      "verification_status": "specified_not_executed",
+      "model_case_refs": [],
+      "model_check_refs": [],
+      "scope_note": "Описано; полный LNK-I01 ещё не исполнен",
+      "normative_acceptance": "not_accepted"
+    },
+    {
+      "id": "LNK-022",
+      "requirement": "Расширенный домен и усиленное требование не наследуют прежнюю проверку автоматически",
+      "owner_tasks": [
+        "T05",
+        "T09"
+      ],
+      "spec_refs": [
+        "spec/links/03-impact-and-context.md",
+        "spec/links/05-executable-profile.md",
+        "spec/links/06-law-checking.md",
+        "spec/links/07-call-composition.md"
+      ],
+      "verification_status": "specified_not_executed",
+      "model_case_refs": [],
+      "model_check_refs": [],
+      "scope_note": "Описано; не исполнено",
+      "normative_acceptance": "not_accepted",
+      "additional_evidence": [
+        {
+          "iteration": "R02",
+          "report_ref": "results/observation-profile/report.json",
+          "sections": [
+            "revision_and_requirement_cases"
+          ],
+          "scope": "Fixed research AST and finite resource/registry domain; normative_acceptance remains not_accepted"
+        },
+        {
+          "iteration": "R03",
+          "report_ref": "results/law-profile/report.json",
+          "sections": [
+            "equivalent_edit_cases"
+          ],
+          "scope": "Fixed OBS laws and finite original-program outcomes; source bindings, incompleteness and requirement obligations remain explicit. Only this fragment is checked; normative_acceptance remains not_accepted."
+        },
+        {
+          "iteration": "R04",
+          "report_ref": "results/call-profile/report.json",
+          "sections": [
+            "revision_and_unknown_cases"
+          ],
+          "scope": "Requirement/config/provider or significant source changes preserve recheck/open obligations; no acceptance transfer is claimed. Only this fragment is checked; normative_acceptance remains not_accepted."
+        }
+      ]
+    },
+    {
+      "id": "LNK-023",
+      "requirement": "Публикация graph bundle и receipt атомарна, guards исходника и head точны",
+      "owner_tasks": [
+        "T08"
+      ],
+      "spec_refs": [
+        "spec/links/02-extraction-and-refresh.md"
+      ],
+      "verification_status": "specified_not_executed",
+      "model_case_refs": [],
+      "model_check_refs": [],
+      "scope_note": "Описано; durable storage и crash injection ещё нет",
+      "normative_acceptance": "not_accepted"
+    },
+    {
+      "id": "LNK-024",
+      "requirement": "Две правки от одной базы не принимаются одним прежним CAS",
+      "owner_tasks": [
+        "T10",
+        "T12"
+      ],
+      "spec_refs": [
+        "spec/links/03-impact-and-context.md"
+      ],
+      "verification_status": "model_checked_fragment",
+      "model_case_refs": [
+        "H25_concurrent_revisions_order_AB",
+        "H26_concurrent_revisions_order_BA"
+      ],
+      "model_check_refs": [],
+      "scope_note": "H25/H26 проверяют только последовательную модель указателя",
+      "normative_acceptance": "not_accepted"
+    },
+    {
+      "id": "LNK-025",
+      "requirement": "Граф не хеширует внешние оценки, ссылающиеся на его собственный snapshot",
+      "owner_tasks": [
+        "T02",
+        "T08"
+      ],
+      "spec_refs": [
+        "spec/links/01-records-and-invariants.md"
+      ],
+      "verification_status": "specified_not_executed",
+      "model_case_refs": [],
+      "model_check_refs": [],
+      "scope_note": "Схема определена; сериализатор snapshot ещё не реализован",
+      "normative_acceptance": "not_accepted"
+    },
+    {
+      "id": "LNK-026",
+      "requirement": "Ограниченная видимость сохраняется как ограничение; скрытые элементы не объявляются отсутствующими",
+      "owner_tasks": [
+        "T08",
+        "T12"
+      ],
+      "spec_refs": [
+        "spec/links/02-extraction-and-refresh.md"
+      ],
+      "verification_status": "specified_not_executed",
+      "model_case_refs": [],
+      "model_check_refs": [],
+      "scope_note": "Описано; access-control интеграции ещё нет",
+      "normative_acceptance": "not_accepted"
+    },
+    {
+      "id": "LNK-027",
+      "requirement": "ContextCoverage учитывает каждый обязательный путь; budget сохраняет frontier",
+      "owner_tasks": [
+        "T11",
+        "T12"
+      ],
+      "spec_refs": [
+        "spec/links/03-impact-and-context.md"
+      ],
+      "verification_status": "specified_not_executed",
+      "model_case_refs": [],
+      "model_check_refs": [],
+      "scope_note": "Описано; ContextPack ещё не реализован",
+      "normative_acceptance": "not_accepted"
+    },
+    {
+      "id": "LNK-028",
+      "requirement": "Полный и incremental пути дают равные результаты в объявленной области",
+      "owner_tasks": [
+        "T08"
+      ],
+      "spec_refs": [
+        "spec/links/02-extraction-and-refresh.md",
+        "spec/links/05-executable-profile.md"
+      ],
+      "verification_status": "model_checked_fragment",
+      "model_case_refs": [
+        "H21_indexed_query_equals_full_scan"
+      ],
+      "model_check_refs": [
+        "bounded/all_ordered_graph_transition_cases",
+        "bounded/indexed_equals_full_cases"
+      ],
+      "scope_note": "Перебраны все упорядоченные переходы конечного корпуса",
+      "normative_acceptance": "not_accepted",
+      "additional_evidence": [
+        {
+          "iteration": "R02",
+          "report_ref": "results/observation-profile/report.json",
+          "sections": [
+            "bounded_project_checks"
+          ],
+          "scope": "Fixed research AST and finite resource/registry domain; normative_acceptance remains not_accepted"
+        }
+      ]
+    },
+    {
+      "id": "LNK-029",
+      "requirement": "Отдельные ожидаемые ответы и намеренные ошибки отличают успех от общего дефекта oracle",
+      "owner_tasks": [
+        "T08"
+      ],
+      "spec_refs": [
+        "spec/links/04-acceptance.md",
+        "spec/links/05-executable-profile.md",
+        "spec/links/06-law-checking.md",
+        "spec/links/07-call-composition.md"
+      ],
+      "verification_status": "model_checked_fragment",
+      "model_case_refs": [
+        "H01_new_consumer_after_empty_result",
+        "H02_existing_nonconsumer_becomes_consumer",
+        "H03_removed_reader_seen_in_old_graph",
+        "H04_same_source_facts_changed_compile_config",
+        "H05_runtime_false_is_not_global_false",
+        "H06_unknown_guard_retains_may_edge",
+        "H07_exact_pinned_false_can_exclude",
+        "H08_unpinned_false_retains_may_edge",
+        "H09_dynamic_unknown_target_is_not_absence",
+        "H10_empty_query_in_incomplete_scope_is_incomplete",
+        "H11_underdeclared_delta_rejected",
+        "H12_underdeclared_consumer_footprint_rejected",
+        "H13_unverified_delta_propagates_TOP",
+        "H14_incomplete_footprint_propagates_TOP",
+        "H15_facet_registry_mismatch_is_unknown",
+        "H16_mixed_index_generations_rejected",
+        "H17_consistent_historical_generations_remain_readable",
+        "H18_unchanged_declared_extraction_reuses",
+        "H19_different_extractor_invalidates",
+        "H20_nonreflective_alias_preserves_identity",
+        "H21_indexed_query_equals_full_scan",
+        "H22_two_complete_disjoint_bounds_allow_stop",
+        "H23_verified_overlap_requires_review",
+        "H24_missing_output_transfer_propagates_TOP",
+        "H25_concurrent_revisions_order_AB",
+        "H26_concurrent_revisions_order_BA",
+        "H27_same_generation_wrong_index_content_rejected",
+        "H28_corrupted_rows_with_valid_metadata_rejected",
+        "H29_dropped_unknown_fact_ids_rejected",
+        "H30_nonboolean_config_guard_or_completeness_rejected",
+        "H31_single_use_scope_iterator_is_preserved"
+      ],
+      "model_check_refs": [
+        "mutants/M1_returned_items_only_cache",
+        "mutants/M2_declared_facets_treated_as_verified"
+      ],
+      "scope_note": "Ручной корпус и две мутации",
+      "normative_acceptance": "not_accepted",
+      "additional_evidence": [
+        {
+          "iteration": "R02",
+          "report_ref": "results/observation-profile/report.json",
+          "sections": [
+            "manual_execution_cases",
+            "mutants"
+          ],
+          "scope": "Fixed research AST and finite resource/registry domain; normative_acceptance remains not_accepted"
+        },
+        {
+          "iteration": "R03",
+          "report_ref": "results/law-profile/report.json",
+          "sections": [
+            "normalization_contracts",
+            "manual_execution_cases",
+            "mutants"
+          ],
+          "scope": "Fixed OBS laws and finite original-program outcomes; source bindings, incompleteness and requirement obligations remain explicit. Only this fragment is checked; normative_acceptance remains not_accepted."
+        },
+        {
+          "iteration": "R04",
+          "report_ref": "results/call-profile/report.json",
+          "sections": [
+            "manual_execution_cases",
+            "actual_mutants"
+          ],
+          "scope": "25 authored manual cases and three executed defective algorithms distinguish actual wrong values/errors/traces and false exclusions. Only this fragment is checked; normative_acceptance remains not_accepted."
+        }
+      ]
+    },
+    {
+      "id": "LNK-030",
+      "requirement": "UseSummary получается из реальной поддержанной семантики, а не подставляется из ожидаемого ответа",
+      "owner_tasks": [
+        "T03",
+        "T05",
+        "T08"
+      ],
+      "spec_refs": [
+        "spec/links/04-acceptance.md",
+        "spec/links/05-executable-profile.md",
+        "spec/links/06-law-checking.md",
+        "spec/links/07-call-composition.md"
+      ],
+      "verification_status": "research_profile_checked_full_v1_not_executed",
+      "model_case_refs": [],
+      "model_check_refs": [],
+      "scope_note": "R02 automatically extracts use from executable research AST; actual bagaev IR and full V1 remain unverified.",
+      "normative_acceptance": "not_accepted",
+      "additional_evidence": [
+        {
+          "iteration": "R02",
+          "report_ref": "results/observation-profile/report.json",
+          "sections": [
+            "program_contracts",
+            "bounded_observation_checks"
+          ],
+          "scope": "Fixed research AST and finite resource/registry domain; normative_acceptance remains not_accepted"
+        },
+        {
+          "iteration": "R03",
+          "report_ref": "results/law-profile/report.json",
+          "sections": [
+            "normalization_contracts",
+            "bounded_comparison"
+          ],
+          "scope": "Fixed OBS laws and finite original-program outcomes; source bindings, incompleteness and requirement obligations remain explicit. Only this fragment is checked; normative_acceptance remains not_accepted."
+        },
+        {
+          "iteration": "R04",
+          "report_ref": "results/call-profile/report.json",
+          "sections": [
+            "composed_summary_contracts",
+            "bounded_same_corpus"
+          ],
+          "scope": "Modular use is inferred from typed CALL/OBS source, including all arguments and callee bodies; same-program finite oracle checks. Only this fragment is checked; normative_acceptance remains not_accepted."
+        }
+      ]
+    },
+    {
+      "id": "LNK-031",
+      "requirement": "Невлияние закрывает обязанность лишь вместе с истинностью на base и допустимым переносом",
+      "owner_tasks": [
+        "T09",
+        "T10"
+      ],
+      "spec_refs": [
+        "spec/links/03-impact-and-context.md"
+      ],
+      "verification_status": "specified_not_executed",
+      "model_case_refs": [],
+      "model_check_refs": [],
+      "scope_note": "Описано; отдельная система evidence ещё не исполнена",
+      "normative_acceptance": "not_accepted"
+    },
+    {
+      "id": "LNK-032",
+      "requirement": "Неправильные типы входов отвергаются; представление области поиска не меняет её смысл",
+      "owner_tasks": [
+        "T08"
+      ],
+      "spec_refs": [
+        "spec/links/02-extraction-and-refresh.md",
+        "spec/links/05-executable-profile.md",
+        "spec/links/06-law-checking.md",
+        "spec/links/07-call-composition.md"
+      ],
+      "verification_status": "model_checked_fragment",
+      "model_case_refs": [
+        "H30_nonboolean_config_guard_or_completeness_rejected",
+        "H31_single_use_scope_iterator_is_preserved"
+      ],
+      "model_check_refs": [],
+      "scope_note": "Конечные отрицательные случаи модели",
+      "normative_acceptance": "not_accepted",
+      "additional_evidence": [
+        {
+          "iteration": "R02",
+          "report_ref": "results/observation-profile/report.json",
+          "sections": [
+            "invalid_input_cases"
+          ],
+          "scope": "Fixed research AST and finite resource/registry domain; normative_acceptance remains not_accepted"
+        },
+        {
+          "iteration": "R03",
+          "report_ref": "results/law-profile/report.json",
+          "sections": [
+            "proof_boundary_and_partial_cases"
+          ],
+          "scope": "Fixed OBS laws and finite original-program outcomes; source bindings, incompleteness and requirement obligations remain explicit. Only this fragment is checked; normative_acceptance remains not_accepted."
+        },
+        {
+          "iteration": "R04",
+          "report_ref": "results/call-profile/report.json",
+          "sections": [
+            "type_and_expansion_boundary_cases"
+          ],
+          "scope": "Call arity/argument/result/body types and finite input/expansion limits have explicit diagnostics. Only this fragment is checked; normative_acceptance remains not_accepted."
+        }
+      ]
+    }
+  ],
+  "additional_model_reports": [
+    {
+      "iteration": "R02",
+      "ref": "results/observation-profile/report.json",
+      "scope": "Finite executable research AST with automatic use; not full bagaev V1 or normative acceptance"
+    },
+    {
+      "iteration": "R03",
+      "ref": "results/law-profile/report.json",
+      "scope": "Four fixed observation laws, checked derivations and finite common-form edit cases; not full bagaev V1, universal proof or normative acceptance"
+    },
+    {
+      "iteration": "R04",
+      "ref": "results/call-profile/report.json",
+      "scope": "Finite typed static calls, automatic modular use, exact transitive bindings, checked strict-let bridge and full project rebuild; not all V1, persistent incremental maintenance, universal proof or normative acceptance"
+    }
+  ]
+}

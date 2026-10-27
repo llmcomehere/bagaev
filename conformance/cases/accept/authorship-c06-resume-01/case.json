@@ -1,0 +1,451 @@
+{
+  "id": "accept/authorship-c06-resume-01",
+  "spec": [
+    "spec/protocol/agent-protocol.md#5-свидетельства",
+    "spec/protocol/agent-protocol.md#6-workstate"
+  ],
+  "origin": "model:models/r07-core/data/authorship-fixtures.json#C06",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "blog/acl.bag",
+    "blog/articles.bag",
+    "blog/authorship.bag",
+    "blog/byline.bag",
+    "blog/db.bag",
+    "blog/editor.bag",
+    "blog/events.bag",
+    "blog/export.bag",
+    "blog/image.bag",
+    "blog/indexer.bag",
+    "blog/migration.bag",
+    "blog/people.bag",
+    "blog/search.bag",
+    "blog/tests.bag"
+  ],
+  "run": {
+    "change": {
+      "principal": "agent",
+      "steps": [
+        {
+          "request": {
+            "operation": "change_begin",
+            "idempotency_key": "b1-kkkkkkkkkkkkkkkkkkkk",
+            "arguments": {
+              "intent": "изменение"
+            }
+          }
+        },
+        {
+          "request": {
+            "operation": "apply",
+            "change_id": "$change",
+            "expected_work_revision": 1,
+            "idempotency_key": "a1-kkkkkkkkkkkkkkkkkkkk",
+            "arguments": {
+              "source_edit": {
+                "files": [
+                  {
+                    "path": "blog/authorship.bag",
+                    "base_sha256": "$sha:blog/authorship.bag",
+                    "edits": [
+                      {
+                        "old_text": "    Authors(xs) => xs,",
+                        "text": "    Authors(xs) => seq.concat(xs, []),"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "request": {
+            "operation": "verify",
+            "change_id": "$change",
+            "expected_work_revision": 2,
+            "idempotency_key": "v1-kkkkkkkkkkkkkkkkkkkk",
+            "arguments": {}
+          }
+        },
+        {
+          "request": {
+            "operation": "work_resume",
+            "change_id": "$change",
+            "arguments": {}
+          }
+        },
+        {
+          "request": {
+            "operation": "work_resume",
+            "change_id": "$change",
+            "arguments": {}
+          },
+          "principal": "session_b"
+        },
+        {
+          "request": {
+            "operation": "accept",
+            "change_id": "$change",
+            "expected_work_revision": 3,
+            "idempotency_key": "c1-kkkkkkkkkkkkkkkkkkkk",
+            "arguments": {}
+          },
+          "principal": "session_b"
+        },
+        {
+          "request": {
+            "operation": "contract_update",
+            "change_id": "$change",
+            "expected_work_revision": 3,
+            "idempotency_key": "k1-kkkkkkkkkkkkkkkkkkkk",
+            "arguments": {
+              "ops": [
+                {
+                  "op": "assume",
+                  "obligation": [
+                    "derived_from",
+                    "6qfcyw",
+                    "e2mrc6"
+                  ],
+                  "reason": "индекс строится из того же состава авторов"
+                }
+              ]
+            }
+          },
+          "principal": "session_b"
+        },
+        {
+          "request": {
+            "operation": "work_resume",
+            "change_id": "$change",
+            "arguments": {}
+          },
+          "principal": "session_b"
+        },
+        {
+          "request": {
+            "operation": "accept",
+            "change_id": "$change",
+            "expected_work_revision": 4,
+            "idempotency_key": "c2-kkkkkkkkkkkkkkkkkkkk",
+            "arguments": {}
+          },
+          "principal": "session_b"
+        }
+      ]
+    }
+  },
+  "expect": {
+    "phase": "accept",
+    "outcome": "COMPLETED",
+    "value": [
+      {
+        "status": "succeeded",
+        "replayed": false,
+        "work_revision": 1
+      },
+      {
+        "status": "succeeded",
+        "replayed": false,
+        "work_revision": 2,
+        "touched": {
+          "blog/authorship.bag": [
+            [
+              2437,
+              2475
+            ]
+          ]
+        },
+        "identity": {
+          "lineage": [],
+          "removed": [],
+          "added": [],
+          "renamed": []
+        },
+        "draft": false,
+        "diagnostics": []
+      },
+      {
+        "status": "succeeded",
+        "replayed": false,
+        "work_revision": 3,
+        "evidence": [
+          [
+            "blog.tests.export_keeps_all_authors",
+            "PASS"
+          ],
+          [
+            "blog.tests.make_enforces_shape",
+            "PASS"
+          ],
+          [
+            "blog.tests.store_copy_is_isolated",
+            "PASS"
+          ]
+        ]
+      },
+      {
+        "status": "succeeded",
+        "replayed": false,
+        "work_revision": 3,
+        "needs_rebase": false,
+        "ready_for_acceptance": false,
+        "contract_revision": 1,
+        "status_": "open",
+        "blockers": [
+          "OBLIGATION_OPEN"
+        ],
+        "obligations": [
+          [
+            "blog.authorship.AttributionComplete.complete",
+            "blog.byline.byline",
+            "requires",
+            "supported",
+            "tests"
+          ],
+          [
+            "blog.authorship.AttributionComplete.complete",
+            "blog.export.export_article",
+            "requires",
+            "supported",
+            "tests"
+          ],
+          [
+            "blog.authorship.AttributionComplete.complete",
+            "blog.indexer.index_authorship",
+            "implements",
+            "supported",
+            "tests"
+          ],
+          [
+            "blog.authorship.AttributionComplete.complete",
+            "blog.search.articles_by",
+            "requires",
+            "supported",
+            "tests"
+          ],
+          [
+            "blog.authorship.AttributionComplete.complete",
+            "blog.tests.export_keeps_all_authors",
+            "checks",
+            "supported",
+            "tests"
+          ],
+          [
+            "blog.authorship.Authorship",
+            "blog.db.Blog.author_index",
+            "derived_from",
+            "open",
+            "no-method"
+          ]
+        ],
+        "clauses": []
+      },
+      {
+        "status": "succeeded",
+        "replayed": false,
+        "work_revision": 3,
+        "needs_rebase": false,
+        "ready_for_acceptance": false,
+        "contract_revision": 1,
+        "status_": "open",
+        "blockers": [
+          "OBLIGATION_OPEN"
+        ],
+        "obligations": [
+          [
+            "blog.authorship.AttributionComplete.complete",
+            "blog.byline.byline",
+            "requires",
+            "supported",
+            "tests"
+          ],
+          [
+            "blog.authorship.AttributionComplete.complete",
+            "blog.export.export_article",
+            "requires",
+            "supported",
+            "tests"
+          ],
+          [
+            "blog.authorship.AttributionComplete.complete",
+            "blog.indexer.index_authorship",
+            "implements",
+            "supported",
+            "tests"
+          ],
+          [
+            "blog.authorship.AttributionComplete.complete",
+            "blog.search.articles_by",
+            "requires",
+            "supported",
+            "tests"
+          ],
+          [
+            "blog.authorship.AttributionComplete.complete",
+            "blog.tests.export_keeps_all_authors",
+            "checks",
+            "supported",
+            "tests"
+          ],
+          [
+            "blog.authorship.Authorship",
+            "blog.db.Blog.author_index",
+            "derived_from",
+            "open",
+            "no-method"
+          ]
+        ],
+        "clauses": []
+      },
+      {
+        "status": "blocked",
+        "replayed": false,
+        "code": "OPEN_OBLIGATIONS",
+        "data": {
+          "blockers": [
+            "OBLIGATION_OPEN"
+          ]
+        }
+      },
+      {
+        "status": "succeeded",
+        "replayed": false,
+        "work_revision": 4,
+        "contract_revision": 2,
+        "clauses": [],
+        "replaced": [],
+        "assumptions": [
+          [
+            "derived_from",
+            "6qfcyw",
+            "e2mrc6"
+          ]
+        ],
+        "allowed": null,
+        "replaced_tests": [],
+        "policy_pins": []
+      },
+      {
+        "status": "succeeded",
+        "replayed": false,
+        "work_revision": 4,
+        "needs_rebase": false,
+        "ready_for_acceptance": true,
+        "contract_revision": 2,
+        "status_": "open",
+        "blockers": [],
+        "obligations": [
+          [
+            "blog.authorship.AttributionComplete.complete",
+            "blog.byline.byline",
+            "requires",
+            "supported",
+            "tests"
+          ],
+          [
+            "blog.authorship.AttributionComplete.complete",
+            "blog.export.export_article",
+            "requires",
+            "supported",
+            "tests"
+          ],
+          [
+            "blog.authorship.AttributionComplete.complete",
+            "blog.indexer.index_authorship",
+            "implements",
+            "supported",
+            "tests"
+          ],
+          [
+            "blog.authorship.AttributionComplete.complete",
+            "blog.search.articles_by",
+            "requires",
+            "supported",
+            "tests"
+          ],
+          [
+            "blog.authorship.AttributionComplete.complete",
+            "blog.tests.export_keeps_all_authors",
+            "checks",
+            "supported",
+            "tests"
+          ],
+          [
+            "blog.authorship.Authorship",
+            "blog.db.Blog.author_index",
+            "derived_from",
+            "supported",
+            "assumption"
+          ]
+        ],
+        "clauses": []
+      },
+      {
+        "status": "succeeded",
+        "replayed": false,
+        "work_revision": 5,
+        "obligations": [
+          [
+            "checks",
+            "6abbe4",
+            "8hqzc5",
+            "supported",
+            "tests"
+          ],
+          [
+            "derived_from",
+            "6qfcyw",
+            "e2mrc6",
+            "supported",
+            "assumption"
+          ],
+          [
+            "implements",
+            "6abbe4",
+            "z1ac6c",
+            "supported",
+            "tests"
+          ],
+          [
+            "requires",
+            "6abbe4",
+            "2mtfg0",
+            "supported",
+            "tests"
+          ],
+          [
+            "requires",
+            "6abbe4",
+            "7y89wt",
+            "supported",
+            "tests"
+          ],
+          [
+            "requires",
+            "6abbe4",
+            "qcp1fw",
+            "supported",
+            "tests"
+          ]
+        ],
+        "replaced_clauses": [],
+        "replaced_tests": [],
+        "coverage_gaps": [
+          [
+            "2mtfg0",
+            "EXTERNAL_CONSUMERS"
+          ]
+        ],
+        "lineage": []
+      }
+    ],
+    "state": {
+      "head_revision": 2
+    }
+  },
+  "note": "другая сессия продолжает работу: те же обязательства и те же применимые свидетельства (оценка пересчитана, O04, O05, O10), тот же запрет приёмки; закрыв оставшееся обязательство, она принимает работу. Пробел покрытия публичного запроса записан в приёмку"
+}

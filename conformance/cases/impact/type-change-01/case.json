@@ -1,0 +1,150 @@
+{
+  "id": "impact/type-change-01",
+  "spec": [
+    "spec/links/08-bagaev-extraction.md#2-узлы-и-ревизии",
+    "spec/links/08-bagaev-extraction.md#5-влияние"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "app.bag",
+    "cand/app.bag"
+  ],
+  "run": {
+    "links": {
+      "op": "impact",
+      "candidate": "cand"
+    }
+  },
+  "expect": {
+    "phase": "impact",
+    "outcome": "IMPACT",
+    "value": {
+      "status": "COMPLETE",
+      "readiness": "ELIGIBLE_IF_ALL_OBLIGATIONS_PASS",
+      "seeds": [
+        [
+          "app.Point",
+          "changed"
+        ],
+        [
+          "app.origin",
+          "changed"
+        ],
+        [
+          "app.Point.y",
+          "added"
+        ]
+      ],
+      "in_scope": [
+        [
+          "app.Added",
+          2
+        ],
+        [
+          "app.Point",
+          0
+        ],
+        [
+          "app.Point.y",
+          0
+        ],
+        [
+          "app.S",
+          3
+        ],
+        [
+          "app.S.copy",
+          4
+        ],
+        [
+          "app.S.totals",
+          2
+        ],
+        [
+          "app.add",
+          1
+        ],
+        [
+          "app.on_added",
+          3
+        ],
+        [
+          "app.origin",
+          0
+        ],
+        [
+          "app.origin_positive",
+          1
+        ],
+        [
+          "app.total",
+          5
+        ]
+      ],
+      "unknown": [],
+      "unknown_incomplete": 0,
+      "frontier": [],
+      "obligations": [
+        [
+          "app.Counting",
+          "app.S.copy",
+          "derived_from",
+          "open",
+          [
+            "base",
+            "candidate"
+          ]
+        ],
+        [
+          "app.Exact.positive",
+          "app.add",
+          "requires",
+          "open",
+          [
+            "base",
+            "candidate"
+          ]
+        ],
+        [
+          "app.Exact.positive",
+          "app.origin",
+          "implements",
+          "open",
+          [
+            "base",
+            "candidate"
+          ]
+        ],
+        [
+          "app.Exact.positive",
+          "app.origin_positive",
+          "checks",
+          "open",
+          [
+            "base",
+            "candidate"
+          ]
+        ]
+      ],
+      "closed": [],
+      "tests_to_run": [
+        "app.origin_positive"
+      ],
+      "gaps": [
+        [
+          "app.add",
+          "EXTERNAL_CONSUMERS"
+        ],
+        [
+          "app.total",
+          "EXTERNAL_CONSUMERS"
+        ]
+      ],
+      "watch": {}
+    }
+  },
+  "note": "новое поле записи: тип, поле и конструирующая функция — семена; пользователи типа — в области"
+}

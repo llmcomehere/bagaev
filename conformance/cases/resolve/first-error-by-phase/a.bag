@@ -1,0 +1,7 @@
+@id("p285bc")
+module a
+
+@id("ek8q61")
+fn f() -> Int64 {
+  "не число"
+}

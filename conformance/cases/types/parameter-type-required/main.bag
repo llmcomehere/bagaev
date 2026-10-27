@@ -1,0 +1,12 @@
+@id("pnsagg")
+module main
+
+@id("jx49ph")
+type P = record {
+  @id("s0msx3") n: Int64,
+}
+
+@id("4zj5n4")
+fn f() -> () {
+  let g = fn(p) => p.n;
+}

@@ -1,0 +1,40 @@
+{
+  "id": "stdlib/bytes-from-octets",
+  "spec": [
+    "spec/stdlib/acceptance.md",
+    "spec/runtime/machine.md#5-примитивы-и-fault"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "run": {
+    "entry": "main.main"
+  },
+  "expect": {
+    "phase": "run",
+    "effects": [],
+    "outcome": "RETURNED",
+    "value": {
+      "type": "Result<Bytes,std.data.OctetError>",
+      "tag": "Err",
+      "payload": {
+        "type": "std.data.OctetError",
+        "fields": {
+          "index": {
+            "type": "Int64",
+            "value": "1"
+          },
+          "value": {
+            "type": "Int64",
+            "value": "256"
+          }
+        }
+      }
+    }
+  },
+  "note": "SA-043"
+}

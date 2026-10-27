@@ -1,0 +1,185 @@
+{
+  "id": "migrate/backlog-01",
+  "spec": [
+    "spec/runtime/host.md#7-миграция"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "app.bag",
+    "v2/app.bag"
+  ],
+  "run": {
+    "steps": [
+      {
+        "op": "command",
+        "entry": "app.bump",
+        "args": [
+          {
+            "type": "String",
+            "value": "a"
+          },
+          {
+            "type": "Int64",
+            "value": "2"
+          }
+        ],
+        "namespace": "app",
+        "key": "key-000000000001"
+      },
+      {
+        "op": "migrate",
+        "program": "v2"
+      },
+      {
+        "op": "deliver"
+      },
+      {
+        "op": "migrate",
+        "program": "v2"
+      }
+    ],
+    "state_program": "v2"
+  },
+  "expect": {
+    "phase": "migrate",
+    "outcome": "COMPLETED",
+    "value": [
+      {
+        "value": {
+          "type": "Result<Int64,app.BumpError>",
+          "tag": "Ok",
+          "payload": {
+            "type": "Int64",
+            "value": "2"
+          }
+        },
+        "outcome": "COMMITTED",
+        "final": true,
+        "replayed": false,
+        "state_version": 1
+      },
+      {
+        "outcome": "REFUSED",
+        "code": "MIGRATION_BACKLOG",
+        "data": {
+          "pending": [
+            {
+              "handler": "app.remember",
+              "seq": 1
+            }
+          ],
+          "count": 1
+        }
+      },
+      {
+        "outcome": "DELIVERED",
+        "deliveries": [
+          {
+            "handler": "app.remember",
+            "seq": 1,
+            "outcome": "COMMITTED",
+            "replayed": false,
+            "state_version": 2
+          }
+        ]
+      },
+      {
+        "outcome": "APPLIED",
+        "epoch": 1,
+        "state_version": 3,
+        "rows": 1,
+        "tables": [
+          {
+            "table": "app.S.counts",
+            "id": "aa0003",
+            "action": "migrate",
+            "migration": "app.to_tally",
+            "from": "Int64",
+            "to": "app.Tally"
+          },
+          {
+            "table": "app.S.seen",
+            "id": "aa0004",
+            "action": "keep"
+          }
+        ],
+        "events": [
+          {
+            "event": "app.Bumped",
+            "id": "aa0005",
+            "action": "keep"
+          }
+        ]
+      }
+    ],
+    "state": {
+      "state_version": 3,
+      "epoch": 1,
+      "tables": {
+        "app.S.counts": [
+          [
+            {
+              "type": "String",
+              "value": "a"
+            },
+            {
+              "type": "app.Tally",
+              "fields": {
+                "total": {
+                  "type": "Int64",
+                  "value": "2"
+                },
+                "bumps": {
+                  "type": "Int64",
+                  "value": "1"
+                }
+              }
+            }
+          ]
+        ],
+        "app.S.seen": [
+          [
+            {
+              "type": "String",
+              "value": "a"
+            },
+            {
+              "type": "Int64",
+              "value": "2"
+            }
+          ]
+        ]
+      },
+      "outbox": [
+        {
+          "seq": 1,
+          "event": "app.Bumped",
+          "payload": {
+            "type": "app.Bumped",
+            "fields": {
+              "name": {
+                "type": "String",
+                "value": "a"
+              },
+              "total": {
+                "type": "Int64",
+                "value": "2"
+              }
+            }
+          }
+        }
+      ],
+      "inbox": [
+        {
+          "handler": "app.remember",
+          "seq": 1,
+          "outcome": "COMMITTED"
+        }
+      ],
+      "pending": []
+    }
+  }
+}

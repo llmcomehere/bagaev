@@ -1,0 +1,67 @@
+{
+  "id": "impact/why-affected-01",
+  "spec": [
+    "spec/links/08-bagaev-extraction.md#5-влияние"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "app.bag",
+    "cand/app.bag"
+  ],
+  "run": {
+    "links": {
+      "op": "why",
+      "candidate": "cand",
+      "entity": "app.total",
+      "affected": true
+    }
+  },
+  "expect": {
+    "phase": "impact",
+    "outcome": "WHY",
+    "value": {
+      "outcome": "AFFECTED",
+      "status": "in_scope",
+      "path": [
+        [
+          "app.double",
+          null,
+          null
+        ],
+        [
+          "app.origin",
+          "calls",
+          "base"
+        ],
+        [
+          "app.add",
+          "calls",
+          "base"
+        ],
+        [
+          "app.S.totals",
+          "writes",
+          "base"
+        ],
+        [
+          "app.on_added",
+          "reads",
+          "base"
+        ],
+        [
+          "app.S.copy",
+          "writes",
+          "base"
+        ],
+        [
+          "app.total",
+          "reads",
+          "base"
+        ]
+      ]
+    }
+  }
+}

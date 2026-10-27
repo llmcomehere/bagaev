@@ -1,0 +1,7 @@
+@id("em9gc5")
+module main
+
+@id("5m7dh3")
+fn f(g: fn(Int64) -> Int64) -> Bool {
+  g == g
+}

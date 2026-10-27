@@ -1,0 +1,8 @@
+@id("mmzwvn")
+module main
+
+@id("8rv82c")
+fn f(o: Option<Int64>) -> Result<Int64, String> {
+  let v = o?;
+  Ok(v)
+}

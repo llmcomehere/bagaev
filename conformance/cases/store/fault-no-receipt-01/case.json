@@ -1,0 +1,160 @@
+{
+  "id": "store/fault-no-receipt-01",
+  "spec": [
+    "spec/runtime/host.md#3-команда",
+    "spec/kernel/outcomes.md#3-исход-точки-входа"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "app.bag"
+  ],
+  "run": {
+    "steps": [
+      {
+        "op": "seed",
+        "table": "app.S.counts",
+        "rows": [
+          [
+            {
+              "type": "String",
+              "value": "a"
+            },
+            {
+              "type": "Int64",
+              "value": "1"
+            }
+          ]
+        ]
+      },
+      {
+        "op": "command",
+        "entry": "app.bump",
+        "args": [
+          {
+            "type": "String",
+            "value": "a"
+          },
+          {
+            "type": "Int64",
+            "value": "9223372036854775807"
+          }
+        ],
+        "namespace": "app",
+        "key": "key-000000000001"
+      },
+      {
+        "op": "status",
+        "namespace": "app",
+        "key": "key-000000000001"
+      },
+      {
+        "op": "command",
+        "entry": "app.bump",
+        "args": [
+          {
+            "type": "String",
+            "value": "a"
+          },
+          {
+            "type": "Int64",
+            "value": "1"
+          }
+        ],
+        "namespace": "app",
+        "key": "key-000000000001"
+      }
+    ]
+  },
+  "expect": {
+    "phase": "store",
+    "outcome": "COMPLETED",
+    "value": [
+      {
+        "outcome": "COMMITTED",
+        "rows": 1,
+        "state_version": 1
+      },
+      {
+        "outcome": "ABORTED",
+        "final": false,
+        "termination": "FAULT",
+        "code": "ARITHMETIC_OVERFLOW",
+        "site": {
+          "file": "app.bag",
+          "span": [
+            766,
+            772
+          ]
+        },
+        "replayed": false
+      },
+      {
+        "outcome": "ABSENT_AT_READ",
+        "state_version": 1
+      },
+      {
+        "value": {
+          "type": "Result<Int64,app.BumpError>",
+          "tag": "Ok",
+          "payload": {
+            "type": "Int64",
+            "value": "2"
+          }
+        },
+        "outcome": "COMMITTED",
+        "final": true,
+        "replayed": false,
+        "state_version": 2
+      }
+    ],
+    "state": {
+      "state_version": 2,
+      "epoch": 0,
+      "tables": {
+        "app.S.counts": [
+          [
+            {
+              "type": "String",
+              "value": "a"
+            },
+            {
+              "type": "Int64",
+              "value": "2"
+            }
+          ]
+        ],
+        "app.S.seen": []
+      },
+      "outbox": [
+        {
+          "seq": 1,
+          "event": "app.Bumped",
+          "payload": {
+            "type": "app.Bumped",
+            "fields": {
+              "name": {
+                "type": "String",
+                "value": "a"
+              },
+              "total": {
+                "type": "Int64",
+                "value": "2"
+              }
+            }
+          }
+        }
+      ],
+      "inbox": [],
+      "pending": [
+        {
+          "handler": "app.remember",
+          "seq": 1
+        }
+      ]
+    }
+  },
+  "note": "FAULT откатывает всё и не резервирует ключ: тот же ключ с другим запросом исполняется (HST-06)"
+}

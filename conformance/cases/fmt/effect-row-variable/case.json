@@ -1,0 +1,20 @@
+{
+  "id": "fmt/effect-row-variable",
+  "spec": [
+    "spec/language/format.md#объявления"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "expect": {
+    "phase": "fmt",
+    "outcome": "FORMATTED",
+    "value": {
+      "main.bag": "module m\n\nfn h<T, !e>(g: fn(T) -> T uses e) -> ()\n  uses { reads S.a, host Clock.now | e }\n{\n  ()\n}\n\nfn k<!e>(g: fn() -> () uses e) -> ()\n  uses e\n{\n  g()\n}\n"
+    }
+  }
+}

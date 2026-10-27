@@ -1,0 +1,27 @@
+{
+  "id": "lex/invalid-escape",
+  "spec": [
+    "spec/language/lexical.md#4-литералы"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "expect": {
+    "phase": "parse",
+    "outcome": "PRELAUNCH",
+    "diagnostics": [
+      {
+        "code": "INVALID_ESCAPE",
+        "file": "main.bag",
+        "span": [
+          30,
+          32
+        ]
+      }
+    ]
+  }
+}

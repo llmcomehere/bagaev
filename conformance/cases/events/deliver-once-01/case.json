@@ -1,0 +1,227 @@
+{
+  "id": "events/deliver-once-01",
+  "spec": [
+    "spec/runtime/host.md#5-события"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "app.bag"
+  ],
+  "run": {
+    "steps": [
+      {
+        "op": "command",
+        "entry": "app.bump",
+        "args": [
+          {
+            "type": "String",
+            "value": "a"
+          },
+          {
+            "type": "Int64",
+            "value": "2"
+          }
+        ],
+        "namespace": "app",
+        "key": "key-000000000001"
+      },
+      {
+        "op": "command",
+        "entry": "app.bump",
+        "args": [
+          {
+            "type": "String",
+            "value": "b"
+          },
+          {
+            "type": "Int64",
+            "value": "3"
+          }
+        ],
+        "namespace": "app",
+        "key": "key-000000000002"
+      },
+      {
+        "op": "deliver"
+      },
+      {
+        "op": "deliver"
+      },
+      {
+        "op": "deliver",
+        "seq": 1
+      }
+    ]
+  },
+  "expect": {
+    "phase": "events",
+    "outcome": "COMPLETED",
+    "value": [
+      {
+        "value": {
+          "type": "Result<Int64,app.BumpError>",
+          "tag": "Ok",
+          "payload": {
+            "type": "Int64",
+            "value": "2"
+          }
+        },
+        "outcome": "COMMITTED",
+        "final": true,
+        "replayed": false,
+        "state_version": 1
+      },
+      {
+        "value": {
+          "type": "Result<Int64,app.BumpError>",
+          "tag": "Ok",
+          "payload": {
+            "type": "Int64",
+            "value": "3"
+          }
+        },
+        "outcome": "COMMITTED",
+        "final": true,
+        "replayed": false,
+        "state_version": 2
+      },
+      {
+        "outcome": "DELIVERED",
+        "deliveries": [
+          {
+            "handler": "app.remember",
+            "seq": 1,
+            "outcome": "COMMITTED",
+            "replayed": false,
+            "state_version": 3
+          },
+          {
+            "handler": "app.remember",
+            "seq": 2,
+            "outcome": "COMMITTED",
+            "replayed": false,
+            "state_version": 4
+          }
+        ]
+      },
+      {
+        "outcome": "DELIVERED",
+        "deliveries": []
+      },
+      {
+        "outcome": "DELIVERED",
+        "deliveries": [
+          {
+            "handler": "app.remember",
+            "seq": 1,
+            "outcome": "COMMITTED",
+            "replayed": true
+          }
+        ]
+      }
+    ],
+    "state": {
+      "state_version": 4,
+      "epoch": 0,
+      "tables": {
+        "app.S.counts": [
+          [
+            {
+              "type": "String",
+              "value": "a"
+            },
+            {
+              "type": "Int64",
+              "value": "2"
+            }
+          ],
+          [
+            {
+              "type": "String",
+              "value": "b"
+            },
+            {
+              "type": "Int64",
+              "value": "3"
+            }
+          ]
+        ],
+        "app.S.seen": [
+          [
+            {
+              "type": "String",
+              "value": "a"
+            },
+            {
+              "type": "Int64",
+              "value": "2"
+            }
+          ],
+          [
+            {
+              "type": "String",
+              "value": "b"
+            },
+            {
+              "type": "Int64",
+              "value": "3"
+            }
+          ]
+        ]
+      },
+      "outbox": [
+        {
+          "seq": 1,
+          "event": "app.Bumped",
+          "payload": {
+            "type": "app.Bumped",
+            "fields": {
+              "name": {
+                "type": "String",
+                "value": "a"
+              },
+              "total": {
+                "type": "Int64",
+                "value": "2"
+              }
+            }
+          }
+        },
+        {
+          "seq": 2,
+          "event": "app.Bumped",
+          "payload": {
+            "type": "app.Bumped",
+            "fields": {
+              "name": {
+                "type": "String",
+                "value": "b"
+              },
+              "total": {
+                "type": "Int64",
+                "value": "3"
+              }
+            }
+          }
+        }
+      ],
+      "inbox": [
+        {
+          "handler": "app.remember",
+          "seq": 1,
+          "outcome": "COMMITTED"
+        },
+        {
+          "handler": "app.remember",
+          "seq": 2,
+          "outcome": "COMMITTED"
+        }
+      ],
+      "pending": []
+    }
+  },
+  "note": "запись inbox — квитанция обработки; повтор доставки не исполняет обработчик (O07, C13)"
+}

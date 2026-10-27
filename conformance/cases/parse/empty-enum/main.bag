@@ -1,0 +1,2 @@
+module m
+type E = enum {}

@@ -1,0 +1,3 @@
+module m
+
+fn f(a: Int64) -> Int64 uses { emits E, writes S.t, reads S.u, reads S.t } implements C.r, C.q requires D.x { a }

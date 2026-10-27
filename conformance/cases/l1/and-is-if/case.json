@@ -1,0 +1,34 @@
+{
+  "id": "l1/and-is-if",
+  "spec": [
+    "spec/runtime/machine.md#4-закрытый-каталог-правил",
+    "spec/ir/bir.md#2-формы"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L1",
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "run": {
+    "entry": "main.main"
+  },
+  "expect": {
+    "phase": "run",
+    "effects": [],
+    "outcome": "RETURNED",
+    "value": {
+      "type": "Bool",
+      "value": false
+    },
+    "steps": 4,
+    "trace_l1": [
+      "IF_ENTER",
+      "CONST",
+      "IF_THEN",
+      "CONST"
+    ]
+  }
+}

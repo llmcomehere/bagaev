@@ -1,0 +1,541 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:bagaev:recovery-set:0.1",
+  "title": "RECOVERY-SET-0.1 transport envelope shape",
+  "description": "Structural shape only. A valid document is not proof of completeness, canonical bytes, uint64 range, ancestry, provenance, authority, replay or recovery.",
+  "oneOf": [
+    {
+      "$ref": "#/$defs/manifest_body"
+    },
+    {
+      "$ref": "#/$defs/completion_seal"
+    }
+  ],
+  "$defs": {
+    "role": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "status": {
+              "const": "INCLUDED"
+            },
+            "roots": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[0-9a-f]{64}(?![\\s\\S])",
+                "minLength": 64,
+                "maxLength": 64
+              },
+              "minItems": 1,
+              "maxItems": 4096,
+              "uniqueItems": true
+            }
+          },
+          "required": [
+            "status",
+            "roots"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "status": {
+              "const": "EMPTY_BY_CONTRACT"
+            },
+            "witness_ref": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}(?![\\s\\S])",
+              "minLength": 64,
+              "maxLength": 64
+            }
+          },
+          "required": [
+            "status",
+            "witness_ref"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "status": {
+              "const": "EXTERNAL_REQUIRED"
+            },
+            "requirement_ref": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}(?![\\s\\S])",
+              "minLength": 64,
+              "maxLength": 64
+            }
+          },
+          "required": [
+            "status",
+            "requirement_ref"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "status": {
+              "const": "UNAVAILABLE"
+            },
+            "reason": {
+              "enum": [
+                "NOT_CAPTURED",
+                "NOT_FOUND",
+                "ACCESS_DENIED",
+                "DECRYPTION_KEY_MISSING",
+                "UNSUPPORTED_FORMAT"
+              ]
+            }
+          },
+          "required": [
+            "status",
+            "reason"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "object_ref": {
+      "type": "object",
+      "properties": {
+        "digest": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}(?![\\s\\S])",
+          "minLength": 64,
+          "maxLength": 64
+        },
+        "kind": {
+          "type": "string",
+          "pattern": "^[A-Za-z][A-Za-z0-9._:-]{0,127}(?![\\s\\S])"
+        },
+        "decoder_ref": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}(?![\\s\\S])",
+          "minLength": 64,
+          "maxLength": 64
+        },
+        "byte_length": {
+          "type": "string",
+          "pattern": "^(0|[1-9][0-9]{0,19})(?![\\s\\S])",
+          "maxLength": 20
+        },
+        "content_path": {
+          "type": "string",
+          "pattern": "^objects/[0-9a-f]{2}/[0-9a-f]{64}(?![\\s\\S])"
+        }
+      },
+      "required": [
+        "digest",
+        "kind",
+        "decoder_ref",
+        "byte_length",
+        "content_path"
+      ],
+      "additionalProperties": false
+    },
+    "binding": {
+      "type": "object",
+      "properties": {
+        "binding_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z][A-Za-z0-9._:-]{0,127}(?![\\s\\S])"
+        },
+        "kind": {
+          "enum": [
+            "CURRENT_AUTHORITY",
+            "SECRET",
+            "DECRYPTION_KEY",
+            "REMOTE_RESOURCE",
+            "PLATFORM_CAPABILITY",
+            "DECLARED_INPUT"
+          ]
+        },
+        "contract_ref": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}(?![\\s\\S])",
+          "minLength": 64,
+          "maxLength": 64
+        },
+        "identity_ref": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}(?![\\s\\S])",
+          "minLength": 64,
+          "maxLength": 64
+        },
+        "historical_witness_ref": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}(?![\\s\\S])",
+              "minLength": 64,
+              "maxLength": 64
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "required_for": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "INSPECT_SNAPSHOT",
+              "REPRODUCE_PROGRAM",
+              "RESUME_AUTHORITY"
+            ]
+          },
+          "minItems": 1,
+          "maxItems": 3,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "binding_id",
+        "kind",
+        "contract_ref",
+        "identity_ref",
+        "historical_witness_ref",
+        "required_for"
+      ],
+      "additionalProperties": false
+    },
+    "manifest_body": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "const": "ManifestBody"
+        },
+        "format": {
+          "const": "RECOVERY-SET-0.1"
+        },
+        "metadata_profile": {
+          "const": "RecoveryJSON-1"
+        },
+        "project_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z][A-Za-z0-9._:-]{0,127}(?![\\s\\S])"
+        },
+        "lineage_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z][A-Za-z0-9._:-]{0,127}(?![\\s\\S])"
+        },
+        "profile_ref": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}(?![\\s\\S])",
+          "minLength": 64,
+          "maxLength": 64
+        },
+        "capture_certificate_ref": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}(?![\\s\\S])",
+          "minLength": 64,
+          "maxLength": 64
+        },
+        "environment_ref": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}(?![\\s\\S])",
+          "minLength": 64,
+          "maxLength": 64
+        },
+        "cut": {
+          "type": "object",
+          "properties": {
+            "checkpoint_envelope_ref": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}(?![\\s\\S])",
+              "minLength": 64,
+              "maxLength": 64
+            },
+            "checkpoint_sequence": {
+              "type": "string",
+              "pattern": "^(0|[1-9][0-9]{0,19})(?![\\s\\S])",
+              "maxLength": 20
+            },
+            "checkpoint_last_event_hash": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}(?![\\s\\S])",
+              "minLength": 64,
+              "maxLength": 64
+            },
+            "target_sequence": {
+              "type": "string",
+              "pattern": "^(0|[1-9][0-9]{0,19})(?![\\s\\S])",
+              "maxLength": 20
+            },
+            "target_last_event_hash": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}(?![\\s\\S])",
+              "minLength": 64,
+              "maxLength": 64
+            },
+            "target_roots": {
+              "type": "object",
+              "properties": {
+                "state": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{64}(?![\\s\\S])",
+                  "minLength": 64,
+                  "maxLength": 64
+                },
+                "source": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{64}(?![\\s\\S])",
+                  "minLength": 64,
+                  "maxLength": 64
+                },
+                "work": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{64}(?![\\s\\S])",
+                  "minLength": 64,
+                  "maxLength": 64
+                },
+                "admission": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{64}(?![\\s\\S])",
+                  "minLength": 64,
+                  "maxLength": 64
+                },
+                "effects": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{64}(?![\\s\\S])",
+                  "minLength": 64,
+                  "maxLength": 64
+                },
+                "jobs": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{64}(?![\\s\\S])",
+                  "minLength": 64,
+                  "maxLength": 64
+                },
+                "relations": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{64}(?![\\s\\S])",
+                  "minLength": 64,
+                  "maxLength": 64
+                },
+                "evidence": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{64}(?![\\s\\S])",
+                  "minLength": 64,
+                  "maxLength": 64
+                },
+                "obligations": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{64}(?![\\s\\S])",
+                  "minLength": 64,
+                  "maxLength": 64
+                }
+              },
+              "required": [
+                "state",
+                "source",
+                "work",
+                "admission",
+                "effects",
+                "jobs",
+                "relations",
+                "evidence",
+                "obligations"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "checkpoint_envelope_ref",
+            "checkpoint_sequence",
+            "checkpoint_last_event_hash",
+            "target_sequence",
+            "target_last_event_hash",
+            "target_roots"
+          ],
+          "additionalProperties": false
+        },
+        "roles": {
+          "type": "object",
+          "properties": {
+            "identity": {
+              "$ref": "#/$defs/role"
+            },
+            "source": {
+              "$ref": "#/$defs/role"
+            },
+            "semantics": {
+              "$ref": "#/$defs/role"
+            },
+            "environment": {
+              "$ref": "#/$defs/role"
+            },
+            "configuration": {
+              "$ref": "#/$defs/role"
+            },
+            "data": {
+              "$ref": "#/$defs/role"
+            },
+            "relations": {
+              "$ref": "#/$defs/role"
+            },
+            "work": {
+              "$ref": "#/$defs/role"
+            },
+            "admission": {
+              "$ref": "#/$defs/role"
+            },
+            "effects": {
+              "$ref": "#/$defs/role"
+            },
+            "jobs": {
+              "$ref": "#/$defs/role"
+            },
+            "evidence": {
+              "$ref": "#/$defs/role"
+            },
+            "journal": {
+              "$ref": "#/$defs/role"
+            },
+            "capture": {
+              "$ref": "#/$defs/role"
+            },
+            "bindings": {
+              "$ref": "#/$defs/role"
+            }
+          },
+          "required": [
+            "identity",
+            "source",
+            "semantics",
+            "environment",
+            "configuration",
+            "data",
+            "relations",
+            "work",
+            "admission",
+            "effects",
+            "jobs",
+            "evidence",
+            "journal",
+            "capture",
+            "bindings"
+          ],
+          "additionalProperties": false
+        },
+        "objects": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/object_ref"
+          },
+          "minItems": 1,
+          "maxItems": 1048576,
+          "uniqueItems": true
+        },
+        "bases": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}(?![\\s\\S])",
+            "minLength": 64,
+            "maxLength": 64
+          },
+          "minItems": 0,
+          "maxItems": 64,
+          "uniqueItems": true
+        },
+        "external_bindings": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/binding"
+          },
+          "minItems": 0,
+          "maxItems": 4096,
+          "uniqueItems": true
+        },
+        "declared_plaintext_bytes": {
+          "type": "string",
+          "pattern": "^(0|[1-9][0-9]{0,19})(?![\\s\\S])",
+          "maxLength": 20
+        }
+      },
+      "required": [
+        "kind",
+        "format",
+        "metadata_profile",
+        "project_id",
+        "lineage_id",
+        "profile_ref",
+        "capture_certificate_ref",
+        "environment_ref",
+        "cut",
+        "roles",
+        "objects",
+        "bases",
+        "external_bindings",
+        "declared_plaintext_bytes"
+      ],
+      "additionalProperties": false
+    },
+    "completion_seal": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "const": "CompletionSeal"
+        },
+        "format": {
+          "const": "RECOVERY-SEAL-0.1"
+        },
+        "metadata_profile": {
+          "const": "RecoveryJSON-1"
+        },
+        "recovery_set_id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}(?![\\s\\S])",
+          "minLength": 64,
+          "maxLength": 64
+        },
+        "capture_certificate_ref": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}(?![\\s\\S])",
+          "minLength": 64,
+          "maxLength": 64
+        },
+        "manifest_byte_length": {
+          "type": "string",
+          "pattern": "^(0|[1-9][0-9]{0,19})(?![\\s\\S])",
+          "maxLength": 20
+        },
+        "object_count": {
+          "type": "string",
+          "pattern": "^(0|[1-9][0-9]{0,19})(?![\\s\\S])",
+          "maxLength": 20
+        },
+        "declared_plaintext_bytes": {
+          "type": "string",
+          "pattern": "^(0|[1-9][0-9]{0,19})(?![\\s\\S])",
+          "maxLength": 20
+        },
+        "durability_receipt_ref": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}(?![\\s\\S])",
+          "minLength": 64,
+          "maxLength": 64
+        }
+      },
+      "required": [
+        "kind",
+        "format",
+        "metadata_profile",
+        "recovery_set_id",
+        "capture_certificate_ref",
+        "manifest_byte_length",
+        "object_count",
+        "declared_plaintext_bytes",
+        "durability_receipt_ref"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

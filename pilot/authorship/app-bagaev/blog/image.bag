@@ -1,0 +1,52 @@
+/// Обработка изображений статьи: масштабирование ближайшим соседом. Об авторах не знает.
+@id("9p7vsn")
+module blog.image
+
+use std.seq
+use std.option
+
+/// Пиксель RGBA8 — четыре числа; изображение — пиксели по строкам.
+@id("mgy3v1")
+pub type Image = record {
+  @id("950xyt") width: Int64,
+  @id("kea3hz") height: Int64,
+  @id("8bkhjs") pixels: Seq<Seq<Int64>>,
+}
+
+@id("jvn8te")
+pub fn resize(img: Image, width: Int64, height: Int64) -> Image {
+  Image { width: width, height: height, pixels: rows(img, width, height, 0, []) }
+}
+
+@id("j3ahwf")
+fn rows(img: Image, w: Int64, h: Int64, y: Int64, acc: Seq<Seq<Int64>>) -> Seq<Seq<Int64>> {
+  if y == h {
+    acc
+  } else {
+    rows(img, w, h, y + 1, cols(img, w, h, y, 0, acc))
+  }
+}
+
+@id("q6ay0h")
+fn cols(img: Image, w: Int64, h: Int64, y: Int64, x: Int64, acc: Seq<Seq<Int64>>) -> Seq<Seq<Int64>> {
+  if x == w {
+    acc
+  } else {
+    let sx = x * img.width / w;
+    let sy = y * img.height / h;
+    let p = option.value_or(seq.get(img.pixels, sy * img.width + sx), [0, 0, 0, 0]);
+    cols(img, w, h, y, x + 1, seq.append(acc, p))
+  }
+}
+
+/// Конвейер изображения статьи.
+@id("699g47")
+pub fn pipeline(img: Image, width: Int64, height: Int64) -> Image {
+  resize(img, width, height)
+}
+
+/// Точка входа общего CLI-контракта: масштабирование без чтения хранилища.
+@id("xj2re7")
+pub query resize_pixels(width: Int64, height: Int64, pixels: Seq<Seq<Int64>>, to_width: Int64, to_height: Int64) -> Seq<Seq<Int64>> {
+  pipeline(Image { width: width, height: height, pixels: pixels }, to_width, to_height).pixels
+}

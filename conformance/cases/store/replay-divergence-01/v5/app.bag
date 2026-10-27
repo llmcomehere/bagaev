@@ -1,0 +1,66 @@
+@id("aa0001")
+module app
+
+use std.store
+
+@id("aa0008")
+pub type BumpError = enum {
+  @id("aa0009") NonPositive,
+  @id("aa000a") TooLarge,
+}
+
+@id("aa0005")
+pub event Bumped {
+  @id("aa0006") name: String,
+  @id("aa0007") total: Int64,
+}
+
+@id("aa0002")
+pub store S {
+  @id("aa0003") table counts: Map<String, Int64>
+  @id("aa0004") table seen: Map<String, Int64>
+}
+
+/// Запись идёт до проверки предела: Err после неё обязан откатить запись (HST-06).
+@id("aa000b")
+pub command bump(name: String, by: Int64) -> Result<Int64, BumpError>
+  uses { reads S.counts, writes S.counts, emits Bumped }
+{
+  if by <= 0 {
+    return Err(BumpError.NonPositive)
+  }
+  let total = match store.get(S.counts, name) {
+    Some(n) => n + by,
+    None => by,
+  };
+  store.put(S.counts, name, total * 2);
+  if total > 100 {
+    return Err(BumpError.TooLarge)
+  }
+  emit Bumped { name: name, total: total };
+  Ok(total)
+}
+
+@id("aa000c")
+pub query get(name: String) -> Option<Int64>
+  uses { reads S.counts }
+{
+  store.get(S.counts, name)
+}
+
+/// Обработчик падает на итоге 13: деление на ноль (HST-11).
+@id("aa000d")
+handler remember(ev: Bumped)
+  uses { writes S.seen }
+{
+  let _ = 100 / (ev.total - 13);
+  store.put(S.seen, ev.name, ev.total);
+}
+
+@id("aa000e")
+command hidden(name: String) -> Result<(), BumpError>
+  uses { writes S.counts }
+{
+  store.remove(S.counts, name);
+  Ok(())
+}

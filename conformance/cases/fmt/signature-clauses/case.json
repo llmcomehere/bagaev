@@ -1,0 +1,20 @@
+{
+  "id": "fmt/signature-clauses",
+  "spec": [
+    "spec/language/format.md#объявления"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "expect": {
+    "phase": "fmt",
+    "outcome": "FORMATTED",
+    "value": {
+      "main.bag": "module m\n\nfn f(a: Int64) -> Int64\n  uses { reads S.t, reads S.u, writes S.t, emits E }\n  implements C.r, C.q\n  requires D.x\n{\n  a\n}\n"
+    }
+  }
+}

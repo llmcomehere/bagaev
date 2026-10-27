@@ -1,0 +1,9 @@
+@id("ce8dpv")
+module main
+use std.i64
+
+@id("1st3jc")
+fn f(s: String) -> Result<Int64, String> {
+  let v = i64.parse_decimal(s)?;
+  Ok(v)
+}

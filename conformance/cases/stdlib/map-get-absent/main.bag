@@ -1,0 +1,8 @@
+@id("06tv4p")
+module main
+use std.map
+
+@id("ztn7wk")
+pub fn main() -> Option<String> {
+  map.get(Map { 1 => "a", 3 => "c" }, 2)
+}

@@ -1,0 +1,2 @@
+module m
+type R<!e> = record { f: Int64 }

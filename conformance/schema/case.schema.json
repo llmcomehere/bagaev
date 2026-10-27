@@ -1,0 +1,246 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://bagaev.local/conformance/case.schema.json",
+  "title": "bagaev conformance case",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "spec",
+    "origin",
+    "levels",
+    "expect"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9-]*/[a-z0-9][a-z0-9._-]*$"
+    },
+    "spec": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "pattern": "^spec/[^#\\s]+(#[^\\s]+)?$"
+      }
+    },
+    "origin": {
+      "type": "string",
+      "pattern": "^(independent|derived|model:models/[^#\\s]+#[^\\s]+)$"
+    },
+    "levels": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "L1",
+          "L2"
+        ]
+      }
+    },
+    "files": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[^/\\\\][^\\\\]*$"
+      }
+    },
+    "note": {
+      "type": "string"
+    },
+    "run": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "entry": {
+          "type": "string"
+        },
+        "args": {
+          "type": "array"
+        },
+        "fuel": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "cancel_at": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "steps": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "op"
+            ],
+            "properties": {
+              "op": {
+                "enum": [
+                  "seed",
+                  "command",
+                  "query",
+                  "status",
+                  "deliver",
+                  "replay",
+                  "migrate",
+                  "lock"
+                ]
+              },
+              "program": {
+                "type": "string"
+              },
+              "crash_at": {
+                "enum": [
+                  "before_begin",
+                  "before_commit",
+                  "after_commit",
+                  "migration_prepare",
+                  "before_swap_commit",
+                  "after_swap"
+                ]
+              }
+            }
+          }
+        },
+        "state_program": {
+          "type": "string"
+        },
+        "links": {
+          "type": "object",
+          "required": [
+            "op"
+          ],
+          "properties": {
+            "op": {
+              "enum": [
+                "graph",
+                "relations",
+                "impact",
+                "why",
+                "context"
+              ]
+            }
+          }
+        },
+        "change": {
+          "type": "object",
+          "required": [
+            "steps"
+          ],
+          "properties": {
+            "principal": {
+              "type": "string"
+            },
+            "policy": {
+              "type": [
+                "object",
+                "null"
+              ]
+            },
+            "steps": {
+              "type": "array"
+            }
+          }
+        }
+      }
+    },
+    "expect": {
+      "type": "object",
+      "required": [
+        "phase",
+        "outcome"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "phase": {
+          "enum": [
+            "parse",
+            "fmt",
+            "check",
+            "run",
+            "graph",
+            "impact",
+            "context",
+            "edit",
+            "accept",
+            "store",
+            "events",
+            "migrate",
+            "protocol"
+          ]
+        },
+        "outcome": {
+          "type": "string",
+          "pattern": "^[A-Z][A-Z0-9_]*$"
+        },
+        "value": {},
+        "effects": {
+          "type": "array"
+        },
+        "diagnostics": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "code"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "code": {
+                "type": "string",
+                "pattern": "^[A-Z][A-Z0-9_]*$"
+              },
+              "file": {
+                "type": "string"
+              },
+              "span": {
+                "type": "array",
+                "items": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "minItems": 2,
+                "maxItems": 2
+              },
+              "data": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "trace_l1": {},
+        "steps": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "state": {},
+        "code": {
+          "type": "string",
+          "pattern": "^[A-Z][A-Z0-9_]*$"
+        },
+        "site": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "file": {
+              "type": "string"
+            },
+            "span": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "minItems": 2,
+              "maxItems": 2
+            }
+          }
+        },
+        "data": {
+          "type": "object"
+        }
+      }
+    }
+  }
+}

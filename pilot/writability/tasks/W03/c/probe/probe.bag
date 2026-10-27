@@ -1,0 +1,9 @@
+@id("bmsrjd")
+module probe
+
+use main
+
+@id("gf8q44")
+fn check() -> Int64 {
+  main.area(main.Shape.Circle(2)) + main.area(main.Shape.Rect(main.Size { w: 2, h: 3 }))
+}

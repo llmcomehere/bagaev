@@ -1,0 +1,181 @@
+{
+  "id": "migrate/row-failure-01",
+  "spec": [
+    "spec/runtime/host.md#7-миграция"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "app.bag",
+    "v2/app.bag"
+  ],
+  "run": {
+    "steps": [
+      {
+        "op": "seed",
+        "table": "app.S.counts",
+        "rows": [
+          [
+            {
+              "type": "String",
+              "value": "c"
+            },
+            {
+              "type": "Int64",
+              "value": "-2"
+            }
+          ],
+          [
+            {
+              "type": "String",
+              "value": "a"
+            },
+            {
+              "type": "Int64",
+              "value": "5"
+            }
+          ],
+          [
+            {
+              "type": "String",
+              "value": "b"
+            },
+            {
+              "type": "Int64",
+              "value": "-1"
+            }
+          ]
+        ]
+      },
+      {
+        "op": "migrate",
+        "program": "v2"
+      },
+      {
+        "op": "command",
+        "entry": "app.bump",
+        "args": [
+          {
+            "type": "String",
+            "value": "a"
+          },
+          {
+            "type": "Int64",
+            "value": "1"
+          }
+        ],
+        "namespace": "app",
+        "key": "key-000000000001"
+      }
+    ],
+    "state_program": ""
+  },
+  "expect": {
+    "phase": "migrate",
+    "outcome": "COMPLETED",
+    "value": [
+      {
+        "outcome": "COMMITTED",
+        "rows": 3,
+        "state_version": 1
+      },
+      {
+        "outcome": "REFUSED",
+        "code": "MIGRATION_FAILED",
+        "data": {
+          "table": "app.S.counts",
+          "key": {
+            "type": "String",
+            "value": "b"
+          },
+          "error": {
+            "type": "app.MigErr",
+            "tag": "Negative"
+          }
+        }
+      },
+      {
+        "value": {
+          "type": "Result<Int64,app.BumpError>",
+          "tag": "Ok",
+          "payload": {
+            "type": "Int64",
+            "value": "6"
+          }
+        },
+        "outcome": "COMMITTED",
+        "final": true,
+        "replayed": false,
+        "state_version": 2
+      }
+    ],
+    "state": {
+      "state_version": 2,
+      "epoch": 0,
+      "tables": {
+        "app.S.counts": [
+          [
+            {
+              "type": "String",
+              "value": "a"
+            },
+            {
+              "type": "Int64",
+              "value": "6"
+            }
+          ],
+          [
+            {
+              "type": "String",
+              "value": "b"
+            },
+            {
+              "type": "Int64",
+              "value": "-1"
+            }
+          ],
+          [
+            {
+              "type": "String",
+              "value": "c"
+            },
+            {
+              "type": "Int64",
+              "value": "-2"
+            }
+          ]
+        ],
+        "app.S.seen": []
+      },
+      "outbox": [
+        {
+          "seq": 1,
+          "event": "app.Bumped",
+          "payload": {
+            "type": "app.Bumped",
+            "fields": {
+              "name": {
+                "type": "String",
+                "value": "a"
+              },
+              "total": {
+                "type": "Int64",
+                "value": "6"
+              }
+            }
+          }
+        }
+      ],
+      "inbox": [],
+      "pending": [
+        {
+          "handler": "app.remember",
+          "seq": 1
+        }
+      ]
+    }
+  },
+  "note": "строки идут в порядке Key, а не вставки (c, a, b): первая ошибка — на ключе b; данные не тронуты, писатели снова работают"
+}

@@ -1,0 +1,28 @@
+{
+  "id": "lex/bom",
+  "spec": [
+    "spec/language/lexical.md#1-кодировка-и-символы",
+    "spec/language/lexical.md#6-координаты"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "expect": {
+    "phase": "parse",
+    "outcome": "PRELAUNCH",
+    "diagnostics": [
+      {
+        "code": "SOURCE_BOM",
+        "file": "main.bag",
+        "span": [
+          0,
+          3
+        ]
+      }
+    ]
+  }
+}

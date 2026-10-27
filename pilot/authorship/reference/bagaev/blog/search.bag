@@ -1,0 +1,28 @@
+/// Поиск статей по человеку: читает сохранённый индекс, порядок — по ID статьи.
+@id("73h3rk")
+module blog.search
+
+use std.store
+use std.seq
+use std.map
+use std.option
+use blog.db.{Blog}
+use blog.people
+use blog.articles.{ArticleId}
+use blog.articles
+use blog.authorship.{AttributionComplete}
+
+@id("qw6egv")
+pub query articles_by(person: String) -> Seq<String>
+  uses { reads Blog.author_index }
+  requires AttributionComplete.complete
+{
+  sorted(option.value_or(map.get(store.all(Blog.author_index), people.person_id(person)), []))
+}
+
+/// Без повторов, по возрастанию: ключи карты идут в порядке Key.
+@id("7a7jzq")
+pub fn sorted(xs: Seq<ArticleId>) -> Seq<String> {
+  let empty: Map<String, Bool> = Map {};
+  seq.map(map.entries(seq.fold(xs, empty, fn(m, a) => map.put(m, articles.id_text(a), true))), fn(e) => e.key)
+}

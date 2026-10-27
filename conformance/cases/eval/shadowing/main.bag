@@ -1,0 +1,10 @@
+@id("1kgks7")
+module main
+
+@id("6j8mah")
+pub fn main() -> Int64 {
+  let x = 1;
+  let x = x + 10;
+  let f = fn(x: Int64) => x * 2;
+  f(x) + x
+}

@@ -1,0 +1,27 @@
+@id("yn3ws2")
+module main
+
+@id("w9zadq")
+pub type Status = enum {
+  @id("5wj86b") Draft,
+  @id("0td5my") Published,
+  Archived,
+}
+
+@id("1xt7h6")
+pub fn label(s: Status) -> String {
+  match s {
+    Status.Draft => "черновик",
+    Status.Published => "опубликовано",
+    Status.Archived => "архив",
+  }
+}
+
+@id("2m8wv5")
+pub fn is_visible(s: Status) -> Bool {
+  match s {
+    Status.Draft => false,
+    Status.Published => true,
+    Status.Archived => false,
+  }
+}

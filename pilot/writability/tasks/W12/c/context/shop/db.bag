@@ -1,0 +1,21 @@
+@id("ftpfsa")
+module shop.db
+
+@id("bz6cfk")
+pub type Item = record {
+  @id("5cnhca") price: Int64,
+  @id("gp48x2") stock: Int64,
+}
+
+@id("74q3s2")
+pub event PriceChanged {
+  @id("cwdvpa") name: String,
+  @id("5hk9wf") old: Int64,
+  @id("cevg80") new: Int64,
+}
+
+@id("rzrtc8")
+pub store Shop {
+  @id("6wt20v") table items: Map<String, Item>
+  @id("g3jkgz") table history: Map<String, Seq<Int64>>
+}

@@ -1,0 +1,16 @@
+/// Долговечное хранилище приложения (D81): эффекты указываются по таблицам.
+@id("t6460t")
+module blog.db
+
+use blog.people.{PersonId, Person}
+use blog.articles.{ArticleId, Article}
+use blog.acl.{ActorId, Roles}
+use blog.authorship
+
+@id("6gddbj")
+pub store Blog {
+  @id("24b4be") table people: Map<PersonId, Person>
+  @id("8q7714") table acl: Map<ActorId, Roles>
+  @id("8kzanb") table articles: Map<ArticleId, Article>
+  @id("e2mrc6") table author_index: Map<PersonId, Seq<ArticleId>> derived_from authorship.Authorship
+}

@@ -1,0 +1,33 @@
+@id("qcadf9")
+module main
+
+@id("ks1d02")
+type Article = record {
+  @id("980668") title: String,
+}
+
+@id("9w6xfv")
+store Blog {
+  @id("jc0x5z") table articles: Map<Int64, Article>
+}
+
+@id("8gwras")
+event Renamed {
+  @id("s3kmw4") id: Int64,
+  @id("det67k") title: String,
+}
+
+@id("85fksw")
+fn both<!e>(f: fn() -> () uses e, g: fn() -> () uses e) -> ()
+  uses e
+{
+  f();
+  g()
+}
+
+@id("dayzyy")
+fn run(r: fn() -> () uses { reads Blog.articles }, p: fn() -> ()) -> ()
+  uses { reads Blog.articles }
+{
+  both(r, p)
+}

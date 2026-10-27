@@ -1,0 +1,275 @@
+{
+  "id": "migrate/key-rename-rollback-01",
+  "spec": [
+    "spec/runtime/host.md#2-привязка-схемы",
+    "spec/runtime/host.md#7-миграция"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "app.bag",
+    "v2/app.bag"
+  ],
+  "run": {
+    "steps": [
+      {
+        "op": "seed",
+        "table": "app.S.items",
+        "rows": [
+          [
+            {
+              "type": "app.Envelope",
+              "fields": {
+                "part": {
+                  "type": "Option<app.OldKey>",
+                  "tag": "Some",
+                  "payload": {
+                    "type": "app.OldKey",
+                    "value": {
+                      "type": "String",
+                      "value": "b"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "type": "Int64",
+              "value": "-1"
+            }
+          ],
+          [
+            {
+              "type": "app.Envelope",
+              "fields": {
+                "part": {
+                  "type": "Option<app.OldKey>",
+                  "tag": "Some",
+                  "payload": {
+                    "type": "app.OldKey",
+                    "value": {
+                      "type": "String",
+                      "value": "a"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "type": "Int64",
+              "value": "7"
+            }
+          ]
+        ]
+      },
+      {
+        "op": "migrate",
+        "program": "v2"
+      },
+      {
+        "op": "query",
+        "entry": "app.get",
+        "args": [
+          {
+            "type": "String",
+            "value": "a"
+          }
+        ]
+      },
+      {
+        "op": "query",
+        "entry": "app.get",
+        "args": [
+          {
+            "type": "String",
+            "value": "b"
+          }
+        ]
+      },
+      {
+        "op": "command",
+        "entry": "app.put",
+        "args": [
+          {
+            "type": "String",
+            "value": "a"
+          },
+          {
+            "type": "Int64",
+            "value": "8"
+          }
+        ],
+        "namespace": "app",
+        "key": "key-000000000001"
+      },
+      {
+        "op": "query",
+        "entry": "app.get",
+        "args": [
+          {
+            "type": "String",
+            "value": "a"
+          }
+        ]
+      },
+      {
+        "op": "query",
+        "entry": "app.get",
+        "args": [
+          {
+            "type": "String",
+            "value": "a"
+          }
+        ],
+        "program": "v2"
+      }
+    ],
+    "state_program": ""
+  },
+  "expect": {
+    "phase": "migrate",
+    "outcome": "COMPLETED",
+    "value": [
+      {
+        "outcome": "COMMITTED",
+        "rows": 2,
+        "state_version": 1
+      },
+      {
+        "outcome": "REFUSED",
+        "code": "MIGRATION_FAILED",
+        "data": {
+          "table": "app.S.items",
+          "key": {
+            "type": "app.Envelope",
+            "fields": {
+              "part": {
+                "type": "Option<app.OldKey>",
+                "tag": "Some",
+                "payload": {
+                  "type": "app.OldKey",
+                  "value": {
+                    "type": "String",
+                    "value": "b"
+                  }
+                }
+              }
+            }
+          },
+          "error": {
+            "type": "app.MigErr",
+            "tag": "Negative"
+          }
+        }
+      },
+      {
+        "outcome": "RETURNED",
+        "value": {
+          "type": "Option<Int64>",
+          "tag": "Some",
+          "payload": {
+            "type": "Int64",
+            "value": "7"
+          }
+        }
+      },
+      {
+        "outcome": "RETURNED",
+        "value": {
+          "type": "Option<Int64>",
+          "tag": "Some",
+          "payload": {
+            "type": "Int64",
+            "value": "-1"
+          }
+        }
+      },
+      {
+        "value": {
+          "type": "Result<Unit,String>",
+          "tag": "Ok",
+          "payload": {
+            "type": "Unit"
+          }
+        },
+        "outcome": "COMMITTED",
+        "final": true,
+        "replayed": false,
+        "state_version": 2
+      },
+      {
+        "outcome": "RETURNED",
+        "value": {
+          "type": "Option<Int64>",
+          "tag": "Some",
+          "payload": {
+            "type": "Int64",
+            "value": "8"
+          }
+        }
+      },
+      {
+        "outcome": "REFUSED",
+        "code": "SCHEMA_BINDING_MISMATCH"
+      }
+    ],
+    "state": {
+      "state_version": 2,
+      "epoch": 0,
+      "tables": {
+        "app.S.items": [
+          [
+            {
+              "type": "app.Envelope",
+              "fields": {
+                "part": {
+                  "type": "Option<app.OldKey>",
+                  "tag": "Some",
+                  "payload": {
+                    "type": "app.OldKey",
+                    "value": {
+                      "type": "String",
+                      "value": "a"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "type": "Int64",
+              "value": "8"
+            }
+          ],
+          [
+            {
+              "type": "app.Envelope",
+              "fields": {
+                "part": {
+                  "type": "Option<app.OldKey>",
+                  "tag": "Some",
+                  "payload": {
+                    "type": "app.OldKey",
+                    "value": {
+                      "type": "String",
+                      "value": "b"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "type": "Int64",
+              "value": "-1"
+            }
+          ]
+        ]
+      },
+      "outbox": [],
+      "inbox": [],
+      "pending": []
+    }
+  },
+  "note": "ошибка значения b после успешной строки a откатывает также перекодировку ключей; прежняя программа снова пишет"
+}

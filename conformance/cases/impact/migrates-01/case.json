@@ -1,0 +1,67 @@
+{
+  "id": "impact/migrates-01",
+  "spec": [
+    "spec/links/08-bagaev-extraction.md#3-рёбра",
+    "spec/links/08-bagaev-extraction.md#5-влияние"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "app.bag",
+    "cand/app.bag"
+  ],
+  "run": {
+    "links": {
+      "op": "impact",
+      "candidate": "cand"
+    }
+  },
+  "expect": {
+    "phase": "impact",
+    "outcome": "IMPACT",
+    "value": {
+      "status": "COMPLETE",
+      "readiness": "NO_OPEN_OBLIGATIONS",
+      "seeds": [
+        [
+          "app.conv",
+          "changed"
+        ]
+      ],
+      "in_scope": [
+        [
+          "app.S",
+          2
+        ],
+        [
+          "app.S.t",
+          1
+        ],
+        [
+          "app.conv",
+          0
+        ],
+        [
+          "app.get",
+          2
+        ]
+      ],
+      "unknown": [],
+      "unknown_incomplete": 0,
+      "frontier": [],
+      "obligations": [],
+      "closed": [],
+      "tests_to_run": [],
+      "gaps": [
+        [
+          "app.get",
+          "EXTERNAL_CONSUMERS"
+        ]
+      ],
+      "watch": {}
+    }
+  },
+  "note": "содержимое таблицы зависит от её миграции; peek объявляет reads, но не читает — ребра нет (EFF-12)"
+}

@@ -1,0 +1,31 @@
+{
+  "profile": "EXACT-BOUNDARIES-0.1",
+  "status": "WORKING_DESIGN",
+  "dimensions": [
+    "source_subject",
+    "typed_values",
+    "logical_position",
+    "control_and_frames",
+    "semantic_state",
+    "budgets",
+    "cancellation",
+    "effect_prefix",
+    "settlement",
+    "termination",
+    "origin",
+    "closure_correspondence"
+  ],
+  "boundary_priority": [
+    "ALREADY_TERMINAL",
+    "CANCEL",
+    "SEMANTIC_RESOURCE_POLICY",
+    "AUTHORITY_IF_DISPATCH",
+    "IMPLEMENTATION_GUARD",
+    "PUBLISH_ONE_TRANSITION"
+  ],
+  "claims_physical_speed": false,
+  "live_environment_equivalence": "Conditional on same logical input/environment strategy; no wall-clock equality claim.",
+  "requires_all_prefixes": true,
+  "changes_R03_OBS_retroactively": false,
+  "normatively_accepted": false
+}

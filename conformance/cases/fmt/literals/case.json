@@ -1,0 +1,20 @@
+{
+  "id": "fmt/literals",
+  "spec": [
+    "spec/language/format.md#блоки-и-выражения"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "expect": {
+    "phase": "fmt",
+    "outcome": "FORMATTED",
+    "value": {
+      "main.bag": "module m\n\nfn f() -> () {\n  g(0x1F_ff, 1_000, \"a\\u{41}\\n\", b\"\\x00z\", -9223372036854775808)\n}\n"
+    }
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "id": "l1/map-literal",
+  "spec": [
+    "spec/runtime/machine.md#4-закрытый-каталог-правил"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L1",
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "run": {
+    "entry": "main.main"
+  },
+  "expect": {
+    "phase": "run",
+    "effects": [],
+    "outcome": "RETURNED",
+    "value": {
+      "type": "Map<Int64,Int64>",
+      "entries": [
+        [
+          {
+            "type": "Int64",
+            "value": "1"
+          },
+          {
+            "type": "Int64",
+            "value": "2"
+          }
+        ]
+      ]
+    },
+    "steps": 5,
+    "trace_l1": [
+      "MAP_ENTER",
+      "CONST",
+      "MAP_NEXT",
+      "CONST",
+      "MAP_BUILD"
+    ]
+  }
+}

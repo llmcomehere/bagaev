@@ -1,0 +1,185 @@
+{
+  "id": "accept/clause-remove-01",
+  "spec": [
+    "spec/protocol/agent-protocol.md#4-changecontract-и-политика",
+    "spec/protocol/agent-protocol.md#8-приёмка"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "app.bag"
+  ],
+  "run": {
+    "change": {
+      "principal": "agent",
+      "steps": [
+        {
+          "request": {
+            "operation": "change_begin",
+            "idempotency_key": "b1-kkkkkkkkkkkkkkkkkkkk",
+            "arguments": {
+              "intent": "изменение"
+            }
+          }
+        },
+        {
+          "request": {
+            "operation": "contract_update",
+            "change_id": "$change",
+            "expected_work_revision": 1,
+            "idempotency_key": "k1-kkkkkkkkkkkkkkkkkkkk",
+            "arguments": {
+              "ops": [
+                {
+                  "op": "add_clause",
+                  "id": "c1",
+                  "claim": "тест проходит",
+                  "method": {
+                    "test": "app.greet_nonempty"
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "request": {
+            "operation": "work_resume",
+            "change_id": "$change",
+            "arguments": {}
+          }
+        },
+        {
+          "request": {
+            "operation": "contract_update",
+            "change_id": "$change",
+            "expected_work_revision": 2,
+            "idempotency_key": "k2-kkkkkkkkkkkkkkkkkkkk",
+            "arguments": {
+              "ops": [
+                {
+                  "op": "remove_clause",
+                  "id": "c1"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "request": {
+            "operation": "contract_update",
+            "change_id": "$change",
+            "expected_work_revision": 2,
+            "idempotency_key": "k3-kkkkkkkkkkkkkkkkkkkk",
+            "arguments": {
+              "ops": [
+                {
+                  "op": "remove_clause",
+                  "id": "c1",
+                  "reason": "условие перенесено"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "request": {
+            "operation": "accept",
+            "change_id": "$change",
+            "expected_work_revision": 3,
+            "idempotency_key": "c1-kkkkkkkkkkkkkkkkkkkk",
+            "arguments": {}
+          }
+        }
+      ]
+    }
+  },
+  "expect": {
+    "phase": "accept",
+    "outcome": "COMPLETED",
+    "value": [
+      {
+        "status": "succeeded",
+        "replayed": false,
+        "work_revision": 1
+      },
+      {
+        "status": "succeeded",
+        "replayed": false,
+        "work_revision": 2,
+        "contract_revision": 2,
+        "clauses": [
+          "c1"
+        ],
+        "replaced": [],
+        "assumptions": [],
+        "allowed": null,
+        "replaced_tests": [],
+        "policy_pins": []
+      },
+      {
+        "status": "succeeded",
+        "replayed": false,
+        "work_revision": 2,
+        "needs_rebase": false,
+        "ready_for_acceptance": false,
+        "contract_revision": 2,
+        "status_": "open",
+        "blockers": [
+          "CLAUSE_OPEN"
+        ],
+        "obligations": [],
+        "clauses": [
+          [
+            "c1",
+            "open",
+            "evidence-missing"
+          ]
+        ]
+      },
+      {
+        "status": "failed",
+        "replayed": false,
+        "code": "REQUEST_INVALID",
+        "data": {
+          "op": 0
+        }
+      },
+      {
+        "status": "succeeded",
+        "replayed": false,
+        "work_revision": 3,
+        "contract_revision": 3,
+        "clauses": [],
+        "replaced": [
+          [
+            "c1",
+            false
+          ]
+        ],
+        "assumptions": [],
+        "allowed": null,
+        "replaced_tests": [],
+        "policy_pins": []
+      },
+      {
+        "status": "succeeded",
+        "replayed": false,
+        "work_revision": 4,
+        "obligations": [],
+        "replaced_clauses": [
+          "c1"
+        ],
+        "replaced_tests": [],
+        "coverage_gaps": [],
+        "lineage": []
+      }
+    ],
+    "state": {
+      "head_revision": 2
+    }
+  },
+  "note": "условие без свидетельства блокирует; удалить его можно только с причиной, удаление видно в приёмке"
+}

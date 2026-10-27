@@ -1,0 +1,8 @@
+{
+  "id": "W20",
+  "kind": "write",
+  "title": "Удаление повторов",
+  "c_target": "main.bag",
+  "t_target": "main.ts",
+  "c_expect": {}
+}

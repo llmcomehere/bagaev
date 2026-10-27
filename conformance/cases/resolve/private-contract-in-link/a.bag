@@ -1,0 +1,12 @@
+@id("c4rgw9")
+module a
+
+@id("hn3c25")
+pub entity E {
+  purpose "x"
+}
+
+@id("r9z8qv")
+contract C about E {
+  @id("enn972") rule r "t"
+}

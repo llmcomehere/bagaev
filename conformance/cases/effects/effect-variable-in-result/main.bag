@@ -1,0 +1,19 @@
+@id("cznkjc")
+module main
+
+@id("et4wv1")
+fn wrap<!e>(f: fn() -> Int64 uses e) -> fn() -> Int64 uses e {
+  f
+}
+
+@id("6vrv2n")
+fn mk<!e>() -> fn() -> Int64 uses e {
+  fn() => 1
+}
+
+@id("w6ztac")
+fn g() -> Int64 {
+  let h: fn() -> Int64 = wrap(fn() => 1);
+  let k: fn() -> Int64 = mk();
+  h() + k()
+}

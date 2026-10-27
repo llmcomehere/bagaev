@@ -1,0 +1,13 @@
+@id("053xa0")
+module main
+
+@id("5amh98")
+type Point = record {
+  @id("rsf195") x: Int64,
+  @id("ajpp2q") y: Int64,
+}
+
+@id("703v2e")
+pub fn main() -> Bool {
+  false < true and "Z" < "a" and "ab" > "a" and [1, 2] < [1, 3] and [1] < [1, 0] and None < Some(-5) and Point { x: 1, y: 9 } < Point { x: 2, y: 0 }
+}

@@ -1,0 +1,26 @@
+{
+  "id": "outcomes/entrypoint-signature",
+  "spec": [
+    "spec/runtime/machine.md#6-запуск"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "run": {
+    "entry": "main.f"
+  },
+  "expect": {
+    "phase": "run",
+    "effects": [],
+    "outcome": "PRELAUNCH",
+    "diagnostics": [
+      {
+        "code": "ENTRYPOINT_SIGNATURE"
+      }
+    ]
+  }
+}

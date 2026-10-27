@@ -1,0 +1,27 @@
+{
+  "id": "lex/stray-cr",
+  "spec": [
+    "spec/language/lexical.md#1-кодировка-и-символы"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "expect": {
+    "phase": "parse",
+    "outcome": "PRELAUNCH",
+    "diagnostics": [
+      {
+        "code": "STRAY_CR",
+        "file": "main.bag",
+        "span": [
+          8,
+          9
+        ]
+      }
+    ]
+  }
+}

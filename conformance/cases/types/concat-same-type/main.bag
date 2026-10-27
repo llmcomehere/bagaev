@@ -1,0 +1,7 @@
+@id("9qj0p1")
+module main
+
+@id("rc4sx9")
+fn f(a: String, b: Bytes) -> String {
+  a ++ b
+}

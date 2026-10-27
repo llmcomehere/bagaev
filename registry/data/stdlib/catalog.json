@@ -1,0 +1,1466 @@
+{
+  "schema": "bagaev-stdlib-catalog/0.1",
+  "iteration": "R24",
+  "status": "WORKING_DESIGN",
+  "revision": "STDLIB-API-0.1",
+  "criterion_id": "T13-C05",
+  "feature_id": "V1-F060",
+  "count": 57,
+  "functions": [
+    {
+      "api_id": "STD-001",
+      "symbol": "std.bool.not",
+      "signature": "(Bool) -> Bool",
+      "bounds": [],
+      "effects": [],
+      "kind": "pure",
+      "algorithm_ru": "true ↦ false; false ↦ true.",
+      "boundary_ru": "Оба допустимых значения; никаких преобразований Int64→Bool.",
+      "work": "SCALAR",
+      "requires": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1"
+      ],
+      "independent_check_ru": "Оба допустимых значения; никаких преобразований Int64→Bool.",
+      "implementation_status": "NOT_RUN"
+    },
+    {
+      "api_id": "STD-002",
+      "symbol": "std.i64.eq",
+      "signature": "(Int64, Int64) -> Bool",
+      "bounds": [],
+      "effects": [],
+      "kind": "pure",
+      "algorithm_ru": "Математическое равенство.",
+      "boundary_ru": "MIN, MAX, −1, 0; bool не является Int64.",
+      "work": "SCALAR",
+      "requires": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1"
+      ],
+      "independent_check_ru": "MIN, MAX, −1, 0; bool не является Int64.",
+      "implementation_status": "NOT_RUN"
+    },
+    {
+      "api_id": "STD-003",
+      "symbol": "std.i64.lt",
+      "signature": "(Int64, Int64) -> Bool",
+      "bounds": [],
+      "effects": [],
+      "kind": "pure",
+      "algorithm_ru": "Математическое строгое signed-сравнение.",
+      "boundary_ru": "MIN, MAX, −1, 0; bool не является Int64.",
+      "work": "SCALAR",
+      "requires": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1"
+      ],
+      "independent_check_ru": "MIN, MAX, −1, 0; bool не является Int64.",
+      "implementation_status": "NOT_RUN"
+    },
+    {
+      "api_id": "STD-004",
+      "symbol": "std.i64.add",
+      "signature": "(Int64, Int64) -> Result<Int64, ArithmeticError>",
+      "bounds": [],
+      "effects": [],
+      "kind": "pure",
+      "algorithm_ru": "Проверить представимость математического a+b.",
+      "boundary_ru": "MAX+1 → Err(Overflow).",
+      "work": "SCALAR",
+      "requires": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1"
+      ],
+      "independent_check_ru": "MAX+1 → Err(Overflow).",
+      "implementation_status": "NOT_RUN"
+    },
+    {
+      "api_id": "STD-005",
+      "symbol": "std.i64.sub",
+      "signature": "(Int64, Int64) -> Result<Int64, ArithmeticError>",
+      "bounds": [],
+      "effects": [],
+      "kind": "pure",
+      "algorithm_ru": "Проверить представимость математического a−b.",
+      "boundary_ru": "MIN−1 → Err(Overflow).",
+      "work": "SCALAR",
+      "requires": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1"
+      ],
+      "independent_check_ru": "MIN−1 → Err(Overflow).",
+      "implementation_status": "NOT_RUN"
+    },
+    {
+      "api_id": "STD-006",
+      "symbol": "std.i64.mul",
+      "signature": "(Int64, Int64) -> Result<Int64, ArithmeticError>",
+      "bounds": [],
+      "effects": [],
+      "kind": "pure",
+      "algorithm_ru": "Проверить представимость математического a×b.",
+      "boundary_ru": "MIN×−1 → Err(Overflow); MIN×0 → Ok(0).",
+      "work": "SCALAR",
+      "requires": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1"
+      ],
+      "independent_check_ru": "MIN×−1 → Err(Overflow); MIN×0 → Ok(0).",
+      "implementation_status": "NOT_RUN"
+    },
+    {
+      "api_id": "STD-007",
+      "symbol": "std.i64.div",
+      "signature": "(Int64, Int64) -> Result<Int64, ArithmeticError>",
+      "bounds": [],
+      "effects": [],
+      "kind": "pure",
+      "algorithm_ru": "Сначала b=0; затем математическое частное с усечением к нулю; проверить Int64.",
+      "boundary_ru": "MIN/−1 → Err(Overflow); 0/0 → Err(DivisionByZero).",
+      "work": "SCALAR",
+      "requires": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1"
+      ],
+      "independent_check_ru": "MIN/−1 → Err(Overflow); 0/0 → Err(DivisionByZero).",
+      "implementation_status": "NOT_RUN"
+    },
+    {
+      "api_id": "STD-008",
+      "symbol": "std.i64.rem",
+      "signature": "(Int64, Int64) -> Result<Int64, ArithmeticError>",
+      "bounds": [],
+      "effects": [],
+      "kind": "pure",
+      "algorithm_ru": "Сначала b=0; r=a−trunc(a/b)×b, без промежуточного Int64 quotient.",
+      "boundary_ru": "MIN rem −1 → Ok(0); −7 rem 3 → Ok(−1).",
+      "work": "SCALAR",
+      "requires": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1"
+      ],
+      "independent_check_ru": "MIN rem −1 → Ok(0); −7 rem 3 → Ok(−1).",
+      "implementation_status": "NOT_RUN"
+    },
+    {
+      "api_id": "STD-009",
+      "symbol": "std.i64.neg",
+      "signature": "(Int64) -> Result<Int64, ArithmeticError>",
+      "bounds": [],
+      "effects": [],
+      "kind": "pure",
+      "algorithm_ru": "Проверить представимость математического −a.",
+      "boundary_ru": "MIN → Err(Overflow).",
+      "work": "SCALAR",
+      "requires": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1"
+      ],
+      "independent_check_ru": "MIN → Err(Overflow).",
+      "implementation_status": "NOT_RUN"
+    },
+    {
+      "api_id": "STD-010",
+      "symbol": "std.i64.parse_decimal",
+      "signature": "(String) -> Result<Int64, ParseIntError>",
+      "bounds": [],
+      "effects": [],
+      "kind": "pure",
+      "algorithm_ru": "Сначала полностью проверить ASCII-грамматику -?(0|[1-9][0-9]*); затем отрицательное накопление цифр с пределом MIN для минуса, −MAX иначе; -0 допустим и даёт 0.",
+      "boundary_ru": "Нет пробелов, +, Unicode digits, separators и leading zero; первая syntax error имеет приоритет над overflow в более раннем префиксе.",
+      "work": "PARSE_DECIMAL",
+      "requires": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1"
+      ],
+      "independent_check_ru": "Граничные десятичные строки MIN/MAX; сверхдиапазонный префикс с последующей буквой даёт InvalidSyntax, не Overflow.",
+      "implementation_status": "NOT_RUN"
+    },
+    {
+      "api_id": "STD-011",
+      "symbol": "std.i64.format_decimal",
+      "signature": "(Int64) -> String",
+      "bounds": [],
+      "effects": [],
+      "kind": "pure",
+      "algorithm_ru": "Каноническая ASCII запись без плюса/leading zero; ноль — 0; отрицательное накопление избегает abs(MIN).",
+      "boundary_ru": "parse_decimal(format_decimal(x))=Ok(x).",
+      "work": "FORMAT_DECIMAL",
+      "requires": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1"
+      ],
+      "independent_check_ru": "parse_decimal(format_decimal(x))=Ok(x).",
+      "implementation_status": "NOT_RUN"
+    },
+    {
+      "api_id": "STD-012",
+      "symbol": "std.value.equal",
+      "signature": "<T:Eq>(T,T) -> Bool",
+      "bounds": [
+        "Eq(T)"
+      ],
+      "effects": [],
+      "kind": "pure",
+      "algorithm_ru": "Структурный Eq по полному exact типу и правилам DATA-TYPES, включая Map.",
+      "boundary_ru": "Option<Fn>.None и Seq<Fn>[] не получают Eq по пустоте.",
+      "work": "COMPARE",
+      "requires": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1"
+      ],
+      "independent_check_ru": "Независимый математический Eq; nominal mismatch — type diagnostic до работы.",
+      "implementation_status": "NOT_RUN"
+    },
+    {
+      "api_id": "STD-013",
+      "symbol": "std.value.compare",
+      "signature": "<T:Key>(T,T) -> Int64",
+      "bounds": [
+        "Key(T)"
+      ],
+      "effects": [],
+      "kind": "pure",
+      "algorithm_ru": "Полный semantic Key order; результат строго −1, 0 либо 1.",
+      "boundary_ru": "Int64 сравнивается signed; порядок не заменяется порядком wire bytes.",
+      "work": "COMPARE",
+      "requires": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1"
+      ],
+      "independent_check_ru": "Int64 сравнивается signed; порядок не заменяется порядком wire bytes.",
+      "implementation_status": "NOT_RUN"
+    },
+    {
+      "api_id": "STD-014",
+      "symbol": "std.option.is_some",
+      "signature": "<T>(Option<T>) -> Bool",
+      "bounds": [],
+      "effects": [],
+      "kind": "pure",
+      "algorithm_ru": "None → false; Some → true; payload не обходится.",
+      "boundary_ru": "None имеет заранее известный T.",
+      "work": "TAG",
+      "requires": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1"
+      ],
+      "independent_check_ru": "None имеет заранее известный T.",
+      "implementation_status": "NOT_RUN"
+    },
+    {
+      "api_id": "STD-015",
+      "symbol": "std.option.value_or",
+      "signature": "<T>(Option<T>,T) -> T",
+      "bounds": [],
+      "effects": [],
+      "kind": "pure",
+      "algorithm_ru": "Some(x) → x; None → второй уже вычисленный аргумент.",
+      "boundary_ru": "default вычисляется строго даже для Some; ленивого эффекта здесь нет.",
+      "work": "TAG",
+      "requires": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1"
+      ],
+      "independent_check_ru": "default вычисляется строго даже для Some; ленивого эффекта здесь нет.",
+      "implementation_status": "NOT_RUN"
+    },
+    {
+      "api_id": "STD-016",
+      "symbol": "std.option.map_pure",
+      "signature": "<A,B>(Option<A>, Fn([A],B,{})) -> Option<B>",
+      "bounds": [],
+      "effects": [],
+      "kind": "pure",
+      "algorithm_ru": "None → None без вызова closure; Some(x) → Some(f(x)).",
+      "boundary_ru": "Closure argument создаётся строго; body для None не исполняется.",
+      "work": "MAP_OPTION",
+      "requires": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1"
+      ],
+      "independent_check_ru": "Closure argument создаётся строго; body для None не исполняется.",
+      "implementation_status": "NOT_RUN"
+    },
+    {
+      "api_id": "STD-017",
+      "symbol": "std.result.is_ok",
+      "signature": "<T,E>(Result<T,E>) -> Bool",
+      "bounds": [],
+      "effects": [],
+      "kind": "pure",
+      "algorithm_ru": "Ok → true; Err → false.",
+      "boundary_ru": "Err — обычное значение.",
+      "work": "TAG",
+      "requires": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1"
+      ],
+      "independent_check_ru": "Err — обычное значение.",
+      "implementation_status": "NOT_RUN"
+    },
+    {
+      "api_id": "STD-018",
+      "symbol": "std.result.map_pure",
+      "signature": "<A,B,E>(Result<A,E>, Fn([A],B,{})) -> Result<B,E>",
+      "bounds": [],
+      "effects": [],
+      "kind": "pure",
+      "algorithm_ru": "Err(e) → Err(e); Ok(x) → Ok(f(x)).",
+      "boundary_ru": "Невзятая ветвь не вызывает f; semantic stop f не превращается в Err(E).",
+      "work": "MAP_RESULT",
+      "requires": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1"
+      ],
+      "independent_check_ru": "Невзятая ветвь не вызывает f; semantic stop f не превращается в Err(E).",
+      "implementation_status": "NOT_RUN"
+    },
+    {
+      "api_id": "STD-019",
+      "symbol": "std.result.map_error_pure",
+      "signature": "<T,E,F>(Result<T,E>, Fn([E],F,{})) -> Result<T,F>",
+      "bounds": [],
+      "effects": [],
+      "kind": "pure",
+      "algorithm_ru": "Ok(x) → Ok(x); Err(e) → Err(f(e)).",
+      "boundary_ru": "Результат f не является скрытым exception.",
+      "work": "MAP_ERROR",
+      "requires": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1"
+      ],
+      "independent_check_ru": "Результат f не является скрытым exception.",
+      "implementation_status": "NOT_RUN"
+    },
+    {
+      "api_id": "STD-020",
+      "symbol": "std.seq.length",
+      "signature": "<T>(Seq<T>) -> Int64",
+      "bounds": [],
+      "effects": [],
+      "kind": "pure",
+      "algorithm_ru": "Число элементов; visiting order слева направо.",
+      "boundary_ru": "Пустая последовательность → 0.",
+      "work": "LENGTH",
+      "requires": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1"
+      ],
+      "independent_check_ru": "Пустая последовательность → 0.",
+      "implementation_status": "NOT_RUN"
+    },
+    {
+      "api_id": "STD-021",
+      "symbol": "std.seq.get",
+      "signature": "<T>(Seq<T>,Int64) -> Option<T>",
+      "bounds": [],
+      "effects": [],
+      "kind": "pure",
+      "algorithm_ru": "Some(xs[i]) при 0≤i<n, иначе None.",
+      "boundary_ru": "Отрицательный индекс не считает от конца.",
+      "work": "GET",
+      "requires": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1"
+      ],
+      "independent_check_ru": "Отрицательный индекс не считает от конца.",
+      "implementation_status": "NOT_RUN"
+    },
+    {
+      "api_id": "STD-022",
+      "symbol": "std.seq.append",
+      "signature": "<T>(Seq<T>,T) -> Seq<T>",
+      "bounds": [],
+      "effects": [],
+      "kind": "pure",
+      "algorithm_ru": "Все прежние элементы, затем новый.",
+      "boundary_ru": "Старое значение сохраняется; превышение runtime cap — ImplementationStop.",
+      "work": "APPEND",
+      "requires": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1"
+      ],
+      "independent_check_ru": "Старое значение сохраняется; превышение runtime cap — ImplementationStop.",
+      "implementation_status": "NOT_RUN"
+    },
+    {
+      "api_id": "STD-023",
+      "symbol": "std.seq.concat",
+      "signature": "<T>(Seq<T>,Seq<T>) -> Seq<T>",
+      "bounds": [],
+      "effects": [],
+      "kind": "pure",
+      "algorithm_ru": "Элементы левого, затем правого операнда.",
+      "boundary_ru": "Оба аргумента вычислены; overflow размера не wrap.",
+      "work": "CONCAT",
+      "requires": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1"
+      ],
+      "independent_check_ru": "Оба аргумента вычислены; overflow размера не wrap.",
+      "implementation_status": "NOT_RUN"
+    },
+    {
+      "api_id": "STD-024",
+      "symbol": "std.seq.slice",
+      "signature": "<T>(Seq<T>,Int64,Int64) -> Result<Seq<T>,BoundsError>",
+      "bounds": [],
+      "effects": [],
+      "kind": "pure",
+      "algorithm_ru": "Half-open [start,end); valid iff 0≤start≤end≤n.",
+      "boundary_ru": "[n,n) — Ok([]); никакого clamp.",
+      "work": "SLICE",
+      "requires": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1"
+      ],
+      "independent_check_ru": "[n,n) — Ok([]); никакого clamp.",
+      "implementation_status": "NOT_RUN"
+    },
+    {
+      "api_id": "STD-025",
+      "symbol": "std.seq.map_pure",
+      "signature": "<A,B>(Seq<A>,Fn([A],B,{})) -> Seq<B>",
+      "bounds": [],
+      "effects": [],
+      "kind": "pure",
+      "algorithm_ru": "Последовательно f(xs[0]), f(xs[1]), …; каждый вызов ровно один.",
+      "boundary_ru": "Никакого parallel map или сброса бюджета; empty не вызывает f.",
+      "work": "MAP_SEQ",
+      "requires": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1"
+      ],
+      "independent_check_ru": "Никакого parallel map или сброса бюджета; empty не вызывает f.",
+      "implementation_status": "NOT_RUN"
+    },
+    {
+      "api_id": "STD-026",
+      "symbol": "std.seq.fold_pure",
+      "signature": "<A,B>(Seq<A>,B,Fn([B,A],B,{})) -> B",
+      "bounds": [],
+      "effects": [],
+      "kind": "pure",
+      "algorithm_ru": "Левый fold: a0=initial; a(i+1)=f(ai,xs[i]).",
+      "boundary_ru": "Empty → initial; порядок отличается от fold_right.",
+      "work": "FOLD_SEQ",
+      "requires": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1"
+      ],
+      "independent_check_ru": "Empty → initial; порядок отличается от fold_right.",
+      "implementation_status": "NOT_RUN"
+    },
+    {
+      "api_id": "STD-027",
+      "symbol": "std.map.build",
+      "signature": "<K:Key,V>(Seq<Entry<K,V>>) -> Result<Map<K,V>,DataError>",
+      "bounds": [
+        "Key(K)"
+      ],
+      "effects": [],
+      "kind": "pure",
+      "algorithm_ru": "Готовые Entry(key,value) stage в исходном порядке; canonical insertion по Key. При дубликате вернуть первую повторную позицию j и самый ранний равный i.",
+      "boundary_ru": "Никакого last-write-wins; все source operands вычислены до поиска duplicate.",
+      "work": "MAP_BUILD",
+      "requires": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1"
+      ],
+      "independent_check_ru": "Никакого last-write-wins; все source operands вычислены до поиска duplicate.",
+      "implementation_status": "NOT_RUN"
+    },
+    {
+      "api_id": "STD-028",
+      "symbol": "std.map.get",
+      "signature": "<K:Key,V>(Map<K,V>,K) -> Option<V>",
+      "bounds": [
+        "Key(K)"
+      ],
+      "effects": [],
+      "kind": "pure",
+      "algorithm_ru": "Поиск semantic equal key в каноническом порядке.",
+      "boundary_ru": "Номинально другой K не преобразуется.",
+      "work": "MAP_GET",
+      "requires": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1"
+      ],
+      "independent_check_ru": "Номинально другой K не преобразуется.",
+      "implementation_status": "NOT_RUN"
+    },
+    {
+      "api_id": "STD-029",
+      "symbol": "std.map.length",
+      "signature": "<K:Key,V>(Map<K,V>) -> Int64",
+      "bounds": [
+        "Key(K)"
+      ],
+      "effects": [],
+      "kind": "pure",
+      "algorithm_ru": "Число canonical entries.",
+      "boundary_ru": "Пустая карта → 0.",
+      "work": "LENGTH",
+      "requires": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1"
+      ],
+      "independent_check_ru": "Пустая карта → 0.",
+      "implementation_status": "NOT_RUN"
+    },
+    {
+      "api_id": "STD-030",
+      "symbol": "std.map.entries",
+      "signature": "<K:Key,V>(Map<K,V>) -> Seq<Entry<K,V>>",
+      "bounds": [
+        "Key(K)"
+      ],
+      "effects": [],
+      "kind": "pure",
+      "algorithm_ru": "Копировать entries в возрастании Key.",
+      "boundary_ru": "Insertion order/hash seed не видны.",
+      "work": "MAP_ENTRIES",
+      "requires": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1"
+      ],
+      "independent_check_ru": "Insertion order/hash seed не видны.",
+      "implementation_status": "NOT_RUN"
+    },
+    {
+      "api_id": "STD-031",
+      "symbol": "std.map.put",
+      "signature": "<K:Key,V>(Map<K,V>,K,V) -> Map<K,V>",
+      "bounds": [
+        "Key(K)"
+      ],
+      "effects": [],
+      "kind": "pure",
+      "algorithm_ru": "Поиск слева направо; существующий равный ключ заменить новым key/value, иначе вставить в canonical position.",
+      "boundary_ru": "Это явная операция замены, отличная от duplicate-отказа build.",
+      "work": "MAP_PUT",
+      "requires": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1"
+      ],
+      "independent_check_ru": "Это явная операция замены, отличная от duplicate-отказа build.",
+      "implementation_status": "NOT_RUN"
+    },
+    {
+      "api_id": "STD-032",
+      "symbol": "std.map.remove",
+      "signature": "<K:Key,V>(Map<K,V>,K) -> Map<K,V>",
+      "bounds": [
+        "Key(K)"
+      ],
+      "effects": [],
+      "kind": "pure",
+      "algorithm_ru": "Удалить semantic equal entry, если есть; остальные сохранить.",
+      "boundary_ru": "Отсутствующий ключ возвращает равное прежнему значение.",
+      "work": "MAP_REMOVE",
+      "requires": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1"
+      ],
+      "independent_check_ru": "Отсутствующий ключ возвращает равное прежнему значение.",
+      "implementation_status": "NOT_RUN"
+    },
+    {
+      "api_id": "STD-033",
+      "symbol": "std.string.scalar_length",
+      "signature": "(String) -> Int64",
+      "bounds": [],
+      "effects": [],
+      "kind": "pure",
+      "algorithm_ru": "Число Unicode scalar values, без normalization/locale.",
+      "boundary_ru": "Один non-BMP scalar имеет длину1; combining sequence может иметь длину2.",
+      "work": "LENGTH",
+      "requires": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1"
+      ],
+      "independent_check_ru": "Один non-BMP scalar имеет длину1; combining sequence может иметь длину2.",
+      "implementation_status": "NOT_RUN"
+    },
+    {
+      "api_id": "STD-034",
+      "symbol": "std.string.scalar_get",
+      "signature": "(String,Int64) -> Option<Int64>",
+      "bounds": [],
+      "effects": [],
+      "kind": "pure",
+      "algorithm_ru": "Числовой scalar на позиции i либо None вне диапазона.",
+      "boundary_ru": "Возвращается scalar number, не UTF8 byte и не grapheme.",
+      "work": "GET",
+      "requires": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1"
+      ],
+      "independent_check_ru": "Возвращается scalar number, не UTF8 byte и не grapheme.",
+      "implementation_status": "NOT_RUN"
+    },
+    {
+      "api_id": "STD-035",
+      "symbol": "std.string.slice",
+      "signature": "(String,Int64,Int64) -> Result<String,BoundsError>",
+      "bounds": [],
+      "effects": [],
+      "kind": "pure",
+      "algorithm_ru": "Half-open [start,end) в scalar positions.",
+      "boundary_ru": "Канонически эквивалентные строки не отождествляются.",
+      "work": "SLICE",
+      "requires": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1"
+      ],
+      "independent_check_ru": "Канонически эквивалентные строки не отождествляются.",
+      "implementation_status": "NOT_RUN"
+    },
+    {
+      "api_id": "STD-036",
+      "symbol": "std.string.concat",
+      "signature": "(String,String) -> String",
+      "bounds": [],
+      "effects": [],
+      "kind": "pure",
+      "algorithm_ru": "Последовательность scalars левого, затем правого значения.",
+      "boundary_ru": "Нет normalization на границе склейки.",
+      "work": "CONCAT",
+      "requires": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1"
+      ],
+      "independent_check_ru": "Нет normalization на границе склейки.",
+      "implementation_status": "NOT_RUN"
+    },
+    {
+      "api_id": "STD-037",
+      "symbol": "std.string.from_scalars",
+      "signature": "(Seq<Int64>) -> Result<String,ScalarError>",
+      "bounds": [],
+      "effects": [],
+      "kind": "pure",
+      "algorithm_ru": "Слева направо; принимать 0..D7FF и E000..10FFFF; первая неверная позиция.",
+      "boundary_ru": "Surrogate и отрицательные значения → Err; noncharacters разрешены.",
+      "work": "VALIDATE_ITEMS",
+      "requires": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1"
+      ],
+      "independent_check_ru": "Surrogate и отрицательные значения → Err; noncharacters разрешены.",
+      "implementation_status": "NOT_RUN"
+    },
+    {
+      "api_id": "STD-038",
+      "symbol": "std.string.to_scalars",
+      "signature": "(String) -> Seq<Int64>",
+      "bounds": [],
+      "effects": [],
+      "kind": "pure",
+      "algorithm_ru": "Числовые значения scalars в исходном порядке.",
+      "boundary_ru": "from_scalars(to_scalars(s))=Ok(s).",
+      "work": "COPY_ITEMS",
+      "requires": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1"
+      ],
+      "independent_check_ru": "from_scalars(to_scalars(s))=Ok(s).",
+      "implementation_status": "NOT_RUN"
+    },
+    {
+      "api_id": "STD-039",
+      "symbol": "std.bytes.length",
+      "signature": "(Bytes) -> Int64",
+      "bounds": [],
+      "effects": [],
+      "kind": "pure",
+      "algorithm_ru": "Число octets.",
+      "boundary_ru": "Не UTF8 scalar length.",
+      "work": "LENGTH",
+      "requires": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1"
+      ],
+      "independent_check_ru": "Не UTF8 scalar length.",
+      "implementation_status": "NOT_RUN"
+    },
+    {
+      "api_id": "STD-040",
+      "symbol": "std.bytes.get",
+      "signature": "(Bytes,Int64) -> Option<Int64>",
+      "bounds": [],
+      "effects": [],
+      "kind": "pure",
+      "algorithm_ru": "Some(unsigned octet 0..255) либо None вне диапазона.",
+      "boundary_ru": "Отрицательный индекс не отсчитывается от конца.",
+      "work": "GET",
+      "requires": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1"
+      ],
+      "independent_check_ru": "Отрицательный индекс не отсчитывается от конца.",
+      "implementation_status": "NOT_RUN"
+    },
+    {
+      "api_id": "STD-041",
+      "symbol": "std.bytes.slice",
+      "signature": "(Bytes,Int64,Int64) -> Result<Bytes,BoundsError>",
+      "bounds": [],
+      "effects": [],
+      "kind": "pure",
+      "algorithm_ru": "Half-open [start,end) по bytes.",
+      "boundary_ru": "Можно разрезать UTF8 sequence; Bytes от этого не некорректны.",
+      "work": "SLICE",
+      "requires": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1"
+      ],
+      "independent_check_ru": "Можно разрезать UTF8 sequence; Bytes от этого не некорректны.",
+      "implementation_status": "NOT_RUN"
+    },
+    {
+      "api_id": "STD-042",
+      "symbol": "std.bytes.concat",
+      "signature": "(Bytes,Bytes) -> Bytes",
+      "bounds": [],
+      "effects": [],
+      "kind": "pure",
+      "algorithm_ru": "Все octets левого, затем правого.",
+      "boundary_ru": "Никакой перекодировки.",
+      "work": "CONCAT",
+      "requires": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1"
+      ],
+      "independent_check_ru": "Никакой перекодировки.",
+      "implementation_status": "NOT_RUN"
+    },
+    {
+      "api_id": "STD-043",
+      "symbol": "std.bytes.from_octets",
+      "signature": "(Seq<Int64>) -> Result<Bytes,OctetError>",
+      "bounds": [],
+      "effects": [],
+      "kind": "pure",
+      "algorithm_ru": "Слева направо; принимать 0..255; первая неверная позиция.",
+      "boundary_ru": "256 и −1 → Err; нет modulo256.",
+      "work": "VALIDATE_ITEMS",
+      "requires": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1"
+      ],
+      "independent_check_ru": "256 и −1 → Err; нет modulo256.",
+      "implementation_status": "NOT_RUN"
+    },
+    {
+      "api_id": "STD-044",
+      "symbol": "std.bytes.to_octets",
+      "signature": "(Bytes) -> Seq<Int64>",
+      "bounds": [],
+      "effects": [],
+      "kind": "pure",
+      "algorithm_ru": "Unsigned octets в исходном порядке.",
+      "boundary_ru": "from_octets(to_octets(b))=Ok(b).",
+      "work": "COPY_ITEMS",
+      "requires": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1"
+      ],
+      "independent_check_ru": "from_octets(to_octets(b))=Ok(b).",
+      "implementation_status": "NOT_RUN"
+    },
+    {
+      "api_id": "STD-045",
+      "symbol": "std.utf8.encode",
+      "signature": "(String) -> Bytes",
+      "bounds": [],
+      "effects": [],
+      "kind": "pure",
+      "algorithm_ru": "Строгий UTF8, без добавления BOM; точные RFC3629 scalars и R07 error-independent encoder.",
+      "boundary_ru": "U+FEFF сохраняется как данные.",
+      "work": "UTF8_ENCODE",
+      "requires": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1",
+        "UTF8-WORK-0.1"
+      ],
+      "independent_check_ru": "U+FEFF сохраняется как данные.",
+      "implementation_status": "NOT_RUN"
+    },
+    {
+      "api_id": "STD-046",
+      "symbol": "std.utf8.decode",
+      "signature": "(Bytes) -> Result<String,DataError>",
+      "bounds": [],
+      "effects": [],
+      "kind": "pure",
+      "algorithm_ru": "Строгий decoder и first-offset errors R07; никакого replacement mode.",
+      "boundary_ru": "C0/C1 → Utf8Leading; truncated → offset начала sequence.",
+      "work": "UTF8_DECODE",
+      "requires": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1",
+        "UTF8-WORK-0.1"
+      ],
+      "independent_check_ru": "C0/C1 → Utf8Leading; truncated → offset начала sequence.",
+      "implementation_status": "NOT_RUN"
+    },
+    {
+      "api_id": "STD-047",
+      "symbol": "std.codec.encode",
+      "signature": "<T:Persistable>(T) -> Bytes",
+      "bounds": [
+        "Persistable(T)"
+      ],
+      "effects": [],
+      "kind": "pure",
+      "algorithm_ru": "Canonical value encoding exact VALUE-CODEC-V1 из MeaningLock; полная registry/type binding.",
+      "boundary_ru": "R07 DATA-wire не объявляется автоматически долговечным V1 codec.",
+      "work": "LOCKED_CODEC",
+      "requires": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1",
+        "VALUE-CODEC-V1"
+      ],
+      "independent_check_ru": "R07 DATA-wire не объявляется автоматически долговечным V1 codec.",
+      "implementation_status": "NOT_RUN"
+    },
+    {
+      "api_id": "STD-048",
+      "symbol": "std.codec.decode",
+      "signature": "<T:Persistable>(Bytes) -> Result<T,DataError>",
+      "bounds": [
+        "Persistable(T)"
+      ],
+      "effects": [],
+      "kind": "pure",
+      "algorithm_ru": "Decoder exact VALUE-CODEC-V1; validate header/type/context/full consumption/canonical order; publish whole value.",
+      "boundary_ru": "Unknown schema не выбирает ближайшую; пустой Seq<Fn> не проходит bound.",
+      "work": "LOCKED_CODEC",
+      "requires": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1",
+        "VALUE-CODEC-V1"
+      ],
+      "independent_check_ru": "Unknown schema не выбирает ближайшую; пустой Seq<Fn> не проходит bound.",
+      "implementation_status": "NOT_RUN"
+    },
+    {
+      "api_id": "STD-049",
+      "symbol": "std.test.check",
+      "signature": "(String,Bool) -> Check",
+      "bounds": [],
+      "effects": [],
+      "kind": "pure",
+      "algorithm_ru": "case_id и Bool → Pass(case_id) либо Fail(TestFailure{case_id,code=ConditionFalse(Unit)}).",
+      "boundary_ru": "Check не является AcceptanceRecord и не снимает unknown.",
+      "work": "TEST_CHECK",
+      "requires": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1"
+      ],
+      "independent_check_ru": "Check не является AcceptanceRecord и не снимает unknown.",
+      "implementation_status": "NOT_RUN"
+    },
+    {
+      "api_id": "STD-050",
+      "symbol": "std.test.check_equal",
+      "signature": "<T:Eq>(String,T,T) -> Check",
+      "bounds": [
+        "Eq(T)"
+      ],
+      "effects": [],
+      "kind": "pure",
+      "algorithm_ru": "По semantic Eq сформировать Pass/Fail(ValueMismatch); не сериализовать значения/секреты в failure.",
+      "boundary_ru": "Типы exact, не display-string comparison.",
+      "work": "TEST_EQUAL",
+      "requires": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1"
+      ],
+      "independent_check_ru": "Типы exact, не display-string comparison.",
+      "implementation_status": "NOT_RUN"
+    },
+    {
+      "api_id": "STD-051",
+      "symbol": "std.test.all",
+      "signature": "(Seq<Check>) -> CheckSummary",
+      "bounds": [],
+      "effects": [],
+      "kind": "pure",
+      "algorithm_ru": "Перечислить все проверки, сохранить исходный порядок и индексы failed; total/passed/failed.",
+      "boundary_ru": "Пустой набор имеет total0; отчёт не доказывает наличие обязательных проверок.",
+      "work": "TEST_ALL",
+      "requires": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1"
+      ],
+      "independent_check_ru": "Пустой набор имеет total0; отчёт не доказывает наличие обязательных проверок.",
+      "implementation_status": "NOT_RUN"
+    },
+    {
+      "api_id": "STD-052",
+      "symbol": "std.store.snapshot",
+      "signature": "<S:Persistable>(ReadCap<S>) -> Result<StateView<S>,StoreError>",
+      "bounds": [
+        "Persistable(S)"
+      ],
+      "effects": [
+        "StoreRead(cap.store)"
+      ],
+      "kind": "service",
+      "algorithm_ru": "Под текущим read gate получить одну согласованную ActiveRef и root S; вернуть оба атомарно как одно наблюдение.",
+      "boundary_ru": "Ref без current capability недостаточен; чтение не запускает приложение/миграцию.",
+      "work": "SERVICE_READ",
+      "requires": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1",
+        "STORE-V1",
+        "CAPABILITY-V1",
+        "JOURNAL-V1",
+        "REGISTERED-SERVICE-V1"
+      ],
+      "independent_check_ru": "Ref без current capability недостаточен; чтение не запускает приложение/миграцию.",
+      "implementation_status": "NOT_RUN"
+    },
+    {
+      "api_id": "STD-053",
+      "symbol": "std.store.commit",
+      "signature": "<S:Persistable,E:Persistable>(WriteCap<S,E>,ActiveRef<S>,KeyRef,S,Seq<NewEvent<E>>) -> Result<CommitKnowledge<S>,StoreError>",
+      "bounds": [
+        "Persistable(S)",
+        "Persistable(E)"
+      ],
+      "effects": [
+        "StoreCommit(cap.store)",
+        "EventAppend(cap.output_log)"
+      ],
+      "kind": "service",
+      "algorithm_ru": "Один local atomic commit: expected ActiveRef+generation, replacement root, ordered outbox, command digest/receipt. Exact existing key lookup перед fresh guards; no auto retry.",
+      "boundary_ru": "Потеря ответа → lookup того же key; caller stop не делает NotApplied; подробности services.md.",
+      "work": "SERVICE_WRITE",
+      "requires": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1",
+        "STORE-V1",
+        "EVENTS-V1",
+        "APP-IDEMPOTENCY-V1",
+        "CAPABILITY-V1",
+        "JOURNAL-V1",
+        "REGISTERED-SERVICE-V1"
+      ],
+      "independent_check_ru": "Потеря ответа → lookup того же key; caller stop не делает NotApplied; подробности services.md.",
+      "implementation_status": "NOT_RUN"
+    },
+    {
+      "api_id": "STD-054",
+      "symbol": "std.store.status",
+      "signature": "<S:Persistable>(ReadCap<S>,KeyRef) -> Result<CommitKnowledge<S>,StoreError>",
+      "bounds": [
+        "Persistable(S)"
+      ],
+      "effects": [
+        "StoreRead(cap.store)"
+      ],
+      "kind": "service",
+      "algorithm_ru": "Прочитать сохранённое знание об intent по текущим read rights, без выполнения команды.",
+      "boundary_ru": "Отсутствие payload/expired key не означает NotApplied; generation closure сохранён.",
+      "work": "SERVICE_READ",
+      "requires": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1",
+        "STORE-V1",
+        "APP-IDEMPOTENCY-V1",
+        "CAPABILITY-V1",
+        "JOURNAL-V1",
+        "REGISTERED-SERVICE-V1"
+      ],
+      "independent_check_ru": "Отсутствие payload/expired key не означает NotApplied; generation closure сохранён.",
+      "implementation_status": "NOT_RUN"
+    },
+    {
+      "api_id": "STD-055",
+      "symbol": "std.events.read",
+      "signature": "<E:Persistable>(EventReadCap<E>,EventCursor<E>,Int64) -> Result<EventPage<E>,EventError>",
+      "bounds": [
+        "Persistable(E)"
+      ],
+      "effects": [
+        "EventRead(cap.input_log)"
+      ],
+      "kind": "service",
+      "algorithm_ru": "Читать immutable журнал данной identity начиная после cursor, в commit order и ordinal внутри commit; limit1..256.",
+      "boundary_ru": "Page закрепляет прочитанный frontier; новая запись не меняет прежнюю страницу; gap не empty success.",
+      "work": "SERVICE_READ",
+      "requires": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1",
+        "EVENTS-V1",
+        "CAPABILITY-V1",
+        "JOURNAL-V1",
+        "REGISTERED-SERVICE-V1"
+      ],
+      "independent_check_ru": "Page закрепляет прочитанный frontier; новая запись не меняет прежнюю страницу; gap не empty success.",
+      "implementation_status": "NOT_RUN"
+    },
+    {
+      "api_id": "STD-056",
+      "symbol": "std.events.apply",
+      "signature": "<S:Persistable,E:Persistable,O:Persistable>(ConsumerCap<S,E,O>,ActiveRef<S>,EventRef<E>,S,Seq<NewEvent<O>>) -> Result<CommitKnowledge<S>,StoreError>",
+      "bounds": [
+        "Persistable(S)",
+        "Persistable(E)",
+        "Persistable(O)"
+      ],
+      "effects": [
+        "StoreCommit(cap.store)",
+        "EventConsume(cap.input_log,cap.consumer)",
+        "EventAppend(cap.output_log)"
+      ],
+      "kind": "service",
+      "algorithm_ru": "Атомарно связать (consumer identity,event identity) с exact event digest, новым root, outbox и receipt. Duplicate returns prior receipt; payload conflict refuses; no external action in transaction.",
+      "boundary_ru": "Повтор после изменения state не выполняет доменную правку заново; обновлённый consumer code не создаёт новый consumer автоматически.",
+      "work": "SERVICE_WRITE",
+      "requires": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1",
+        "STORE-V1",
+        "EVENTS-V1",
+        "APP-IDEMPOTENCY-V1",
+        "CAPABILITY-V1",
+        "JOURNAL-V1",
+        "REGISTERED-SERVICE-V1"
+      ],
+      "independent_check_ru": "Повтор после изменения state не выполняет доменную правку заново; обновлённый consumer code не создаёт новый consumer автоматически.",
+      "implementation_status": "NOT_RUN"
+    },
+    {
+      "api_id": "STD-057",
+      "symbol": "std.events.status",
+      "signature": "<S:Persistable,E:Persistable,O:Persistable>(ConsumerCap<S,E,O>,EventRef<E>) -> Result<CommitKnowledge<S>,StoreError>",
+      "bounds": [
+        "Persistable(S)",
+        "Persistable(E)",
+        "Persistable(O)"
+      ],
+      "effects": [
+        "EventRead(cap.input_log,cap.consumer)"
+      ],
+      "kind": "service",
+      "algorithm_ru": "Read-only lookup dedup identity+event digest с текущим отдельным read permission.",
+      "boundary_ru": "Наличие ConsumerCap без read operation не раскрывает receipt.",
+      "work": "SERVICE_READ",
+      "requires": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1",
+        "EVENTS-V1",
+        "APP-IDEMPOTENCY-V1",
+        "CAPABILITY-V1",
+        "JOURNAL-V1",
+        "REGISTERED-SERVICE-V1"
+      ],
+      "independent_check_ru": "Наличие ConsumerCap без read operation не раскрывает receipt.",
+      "implementation_status": "NOT_RUN"
+    }
+  ],
+  "public_types": [
+    {
+      "type_id": "bagaev.std/0.1/Entry",
+      "symbol": "std.types.Entry",
+      "arity": 2,
+      "shape_ref": "spec/stdlib/types.md",
+      "shape_section": "§2"
+    },
+    {
+      "type_id": "bagaev.std/0.1/ArithmeticError",
+      "symbol": "std.types.ArithmeticError",
+      "arity": 0,
+      "shape_ref": "spec/stdlib/types.md",
+      "shape_section": "§2"
+    },
+    {
+      "type_id": "bagaev.std/0.1/BoundsError",
+      "symbol": "std.types.BoundsError",
+      "arity": 0,
+      "shape_ref": "spec/stdlib/types.md",
+      "shape_section": "§2"
+    },
+    {
+      "type_id": "bagaev.std/0.1/ScalarError",
+      "symbol": "std.types.ScalarError",
+      "arity": 0,
+      "shape_ref": "spec/stdlib/types.md",
+      "shape_section": "§2"
+    },
+    {
+      "type_id": "bagaev.std/0.1/OctetError",
+      "symbol": "std.types.OctetError",
+      "arity": 0,
+      "shape_ref": "spec/stdlib/types.md",
+      "shape_section": "§2"
+    },
+    {
+      "type_id": "bagaev.std/0.1/ParseSyntaxReason",
+      "symbol": "std.types.ParseSyntaxReason",
+      "arity": 0,
+      "shape_ref": "spec/stdlib/types.md",
+      "shape_section": "§2"
+    },
+    {
+      "type_id": "bagaev.std/0.1/ParseSyntax",
+      "symbol": "std.types.ParseSyntax",
+      "arity": 0,
+      "shape_ref": "spec/stdlib/types.md",
+      "shape_section": "§2"
+    },
+    {
+      "type_id": "bagaev.std/0.1/ParseIntError",
+      "symbol": "std.types.ParseIntError",
+      "arity": 0,
+      "shape_ref": "spec/stdlib/types.md",
+      "shape_section": "§2"
+    },
+    {
+      "type_id": "bagaev.std/0.1/DataErrorCode",
+      "symbol": "std.types.DataErrorCode",
+      "arity": 0,
+      "shape_ref": "spec/stdlib/types.md",
+      "shape_section": "§2"
+    },
+    {
+      "type_id": "bagaev.std/0.1/DataError",
+      "symbol": "std.types.DataError",
+      "arity": 0,
+      "shape_ref": "spec/stdlib/types.md",
+      "shape_section": "§2"
+    },
+    {
+      "type_id": "bagaev.std/0.1/TestFailureCode",
+      "symbol": "std.types.TestFailureCode",
+      "arity": 0,
+      "shape_ref": "spec/stdlib/types.md",
+      "shape_section": "§2"
+    },
+    {
+      "type_id": "bagaev.std/0.1/TestFailure",
+      "symbol": "std.types.TestFailure",
+      "arity": 0,
+      "shape_ref": "spec/stdlib/types.md",
+      "shape_section": "§2"
+    },
+    {
+      "type_id": "bagaev.std/0.1/Check",
+      "symbol": "std.types.Check",
+      "arity": 0,
+      "shape_ref": "spec/stdlib/types.md",
+      "shape_section": "§2"
+    },
+    {
+      "type_id": "bagaev.std/0.1/FailedCheck",
+      "symbol": "std.types.FailedCheck",
+      "arity": 0,
+      "shape_ref": "spec/stdlib/types.md",
+      "shape_section": "§2"
+    },
+    {
+      "type_id": "bagaev.std/0.1/CheckSummary",
+      "symbol": "std.types.CheckSummary",
+      "arity": 0,
+      "shape_ref": "spec/stdlib/types.md",
+      "shape_section": "§2"
+    },
+    {
+      "type_id": "bagaev.std/0.1/ActiveRef",
+      "symbol": "std.types.ActiveRef",
+      "arity": 1,
+      "shape_ref": "spec/stdlib/types.md",
+      "shape_section": "§2"
+    },
+    {
+      "type_id": "bagaev.std/0.1/StateView",
+      "symbol": "std.types.StateView",
+      "arity": 1,
+      "shape_ref": "spec/stdlib/types.md",
+      "shape_section": "§2"
+    },
+    {
+      "type_id": "bagaev.std/0.1/KeyRef",
+      "symbol": "std.types.KeyRef",
+      "arity": 0,
+      "shape_ref": "spec/stdlib/types.md",
+      "shape_section": "§2"
+    },
+    {
+      "type_id": "bagaev.std/0.1/NewEvent",
+      "symbol": "std.types.NewEvent",
+      "arity": 1,
+      "shape_ref": "spec/stdlib/types.md",
+      "shape_section": "§2"
+    },
+    {
+      "type_id": "bagaev.std/0.1/EventRef",
+      "symbol": "std.types.EventRef",
+      "arity": 1,
+      "shape_ref": "spec/stdlib/types.md",
+      "shape_section": "§2"
+    },
+    {
+      "type_id": "bagaev.std/0.1/EventCursor",
+      "symbol": "std.types.EventCursor",
+      "arity": 1,
+      "shape_ref": "spec/stdlib/types.md",
+      "shape_section": "§2"
+    },
+    {
+      "type_id": "bagaev.std/0.1/EventEnvelope",
+      "symbol": "std.types.EventEnvelope",
+      "arity": 1,
+      "shape_ref": "spec/stdlib/types.md",
+      "shape_section": "§2"
+    },
+    {
+      "type_id": "bagaev.std/0.1/EventPage",
+      "symbol": "std.types.EventPage",
+      "arity": 1,
+      "shape_ref": "spec/stdlib/types.md",
+      "shape_section": "§2"
+    },
+    {
+      "type_id": "bagaev.std/0.1/CommitReceipt",
+      "symbol": "std.types.CommitReceipt",
+      "arity": 1,
+      "shape_ref": "spec/stdlib/types.md",
+      "shape_section": "§2"
+    },
+    {
+      "type_id": "bagaev.std/0.1/CommitKnowledge",
+      "symbol": "std.types.CommitKnowledge",
+      "arity": 1,
+      "shape_ref": "spec/stdlib/types.md",
+      "shape_section": "§2"
+    },
+    {
+      "type_id": "bagaev.std/0.1/StoreErrorCode",
+      "symbol": "std.types.StoreErrorCode",
+      "arity": 0,
+      "shape_ref": "spec/stdlib/types.md",
+      "shape_section": "§2"
+    },
+    {
+      "type_id": "bagaev.std/0.1/StoreError",
+      "symbol": "std.types.StoreError",
+      "arity": 0,
+      "shape_ref": "spec/stdlib/types.md",
+      "shape_section": "§2"
+    },
+    {
+      "type_id": "bagaev.std/0.1/EventErrorCode",
+      "symbol": "std.types.EventErrorCode",
+      "arity": 0,
+      "shape_ref": "spec/stdlib/types.md",
+      "shape_section": "§2"
+    },
+    {
+      "type_id": "bagaev.std/0.1/EventError",
+      "symbol": "std.types.EventError",
+      "arity": 0,
+      "shape_ref": "spec/stdlib/types.md",
+      "shape_section": "§2"
+    },
+    {
+      "type_id": "bagaev.std/0.1/ReadCap",
+      "symbol": "std.types.ReadCap",
+      "arity": 1,
+      "shape_ref": "spec/stdlib/types.md",
+      "shape_section": "§2"
+    },
+    {
+      "type_id": "bagaev.std/0.1/WriteCap",
+      "symbol": "std.types.WriteCap",
+      "arity": 2,
+      "shape_ref": "spec/stdlib/types.md",
+      "shape_section": "§2"
+    },
+    {
+      "type_id": "bagaev.std/0.1/EventReadCap",
+      "symbol": "std.types.EventReadCap",
+      "arity": 1,
+      "shape_ref": "spec/stdlib/types.md",
+      "shape_section": "§2"
+    },
+    {
+      "type_id": "bagaev.std/0.1/ConsumerCap",
+      "symbol": "std.types.ConsumerCap",
+      "arity": 3,
+      "shape_ref": "spec/stdlib/types.md",
+      "shape_section": "§2"
+    }
+  ],
+  "aliases": [],
+  "implicit_prelude_functions": [],
+  "type_contract": "spec/stdlib/types.md",
+  "work_contract": "spec/stdlib/work.md",
+  "service_contract": "spec/stdlib/services.md",
+  "resolution_contract": "spec/stdlib/resolution.md",
+  "unknown_name": {
+    "code": "UNKNOWN_STDLIB_SYMBOL",
+    "phase": "resolve",
+    "fallback": false
+  },
+  "required_missing_contract": {
+    "code": "INPUT_NOT_READY",
+    "fallback": false
+  },
+  "diagnostics": [
+    {
+      "prefix": "std.float",
+      "code": "INPUT_NOT_READY",
+      "reason_ru": "V1 решение Float остаётся pending T04; это не исключение обязательств."
+    },
+    {
+      "prefix": "std.bigint",
+      "code": "INPUT_NOT_READY",
+      "reason_ru": "V1 решение BigInt остаётся pending T04."
+    },
+    {
+      "prefix": "std.recursive_data",
+      "code": "INPUT_NOT_READY",
+      "reason_ru": "Рекурсивные пользовательские data types остаются pending T04."
+    },
+    {
+      "prefix": "std.gpu",
+      "code": "UNSUPPORTED_PROFILE",
+      "reason_ru": "Отдельный профиль T20."
+    },
+    {
+      "prefix": "std.distributed",
+      "code": "UNSUPPORTED_PROFILE",
+      "reason_ru": "Отдельный профиль T19."
+    },
+    {
+      "prefix": "std.live_update",
+      "code": "UNSUPPORTED_PROFILE",
+      "reason_ru": "Отдельный профиль T19."
+    },
+    {
+      "prefix": "std.threads",
+      "code": "UNSUPPORTED_FEATURE",
+      "reason_ru": "Shared mutable threads запрещены в V1."
+    },
+    {
+      "prefix": "std.dynamic_load",
+      "code": "UNSUPPORTED_FEATURE",
+      "reason_ru": "Произвольная dynamic loading запрещена в V1."
+    },
+    {
+      "prefix": "std.io",
+      "code": "REGISTERED_ADAPTER_REQUIRED",
+      "reason_ru": "Ввод/вывод объявляется exact typed host adapter, не ambient std export."
+    },
+    {
+      "prefix": "std.net",
+      "code": "REGISTERED_ADAPTER_REQUIRED",
+      "reason_ru": "Сеть только через зарегистрированный adapter/capability."
+    },
+    {
+      "prefix": "std.shell",
+      "code": "REGISTERED_ADAPTER_REQUIRED",
+      "reason_ru": "Нет ambient shell; явный adapter требует самостоятельного admission."
+    },
+    {
+      "prefix": "std.env",
+      "code": "REGISTERED_ADAPTER_REQUIRED",
+      "reason_ru": "Чтение environment — явный effect с exact adapter."
+    },
+    {
+      "prefix": "std.clock",
+      "code": "REGISTERED_ADAPTER_REQUIRED",
+      "reason_ru": "Нет скрытых часов; explicit adapter+journal."
+    },
+    {
+      "prefix": "std.random",
+      "code": "REGISTERED_ADAPTER_REQUIRED",
+      "reason_ru": "Нет hidden randomness; explicit adapter+journal."
+    },
+    {
+      "prefix": "std.regex",
+      "code": "UNSUPPORTED_STDLIB_API",
+      "reason_ru": "Regex не входит в этот минимальный каталог."
+    },
+    {
+      "prefix": "std.unicode",
+      "code": "UNSUPPORTED_STDLIB_API",
+      "reason_ru": "Locale/casefold/normalization/graphemes требуют отдельного exact package."
+    },
+    {
+      "prefix": "std.result.unwrap",
+      "code": "UNSUPPORTED_STDLIB_API",
+      "reason_ru": "Использовать полный Match; hidden panic отсутствует."
+    },
+    {
+      "prefix": "std.option.unwrap",
+      "code": "UNSUPPORTED_STDLIB_API",
+      "reason_ru": "Использовать полный Match; hidden panic отсутствует."
+    }
+  ],
+  "availability_note": "Каталог определяет проект поверхности API. Запуск требует actual exact dependency closure, runtime support и current authority; никакой V1 реализации R24 не запускает."
+}

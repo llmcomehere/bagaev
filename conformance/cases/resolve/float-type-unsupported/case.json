@@ -1,0 +1,31 @@
+{
+  "id": "resolve/float-type-unsupported",
+  "spec": [
+    "spec/language/surface.md#5-литералы-и-числа",
+    "spec/language/checking.md#3-имена-и-объявления-фаза-resolve"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "expect": {
+    "phase": "check",
+    "outcome": "PRELAUNCH",
+    "diagnostics": [
+      {
+        "code": "UNSUPPORTED_FEATURE",
+        "file": "main.bag",
+        "span": [
+          49,
+          54
+        ],
+        "data": {
+          "feature_id": "V1-P01"
+        }
+      }
+    ]
+  }
+}

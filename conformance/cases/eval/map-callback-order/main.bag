@@ -1,0 +1,8 @@
+@id("btf87v")
+module main
+use std.seq
+
+@id("gytmzb")
+pub fn main() -> Seq<String> {
+  seq.map(["a", "b"], fn(s) => s ++ "!")
+}

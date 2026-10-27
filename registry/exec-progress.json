@@ -1,0 +1,34 @@
+{
+  "decisions": {
+    "accepted": 27,
+    "partially_accepted": 0,
+    "proposed": 63,
+    "total": 90
+  },
+  "implementations": {
+    "ref": {
+      "available": true,
+      "failed": [],
+      "not_run": 0,
+      "passed": 468,
+      "total": 468
+    },
+    "rust": {
+      "available": false,
+      "failed": [],
+      "not_run": 0,
+      "passed": 0,
+      "total": 0
+    }
+  },
+  "lint_errors": 0,
+  "method": "EXEC-1",
+  "pilot": "NOT_RUN",
+  "rules": {
+    "rules_covered": 165,
+    "rules_not_yet_executable": 18,
+    "rules_partial": 29,
+    "rules_total": 212
+  },
+  "schema": "bagaev-exec-progress/1"
+}

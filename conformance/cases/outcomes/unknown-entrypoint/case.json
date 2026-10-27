@@ -1,0 +1,26 @@
+{
+  "id": "outcomes/unknown-entrypoint",
+  "spec": [
+    "spec/runtime/machine.md#6-запуск"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "run": {
+    "entry": "main.absent"
+  },
+  "expect": {
+    "phase": "run",
+    "effects": [],
+    "outcome": "PRELAUNCH",
+    "diagnostics": [
+      {
+        "code": "UNKNOWN_ENTRYPOINT"
+      }
+    ]
+  }
+}

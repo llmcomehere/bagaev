@@ -1,0 +1,5 @@
+module m
+type P = record { x: Int64, y: Int64, }
+type E = enum { A, B(Int64), }
+fn f<T, U,>(a: T, b: U,) -> Seq<Int64,> { [1, 2, 3,] }
+fn g() -> Int64 { match f(1, 2,) { Some(v) => v, None => 0, } }

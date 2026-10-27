@@ -1,0 +1,28 @@
+{
+  "id": "parse/true-is-reserved",
+  "spec": [
+    "spec/language/lexical.md#4-литералы",
+    "spec/language/lexical.md#3-идентификаторы-и-ключевые-слова"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "expect": {
+    "phase": "parse",
+    "outcome": "PRELAUNCH",
+    "diagnostics": [
+      {
+        "code": "RESERVED_WORD_AS_NAME",
+        "file": "main.bag",
+        "span": [
+          33,
+          37
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,296 @@
+{
+  "id": "accept/stale-base-rebase-01",
+  "spec": [
+    "spec/protocol/agent-protocol.md#8-приёмка",
+    "spec/protocol/agent-protocol.md#9-перенос-на-новый-head"
+  ],
+  "origin": "model:models/r07-core/data/authorship-fixtures.json#C07",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "app.bag"
+  ],
+  "run": {
+    "change": {
+      "principal": "agent",
+      "steps": [
+        {
+          "request": {
+            "operation": "change_begin",
+            "idempotency_key": "b1-kkkkkkkkkkkkkkkkkkkk",
+            "arguments": {
+              "intent": "изменение"
+            }
+          }
+        },
+        {
+          "request": {
+            "operation": "change_begin",
+            "idempotency_key": "b2-kkkkkkkkkkkkkkkkkkkk",
+            "arguments": {
+              "intent": "изменение"
+            }
+          }
+        },
+        {
+          "request": {
+            "operation": "apply",
+            "change_id": "$change",
+            "expected_work_revision": 1,
+            "idempotency_key": "a1-kkkkkkkkkkkkkkkkkkkk",
+            "arguments": {
+              "source_edit": {
+                "files": [
+                  {
+                    "path": "app.bag",
+                    "base_sha256": "$sha:app.bag",
+                    "edits": [
+                      {
+                        "old_text": "\"Привет, \" ++ name",
+                        "text": "\"Здравствуй, \" ++ name"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "request": {
+            "operation": "verify",
+            "change_id": "$change",
+            "expected_work_revision": 2,
+            "idempotency_key": "v1-kkkkkkkkkkkkkkkkkkkk",
+            "arguments": {}
+          }
+        },
+        {
+          "request": {
+            "operation": "accept",
+            "change_id": "$change",
+            "expected_work_revision": 3,
+            "idempotency_key": "c1-kkkkkkkkkkkkkkkkkkkk",
+            "arguments": {}
+          }
+        },
+        {
+          "request": {
+            "operation": "apply",
+            "change_id": "$change2",
+            "expected_work_revision": 1,
+            "idempotency_key": "a2-kkkkkkkkkkkkkkkkkkkk",
+            "arguments": {
+              "source_edit": {
+                "files": [
+                  {
+                    "path": "app.bag",
+                    "base_sha256": "$sha:app.bag",
+                    "edits": [
+                      {
+                        "old_text": "  n + 1\n",
+                        "text": "  n + 2\n"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "request": {
+            "operation": "accept",
+            "change_id": "$change2",
+            "expected_work_revision": 2,
+            "idempotency_key": "c2-kkkkkkkkkkkkkkkkkkkk",
+            "arguments": {}
+          }
+        },
+        {
+          "request": {
+            "operation": "work_resume",
+            "change_id": "$change2",
+            "arguments": {}
+          }
+        },
+        {
+          "request": {
+            "operation": "rebase",
+            "change_id": "$change2",
+            "expected_work_revision": 2,
+            "idempotency_key": "r2-kkkkkkkkkkkkkkkkkkkk",
+            "arguments": {}
+          }
+        },
+        {
+          "request": {
+            "operation": "work_resume",
+            "change_id": "$change2",
+            "arguments": {}
+          }
+        },
+        {
+          "request": {
+            "operation": "accept",
+            "change_id": "$change2",
+            "expected_work_revision": 3,
+            "idempotency_key": "c3-kkkkkkkkkkkkkkkkkkkk",
+            "arguments": {}
+          }
+        }
+      ]
+    }
+  },
+  "expect": {
+    "phase": "accept",
+    "outcome": "COMPLETED",
+    "value": [
+      {
+        "status": "succeeded",
+        "replayed": false,
+        "work_revision": 1
+      },
+      {
+        "status": "succeeded",
+        "replayed": false,
+        "work_revision": 1
+      },
+      {
+        "status": "succeeded",
+        "replayed": false,
+        "work_revision": 2,
+        "touched": {
+          "app.bag": [
+            [
+              408,
+              440
+            ]
+          ]
+        },
+        "identity": {
+          "lineage": [],
+          "removed": [],
+          "added": [],
+          "renamed": []
+        },
+        "draft": false,
+        "diagnostics": []
+      },
+      {
+        "status": "succeeded",
+        "replayed": false,
+        "work_revision": 3,
+        "evidence": [
+          [
+            "app.greet_nonempty",
+            "PASS"
+          ]
+        ]
+      },
+      {
+        "status": "succeeded",
+        "replayed": false,
+        "work_revision": 4,
+        "obligations": [
+          [
+            "checks",
+            "cq0004",
+            "cq0008",
+            "supported",
+            "tests"
+          ],
+          [
+            "implements",
+            "cq0004",
+            "cq0005",
+            "supported",
+            "tests"
+          ]
+        ],
+        "replaced_clauses": [],
+        "replaced_tests": [],
+        "coverage_gaps": [],
+        "lineage": []
+      },
+      {
+        "status": "succeeded",
+        "replayed": false,
+        "work_revision": 2,
+        "touched": {
+          "app.bag": [
+            [
+              558,
+              566
+            ]
+          ]
+        },
+        "identity": {
+          "lineage": [],
+          "removed": [],
+          "added": [],
+          "renamed": []
+        },
+        "draft": false,
+        "diagnostics": []
+      },
+      {
+        "status": "blocked",
+        "replayed": false,
+        "code": "STALE_BASE"
+      },
+      {
+        "status": "succeeded",
+        "replayed": false,
+        "work_revision": 2,
+        "needs_rebase": true,
+        "ready_for_acceptance": false,
+        "contract_revision": 1,
+        "status_": "open",
+        "blockers": [
+          "NEEDS_REBASE"
+        ],
+        "obligations": [],
+        "clauses": []
+      },
+      {
+        "status": "succeeded",
+        "replayed": false,
+        "work_revision": 3,
+        "identity": {
+          "lineage": [],
+          "removed": [],
+          "added": [],
+          "renamed": []
+        }
+      },
+      {
+        "status": "succeeded",
+        "replayed": false,
+        "work_revision": 3,
+        "needs_rebase": false,
+        "ready_for_acceptance": true,
+        "contract_revision": 1,
+        "status_": "open",
+        "blockers": [],
+        "obligations": [],
+        "clauses": []
+      },
+      {
+        "status": "succeeded",
+        "replayed": false,
+        "work_revision": 4,
+        "obligations": [],
+        "replaced_clauses": [],
+        "replaced_tests": [],
+        "coverage_gaps": [],
+        "lineage": []
+      }
+    ],
+    "state": {
+      "head_revision": 3
+    }
+  },
+  "note": "две работы от одной базы: вторая получает STALE_BASE, head не меняется; перенос по old_text на новый head даёт совместный кандидат, он проверяется и принимается (C07; T10-C04, T10-C05)"
+}

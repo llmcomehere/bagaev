@@ -1,0 +1,7 @@
+@id("7ybwe9")
+module main
+
+@id("d6p4c4")
+pub fn main() -> Seq<Int64> {
+  []
+}

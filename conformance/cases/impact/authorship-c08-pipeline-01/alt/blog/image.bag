@@ -1,0 +1,35 @@
+/// Обработка изображений не зависит от авторства: в типах входов нет Authors,
+/// эффектов нет — основание исключения D83(b). Вариант с водяным знаком (C08)
+/// добавляет зависимость и делает это основание неприменимым.
+@id("w4681p")
+module blog.image
+
+use std.bytes
+use std.seq
+use std.utf8
+use blog.articles.{Article}
+use blog.authorship
+use blog.people
+
+@id("9ypeqr")
+pub fn resize(img: Bytes, width: Int64, height: Int64) -> Bytes {
+  if width <= 0 or height <= 0 {
+    img
+  } else {
+    bytes.concat(b"RSZ", img)
+  }
+}
+
+@id("47495y")
+pub fn image_pipeline(img: Bytes, a: Article) -> Bytes {
+  watermark(resize(img, 640, 480), a)
+}
+
+/// Водяной знак с подписью авторов (C08): вход теперь зависит от авторства.
+@id("wmk001")
+fn watermark(img: Bytes, a: Article) -> Bytes {
+  match seq.get(authorship.ids(a.authors), 0) {
+    Some(p) => bytes.concat(img, utf8.encode(people.id_text(p))),
+    None => img,
+  }
+}

@@ -1,0 +1,8 @@
+@id("vdndgy")
+module main
+use std.string
+
+@id("gepdgj")
+pub fn main() -> Option<Int64> {
+  string.scalar_get("A😀", 1)
+}

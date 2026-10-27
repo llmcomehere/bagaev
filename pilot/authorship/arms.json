@@ -1,0 +1,58 @@
+{
+  "format": "bagaev-pilot-arms/1",
+  "note": "Как вызвать CLI каждого варианта (contract.md §1). {app} — каталог приложения, {state} — каталог состояния.",
+  "arms": {
+    "C": {
+      "cli": [
+        "python3",
+        "pilot/authorship/arms/bagaev_cli.py",
+        "--app",
+        "{app}",
+        "--state",
+        "{state}"
+      ],
+      "baseline": "pilot/authorship/app-bagaev",
+      "reference": "pilot/authorship/reference/bagaev",
+      "tools": [
+        "bag check / bag test",
+        "поиск по тексту",
+        "протокол агента bag op / bag mcp (CHANGE-1)"
+      ]
+    },
+    "A": {
+      "cli": [
+        "node",
+        "--no-warnings",
+        "{app}/src/cli.ts",
+        "--state",
+        "{state}"
+      ],
+      "baseline": "pilot/authorship/app-ts",
+      "reference": "pilot/authorship/reference/ts",
+      "note": "TypeScript strict; инструменты агента: компилятор, тесты, поиск по тексту",
+      "tools": [
+        "компилятор TypeScript (tsc)",
+        "node --test",
+        "поиск по тексту"
+      ]
+    },
+    "B": {
+      "cli": [
+        "node",
+        "--no-warnings",
+        "{app}/src/cli.ts",
+        "--state",
+        "{state}"
+      ],
+      "baseline": "pilot/authorship/app-ts",
+      "reference": "pilot/authorship/reference/ts",
+      "note": "тот же код, что A; дополнительно извлекатель связей TS и общий движок влияния и приёмки",
+      "tools": [
+        "компилятор TypeScript (tsc)",
+        "node --test",
+        "поиск по тексту",
+        "протокол агента bag op / bag mcp над корнем TS (CHG-01а), граф links-ts/extract.ts"
+      ]
+    }
+  }
+}

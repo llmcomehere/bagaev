@@ -1,0 +1,214 @@
+{
+  "id": "accept/d83a-policy-01",
+  "spec": [
+    "spec/protocol/agent-protocol.md#4-changecontract-и-политика",
+    "spec/protocol/agent-protocol.md#6-workstate"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "app.bag"
+  ],
+  "run": {
+    "change": {
+      "principal": "agent",
+      "steps": [
+        {
+          "request": {
+            "operation": "change_begin",
+            "idempotency_key": "b1-kkkkkkkkkkkkkkkkkkkk",
+            "arguments": {
+              "intent": "изменение"
+            }
+          }
+        },
+        {
+          "request": {
+            "operation": "apply",
+            "change_id": "$change",
+            "expected_work_revision": 1,
+            "idempotency_key": "a1-kkkkkkkkkkkkkkkkkkkk",
+            "arguments": {
+              "source_edit": {
+                "files": [
+                  {
+                    "path": "app.bag",
+                    "base_sha256": "$sha:app.bag",
+                    "edits": [
+                      {
+                        "old_text": "  Point { x: double(n) }",
+                        "text": "  Point { x: double(n) + 0 }"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "request": {
+            "operation": "verify",
+            "change_id": "$change",
+            "expected_work_revision": 2,
+            "idempotency_key": "v1-kkkkkkkkkkkkkkkkkkkk",
+            "arguments": {}
+          }
+        },
+        {
+          "request": {
+            "operation": "work_resume",
+            "change_id": "$change",
+            "arguments": {}
+          }
+        },
+        {
+          "op": "policy",
+          "policy": {
+            "obligations": {
+              "requires": [
+                "tests"
+              ]
+            }
+          }
+        },
+        {
+          "request": {
+            "operation": "work_resume",
+            "change_id": "$change",
+            "arguments": {}
+          }
+        }
+      ]
+    }
+  },
+  "expect": {
+    "phase": "accept",
+    "outcome": "COMPLETED",
+    "value": [
+      {
+        "status": "succeeded",
+        "replayed": false,
+        "work_revision": 1
+      },
+      {
+        "status": "succeeded",
+        "replayed": false,
+        "work_revision": 2,
+        "touched": {
+          "app.bag": [
+            [
+              647,
+              675
+            ]
+          ]
+        },
+        "identity": {
+          "lineage": [],
+          "removed": [],
+          "added": [],
+          "renamed": []
+        },
+        "draft": false,
+        "diagnostics": []
+      },
+      {
+        "status": "succeeded",
+        "replayed": false,
+        "work_revision": 3,
+        "evidence": [
+          [
+            "app.origin_positive",
+            "PASS"
+          ]
+        ]
+      },
+      {
+        "status": "succeeded",
+        "replayed": false,
+        "work_revision": 3,
+        "needs_rebase": false,
+        "ready_for_acceptance": false,
+        "contract_revision": 1,
+        "status_": "open",
+        "blockers": [
+          "OBLIGATION_OPEN"
+        ],
+        "obligations": [
+          [
+            "app.Counting",
+            "app.S.copy",
+            "derived_from",
+            "open",
+            "no-method"
+          ],
+          [
+            "app.Exact.positive",
+            "app.origin",
+            "implements",
+            "supported",
+            "tests"
+          ],
+          [
+            "app.Exact.positive",
+            "app.origin_positive",
+            "checks",
+            "supported",
+            "tests"
+          ]
+        ],
+        "clauses": []
+      },
+      {
+        "status": "policy_changed"
+      },
+      {
+        "status": "succeeded",
+        "replayed": false,
+        "work_revision": 3,
+        "needs_rebase": false,
+        "ready_for_acceptance": false,
+        "contract_revision": 1,
+        "status_": "open",
+        "blockers": [
+          "OBLIGATION_OPEN",
+          "POLICY_CHANGED"
+        ],
+        "obligations": [
+          [
+            "app.Counting",
+            "app.S.copy",
+            "derived_from",
+            "open",
+            "no-method"
+          ],
+          [
+            "app.Exact.positive",
+            "app.add",
+            "requires",
+            "supported",
+            "tests"
+          ],
+          [
+            "app.Exact.positive",
+            "app.origin",
+            "implements",
+            "supported",
+            "tests"
+          ],
+          [
+            "app.Exact.positive",
+            "app.origin_positive",
+            "checks",
+            "supported",
+            "tests"
+          ]
+        ],
+        "clauses": []
+      }
+    ]
+  },
+  "note": "по политике по умолчанию сертификат D83(a) закрывает обязательство requires команды add; политика без D83a для requires делает его обычным обязательством — его закрывают тесты правила (CHG-10; ревью m6 M6)"
+}

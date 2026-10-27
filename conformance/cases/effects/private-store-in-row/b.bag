@@ -1,0 +1,11 @@
+@id("p454hg")
+module b
+
+use a
+
+@id("wz3d4e")
+fn f() -> ()
+  uses { reads a.S.t }
+{
+  ()
+}

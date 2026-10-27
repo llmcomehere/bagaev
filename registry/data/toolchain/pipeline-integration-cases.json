@@ -1,0 +1,443 @@
+{
+  "format": "R21-INTEGRATION-ROUTE-1",
+  "criterion": "T13-C01",
+  "production_execution": false,
+  "actual_observation_ref": null,
+  "cases": [
+    {
+      "id": "IC21-01",
+      "name": "input_closure_and_recipe_dag",
+      "stage": "preflight",
+      "setup": "Prepare an actual SourceBundle, independent BuildRecipe, Manifest, lock, MeaningLock, PipelinePlan, CompileInvocation and BuildPlan.",
+      "independent_expected_method": "Recompute all refs and topological object order; reject a recipe containing its future plan, any mismatched binding or missing exact dependency.",
+      "expected_outcome": "No content dependency cycle; no generated file in authored bundle; unavailable actual codec yields INPUT_NOT_READY.",
+      "status": "NOT_RUN",
+      "actual_observation_ref": null,
+      "blocking_inputs": [
+        "Actual released T03 source/CST/IR and codecs",
+        "Pinned full T04/T05/T06 and stage contracts/checkers as applicable",
+        "Real compiler/runtime/build/editor/storage adapters for this case"
+      ]
+    },
+    {
+      "id": "IC21-02",
+      "name": "source_snapshot_consistency",
+      "stage": "preflight",
+      "setup": "Capture multiple source buffers while another writer changes one; test A→B→A working generation.",
+      "independent_expected_method": "Compare exact accepted/working binding and generation under atomic capture/publication.",
+      "expected_outcome": "A single immutable snapshot or STALE_SOURCE_CAPTURE; old-generation result cannot become current.",
+      "status": "NOT_RUN",
+      "actual_observation_ref": null,
+      "blocking_inputs": [
+        "Actual released T03 source/CST/IR and codecs",
+        "Pinned full T04/T05/T06 and stage contracts/checkers as applicable",
+        "Real compiler/runtime/build/editor/storage adapters for this case"
+      ]
+    },
+    {
+      "id": "IC21-03",
+      "name": "parser_lossless_coverage",
+      "stage": "parse",
+      "setup": "For every released V1 grammar family use independently authored valid input/CST/token/IR and comments/CRLF.",
+      "independent_expected_method": "Concatenate expected CST leaves to exact original bytes; compare full trees and token ranges under frozen grammar.",
+      "expected_outcome": "All bytes preserved, no unknown/recovery nodes, full consumption; missing grammar is INPUT_NOT_READY.",
+      "status": "NOT_RUN",
+      "actual_observation_ref": null,
+      "blocking_inputs": [
+        "Actual released T03 source/CST/IR and codecs",
+        "Pinned full T04/T05/T06 and stage contracts/checkers as applicable",
+        "Real compiler/runtime/build/editor/storage adapters for this case"
+      ]
+    },
+    {
+      "id": "IC21-04",
+      "name": "parser_invalid_unicode_and_recovery",
+      "stage": "parse",
+      "setup": "Invalid UTF-8, duplicate/ambiguous forms, incomplete constructs, zero-width recovery anchors.",
+      "independent_expected_method": "Frozen byte/rule diagnostics and recovery actions; run EDITOR and EMIT on same invalid bytes.",
+      "expected_outcome": "EDITOR may be partial with exact bad bytes; EMIT refuses; replacement characters do not change source.",
+      "status": "NOT_RUN",
+      "actual_observation_ref": null,
+      "blocking_inputs": [
+        "Actual released T03 source/CST/IR and codecs",
+        "Pinned full T04/T05/T06 and stage contracts/checkers as applicable",
+        "Real compiler/runtime/build/editor/storage adapters for this case"
+      ]
+    },
+    {
+      "id": "IC21-05",
+      "name": "scope_shadow_and_negative_lookup",
+      "stage": "resolve",
+      "setup": "A nested scope initially lacks foo and resolves an outer binding; then add nearer foo/ambiguous import.",
+      "independent_expected_method": "Manually derive scopes, resolved IDs and the complete FOUND/ABSENT lookup trace for each snapshot.",
+      "expected_outcome": "Exact inner binding/ambiguity after change, old scope-dependent result never reused.",
+      "status": "NOT_RUN",
+      "actual_observation_ref": null,
+      "blocking_inputs": [
+        "Actual released T03 source/CST/IR and codecs",
+        "Pinned full T04/T05/T06 and stage contracts/checkers as applicable",
+        "Real compiler/runtime/build/editor/storage adapters for this case"
+      ]
+    },
+    {
+      "id": "IC21-06",
+      "name": "identity_visibility_recursion",
+      "stage": "resolve",
+      "setup": "Rename/copy explicit EntityIds; duplicate IDs; private import; forward cycle inside/outside declared recursive group.",
+      "independent_expected_method": "Independent identity/lexical/SCC table and expected diagnostic per occurrence.",
+      "expected_outcome": "Identity mapping preserved or explicit conflict; only allowed recursive SCC admitted; package cycle remains refused.",
+      "status": "NOT_RUN",
+      "actual_observation_ref": null,
+      "blocking_inputs": [
+        "Actual released T03 source/CST/IR and codecs",
+        "Pinned full T04/T05/T06 and stage contracts/checkers as applicable",
+        "Real compiler/runtime/build/editor/storage adapters for this case"
+      ]
+    },
+    {
+      "id": "IC21-07",
+      "name": "type_totality_and_scoped_unification",
+      "stage": "type",
+      "setup": "Valid and invalid unreachable branches, occurs-check, skolem escape, ambiguous generic, nominal same-layout mismatch.",
+      "independent_expected_method": "Manual constraints/substitutions and every typed node against frozen T04 rules.",
+      "expected_outcome": "All branches checked; no unresolved meta/rigid escape/implicit Bool→Int coercion.",
+      "status": "NOT_RUN",
+      "actual_observation_ref": null,
+      "blocking_inputs": [
+        "Actual released T03 source/CST/IR and codecs",
+        "Pinned full T04/T05/T06 and stage contracts/checkers as applicable",
+        "Real compiler/runtime/build/editor/storage adapters for this case"
+      ]
+    },
+    {
+      "id": "IC21-08",
+      "name": "type_effect_acyclic_boundary",
+      "stage": "type",
+      "setup": "Functions with declared latent effects, actual refined effects, indirect callbacks and recursive generic group.",
+      "independent_expected_method": "Compare declared function types before/after effect summary; reject any back-propagated silent type/effect change.",
+      "expected_outcome": "Type uses exact declared bounds; effect refinement cannot rewrite overload/type meaning.",
+      "status": "NOT_RUN",
+      "actual_observation_ref": null,
+      "blocking_inputs": [
+        "Actual released T03 source/CST/IR and codecs",
+        "Pinned full T04/T05/T06 and stage contracts/checkers as applicable",
+        "Real compiler/runtime/build/editor/storage adapters for this case"
+      ]
+    },
+    {
+      "id": "IC21-09",
+      "name": "effect_least_fixed_point",
+      "stage": "effect",
+      "setup": "Mutually recursive calls with different direct effects and indirect-call bounds.",
+      "independent_expected_method": "Independent hand-computed least set solution, sorted worklist and bound failures.",
+      "expected_outcome": "Exact least summary, actual⊆declared, current capabilities not granted; work exhaustion is LIMIT.",
+      "status": "NOT_RUN",
+      "actual_observation_ref": null,
+      "blocking_inputs": [
+        "Actual released T03 source/CST/IR and codecs",
+        "Pinned full T04/T05/T06 and stage contracts/checkers as applicable",
+        "Real compiler/runtime/build/editor/storage adapters for this case"
+      ]
+    },
+    {
+      "id": "IC21-10",
+      "name": "required_obligations_unknown",
+      "stage": "effect",
+      "setup": "A required contract checker is missing/returns unknown; separate case disproves source obligation.",
+      "independent_expected_method": "Pre-frozen expected status/phase/blame and no downstream emit output.",
+      "expected_outcome": "Unknown/missing INPUT_NOT_READY; proved source conflict INVALID; no pure/effect claim manufactured.",
+      "status": "NOT_RUN",
+      "actual_observation_ref": null,
+      "blocking_inputs": [
+        "Actual released T03 source/CST/IR and codecs",
+        "Pinned full T04/T05/T06 and stage contracts/checkers as applicable",
+        "Real compiler/runtime/build/editor/storage adapters for this case"
+      ]
+    },
+    {
+      "id": "IC21-11",
+      "name": "hygienic_ordered_lowering",
+      "stage": "lower",
+      "setup": "Nested names, strict arguments, record/map initializers, short circuit and result propagation.",
+      "independent_expected_method": "Expected resolved IDs, exact lowered skeleton/order and generated-ID derivation.",
+      "expected_outcome": "No capture/reordering/eager short-circuit, each output node has checked provenance.",
+      "status": "NOT_RUN",
+      "actual_observation_ref": null,
+      "blocking_inputs": [
+        "Actual released T03 source/CST/IR and codecs",
+        "Pinned full T04/T05/T06 and stage contracts/checkers as applicable",
+        "Real compiler/runtime/build/editor/storage adapters for this case"
+      ]
+    },
+    {
+      "id": "IC21-12",
+      "name": "logical_cost_and_cancel_preservation",
+      "stage": "lower",
+      "setup": "For each real lowering rule compare source reference machine and lowered machine over boundary budgets/cancel schedules.",
+      "independent_expected_method": "Independently derive return/error/effect-prefix/logical charge/cancel boundary outcomes, not only final value.",
+      "expected_outcome": "Selected observation domain preserved; missing proof/checker blocks transform. No R21 finite-runtime claim.",
+      "status": "NOT_RUN",
+      "actual_observation_ref": null,
+      "blocking_inputs": [
+        "Actual released T03 source/CST/IR and codecs",
+        "Pinned full T04/T05/T06 and stage contracts/checkers as applicable",
+        "Real compiler/runtime/build/editor/storage adapters for this case"
+      ]
+    },
+    {
+      "id": "IC21-13",
+      "name": "origin_many_to_many",
+      "stage": "lower",
+      "setup": "Generated, duplicated, merged and no-source nodes, with missing/forged/foreign source ranges. Include an OriginMap for an auxiliary table substituted for the declared primary executable/IR role.",
+      "independent_expected_method": "Enumerate actual input/output node sets; compare complete map and reverse query alternatives.",
+      "expected_outcome": "Exact coverage, explicit ambiguity/absence; no invented inverse or zero-position source. Primary role/ref binding is mandatory; an auxiliary map cannot cover the executable.",
+      "status": "NOT_RUN",
+      "actual_observation_ref": null,
+      "blocking_inputs": [
+        "Actual released T03 source/CST/IR and codecs",
+        "Pinned full T04/T05/T06 and stage contracts/checkers as applicable",
+        "Real compiler/runtime/build/editor/storage adapters for this case"
+      ]
+    },
+    {
+      "id": "IC21-14",
+      "name": "exact_link_closure",
+      "stage": "link",
+      "setup": "Transitive imports, same-name other package, same-layout nominal type, changed ABI/effect/error table.",
+      "independent_expected_method": "Independent full import/export/instance matching and dependency inventory.",
+      "expected_outcome": "No ambient fallback, unresolved/duplicate slots or nominal merging; changed lock invalidates output.",
+      "status": "NOT_RUN",
+      "actual_observation_ref": null,
+      "blocking_inputs": [
+        "Actual released T03 source/CST/IR and codecs",
+        "Pinned full T04/T05/T06 and stage contracts/checkers as applicable",
+        "Real compiler/runtime/build/editor/storage adapters for this case"
+      ]
+    },
+    {
+      "id": "IC21-15",
+      "name": "generics_and_initializers",
+      "stage": "link",
+      "setup": "Repeated generic instantiation and bounded expansion; effectful initializer/adapters.",
+      "independent_expected_method": "Exact specialization keys, order and explicit runtime initializer sequence.",
+      "expected_outcome": "No hidden compile-time execution; unsupported FFI/memory contract refuses; limits preserve no-success state.",
+      "status": "NOT_RUN",
+      "actual_observation_ref": null,
+      "blocking_inputs": [
+        "Actual released T03 source/CST/IR and codecs",
+        "Pinned full T04/T05/T06 and stage contracts/checkers as applicable",
+        "Real compiler/runtime/build/editor/storage adapters for this case"
+      ]
+    },
+    {
+      "id": "IC21-16",
+      "name": "emitter_decode_and_source_claim",
+      "stage": "emit",
+      "setup": "Real interpreter-image codec output plus structurally valid but semantically substituted artifact.",
+      "independent_expected_method": "Independent decode roundtrip and full trusted translation/recompute relation to exact source.",
+      "expected_outcome": "Both artifact admissibility and source relation required; self-consistent hash alone cannot pass.",
+      "status": "NOT_RUN",
+      "actual_observation_ref": null,
+      "blocking_inputs": [
+        "Actual released T03 source/CST/IR and codecs",
+        "Pinned full T04/T05/T06 and stage contracts/checkers as applicable",
+        "Real compiler/runtime/build/editor/storage adapters for this case"
+      ]
+    },
+    {
+      "id": "IC21-17",
+      "name": "binary_sections_and_foreign_codecs",
+      "stage": "emit",
+      "setup": "Truncated/overlapping sections, unknown mandatory opcode, wrong codec, rounded integer and old format label with different bytes.",
+      "independent_expected_method": "Pinned byte-level loader expectations and outer/native identity recomputation.",
+      "expected_outcome": "Reject exact malformed reason before execution; no codec sniffing/default upgrade.",
+      "status": "NOT_RUN",
+      "actual_observation_ref": null,
+      "blocking_inputs": [
+        "Actual released T03 source/CST/IR and codecs",
+        "Pinned full T04/T05/T06 and stage contracts/checkers as applicable",
+        "Real compiler/runtime/build/editor/storage adapters for this case"
+      ]
+    },
+    {
+      "id": "IC21-18",
+      "name": "stage_lineage_and_recovery_leak",
+      "stage": "composition",
+      "setup": "Skip/reorder/duplicate a stage, mix another plan output, pass recovery CST as typed input.",
+      "independent_expected_method": "Compare required stage prefix and every input/output identity plus source/meaning/target.",
+      "expected_outcome": "No EMITTED/CHECKED without complete exact prefix; partial/editor input never executable.",
+      "status": "NOT_RUN",
+      "actual_observation_ref": null,
+      "blocking_inputs": [
+        "Actual released T03 source/CST/IR and codecs",
+        "Pinned full T04/T05/T06 and stage contracts/checkers as applicable",
+        "Real compiler/runtime/build/editor/storage adapters for this case"
+      ]
+    },
+    {
+      "id": "IC21-19",
+      "name": "cache_whole_context_and_comment_change",
+      "stage": "cache",
+      "setup": "Change source comment, MeaningLock, scope/interface inventory, target, compiler, limits and mode independently.",
+      "independent_expected_method": "Compute exact QueryBody/key and expected miss or equal result; inspect R20 ref propagation.",
+      "expected_outcome": "All changed inputs invalidate baseline hit; payload equality does not transfer origin or acceptance.",
+      "status": "NOT_RUN",
+      "actual_observation_ref": null,
+      "blocking_inputs": [
+        "Actual released T03 source/CST/IR and codecs",
+        "Pinned full T04/T05/T06 and stage contracts/checkers as applicable",
+        "Real compiler/runtime/build/editor/storage adapters for this case"
+      ]
+    },
+    {
+      "id": "IC21-20",
+      "name": "cache_forgery_admission",
+      "stage": "cache",
+      "setup": "Forge a well-typed different program and recompute every local hash/receipt; revoke producer trust.",
+      "independent_expected_method": "Recompute source→output or verify independently admitted exact evidence/current policy.",
+      "expected_outcome": "Forgery/untrusted producer cannot claim current source; no self-signed PASS shortcut.",
+      "status": "NOT_RUN",
+      "actual_observation_ref": null,
+      "blocking_inputs": [
+        "Actual released T03 source/CST/IR and codecs",
+        "Pinned full T04/T05/T06 and stage contracts/checkers as applicable",
+        "Real compiler/runtime/build/editor/storage adapters for this case"
+      ]
+    },
+    {
+      "id": "IC21-21",
+      "name": "cache_work_cancel_restart",
+      "stage": "cache",
+      "setup": "Hit via admitted evidence and via full recompute; budget exhaust/cancel before and after verification; crash before entry commit.",
+      "independent_expected_method": "Separate intrinsic StageResult work from actual CompileAttempt phases, compare immutable result plus actual counter sums.",
+      "expected_outcome": "Current budget/cancel gates enforced, incomplete cache quarantined, historical success not current success.",
+      "status": "NOT_RUN",
+      "actual_observation_ref": null,
+      "blocking_inputs": [
+        "Actual released T03 source/CST/IR and codecs",
+        "Pinned full T04/T05/T06 and stage contracts/checkers as applicable",
+        "Real compiler/runtime/build/editor/storage adapters for this case"
+      ]
+    },
+    {
+      "id": "IC21-22",
+      "name": "diagnostic_coordinates_and_staleness",
+      "stage": "diagnostics",
+      "setup": "Cyrillic/non-BMP scalars, tabs, CRLF and changed buffer before diagnostic delivery.",
+      "independent_expected_method": "Independent raw-byte offsets plus exact UTF8/UTF16/scalar conversion with representability checks.",
+      "expected_outcome": "Correct current source only; stale range not attached by path; malformed UTF-8 gets byte diagnostic.",
+      "status": "NOT_RUN",
+      "actual_observation_ref": null,
+      "blocking_inputs": [
+        "Actual released T03 source/CST/IR and codecs",
+        "Pinned full T04/T05/T06 and stage contracts/checkers as applicable",
+        "Real compiler/runtime/build/editor/storage adapters for this case"
+      ]
+    },
+    {
+      "id": "IC21-23",
+      "name": "truncated_errors_and_fault_blame",
+      "stage": "diagnostics",
+      "setup": "Drop all error entries or leave warnings only due to byte cap; cause a newly emitted wrong output. Include causes outside the truncated sorted prefix and a valid1100-entry causal chain.",
+      "independent_expected_method": "Precomputed source-error summary plus phase/blame matrix; compare status with incomplete visible list.",
+      "expected_outcome": "INVALID source summary survives truncation; compiler-generated wrong output INTERNAL_ERROR/TOOL. Truncation keeps a causal-closed subset and full aggregate source-error summary; iterative traversal supports the declared4096-entry bound.",
+      "status": "NOT_RUN",
+      "actual_observation_ref": null,
+      "blocking_inputs": [
+        "Actual released T03 source/CST/IR and codecs",
+        "Pinned full T04/T05/T06 and stage contracts/checkers as applicable",
+        "Real compiler/runtime/build/editor/storage adapters for this case"
+      ]
+    },
+    {
+      "id": "IC21-24",
+      "name": "guarded_fix_and_ambiguous_origin",
+      "stage": "diagnostics",
+      "setup": "Overlapping edits, old slice, A→B→A generation, generated/merged node location. Two diagnostic batches for the same source both have D1; a fix must identify the exact immutable batch.",
+      "independent_expected_method": "Apply frozen disjoint edit proposal to exact old bytes; full parse/check candidate and CAS.",
+      "expected_outcome": "Ambiguous/stale fix refuses; accepted head never auto-rewritten; no text offset guessing. DiagnosticBatch has no future fix reference; exact batch→ID rationale and derived reverse lookup avoid content cycles.",
+      "status": "NOT_RUN",
+      "actual_observation_ref": null,
+      "blocking_inputs": [
+        "Actual released T03 source/CST/IR and codecs",
+        "Pinned full T04/T05/T06 and stage contracts/checkers as applicable",
+        "Real compiler/runtime/build/editor/storage adapters for this case"
+      ]
+    },
+    {
+      "id": "IC21-25",
+      "name": "runtime_loader_and_current_authority",
+      "stage": "loading",
+      "setup": "Real emitted image with missing runtime ABI, changed current capability/revoked adapter and stale source observation.",
+      "independent_expected_method": "Independent loader compatibility result and runtime admission/dispatch decisions.",
+      "expected_outcome": "Compile success does not authorize execution/effect; historic source/IR/StateRef retained.",
+      "status": "NOT_RUN",
+      "actual_observation_ref": null,
+      "blocking_inputs": [
+        "Actual released T03 source/CST/IR and codecs",
+        "Pinned full T04/T05/T06 and stage contracts/checkers as applicable",
+        "Real compiler/runtime/build/editor/storage adapters for this case"
+      ]
+    },
+    {
+      "id": "IC21-26",
+      "name": "bounded_work_and_atomic_publication",
+      "stage": "publication",
+      "setup": "Every declared limit, U64 overflow, storage failure before/after result commit and concurrent generation change.",
+      "independent_expected_method": "Exact outcome/receipt/pointer histories under actual durable adapter and crash injection.",
+      "expected_outcome": "No half-success; stable exact retries/lookups R16; abandoned immutable objects do not become active.",
+      "status": "NOT_RUN",
+      "actual_observation_ref": null,
+      "blocking_inputs": [
+        "Actual released T03 source/CST/IR and codecs",
+        "Pinned full T04/T05/T06 and stage contracts/checkers as applicable",
+        "Real compiler/runtime/build/editor/storage adapters for this case"
+      ]
+    },
+    {
+      "id": "IC21-27",
+      "name": "parallel_determinism",
+      "stage": "composition",
+      "setup": "Independent module tasks complete in varied order under fixed plan/toolchain.",
+      "independent_expected_method": "Frozen full outputs, diagnostic sort, intrinsic counters and refs independent of schedule.",
+      "expected_outcome": "Same deterministic compiler results; physical implementation stops separately recorded.",
+      "status": "NOT_RUN",
+      "actual_observation_ref": null,
+      "blocking_inputs": [
+        "Actual released T03 source/CST/IR and codecs",
+        "Pinned full T04/T05/T06 and stage contracts/checkers as applicable",
+        "Real compiler/runtime/build/editor/storage adapters for this case"
+      ]
+    },
+    {
+      "id": "IC21-28",
+      "name": "bidirectional_explanation_and_impact",
+      "stage": "origin",
+      "setup": "Trace one emitted node and one changed source/dependency through stage lineage and check graph.",
+      "independent_expected_method": "Expected exact source/IR/lock/meaning/evidence path, unknown edges and stale obligations.",
+      "expected_outcome": "Explanation preserves scope/ambiguity; candidate edit only, no execution/reacceptance/publish.",
+      "status": "NOT_RUN",
+      "actual_observation_ref": null,
+      "blocking_inputs": [
+        "Actual released T03 source/CST/IR and codecs",
+        "Pinned full T04/T05/T06 and stage contracts/checkers as applicable",
+        "Real compiler/runtime/build/editor/storage adapters for this case"
+      ]
+    },
+    {
+      "id": "IC21-29",
+      "name": "real_build_reproduction_and_release_bridge",
+      "stage": "integration",
+      "setup": "Two independently invoked enforced builds from same inputs; then acceptance/seal and optional exact intents.",
+      "independent_expected_method": "Compare raw artifact inventory and actual input closure, PipelineResult/BuildObservations binding and release gates.",
+      "expected_outcome": "REPRODUCED only on measured equal raw bytes; compile never automatically releases/deploys.",
+      "status": "NOT_RUN",
+      "actual_observation_ref": null,
+      "blocking_inputs": [
+        "Actual released T03 source/CST/IR and codecs",
+        "Pinned full T04/T05/T06 and stage contracts/checkers as applicable",
+        "Real compiler/runtime/build/editor/storage adapters for this case"
+      ]
+    }
+  ]
+}

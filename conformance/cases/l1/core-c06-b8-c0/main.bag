@@ -1,0 +1,8 @@
+@id("xpdrgm")
+module main
+use std.i64
+
+@id("pk7z76")
+pub fn main() -> Int64 {
+  (fn(x: Int64, unused: Int64) => x)(7, 9)
+}

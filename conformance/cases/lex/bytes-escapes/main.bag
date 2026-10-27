@@ -1,0 +1,2 @@
+module m
+fn f() -> Bytes { b"ab\x00\xff\n" }

@@ -1,0 +1,20 @@
+@id("447rb5")
+module main
+
+use std.i64
+
+@id("bvdn36")
+pub type Article = record {
+  @id("4zmc9c") name: String,
+  @id("6q3mtw") words: Int64,
+}
+
+@id("qz7hsh")
+pub fn headline(a: Article) -> String {
+  a.name ++ " (" ++ i64.format_decimal(a.words) ++ ")"
+}
+
+@id("qb90mq")
+pub fn retitle(a: Article, t: String) -> Article {
+  Article { ..a, name: t }
+}

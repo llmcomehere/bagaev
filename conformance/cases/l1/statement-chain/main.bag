@@ -1,0 +1,8 @@
+@id("v1ye22")
+module main
+
+@id("ydm4ss")
+pub fn main() -> Int64 {
+  1;
+  2
+}

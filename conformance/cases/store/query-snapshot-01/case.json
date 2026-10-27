@@ -1,0 +1,146 @@
+{
+  "id": "store/query-snapshot-01",
+  "spec": [
+    "spec/runtime/host.md#4-запрос"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "app.bag"
+  ],
+  "run": {
+    "steps": [
+      {
+        "op": "seed",
+        "table": "app.S.counts",
+        "rows": [
+          [
+            {
+              "type": "String",
+              "value": "b"
+            },
+            {
+              "type": "Int64",
+              "value": "4"
+            }
+          ],
+          [
+            {
+              "type": "String",
+              "value": "a"
+            },
+            {
+              "type": "Int64",
+              "value": "3"
+            }
+          ]
+        ]
+      },
+      {
+        "op": "query",
+        "entry": "app.get",
+        "args": [
+          {
+            "type": "String",
+            "value": "b"
+          }
+        ]
+      },
+      {
+        "op": "query",
+        "entry": "app.get",
+        "args": [
+          {
+            "type": "String",
+            "value": "z"
+          }
+        ]
+      },
+      {
+        "op": "query",
+        "entry": "app.bump",
+        "args": [
+          {
+            "type": "String",
+            "value": "a"
+          },
+          {
+            "type": "Int64",
+            "value": "1"
+          }
+        ]
+      }
+    ]
+  },
+  "expect": {
+    "phase": "store",
+    "outcome": "COMPLETED",
+    "value": [
+      {
+        "outcome": "COMMITTED",
+        "rows": 2,
+        "state_version": 1
+      },
+      {
+        "outcome": "RETURNED",
+        "value": {
+          "type": "Option<Int64>",
+          "tag": "Some",
+          "payload": {
+            "type": "Int64",
+            "value": "4"
+          }
+        }
+      },
+      {
+        "outcome": "RETURNED",
+        "value": {
+          "type": "Option<Int64>",
+          "tag": "None"
+        }
+      },
+      {
+        "outcome": "REFUSED",
+        "code": "UNKNOWN_ENTRYPOINT",
+        "data": {
+          "name": "app.bump"
+        }
+      }
+    ],
+    "state": {
+      "state_version": 1,
+      "epoch": 0,
+      "tables": {
+        "app.S.counts": [
+          [
+            {
+              "type": "String",
+              "value": "a"
+            },
+            {
+              "type": "Int64",
+              "value": "3"
+            }
+          ],
+          [
+            {
+              "type": "String",
+              "value": "b"
+            },
+            {
+              "type": "Int64",
+              "value": "4"
+            }
+          ]
+        ],
+        "app.S.seen": []
+      },
+      "outbox": [],
+      "inbox": [],
+      "pending": []
+    }
+  },
+  "note": "запрос не меняет StateVersion; строки в состоянии — в порядке Key, а не вставки (HST-02)"
+}

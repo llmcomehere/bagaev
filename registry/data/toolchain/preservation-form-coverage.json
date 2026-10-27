@@ -1,0 +1,101 @@
+{
+  "profile": "PRESERVE-FORM-DISPATCH-0.1",
+  "status": "WORKING_DESIGN",
+  "scope": "All V1 semantic families; family count is not a complete concrete opcode count.",
+  "family_count": 13,
+  "actual_complete_V1_form_registry_available": false,
+  "unknown_or_missing_mandatory_form": "INPUT_NOT_READY or UNSUPPORTED; never KEEP unknown semantics",
+  "families": [
+    {
+      "family_id": "SCALARS",
+      "forms": "CONST / VAR",
+      "policy": "Scalar rules; exact typed values",
+      "mandatory_dependency": "TYPE_VALUE_CONTRACT",
+      "production_validation": "NOT_RUN"
+    },
+    {
+      "family_id": "BINDINGS",
+      "forms": "LET / SEQ",
+      "policy": "Strict initializer/order retained; scoped facts only in body",
+      "mandatory_dependency": "SCOPE_AND_STEP_CONTRACT",
+      "production_validation": "NOT_RUN"
+    },
+    {
+      "family_id": "CONDITIONALS",
+      "forms": "IF / short-circuit",
+      "policy": "Known arm after original condition transitions; other path reference",
+      "mandatory_dependency": "BRANCH_CONTRACT",
+      "production_validation": "NOT_RUN"
+    },
+    {
+      "family_id": "CLOSURES_GENERICS",
+      "forms": "LAMBDA / type applications",
+      "policy": "Keep code/capture/type environments; no capture propagation",
+      "mandatory_dependency": "CLOSURE_RELATION",
+      "production_validation": "NOT_RUN"
+    },
+    {
+      "family_id": "RECURSION",
+      "forms": "LETREC / self or mutual recursion",
+      "policy": "Keep reference group/frames; children may optimize locally",
+      "mandatory_dependency": "RECURSIVE_GROUP_CONTRACT",
+      "production_validation": "NOT_RUN"
+    },
+    {
+      "family_id": "CALLS",
+      "forms": "CALL",
+      "policy": "Callee then strict args then body; no TCO/inlining",
+      "mandatory_dependency": "CALL_STEP_CONTRACT",
+      "production_validation": "NOT_RUN"
+    },
+    {
+      "family_id": "PRIMITIVES",
+      "forms": "PRIM",
+      "policy": "Only exact six CORE scalar primitive contracts in closed rules; other primitives reference",
+      "mandatory_dependency": "PRIMITIVE_AND_CHARGE_REGISTRY",
+      "production_validation": "NOT_RUN"
+    },
+    {
+      "family_id": "SUMS",
+      "forms": "RESULT / OPTION / VARIANT / MATCH",
+      "policy": "Result.Err remains ordinary; nominal tag/payload and scope exact",
+      "mandatory_dependency": "NOMINAL_SUM_CONTRACT",
+      "production_validation": "NOT_RUN"
+    },
+    {
+      "family_id": "RECORDS",
+      "forms": "RECORD / FIELD",
+      "policy": "Source child order and nominal declaration kept",
+      "mandatory_dependency": "RECORD_CONTRACT",
+      "production_validation": "NOT_RUN"
+    },
+    {
+      "family_id": "COLLECTIONS",
+      "forms": "SEQ_VALUE / MAP",
+      "policy": "All source operands then canonical storage; exact duplicate/work policy",
+      "mandatory_dependency": "DATA_IR_BRIDGE",
+      "production_validation": "NOT_RUN"
+    },
+    {
+      "family_id": "TEXT_BYTES_DATA",
+      "forms": "STRING / BYTES / codec / compare jobs",
+      "policy": "Retain each data cursor and common budget; no dynamic batching",
+      "mandatory_dependency": "DATA_WORK_AND_CODEC",
+      "production_validation": "NOT_RUN"
+    },
+    {
+      "family_id": "HOST_CAPABILITY",
+      "forms": "HOST / HANDLE / CAPABILITY",
+      "policy": "Keep current authority, dispatch/reply/lifetime boundaries",
+      "mandatory_dependency": "ABI_AUTHORITY_SETTLEMENT",
+      "production_validation": "NOT_RUN"
+    },
+    {
+      "family_id": "DURABLE_EVENTS",
+      "forms": "STATE / EVENT / RECOVERY",
+      "policy": "Keep exact request/keys/receipts/outbox and recovery behavior",
+      "mandatory_dependency": "DURABLE_PROTOCOL",
+      "production_validation": "NOT_RUN"
+    }
+  ]
+}

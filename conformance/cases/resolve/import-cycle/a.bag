@@ -1,0 +1,5 @@
+@id("1mmbwa")
+module a
+
+use std.seq
+use b

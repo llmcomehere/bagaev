@@ -1,0 +1,14 @@
+@id("ab0001")
+module app
+
+use std.i64.{sub as op, ArithmeticError}
+
+@id("ab0002")
+pub fn combine(a: Int64, b: Int64) -> Result<Int64, ArithmeticError> {
+  op(a, b)
+}
+
+@id("ab0003")
+pub fn twice(a: Int64) -> Result<Int64, ArithmeticError> {
+  combine(a, a)
+}

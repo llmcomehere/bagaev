@@ -1,0 +1,223 @@
+{
+  "schema": "R20-RESULT-MATRIX-0.1",
+  "columns": [
+    "phases",
+    "attempt_id",
+    "local_commit_ref",
+    "remote_receipt_ref",
+    "observation_ref",
+    "member_results_ref"
+  ],
+  "legend": {
+    "R": "required nonnull",
+    "N": "null",
+    "O": "nullable"
+  },
+  "statuses": {
+    "PREPARED": [
+      [
+        "PREPARE"
+      ],
+      "N",
+      "N",
+      "N",
+      "N",
+      "N"
+    ],
+    "RESERVED": [
+      [
+        "RESERVE"
+      ],
+      "R",
+      "R",
+      "N",
+      "N",
+      "N"
+    ],
+    "MAY_HAVE_RUN": [
+      [
+        "ARM",
+        "DISPATCH"
+      ],
+      "R",
+      "R",
+      "N",
+      "N",
+      "N"
+    ],
+    "CONFIRMED_SUCCESS": [
+      [
+        "DISPATCH",
+        "RECONCILE",
+        "TERMINAL"
+      ],
+      "R",
+      "R",
+      "R",
+      "O",
+      "N"
+    ],
+    "CONFIRMED_REJECTION": [
+      [
+        "DISPATCH",
+        "RECONCILE",
+        "TERMINAL"
+      ],
+      "R",
+      "R",
+      "R",
+      "O",
+      "N"
+    ],
+    "CONFIRMED_NOT_APPLIED": [
+      [
+        "RECONCILE",
+        "TERMINAL"
+      ],
+      "R",
+      "R",
+      "R",
+      "O",
+      "N"
+    ],
+    "LOCAL_REJECTED_BEFORE_DISPATCH": [
+      [
+        "TERMINAL"
+      ],
+      "R",
+      "R",
+      "N",
+      "N",
+      "N"
+    ],
+    "CONTENT_OBSERVED": [
+      [
+        "OBSERVE",
+        "RECONCILE"
+      ],
+      "O",
+      "O",
+      "N",
+      "R",
+      "N"
+    ],
+    "UNKNOWN_MAY_HAVE_RUN": [
+      [
+        "DISPATCH",
+        "RECONCILE"
+      ],
+      "R",
+      "R",
+      "N",
+      "O",
+      "N"
+    ],
+    "CANCELED_BEFORE_DISPATCH": [
+      [
+        "TERMINAL"
+      ],
+      "R",
+      "R",
+      "N",
+      "N",
+      "N"
+    ],
+    "STALE_BASE": [
+      [
+        "PREPARE",
+        "RESERVE",
+        "ARM",
+        "DISPATCH",
+        "RECONCILE"
+      ],
+      "O",
+      "N",
+      "N",
+      "O",
+      "N"
+    ],
+    "SUPERSEDED_OBSERVED": [
+      [
+        "RECONCILE",
+        "OBSERVE"
+      ],
+      "R",
+      "O",
+      "N",
+      "R",
+      "N"
+    ],
+    "PARTIAL": [
+      [
+        "DISPATCH",
+        "RECONCILE",
+        "OBSERVE"
+      ],
+      "R",
+      "O",
+      "N",
+      "O",
+      "R"
+    ],
+    "INPUT_NOT_READY": [
+      [
+        "PREPARE",
+        "RESERVE",
+        "ARM",
+        "DISPATCH",
+        "RECONCILE",
+        "OBSERVE"
+      ],
+      "O",
+      "N",
+      "N",
+      "O",
+      "N"
+    ],
+    "DENIED": [
+      [
+        "PREPARE",
+        "RESERVE",
+        "ARM",
+        "DISPATCH",
+        "RECONCILE",
+        "OBSERVE"
+      ],
+      "O",
+      "N",
+      "N",
+      "O",
+      "N"
+    ],
+    "UNSUPPORTED_DESTINATION": [
+      [
+        "PREPARE",
+        "RESERVE",
+        "ARM",
+        "DISPATCH",
+        "RECONCILE",
+        "OBSERVE"
+      ],
+      "O",
+      "N",
+      "N",
+      "O",
+      "N"
+    ],
+    "LIMIT": [
+      [
+        "PREPARE",
+        "RESERVE",
+        "ARM",
+        "DISPATCH",
+        "RECONCILE",
+        "OBSERVE"
+      ],
+      "O",
+      "N",
+      "N",
+      "O",
+      "N"
+    ]
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "id": "l1/statement-chain",
+  "spec": [
+    "spec/runtime/machine.md#4-закрытый-каталог-правил",
+    "spec/ir/bir.md#2-формы"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L1",
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "run": {
+    "entry": "main.main"
+  },
+  "expect": {
+    "phase": "run",
+    "effects": [],
+    "outcome": "RETURNED",
+    "value": {
+      "type": "Int64",
+      "value": "2"
+    },
+    "steps": 4,
+    "trace_l1": [
+      "LET_ENTER",
+      "CONST",
+      "LET_BIND",
+      "CONST"
+    ]
+  }
+}

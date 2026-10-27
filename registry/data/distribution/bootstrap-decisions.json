@@ -1,0 +1,54 @@
+{
+  "schema": "bagaev-r17-decisions/0.1",
+  "upstream_ids_assigned": false,
+  "decisions": [
+    {
+      "id": "R17-D01",
+      "status": "PROPOSED",
+      "decision": "Environment content identity separate from installation receipt and ProjectIdentity",
+      "contract": "spec/distribution/bootstrap.md"
+    },
+    {
+      "id": "R17-D02",
+      "status": "PROPOSED",
+      "decision": "Monotonic generation CAS and atomic selector/receipt/intent transaction after durable capsule",
+      "contract": "spec/distribution/bootstrap.md"
+    },
+    {
+      "id": "R17-D03",
+      "status": "PROPOSED",
+      "decision": "Separate durable IdentityRoot and BootstrapKey reservation; never init over missing old journal",
+      "contract": "spec/distribution/bootstrap.md"
+    },
+    {
+      "id": "R17-D04",
+      "status": "PROPOSED",
+      "decision": "Launch prepared pin then project admission; terminal proof required for pin release",
+      "contract": "spec/distribution/bootstrap.md"
+    },
+    {
+      "id": "R17-D05",
+      "status": "PROPOSED",
+      "decision": "Offline exact closure plus independently bootstrapped trust; no latest or hidden fetch claim",
+      "contract": "spec/distribution/bootstrap.md"
+    },
+    {
+      "id": "R17-D06",
+      "status": "PROPOSED",
+      "decision": "Actual T03 source template and independent golden are mandatory release inputs; no alternate grammar",
+      "contract": "spec/distribution/bootstrap.md"
+    },
+    {
+      "id": "R17-D07",
+      "status": "PROPOSED",
+      "decision": "Source working head initially unaccepted; no install-triggered normative acceptance or deployment",
+      "contract": "spec/distribution/bootstrap.md"
+    },
+    {
+      "id": "R17-D08",
+      "status": "PROPOSED",
+      "decision": "Incomplete authority restoration preserves unknown debt and blocks writes; default tools not authority reset",
+      "contract": "spec/distribution/bootstrap.md"
+    }
+  ]
+}

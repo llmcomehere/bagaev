@@ -1,0 +1,11 @@
+@id("ger14x")
+module main
+use std.i64
+
+@id("2p2smc")
+pub fn main() -> Int64 {
+  let factory = fn(capture: Int64) => fn() => capture;
+  let saved = factory(7);
+  let other = factory(9);
+  saved()
+}

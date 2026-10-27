@@ -1,0 +1,205 @@
+/// Программа моста к замороженной модели AUTH-TX-0.1 (models/r07-core/experiments/authorship-transition):
+/// замена авторства с проверкой версии статьи, NOOP без события, проекция и индекс по полному снимку.
+@id("ax0001")
+module authtx
+
+use std.store
+use std.seq
+use std.map
+use std.i64
+
+@id("ax0002")
+pub type Article = record {
+  @id("ax0003") revision: Int64,
+  @id("ax0004") authors: Seq<String>,
+  @id("ax0005") editors: Seq<String>,
+}
+
+@id("ax0006")
+pub type Projection = record {
+  @id("ax0007") revision: Int64,
+  @id("ax0008") authors: Seq<String>,
+}
+
+@id("ax0009")
+pub type Status = enum {
+  @id("ax000a") Updated,
+  @id("ax000b") Noop,
+}
+
+@id("ax000c")
+pub type Rejection = enum {
+  @id("ax000d") UnknownArticle,
+  @id("ax000e") PermissionDenied,
+  @id("ax000f") EmptyAuthors,
+  @id("ax000g") DuplicateAuthor,
+  @id("ax000h") UnknownPerson,
+  @id("ax000j") ArticleConflict,
+}
+
+@id("ax000k")
+pub event AuthorshipChanged {
+  @id("ax000m") event_id: String,
+  @id("ax000n") article: String,
+  @id("ax000p") revision: Int64,
+  @id("ax000q") authors: Seq<String>,
+  @id("ax000r") actor: String,
+  @id("ax000s") command: String,
+}
+
+@id("ax000t")
+pub store A {
+  @id("ax000v") table people: Map<String, Bool>
+  @id("ax000w") table articles: Map<String, Article>
+  @id("ax000x") table projections: Map<String, Projection>
+  @id("ax000y") table author_index: Map<String, Map<String, Bool>>
+  @id("ax000z") table processed: Map<String, String>
+}
+
+/// Порядок проверок — как в модели: статья и права, форма списка, затем версия статьи.
+@id("ax0010")
+pub command replace_authorship(
+  actor: String,
+  command_id: String,
+  article_id: String,
+  expected: Int64,
+  authors: Seq<String>,
+) -> Result<Status, Rejection>
+  uses { reads A.articles, reads A.people, writes A.articles, emits AuthorshipChanged }
+{
+  let art = match store.get(A.articles, article_id) {
+    Some(a) => a,
+    None => return Err(Rejection.UnknownArticle),
+  };
+  if contains(art.editors, actor, 0) == false {
+    return Err(Rejection.PermissionDenied)
+  }
+  if seq.length(authors) == 0 {
+    return Err(Rejection.EmptyAuthors)
+  }
+  if duplicated(authors, 0, Map {}) {
+    return Err(Rejection.DuplicateAuthor)
+  }
+  if known(authors, 0, store.all(A.people)) == false {
+    return Err(Rejection.UnknownPerson)
+  }
+  if art.revision != expected {
+    return Err(Rejection.ArticleConflict)
+  }
+  if art.authors == authors {
+    return Ok(Status.Noop)
+  }
+  let rev = art.revision + 1;
+  store.put(A.articles, article_id, Article { ..art, revision: rev, authors: authors });
+  emit AuthorshipChanged {
+    event_id: "ev_" ++ article_id ++ "_r" ++ i64.format_decimal(rev),
+    article: article_id,
+    revision: rev,
+    authors: authors,
+    actor: actor,
+    command: command_id,
+  };
+  Ok(Status.Updated)
+}
+
+/// Проекция по полному снимку: новее — применить, старее — SUPERSEDED, равная — ALREADY_CURRENT.
+@id("ax0011")
+handler project(ev: AuthorshipChanged)
+  uses { reads A.author_index, reads A.projections, writes A.author_index, writes A.processed, writes A.projections }
+{
+  let current = store.get(A.projections, ev.article);
+  let code = match current {
+    Some(p) => if ev.revision > p.revision {
+      "APPLIED"
+    } else {
+      if ev.revision < p.revision {
+        "SUPERSEDED"
+      } else {
+        if p.authors == ev.authors {
+          "ALREADY_CURRENT"
+        } else {
+          "PROJECTION_VERSION_CONFLICT"
+        }
+      }
+    },
+    None => "APPLIED",
+  };
+  if code == "APPLIED" {
+    let old = match current {
+      Some(p) => p.authors,
+      None => [],
+    };
+    let index = without(store.all(A.author_index), old, 0, ev.article);
+    store.replace_all(A.author_index, with(index, ev.authors, 0, ev.article));
+    store.put(A.projections, ev.article, Projection { revision: ev.revision, authors: ev.authors });
+  }
+  store.put(A.processed, ev.event_id, code);
+}
+
+@id("ax0012")
+fn contains(xs: Seq<String>, x: String, i: Int64) -> Bool {
+  match seq.get(xs, i) {
+    None => false,
+    Some(y) => y == x or contains(xs, x, i + 1),
+  }
+}
+
+@id("ax0013")
+fn duplicated(xs: Seq<String>, i: Int64, seen: Map<String, Bool>) -> Bool {
+  match seq.get(xs, i) {
+    None => false,
+    Some(x) => match map.get(seen, x) {
+      Some(_) => true,
+      None => duplicated(xs, i + 1, map.put(seen, x, true)),
+    },
+  }
+}
+
+@id("ax0014")
+fn known(xs: Seq<String>, i: Int64, people: Map<String, Bool>) -> Bool {
+  match seq.get(xs, i) {
+    None => true,
+    Some(x) => match map.get(people, x) {
+      Some(_) => known(xs, i + 1, people),
+      None => false,
+    },
+  }
+}
+
+@id("ax0015")
+fn without(
+  index: Map<String, Map<String, Bool>>,
+  people: Seq<String>,
+  i: Int64,
+  article: String,
+) -> Map<String, Map<String, Bool>> {
+  match seq.get(people, i) {
+    None => index,
+    Some(p) => {
+      let articles = match map.get(index, p) {
+        Some(m) => m,
+        None => Map {},
+      };
+      without(map.put(index, p, map.remove(articles, article)), people, i + 1, article)
+    },
+  }
+}
+
+@id("ax0016")
+fn with(
+  index: Map<String, Map<String, Bool>>,
+  people: Seq<String>,
+  i: Int64,
+  article: String,
+) -> Map<String, Map<String, Bool>> {
+  match seq.get(people, i) {
+    None => index,
+    Some(p) => {
+      let articles = match map.get(index, p) {
+        Some(m) => m,
+        None => Map {},
+      };
+      with(map.put(index, p, map.put(articles, article, true)), people, i + 1, article)
+    },
+  }
+}

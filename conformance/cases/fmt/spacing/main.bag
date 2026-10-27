@@ -1,0 +1,12 @@
+module m
+
+fn f(g: fn(Int64)->((Int64))) -> (fn() -> Int64) uses e {
+  let y=- x+h( a ,b )?.c*(2) ;
+  let z = not  (a)and b;
+  let r = T{a:1,..s};
+  let e = T{};
+  let q = [ 1,2 ];
+  let m = Map{1=>2};
+  emit Ev{a:1};
+  fn( x , y:Int64 )=>x
+}

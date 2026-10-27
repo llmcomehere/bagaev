@@ -1,0 +1,17 @@
+/// Переход «один автор → список» при остановленных писателях (D10, O02).
+@id("7jtsxt")
+module blog.migration
+
+use blog.db.{Blog}
+use blog.articles.{Article, ArticleV1}
+use blog.authorship
+
+@id("cp93f9")
+pub type MigrationError = enum {
+  @id("1p3qqn") Unreachable,
+}
+
+@id("63n55k")
+migration authors_list on Blog.articles(old: ArticleV1) -> Result<Article, MigrationError> {
+  Ok(Article { id: old.id, title: old.title, authors: authorship.single(old.author), revision: old.revision })
+}

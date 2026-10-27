@@ -1,0 +1,78 @@
+/// Авторская атрибуция статьи и её контракты.
+@id("b2zqya")
+module blog.authorship
+
+use std.seq
+use std.map
+use std.option
+use blog.people.{PersonId, Person}
+use blog.people
+
+@id("bv189g")
+pub entity Authorship {
+  purpose "Авторская атрибуция статьи: непустой упорядоченный список существующих людей без повторов."
+  terms ["автор", "подпись", "byline", "атрибуция"]
+  not_about ["совместное редактирование", "права редактора", "автор комментария"]
+}
+
+@id("4e637s")
+pub contract AuthorshipShape about Authorship {
+  @id("bnkjkr") rule nonempty "у статьи хотя бы один автор"
+  @id("ybfxgv") rule existing "каждый автор — существующий человек"
+  @id("sek0ye") rule unique "повторов нет"
+  @id("49yy3m") rule ordered "порядок задаёт редактор и он сохраняется"
+}
+
+@id("q6g88q")
+pub contract AttributionComplete about Authorship {
+  @id("h4sc87") rule complete "потребитель передаёт атрибуцию полностью"
+}
+
+@id("184rnh")
+pub type AuthorError = enum {
+  @id("vpmwk4") Empty,
+  @id("0v6kgd") Duplicate(PersonId),
+  @id("ge7jg0") UnknownPerson(PersonId),
+}
+
+/// Проверка запрошенного списка: непустой упорядоченный список существующих людей без повторов.
+@id("2ckbyp")
+pub fn check_authors(ids: Seq<PersonId>, people: Map<PersonId, Person>) -> Result<Seq<PersonId>, AuthorError>
+  implements AuthorshipShape.nonempty, AuthorshipShape.existing, AuthorshipShape.unique, AuthorshipShape.ordered
+{
+  if seq.length(ids) == 0 {
+    Err(AuthorError.Empty)
+  } else {
+    scan(ids, people, 0, [])
+  }
+}
+
+@id("ky9c8r")
+fn scan(ids: Seq<PersonId>, people: Map<PersonId, Person>, i: Int64, seen: Seq<PersonId>) -> Result<Seq<PersonId>, AuthorError> {
+  match seq.get(ids, i) {
+    None => Ok(seen),
+    Some(p) => if seq.fold(seen, false, fn(acc, q) => acc or q == p) {
+      Err(AuthorError.Duplicate(p))
+    } else if option.is_some(map.get(people, p)) {
+      scan(ids, people, i + 1, seq.append(seen, p))
+    } else {
+      Err(AuthorError.UnknownPerson(p))
+    },
+  }
+}
+
+/// Прежняя запись с одним автором → список из одного автора.
+@id("61041t")
+pub fn single(p: PersonId) -> Seq<PersonId> {
+  [p]
+}
+
+/// Имена авторов через разделитель в порядке атрибуции.
+@id("kfgqjh")
+pub fn names(ids: Seq<PersonId>, all: Map<PersonId, Person>, sep: String) -> String {
+  seq.fold(ids, "", fn(acc, p) => if acc == "" {
+    people.display_name(all, p)
+  } else {
+    acc ++ sep ++ people.display_name(all, p)
+  })
+}

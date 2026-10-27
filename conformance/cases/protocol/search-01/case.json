@@ -1,0 +1,74 @@
+{
+  "id": "protocol/search-01",
+  "spec": [
+    "spec/protocol/agent-protocol.md#7-операции-протокола"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "app.bag"
+  ],
+  "run": {
+    "change": {
+      "principal": "agent",
+      "steps": [
+        {
+          "request": {
+            "operation": "search",
+            "arguments": {
+              "query": "привет"
+            }
+          }
+        },
+        {
+          "request": {
+            "operation": "search",
+            "arguments": {
+              "query": "прощание привет"
+            }
+          }
+        }
+      ]
+    }
+  },
+  "expect": {
+    "phase": "protocol",
+    "outcome": "COMPLETED",
+    "value": [
+      {
+        "status": "succeeded",
+        "replayed": false,
+        "candidates": [
+          [
+            "app.Greeting",
+            1,
+            [
+              "purpose_or_terms"
+            ]
+          ]
+        ],
+        "ambiguous": false,
+        "selection": "none"
+      },
+      {
+        "status": "succeeded",
+        "replayed": false,
+        "candidates": [
+          [
+            "app.Greeting",
+            0,
+            [
+              "not_about",
+              "purpose_or_terms"
+            ]
+          ]
+        ],
+        "ambiguous": true,
+        "selection": "none"
+      }
+    ]
+  },
+  "note": "поиск даёт кандидатов с основаниями, а не выбор; совпадение с not_about — отрицательное основание (T11-C01, T11-C02)"
+}

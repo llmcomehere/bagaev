@@ -1,0 +1,26 @@
+@id("rdnbvq")
+module main
+use std.store
+
+@id("2tf6kv")
+type Article = record {
+  @id("snjhnw") title: String,
+}
+
+@id("zppgrr")
+store Blog {
+  @id("87qphv") table articles: Map<Int64, Article>
+}
+
+@id("1pfe3z")
+event Renamed {
+  @id("5avas3") id: Int64,
+  @id("e982aw") title: String,
+}
+
+@id("914g30")
+fn f(x: Int64) -> Option<Article>
+  uses { reads Blog.articles }
+{
+  store.get(x, 1)
+}

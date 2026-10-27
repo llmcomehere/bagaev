@@ -1,0 +1,8 @@
+module m
+
+type E = enum { A, B(Int64) }
+type R = record {}
+store S { table t: Map<Int64, Bool> table d: Seq<Int64> derived_from X }
+event Ev { a: Int64 }
+entity X { purpose "смысл" terms ["a","b"] }
+contract C about X { rule r "текст" }

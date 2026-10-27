@@ -1,0 +1,7 @@
+@id("q132t4")
+module main
+
+@id("cz7ryp")
+pub command c() -> Int64 {
+  1
+}

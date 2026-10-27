@@ -1,0 +1,13 @@
+module main
+
+use std.i64
+
+pub fn describe(r: Option<Result<Int64, String>>) -> String {
+  match r {
+    None => "нет",
+    Some(x) => match x {
+      Ok(v) => i64.format_decimal(v),
+      Err(e) => "ошибка: " ++ e,
+    },
+  }
+}

@@ -1,0 +1,9 @@
+@id("vqgz1x")
+module main
+
+@id("9j1sgz")
+fn f(b: Bool) -> () {
+  if b {
+    1
+  }
+}

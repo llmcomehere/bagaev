@@ -1,0 +1,39 @@
+{
+  "format": "R23-FFI-PROFILES-1",
+  "boundary": "FFI-BOUNDARY-0.1",
+  "wire": "WIRE-FFI-0.1",
+  "codec": "CODEC-FFI-0.1",
+  "ownership": "OWN-FFI-0.1",
+  "calls": "CALL-FFI-0.1",
+  "adapter": "ADAPTER-FFI-0.1",
+  "new_admissions": [
+    "P2-FFI-RESOLVE-0.1",
+    "P4-FFI-EFFECT-0.1",
+    "P5-FFI-LOWER-0.1",
+    "P6-FFI-LINK-0.1",
+    "P7-FFI-EMIT-0.1",
+    "TARGET-FFI-0.1"
+  ],
+  "wire_header_bytes": 88,
+  "frame_kinds": [
+    "READY",
+    "INVOKE",
+    "REPLY",
+    "CALLBACK_REQUEST",
+    "CALLBACK_REPLY",
+    "BROKER_REQUEST",
+    "BROKER_REPLY",
+    "CANCEL_NOTICE",
+    "QUIESCENT_NOTICE",
+    "SHUTDOWN_NOTICE"
+  ],
+  "resource_modes": [
+    "OWN",
+    "BORROW_SHARED",
+    "BORROW_EXCLUSIVE"
+  ],
+  "all_ffi_calls_have_HostCall_effect": true,
+  "automatic_retry": false,
+  "old_profiles_modified": false,
+  "production_validation": "NOT_RUN"
+}

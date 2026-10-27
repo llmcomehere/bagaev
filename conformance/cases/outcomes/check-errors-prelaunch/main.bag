@@ -1,0 +1,7 @@
+@id("pa2tc6")
+module main
+
+@id("yxf37j")
+pub fn main() -> Int64 {
+  undefined
+}

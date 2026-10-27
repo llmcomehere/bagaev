@@ -1,0 +1,8 @@
+@id("sffs6c")
+module main
+
+@id("dvqm3q")
+type E = enum {
+  @id("k6ad05") A,
+  B,
+}

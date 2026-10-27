@@ -1,0 +1,124 @@
+{
+  "id": "protocol/abandon-01",
+  "spec": [
+    "spec/protocol/agent-protocol.md#7-операции-протокола"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "app.bag"
+  ],
+  "run": {
+    "change": {
+      "principal": "agent",
+      "steps": [
+        {
+          "request": {
+            "operation": "change_begin",
+            "idempotency_key": "b1-kkkkkkkkkkkkkkkkkkkk",
+            "arguments": {
+              "intent": "изменение"
+            }
+          }
+        },
+        {
+          "request": {
+            "operation": "abandon",
+            "change_id": "$change",
+            "expected_work_revision": 1,
+            "idempotency_key": "x1-kkkkkkkkkkkkkkkkkkkk",
+            "arguments": {}
+          }
+        },
+        {
+          "request": {
+            "operation": "abandon",
+            "change_id": "$change",
+            "expected_work_revision": 1,
+            "idempotency_key": "x2-kkkkkkkkkkkkkkkkkkkk",
+            "arguments": {
+              "reason": "не нужно"
+            }
+          }
+        },
+        {
+          "request": {
+            "operation": "apply",
+            "change_id": "$change",
+            "expected_work_revision": 2,
+            "idempotency_key": "a1-kkkkkkkkkkkkkkkkkkkk",
+            "arguments": {
+              "source_edit": {
+                "files": [
+                  {
+                    "path": "app.bag",
+                    "base_sha256": "$sha:app.bag",
+                    "edits": [
+                      {
+                        "old_text": "  n + 1\n",
+                        "text": "  n + 2\n"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "request": {
+            "operation": "work_resume",
+            "change_id": "$change",
+            "arguments": {}
+          }
+        }
+      ]
+    }
+  },
+  "expect": {
+    "phase": "protocol",
+    "outcome": "COMPLETED",
+    "value": [
+      {
+        "status": "succeeded",
+        "replayed": false,
+        "work_revision": 1
+      },
+      {
+        "status": "failed",
+        "replayed": false,
+        "code": "REQUEST_INVALID"
+      },
+      {
+        "status": "succeeded",
+        "replayed": false,
+        "work_revision": 2
+      },
+      {
+        "status": "blocked",
+        "replayed": false,
+        "code": "WORK_CONFLICT",
+        "data": {
+          "work_status": "abandoned"
+        }
+      },
+      {
+        "status": "succeeded",
+        "replayed": false,
+        "work_revision": 2,
+        "needs_rebase": false,
+        "ready_for_acceptance": false,
+        "contract_revision": 1,
+        "status_": "abandoned",
+        "blockers": [
+          "WORK_NOT_OPEN"
+        ],
+        "obligations": [],
+        "clauses": []
+      }
+    ]
+  },
+  "note": "закрытая работа не принимает записей"
+}

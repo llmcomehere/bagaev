@@ -1,0 +1,7 @@
+module main
+
+use std.seq
+
+pub fn sum(xs: Seq<Int64>) -> Int64 {
+  seq.fold(xs, 0, fn(acc, x) => acc + x)
+}

@@ -1,0 +1,8 @@
+@id("rse0xm")
+module main
+use std.map
+
+@id("e3hfx2")
+pub fn main() -> Map<Int64, String> {
+  map.put(Map { 1 => "a", 3 => "c" }, 1, "new")
+}

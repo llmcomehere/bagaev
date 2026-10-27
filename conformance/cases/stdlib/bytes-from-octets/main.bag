@@ -1,0 +1,9 @@
+@id("hxrpj4")
+module main
+use std.bytes
+use std.data
+
+@id("mm2s8j")
+pub fn main() -> Result<Bytes, data.OctetError> {
+  bytes.from_octets([0, 256, 1])
+}

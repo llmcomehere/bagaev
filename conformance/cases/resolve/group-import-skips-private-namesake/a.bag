@@ -1,0 +1,12 @@
+@id("ksk4qa")
+module a
+
+@id("1qze93")
+pub fn X() -> Int64 {
+  1
+}
+
+@id("963z0j")
+type X = record {
+  @id("e4n9bc") secret: Int64,
+}

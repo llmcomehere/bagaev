@@ -1,0 +1,7 @@
+@id("5rnd14")
+module main
+
+@id("jf8afa")
+fn f(x: Option<Int64, Int64>) -> () {
+  ()
+}

@@ -1,0 +1,1900 @@
+{
+  "format": "r02-research-ast-fixtures/1",
+  "bagaev_execution": false,
+  "research_ast_execution": true,
+  "manual_expected_outputs_are_authored": true,
+  "domain": {
+    "author_ids": [
+      "a",
+      "b",
+      "c"
+    ],
+    "maximum_length": 3,
+    "unique_ids": true,
+    "include_empty": true,
+    "include_missing": true,
+    "additional_read_errors": [
+      "READ_DENIED"
+    ]
+  },
+  "programs": [
+    {
+      "id": "constant",
+      "ast": {
+        "op": "const",
+        "value": "ok"
+      },
+      "expected_type": "string",
+      "expected_required_observations": [],
+      "expected_complete": true,
+      "compile_config": {}
+    },
+    {
+      "id": "count",
+      "ast": {
+        "op": "read",
+        "view": "count"
+      },
+      "expected_type": "int",
+      "expected_required_observations": [
+        "count",
+        "read_status"
+      ],
+      "expected_complete": true,
+      "compile_config": {}
+    },
+    {
+      "id": "members",
+      "ast": {
+        "op": "read",
+        "view": "member_set"
+      },
+      "expected_type": "member_set",
+      "expected_required_observations": [
+        "member_set",
+        "read_status"
+      ],
+      "expected_complete": true,
+      "compile_config": {}
+    },
+    {
+      "id": "ordered",
+      "ast": {
+        "op": "read",
+        "view": "ordered_members"
+      },
+      "expected_type": "ordered_members",
+      "expected_required_observations": [
+        "ordered_members",
+        "read_status"
+      ],
+      "expected_complete": true,
+      "compile_config": {},
+      "declared_observations_ignored_by_normal_engine": []
+    },
+    {
+      "id": "has_b",
+      "ast": {
+        "op": "contains",
+        "collection": {
+          "op": "read",
+          "view": "member_set"
+        },
+        "item": {
+          "op": "const",
+          "value": "b"
+        }
+      },
+      "expected_type": "bool",
+      "expected_required_observations": [
+        "member_set",
+        "read_status"
+      ],
+      "expected_complete": true,
+      "compile_config": {}
+    },
+    {
+      "id": "head",
+      "ast": {
+        "op": "head",
+        "value": {
+          "op": "read",
+          "view": "ordered_members"
+        }
+      },
+      "expected_type": "string",
+      "expected_required_observations": [
+        "ordered_members",
+        "read_status"
+      ],
+      "expected_complete": true,
+      "compile_config": {}
+    },
+    {
+      "id": "size_ordered",
+      "ast": {
+        "op": "size",
+        "value": {
+          "op": "read",
+          "view": "ordered_members"
+        }
+      },
+      "expected_type": "int",
+      "expected_required_observations": [
+        "ordered_members",
+        "read_status"
+      ],
+      "expected_complete": true,
+      "compile_config": {}
+    },
+    {
+      "id": "to_set_ordered",
+      "ast": {
+        "op": "to_set",
+        "value": {
+          "op": "read",
+          "view": "ordered_members"
+        }
+      },
+      "expected_type": "member_set",
+      "expected_required_observations": [
+        "ordered_members",
+        "read_status"
+      ],
+      "expected_complete": true,
+      "compile_config": {}
+    },
+    {
+      "id": "size_set",
+      "ast": {
+        "op": "size",
+        "value": {
+          "op": "read",
+          "view": "member_set"
+        }
+      },
+      "expected_type": "int",
+      "expected_required_observations": [
+        "member_set",
+        "read_status"
+      ],
+      "expected_complete": true,
+      "compile_config": {}
+    },
+    {
+      "id": "conditional_count",
+      "ast": {
+        "op": "if",
+        "condition": {
+          "op": "eq",
+          "left": {
+            "op": "read",
+            "view": "count"
+          },
+          "right": {
+            "op": "const",
+            "value": 1
+          }
+        },
+        "then": {
+          "op": "const",
+          "value": "one"
+        },
+        "else": {
+          "op": "const",
+          "value": "many"
+        }
+      },
+      "expected_type": "string",
+      "expected_required_observations": [
+        "count",
+        "read_status"
+      ],
+      "expected_complete": true,
+      "compile_config": {}
+    },
+    {
+      "id": "branch_member",
+      "ast": {
+        "op": "if",
+        "condition": {
+          "op": "contains",
+          "collection": {
+            "op": "read",
+            "view": "member_set"
+          },
+          "item": {
+            "op": "const",
+            "value": "b"
+          }
+        },
+        "then": {
+          "op": "head",
+          "value": {
+            "op": "read",
+            "view": "ordered_members"
+          }
+        },
+        "else": {
+          "op": "const",
+          "value": "no-b"
+        }
+      },
+      "expected_type": "string",
+      "expected_required_observations": [
+        "member_set",
+        "ordered_members",
+        "read_status"
+      ],
+      "expected_complete": true,
+      "compile_config": {}
+    },
+    {
+      "id": "unused_branch",
+      "ast": {
+        "op": "if",
+        "condition": {
+          "op": "const",
+          "value": true
+        },
+        "then": {
+          "op": "const",
+          "value": "ok"
+        },
+        "else": {
+          "op": "head",
+          "value": {
+            "op": "read",
+            "view": "ordered_members"
+          }
+        }
+      },
+      "expected_type": "string",
+      "expected_required_observations": [
+        "ordered_members",
+        "read_status"
+      ],
+      "expected_complete": true,
+      "compile_config": {}
+    },
+    {
+      "id": "let_count",
+      "ast": {
+        "op": "let",
+        "name": "n",
+        "value": {
+          "op": "read",
+          "view": "count"
+        },
+        "body": {
+          "op": "var",
+          "name": "n"
+        }
+      },
+      "expected_type": "int",
+      "expected_required_observations": [
+        "count",
+        "read_status"
+      ],
+      "expected_complete": true,
+      "compile_config": {}
+    },
+    {
+      "id": "unused_let_head",
+      "ast": {
+        "op": "let",
+        "name": "unused",
+        "value": {
+          "op": "head",
+          "value": {
+            "op": "read",
+            "view": "ordered_members"
+          }
+        },
+        "body": {
+          "op": "const",
+          "value": "ok"
+        }
+      },
+      "expected_type": "string",
+      "expected_required_observations": [
+        "ordered_members",
+        "read_status"
+      ],
+      "expected_complete": true,
+      "compile_config": {}
+    },
+    {
+      "id": "emit_members",
+      "ast": {
+        "op": "emit",
+        "label": "members",
+        "value": {
+          "op": "read",
+          "view": "member_set"
+        },
+        "then": {
+          "op": "const",
+          "value": "ok"
+        }
+      },
+      "expected_type": "string",
+      "expected_required_observations": [
+        "member_set",
+        "read_status"
+      ],
+      "expected_complete": true,
+      "compile_config": {}
+    },
+    {
+      "id": "emit_condition",
+      "ast": {
+        "op": "if",
+        "condition": {
+          "op": "eq",
+          "left": {
+            "op": "read",
+            "view": "count"
+          },
+          "right": {
+            "op": "const",
+            "value": 0
+          }
+        },
+        "then": {
+          "op": "emit",
+          "label": "empty",
+          "value": {
+            "op": "const",
+            "value": true
+          },
+          "then": {
+            "op": "const",
+            "value": 0
+          }
+        },
+        "else": {
+          "op": "const",
+          "value": 0
+        }
+      },
+      "expected_type": "int",
+      "expected_required_observations": [
+        "count",
+        "read_status"
+      ],
+      "expected_complete": true,
+      "compile_config": {}
+    },
+    {
+      "id": "effect_before_error",
+      "ast": {
+        "op": "seq",
+        "items": [
+          {
+            "op": "emit",
+            "label": "start",
+            "value": {
+              "op": "const",
+              "value": true
+            }
+          },
+          {
+            "op": "head",
+            "value": {
+              "op": "read",
+              "view": "ordered_members"
+            }
+          }
+        ]
+      },
+      "expected_type": "string",
+      "expected_required_observations": [
+        "ordered_members",
+        "read_status"
+      ],
+      "expected_complete": true,
+      "compile_config": {}
+    },
+    {
+      "id": "pair_count_head",
+      "ast": {
+        "op": "pair",
+        "left": {
+          "op": "read",
+          "view": "count"
+        },
+        "right": {
+          "op": "head",
+          "value": {
+            "op": "read",
+            "view": "ordered_members"
+          }
+        }
+      },
+      "expected_type": {
+        "tuple": [
+          "int",
+          "string"
+        ]
+      },
+      "expected_required_observations": [
+        "count",
+        "ordered_members",
+        "read_status"
+      ],
+      "expected_complete": true,
+      "compile_config": {}
+    },
+    {
+      "id": "tuple_views",
+      "ast": {
+        "op": "tuple",
+        "items": [
+          {
+            "op": "read",
+            "view": "count"
+          },
+          {
+            "op": "read",
+            "view": "member_set"
+          },
+          {
+            "op": "read",
+            "view": "ordered_members"
+          }
+        ]
+      },
+      "expected_type": {
+        "tuple": [
+          "int",
+          "member_set",
+          "ordered_members"
+        ]
+      },
+      "expected_required_observations": [
+        "count",
+        "member_set",
+        "ordered_members",
+        "read_status"
+      ],
+      "expected_complete": true,
+      "compile_config": {}
+    },
+    {
+      "id": "explicit_fail",
+      "ast": {
+        "op": "fail",
+        "code": "DECLINED",
+        "type": "string"
+      },
+      "expected_type": "string",
+      "expected_required_observations": [],
+      "expected_complete": true,
+      "compile_config": {}
+    },
+    {
+      "id": "opaque_external",
+      "ast": {
+        "op": "opaque",
+        "name": "resolve_labels",
+        "type": "string"
+      },
+      "expected_type": "string",
+      "expected_required_observations": [],
+      "expected_complete": false,
+      "compile_config": {}
+    },
+    {
+      "id": "hidden_read",
+      "ast": {
+        "op": "opaque",
+        "name": "hidden_authorship",
+        "type": "string",
+        "kind": "hidden_read"
+      },
+      "expected_type": "string",
+      "expected_required_observations": [],
+      "expected_complete": false,
+      "compile_config": {}
+    },
+    {
+      "id": "status",
+      "ast": {
+        "op": "read",
+        "view": "read_status"
+      },
+      "expected_type": "string",
+      "expected_required_observations": [
+        "read_status"
+      ],
+      "expected_complete": true,
+      "compile_config": {}
+    },
+    {
+      "id": "config_disabled",
+      "ast": {
+        "op": "if",
+        "condition": {
+          "op": "config",
+          "key": "enabled"
+        },
+        "then": {
+          "op": "head",
+          "value": {
+            "op": "read",
+            "view": "ordered_members"
+          }
+        },
+        "else": {
+          "op": "const",
+          "value": "disabled"
+        }
+      },
+      "expected_type": "string",
+      "expected_required_observations": [
+        "ordered_members",
+        "read_status"
+      ],
+      "expected_complete": true,
+      "compile_config": {
+        "enabled": false
+      }
+    },
+    {
+      "id": "config_enabled",
+      "ast": {
+        "op": "if",
+        "condition": {
+          "op": "config",
+          "key": "enabled"
+        },
+        "then": {
+          "op": "head",
+          "value": {
+            "op": "read",
+            "view": "ordered_members"
+          }
+        },
+        "else": {
+          "op": "const",
+          "value": "disabled"
+        }
+      },
+      "expected_type": "string",
+      "expected_required_observations": [
+        "ordered_members",
+        "read_status"
+      ],
+      "expected_complete": true,
+      "compile_config": {
+        "enabled": true
+      }
+    },
+    {
+      "id": "unused_let_read",
+      "ast": {
+        "op": "let",
+        "name": "unused",
+        "value": {
+          "op": "read",
+          "view": "count"
+        },
+        "body": {
+          "op": "const",
+          "value": "ok"
+        }
+      },
+      "expected_type": "string",
+      "expected_required_observations": [
+        "count",
+        "read_status"
+      ],
+      "expected_complete": true,
+      "compile_config": {}
+    },
+    {
+      "id": "emit_payload_error",
+      "ast": {
+        "op": "emit",
+        "label": "first",
+        "value": {
+          "op": "head",
+          "value": {
+            "op": "read",
+            "view": "ordered_members"
+          }
+        },
+        "then": {
+          "op": "const",
+          "value": "ok"
+        }
+      },
+      "expected_type": "string",
+      "expected_required_observations": [
+        "ordered_members",
+        "read_status"
+      ],
+      "expected_complete": true,
+      "compile_config": {}
+    },
+    {
+      "id": "control_status",
+      "ast": {
+        "op": "if",
+        "condition": {
+          "op": "eq",
+          "left": {
+            "op": "read",
+            "view": "read_status"
+          },
+          "right": {
+            "op": "const",
+            "value": "ok"
+          }
+        },
+        "then": {
+          "op": "const",
+          "value": "visible"
+        },
+        "else": {
+          "op": "const",
+          "value": "blocked"
+        }
+      },
+      "expected_type": "string",
+      "expected_required_observations": [
+        "read_status"
+      ],
+      "expected_complete": true,
+      "compile_config": {}
+    },
+    {
+      "id": "let_shadowing",
+      "ast": {
+        "op": "let",
+        "name": "x",
+        "value": {
+          "op": "read",
+          "view": "count"
+        },
+        "body": {
+          "op": "let",
+          "name": "x",
+          "value": {
+            "op": "const",
+            "value": 7
+          },
+          "body": {
+            "op": "var",
+            "name": "x"
+          }
+        }
+      },
+      "expected_type": "int",
+      "expected_required_observations": [
+        "count",
+        "read_status"
+      ],
+      "expected_complete": true,
+      "compile_config": {}
+    },
+    {
+      "id": "opaque_effect_argument",
+      "ast": {
+        "op": "opaque",
+        "name": "external_after_emit",
+        "type": "string",
+        "args": [
+          {
+            "op": "emit",
+            "label": "before_opaque",
+            "value": {
+              "op": "const",
+              "value": true
+            }
+          }
+        ]
+      },
+      "expected_type": "string",
+      "expected_required_observations": [],
+      "expected_complete": false,
+      "compile_config": {}
+    },
+    {
+      "id": "explicit_unknown",
+      "ast": {
+        "op": "unknown",
+        "type": "string",
+        "reason": "unresolved_runtime"
+      },
+      "expected_type": "string",
+      "expected_required_observations": [],
+      "expected_complete": false,
+      "compile_config": {}
+    }
+  ],
+  "manual_cases": [
+    {
+      "id": "F01_count_permutation",
+      "program": "count",
+      "before": {
+        "members": [
+          "a",
+          "b"
+        ]
+      },
+      "after": {
+        "members": [
+          "b",
+          "a"
+        ]
+      },
+      "expected_before": {
+        "status": "ok",
+        "value": 2,
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_after": {
+        "status": "ok",
+        "value": 2,
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_decision": "EXCLUDED",
+      "expected_resource_changed_observations": [
+        "ordered_members"
+      ]
+    },
+    {
+      "id": "F02_set_permutation",
+      "program": "members",
+      "before": {
+        "members": [
+          "a",
+          "b"
+        ]
+      },
+      "after": {
+        "members": [
+          "b",
+          "a"
+        ]
+      },
+      "expected_before": {
+        "status": "ok",
+        "value": {
+          "$set": [
+            "a",
+            "b"
+          ]
+        },
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_after": {
+        "status": "ok",
+        "value": {
+          "$set": [
+            "a",
+            "b"
+          ]
+        },
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_decision": "EXCLUDED",
+      "expected_resource_changed_observations": [
+        "ordered_members"
+      ]
+    },
+    {
+      "id": "F03_ordered_permutation",
+      "program": "ordered",
+      "before": {
+        "members": [
+          "a",
+          "b"
+        ]
+      },
+      "after": {
+        "members": [
+          "b",
+          "a"
+        ]
+      },
+      "expected_before": {
+        "status": "ok",
+        "value": [
+          "a",
+          "b"
+        ],
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_after": {
+        "status": "ok",
+        "value": [
+          "b",
+          "a"
+        ],
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_decision": "RECHECK",
+      "expected_resource_changed_observations": [
+        "ordered_members"
+      ]
+    },
+    {
+      "id": "F04_count_insertion",
+      "program": "count",
+      "before": {
+        "members": [
+          "a"
+        ]
+      },
+      "after": {
+        "members": [
+          "a",
+          "b"
+        ]
+      },
+      "expected_before": {
+        "status": "ok",
+        "value": 1,
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_after": {
+        "status": "ok",
+        "value": 2,
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_decision": "RECHECK",
+      "expected_resource_changed_observations": [
+        "count",
+        "member_set",
+        "ordered_members"
+      ]
+    },
+    {
+      "id": "F05_set_insertion",
+      "program": "members",
+      "before": {
+        "members": [
+          "a"
+        ]
+      },
+      "after": {
+        "members": [
+          "a",
+          "b"
+        ]
+      },
+      "expected_before": {
+        "status": "ok",
+        "value": {
+          "$set": [
+            "a"
+          ]
+        },
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_after": {
+        "status": "ok",
+        "value": {
+          "$set": [
+            "a",
+            "b"
+          ]
+        },
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_decision": "RECHECK",
+      "expected_resource_changed_observations": [
+        "count",
+        "member_set",
+        "ordered_members"
+      ]
+    },
+    {
+      "id": "F06_count_identity_replacement",
+      "program": "count",
+      "before": {
+        "members": [
+          "a"
+        ]
+      },
+      "after": {
+        "members": [
+          "b"
+        ]
+      },
+      "expected_before": {
+        "status": "ok",
+        "value": 1,
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_after": {
+        "status": "ok",
+        "value": 1,
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_decision": "EXCLUDED",
+      "expected_resource_changed_observations": [
+        "member_set",
+        "ordered_members"
+      ]
+    },
+    {
+      "id": "F07_set_identity_replacement",
+      "program": "members",
+      "before": {
+        "members": [
+          "a"
+        ]
+      },
+      "after": {
+        "members": [
+          "b"
+        ]
+      },
+      "expected_before": {
+        "status": "ok",
+        "value": {
+          "$set": [
+            "a"
+          ]
+        },
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_after": {
+        "status": "ok",
+        "value": {
+          "$set": [
+            "b"
+          ]
+        },
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_decision": "RECHECK",
+      "expected_resource_changed_observations": [
+        "member_set",
+        "ordered_members"
+      ]
+    },
+    {
+      "id": "F08_head_permutation",
+      "program": "head",
+      "before": {
+        "members": [
+          "a",
+          "b"
+        ]
+      },
+      "after": {
+        "members": [
+          "b",
+          "a"
+        ]
+      },
+      "expected_before": {
+        "status": "ok",
+        "value": "a",
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_after": {
+        "status": "ok",
+        "value": "b",
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_decision": "RECHECK",
+      "expected_resource_changed_observations": [
+        "ordered_members"
+      ]
+    },
+    {
+      "id": "F09_head_empty_error",
+      "program": "head",
+      "before": {
+        "members": []
+      },
+      "after": {
+        "members": [
+          "a"
+        ]
+      },
+      "expected_before": {
+        "status": "error",
+        "value": null,
+        "error": "EMPTY_HEAD",
+        "trace": [],
+        "complete": true
+      },
+      "expected_after": {
+        "status": "ok",
+        "value": "a",
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_decision": "RECHECK",
+      "expected_resource_changed_observations": [
+        "count",
+        "member_set",
+        "ordered_members"
+      ]
+    },
+    {
+      "id": "F10_unused_initializer_head_error",
+      "program": "unused_let_head",
+      "before": {
+        "members": []
+      },
+      "after": {
+        "members": [
+          "a"
+        ]
+      },
+      "expected_before": {
+        "status": "error",
+        "value": null,
+        "error": "EMPTY_HEAD",
+        "trace": [],
+        "complete": true
+      },
+      "expected_after": {
+        "status": "ok",
+        "value": "ok",
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_decision": "RECHECK",
+      "expected_resource_changed_observations": [
+        "count",
+        "member_set",
+        "ordered_members"
+      ]
+    },
+    {
+      "id": "F11_unused_initializer_read_error",
+      "program": "unused_let_read",
+      "before": null,
+      "after": {
+        "members": [
+          "a"
+        ]
+      },
+      "expected_before": {
+        "status": "error",
+        "value": null,
+        "error": "MISSING_RESOURCE",
+        "trace": [],
+        "complete": true
+      },
+      "expected_after": {
+        "status": "ok",
+        "value": "ok",
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_decision": "RECHECK",
+      "expected_resource_changed_observations": [
+        "count",
+        "member_set",
+        "ordered_members",
+        "read_status"
+      ]
+    },
+    {
+      "id": "F12_control_dependency",
+      "program": "conditional_count",
+      "before": {
+        "members": [
+          "a"
+        ]
+      },
+      "after": {
+        "members": [
+          "a",
+          "b"
+        ]
+      },
+      "expected_before": {
+        "status": "ok",
+        "value": "one",
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_after": {
+        "status": "ok",
+        "value": "many",
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_decision": "RECHECK",
+      "expected_resource_changed_observations": [
+        "count",
+        "member_set",
+        "ordered_members"
+      ]
+    },
+    {
+      "id": "F13_unused_branch_still_conservative",
+      "program": "unused_branch",
+      "before": null,
+      "after": {
+        "members": [
+          "a",
+          "b"
+        ]
+      },
+      "expected_before": {
+        "status": "ok",
+        "value": "ok",
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_after": {
+        "status": "ok",
+        "value": "ok",
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_decision": "RECHECK",
+      "expected_resource_changed_observations": [
+        "count",
+        "member_set",
+        "ordered_members",
+        "read_status"
+      ]
+    },
+    {
+      "id": "F14_effect_set_permutation",
+      "program": "emit_members",
+      "before": {
+        "members": [
+          "a",
+          "b"
+        ]
+      },
+      "after": {
+        "members": [
+          "b",
+          "a"
+        ]
+      },
+      "expected_before": {
+        "status": "ok",
+        "value": "ok",
+        "error": null,
+        "trace": [
+          {
+            "label": "members",
+            "value": {
+              "$set": [
+                "a",
+                "b"
+              ]
+            }
+          }
+        ],
+        "complete": true
+      },
+      "expected_after": {
+        "status": "ok",
+        "value": "ok",
+        "error": null,
+        "trace": [
+          {
+            "label": "members",
+            "value": {
+              "$set": [
+                "a",
+                "b"
+              ]
+            }
+          }
+        ],
+        "complete": true
+      },
+      "expected_decision": "EXCLUDED",
+      "expected_resource_changed_observations": [
+        "ordered_members"
+      ]
+    },
+    {
+      "id": "F15_effect_payload_changes",
+      "program": "emit_members",
+      "before": {
+        "members": [
+          "a"
+        ]
+      },
+      "after": {
+        "members": [
+          "a",
+          "b"
+        ]
+      },
+      "expected_before": {
+        "status": "ok",
+        "value": "ok",
+        "error": null,
+        "trace": [
+          {
+            "label": "members",
+            "value": {
+              "$set": [
+                "a"
+              ]
+            }
+          }
+        ],
+        "complete": true
+      },
+      "expected_after": {
+        "status": "ok",
+        "value": "ok",
+        "error": null,
+        "trace": [
+          {
+            "label": "members",
+            "value": {
+              "$set": [
+                "a",
+                "b"
+              ]
+            }
+          }
+        ],
+        "complete": true
+      },
+      "expected_decision": "RECHECK",
+      "expected_resource_changed_observations": [
+        "count",
+        "member_set",
+        "ordered_members"
+      ]
+    },
+    {
+      "id": "F16_effect_before_error_retained",
+      "program": "effect_before_error",
+      "before": {
+        "members": []
+      },
+      "after": {
+        "members": [
+          "a"
+        ]
+      },
+      "expected_before": {
+        "status": "error",
+        "value": null,
+        "error": "EMPTY_HEAD",
+        "trace": [
+          {
+            "label": "start",
+            "value": true
+          }
+        ],
+        "complete": true
+      },
+      "expected_after": {
+        "status": "ok",
+        "value": "a",
+        "error": null,
+        "trace": [
+          {
+            "label": "start",
+            "value": true
+          }
+        ],
+        "complete": true
+      },
+      "expected_decision": "RECHECK",
+      "expected_resource_changed_observations": [
+        "count",
+        "member_set",
+        "ordered_members"
+      ]
+    },
+    {
+      "id": "F17_constant_failure_no_new_resource_impact",
+      "program": "explicit_fail",
+      "before": null,
+      "after": {
+        "members": [
+          "a"
+        ]
+      },
+      "expected_before": {
+        "status": "error",
+        "value": null,
+        "error": "DECLINED",
+        "trace": [],
+        "complete": true
+      },
+      "expected_after": {
+        "status": "error",
+        "value": null,
+        "error": "DECLINED",
+        "trace": [],
+        "complete": true
+      },
+      "expected_decision": "EXCLUDED",
+      "expected_resource_changed_observations": [
+        "count",
+        "member_set",
+        "ordered_members",
+        "read_status"
+      ]
+    },
+    {
+      "id": "F18_opaque_never_certified",
+      "program": "opaque_external",
+      "before": {
+        "members": [
+          "a"
+        ]
+      },
+      "after": {
+        "members": [
+          "a",
+          "b"
+        ]
+      },
+      "expected_before": {
+        "status": "unknown",
+        "value": null,
+        "error": null,
+        "trace": [],
+        "complete": false
+      },
+      "expected_after": {
+        "status": "unknown",
+        "value": null,
+        "error": null,
+        "trace": [],
+        "complete": false
+      },
+      "expected_decision": "UNKNOWN",
+      "expected_resource_changed_observations": [
+        "count",
+        "member_set",
+        "ordered_members"
+      ]
+    },
+    {
+      "id": "F19_hidden_read_never_certified",
+      "program": "hidden_read",
+      "before": {
+        "members": [
+          "a"
+        ]
+      },
+      "after": {
+        "members": [
+          "b"
+        ]
+      },
+      "expected_before": {
+        "status": "unknown",
+        "value": null,
+        "error": null,
+        "trace": [],
+        "complete": false
+      },
+      "expected_after": {
+        "status": "unknown",
+        "value": null,
+        "error": null,
+        "trace": [],
+        "complete": false
+      },
+      "expected_decision": "UNKNOWN",
+      "expected_resource_changed_observations": [
+        "member_set",
+        "ordered_members"
+      ]
+    },
+    {
+      "id": "F20_status_error_codes",
+      "program": "status",
+      "before": null,
+      "after": {
+        "members": [],
+        "read_error": "READ_DENIED"
+      },
+      "expected_before": {
+        "status": "ok",
+        "value": "error:MISSING_RESOURCE",
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_after": {
+        "status": "ok",
+        "value": "error:READ_DENIED",
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_decision": "RECHECK",
+      "expected_resource_changed_observations": [
+        "count",
+        "member_set",
+        "ordered_members",
+        "read_status"
+      ]
+    },
+    {
+      "id": "F21_read_error_transition",
+      "program": "count",
+      "before": {
+        "members": [
+          "a"
+        ]
+      },
+      "after": {
+        "members": [
+          "a"
+        ],
+        "read_error": "READ_DENIED"
+      },
+      "expected_before": {
+        "status": "ok",
+        "value": 1,
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_after": {
+        "status": "error",
+        "value": null,
+        "error": "READ_DENIED",
+        "trace": [],
+        "complete": true
+      },
+      "expected_decision": "RECHECK",
+      "expected_resource_changed_observations": [
+        "count",
+        "member_set",
+        "ordered_members",
+        "read_status"
+      ]
+    },
+    {
+      "id": "F22_literal_no_resource_impact",
+      "program": "constant",
+      "before": null,
+      "after": {
+        "members": [
+          "a",
+          "b"
+        ]
+      },
+      "expected_before": {
+        "status": "ok",
+        "value": "ok",
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_after": {
+        "status": "ok",
+        "value": "ok",
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_decision": "EXCLUDED",
+      "expected_resource_changed_observations": [
+        "count",
+        "member_set",
+        "ordered_members",
+        "read_status"
+      ]
+    },
+    {
+      "id": "F23_lexical_let_value",
+      "program": "let_count",
+      "before": {
+        "members": [
+          "a"
+        ]
+      },
+      "after": {
+        "members": [
+          "a",
+          "b"
+        ]
+      },
+      "expected_before": {
+        "status": "ok",
+        "value": 1,
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_after": {
+        "status": "ok",
+        "value": 2,
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_decision": "RECHECK",
+      "expected_resource_changed_observations": [
+        "count",
+        "member_set",
+        "ordered_members"
+      ]
+    },
+    {
+      "id": "F24_contains_permutation",
+      "program": "has_b",
+      "before": {
+        "members": [
+          "a",
+          "b"
+        ]
+      },
+      "after": {
+        "members": [
+          "b",
+          "a"
+        ]
+      },
+      "expected_before": {
+        "status": "ok",
+        "value": true,
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_after": {
+        "status": "ok",
+        "value": true,
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_decision": "EXCLUDED",
+      "expected_resource_changed_observations": [
+        "ordered_members"
+      ]
+    },
+    {
+      "id": "F25_contains_identity_change",
+      "program": "has_b",
+      "before": {
+        "members": [
+          "a"
+        ]
+      },
+      "after": {
+        "members": [
+          "b"
+        ]
+      },
+      "expected_before": {
+        "status": "ok",
+        "value": false,
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_after": {
+        "status": "ok",
+        "value": true,
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_decision": "RECHECK",
+      "expected_resource_changed_observations": [
+        "member_set",
+        "ordered_members"
+      ]
+    },
+    {
+      "id": "F26_size_ordered_conservative",
+      "program": "size_ordered",
+      "before": {
+        "members": [
+          "a",
+          "b"
+        ]
+      },
+      "after": {
+        "members": [
+          "b",
+          "a"
+        ]
+      },
+      "expected_before": {
+        "status": "ok",
+        "value": 2,
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_after": {
+        "status": "ok",
+        "value": 2,
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_decision": "RECHECK",
+      "expected_resource_changed_observations": [
+        "ordered_members"
+      ]
+    },
+    {
+      "id": "F27_to_set_ordered_conservative",
+      "program": "to_set_ordered",
+      "before": {
+        "members": [
+          "a",
+          "b"
+        ]
+      },
+      "after": {
+        "members": [
+          "b",
+          "a"
+        ]
+      },
+      "expected_before": {
+        "status": "ok",
+        "value": {
+          "$set": [
+            "a",
+            "b"
+          ]
+        },
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_after": {
+        "status": "ok",
+        "value": {
+          "$set": [
+            "a",
+            "b"
+          ]
+        },
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_decision": "RECHECK",
+      "expected_resource_changed_observations": [
+        "ordered_members"
+      ]
+    },
+    {
+      "id": "F28_size_set_permutation",
+      "program": "size_set",
+      "before": {
+        "members": [
+          "a",
+          "b"
+        ]
+      },
+      "after": {
+        "members": [
+          "b",
+          "a"
+        ]
+      },
+      "expected_before": {
+        "status": "ok",
+        "value": 2,
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_after": {
+        "status": "ok",
+        "value": 2,
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_decision": "EXCLUDED",
+      "expected_resource_changed_observations": [
+        "ordered_members"
+      ]
+    },
+    {
+      "id": "F29_fixed_config_unused_branch",
+      "program": "config_disabled",
+      "before": {
+        "members": [
+          "a"
+        ]
+      },
+      "after": {
+        "members": [
+          "a",
+          "b"
+        ]
+      },
+      "expected_before": {
+        "status": "ok",
+        "value": "disabled",
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_after": {
+        "status": "ok",
+        "value": "disabled",
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_decision": "RECHECK",
+      "expected_resource_changed_observations": [
+        "count",
+        "member_set",
+        "ordered_members"
+      ]
+    },
+    {
+      "id": "F30_effect_payload_error_has_no_effect",
+      "program": "emit_payload_error",
+      "before": {
+        "members": []
+      },
+      "after": {
+        "members": [
+          "a"
+        ]
+      },
+      "expected_before": {
+        "status": "error",
+        "value": null,
+        "error": "EMPTY_HEAD",
+        "trace": [],
+        "complete": true
+      },
+      "expected_after": {
+        "status": "ok",
+        "value": "ok",
+        "error": null,
+        "trace": [
+          {
+            "label": "first",
+            "value": "a"
+          }
+        ],
+        "complete": true
+      },
+      "expected_decision": "RECHECK",
+      "expected_resource_changed_observations": [
+        "count",
+        "member_set",
+        "ordered_members"
+      ]
+    },
+    {
+      "id": "F31_opaque_argument_effect_retained",
+      "program": "opaque_effect_argument",
+      "before": {
+        "members": [
+          "a"
+        ]
+      },
+      "after": {
+        "members": [
+          "b"
+        ]
+      },
+      "expected_before": {
+        "status": "unknown",
+        "value": null,
+        "error": null,
+        "trace": [
+          {
+            "label": "before_opaque",
+            "value": true
+          }
+        ],
+        "complete": false
+      },
+      "expected_after": {
+        "status": "unknown",
+        "value": null,
+        "error": null,
+        "trace": [
+          {
+            "label": "before_opaque",
+            "value": true
+          }
+        ],
+        "complete": false
+      },
+      "expected_decision": "UNKNOWN",
+      "expected_resource_changed_observations": [
+        "member_set",
+        "ordered_members"
+      ]
+    },
+    {
+      "id": "F32_config_enabled_head_error",
+      "program": "config_enabled",
+      "before": {
+        "members": []
+      },
+      "after": {
+        "members": [
+          "a"
+        ]
+      },
+      "expected_before": {
+        "status": "error",
+        "value": null,
+        "error": "EMPTY_HEAD",
+        "trace": [],
+        "complete": true
+      },
+      "expected_after": {
+        "status": "ok",
+        "value": "a",
+        "error": null,
+        "trace": [],
+        "complete": true
+      },
+      "expected_decision": "RECHECK",
+      "expected_resource_changed_observations": [
+        "count",
+        "member_set",
+        "ordered_members"
+      ]
+    }
+  ],
+  "notes": [
+    "Programs are fixtures in a separate research semantics, not bagaev source.",
+    "Requirements in the initial engine are revision metadata and remain unassessed; no predicate satisfaction is inferred.",
+    "No size/to_set narrowing is required by this first analyzer; conservative RECHECK is expected for those reads.",
+    "Declared use metadata is kept outside the closed AST and ignored by normal inference."
+  ]
+}

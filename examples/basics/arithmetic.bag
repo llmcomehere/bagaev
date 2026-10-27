@@ -1,0 +1,34 @@
+/// Арифметика Int64: операторы дают FAULT при переполнении (D72),
+/// функции std.i64 возвращают Result.
+@id("gzyvf2")
+module arithmetic
+
+use std.i64
+
+@id("f89m1c")
+pub fn sum_to(n: Int64) -> Int64 {
+  if n <= 0 {
+    0
+  } else {
+    n + sum_to(n - 1)
+  }
+}
+
+@id("1xcr5e")
+pub fn safe_add(a: Int64, b: Int64) -> Result<Int64, i64.ArithmeticError> {
+  i64.add(a, b)
+}
+
+@id("svfvd3")
+pub fn min_value() -> Int64 {
+  -9223372036854775808
+}
+
+@id("dvg9my")
+pub fn main() -> Int64 {
+  let total = sum_to(10);
+  match safe_add(total, 1) {
+    Ok(v) => v,
+    Err(_) => 0,
+  }
+}

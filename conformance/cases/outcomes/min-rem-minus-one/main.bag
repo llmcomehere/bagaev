@@ -1,0 +1,7 @@
+@id("e7n2wq")
+module main
+
+@id("sdg6xj")
+pub fn main() -> Int64 {
+  -9223372036854775808 % -1
+}

@@ -1,0 +1,7 @@
+@id("5epzt5")
+module main
+
+@id("evr17f")
+pub fn main() -> Int64 {
+  9223372036854775807 + 1
+}

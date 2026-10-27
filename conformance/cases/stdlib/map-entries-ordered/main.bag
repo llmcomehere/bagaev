@@ -1,0 +1,8 @@
+@id("yhjr3e")
+module main
+use std.map
+
+@id("4s6gww")
+pub fn main() -> Seq<map.Entry<Int64, String>> {
+  map.entries(Map { 3 => "c", 1 => "a" })
+}

@@ -1,0 +1,38 @@
+/// Экспорт статьи в JSON. Сигнатура та же, что при одном авторе, но обязательство
+/// сохранить весь состав и порядок (O05) — отдельный контракт, а не следствие типов (C04).
+@id("2cyp9q")
+module blog.export
+
+use std.seq
+use std.json
+use blog.people.{PersonId, Person}
+use blog.people
+use blog.articles.{Article}
+use blog.articles
+use blog.authorship
+use blog.authorship.{AttributionComplete}
+
+@id("qcp1fw")
+pub fn export_article(a: Article, all_people: Map<PersonId, Person>) -> String
+  requires AttributionComplete.complete
+{
+  "{\"article_id\":" ++ json.quote(articles.id_text(a.id))
+    ++ ",\"authors\":[" ++ authors_json(authorship.ids(a.authors), all_people, 0, "") ++ "]"
+    ++ ",\"title\":" ++ json.quote(a.title) ++ "}"
+}
+
+@id("ae80t2")
+fn authors_json(xs: Seq<PersonId>, all_people: Map<PersonId, Person>, i: Int64, acc: String) -> String {
+  match seq.get(xs, i) {
+    None => acc,
+    Some(p) => {
+      let item = "{\"display_name\":" ++ json.quote(people.display_name(all_people, p))
+        ++ ",\"person_id\":" ++ json.quote(people.id_text(p)) ++ "}";
+      authors_json(xs, all_people, i + 1, if i == 0 {
+        item
+      } else {
+        acc ++ "," ++ item
+      })
+    },
+  }
+}

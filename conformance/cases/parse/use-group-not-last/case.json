@@ -1,0 +1,27 @@
+{
+  "id": "parse/use-group-not-last",
+  "spec": [
+    "spec/language/surface.md#2-файл-модуль-имена"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "expect": {
+    "phase": "parse",
+    "outcome": "PRELAUNCH",
+    "diagnostics": [
+      {
+        "code": "INVALID_USE_GROUP",
+        "file": "main.bag",
+        "span": [
+          18,
+          19
+        ]
+      }
+    ]
+  }
+}

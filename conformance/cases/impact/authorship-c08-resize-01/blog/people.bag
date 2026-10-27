@@ -1,0 +1,34 @@
+/// Люди и их отображаемые имена.
+@id("7d4n41")
+module blog.people
+
+use std.map
+
+@id("gm5xxn")
+pub type PersonId = opaque String
+
+@id("4ysysx")
+pub type Person = record {
+  @id("fzzgwk") id: PersonId,
+  @id("q9rw9r") display_name: String,
+}
+
+@id("6fvhwj")
+pub fn person_id(raw: String) -> PersonId {
+  PersonId(raw)
+}
+
+@id("f3b3vv")
+pub fn id_text(p: PersonId) -> String {
+  match p {
+    PersonId(s) => s,
+  }
+}
+
+@id("kr652t")
+pub fn display_name(people: Map<PersonId, Person>, p: PersonId) -> String {
+  match map.get(people, p) {
+    Some(person) => person.display_name,
+    None => id_text(p),
+  }
+}

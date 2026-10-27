@@ -1,0 +1,8 @@
+@id("1v1h41")
+module main
+use std.string
+
+@id("34g9r1")
+pub fn main() -> Int64 {
+  string.scalar_length(string.concat("e", "\u{301}"))
+}

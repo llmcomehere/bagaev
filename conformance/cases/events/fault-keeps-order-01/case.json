@@ -1,0 +1,212 @@
+{
+  "id": "events/fault-keeps-order-01",
+  "spec": [
+    "spec/runtime/host.md#5-события"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "app.bag"
+  ],
+  "run": {
+    "steps": [
+      {
+        "op": "command",
+        "entry": "app.bump",
+        "args": [
+          {
+            "type": "String",
+            "value": "a"
+          },
+          {
+            "type": "Int64",
+            "value": "13"
+          }
+        ],
+        "namespace": "app",
+        "key": "key-000000000001"
+      },
+      {
+        "op": "command",
+        "entry": "app.bump",
+        "args": [
+          {
+            "type": "String",
+            "value": "b"
+          },
+          {
+            "type": "Int64",
+            "value": "1"
+          }
+        ],
+        "namespace": "app",
+        "key": "key-000000000002"
+      },
+      {
+        "op": "deliver"
+      },
+      {
+        "op": "deliver",
+        "handler": "app.remember",
+        "seq": 2
+      }
+    ]
+  },
+  "expect": {
+    "phase": "events",
+    "outcome": "COMPLETED",
+    "value": [
+      {
+        "value": {
+          "type": "Result<Int64,app.BumpError>",
+          "tag": "Ok",
+          "payload": {
+            "type": "Int64",
+            "value": "13"
+          }
+        },
+        "outcome": "COMMITTED",
+        "final": true,
+        "replayed": false,
+        "state_version": 1
+      },
+      {
+        "value": {
+          "type": "Result<Int64,app.BumpError>",
+          "tag": "Ok",
+          "payload": {
+            "type": "Int64",
+            "value": "1"
+          }
+        },
+        "outcome": "COMMITTED",
+        "final": true,
+        "replayed": false,
+        "state_version": 2
+      },
+      {
+        "outcome": "DELIVERED",
+        "deliveries": [
+          {
+            "handler": "app.remember",
+            "seq": 1,
+            "outcome": "ABORTED",
+            "termination": "FAULT",
+            "code": "DIVISION_BY_ZERO",
+            "site": {
+              "file": "app.bag",
+              "span": [
+                1243,
+                1264
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "outcome": "DELIVERED",
+        "deliveries": [
+          {
+            "handler": "app.remember",
+            "seq": 2,
+            "outcome": "COMMITTED",
+            "replayed": false,
+            "state_version": 3
+          }
+        ]
+      }
+    ],
+    "state": {
+      "state_version": 3,
+      "epoch": 0,
+      "tables": {
+        "app.S.counts": [
+          [
+            {
+              "type": "String",
+              "value": "a"
+            },
+            {
+              "type": "Int64",
+              "value": "13"
+            }
+          ],
+          [
+            {
+              "type": "String",
+              "value": "b"
+            },
+            {
+              "type": "Int64",
+              "value": "1"
+            }
+          ]
+        ],
+        "app.S.seen": [
+          [
+            {
+              "type": "String",
+              "value": "b"
+            },
+            {
+              "type": "Int64",
+              "value": "1"
+            }
+          ]
+        ]
+      },
+      "outbox": [
+        {
+          "seq": 1,
+          "event": "app.Bumped",
+          "payload": {
+            "type": "app.Bumped",
+            "fields": {
+              "name": {
+                "type": "String",
+                "value": "a"
+              },
+              "total": {
+                "type": "Int64",
+                "value": "13"
+              }
+            }
+          }
+        },
+        {
+          "seq": 2,
+          "event": "app.Bumped",
+          "payload": {
+            "type": "app.Bumped",
+            "fields": {
+              "name": {
+                "type": "String",
+                "value": "b"
+              },
+              "total": {
+                "type": "Int64",
+                "value": "1"
+              }
+            }
+          }
+        }
+      ],
+      "inbox": [
+        {
+          "handler": "app.remember",
+          "seq": 2,
+          "outcome": "COMMITTED"
+        }
+      ],
+      "pending": [
+        {
+          "handler": "app.remember",
+          "seq": 1
+        }
+      ]
+    }
+  },
+  "note": "FAULT обработчика оставляет событие недоставленным и останавливает очередь обработчика; явная доставка seq 2 допустима"
+}

@@ -1,0 +1,40 @@
+{
+  "schema": "R20-METADATA-REGISTRY-0.1",
+  "kinds": [
+    "PackageDescriptor",
+    "Manifest",
+    "CatalogSnapshot",
+    "DependencyLock",
+    "TreeInventory",
+    "ResolveRequest",
+    "ResolveResult",
+    "LockVerification",
+    "Materialization",
+    "BuildPlan",
+    "BuildResult",
+    "BuildEvidence",
+    "ReleaseCandidate",
+    "CandidateCheck",
+    "CandidateSeal",
+    "ReleaseIntent",
+    "ReleaseOperationResult"
+  ],
+  "count": 17,
+  "production_bytes": "INPUT_NOT_READY",
+  "shape_contract": "spec/metadata/release-lock.schema.json",
+  "procedural_obligations": [
+    "canonical bytes and duplicate-key rejection",
+    "typed referenced object existence/hash/size/semantics",
+    "sorted semantic sets and uniqueness by key",
+    "node ID recomputation",
+    "transitive feature and edge closure",
+    "constraint entailment and DAG",
+    "update scope and pin preservation",
+    "tree prefix/reserved-name/case collisions",
+    "input isolation and provenance trust",
+    "candidate evidence freshness and authority",
+    "result phase/status/nullable-ref combinations",
+    "actual destination CAS/fence/dedup guarantees"
+  ],
+  "negative_scope": "Passing JSON Schema never implies these procedural obligations."
+}

@@ -1,0 +1,547 @@
+{
+  "format": "R23-INTEGRATION-CASES-1",
+  "criterion_id": "T13-C04",
+  "production_execution": false,
+  "actual_observation_ref": null,
+  "cases": [
+    {
+      "id": "IC23-01",
+      "topic": "Точный интерфейс",
+      "scenario": "Именной совместимый, но другой interface digest",
+      "expected": "Prelaunch IncompatibleABI; ноль worker calls",
+      "independent_expected_method": "Независимо разобрать два typed интерфейса; сравнить реальные launch records",
+      "blocking_inputs": [
+        "compiler",
+        "loader"
+      ],
+      "status": "NOT_RUN",
+      "actual_observation_ref": null
+    },
+    {
+      "id": "IC23-02",
+      "topic": "Точные executable bytes",
+      "scenario": "Подмена worker dependency при прежнем имени",
+      "expected": "Отказ до untrusted initializer",
+      "independent_expected_method": "Изменить один byte реального image dependency и проверить loader отказ",
+      "blocking_inputs": [
+        "loader",
+        "platform"
+      ],
+      "status": "NOT_RUN",
+      "actual_observation_ref": null
+    },
+    {
+      "id": "IC23-03",
+      "topic": "Эффекты внешней функции",
+      "scenario": "Adapter заявляет pure при broker IO",
+      "expected": "HostCall остаётся; undeclared broker operation отказана",
+      "independent_expected_method": "Сравнить effect analysis с независимым обходом descriptor/callback closure",
+      "blocking_inputs": [
+        "compiler",
+        "broker"
+      ],
+      "status": "NOT_RUN",
+      "actual_observation_ref": null
+    },
+    {
+      "id": "IC23-04",
+      "topic": "Current authority",
+      "scenario": "Отзыв между prepare и dispatch",
+      "expected": "Ноль новых external dispatch после revoke linearization",
+      "independent_expected_method": "Управляемый authoritative gate; независимо записанный порядок операций",
+      "blocking_inputs": [
+        "authority",
+        "broker"
+      ],
+      "status": "NOT_RUN",
+      "actual_observation_ref": null
+    },
+    {
+      "id": "IC23-05",
+      "topic": "Поздний отзыв",
+      "scenario": "Отзыв после admission внешнего действия",
+      "expected": "Нет ложного rollback; outcome отдельно",
+      "independent_expected_method": "Реальный adapter с управляемой задержкой после irreversible admission",
+      "blocking_inputs": [
+        "authority",
+        "native"
+      ],
+      "status": "NOT_RUN",
+      "actual_observation_ref": null
+    },
+    {
+      "id": "IC23-06",
+      "topic": "Копирование данных",
+      "scenario": "Worker меняет собственную input copy",
+      "expected": "VM input неизменен, новые outputs отдельно",
+      "independent_expected_method": "Зафиксировать inputbytes и actual memory identities по обе стороны",
+      "blocking_inputs": [
+        "native",
+        "runtime"
+      ],
+      "status": "NOT_RUN",
+      "actual_observation_ref": null
+    },
+    {
+      "id": "IC23-07",
+      "topic": "Wire decode",
+      "scenario": "UTF8 overlong/surrogate, invalidBool, trailing bytes",
+      "expected": "AdapterContractFault без частичного output",
+      "independent_expected_method": "Независимый codec implementation и hand-encoded invalid bytes",
+      "blocking_inputs": [
+        "codec",
+        "runtime"
+      ],
+      "status": "NOT_RUN",
+      "actual_observation_ref": null
+    },
+    {
+      "id": "IC23-08",
+      "topic": "Порядок Map",
+      "scenario": "Int64 negative keys и duplicate key",
+      "expected": "Semantic order, duplicate/order fault",
+      "independent_expected_method": "Ручной signed-order oracle; encoded byte order специально другой",
+      "blocking_inputs": [
+        "codec"
+      ],
+      "status": "NOT_RUN",
+      "actual_observation_ref": null
+    },
+    {
+      "id": "IC23-09",
+      "topic": "Структурная область типа",
+      "scenario": "Phantom<Fn>{} и Seq<Fn> empty",
+      "expected": "Первое допустимо по fields, второе отклонено",
+      "independent_expected_method": "Независимый type-predicate traversal exact declarations",
+      "blocking_inputs": [
+        "types",
+        "codec"
+      ],
+      "status": "NOT_RUN",
+      "actual_observation_ref": null
+    },
+    {
+      "id": "IC23-10",
+      "topic": "Остановка encoding",
+      "scenario": "Cancel/budget на каждой codec boundary",
+      "expected": "Ноль INVOKE до полного dispatch",
+      "independent_expected_method": "Отдельный action-sequence oracle для всех prefix cutpoints",
+      "blocking_inputs": [
+        "codec",
+        "runtime"
+      ],
+      "status": "NOT_RUN",
+      "actual_observation_ref": null
+    },
+    {
+      "id": "IC23-11",
+      "topic": "Alias reserve",
+      "scenario": "Один resource как OWN и BORROW в разных slots",
+      "expected": "Атомарный отказ, ноль reservations/transfer",
+      "independent_expected_method": "Проверить полный до/после ledger независимым reader",
+      "blocking_inputs": [
+        "broker"
+      ],
+      "status": "NOT_RUN",
+      "actual_observation_ref": null
+    },
+    {
+      "id": "IC23-12",
+      "topic": "Shared borrow",
+      "scenario": "Два shared lease и попытка mutate",
+      "expected": "Чтения допустимы, mutate отказана",
+      "independent_expected_method": "Независимый resource operation ledger и capability checks",
+      "blocking_inputs": [
+        "broker",
+        "native"
+      ],
+      "status": "NOT_RUN",
+      "actual_observation_ref": null
+    },
+    {
+      "id": "IC23-13",
+      "topic": "Exclusive borrow",
+      "scenario": "Конкурирующий borrow/close/move",
+      "expected": "ResourceBusy до доступа, owner не используется",
+      "independent_expected_method": "Управляемое interleaving реальных requests",
+      "blocking_inputs": [
+        "broker"
+      ],
+      "status": "NOT_RUN",
+      "actual_observation_ref": null
+    },
+    {
+      "id": "IC23-14",
+      "topic": "Predispatch cancellation",
+      "scenario": "Reserved handles, затем cancel",
+      "expected": "Reservations сняты, owner caller, worker не вызван",
+      "independent_expected_method": "Independent snapshot ledger + transport tap",
+      "blocking_inputs": [
+        "runtime",
+        "broker"
+      ],
+      "status": "NOT_RUN",
+      "actual_observation_ref": null
+    },
+    {
+      "id": "IC23-15",
+      "topic": "Crash после commit",
+      "scenario": "Падение между transfer commit и write INVOKE",
+      "expected": "MayHaveRun, без автоматического restore/retry",
+      "independent_expected_method": "Fault injection в durable broker на обеих сторонах cut",
+      "blocking_inputs": [
+        "durable",
+        "broker"
+      ],
+      "status": "NOT_RUN",
+      "actual_observation_ref": null
+    },
+    {
+      "id": "IC23-16",
+      "topic": "Reply не release",
+      "scenario": "Valid Ok приходит до конца native access",
+      "expected": "Value policy соблюдена, leases retained",
+      "independent_expected_method": "Native delayed-access fixture; supervisor memory/lifetime instrumentation",
+      "blocking_inputs": [
+        "native",
+        "runtime"
+      ],
+      "status": "NOT_RUN",
+      "actual_observation_ref": null
+    },
+    {
+      "id": "IC23-17",
+      "topic": "Повреждённый reply",
+      "scenario": "Неверная схема после реального dispatch",
+      "expected": "BoundaryFault плюс unknown external outcome",
+      "independent_expected_method": "Независимая receipt probe показывает отдельное знание",
+      "blocking_inputs": [
+        "broker",
+        "native"
+      ],
+      "status": "NOT_RUN",
+      "actual_observation_ref": null
+    },
+    {
+      "id": "IC23-18",
+      "topic": "Atomic outputs",
+      "scenario": "Первый output valid, второй malformed",
+      "expected": "Ни один output не опубликован; ресурсы orphan cleanup",
+      "independent_expected_method": "Independently inspect VM slots and broker obligations",
+      "blocking_inputs": [
+        "runtime",
+        "codec"
+      ],
+      "status": "NOT_RUN",
+      "actual_observation_ref": null
+    },
+    {
+      "id": "IC23-19",
+      "topic": "Returned ownership",
+      "scenario": "Resource в reply до quiescence прежнего owner",
+      "expected": "Publication ждёт; нет двух owners",
+      "independent_expected_method": "Instrument native access + broker ownership transitions",
+      "blocking_inputs": [
+        "native",
+        "broker"
+      ],
+      "status": "NOT_RUN",
+      "actual_observation_ref": null
+    },
+    {
+      "id": "IC23-20",
+      "topic": "Idempotent close",
+      "scenario": "Повтор close старого key после slot reuse",
+      "expected": "Старый receipt либо stale policy; новый generation не закрыт",
+      "independent_expected_method": "Historical receipt oracle и реальный generation ledger",
+      "blocking_inputs": [
+        "broker",
+        "durable"
+      ],
+      "status": "NOT_RUN",
+      "actual_observation_ref": null
+    },
+    {
+      "id": "IC23-21",
+      "topic": "Use after move",
+      "scenario": "Старый caller alias после DISPATCH_COMMITTED",
+      "expected": "MovedHandle, ноль нового native access",
+      "independent_expected_method": "Негативный wrapper request с valid old identity",
+      "blocking_inputs": [
+        "runtime",
+        "broker"
+      ],
+      "status": "NOT_RUN",
+      "actual_observation_ref": null
+    },
+    {
+      "id": "IC23-22",
+      "topic": "Epoch и exhaustion",
+      "scenario": "Generation/sequence max, restart и старый token",
+      "expected": "No wrap; новый epoch, old token invalid",
+      "independent_expected_method": "Boundary-value hand cases + restart actual worker",
+      "blocking_inputs": [
+        "broker",
+        "platform"
+      ],
+      "status": "NOT_RUN",
+      "actual_observation_ref": null
+    },
+    {
+      "id": "IC23-23",
+      "topic": "Late ack после отмены",
+      "scenario": "Cancel после dispatch; затем valid quiescence",
+      "expected": "Caller остаётся Cancelled, leases release, effect не выдуман",
+      "independent_expected_method": "Отдельные независимые termination/outcome/release readers",
+      "blocking_inputs": [
+        "runtime",
+        "broker"
+      ],
+      "status": "NOT_RUN",
+      "actual_observation_ref": null
+    },
+    {
+      "id": "IC23-24",
+      "topic": "Callback lifetime",
+      "scenario": "Deregister/cancel и поздний native callback",
+      "expected": "Capture retained до quiescence; latecall не dereference",
+      "independent_expected_method": "ASan/allocator instrumentation native fixture plus independent trace",
+      "blocking_inputs": [
+        "native",
+        "callback"
+      ],
+      "status": "NOT_RUN",
+      "actual_observation_ref": null
+    },
+    {
+      "id": "IC23-25",
+      "topic": "Callback scheduler",
+      "scenario": "Callback с foreign thread; child stop и исчерпание общего budget непосредственно до CALLBACK_RETURN",
+      "expected": "VM исполняет только queued child; общий budget не сбрасывается; остановка child завершает parent, а supervisor доставляет fault за maintenance quota без нового business effect и без возобновления caller",
+      "independent_expected_method": "Instrument VM-thread identity and independent schedule oracle; отдельные stop cutpoints перед CALLBACK_RETURN и контроль отсутствия повторного callback",
+      "blocking_inputs": [
+        "runtime",
+        "callback"
+      ],
+      "status": "NOT_RUN",
+      "actual_observation_ref": null
+    },
+    {
+      "id": "IC23-26",
+      "topic": "Reentrancy cycle",
+      "scenario": "Callback делает nested call к занятому ancestor worker",
+      "expected": "ReentrantCallDenied до send",
+      "independent_expected_method": "Независимый wait-graph cycle checker + transport tap",
+      "blocking_inputs": [
+        "runtime",
+        "broker"
+      ],
+      "status": "NOT_RUN",
+      "actual_observation_ref": null
+    },
+    {
+      "id": "IC23-27",
+      "topic": "Callback authority",
+      "scenario": "Callback просит ресурс вне parent scope",
+      "expected": "Отказ до effect, без privilege elevation",
+      "independent_expected_method": "Reference intersection of four declared/current scopes",
+      "blocking_inputs": [
+        "authority",
+        "callback"
+      ],
+      "status": "NOT_RUN",
+      "actual_observation_ref": null
+    },
+    {
+      "id": "IC23-28",
+      "topic": "Callback duplicate",
+      "scenario": "Повтор same sequence и conflicting bytes",
+      "expected": "Same result no rerun; conflict fault",
+      "independent_expected_method": "Invocation counter external to tested scheduler",
+      "blocking_inputs": [
+        "callback",
+        "journal"
+      ],
+      "status": "NOT_RUN",
+      "actual_observation_ref": null
+    },
+    {
+      "id": "IC23-29",
+      "topic": "Codec charges",
+      "scenario": "Unit/Bool/Int64/empty Seq и все stop cutpoints; вложенный fanout из Unit и пустых records с малым числом wire bytes",
+      "expected": "Exact action counts и immutable partial output; cumulative value_nodes/arena_units ограничиваются prospective checks до allocation, включая zero-byte values",
+      "independent_expected_method": "Вручную выписанные traces плюс отдельный interpreter расписания; независимый подсчёт узлов и reserved child slots для zero-byte fanout с проверкой границы cap",
+      "blocking_inputs": [
+        "codec",
+        "runtime"
+      ],
+      "status": "NOT_RUN",
+      "actual_observation_ref": null
+    },
+    {
+      "id": "IC23-30",
+      "topic": "Native failure",
+      "scenario": "Wrong allocator, null/length mismatch, throw/abort",
+      "expected": "No VM memory corruption; classified worker fault",
+      "independent_expected_method": "Instrumented real shim with independent process observer",
+      "blocking_inputs": [
+        "native",
+        "platform"
+      ],
+      "status": "NOT_RUN",
+      "actual_observation_ref": null
+    },
+    {
+      "id": "IC23-31",
+      "topic": "Bootstrap isolation",
+      "scenario": "Library constructor делает IO до READY",
+      "expected": "Ограничение действует до constructor; forbidden IO не случается",
+      "independent_expected_method": "Host observer на реальном resource endpoint",
+      "blocking_inputs": [
+        "platform"
+      ],
+      "status": "NOT_RUN",
+      "actual_observation_ref": null
+    },
+    {
+      "id": "IC23-32",
+      "topic": "Inherited descriptor",
+      "scenario": "Worker пробует inherited business FD/network handle",
+      "expected": "Нет незаявленного доступа",
+      "independent_expected_method": "Независимый launcher inventory и outside resource audit",
+      "blocking_inputs": [
+        "platform"
+      ],
+      "status": "NOT_RUN",
+      "actual_observation_ref": null
+    },
+    {
+      "id": "IC23-33",
+      "topic": "Forged session token",
+      "scenario": "Valid-looking handle из другого call/session/type",
+      "expected": "Отказ без dereference/effect",
+      "independent_expected_method": "Cross-session negative requests against actual broker",
+      "blocking_inputs": [
+        "broker"
+      ],
+      "status": "NOT_RUN",
+      "actual_observation_ref": null
+    },
+    {
+      "id": "IC23-34",
+      "topic": "FFI optimization boundary",
+      "scenario": "Optimizer удаляет/сливает HostCall",
+      "expected": "Rejected transformation или сохранён exact reference schedule",
+      "independent_expected_method": "Independent R22 observation comparison with host events",
+      "blocking_inputs": [
+        "compiler",
+        "runtime"
+      ],
+      "status": "NOT_RUN",
+      "actual_observation_ref": null
+    },
+    {
+      "id": "IC23-35",
+      "topic": "Replay isolation",
+      "scenario": "Missing journal и replay token в live broker",
+      "expected": "Ноль host calls; explicit replay fault/live-token rejection",
+      "independent_expected_method": "External invocation counter independent of replay engine",
+      "blocking_inputs": [
+        "journal",
+        "broker"
+      ],
+      "status": "NOT_RUN",
+      "actual_observation_ref": null
+    },
+    {
+      "id": "IC23-36",
+      "topic": "Unknown external effect",
+      "scenario": "Потеря ответа non-idempotent API",
+      "expected": "MayHaveRun retained; без retry; read receipt отдельно",
+      "independent_expected_method": "Controlled external endpoint and authoritative intent ledger",
+      "blocking_inputs": [
+        "durable",
+        "native"
+      ],
+      "status": "NOT_RUN",
+      "actual_observation_ref": null
+    },
+    {
+      "id": "IC23-37",
+      "topic": "Adapter update",
+      "scenario": "Новый image while old call/callback pending",
+      "expected": "Old call pinned, new session epoch only for new calls",
+      "independent_expected_method": "Two exactimages distinguishable by independent response watermark",
+      "blocking_inputs": [
+        "loader",
+        "runtime"
+      ],
+      "status": "NOT_RUN",
+      "actual_observation_ref": null
+    },
+    {
+      "id": "IC23-38",
+      "topic": "Backpressure",
+      "scenario": "Queue/resource cap с незавершёнными obligations",
+      "expected": "Новые calls rejected; pending не evicted",
+      "independent_expected_method": "Independent fullledger inventory before/after cap",
+      "blocking_inputs": [
+        "broker",
+        "runtime"
+      ],
+      "status": "NOT_RUN",
+      "actual_observation_ref": null
+    },
+    {
+      "id": "IC23-39",
+      "topic": "Cleanup failure",
+      "scenario": "Close timeout/remote unknown/denied new business authority",
+      "expected": "CleanupPending, no silentClosed/reuse",
+      "independent_expected_method": "Independently controlled close/reconciliation adapter",
+      "blocking_inputs": [
+        "broker",
+        "durable"
+      ],
+      "status": "NOT_RUN",
+      "actual_observation_ref": null
+    },
+    {
+      "id": "IC23-40",
+      "topic": "Platform currentness",
+      "scenario": "Self-reported READY либо stale policy evidence",
+      "expected": "Нет admission без actual supervisor binding/current policy",
+      "independent_expected_method": "Actual launcher negative tests across policy revision",
+      "blocking_inputs": [
+        "platform"
+      ],
+      "status": "NOT_RUN",
+      "actual_observation_ref": null
+    },
+    {
+      "id": "IC23-41",
+      "topic": "Frame contract",
+      "scenario": "Partial header/body EOF, bad kind/direction/sequence/canonicalJSON",
+      "expected": "Bounded rejection, no extra message/action",
+      "independent_expected_method": "Independent encoder + raw transport fault injector",
+      "blocking_inputs": [
+        "wire",
+        "broker"
+      ],
+      "status": "NOT_RUN",
+      "actual_observation_ref": null
+    },
+    {
+      "id": "IC23-42",
+      "topic": "Broker receipt binding",
+      "scenario": "Worker supplies fake receipt or wrong operation identity",
+      "expected": "Не accepted as authoritative settlement",
+      "independent_expected_method": "Independent authoritative ledger match of full operation binding",
+      "blocking_inputs": [
+        "broker",
+        "durable"
+      ],
+      "status": "NOT_RUN",
+      "actual_observation_ref": null
+    }
+  ]
+}

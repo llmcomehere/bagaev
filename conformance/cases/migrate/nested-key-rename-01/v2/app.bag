@@ -1,0 +1,33 @@
+@id("aa0001")
+module app
+use std.store
+
+@id("ac0001")
+pub type NewKey = opaque String
+
+@id("aa0002")
+pub store S {
+  @id("aa0003") table items: Map<Envelope, Int64>
+}
+
+@id("aa000c")
+pub query get(k: String) -> Option<Int64> uses { reads S.items } {
+  store.get(S.items, Envelope { part: Some(NewKey(k)) })
+}
+
+@id("aa000b")
+pub command put(k: String, n: Int64) -> Result<(), String> uses { writes S.items } {
+  store.put(S.items, Envelope { part: Some(NewKey(k)) }, n);
+  Ok(())
+}
+
+@id("aa000e")
+pub command remove(k: String) -> Result<(), String> uses { writes S.items } {
+  store.remove(S.items, Envelope { part: Some(NewKey(k)) });
+  Ok(())
+}
+
+@id("ac0002")
+pub type Envelope = record {
+  @id("ac0003") part: Option<NewKey>,
+}

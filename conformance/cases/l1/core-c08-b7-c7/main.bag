@@ -1,0 +1,9 @@
+@id("vbqs29")
+module main
+use std.i64
+
+@id("0axyft")
+pub fn main() -> Int64 {
+  let f = fn(x: Int64) => x;
+  f(f(5))
+}

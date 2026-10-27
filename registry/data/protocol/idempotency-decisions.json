@@ -1,0 +1,77 @@
+{
+  "schema": "bagaev-proposed-decisions-supplement/0.1",
+  "iteration": "R16",
+  "labels_are_local_not_master_registry_numbers": true,
+  "decisions": [
+    {
+      "id": "R16-D01",
+      "title": "Постоянный запрет старого ключа после GC",
+      "decision": "Разделить payload retention и admission lifetime; сохранять closed prefix.",
+      "status": "PROPOSED",
+      "contract_ref": "spec/protocol/idempotency-lifecycle.md"
+    },
+    {
+      "id": "R16-D02",
+      "title": "Namespace логической работы",
+      "decision": "Смена модели/worker не меняет identity намерения.",
+      "status": "PROPOSED",
+      "contract_ref": "spec/protocol/idempotency-lifecycle.md"
+    },
+    {
+      "id": "R16-D03",
+      "title": "Консервативный contiguous retirement",
+      "decision": "Pending/UNKNOWN удерживают префикс; при лимите backpressure без eviction.",
+      "status": "PROPOSED",
+      "contract_ref": "spec/protocol/idempotency-lifecycle.md"
+    },
+    {
+      "id": "R16-D04",
+      "title": "Fencing в точке записи",
+      "decision": "ServiceEpoch и Fence проверяются вместе с atomic business/work/receipt commit.",
+      "status": "PROPOSED",
+      "contract_ref": "spec/protocol/idempotency-lifecycle.md"
+    },
+    {
+      "id": "R16-D05",
+      "title": "Read-only resume",
+      "decision": "Сначала восстановить и проверить журнал; отдельный CAS для refresh.",
+      "status": "PROPOSED",
+      "contract_ref": "spec/protocol/idempotency-lifecycle.md"
+    },
+    {
+      "id": "R16-D06",
+      "title": "UNKNOWN требует сверки",
+      "decision": "Нет автоматической повторной отправки; negative lookup не доказывает неприменение.",
+      "status": "PROPOSED",
+      "contract_ref": "spec/protocol/idempotency-lifecycle.md"
+    },
+    {
+      "id": "R16-D07",
+      "title": "Restore против current authority",
+      "decision": "Самосогласованный старый backup недостаточен; incomplete scope quarantined.",
+      "status": "PROPOSED",
+      "contract_ref": "spec/protocol/idempotency-lifecycle.md"
+    },
+    {
+      "id": "R16-D08",
+      "title": "Maintenance lifecycle",
+      "decision": "Monotonic authority slots, closed sequence, pinned unresolved reservations.",
+      "status": "PROPOSED",
+      "contract_ref": "spec/protocol/idempotency-lifecycle.md"
+    },
+    {
+      "id": "R16-D09",
+      "title": "Post-admission work guard",
+      "decision": "Исходный digest неизменяем; собственные lifecycle writes меняют только internal guard.",
+      "status": "PROPOSED",
+      "contract_ref": "spec/protocol/idempotency-lifecycle.md"
+    },
+    {
+      "id": "R16-D10",
+      "title": "Явная доступность receipt",
+      "decision": "GC сохраняет summary/availability либо pin для live WorkState; отсутствие не становится пустой работой.",
+      "status": "PROPOSED",
+      "contract_ref": "spec/protocol/idempotency-lifecycle.md"
+    }
+  ]
+}

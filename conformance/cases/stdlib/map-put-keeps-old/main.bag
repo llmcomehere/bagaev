@@ -1,0 +1,10 @@
+@id("jk40nf")
+module main
+use std.map
+
+@id("h0922t")
+pub fn main() -> Option<String> {
+  let m = Map { 1 => "a" };
+  let m2 = map.put(m, 1, "new");
+  map.get(m, 1)
+}

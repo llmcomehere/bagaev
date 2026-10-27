@@ -1,0 +1,26 @@
+{
+  "id": "eval/return-register",
+  "spec": [
+    "spec/language/surface.md#4-выражения",
+    "spec/runtime/machine.md#4-закрытый-каталог-правил"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "run": {
+    "entry": "main.main"
+  },
+  "expect": {
+    "phase": "run",
+    "effects": [],
+    "outcome": "RETURNED",
+    "value": {
+      "type": "Int64",
+      "value": "160"
+    }
+  }
+}

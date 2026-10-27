@@ -1,0 +1,52 @@
+{
+  "id": "l1/question-mark-option",
+  "spec": [
+    "spec/runtime/machine.md#4-закрытый-каталог-правил",
+    "spec/ir/bir.md#2-формы"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L1",
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "run": {
+    "entry": "main.main"
+  },
+  "expect": {
+    "phase": "run",
+    "effects": [],
+    "outcome": "RETURNED",
+    "value": {
+      "type": "Option<Int64>",
+      "tag": "Some",
+      "payload": {
+        "type": "Int64",
+        "value": "5"
+      }
+    },
+    "steps": 18,
+    "trace_l1": [
+      "CALL_ENTER",
+      "VAR",
+      "CALL_BODY",
+      "LET_ENTER",
+      "MATCH_ENTER",
+      "PRIM_ENTER",
+      "SEQ_ENTER",
+      "CONST",
+      "SEQ_BUILD",
+      "PRIM_NEXT",
+      "CONST",
+      "PRIM_APPLY",
+      "MATCH_ARM",
+      "VAR",
+      "LET_BIND",
+      "VARIANT_ENTER",
+      "VAR",
+      "VARIANT_WRAP"
+    ]
+  }
+}

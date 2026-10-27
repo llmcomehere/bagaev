@@ -1,0 +1,522 @@
+{
+  "schema": "R19-FORMAT-COVERAGE-0.1",
+  "status": "WORKING_DESIGN_COVERAGE_REQUIREMENT",
+  "not_a_production_registry": true,
+  "families": [
+    {
+      "id": "F01",
+      "name": "source",
+      "required_kinds": [
+        "source-text",
+        "module-edition",
+        "source-attachment"
+      ],
+      "incompatibility_axis": "Grammar, name resolution, encoding and edition",
+      "mandatory_rule": "Unknown edition: metadata or exact opaque copy only; never execute with current default",
+      "required_operations_policy": "Declare support or explicit refusal separately for each of eight VERSION-BINDING-0.1 operations",
+      "research_sources": [
+        {
+          "path": "sources/baseline/spec/language/semantic-core.md",
+          "bytes": 40833,
+          "sha256": "84611456926e7ee8c393c5bf4e00aa91878e345d99880eb0fa11fbbecacbb114"
+        }
+      ],
+      "production_status": "INPUT_NOT_READY",
+      "unresolved_production_inputs": [
+        "Exact per-kind FormatContract bodies and trusted reader/writer builds",
+        "Measured release inventory and per-operation independent conformance results"
+      ],
+      "full_family_proven_by_finite_model": false
+    },
+    {
+      "id": "F02",
+      "name": "syntax",
+      "required_kinds": [
+        "lossless-cst",
+        "source-map",
+        "formatter-patch"
+      ],
+      "incompatibility_axis": "Lossless bytes, comments, spans and entity mapping",
+      "mandatory_rule": "Unknown syntax: refuse rewrite; preserve original bytes",
+      "required_operations_policy": "Declare support or explicit refusal separately for each of eight VERSION-BINDING-0.1 operations",
+      "research_sources": [
+        {
+          "path": "sources/baseline/spec/links/02-extraction-and-refresh.md",
+          "bytes": 28524,
+          "sha256": "212a98b79d587d2c858a7ab0839ec3d7df0edf7a0effb3b357ff27de75407cef"
+        }
+      ],
+      "production_status": "INPUT_NOT_READY",
+      "unresolved_production_inputs": [
+        "Exact per-kind FormatContract bodies and trusted reader/writer builds",
+        "Measured release inventory and per-operation independent conformance results"
+      ],
+      "full_family_proven_by_finite_model": false
+    },
+    {
+      "id": "F03",
+      "name": "ir",
+      "required_kinds": [
+        "typed-ir",
+        "executable-image",
+        "lowering-metadata"
+      ],
+      "incompatibility_axis": "Opcode, type, effect, cost and target ABI",
+      "mandatory_rule": "Unsupported semantic/cost opcode: refuse execute/resume; no best effort",
+      "required_operations_policy": "Declare support or explicit refusal separately for each of eight VERSION-BINDING-0.1 operations",
+      "research_sources": [
+        {
+          "path": "sources/baseline/spec/ir/typed-core.md",
+          "bytes": 15825,
+          "sha256": "bdbb0f839de15a6a80be01360005544f886bf066cc118e6604113c7be60a0844"
+        }
+      ],
+      "production_status": "INPUT_NOT_READY",
+      "unresolved_production_inputs": [
+        "Exact per-kind FormatContract bodies and trusted reader/writer builds",
+        "Measured release inventory and per-operation independent conformance results"
+      ],
+      "full_family_proven_by_finite_model": false
+    },
+    {
+      "id": "F04",
+      "name": "values",
+      "required_kinds": [
+        "type-registry",
+        "schema-registry",
+        "typed-value",
+        "value-wire"
+      ],
+      "incompatibility_axis": "Nominal identity, type arguments, ordering, presence and canonical codec",
+      "mandatory_rule": "Known wire layout alone grants neither type equivalence nor rewrite",
+      "required_operations_policy": "Declare support or explicit refusal separately for each of eight VERSION-BINDING-0.1 operations",
+      "research_sources": [
+        {
+          "path": "sources/baseline/spec/data/value-codec.md",
+          "bytes": 16213,
+          "sha256": "dc21ec0fdc18675e360645ab9ce0b96091f245e6837b65e2cdd0092e451cbfc2"
+        }
+      ],
+      "production_status": "INPUT_NOT_READY",
+      "unresolved_production_inputs": [
+        "Exact per-kind FormatContract bodies and trusted reader/writer builds",
+        "Measured release inventory and per-operation independent conformance results"
+      ],
+      "full_family_proven_by_finite_model": false
+    },
+    {
+      "id": "F05",
+      "name": "packages",
+      "required_kinds": [
+        "package-manifest",
+        "public-api",
+        "public-abi",
+        "dependency-graph"
+      ],
+      "incompatibility_axis": "Exact API/effect/ABI and closed dependencies",
+      "mandatory_rule": "Unresolved or incompatible interface/ABI blocks link/execute",
+      "required_operations_policy": "Declare support or explicit refusal separately for each of eight VERSION-BINDING-0.1 operations",
+      "research_sources": [
+        {
+          "path": "sources/baseline/tasks/T13-compiler-packages.md",
+          "bytes": 9191,
+          "sha256": "29f30d0aacc443681cdeb0293451146ee6c03590c02bc929bf824b4d7ffb074f"
+        }
+      ],
+      "production_status": "INPUT_NOT_READY",
+      "unresolved_production_inputs": [
+        "Exact per-kind FormatContract bodies and trusted reader/writer builds",
+        "Measured release inventory and per-operation independent conformance results"
+      ],
+      "full_family_proven_by_finite_model": false
+    },
+    {
+      "id": "F06",
+      "name": "toolchain",
+      "required_kinds": [
+        "release-descriptor",
+        "environment-lock",
+        "target-profile"
+      ],
+      "incompatibility_axis": "Exact build, closure, platform and immutable environment",
+      "mandatory_rule": "Host default update leaves all project/version pins intact",
+      "required_operations_policy": "Declare support or explicit refusal separately for each of eight VERSION-BINDING-0.1 operations",
+      "research_sources": [
+        {
+          "path": "sources/prior-r17/bootstrap.md",
+          "bytes": 62538,
+          "sha256": "f7a75381c4a58b8a0295c030bc5be9b25133e9ee437cc43794e261f09aec4388"
+        }
+      ],
+      "production_status": "INPUT_NOT_READY",
+      "unresolved_production_inputs": [
+        "Exact per-kind FormatContract bodies and trusted reader/writer builds",
+        "Measured release inventory and per-operation independent conformance results"
+      ],
+      "full_family_proven_by_finite_model": false
+    },
+    {
+      "id": "F07",
+      "name": "configuration",
+      "required_kinds": [
+        "project-config",
+        "declared-input-manifest",
+        "execution-options"
+      ],
+      "incompatibility_axis": "Versioned defaults, locale, feature/time/random/input contracts",
+      "mandatory_rule": "Missing/null/empty/default remain distinct; no new implicit default",
+      "required_operations_policy": "Declare support or explicit refusal separately for each of eight VERSION-BINDING-0.1 operations",
+      "research_sources": [
+        {
+          "path": "sources/baseline/spec/profiles/v1.md",
+          "bytes": 13286,
+          "sha256": "4e094956a5f5c9ec6716959ec7fb681ddccb6685d22a05e0934b50c8694e58cb"
+        }
+      ],
+      "production_status": "INPUT_NOT_READY",
+      "unresolved_production_inputs": [
+        "Exact per-kind FormatContract bodies and trusted reader/writer builds",
+        "Measured release inventory and per-operation independent conformance results"
+      ],
+      "full_family_proven_by_finite_model": false
+    },
+    {
+      "id": "F08",
+      "name": "relations",
+      "required_kinds": [
+        "canonical-relation-graph",
+        "extractor-profile",
+        "query-profile",
+        "reverse-index"
+      ],
+      "incompatibility_axis": "Logical identities, edge meaning and version endpoints",
+      "mandatory_rule": "Canonical graph transforms explicitly; derived reverse indexes rebuilt",
+      "required_operations_policy": "Declare support or explicit refusal separately for each of eight VERSION-BINDING-0.1 operations",
+      "research_sources": [
+        {
+          "path": "sources/baseline/spec/links/01-records-and-invariants.md",
+          "bytes": 23166,
+          "sha256": "2049d42d10d517d24d83b0bfc12e959db2e0a31e352e280f2e1c92892d61bd90"
+        },
+        {
+          "path": "sources/baseline/spec/links/02-extraction-and-refresh.md",
+          "bytes": 28524,
+          "sha256": "212a98b79d587d2c858a7ab0839ec3d7df0edf7a0effb3b357ff27de75407cef"
+        }
+      ],
+      "production_status": "INPUT_NOT_READY",
+      "unresolved_production_inputs": [
+        "Exact per-kind FormatContract bodies and trusted reader/writer builds",
+        "Measured release inventory and per-operation independent conformance results"
+      ],
+      "full_family_proven_by_finite_model": false
+    },
+    {
+      "id": "F09",
+      "name": "intent",
+      "required_kinds": [
+        "requirement-record",
+        "spec-record",
+        "authored-proposal",
+        "acceptance-request"
+      ],
+      "incompatibility_axis": "Exact requirement, candidate and acceptance subject",
+      "mandatory_rule": "Migration cannot silently accept or reinterpret requirements",
+      "required_operations_policy": "Declare support or explicit refusal separately for each of eight VERSION-BINDING-0.1 operations",
+      "research_sources": [
+        {
+          "path": "sources/baseline/foundation-ru.md",
+          "bytes": 17831,
+          "sha256": "800a140111d5d431dd0de691c500f28f38b05bd46138d9d3a869d9f19889f0d8"
+        }
+      ],
+      "production_status": "INPUT_NOT_READY",
+      "unresolved_production_inputs": [
+        "Exact per-kind FormatContract bodies and trusted reader/writer builds",
+        "Measured release inventory and per-operation independent conformance results"
+      ],
+      "full_family_proven_by_finite_model": false
+    },
+    {
+      "id": "F10",
+      "name": "evidence",
+      "required_kinds": [
+        "evidence-record",
+        "claim",
+        "observation",
+        "verification-receipt",
+        "acceptance-receipt"
+      ],
+      "incompatibility_axis": "Subject, method, domain, assumptions and transfer relation",
+      "mandatory_rule": "Historical PASS immutable; current applicability needs separate basis",
+      "required_operations_policy": "Declare support or explicit refusal separately for each of eight VERSION-BINDING-0.1 operations",
+      "research_sources": [
+        {
+          "path": "sources/baseline/spec/links/01-records-and-invariants.md",
+          "bytes": 23166,
+          "sha256": "2049d42d10d517d24d83b0bfc12e959db2e0a31e352e280f2e1c92892d61bd90"
+        }
+      ],
+      "production_status": "INPUT_NOT_READY",
+      "unresolved_production_inputs": [
+        "Exact per-kind FormatContract bodies and trusted reader/writer builds",
+        "Measured release inventory and per-operation independent conformance results"
+      ],
+      "full_family_proven_by_finite_model": false
+    },
+    {
+      "id": "F11",
+      "name": "work",
+      "required_kinds": [
+        "work-state",
+        "obligation-inventory",
+        "pending-change"
+      ],
+      "incompatibility_axis": "Complete debt multiset, identifiers and dependencies",
+      "mandatory_rule": "Unknown status remains unresolved; no drop/coalescing into terminal",
+      "required_operations_policy": "Declare support or explicit refusal separately for each of eight VERSION-BINDING-0.1 operations",
+      "research_sources": [
+        {
+          "path": "sources/prior-r18/recovery-set.md",
+          "bytes": 58409,
+          "sha256": "d854a21b719f50e89b5967c4c262aa613296bcc5706397eb93f60cdfe00c6821"
+        }
+      ],
+      "production_status": "INPUT_NOT_READY",
+      "unresolved_production_inputs": [
+        "Exact per-kind FormatContract bodies and trusted reader/writer builds",
+        "Measured release inventory and per-operation independent conformance results"
+      ],
+      "full_family_proven_by_finite_model": false
+    },
+    {
+      "id": "F12",
+      "name": "continuation",
+      "required_kinds": [
+        "job-checkpoint",
+        "continuation",
+        "scheduler-state",
+        "budget-state",
+        "cancel-state"
+      ],
+      "incompatibility_axis": "Runtime ABI, history frontier, units, spent budget and cancellation",
+      "mandatory_rule": "Unsupported continuation suspended with accounting/history preserved",
+      "required_operations_policy": "Declare support or explicit refusal separately for each of eight VERSION-BINDING-0.1 operations",
+      "research_sources": [
+        {
+          "path": "sources/prior-r18/recovery-set.md",
+          "bytes": 58409,
+          "sha256": "d854a21b719f50e89b5967c4c262aa613296bcc5706397eb93f60cdfe00c6821"
+        },
+        {
+          "path": "sources/baseline/spec/language/semantic-core.md",
+          "bytes": 40833,
+          "sha256": "84611456926e7ee8c393c5bf4e00aa91878e345d99880eb0fa11fbbecacbb114"
+        }
+      ],
+      "production_status": "INPUT_NOT_READY",
+      "unresolved_production_inputs": [
+        "Exact per-kind FormatContract bodies and trusted reader/writer builds",
+        "Measured release inventory and per-operation independent conformance results"
+      ],
+      "full_family_proven_by_finite_model": false
+    },
+    {
+      "id": "F13",
+      "name": "protocol",
+      "required_kinds": [
+        "command-wire",
+        "session-binding",
+        "diagnostic",
+        "query-cursor"
+      ],
+      "incompatibility_axis": "Exact wire and operation semantic revision, required features",
+      "mandatory_rule": "No common contract: refuse; no silent downgrade or retry reinterpretation",
+      "required_operations_policy": "Declare support or explicit refusal separately for each of eight VERSION-BINDING-0.1 operations",
+      "research_sources": [
+        {
+          "path": "sources/baseline/tasks/T14-developer-tools.md",
+          "bytes": 5602,
+          "sha256": "ee2b32d5e07b438ab547a72ce6ec6b599a3556a726f8af60ff62025056bce1ef"
+        },
+        {
+          "path": "sources/prior-r16/idempotency-lifecycle.md",
+          "bytes": 73178,
+          "sha256": "457fe664db311edd3cb9728924f12bcfaf8f27969afadbc6e9a3cda745c83c1e"
+        }
+      ],
+      "production_status": "INPUT_NOT_READY",
+      "unresolved_production_inputs": [
+        "Exact per-kind FormatContract bodies and trusted reader/writer builds",
+        "Measured release inventory and per-operation independent conformance results"
+      ],
+      "full_family_proven_by_finite_model": false
+    },
+    {
+      "id": "F14",
+      "name": "effects",
+      "required_kinds": [
+        "idempotency-key",
+        "command-receipt",
+        "effect-ledger",
+        "remote-adapter-record"
+      ],
+      "incompatibility_axis": "Namespace, digest, original operation, frontier and UNKNOWN outcome",
+      "mandatory_rule": "Never recycle old key on decoder change or drop UNKNOWN debt",
+      "required_operations_policy": "Declare support or explicit refusal separately for each of eight VERSION-BINDING-0.1 operations",
+      "research_sources": [
+        {
+          "path": "sources/prior-r16/idempotency-lifecycle.md",
+          "bytes": 73178,
+          "sha256": "457fe664db311edd3cb9728924f12bcfaf8f27969afadbc6e9a3cda745c83c1e"
+        }
+      ],
+      "production_status": "INPUT_NOT_READY",
+      "unresolved_production_inputs": [
+        "Exact per-kind FormatContract bodies and trusted reader/writer builds",
+        "Measured release inventory and per-operation independent conformance results"
+      ],
+      "full_family_proven_by_finite_model": false
+    },
+    {
+      "id": "F15",
+      "name": "history-authority",
+      "required_kinds": [
+        "journal-event",
+        "checkpoint",
+        "authority-record",
+        "reservation-record",
+        "control-record"
+      ],
+      "incompatibility_axis": "Exact reducers, complete frontier and current authority epoch",
+      "mandatory_rule": "Unknown event blocks replay; snapshot cannot revive old authority",
+      "required_operations_policy": "Declare support or explicit refusal separately for each of eight VERSION-BINDING-0.1 operations",
+      "research_sources": [
+        {
+          "path": "sources/prior-r18/recovery-set.md",
+          "bytes": 58409,
+          "sha256": "d854a21b719f50e89b5967c4c262aa613296bcc5706397eb93f60cdfe00c6821"
+        }
+      ],
+      "production_status": "INPUT_NOT_READY",
+      "unresolved_production_inputs": [
+        "Exact per-kind FormatContract bodies and trusted reader/writer builds",
+        "Measured release inventory and per-operation independent conformance results"
+      ],
+      "full_family_proven_by_finite_model": false
+    },
+    {
+      "id": "F16",
+      "name": "installation",
+      "required_kinds": [
+        "install-database",
+        "project-identity",
+        "launch-intent",
+        "dependency-pin",
+        "gc-record"
+      ],
+      "incompatibility_axis": "Monotonic identities/generations, pin lifecycle and actual guards",
+      "mandatory_rule": "Never replace pinned environment or GC unresolved launch dependencies",
+      "required_operations_policy": "Declare support or explicit refusal separately for each of eight VERSION-BINDING-0.1 operations",
+      "research_sources": [
+        {
+          "path": "sources/prior-r17/bootstrap.md",
+          "bytes": 62538,
+          "sha256": "f7a75381c4a58b8a0295c030bc5be9b25133e9ee437cc43794e261f09aec4388"
+        }
+      ],
+      "production_status": "INPUT_NOT_READY",
+      "unresolved_production_inputs": [
+        "Exact per-kind FormatContract bodies and trusted reader/writer builds",
+        "Measured release inventory and per-operation independent conformance results"
+      ],
+      "full_family_proven_by_finite_model": false
+    },
+    {
+      "id": "F17",
+      "name": "recovery",
+      "required_kinds": [
+        "recovery-set",
+        "capture-certificate",
+        "participant-certificate",
+        "recovery-seal",
+        "recovery-receipt"
+      ],
+      "incompatibility_axis": "R18 role completeness, cut, ancestry and authority constraints",
+      "mandatory_rule": "Incomplete closure cannot become empty/default; exact profile required",
+      "required_operations_policy": "Declare support or explicit refusal separately for each of eight VERSION-BINDING-0.1 operations",
+      "research_sources": [
+        {
+          "path": "sources/prior-r18/recovery-set.md",
+          "bytes": 58409,
+          "sha256": "d854a21b719f50e89b5967c4c262aa613296bcc5706397eb93f60cdfe00c6821"
+        }
+      ],
+      "production_status": "INPUT_NOT_READY",
+      "unresolved_production_inputs": [
+        "Exact per-kind FormatContract bodies and trusted reader/writer builds",
+        "Measured release inventory and per-operation independent conformance results"
+      ],
+      "full_family_proven_by_finite_model": false
+    },
+    {
+      "id": "F18",
+      "name": "compatibility",
+      "required_kinds": [
+        "format-contract",
+        "feature-contract",
+        "registry-snapshot",
+        "compatibility-claim",
+        "meaning-lock",
+        "project-binding",
+        "migration-intent",
+        "migration-plan",
+        "candidate-body",
+        "preservation-certificate",
+        "prepared-envelope",
+        "migration-receipt"
+      ],
+      "incompatibility_axis": "Acyclic content identities, observation boundaries and current trust",
+      "mandatory_rule": "Claim does not authorize itself; unsupported metacontract requires trusted bootstrap update",
+      "required_operations_policy": "Declare support or explicit refusal separately for each of eight VERSION-BINDING-0.1 operations",
+      "research_sources": [
+        {
+          "path": "spec/distribution/compatibility.md",
+          "bytes": 37833,
+          "sha256": "c2af95578254af11591e3dbaf80eb70fa8bbc237153e03189432c0bf03732d8a"
+        },
+        {
+          "path": "spec/distribution/migration.md",
+          "bytes": 33741,
+          "sha256": "36059ef0cfb3648e60f475df0e399125c6bc63c98754a0e853393037d3d1c6d9"
+        }
+      ],
+      "production_status": "INPUT_NOT_READY",
+      "unresolved_production_inputs": [
+        "Exact per-kind FormatContract bodies and trusted reader/writer builds",
+        "Measured release inventory and per-operation independent conformance results"
+      ],
+      "full_family_proven_by_finite_model": false
+    }
+  ],
+  "operations": [
+    "COPY_OPAQUE",
+    "INSPECT_METADATA",
+    "DECODE_VALUE",
+    "REWRITE",
+    "EXECUTE",
+    "RESUME",
+    "VERIFY_EVIDENCE",
+    "REUSE_EVIDENCE"
+  ],
+  "coverage_algorithm": [
+    "Enumerate every persisted/transmitted artifact kind from actual writer, reader, protocol and adapter entrypoints",
+    "Map each kind exactly once to a family and exact immutable FormatContract",
+    "Compare extracted inventory with registered kind set; any difference blocks release",
+    "Resolve all exact decoders/extractors/checkers and required features",
+    "Attach a directed operation matrix, explicit refusal behavior and independently observed positive/negative cases for each advertised support entry",
+    "Check retained old projects/jobs/keys/evidence/recovery refs before retiring codecs"
+  ],
+  "publication_gate": "No INPUT_NOT_READY, unresolved contract refs, unregistered writer/reader or unsupported required operation may be advertised as a supported V1 release",
+  "finite_model_scope": "W1/W2 small typed payload, S1/S2 cost profiles, T1/T2/T3 tools, bounded single-state protocol; does not instantiate all families"
+}

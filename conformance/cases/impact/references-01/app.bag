@@ -1,0 +1,17 @@
+@id("rf0001")
+module app
+
+@id("rf0002")
+fn inc(n: Int64) -> Int64 {
+  n + 1
+}
+
+@id("rf0003")
+fn twice(f: fn(Int64) -> Int64, n: Int64) -> Int64 {
+  f(f(n))
+}
+
+@id("rf0004")
+pub fn run(n: Int64) -> Int64 {
+  twice(inc, n)
+}

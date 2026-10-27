@@ -1,0 +1,28 @@
+{
+  "id": "parse/empty-use-group",
+  "spec": [
+    "spec/language/grammar.ebnf",
+    "spec/language/surface.md#2-файл-модуль-имена"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "expect": {
+    "phase": "parse",
+    "outcome": "PRELAUNCH",
+    "diagnostics": [
+      {
+        "code": "UNEXPECTED_TOKEN",
+        "file": "main.bag",
+        "span": [
+          16,
+          17
+        ]
+      }
+    ]
+  }
+}

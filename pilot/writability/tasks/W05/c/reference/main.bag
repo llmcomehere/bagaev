@@ -1,0 +1,11 @@
+module main
+
+use std.seq
+
+pub fn count_if<T>(xs: Seq<T>, p: fn(T) -> Bool) -> Int64 {
+  seq.fold(xs, 0, fn(n, x) => if p(x) {
+    n + 1
+  } else {
+    n
+  })
+}

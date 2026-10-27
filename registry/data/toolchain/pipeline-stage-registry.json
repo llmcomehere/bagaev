@@ -1,0 +1,354 @@
+{
+  "format": "R21-STAGE-REGISTRY-1",
+  "pipeline": "PIPELINE-0.1",
+  "criterion": "T13-C01",
+  "stages": [
+    {
+      "stage": "parse",
+      "rank": 1,
+      "stage_contract_label": "PIPE-PARSE-0.1",
+      "input_roles": [
+        "source_bundle",
+        "grammar",
+        "edition_unicode",
+        "identity_mapping"
+      ],
+      "success_outputs": {
+        "cst": "LosslessCST",
+        "syntax_ir": "SyntaxIR",
+        "token_inventory": "TokenInventory"
+      },
+      "primary_origin_output_role": "syntax_ir",
+      "stage_codes": [
+        "UTF8_ERROR",
+        "TOKEN_ERROR",
+        "SYNTAX_ERROR",
+        "AMBIGUOUS_PARSE",
+        "UNKNOWN_FORM",
+        "PARSE_LIMIT"
+      ],
+      "common_codes": [
+        "UNSUPPORTED_FEATURE",
+        "STALE_SOURCE_CAPTURE",
+        "INPUT_HASH_MISMATCH",
+        "INPUT_KIND_MISMATCH",
+        "INPUT_FORMAT_UNSUPPORTED",
+        "FORMAT_IDENTITY_CONFLICT",
+        "SUBJECT_MISMATCH",
+        "PREDECESSOR_INCOMPLETE",
+        "UNKNOWN_SEMANTIC_FIELD",
+        "UNDECLARED_INPUT",
+        "CHECKER_UNAVAILABLE",
+        "CHECKER_REJECTED",
+        "PROVIDER_FAULT",
+        "PROVIDER_PROTOCOL_ERROR",
+        "CAPACITY_EXCEEDED",
+        "CANCEL_REQUESTED"
+      ],
+      "contract_ref_status": "INPUT_NOT_READY_UNTIL_EXACT_UPSTREAM_FORMAT_RELEASES",
+      "whole_stage_production_run": "NOT_RUN"
+    },
+    {
+      "stage": "resolve",
+      "rank": 2,
+      "stage_contract_label": "PIPE-RESOLVE-0.1",
+      "input_roles": [
+        "syntax_ir",
+        "identity_mapping",
+        "lock_import_map",
+        "package_interfaces",
+        "name_resolution"
+      ],
+      "success_outputs": {
+        "resolved_ir": "ResolvedIR",
+        "scope_index": "ScopeIndex",
+        "import_bindings": "ImportBindings"
+      },
+      "primary_origin_output_role": "resolved_ir",
+      "stage_codes": [
+        "UNBOUND_NAME",
+        "AMBIGUOUS_NAME",
+        "DUPLICATE_BINDING",
+        "IDENTITY_CONFLICT",
+        "VISIBILITY_ERROR",
+        "RECURSIVE_GROUP_REQUIRED",
+        "IMPORT_NOT_LOCKED",
+        "INTERFACE_MISMATCH",
+        "RESOLVE_LIMIT"
+      ],
+      "common_codes": [
+        "UNSUPPORTED_FEATURE",
+        "STALE_SOURCE_CAPTURE",
+        "INPUT_HASH_MISMATCH",
+        "INPUT_KIND_MISMATCH",
+        "INPUT_FORMAT_UNSUPPORTED",
+        "FORMAT_IDENTITY_CONFLICT",
+        "SUBJECT_MISMATCH",
+        "PREDECESSOR_INCOMPLETE",
+        "UNKNOWN_SEMANTIC_FIELD",
+        "UNDECLARED_INPUT",
+        "CHECKER_UNAVAILABLE",
+        "CHECKER_REJECTED",
+        "PROVIDER_FAULT",
+        "PROVIDER_PROTOCOL_ERROR",
+        "CAPACITY_EXCEEDED",
+        "CANCEL_REQUESTED"
+      ],
+      "contract_ref_status": "INPUT_NOT_READY_UNTIL_EXACT_UPSTREAM_FORMAT_RELEASES",
+      "whole_stage_production_run": "NOT_RUN"
+    },
+    {
+      "stage": "type",
+      "rank": 3,
+      "stage_contract_label": "PIPE-TYPE-0.1",
+      "input_roles": [
+        "resolved_ir",
+        "type_registry",
+        "primitive_registry",
+        "error_registry",
+        "declared_signatures"
+      ],
+      "success_outputs": {
+        "typed_ir": "TypedIR",
+        "type_table": "TypeTable",
+        "instantiations": "InstantiationTable",
+        "call_graph": "CallGraph"
+      },
+      "primary_origin_output_role": "typed_ir",
+      "stage_codes": [
+        "TYPE_MISMATCH",
+        "TYPE_ARITY",
+        "OCCURS_CHECK",
+        "SKOLEM_ESCAPE",
+        "AMBIGUOUS_INSTANTIATION",
+        "UNSATISFIED_PREDICATE",
+        "POLYMORPHIC_RECURSION",
+        "UNRESOLVED_TYPE",
+        "TYPE_LIMIT"
+      ],
+      "common_codes": [
+        "UNSUPPORTED_FEATURE",
+        "STALE_SOURCE_CAPTURE",
+        "INPUT_HASH_MISMATCH",
+        "INPUT_KIND_MISMATCH",
+        "INPUT_FORMAT_UNSUPPORTED",
+        "FORMAT_IDENTITY_CONFLICT",
+        "SUBJECT_MISMATCH",
+        "PREDECESSOR_INCOMPLETE",
+        "UNKNOWN_SEMANTIC_FIELD",
+        "UNDECLARED_INPUT",
+        "CHECKER_UNAVAILABLE",
+        "CHECKER_REJECTED",
+        "PROVIDER_FAULT",
+        "PROVIDER_PROTOCOL_ERROR",
+        "CAPACITY_EXCEEDED",
+        "CANCEL_REQUESTED"
+      ],
+      "contract_ref_status": "INPUT_NOT_READY_UNTIL_EXACT_UPSTREAM_FORMAT_RELEASES",
+      "whole_stage_production_run": "NOT_RUN"
+    },
+    {
+      "stage": "effect",
+      "rank": 4,
+      "stage_contract_label": "PIPE-EFFECT-0.1",
+      "input_roles": [
+        "typed_ir",
+        "declared_bounds",
+        "effect_domain",
+        "adapter_signatures",
+        "call_graph"
+      ],
+      "success_outputs": {
+        "effect_ir": "EffectCheckedIR",
+        "effect_summaries": "EffectSummaryTable",
+        "capability_requirements": "CapabilityRequirementTable",
+        "obligations": "ObligationTable"
+      },
+      "primary_origin_output_role": "effect_ir",
+      "stage_codes": [
+        "EFFECT_BOUND_EXCEEDED",
+        "UNKNOWN_EFFECT",
+        "ADAPTER_SIGNATURE_MISMATCH",
+        "REQUIRED_OBLIGATION_UNVERIFIED",
+        "EFFECT_LIMIT"
+      ],
+      "common_codes": [
+        "UNSUPPORTED_FEATURE",
+        "STALE_SOURCE_CAPTURE",
+        "INPUT_HASH_MISMATCH",
+        "INPUT_KIND_MISMATCH",
+        "INPUT_FORMAT_UNSUPPORTED",
+        "FORMAT_IDENTITY_CONFLICT",
+        "SUBJECT_MISMATCH",
+        "PREDECESSOR_INCOMPLETE",
+        "UNKNOWN_SEMANTIC_FIELD",
+        "UNDECLARED_INPUT",
+        "CHECKER_UNAVAILABLE",
+        "CHECKER_REJECTED",
+        "PROVIDER_FAULT",
+        "PROVIDER_PROTOCOL_ERROR",
+        "CAPACITY_EXCEEDED",
+        "CANCEL_REQUESTED"
+      ],
+      "contract_ref_status": "INPUT_NOT_READY_UNTIL_EXACT_UPSTREAM_FORMAT_RELEASES",
+      "whole_stage_production_run": "NOT_RUN"
+    },
+    {
+      "stage": "lower",
+      "rank": 5,
+      "stage_contract_label": "PIPE-LOWER-0.1",
+      "input_roles": [
+        "effect_ir",
+        "lowering_rules",
+        "target_forms",
+        "observation_contract",
+        "origin_rules"
+      ],
+      "success_outputs": {
+        "lowered_ir": "LoweredIR",
+        "lowering_derivation": "LoweringDerivation"
+      },
+      "primary_origin_output_role": "lowered_ir",
+      "stage_codes": [
+        "LOWERING_RULE_MISSING",
+        "AMBIGUOUS_LOWERING",
+        "HYGIENE_VIOLATION",
+        "OBSERVATION_CONTRACT_MISMATCH",
+        "COST_RULE_MISSING",
+        "LOWERING_INVALID",
+        "LOWER_LIMIT"
+      ],
+      "common_codes": [
+        "UNSUPPORTED_FEATURE",
+        "STALE_SOURCE_CAPTURE",
+        "INPUT_HASH_MISMATCH",
+        "INPUT_KIND_MISMATCH",
+        "INPUT_FORMAT_UNSUPPORTED",
+        "FORMAT_IDENTITY_CONFLICT",
+        "SUBJECT_MISMATCH",
+        "PREDECESSOR_INCOMPLETE",
+        "UNKNOWN_SEMANTIC_FIELD",
+        "UNDECLARED_INPUT",
+        "CHECKER_UNAVAILABLE",
+        "CHECKER_REJECTED",
+        "PROVIDER_FAULT",
+        "PROVIDER_PROTOCOL_ERROR",
+        "CAPACITY_EXCEEDED",
+        "CANCEL_REQUESTED"
+      ],
+      "contract_ref_status": "INPUT_NOT_READY_UNTIL_EXACT_UPSTREAM_FORMAT_RELEASES",
+      "whole_stage_production_run": "NOT_RUN"
+    },
+    {
+      "stage": "link",
+      "rank": 6,
+      "stage_contract_label": "PIPE-LINK-0.1",
+      "input_roles": [
+        "lowered_modules",
+        "locked_module_bodies",
+        "locked_interfaces",
+        "target_abi",
+        "entry_selector"
+      ],
+      "success_outputs": {
+        "linked_ir": "LinkedIR",
+        "symbol_table": "SymbolTable",
+        "dependency_inventory": "DependencyInventory",
+        "adapter_requirements": "AdapterRequirements"
+      },
+      "primary_origin_output_role": "linked_ir",
+      "stage_codes": [
+        "MISSING_SYMBOL",
+        "DUPLICATE_SYMBOL",
+        "ABI_MISMATCH",
+        "NOMINAL_IDENTITY_MISMATCH",
+        "GENERIC_INSTANCE_CONFLICT",
+        "ENTRYPOINT_MISMATCH",
+        "LINK_CLOSURE_GAP",
+        "LINK_LIMIT"
+      ],
+      "common_codes": [
+        "UNSUPPORTED_FEATURE",
+        "STALE_SOURCE_CAPTURE",
+        "INPUT_HASH_MISMATCH",
+        "INPUT_KIND_MISMATCH",
+        "INPUT_FORMAT_UNSUPPORTED",
+        "FORMAT_IDENTITY_CONFLICT",
+        "SUBJECT_MISMATCH",
+        "PREDECESSOR_INCOMPLETE",
+        "UNKNOWN_SEMANTIC_FIELD",
+        "UNDECLARED_INPUT",
+        "CHECKER_UNAVAILABLE",
+        "CHECKER_REJECTED",
+        "PROVIDER_FAULT",
+        "PROVIDER_PROTOCOL_ERROR",
+        "CAPACITY_EXCEEDED",
+        "CANCEL_REQUESTED"
+      ],
+      "contract_ref_status": "INPUT_NOT_READY_UNTIL_EXACT_UPSTREAM_FORMAT_RELEASES",
+      "whole_stage_production_run": "NOT_RUN"
+    },
+    {
+      "stage": "emit",
+      "rank": 7,
+      "stage_contract_label": "PIPE-EMIT-0.1",
+      "input_roles": [
+        "linked_ir",
+        "executable_encoder",
+        "runtime_abi",
+        "source_binding",
+        "output_contract"
+      ],
+      "success_outputs": {
+        "executable": "ExecutableImage",
+        "output_inventory": "OutputInventory",
+        "emit_validation": "EmitValidation"
+      },
+      "primary_origin_output_role": "executable",
+      "stage_codes": [
+        "ENCODE_ERROR",
+        "EXECUTABLE_DECODE_ERROR",
+        "ROUNDTRIP_MISMATCH",
+        "SECTION_BOUNDS",
+        "TARGET_UNSUPPORTED",
+        "EMIT_LIMIT",
+        "OUTPUT_CAPACITY"
+      ],
+      "common_codes": [
+        "UNSUPPORTED_FEATURE",
+        "STALE_SOURCE_CAPTURE",
+        "INPUT_HASH_MISMATCH",
+        "INPUT_KIND_MISMATCH",
+        "INPUT_FORMAT_UNSUPPORTED",
+        "FORMAT_IDENTITY_CONFLICT",
+        "SUBJECT_MISMATCH",
+        "PREDECESSOR_INCOMPLETE",
+        "UNKNOWN_SEMANTIC_FIELD",
+        "UNDECLARED_INPUT",
+        "CHECKER_UNAVAILABLE",
+        "CHECKER_REJECTED",
+        "PROVIDER_FAULT",
+        "PROVIDER_PROTOCOL_ERROR",
+        "CAPACITY_EXCEEDED",
+        "CANCEL_REQUESTED"
+      ],
+      "contract_ref_status": "INPUT_NOT_READY_UNTIL_EXACT_UPSTREAM_FORMAT_RELEASES",
+      "whole_stage_production_run": "NOT_RUN"
+    }
+  ],
+  "metadata_kinds": [
+    "CompileAttempt",
+    "SourceBundle",
+    "PipelinePlan",
+    "CompileInvocation",
+    "StageContract",
+    "StageResult",
+    "DiagnosticBatch",
+    "OriginMap",
+    "ReadSet",
+    "CacheEntry",
+    "PipelineResult",
+    "FixCandidate"
+  ],
+  "accepted": false
+}

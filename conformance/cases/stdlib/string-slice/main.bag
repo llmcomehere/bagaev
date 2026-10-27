@@ -1,0 +1,9 @@
+@id("dd1erd")
+module main
+use std.string
+use std.data
+
+@id("wanyw3")
+pub fn main() -> Result<String, data.BoundsError> {
+  string.slice("A😀B", 1, 2)
+}

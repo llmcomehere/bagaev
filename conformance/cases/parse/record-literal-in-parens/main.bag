@@ -1,0 +1,2 @@
+module m
+fn f(p: Point) -> Int64 { if (p == Point { x: 0, y: 0 }) { 1 } else { 2 } }

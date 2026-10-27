@@ -1,0 +1,3 @@
+module m
+
+fn f( -> Int64 { 1 }

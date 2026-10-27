@@ -1,0 +1,2 @@
+module m
+fn f(x: Option<Int64>) -> Int64 { match x { Some(v) => v None => 0 } }

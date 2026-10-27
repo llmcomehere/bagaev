@@ -1,0 +1,32 @@
+{
+  "id": "effects/query-cannot-write",
+  "spec": [
+    "spec/language/effects.md#4-хранилище-события-и-точки-входа",
+    "spec/language/checking.md#4-объявления-фазы-type-и-effect"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "expect": {
+    "phase": "check",
+    "outcome": "PRELAUNCH",
+    "diagnostics": [
+      {
+        "code": "EFFECT_NOT_ALLOWED_IN_CONTEXT",
+        "file": "main.bag",
+        "span": [
+          336,
+          356
+        ],
+        "data": {
+          "atom": "writes Blog.articles",
+          "context": "query"
+        }
+      }
+    ]
+  }
+}

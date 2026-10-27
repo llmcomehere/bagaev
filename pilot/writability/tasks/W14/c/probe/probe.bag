@@ -1,0 +1,9 @@
+@id("bsv4f3")
+module probe
+
+use main
+
+@id("95tzyc")
+fn check() -> String {
+  main.label(main.Status.Archived)
+}

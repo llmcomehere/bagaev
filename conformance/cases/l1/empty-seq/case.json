@@ -1,0 +1,30 @@
+{
+  "id": "l1/empty-seq",
+  "spec": [
+    "spec/runtime/machine.md#4-закрытый-каталог-правил"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L1",
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "run": {
+    "entry": "main.main"
+  },
+  "expect": {
+    "phase": "run",
+    "effects": [],
+    "outcome": "RETURNED",
+    "value": {
+      "type": "Seq<Int64>",
+      "items": []
+    },
+    "steps": 1,
+    "trace_l1": [
+      "SEQ_ENTER"
+    ]
+  }
+}

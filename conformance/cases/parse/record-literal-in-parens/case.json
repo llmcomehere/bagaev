@@ -1,0 +1,17 @@
+{
+  "id": "parse/record-literal-in-parens",
+  "spec": [
+    "spec/language/surface.md#6-правила-разбора-которые-грамматика-не-выражает"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "expect": {
+    "phase": "parse",
+    "outcome": "ACCEPTED"
+  }
+}

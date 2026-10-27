@@ -1,0 +1,27 @@
+{
+  "id": "parse/mixed-record-entries",
+  "spec": [
+    "spec/language/surface.md#6-правила-разбора-которые-грамматика-не-выражает"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "expect": {
+    "phase": "parse",
+    "outcome": "PRELAUNCH",
+    "diagnostics": [
+      {
+        "code": "MIXED_RECORD_ENTRIES",
+        "file": "main.bag",
+        "span": [
+          44,
+          50
+        ]
+      }
+    ]
+  }
+}

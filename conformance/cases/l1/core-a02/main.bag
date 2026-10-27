@@ -1,0 +1,8 @@
+@id("kneb04")
+module main
+use std.i64
+
+@id("m0fx8h")
+pub fn main() -> Bool {
+  i64.lt(-2, 1)
+}

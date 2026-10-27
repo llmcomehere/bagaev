@@ -1,0 +1,10 @@
+@id("abah9t")
+module main
+use std.result
+use std.string
+
+@id("8nh29s")
+pub fn main() -> Result<Int64, Int64> {
+  let r: Result<Int64, String> = Ok(8);
+  result.map_error(r, fn(e: String) => string.scalar_length(e))
+}

@@ -1,0 +1,13 @@
+@id("bfxhp4")
+module pricing
+
+@id("c51me9")
+entity Pricing {
+  purpose "Цены товаров: какие значения допустимы и как они округляются."
+}
+
+@id("qqczme")
+contract PriceRules about Pricing {
+  @id("jv2wm2") rule non_negative "цена не меньше нуля"
+  @id("097qtj") rule rounding "цена кратна 10 и округляется вверх"
+}

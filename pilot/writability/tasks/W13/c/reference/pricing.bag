@@ -1,0 +1,33 @@
+@id("bfxhp4")
+module pricing
+
+use std.test
+
+@id("c51me9")
+entity Pricing {
+  purpose "Цены товаров: какие значения допустимы и как они округляются."
+}
+
+@id("qqczme")
+contract PriceRules about Pricing {
+  @id("jv2wm2") rule non_negative "цена не меньше нуля"
+  @id("097qtj") rule rounding "цена кратна 10 и округляется вверх"
+}
+
+pub fn round_price(p: Int64) -> Int64
+  implements PriceRules.non_negative, PriceRules.rounding
+{
+  if p <= 0 {
+    0
+  } else {
+    (p + 9) / 10 * 10
+  }
+}
+
+test round_price_rules
+  checks PriceRules.non_negative, PriceRules.rounding
+{
+  test.expect_equal("отрицательная", round_price(-5), 0);
+  test.expect_equal("кратная", round_price(30), 30);
+  test.expect_equal("вверх", round_price(31), 40);
+}

@@ -1,0 +1,14 @@
+@id("sdnbcs")
+module main
+use std.seq
+
+@id("3ze71d")
+fn g() -> Option<Int64> {
+  let x = seq.get([5], 0)?;
+  Some(x)
+}
+
+@id("h401zs")
+pub fn main() -> Option<Int64> {
+  g()
+}

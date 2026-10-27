@@ -1,0 +1,62 @@
+{
+  "id": "impact/references-01",
+  "spec": [
+    "spec/links/08-bagaev-extraction.md#3-рёбра",
+    "spec/links/08-bagaev-extraction.md#5-влияние"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "app.bag",
+    "cand/app.bag"
+  ],
+  "run": {
+    "links": {
+      "op": "impact",
+      "candidate": "cand",
+      "watch": [
+        "app.twice"
+      ]
+    }
+  },
+  "expect": {
+    "phase": "impact",
+    "outcome": "IMPACT",
+    "value": {
+      "status": "COMPLETE",
+      "readiness": "NO_OPEN_OBLIGATIONS",
+      "seeds": [
+        [
+          "app.inc",
+          "changed"
+        ]
+      ],
+      "in_scope": [
+        [
+          "app.inc",
+          0
+        ],
+        [
+          "app.run",
+          1
+        ]
+      ],
+      "unknown": [],
+      "unknown_incomplete": 0,
+      "frontier": [],
+      "obligations": [],
+      "closed": [],
+      "tests_to_run": [],
+      "gaps": [],
+      "watch": {
+        "app.twice": [
+          "excluded_with_basis",
+          "D83b-no-dependency-path"
+        ]
+      }
+    }
+  },
+  "note": "inc вызывается только через значение: влияние идёт по ребру references к run; twice не зависит от inc"
+}

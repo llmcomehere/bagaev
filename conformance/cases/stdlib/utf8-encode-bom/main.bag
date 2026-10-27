@@ -1,0 +1,8 @@
+@id("scz0rs")
+module main
+use std.utf8
+
+@id("a9nhwp")
+pub fn main() -> Bytes {
+  utf8.encode("\u{feff}")
+}

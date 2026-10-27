@@ -1,0 +1,17 @@
+{
+  "id": "parse/trailing-commas",
+  "spec": [
+    "spec/language/grammar.ebnf"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "expect": {
+    "phase": "parse",
+    "outcome": "ACCEPTED"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "id": "outcomes/budget-exceeded",
+  "spec": [
+    "spec/runtime/machine.md#3-шаг",
+    "spec/kernel/outcomes.md#1-исход-запуска-программы"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "run": {
+    "entry": "main.main",
+    "fuel": 1000
+  },
+  "expect": {
+    "phase": "run",
+    "effects": [],
+    "outcome": "SEMANTIC_STOP",
+    "code": "BUDGET_EXCEEDED"
+  }
+}

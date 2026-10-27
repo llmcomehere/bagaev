@@ -1,0 +1,13 @@
+@id("p46rve")
+module main
+
+@id("saz8aq")
+type Shape = enum {
+  @id("bje76v") Circle(Int64),
+  @id("j6yd2z") Square(Int64),
+}
+
+@id("28e9pa")
+fn f() -> Shape {
+  Shape.Triangle(1)
+}

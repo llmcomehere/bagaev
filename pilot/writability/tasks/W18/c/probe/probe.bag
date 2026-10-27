@@ -1,0 +1,9 @@
+@id("k7j5xz")
+module probe
+
+use main
+
+@id("d3qba7")
+fn check() -> String {
+  main.describe(Some(Err("x")))
+}

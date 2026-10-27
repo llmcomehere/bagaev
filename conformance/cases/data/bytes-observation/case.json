@@ -1,0 +1,25 @@
+{
+  "id": "data/bytes-observation",
+  "spec": [
+    "spec/kernel/canonical.md#4-наблюдаемое-значение"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "run": {
+    "entry": "main.main"
+  },
+  "expect": {
+    "phase": "run",
+    "effects": [],
+    "outcome": "RETURNED",
+    "value": {
+      "type": "Bytes",
+      "hex": "00ff41"
+    }
+  }
+}

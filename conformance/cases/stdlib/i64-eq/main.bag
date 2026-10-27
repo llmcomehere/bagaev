@@ -1,0 +1,8 @@
+@id("j2j7ba")
+module main
+use std.i64
+
+@id("btrgjb")
+pub fn main() -> Bool {
+  i64.eq(-9223372036854775808, 9223372036854775807)
+}

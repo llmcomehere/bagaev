@@ -1,0 +1,18 @@
+{
+  "id": "resolve/namespaces-and-shadowing",
+  "spec": [
+    "spec/language/surface.md#2-файл-модуль-имена",
+    "spec/language/checking.md#3-имена-и-объявления-фаза-resolve"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "expect": {
+    "phase": "check",
+    "outcome": "ACCEPTED"
+  }
+}

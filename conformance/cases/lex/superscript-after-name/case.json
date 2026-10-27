@@ -1,0 +1,27 @@
+{
+  "id": "lex/superscript-after-name",
+  "spec": [
+    "spec/language/lexical.md#3-идентификаторы-и-ключевые-слова"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "expect": {
+    "phase": "parse",
+    "outcome": "PRELAUNCH",
+    "diagnostics": [
+      {
+        "code": "UNEXPECTED_CHARACTER",
+        "file": "main.bag",
+        "span": [
+          36,
+          38
+        ]
+      }
+    ]
+  }
+}

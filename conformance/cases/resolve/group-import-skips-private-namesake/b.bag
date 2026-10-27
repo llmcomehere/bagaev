@@ -1,0 +1,10 @@
+@id("yqffwy")
+module b
+
+use a.{X}
+
+@id("88y9zf")
+fn f() -> Int64 {
+  let v = X { secret: 5 };
+  1
+}

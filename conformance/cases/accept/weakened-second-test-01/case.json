@@ -1,0 +1,365 @@
+{
+  "id": "accept/weakened-second-test-01",
+  "spec": [
+    "spec/protocol/agent-protocol.md#5-свидетельства",
+    "spec/protocol/agent-protocol.md#6-workstate"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "app.bag"
+  ],
+  "run": {
+    "change": {
+      "principal": "agent",
+      "steps": [
+        {
+          "request": {
+            "operation": "change_begin",
+            "idempotency_key": "b1-kkkkkkkkkkkkkkkkkkkk",
+            "arguments": {
+              "intent": "изменение"
+            }
+          }
+        },
+        {
+          "request": {
+            "operation": "apply",
+            "change_id": "$change",
+            "expected_work_revision": 1,
+            "idempotency_key": "a1-kkkkkkkkkkkkkkkkkkkk",
+            "arguments": {
+              "source_edit": {
+                "files": [
+                  {
+                    "path": "app.bag",
+                    "base_sha256": "$sha:app.bag",
+                    "edits": [
+                      {
+                        "old_text": "\"Привет, \" ++ name",
+                        "text": "\"Привет!\""
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "request": {
+            "operation": "apply",
+            "change_id": "$change",
+            "expected_work_revision": 2,
+            "idempotency_key": "a2-kkkkkkkkkkkkkkkkkkkk",
+            "arguments": {
+              "source_edit": {
+                "files": [
+                  {
+                    "path": "app.bag",
+                    "base_sha256": "$sha:app.bag",
+                    "edits": [
+                      {
+                        "old_text": "test.expect(\"имя\", greet(\"Иван\") == \"Привет, Иван\")",
+                        "text": "test.expect(\"имя\", true)"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "request": {
+            "operation": "verify",
+            "change_id": "$change",
+            "expected_work_revision": 3,
+            "idempotency_key": "v1-kkkkkkkkkkkkkkkkkkkk",
+            "arguments": {}
+          }
+        },
+        {
+          "request": {
+            "operation": "work_resume",
+            "change_id": "$change",
+            "arguments": {}
+          }
+        },
+        {
+          "request": {
+            "operation": "accept",
+            "change_id": "$change",
+            "expected_work_revision": 4,
+            "idempotency_key": "c1-kkkkkkkkkkkkkkkkkkkk",
+            "arguments": {}
+          }
+        },
+        {
+          "request": {
+            "operation": "contract_update",
+            "change_id": "$change",
+            "expected_work_revision": 4,
+            "idempotency_key": "k1-kkkkkkkkkkkkkkkkkkkk",
+            "arguments": {
+              "ops": [
+                {
+                  "op": "replace_test",
+                  "test": "app.greet_has_name"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "request": {
+            "operation": "contract_update",
+            "change_id": "$change",
+            "expected_work_revision": 4,
+            "idempotency_key": "k2-kkkkkkkkkkkkkkkkkkkk",
+            "arguments": {
+              "ops": [
+                {
+                  "op": "replace_test",
+                  "test": "app.greet_has_name",
+                  "reason": "проверка имени снята осознанно"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "request": {
+            "operation": "work_resume",
+            "change_id": "$change",
+            "arguments": {}
+          }
+        },
+        {
+          "request": {
+            "operation": "accept",
+            "change_id": "$change",
+            "expected_work_revision": 5,
+            "idempotency_key": "c2-kkkkkkkkkkkkkkkkkkkk",
+            "arguments": {}
+          }
+        }
+      ]
+    }
+  },
+  "expect": {
+    "phase": "accept",
+    "outcome": "COMPLETED",
+    "value": [
+      {
+        "status": "succeeded",
+        "replayed": false,
+        "work_revision": 1
+      },
+      {
+        "status": "succeeded",
+        "replayed": false,
+        "work_revision": 2,
+        "touched": {
+          "app.bag": [
+            [
+              408,
+              423
+            ]
+          ]
+        },
+        "identity": {
+          "lineage": [],
+          "removed": [],
+          "added": [],
+          "renamed": []
+        },
+        "draft": false,
+        "diagnostics": []
+      },
+      {
+        "status": "succeeded",
+        "replayed": false,
+        "work_revision": 3,
+        "touched": {
+          "app.bag": [
+            [
+              738,
+              765
+            ]
+          ]
+        },
+        "identity": {
+          "lineage": [],
+          "removed": [],
+          "added": [],
+          "renamed": []
+        },
+        "draft": false,
+        "diagnostics": []
+      },
+      {
+        "status": "succeeded",
+        "replayed": false,
+        "work_revision": 4,
+        "evidence": [
+          [
+            "app.greet_has_name",
+            "PASS"
+          ],
+          [
+            "app.greet_nonempty",
+            "PASS"
+          ]
+        ]
+      },
+      {
+        "status": "succeeded",
+        "replayed": false,
+        "work_revision": 4,
+        "needs_rebase": false,
+        "ready_for_acceptance": false,
+        "contract_revision": 1,
+        "status_": "open",
+        "blockers": [
+          "OBLIGATION_OPEN",
+          "OBLIGATION_OPEN",
+          "OBLIGATION_OPEN"
+        ],
+        "obligations": [
+          [
+            "app.Polite.nonempty",
+            "app.greet",
+            "implements",
+            "open",
+            "base-test-changed"
+          ],
+          [
+            "app.Polite.nonempty",
+            "app.greet_has_name",
+            "checks",
+            "open",
+            "base-test-changed"
+          ],
+          [
+            "app.Polite.nonempty",
+            "app.greet_nonempty",
+            "checks",
+            "open",
+            "base-test-changed"
+          ]
+        ],
+        "clauses": []
+      },
+      {
+        "status": "blocked",
+        "replayed": false,
+        "code": "OPEN_OBLIGATIONS",
+        "data": {
+          "blockers": [
+            "OBLIGATION_OPEN"
+          ]
+        }
+      },
+      {
+        "status": "failed",
+        "replayed": false,
+        "code": "REQUEST_INVALID",
+        "data": {
+          "op": 0
+        }
+      },
+      {
+        "status": "succeeded",
+        "replayed": false,
+        "work_revision": 5,
+        "contract_revision": 2,
+        "clauses": [],
+        "replaced": [],
+        "assumptions": [],
+        "allowed": null,
+        "replaced_tests": [
+          "app.greet_has_name"
+        ],
+        "policy_pins": []
+      },
+      {
+        "status": "succeeded",
+        "replayed": false,
+        "work_revision": 5,
+        "needs_rebase": false,
+        "ready_for_acceptance": true,
+        "contract_revision": 2,
+        "status_": "open",
+        "blockers": [],
+        "obligations": [
+          [
+            "app.Polite.nonempty",
+            "app.greet",
+            "implements",
+            "supported",
+            "tests"
+          ],
+          [
+            "app.Polite.nonempty",
+            "app.greet_has_name",
+            "checks",
+            "supported",
+            "tests"
+          ],
+          [
+            "app.Polite.nonempty",
+            "app.greet_nonempty",
+            "checks",
+            "supported",
+            "tests"
+          ]
+        ],
+        "clauses": []
+      },
+      {
+        "status": "succeeded",
+        "replayed": false,
+        "work_revision": 6,
+        "obligations": [
+          [
+            "checks",
+            "cq0004",
+            "cq0008",
+            "supported",
+            "tests"
+          ],
+          [
+            "checks",
+            "cq0004",
+            "cq0009",
+            "supported",
+            "tests"
+          ],
+          [
+            "implements",
+            "cq0004",
+            "cq0005",
+            "supported",
+            "tests"
+          ]
+        ],
+        "replaced_clauses": [],
+        "replaced_tests": [
+          [
+            "app.greet_has_name",
+            "проверка имени снята осознанно"
+          ]
+        ],
+        "coverage_gaps": [],
+        "lineage": []
+      }
+    ],
+    "state": {
+      "head_revision": 2
+    }
+  },
+  "note": "у правила два теста; один ослаблен — PASS второго не закрывает обязательство, пока набор методов не изменён явно (replace_test с причиной); замена видна в записи приёмки (ревью m6 H1, K6)"
+}

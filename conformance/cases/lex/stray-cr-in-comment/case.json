@@ -1,0 +1,28 @@
+{
+  "id": "lex/stray-cr-in-comment",
+  "spec": [
+    "spec/language/lexical.md#1-кодировка-и-символы",
+    "spec/language/lexical.md#2-пробелы-и-комментарии"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "expect": {
+    "phase": "parse",
+    "outcome": "PRELAUNCH",
+    "diagnostics": [
+      {
+        "code": "STRAY_CR",
+        "file": "main.bag",
+        "span": [
+          13,
+          14
+        ]
+      }
+    ]
+  }
+}

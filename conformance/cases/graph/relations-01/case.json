@@ -1,0 +1,44 @@
+{
+  "id": "graph/relations-01",
+  "spec": [
+    "spec/links/08-bagaev-extraction.md#4-граф-и-покрытие"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "app.bag"
+  ],
+  "run": {
+    "links": {
+      "op": "relations",
+      "entity": "app.double"
+    }
+  },
+  "expect": {
+    "phase": "graph",
+    "outcome": "RELATIONS",
+    "value": {
+      "outgoing": [],
+      "incoming": [
+        [
+          "calls",
+          "app.origin"
+        ],
+        [
+          "calls",
+          "app.quadruple"
+        ],
+        [
+          "defines",
+          "app"
+        ],
+        [
+          "references",
+          "app.quadruple"
+        ]
+      ]
+    }
+  }
+}

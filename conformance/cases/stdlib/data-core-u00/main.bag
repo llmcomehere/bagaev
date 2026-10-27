@@ -1,0 +1,13 @@
+@id("3rt3e7")
+module main
+use std.utf8
+use std.string
+use std.bytes
+use std.seq
+
+@id("3hkjvv")
+pub fn main() -> Seq<Int64> {
+  let s = "\u{0}";
+  let b = utf8.encode(s);
+  seq.concat([string.scalar_length(s), bytes.length(b)], bytes.to_octets(b))
+}

@@ -1,0 +1,29 @@
+@id("c4es69")
+module main
+
+@id("0qzqzj")
+type Point = record {
+  @id("sj6ww3") x: Int64,
+  @id("d45pn2") y: Int64,
+}
+
+@id("2b8tdv")
+type Shape = enum {
+  @id("jpbmhy") Dot,
+  @id("gwrx6z") Square(Int64),
+  @id("tf65y1") Rect(Point),
+}
+
+@id("70enpw")
+fn area(s: Shape) -> Int64 {
+  match s {
+    Shape.Dot => 0,
+    Shape.Square(a) => a * a,
+    Shape.Rect(p) => p.x * p.y,
+  }
+}
+
+@id("216b9v")
+pub fn main() -> Int64 {
+  area(Shape.Rect(Point { x: 3, y: 4 })) + area(Shape.Square(5)) + area(Shape.Dot)
+}

@@ -1,0 +1,2 @@
+module m
+fn f(a: Bool, b: Bool, c: Bool) -> Bool { a and b or c }

@@ -1,0 +1,31 @@
+{
+  "id": "types/opaque-duplicate-arm",
+  "spec": [
+    "spec/language/surface.md#4-выражения",
+    "spec/language/checking.md#3-имена-и-объявления-фаза-resolve"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "expect": {
+    "phase": "check",
+    "outcome": "PRELAUNCH",
+    "diagnostics": [
+      {
+        "code": "DUPLICATE_MATCH_ARM",
+        "file": "main.bag",
+        "span": [
+          140,
+          147
+        ],
+        "data": {
+          "tag": "Cell"
+        }
+      }
+    ]
+  }
+}

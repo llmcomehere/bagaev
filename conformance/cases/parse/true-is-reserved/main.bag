@@ -1,0 +1,5 @@
+module m
+fn f() -> Int64 {
+  let true = 1;
+  1
+}

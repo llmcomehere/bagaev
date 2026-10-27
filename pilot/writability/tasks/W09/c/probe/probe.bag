@@ -1,0 +1,9 @@
+@id("rx81ss")
+module probe
+
+use main
+
+@id("tkhwtk")
+fn check() -> Int64 {
+  main.list_sum(main.from_seq([1, 2, 3]))
+}

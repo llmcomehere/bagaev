@@ -1,0 +1,8 @@
+@id("75zc7k")
+module main
+use std.seq
+
+@id("pbs7z8")
+pub fn main() -> Seq<Int64> {
+  seq.map([1, 2], fn(x) => x)
+}

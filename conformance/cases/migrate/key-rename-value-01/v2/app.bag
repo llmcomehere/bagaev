@@ -1,0 +1,53 @@
+@id("aa0001")
+module app
+use std.store
+
+@id("ac0001")
+pub type NewKey = opaque String
+
+@id("aa0002")
+pub store S {
+  @id("aa0003") table items: Map<Envelope, Tally>
+}
+
+@id("aa000c")
+pub query get(k: String) -> Option<Tally> uses { reads S.items } {
+  store.get(S.items, Envelope { part: Some(NewKey(k)) })
+}
+
+@id("aa000b")
+pub command put(k: String, n: Int64) -> Result<(), String> uses { writes S.items } {
+  store.put(S.items, Envelope { part: Some(NewKey(k)) }, Tally { total: n, bumps: 1 });
+  Ok(())
+}
+
+@id("aa000e")
+pub command remove(k: String) -> Result<(), String> uses { writes S.items } {
+  store.remove(S.items, Envelope { part: Some(NewKey(k)) });
+  Ok(())
+}
+
+@id("ac0002")
+pub type Envelope = record {
+  @id("ac0003") part: Option<NewKey>,
+}
+
+@id("aa000f")
+pub type Tally = record {
+  @id("aa000g") total: Int64,
+  @id("aa000h") bumps: Int64,
+}
+
+@id("aa000k")
+pub type MigErr = enum {
+  @id("aa000m") Negative,
+}
+
+@id("aa000j")
+migration to_tally on S.items(old: Int64) -> Result<Tally, MigErr> {
+  if old < 0 {
+    Err(MigErr.Negative)
+  } else {
+    Ok(Tally { total: old, bumps: 1 })
+  }
+}

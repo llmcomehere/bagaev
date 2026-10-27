@@ -1,0 +1,18 @@
+{
+  "id": "parse/fn-type-uses-binding",
+  "spec": [
+    "spec/language/grammar.ebnf",
+    "spec/language/surface.md#6-правила-разбора-которые-грамматика-не-выражает"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "expect": {
+    "phase": "parse",
+    "outcome": "ACCEPTED"
+  }
+}

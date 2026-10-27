@@ -1,0 +1,9 @@
+@id("79kecm")
+module probe
+
+use main
+
+@id("vxpseg")
+fn check(xs: Seq<String>) -> Seq<String> {
+  main.dedupe(xs)
+}

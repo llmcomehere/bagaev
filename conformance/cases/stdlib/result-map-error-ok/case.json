@@ -1,0 +1,31 @@
+{
+  "id": "stdlib/result-map-error-ok",
+  "spec": [
+    "spec/stdlib/acceptance.md",
+    "spec/runtime/machine.md#5-примитивы-и-fault"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "run": {
+    "entry": "main.main"
+  },
+  "expect": {
+    "phase": "run",
+    "effects": [],
+    "outcome": "RETURNED",
+    "value": {
+      "type": "Result<Int64,Int64>",
+      "tag": "Ok",
+      "payload": {
+        "type": "Int64",
+        "value": "8"
+      }
+    }
+  },
+  "note": "SA-019"
+}

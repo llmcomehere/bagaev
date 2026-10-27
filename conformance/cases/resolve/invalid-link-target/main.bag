@@ -1,0 +1,14 @@
+@id("ek8ck2")
+module main
+
+@id("tp53d6")
+entity Thing {
+  purpose "x"
+}
+
+@id("azr3cc")
+fn f() -> Int64
+  implements Thing.rule
+{
+  1
+}

@@ -1,0 +1,16 @@
+@id("4y5cxh")
+module main
+
+@id("yzm20y")
+fn sum_to(n: Int64) -> Int64 {
+  if n == 0 {
+    0
+  } else {
+    n + sum_to(n - 1)
+  }
+}
+
+@id("dkmzf1")
+pub fn main() -> Int64 {
+  sum_to(100)
+}

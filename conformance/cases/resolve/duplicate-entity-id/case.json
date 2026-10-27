@@ -1,0 +1,32 @@
+{
+  "id": "resolve/duplicate-entity-id",
+  "spec": [
+    "spec/language/surface.md#3-объявления-и-идентичность",
+    "spec/language/checking.md#3-имена-и-объявления-фаза-resolve"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "a.bag",
+    "b.bag"
+  ],
+  "expect": {
+    "phase": "check",
+    "outcome": "PRELAUNCH",
+    "diagnostics": [
+      {
+        "code": "DUPLICATE_ENTITY_ID",
+        "file": "b.bag",
+        "span": [
+          24,
+          37
+        ],
+        "data": {
+          "id": "k3m9qa"
+        }
+      }
+    ]
+  }
+}

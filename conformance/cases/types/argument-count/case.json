@@ -1,0 +1,33 @@
+{
+  "id": "types/argument-count",
+  "spec": [
+    "spec/language/surface.md#4-выражения",
+    "spec/language/checking.md#5-тела-фазы-type-и-effect"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "expect": {
+    "phase": "check",
+    "outcome": "PRELAUNCH",
+    "diagnostics": [
+      {
+        "code": "ARGUMENT_COUNT",
+        "file": "main.bag",
+        "span": [
+          108,
+          115
+        ],
+        "data": {
+          "name": "g",
+          "expected": 1,
+          "actual": 2
+        }
+      }
+    ]
+  }
+}

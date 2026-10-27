@@ -1,0 +1,7 @@
+@id("c81ncy")
+module main
+
+@id("cj8k53")
+fn f(x: Strin) -> Int64 {
+  1
+}

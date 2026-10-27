@@ -1,0 +1,91 @@
+@id("nk0001")
+module app
+
+use std.store
+use std.test
+
+@id("nk0002")
+pub type Point = record {
+  @id("nk0003") x: Int64,
+}
+
+@id("nk0004")
+pub entity Counting {
+  purpose "Счёт"
+}
+
+@id("nk0005")
+pub contract Exact about Counting {
+  @id("nk0006") rule positive "итог положителен"
+}
+
+@id("nk0007")
+pub store S {
+  @id("nk0008") table totals: Map<String, Int64>
+  @id("nk0009") table copy: Map<String, Int64> derived_from Counting
+}
+
+@id("nk000a")
+pub event Added {
+  @id("nk000b") name: String,
+}
+
+@id("nk000c")
+fn double(n: Int64) -> Int64 {
+  n * 2
+}
+
+@id("nk000d")
+pub fn origin(n: Int64) -> Point
+  implements Exact.positive
+{
+  Point { x: double(n) }
+}
+
+@id("nk000e")
+pub command add(name: String) -> Result<(), Int64>
+  uses { writes S.totals, emits Added }
+{
+  store.put(S.totals, name, 1);
+  emit Added { name: name };
+  Ok(())
+}
+
+@id("nk000f")
+handler on_added(ev: Added)
+  uses { reads S.totals, writes S.copy }
+{
+  match store.get(S.totals, ev.name) {
+    Some(v) => store.put(S.copy, ev.name, v),
+    None => (),
+  }
+}
+
+@id("nk000g")
+pub query total(name: String) -> Option<Int64>
+  uses { reads S.copy }
+{
+  store.get(S.copy, name)
+}
+
+@id("nk000h")
+fn apply(f: fn(Int64) -> Int64, n: Int64) -> Int64 {
+  f(n)
+}
+
+@id("nk000j")
+pub fn quadruple(n: Int64) -> Int64 {
+  apply(double, double(n))
+}
+
+@id("nk000k")
+pub fn alone(n: Int64) -> Int64 {
+  n + 1
+}
+
+@id("nk000m")
+test origin_positive
+  checks Exact.positive
+{
+  test.expect("x", origin(1).x > 0)
+}

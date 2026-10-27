@@ -1,0 +1,33 @@
+{
+  "id": "effects/undeclared-through-callee",
+  "spec": [
+    "spec/language/effects.md#2-ряд-эффектов",
+    "spec/language/checking.md#5-тела-фазы-type-и-effect"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "expect": {
+    "phase": "check",
+    "outcome": "PRELAUNCH",
+    "diagnostics": [
+      {
+        "code": "UNDECLARED_EFFECT",
+        "file": "main.bag",
+        "span": [
+          454,
+          461
+        ],
+        "data": {
+          "atoms": [
+            "reads main.Blog.articles"
+          ]
+        }
+      }
+    ]
+  }
+}

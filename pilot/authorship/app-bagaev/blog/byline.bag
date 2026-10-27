@@ -1,0 +1,28 @@
+/// Подпись под статьёй.
+@id("9rvy39")
+module blog.byline
+
+use std.store
+use blog.db.{Blog}
+use blog.people.{PersonId, Person}
+use blog.people
+use blog.articles.{Article}
+use blog.articles
+use blog.authorship.{AttributionComplete}
+
+@id("4m1t5q")
+pub fn byline(a: Article, all_people: Map<PersonId, Person>) -> String
+  requires AttributionComplete.complete
+{
+  people.display_name(all_people, a.author)
+}
+
+@id("rs7mvy")
+pub query byline_of(article: String) -> String
+  uses { reads Blog.articles, reads Blog.people }
+{
+  match store.get(Blog.articles, articles.article_id(article)) {
+    Some(a) => byline(a, store.all(Blog.people)),
+    None => "",
+  }
+}

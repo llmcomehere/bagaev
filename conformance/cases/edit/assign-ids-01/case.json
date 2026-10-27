@@ -1,0 +1,84 @@
+{
+  "id": "edit/assign-ids-01",
+  "spec": [
+    "spec/protocol/agent-protocol.md#3-sourceedit-и-идентичность"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "app.bag"
+  ],
+  "run": {
+    "change": {
+      "principal": "agent",
+      "steps": [
+        {
+          "request": {
+            "operation": "change_begin",
+            "idempotency_key": "b1-kkkkkkkkkkkkkkkkkkkk",
+            "arguments": {
+              "intent": "изменение"
+            }
+          }
+        },
+        {
+          "request": {
+            "operation": "apply",
+            "change_id": "$change",
+            "expected_work_revision": 1,
+            "idempotency_key": "a1-kkkkkkkkkkkkkkkkkkkk",
+            "arguments": {
+              "source_edit": {
+                "files": [
+                  {
+                    "path": "app/extra.bag",
+                    "create": "module app.extra\n\nfn one() -> Int64 {\n  1\n}\n"
+                  }
+                ],
+                "assign_ids": true
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "expect": {
+    "phase": "edit",
+    "outcome": "COMPLETED",
+    "value": [
+      {
+        "status": "succeeded",
+        "replayed": false,
+        "work_revision": 1
+      },
+      {
+        "status": "succeeded",
+        "replayed": false,
+        "work_revision": 2,
+        "touched": {
+          "app/extra.bag": [
+            [
+              0,
+              44
+            ]
+          ]
+        },
+        "identity": {
+          "lineage": [],
+          "removed": [],
+          "added": [
+            "<assigned>",
+            "<assigned>"
+          ],
+          "renamed": []
+        },
+        "draft": false,
+        "diagnostics": []
+      }
+    ]
+  },
+  "note": "новый файл без @id: назначаются два ID (модуль и функция) — детерминированно по семени работы"
+}

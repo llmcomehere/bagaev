@@ -1,0 +1,8 @@
+@id("yn0qwg")
+module main
+use std.i64
+
+@id("q0mdp7")
+pub fn main() -> Result<Int64, i64.ParseIntError> {
+  i64.parse_decimal("99999999999999999999x")
+}

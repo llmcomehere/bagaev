@@ -1,0 +1,17 @@
+@id("qzrt4d")
+module main
+
+@id("0wr5f8")
+pub store Catalog {
+  @id("xpd7pn") table discounts: Map<String, Int64>
+}
+
+@id("vkaj3w")
+pub fn final_price(name: String, base: Int64) -> Int64 {
+  base
+}
+
+@id("asce8v")
+pub query quote(name: String, base: Int64) -> Int64 {
+  final_price(name, base)
+}

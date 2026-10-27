@@ -1,0 +1,19 @@
+{
+  "id": "effects/store-from-later-module",
+  "spec": [
+    "spec/language/effects.md#1-атомы",
+    "spec/language/checking.md#3-имена-и-объявления-фаза-resolve"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "app/api.bag",
+    "app/db.bag"
+  ],
+  "expect": {
+    "phase": "check",
+    "outcome": "ACCEPTED"
+  }
+}

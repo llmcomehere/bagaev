@@ -1,0 +1,34 @@
+{
+  "id": "eval/map-callback-order",
+  "spec": [
+    "spec/language/surface.md#4-выражения"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "run": {
+    "entry": "main.main"
+  },
+  "expect": {
+    "phase": "run",
+    "effects": [],
+    "outcome": "RETURNED",
+    "value": {
+      "type": "Seq<String>",
+      "items": [
+        {
+          "type": "String",
+          "value": "a!"
+        },
+        {
+          "type": "String",
+          "value": "b!"
+        }
+      ]
+    }
+  }
+}

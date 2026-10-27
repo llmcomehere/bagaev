@@ -1,0 +1,106 @@
+/// Авторская атрибуция статьи — ответственная сущность опыта «один автор → несколько».
+@id("t9160q")
+module blog.authorship
+
+use std.seq
+use std.map
+use std.option
+use blog.people.{PersonId, Person}
+
+@id("6qfcyw")
+pub entity Authorship {
+  purpose "Авторская атрибуция статьи: непустой упорядоченный список существующих людей без повторов."
+  terms ["автор", "соавтор", "подпись", "byline", "атрибуция"]
+  not_about ["совместное редактирование", "права редактора"]
+}
+
+@id("ffn2hc")
+pub contract AuthorsShape about Authorship {
+  @id("2r6zgr") rule nonempty "хотя бы один автор"
+  @id("zz0ads") rule existing "каждый автор — существующий человек"
+  @id("n5q7zj") rule unique "повторов нет"
+  @id("60n432") rule ordered "порядок задаёт редактор, и он сохраняется"
+}
+
+@id("25s2t2")
+pub contract AttributionComplete about Authorship {
+  @id("6abbe4") rule complete "потребитель передаёт весь состав авторов в исходном порядке"
+}
+
+/// Значения Authors создаёт только make: правила формы проверяются здесь один раз.
+@id("pcc6s6")
+pub type Authors = opaque Seq<PersonId>
+
+@id("cthbaz")
+pub type AuthorsError = enum {
+  @id("p56zcc") Empty,
+  @id("pdzsnz") Duplicate(PersonId),
+  @id("hskyk9") UnknownPerson(PersonId),
+}
+
+@id("nmwhwc")
+pub fn make(ids: Seq<PersonId>, people: Map<PersonId, Person>) -> Result<Authors, AuthorsError>
+  implements AuthorsShape.nonempty, AuthorsShape.existing, AuthorsShape.unique, AuthorsShape.ordered
+{
+  if seq.length(ids) == 0 {
+    return Err(AuthorsError.Empty)
+  }
+  match first_duplicate(ids, 0, Map {}) {
+    Some(p) => return Err(AuthorsError.Duplicate(p)),
+    None => (),
+  }
+  match first_unknown(ids, 0, people) {
+    Some(p) => Err(AuthorsError.UnknownPerson(p)),
+    None => Ok(Authors(ids)),
+  }
+}
+
+/// Миграция ArticleV1: прежний единственный автор становится списком из одного.
+@id("brnans")
+pub fn single(p: PersonId) -> Authors {
+  Authors([p])
+}
+
+@id("n197xj")
+pub fn ids(a: Authors) -> Seq<PersonId> {
+  match a {
+    Authors(xs) => xs,
+  }
+}
+
+@id("aht92k")
+pub fn includes(a: Authors, p: PersonId) -> Bool {
+  includes_from(ids(a), 0, p)
+}
+
+@id("mvnj22")
+fn includes_from(xs: Seq<PersonId>, i: Int64, p: PersonId) -> Bool {
+  match seq.get(xs, i) {
+    None => false,
+    Some(x) => x == p or includes_from(xs, i + 1, p),
+  }
+}
+
+@id("3mckzy")
+fn first_duplicate(xs: Seq<PersonId>, i: Int64, seen: Map<PersonId, Bool>) -> Option<PersonId> {
+  match seq.get(xs, i) {
+    None => None,
+    Some(p) => if option.is_some(map.get(seen, p)) {
+      Some(p)
+    } else {
+      first_duplicate(xs, i + 1, map.put(seen, p, true))
+    },
+  }
+}
+
+@id("ncv3kt")
+fn first_unknown(xs: Seq<PersonId>, i: Int64, people: Map<PersonId, Person>) -> Option<PersonId> {
+  match seq.get(xs, i) {
+    None => None,
+    Some(p) => if option.is_some(map.get(people, p)) {
+      first_unknown(xs, i + 1, people)
+    } else {
+      Some(p)
+    },
+  }
+}

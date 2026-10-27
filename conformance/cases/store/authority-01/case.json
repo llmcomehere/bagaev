@@ -1,0 +1,204 @@
+{
+  "id": "store/authority-01",
+  "spec": [
+    "spec/runtime/host.md#3-команда",
+    "spec/language/effects.md#4-хранилище-события-и-точки-входа"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "app.bag"
+  ],
+  "run": {
+    "steps": [
+      {
+        "op": "command",
+        "entry": "app.bump",
+        "args": [
+          {
+            "type": "String",
+            "value": "a"
+          },
+          {
+            "type": "Int64",
+            "value": "1"
+          }
+        ],
+        "namespace": "app",
+        "key": "key-000000000001",
+        "caller": "bot",
+        "policy": {
+          "callers": {
+            "ui": [
+              "app.bump"
+            ]
+          }
+        }
+      },
+      {
+        "op": "command",
+        "entry": "app.bump",
+        "args": [
+          {
+            "type": "String",
+            "value": "a"
+          },
+          {
+            "type": "Int64",
+            "value": "1"
+          }
+        ],
+        "namespace": "app",
+        "key": "key-000000000001",
+        "caller": "ui",
+        "policy": {
+          "callers": {
+            "ui": [
+              "app.bump"
+            ]
+          }
+        }
+      },
+      {
+        "op": "command",
+        "entry": "app.bump",
+        "args": [
+          {
+            "type": "String",
+            "value": "a"
+          },
+          {
+            "type": "Int64",
+            "value": "1"
+          }
+        ],
+        "namespace": "app",
+        "key": "key-000000000002",
+        "caller": "ui",
+        "policy": {
+          "callers": {
+            "ui": [
+              "*"
+            ]
+          },
+          "revoke": [
+            "emits app.Bumped"
+          ]
+        }
+      },
+      {
+        "op": "status",
+        "namespace": "app",
+        "key": "key-000000000002"
+      },
+      {
+        "op": "query",
+        "entry": "app.get",
+        "args": [
+          {
+            "type": "String",
+            "value": "a"
+          }
+        ]
+      }
+    ]
+  },
+  "expect": {
+    "phase": "store",
+    "outcome": "COMPLETED",
+    "value": [
+      {
+        "outcome": "REFUSED",
+        "code": "ACCESS_DENIED",
+        "data": {
+          "entry": "app.bump",
+          "caller": "bot"
+        }
+      },
+      {
+        "value": {
+          "type": "Result<Int64,app.BumpError>",
+          "tag": "Ok",
+          "payload": {
+            "type": "Int64",
+            "value": "1"
+          }
+        },
+        "outcome": "COMMITTED",
+        "final": true,
+        "replayed": false,
+        "state_version": 1
+      },
+      {
+        "outcome": "ABORTED",
+        "final": false,
+        "termination": "IMPLEMENTATION_STOP",
+        "code": "ACCESS_DENIED",
+        "replayed": false
+      },
+      {
+        "outcome": "ABSENT_AT_READ",
+        "state_version": 1
+      },
+      {
+        "outcome": "RETURNED",
+        "value": {
+          "type": "Option<Int64>",
+          "tag": "Some",
+          "payload": {
+            "type": "Int64",
+            "value": "1"
+          }
+        }
+      }
+    ],
+    "state": {
+      "state_version": 1,
+      "epoch": 0,
+      "tables": {
+        "app.S.counts": [
+          [
+            {
+              "type": "String",
+              "value": "a"
+            },
+            {
+              "type": "Int64",
+              "value": "1"
+            }
+          ]
+        ],
+        "app.S.seen": []
+      },
+      "outbox": [
+        {
+          "seq": 1,
+          "event": "app.Bumped",
+          "payload": {
+            "type": "app.Bumped",
+            "fields": {
+              "name": {
+                "type": "String",
+                "value": "a"
+              },
+              "total": {
+                "type": "Int64",
+                "value": "1"
+              }
+            }
+          }
+        }
+      ],
+      "inbox": [],
+      "pending": [
+        {
+          "handler": "app.remember",
+          "seq": 1
+        }
+      ]
+    }
+  },
+  "note": "политика выбирает точки входа; отозванный атом останавливает Perform, запись до него откатана (HST-08, HST-09)"
+}

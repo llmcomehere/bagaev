@@ -1,0 +1,97 @@
+{
+  "format": "R21-FAILURE-MATRIX-1",
+  "status_blame": {
+    "OK": [
+      "NONE"
+    ],
+    "EDITOR_PARTIAL": [
+      "SOURCE"
+    ],
+    "INVALID": [
+      "SOURCE"
+    ],
+    "INPUT_NOT_READY": [
+      "INPUT"
+    ],
+    "UNSUPPORTED": [
+      "INPUT"
+    ],
+    "LIMIT": [
+      "LIMIT"
+    ],
+    "CANCELED": [
+      "CANCEL"
+    ],
+    "INTERNAL_ERROR": [
+      "TOOL"
+    ],
+    "UNTRUSTED": [
+      "INPUT",
+      "POLICY"
+    ]
+  },
+  "rules": [
+    {
+      "phase": "request_or_required_input",
+      "condition": "malformed metadata/envelope or hash/kind/subject/unknown semantic field; excludes correctly captured source syntax/UTF8 errors",
+      "status": "UNTRUSTED",
+      "blame": "INPUT"
+    },
+    {
+      "phase": "dependency_admission",
+      "condition": "exact required bytes/contract/checker not available",
+      "status": "INPUT_NOT_READY",
+      "blame": "INPUT"
+    },
+    {
+      "phase": "capability_profile",
+      "condition": "known unsupported feature/target/format/operation",
+      "status": "UNSUPPORTED",
+      "blame": "INPUT"
+    },
+    {
+      "phase": "semantic_check",
+      "condition": "hash-correct authored source violates known UTF8/token/syntax/name/type/effect/import rules; source need not be syntactically well formed",
+      "status": "INVALID",
+      "blame": "SOURCE"
+    },
+    {
+      "phase": "provider_output_check",
+      "condition": "new output violates invariant/derivation/roundtrip/declared closure",
+      "status": "INTERNAL_ERROR",
+      "blame": "TOOL"
+    },
+    {
+      "phase": "provider_execution",
+      "condition": "exception/crash/unknown error enum/undeclared read",
+      "status": "INTERNAL_ERROR",
+      "blame": "TOOL"
+    },
+    {
+      "phase": "compile_work_or_capacity",
+      "condition": "declared work/size bound exceeded or checked U64 overflow",
+      "status": "LIMIT",
+      "blame": "LIMIT"
+    },
+    {
+      "phase": "compile_boundary",
+      "condition": "cancel visible before uncommitted boundary",
+      "status": "CANCELED",
+      "blame": "CANCEL"
+    },
+    {
+      "phase": "current_admission",
+      "condition": "current policy refuses provider/checker/read/use",
+      "status": "UNTRUSTED",
+      "blame": "POLICY"
+    }
+  ],
+  "code_context_rules": {
+    "LOWERING_INVALID": "new generated output -> INTERNAL_ERROR/TOOL",
+    "ROUNDTRIP_MISMATCH": "new emitted output -> INTERNAL_ERROR/TOOL",
+    "CHECKER_REJECTED": "new provider output -> INTERNAL_ERROR/TOOL; untrusted supplied artifact -> UNTRUSTED/INPUT; known source invariant -> INVALID/SOURCE",
+    "MISSING_SYMBOL": "source import not supplied -> INVALID/SOURCE; provider lost verified export -> INTERNAL_ERROR/TOOL; required pinned bytes absent -> INPUT_NOT_READY/INPUT",
+    "COST_RULE_MISSING": "required exact rule bytes absent -> INPUT_NOT_READY/INPUT; known unsupported profile -> UNSUPPORTED/INPUT",
+    "REQUIRED_OBLIGATION_UNVERIFIED": "required verification gate not satisfied -> INPUT_NOT_READY/INPUT; disproved known source contract -> INVALID/SOURCE"
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "id": "l1/seq-literal",
+  "spec": [
+    "spec/runtime/machine.md#4-закрытый-каталог-правил"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L1",
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "run": {
+    "entry": "main.main"
+  },
+  "expect": {
+    "phase": "run",
+    "effects": [],
+    "outcome": "RETURNED",
+    "value": {
+      "type": "Seq<Int64>",
+      "items": [
+        {
+          "type": "Int64",
+          "value": "1"
+        },
+        {
+          "type": "Int64",
+          "value": "2"
+        }
+      ]
+    },
+    "steps": 5,
+    "trace_l1": [
+      "SEQ_ENTER",
+      "CONST",
+      "SEQ_NEXT",
+      "CONST",
+      "SEQ_BUILD"
+    ]
+  }
+}

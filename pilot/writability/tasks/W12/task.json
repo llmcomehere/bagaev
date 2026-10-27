@@ -1,0 +1,34 @@
+{
+  "id": "W12",
+  "kind": "write",
+  "title": "Событие и обработчик",
+  "c_target": "shop/api.bag",
+  "t_target": "shop/api.ts",
+  "c_expect": {
+    "decls": {
+      "reprice": {
+        "kind": "command",
+        "params": [
+          "String",
+          "Int64"
+        ],
+        "ret": "Result<(), String>",
+        "actual": [
+          "reads shop.db.Shop.items",
+          "writes shop.db.Shop.items",
+          "emits shop.db.PriceChanged"
+        ]
+      },
+      "on_price_changed": {
+        "kind": "handler",
+        "params": [
+          "shop.db.PriceChanged"
+        ],
+        "ret": "()",
+        "actual": [
+          "writes shop.db.Shop.history"
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,16 @@
+@id("aaaaaa")
+module main
+
+@id("bbbbbb")
+fn loop(i: Int64, acc: Int64) -> Int64 {
+  if i == 0 {
+    acc
+  } else {
+    loop(i - 1, acc + i % 7)
+  }
+}
+
+@id("cccccc")
+pub fn main() -> Int64 {
+  loop(200000, 0)
+}

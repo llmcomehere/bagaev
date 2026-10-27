@@ -1,0 +1,8 @@
+@id("qan38m")
+module main
+
+@id("wmf5n1")
+type Nest<T> = enum {
+  @id("qd9yp7") Leaf(T),
+  @id("n1g2kn") Deeper(Nest<Seq<T>>),
+}

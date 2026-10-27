@@ -1,0 +1,30 @@
+/// Статьи. Редакторы статьи — отдельный список: право правки не следует из авторства.
+@id("7a8vva")
+module blog.articles
+
+use blog.people.{PersonId}
+use blog.actors.{ActorId}
+
+@id("ahzmpd")
+pub type ArticleId = opaque String
+
+@id("gcy5ez")
+pub type Article = record {
+  @id("1hdvey") id: ArticleId,
+  @id("r65yf1") title: String,
+  @id("9kpw0w") author: PersonId,
+  @id("xn6gsr") editors: Seq<ActorId>,
+  @id("p6922j") revision: Int64,
+}
+
+@id("p2y73s")
+pub fn article_id(raw: String) -> ArticleId {
+  ArticleId(raw)
+}
+
+@id("mpyahx")
+pub fn id_text(a: ArticleId) -> String {
+  match a {
+    ArticleId(s) => s,
+  }
+}

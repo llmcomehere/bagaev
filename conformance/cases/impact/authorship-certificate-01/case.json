@@ -1,0 +1,248 @@
+{
+  "id": "impact/authorship-certificate-01",
+  "spec": [
+    "spec/links/08-bagaev-extraction.md#5-влияние"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "blog/acl.bag",
+    "blog/articles.bag",
+    "blog/authorship.bag",
+    "blog/byline.bag",
+    "blog/db.bag",
+    "blog/editor.bag",
+    "blog/events.bag",
+    "blog/export.bag",
+    "blog/image.bag",
+    "blog/indexer.bag",
+    "blog/migration.bag",
+    "blog/people.bag",
+    "blog/search.bag",
+    "blog/tests.bag",
+    "cand/blog/acl.bag",
+    "cand/blog/articles.bag",
+    "cand/blog/authorship.bag",
+    "cand/blog/byline.bag",
+    "cand/blog/db.bag",
+    "cand/blog/editor.bag",
+    "cand/blog/events.bag",
+    "cand/blog/export.bag",
+    "cand/blog/image.bag",
+    "cand/blog/indexer.bag",
+    "cand/blog/migration.bag",
+    "cand/blog/people.bag",
+    "cand/blog/search.bag",
+    "cand/blog/tests.bag"
+  ],
+  "run": {
+    "links": {
+      "op": "impact",
+      "candidate": "cand",
+      "with_tests": true,
+      "watch": [
+        "blog.editor.set_authors"
+      ]
+    }
+  },
+  "expect": {
+    "phase": "impact",
+    "outcome": "IMPACT",
+    "value": {
+      "status": "COMPLETE",
+      "readiness": "ELIGIBLE_IF_ALL_OBLIGATIONS_PASS",
+      "seeds": [
+        [
+          "blog.authorship.make",
+          "changed"
+        ]
+      ],
+      "in_scope": [
+        [
+          "blog.authorship.make",
+          0
+        ],
+        [
+          "blog.db.Blog",
+          3
+        ],
+        [
+          "blog.db.Blog.articles",
+          2
+        ],
+        [
+          "blog.db.Blog.author_index",
+          4
+        ],
+        [
+          "blog.editor.set_authors",
+          1
+        ],
+        [
+          "blog.events.AuthorshipChanged",
+          2
+        ],
+        [
+          "blog.indexer.index_authorship",
+          3
+        ],
+        [
+          "blog.search.articles_by",
+          5
+        ],
+        [
+          "blog.tests.export_keeps_all_authors",
+          1
+        ],
+        [
+          "blog.tests.make_enforces_shape",
+          1
+        ],
+        [
+          "blog.tests.store_copy_is_isolated",
+          1
+        ]
+      ],
+      "unknown": [],
+      "unknown_incomplete": 0,
+      "frontier": [],
+      "obligations": [
+        [
+          "blog.authorship.AttributionComplete.complete",
+          "blog.indexer.index_authorship",
+          "implements",
+          "open",
+          [
+            "base",
+            "candidate"
+          ]
+        ],
+        [
+          "blog.authorship.AttributionComplete.complete",
+          "blog.search.articles_by",
+          "requires",
+          "open",
+          [
+            "base",
+            "candidate"
+          ]
+        ],
+        [
+          "blog.authorship.AttributionComplete.complete",
+          "blog.tests.export_keeps_all_authors",
+          "checks",
+          "open",
+          [
+            "base",
+            "candidate"
+          ]
+        ],
+        [
+          "blog.authorship.AuthorsShape.existing",
+          "blog.authorship.make",
+          "implements",
+          "open",
+          [
+            "base",
+            "candidate"
+          ]
+        ],
+        [
+          "blog.authorship.AuthorsShape.nonempty",
+          "blog.authorship.make",
+          "implements",
+          "open",
+          [
+            "base",
+            "candidate"
+          ]
+        ],
+        [
+          "blog.authorship.AuthorsShape.nonempty",
+          "blog.tests.make_enforces_shape",
+          "checks",
+          "open",
+          [
+            "base",
+            "candidate"
+          ]
+        ],
+        [
+          "blog.authorship.AuthorsShape.ordered",
+          "blog.authorship.make",
+          "implements",
+          "open",
+          [
+            "base",
+            "candidate"
+          ]
+        ],
+        [
+          "blog.authorship.AuthorsShape.unique",
+          "blog.authorship.make",
+          "implements",
+          "open",
+          [
+            "base",
+            "candidate"
+          ]
+        ],
+        [
+          "blog.authorship.AuthorsShape.unique",
+          "blog.tests.make_enforces_shape",
+          "checks",
+          "open",
+          [
+            "base",
+            "candidate"
+          ]
+        ],
+        [
+          "blog.authorship.Authorship",
+          "blog.db.Blog.author_index",
+          "derived_from",
+          "open",
+          [
+            "base",
+            "candidate"
+          ]
+        ]
+      ],
+      "closed": [
+        [
+          "blog.authorship.AuthorsShape.nonempty",
+          "blog.editor.set_authors",
+          "requires",
+          "D83a-interface-contract"
+        ],
+        [
+          "blog.authorship.AuthorsShape.unique",
+          "blog.editor.set_authors",
+          "requires",
+          "D83a-interface-contract"
+        ]
+      ],
+      "tests_to_run": [
+        "blog.tests.export_keeps_all_authors",
+        "blog.tests.make_enforces_shape",
+        "blog.tests.store_copy_is_isolated"
+      ],
+      "gaps": [
+        [
+          "blog.editor.set_authors",
+          "EXTERNAL_CONSUMERS"
+        ],
+        [
+          "blog.search.articles_by",
+          "EXTERNAL_CONSUMERS"
+        ]
+      ],
+      "watch": {
+        "blog.editor.set_authors": "in_scope"
+      }
+    }
+  },
+  "note": "редактор полагается на nonempty и unique, make их реализует, прежний тест формы проходит и исполняет make — D83(a) закрывает эти обязательства; complete у search не закрыт: тест complete не исполняет indexer. Тесты с записью в хранилище рабочие таблицы не связывают (HST-18)"
+}

@@ -1,0 +1,35 @@
+{
+  "id": "l1/core-a02",
+  "spec": [
+    "spec/runtime/machine.md#7-соответствие-core-01",
+    "spec/runtime/machine.md#4-закрытый-каталог-правил"
+  ],
+  "origin": "model:models/r07-core/fixtures/core-machine.json#A02",
+  "levels": [
+    "L1",
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "run": {
+    "entry": "main.main"
+  },
+  "expect": {
+    "phase": "run",
+    "effects": [],
+    "outcome": "RETURNED",
+    "value": {
+      "type": "Bool",
+      "value": true
+    },
+    "steps": 5,
+    "trace_l1": [
+      "PRIM_ENTER",
+      "CONST",
+      "PRIM_NEXT",
+      "CONST",
+      "PRIM_APPLY"
+    ]
+  }
+}

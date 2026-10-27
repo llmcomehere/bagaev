@@ -1,0 +1,7 @@
+@id("gn5y06")
+module main
+
+@id("tp6zf1")
+pub fn main() -> Map<Int64, Int64> {
+  Map { 1 => 2 }
+}

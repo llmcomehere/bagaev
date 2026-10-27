@@ -1,0 +1,21 @@
+{
+  "id": "W10",
+  "kind": "write",
+  "title": "Запрос к хранилищу",
+  "c_target": "shop/api.bag",
+  "t_target": "shop/api.ts",
+  "c_expect": {
+    "decls": {
+      "price": {
+        "kind": "query",
+        "params": [
+          "String"
+        ],
+        "ret": "Option<Int64>",
+        "actual": [
+          "reads shop.db.Shop.items"
+        ]
+      }
+    }
+  }
+}

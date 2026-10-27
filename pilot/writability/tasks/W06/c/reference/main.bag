@@ -1,0 +1,18 @@
+module main
+
+use std.seq
+
+pub fn map_all<T, U, !e>(xs: Seq<T>, f: fn(T) -> U uses e) -> Seq<U>
+  uses e
+{
+  go(xs, f, 0, [])
+}
+
+fn go<T, U, !e>(xs: Seq<T>, f: fn(T) -> U uses e, i: Int64, out: Seq<U>) -> Seq<U>
+  uses e
+{
+  match seq.get(xs, i) {
+    None => out,
+    Some(x) => go(xs, f, i + 1, seq.append(out, f(x))),
+  }
+}

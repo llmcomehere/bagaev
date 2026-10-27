@@ -1,0 +1,8 @@
+@id("v5aarp")
+module main
+use std.map
+
+@id("fdq15s")
+pub fn main() -> Bool {
+  map.remove(Map { 1 => "a", 3 => "c" }, 2) == Map { 1 => "a", 3 => "c" }
+}

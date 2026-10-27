@@ -1,0 +1,8 @@
+@id("x55dee")
+module main
+use std.seq
+
+@id("0cc8q4")
+pub fn main() -> Int64 {
+  seq.fold([1, 2], 10, fn(acc, x) => 10 * acc + x)
+}

@@ -1,0 +1,9 @@
+@id("p2v2ga")
+module probe
+
+use main
+
+@id("07bsn9")
+fn check(xs: Seq<Int64>) -> Int64 {
+  main.sum(xs)
+}

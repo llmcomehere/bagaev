@@ -1,0 +1,31 @@
+module main
+
+use std.seq
+
+pub type IntList = enum {
+  Nil,
+  Cons(IntNode),
+}
+
+pub type IntNode = record {
+  head: Int64,
+  tail: IntList,
+}
+
+pub fn list_sum(l: IntList) -> Int64 {
+  match l {
+    IntList.Nil => 0,
+    IntList.Cons(n) => n.head + list_sum(n.tail),
+  }
+}
+
+pub fn from_seq(xs: Seq<Int64>) -> IntList {
+  build(xs, seq.length(xs) - 1, IntList.Nil)
+}
+
+fn build(xs: Seq<Int64>, i: Int64, acc: IntList) -> IntList {
+  match seq.get(xs, i) {
+    None => acc,
+    Some(x) => build(xs, i - 1, IntList.Cons(IntNode { head: x, tail: acc })),
+  }
+}

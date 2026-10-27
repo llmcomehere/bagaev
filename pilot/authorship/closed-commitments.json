@@ -1,0 +1,18 @@
+{
+  "format": "bagaev-pilot-commitments/1",
+  "status": "DRAFT",
+  "algorithm": "sha256(domain || uint64be(nonce_bytes) || nonce || uint64be(payload_bytes) || payload)",
+  "domain": "bagaev-pilot-hidden-task/1\u0000",
+  "packages": [
+    {
+      "id": "closed-c10-v1",
+      "sha256": "6d04501b9f56e6d12a58a09adee972490ef5ce6e99c9921f62c9b77e703438b5",
+      "task_ids": ["c10-closed-01", "c10-closed-02", "c10-closed-03"],
+      "task_count": 3,
+      "cases": ["C10"],
+      "authored_independently": true,
+      "created_on": "2026-10-27",
+      "pilot_status": "NOT_RUN"
+    }
+  ]
+}

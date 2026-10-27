@@ -1,0 +1,10 @@
+@id("9nfkxw")
+module main
+use std.seq
+
+@id("zv5t2h")
+pub fn main() -> Int64 {
+  let a = [10];
+  let b = seq.append(a, 20);
+  seq.length(a) * 10 + seq.length(b)
+}

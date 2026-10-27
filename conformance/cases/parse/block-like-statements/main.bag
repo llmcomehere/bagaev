@@ -1,0 +1,6 @@
+module m
+fn f(x: Bool, o: Option<Int64>) -> () {
+  if x { return }
+  match o { Some(_) => (), None => () }
+  { let y = 1; }
+}

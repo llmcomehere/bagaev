@@ -1,0 +1,31 @@
+{
+  "id": "stdlib/bytes-slice",
+  "spec": [
+    "spec/stdlib/acceptance.md",
+    "spec/runtime/machine.md#5-примитивы-и-fault"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "run": {
+    "entry": "main.main"
+  },
+  "expect": {
+    "phase": "run",
+    "effects": [],
+    "outcome": "RETURNED",
+    "value": {
+      "type": "Result<Bytes,std.data.BoundsError>",
+      "tag": "Ok",
+      "payload": {
+        "type": "Bytes",
+        "hex": "f0"
+      }
+    }
+  },
+  "note": "SA-041"
+}

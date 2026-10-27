@@ -1,0 +1,115 @@
+{
+  "id": "edit/range-invalid-01",
+  "spec": [
+    "spec/protocol/agent-protocol.md#3-sourceedit-и-идентичность"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "app.bag"
+  ],
+  "run": {
+    "change": {
+      "principal": "agent",
+      "steps": [
+        {
+          "request": {
+            "operation": "change_begin",
+            "idempotency_key": "b1-kkkkkkkkkkkkkkkkkkkk",
+            "arguments": {
+              "intent": "изменение"
+            }
+          }
+        },
+        {
+          "request": {
+            "operation": "apply",
+            "change_id": "$change",
+            "expected_work_revision": 1,
+            "idempotency_key": "a1-kkkkkkkkkkkkkkkkkkkk",
+            "arguments": {
+              "source_edit": {
+                "files": [
+                  {
+                    "path": "app.bag",
+                    "base_sha256": "$sha:app.bag",
+                    "edits": [
+                      {
+                        "start": 88,
+                        "end": 89,
+                        "text": "x"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "request": {
+            "operation": "apply",
+            "change_id": "$change",
+            "expected_work_revision": 1,
+            "idempotency_key": "a2-kkkkkkkkkkkkkkkkkkkk",
+            "arguments": {
+              "source_edit": {
+                "files": [
+                  {
+                    "path": "app.bag",
+                    "base_sha256": "$sha:app.bag",
+                    "edits": [
+                      {
+                        "start": 683,
+                        "end": 684,
+                        "text": "x"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "expect": {
+    "phase": "edit",
+    "outcome": "COMPLETED",
+    "value": [
+      {
+        "status": "succeeded",
+        "replayed": false,
+        "work_revision": 1
+      },
+      {
+        "status": "blocked",
+        "replayed": false,
+        "code": "RANGE_INVALID",
+        "data": {
+          "path": "app.bag",
+          "edit": 0,
+          "start": 88,
+          "end": 89,
+          "size": 683
+        }
+      },
+      {
+        "status": "blocked",
+        "replayed": false,
+        "code": "RANGE_INVALID",
+        "data": {
+          "path": "app.bag",
+          "edit": 0,
+          "start": 683,
+          "end": 684,
+          "size": 683
+        }
+      }
+    ]
+  },
+  "note": "середина двухбайтового «П» и выход за конец файла"
+}

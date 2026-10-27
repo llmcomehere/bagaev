@@ -1,0 +1,25 @@
+@id("prmexd")
+module main
+
+@id("9yqex7")
+type Article = record {
+  @id("5hsz1a") title: String,
+}
+
+@id("3rzv7q")
+store Blog {
+  @id("5rmck0") table articles: Map<Int64, Article>
+}
+
+@id("32nbgg")
+event Renamed {
+  @id("81hn5c") id: Int64,
+  @id("dbqhp5") title: String,
+}
+
+@id("1gmxvs")
+fn f() -> ()
+  uses { reads Blog.comments }
+{
+  ()
+}

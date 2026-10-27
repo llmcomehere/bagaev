@@ -1,0 +1,10 @@
+@id("k3nez8")
+module main
+
+@id("tnjqhz")
+fn early(x: Int64) -> Int64 {
+  if x < 0 {
+    return 0
+  }
+  return x;
+}

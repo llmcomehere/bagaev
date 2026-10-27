@@ -1,0 +1,32 @@
+{
+  "id": "resolve/pub-not-allowed",
+  "spec": [
+    "spec/language/surface.md#2-файл-модуль-имена",
+    "spec/language/surface.md#3-объявления-и-идентичность",
+    "spec/language/checking.md#3-имена-и-объявления-фаза-resolve"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "expect": {
+    "phase": "check",
+    "outcome": "PRELAUNCH",
+    "diagnostics": [
+      {
+        "code": "PUB_NOT_ALLOWED",
+        "file": "main.bag",
+        "span": [
+          41,
+          44
+        ],
+        "data": {
+          "kind": "test"
+        }
+      }
+    ]
+  }
+}

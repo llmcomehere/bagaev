@@ -1,0 +1,147 @@
+{
+  "id": "edit/rename-keeps-id-01",
+  "spec": [
+    "spec/protocol/agent-protocol.md#3-sourceedit-и-идентичность"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "app.bag"
+  ],
+  "run": {
+    "change": {
+      "principal": "agent",
+      "steps": [
+        {
+          "request": {
+            "operation": "change_begin",
+            "idempotency_key": "b1-kkkkkkkkkkkkkkkkkkkk",
+            "arguments": {
+              "intent": "изменение"
+            }
+          }
+        },
+        {
+          "request": {
+            "operation": "apply",
+            "change_id": "$change",
+            "expected_work_revision": 1,
+            "idempotency_key": "a1-kkkkkkkkkkkkkkkkkkkk",
+            "arguments": {
+              "source_edit": {
+                "files": [
+                  {
+                    "path": "app.bag",
+                    "base_sha256": "$sha:app.bag",
+                    "edits": [
+                      {
+                        "old_text": "fn helper(",
+                        "text": "fn helper_two("
+                      }
+                    ]
+                  }
+                ],
+                "identity_ops": [
+                  {
+                    "op": "rename",
+                    "id": "cq0005"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "request": {
+            "operation": "apply",
+            "change_id": "$change",
+            "expected_work_revision": 1,
+            "idempotency_key": "a2-kkkkkkkkkkkkkkkkkkkk",
+            "arguments": {
+              "source_edit": {
+                "files": [
+                  {
+                    "path": "app.bag",
+                    "base_sha256": "$sha:app.bag",
+                    "edits": [
+                      {
+                        "old_text": "fn helper(",
+                        "text": "fn helper_two("
+                      }
+                    ]
+                  }
+                ],
+                "identity_ops": [
+                  {
+                    "op": "rename",
+                    "id": "cq0007"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "expect": {
+    "phase": "edit",
+    "outcome": "COMPLETED",
+    "value": [
+      {
+        "status": "succeeded",
+        "replayed": false,
+        "work_revision": 1
+      },
+      {
+        "status": "blocked",
+        "replayed": false,
+        "code": "IDENTITY_OP_MISMATCH",
+        "data": {
+          "op": 0
+        }
+      },
+      {
+        "status": "succeeded",
+        "replayed": false,
+        "work_revision": 2,
+        "touched": {
+          "app.bag": [
+            [
+              527,
+              541
+            ]
+          ]
+        },
+        "identity": {
+          "lineage": [
+            {
+              "op": "rename",
+              "predecessors": [
+                "cq0007"
+              ],
+              "successors": [
+                "cq0007"
+              ],
+              "reason": null,
+              "names": [
+                "app.helper",
+                "app.helper_two"
+              ]
+            }
+          ],
+          "removed": [],
+          "added": [],
+          "renamed": [
+            "cq0007"
+          ]
+        },
+        "draft": false,
+        "diagnostics": []
+      }
+    ]
+  },
+  "note": "переименование сохраняет ID; объявленный rename сущности, чьё имя не менялось, — несоответствие"
+}

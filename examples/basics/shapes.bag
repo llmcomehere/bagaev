@@ -1,0 +1,45 @@
+/// Записи, перечисления и точный match без ветви «всё остальное».
+@id("w0h85p")
+module shapes
+
+@id("ccbp77")
+pub type Point = record {
+  @id("ms9hb2") x: Int64,
+  @id("egvk7e") y: Int64,
+}
+
+@id("yaxbd2")
+pub type Shape = enum {
+  @id("enr0p7") Dot(Point),
+  @id("9v46eh") Square(Int64),
+  @id("523rrm") Empty,
+}
+
+@id("5wdk77")
+pub fn area(s: Shape) -> Int64 {
+  match s {
+    Shape.Dot(_) => 0,
+    Shape.Square(side) => side * side,
+    Shape.Empty => 0,
+  }
+}
+
+@id("8qv2rs")
+pub fn moved(p: Point, dx: Int64) -> Point {
+  Point { ..p, x: p.x + dx }
+}
+
+@id("d9zsvp")
+pub fn is_origin(p: Point) -> Bool {
+  p.x == 0 and p.y == 0
+}
+
+@id("yb061a")
+pub fn main() -> Int64 {
+  let p = moved(Point { x: 1, y: 2 }, 3);
+  if (p == Point { x: 4, y: 2 }) {
+    area(Shape.Square(p.x))
+  } else {
+    -1
+  }
+}

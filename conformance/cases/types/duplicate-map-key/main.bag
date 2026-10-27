@@ -1,0 +1,7 @@
+@id("ztyrns")
+module main
+
+@id("v4f2n1")
+fn f() -> Map<Int64, String> {
+  Map { 1 => "a", 2 => "b", 1 => "c" }
+}

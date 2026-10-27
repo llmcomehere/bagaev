@@ -1,0 +1,7 @@
+@id("qj5msh")
+module main
+
+@id("t88wcd")
+pub fn main() -> () {
+  1;
+}

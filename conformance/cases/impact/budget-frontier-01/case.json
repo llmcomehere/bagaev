@@ -1,0 +1,112 @@
+{
+  "id": "impact/budget-frontier-01",
+  "spec": [
+    "spec/links/08-bagaev-extraction.md#5-влияние",
+    "spec/kernel/outcomes.md#4-статусы-анализа-и-знаний"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "app.bag",
+    "cand/app.bag"
+  ],
+  "run": {
+    "links": {
+      "op": "impact",
+      "candidate": "cand",
+      "budget": 2
+    }
+  },
+  "expect": {
+    "phase": "impact",
+    "outcome": "IMPACT",
+    "value": {
+      "status": "INCOMPLETE",
+      "readiness": "BLOCKED",
+      "seeds": [
+        [
+          "app.double",
+          "changed"
+        ]
+      ],
+      "in_scope": [
+        [
+          "app.double",
+          0
+        ],
+        [
+          "app.origin",
+          1
+        ]
+      ],
+      "unknown": [],
+      "unknown_incomplete": 15,
+      "frontier": [
+        "app.add",
+        "app.origin_positive",
+        "app.quadruple"
+      ],
+      "obligations": [
+        [
+          "app.Counting",
+          "app.Exact",
+          "about",
+          "unknown",
+          [
+            "base",
+            "candidate"
+          ]
+        ],
+        [
+          "app.Counting",
+          "app.S.copy",
+          "derived_from",
+          "unknown",
+          [
+            "base",
+            "candidate"
+          ]
+        ],
+        [
+          "app.Exact.positive",
+          "app.add",
+          "requires",
+          "unknown",
+          [
+            "base",
+            "candidate"
+          ]
+        ],
+        [
+          "app.Exact.positive",
+          "app.origin",
+          "implements",
+          "open",
+          [
+            "base",
+            "candidate"
+          ]
+        ],
+        [
+          "app.Exact.positive",
+          "app.origin_positive",
+          "checks",
+          "unknown",
+          [
+            "base",
+            "candidate"
+          ]
+        ]
+      ],
+      "closed": [],
+      "tests_to_run": [
+        "app.origin_positive"
+      ],
+      "gaps": [],
+      "watch": {}
+    }
+  },
+  "note": "два шага: double и origin; достигнутые, но не обработанные — frontier; остальные 15 — unknown (неполный анализ)"
+}

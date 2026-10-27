@@ -1,0 +1,226 @@
+{
+  "id": "accept/unknown-budget-01",
+  "spec": [
+    "spec/protocol/agent-protocol.md#6-workstate"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "app.bag"
+  ],
+  "run": {
+    "change": {
+      "principal": "agent",
+      "steps": [
+        {
+          "request": {
+            "operation": "change_begin",
+            "idempotency_key": "b1-kkkkkkkkkkkkkkkkkkkk",
+            "arguments": {
+              "intent": "изменение"
+            }
+          }
+        },
+        {
+          "request": {
+            "operation": "apply",
+            "change_id": "$change",
+            "expected_work_revision": 1,
+            "idempotency_key": "a1-kkkkkkkkkkkkkkkkkkkk",
+            "arguments": {
+              "source_edit": {
+                "files": [
+                  {
+                    "path": "app.bag",
+                    "base_sha256": "$sha:app.bag",
+                    "edits": [
+                      {
+                        "old_text": "\"Привет, \" ++ name",
+                        "text": "\"Здравствуй, \" ++ name"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "request": {
+            "operation": "verify",
+            "change_id": "$change",
+            "expected_work_revision": 2,
+            "idempotency_key": "v1-kkkkkkkkkkkkkkkkkkkk",
+            "arguments": {}
+          }
+        },
+        {
+          "request": {
+            "operation": "work_resume",
+            "change_id": "$change",
+            "arguments": {
+              "analysis_budget": 1
+            }
+          }
+        },
+        {
+          "request": {
+            "operation": "work_resume",
+            "change_id": "$change",
+            "arguments": {
+              "budget": 30
+            }
+          }
+        },
+        {
+          "request": {
+            "operation": "accept",
+            "change_id": "$change",
+            "expected_work_revision": 3,
+            "idempotency_key": "c1-kkkkkkkkkkkkkkkkkkkk",
+            "arguments": {}
+          }
+        }
+      ]
+    }
+  },
+  "expect": {
+    "phase": "accept",
+    "outcome": "COMPLETED",
+    "value": [
+      {
+        "status": "succeeded",
+        "replayed": false,
+        "work_revision": 1
+      },
+      {
+        "status": "succeeded",
+        "replayed": false,
+        "work_revision": 2,
+        "touched": {
+          "app.bag": [
+            [
+              408,
+              440
+            ]
+          ]
+        },
+        "identity": {
+          "lineage": [],
+          "removed": [],
+          "added": [],
+          "renamed": []
+        },
+        "draft": false,
+        "diagnostics": []
+      },
+      {
+        "status": "succeeded",
+        "replayed": false,
+        "work_revision": 3,
+        "evidence": [
+          [
+            "app.greet_nonempty",
+            "PASS"
+          ]
+        ]
+      },
+      {
+        "status": "succeeded",
+        "replayed": false,
+        "work_revision": 3,
+        "needs_rebase": false,
+        "ready_for_acceptance": false,
+        "contract_revision": 1,
+        "status_": "open",
+        "blockers": [
+          "ANALYSIS_INCOMPLETE",
+          "OBLIGATION_UNKNOWN",
+          "OBLIGATION_UNKNOWN"
+        ],
+        "obligations": [
+          [
+            "app.Greeting",
+            "app.Polite",
+            "about",
+            "unknown",
+            "analysis-incomplete"
+          ],
+          [
+            "app.Polite.nonempty",
+            "app.greet",
+            "implements",
+            "supported",
+            "tests"
+          ],
+          [
+            "app.Polite.nonempty",
+            "app.greet_nonempty",
+            "checks",
+            "unknown",
+            "analysis-incomplete"
+          ]
+        ],
+        "clauses": []
+      },
+      {
+        "status": "succeeded",
+        "replayed": false,
+        "work_revision": 3,
+        "needs_rebase": false,
+        "ready_for_acceptance": true,
+        "contract_revision": 1,
+        "status_": "open",
+        "blockers": [],
+        "obligations": [
+          [
+            "app.Polite.nonempty",
+            "app.greet",
+            "implements",
+            "supported",
+            "tests"
+          ],
+          [
+            "app.Polite.nonempty",
+            "app.greet_nonempty",
+            "checks",
+            "supported",
+            "tests"
+          ]
+        ],
+        "clauses": []
+      },
+      {
+        "status": "succeeded",
+        "replayed": false,
+        "work_revision": 4,
+        "obligations": [
+          [
+            "checks",
+            "cq0004",
+            "cq0008",
+            "supported",
+            "tests"
+          ],
+          [
+            "implements",
+            "cq0004",
+            "cq0005",
+            "supported",
+            "tests"
+          ]
+        ],
+        "replaced_clauses": [],
+        "replaced_tests": [],
+        "coverage_gaps": [],
+        "lineage": []
+      }
+    ],
+    "state": {
+      "head_revision": 2
+    }
+  },
+  "note": "бюджет анализа 1: неполный анализ и unknown обязательства блокируют (T10-C01); малый бюджет пакета контекста обязательств не сокращает (T11-C04); приёмка всегда пересчитывает полный анализ"
+}

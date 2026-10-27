@@ -1,0 +1,40 @@
+@id("mg0001")
+module app
+
+use std.store
+
+@id("mg0002")
+pub type Bad = enum {
+  @id("mg0003") Never,
+}
+
+@id("mg0004")
+pub store S {
+  @id("mg0005") table t: Map<String, Int64>
+}
+
+@id("mg0006")
+pub query get(k: String) -> Option<Int64>
+  uses { reads S.t }
+{
+  store.get(S.t, k)
+}
+
+@id("mg0007")
+pub query peek(k: String) -> Bool
+  uses { reads S.t }
+{
+  k == ""
+}
+
+@id("mg0008")
+migration conv on S.t(old: Int64) -> Result<Int64, Bad> {
+  Ok(old + 1)
+}
+
+@id("mg0009")
+pub fn renamed(n: Int64) -> Int64
+  supersedes "zz0001"
+{
+  n
+}

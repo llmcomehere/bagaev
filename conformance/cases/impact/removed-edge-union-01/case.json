@@ -1,0 +1,112 @@
+{
+  "id": "impact/removed-edge-union-01",
+  "spec": [
+    "spec/links/08-bagaev-extraction.md#5-влияние"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "app.bag",
+    "cand/app.bag"
+  ],
+  "run": {
+    "links": {
+      "op": "impact",
+      "candidate": "cand",
+      "watch": [
+        "app.origin"
+      ]
+    }
+  },
+  "expect": {
+    "phase": "impact",
+    "outcome": "IMPACT",
+    "value": {
+      "status": "COMPLETE",
+      "readiness": "ELIGIBLE_IF_ALL_OBLIGATIONS_PASS",
+      "seeds": [
+        [
+          "app.add",
+          "changed"
+        ]
+      ],
+      "in_scope": [
+        [
+          "app.Added",
+          1
+        ],
+        [
+          "app.S",
+          2
+        ],
+        [
+          "app.S.copy",
+          3
+        ],
+        [
+          "app.S.totals",
+          1
+        ],
+        [
+          "app.add",
+          0
+        ],
+        [
+          "app.on_added",
+          2
+        ],
+        [
+          "app.total",
+          4
+        ]
+      ],
+      "unknown": [],
+      "unknown_incomplete": 0,
+      "frontier": [],
+      "obligations": [
+        [
+          "app.Counting",
+          "app.S.copy",
+          "derived_from",
+          "open",
+          [
+            "base",
+            "candidate"
+          ]
+        ],
+        [
+          "app.Exact.positive",
+          "app.add",
+          "requires",
+          "open",
+          [
+            "base"
+          ]
+        ]
+      ],
+      "closed": [],
+      "tests_to_run": [
+        "app.origin_positive"
+      ],
+      "gaps": [
+        [
+          "app.add",
+          "EXTERNAL_CONSUMERS"
+        ],
+        [
+          "app.total",
+          "EXTERNAL_CONSUMERS"
+        ]
+      ],
+      "watch": {
+        "app.origin": [
+          "excluded_with_basis",
+          "D83b-no-dependency-path"
+        ]
+      }
+    }
+  },
+  "note": "requires снят в кандидате, но ребро базы держит обязательство открытым (объединение графов, D12)"
+}

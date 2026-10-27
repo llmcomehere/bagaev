@@ -1,0 +1,8 @@
+@id("kwhhvr")
+module main
+use std.value
+
+@id("vx9xjy")
+fn f(g: fn() -> ()) -> Bool {
+  value.equal(g, g)
+}

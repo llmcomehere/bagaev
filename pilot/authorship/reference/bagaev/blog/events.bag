@@ -1,0 +1,14 @@
+/// Событие изменения авторства несёт полный снимок атрибуции.
+@id("fcw044")
+module blog.events
+
+use blog.people.{PersonId}
+use blog.articles.{ArticleId}
+
+@id("2756m8")
+pub event AuthorshipChanged {
+  @id("jc5g6m") event_id: String,
+  @id("e2hgpt") article: ArticleId,
+  @id("6t6rex") authors: Seq<PersonId>,
+  @id("3nh4g2") revision: Int64,
+}

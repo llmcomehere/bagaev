@@ -1,0 +1,12 @@
+@id("n1820v")
+module main
+
+@id("s9b0zr")
+type Box<T: Eq> = record {
+  @id("8ybx38") v: T,
+}
+
+@id("j5qbjw")
+fn f(b: Box<fn() -> ()>) -> () {
+  ()
+}

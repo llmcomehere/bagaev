@@ -1,0 +1,53 @@
+{
+  "id": "l1/core-c09",
+  "spec": [
+    "spec/runtime/machine.md#7-соответствие-core-01",
+    "spec/runtime/machine.md#4-закрытый-каталог-правил"
+  ],
+  "origin": "model:models/r07-core/fixtures/core-machine.json#C09",
+  "levels": [
+    "L1",
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "run": {
+    "entry": "main.main"
+  },
+  "expect": {
+    "phase": "run",
+    "effects": [],
+    "outcome": "RETURNED",
+    "value": {
+      "type": "Int64",
+      "value": "7"
+    },
+    "steps": 23,
+    "trace_l1": [
+      "LET_ENTER",
+      "LAMBDA",
+      "LET_BIND",
+      "LET_ENTER",
+      "CALL_ENTER",
+      "VAR",
+      "CALL_ARGS",
+      "CONST",
+      "CALL_BODY",
+      "LAMBDA",
+      "LET_BIND",
+      "LET_ENTER",
+      "CALL_ENTER",
+      "VAR",
+      "CALL_ARGS",
+      "CONST",
+      "CALL_BODY",
+      "LAMBDA",
+      "LET_BIND",
+      "CALL_ENTER",
+      "VAR",
+      "CALL_BODY",
+      "VAR"
+    ]
+  }
+}

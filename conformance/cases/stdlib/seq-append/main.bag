@@ -1,0 +1,8 @@
+@id("mtm78r")
+module main
+use std.seq
+
+@id("x3ske5")
+pub fn main() -> Seq<Int64> {
+  seq.append([10], 20)
+}

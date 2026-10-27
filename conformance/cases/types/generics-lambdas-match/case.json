@@ -1,0 +1,20 @@
+{
+  "id": "types/generics-lambdas-match",
+  "spec": [
+    "spec/language/surface.md#4-выражения",
+    "spec/language/types.md#5-специализация-и-generalization",
+    "spec/language/types.md#7-синтез-и-проверка-выражений",
+    "spec/language/checking.md#5-тела-фазы-type-и-effect"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "expect": {
+    "phase": "check",
+    "outcome": "ACCEPTED"
+  }
+}

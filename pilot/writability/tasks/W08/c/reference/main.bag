@@ -1,0 +1,26 @@
+module main
+
+use std.string
+
+pub type Email = opaque String
+
+pub fn make_email(s: String) -> Option<Email> {
+  if has_at(s, 0) {
+    Some(Email(s))
+  } else {
+    None
+  }
+}
+
+pub fn email_text(e: Email) -> String {
+  match e {
+    Email(s) => s,
+  }
+}
+
+fn has_at(s: String, i: Int64) -> Bool {
+  match string.scalar_get(s, i) {
+    None => false,
+    Some(c) => c == 64 or has_at(s, i + 1),
+  }
+}

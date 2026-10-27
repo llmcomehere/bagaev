@@ -1,0 +1,23 @@
+@id("mtrcar")
+module main
+
+@id("b93e2h")
+type V1 = record {
+  @id("ze96cc") n: Int64,
+}
+
+@id("z682e1")
+type V2 = record {
+  @id("jk93fy") n: Int64,
+  @id("c9rph8") m: Int64,
+}
+
+@id("s22x5k")
+store S {
+  @id("rqycn9") table t: Map<Int64, V2>
+}
+
+@id("vk02kp")
+migration up on S.t(old: V1) -> Result<V1, String> {
+  Ok(old)
+}

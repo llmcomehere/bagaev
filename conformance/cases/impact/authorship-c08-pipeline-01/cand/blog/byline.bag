@@ -1,0 +1,29 @@
+/// Подпись под статьёй: все авторы в заданном порядке (O03).
+@id("cwtjv9")
+module blog.byline
+
+use std.seq
+use blog.people.{PersonId, Person}
+use blog.people
+use blog.articles.{Article}
+use blog.authorship
+use blog.authorship.{AttributionComplete}
+
+@id("7y89wt")
+pub fn byline(a: Article, all_people: Map<PersonId, Person>) -> String
+  requires AttributionComplete.complete
+{
+  join(seq.map(authorship.ids(a.authors), fn(p) => people.display_name(all_people, p)), " / ", 0, "")
+}
+
+@id("src12h")
+fn join(parts: Seq<String>, sep: String, i: Int64, acc: String) -> String {
+  match seq.get(parts, i) {
+    None => acc,
+    Some(s) => join(parts, sep, i + 1, if i == 0 {
+      s
+    } else {
+      acc ++ sep ++ s
+    }),
+  }
+}

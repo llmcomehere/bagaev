@@ -1,0 +1,22 @@
+{
+  "id": "outcomes/min-div-minus-one",
+  "spec": [
+    "spec/runtime/machine.md#5-примитивы-и-fault"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "run": {
+    "entry": "main.main"
+  },
+  "expect": {
+    "phase": "run",
+    "effects": [],
+    "outcome": "FAULT",
+    "code": "ARITHMETIC_OVERFLOW"
+  }
+}

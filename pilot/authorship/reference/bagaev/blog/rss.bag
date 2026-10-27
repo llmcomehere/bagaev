@@ -1,0 +1,27 @@
+/// Лента RSS для агрегаторов: заголовок и автор каждой статьи.
+@id("2wwh2n")
+module blog.rss
+
+use std.store
+use std.seq
+use std.map
+use blog.db.{Blog}
+use blog.people.{PersonId, Person}
+use blog.people
+use blog.articles.{Article}
+use blog.articles
+use blog.authorship
+
+@id("xsj29q")
+pub query feed() -> String
+  uses { reads Blog.articles, reads Blog.people }
+{
+  let all = store.all(Blog.people);
+  seq.fold(map.entries(store.all(Blog.articles)), "", fn(acc, e) => acc ++ item(e.value, all))
+}
+
+@id("erk48m")
+fn item(a: Article, all: Map<PersonId, Person>) -> String {
+  "<item><guid>" ++ articles.id_text(a.id) ++ "</guid><title>" ++ a.title ++ "</title><author>"
+    ++ authorship.names(a.authors, all, " · ") ++ "</author></item>\n"
+}

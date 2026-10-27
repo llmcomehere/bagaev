@@ -1,0 +1,16 @@
+@id("180yks")
+module main
+
+use std.store
+
+@id("2r69e3")
+store S {
+  @id("5twjn4") table t: Map<Int64, Int64>
+}
+
+@id("0z7evs")
+pub fn main() -> Option<Int64>
+  uses { reads S.t }
+{
+  store.get(S.t, 1)
+}

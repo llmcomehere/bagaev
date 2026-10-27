@@ -1,0 +1,18 @@
+/// Письма об изменении атрибуции статьи.
+@id("nha9d8")
+module blog.notify
+
+use std.store
+use blog.db.{Blog, Notification}
+use blog.people
+use blog.events.{AuthorshipChanged}
+
+@id("z2941w")
+handler notify_edit(ev: AuthorshipChanged)
+  uses { reads Blog.people, writes Blog.notifications }
+{
+  match people.email_of(store.all(Blog.people), ev.author) {
+    Some(to) => store.put(Blog.notifications, ev.event_id ++ ":" ++ people.id_text(ev.author), Notification { to: to, article: ev.article, subject: "Атрибуция статьи изменена" }),
+    None => (),
+  }
+}

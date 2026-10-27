@@ -1,0 +1,7 @@
+@id("cq8zph")
+module main
+
+@id("mcnqsv")
+fn f(m: Map<fn() -> (), Int64>) -> () {
+  ()
+}

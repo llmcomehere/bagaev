@@ -1,0 +1,2 @@
+module m
+fn f() -> String { "\u{1234567}" }

@@ -1,0 +1,8 @@
+@id("z4gcpy")
+module main
+use std.i64
+
+@id("zz2gfs")
+pub fn main() -> Result<Int64, i64.ArithmeticError> {
+  i64.rem(1, 0)
+}

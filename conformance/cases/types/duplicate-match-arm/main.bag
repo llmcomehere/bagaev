@@ -1,0 +1,11 @@
+@id("ds4s46")
+module main
+
+@id("wb9dc8")
+fn f(o: Option<Int64>) -> Int64 {
+  match o {
+    Some(v) => v,
+    None => 0,
+    Some(w) => w,
+  }
+}

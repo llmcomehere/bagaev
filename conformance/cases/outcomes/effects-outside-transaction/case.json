@@ -1,0 +1,26 @@
+{
+  "id": "outcomes/effects-outside-transaction",
+  "spec": [
+    "spec/runtime/machine.md#6-запуск"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "run": {
+    "entry": "main.main"
+  },
+  "expect": {
+    "phase": "run",
+    "effects": [],
+    "outcome": "PRELAUNCH",
+    "diagnostics": [
+      {
+        "code": "HOST_EFFECT_OUTSIDE_TRANSACTION"
+      }
+    ]
+  }
+}

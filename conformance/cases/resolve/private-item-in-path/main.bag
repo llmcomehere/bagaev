@@ -1,0 +1,8 @@
+@id("11sx8y")
+module main
+use lib
+
+@id("6z3s4p")
+fn f() -> Int64 {
+  lib.hidden()
+}

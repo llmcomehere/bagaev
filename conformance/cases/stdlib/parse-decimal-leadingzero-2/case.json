@@ -1,0 +1,44 @@
+{
+  "id": "stdlib/parse-decimal-leadingzero-2",
+  "spec": [
+    "spec/runtime/machine.md#5-примитивы-и-fault",
+    "spec/stdlib/types.md"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "run": {
+    "entry": "main.main"
+  },
+  "expect": {
+    "phase": "run",
+    "effects": [],
+    "outcome": "RETURNED",
+    "value": {
+      "type": "Result<Int64,std.i64.ParseIntError>",
+      "tag": "Err",
+      "payload": {
+        "type": "std.i64.ParseIntError",
+        "tag": "InvalidSyntax",
+        "payload": {
+          "type": "std.i64.ParseSyntax",
+          "fields": {
+            "index": {
+              "type": "Int64",
+              "value": "2"
+            },
+            "reason": {
+              "type": "std.i64.ParseSyntaxReason",
+              "tag": "LeadingZero"
+            }
+          }
+        }
+      }
+    }
+  },
+  "note": "stdlib/types.md §4"
+}

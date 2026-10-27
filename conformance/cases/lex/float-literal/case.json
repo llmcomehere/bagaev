@@ -1,0 +1,30 @@
+{
+  "id": "lex/float-literal",
+  "spec": [
+    "spec/language/lexical.md#4-литералы"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "expect": {
+    "phase": "parse",
+    "outcome": "PRELAUNCH",
+    "diagnostics": [
+      {
+        "code": "UNSUPPORTED_FEATURE",
+        "file": "main.bag",
+        "span": [
+          27,
+          30
+        ],
+        "data": {
+          "feature_id": "V1-P01"
+        }
+      }
+    ]
+  }
+}

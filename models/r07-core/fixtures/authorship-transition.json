@@ -1,0 +1,1926 @@
+{
+  "format": "r05-authorship-transition-fixtures/1",
+  "profile": "AUTH-TX-0.1",
+  "scope": {
+    "initial_boundary": "prepared_D1_ArticleV2",
+    "whole_state_comparison": true,
+    "physical_crash_execution": false,
+    "migration_execution": false,
+    "legacy_T15_fixture_execution": false,
+    "event_id_note": "AUTH-TX-0.1 uses exact ev_<article_id>_r<revision>; a_101 produces ev_a_101_r2. Legacy illustrative ev_a101_r2 is not reused."
+  },
+  "initial": {
+    "store_id": "store_authorship",
+    "people": [
+      "p_alina",
+      "p_boris",
+      "p_vera"
+    ],
+    "articles": [
+      {
+        "article_id": "a_101",
+        "article_revision": 1,
+        "author_ids": [
+          "p_alina"
+        ],
+        "editor_ids": [
+          "u_editor"
+        ]
+      },
+      {
+        "article_id": "a_102",
+        "article_revision": 1,
+        "author_ids": [
+          "p_boris"
+        ],
+        "editor_ids": [
+          "u_editor"
+        ]
+      }
+    ],
+    "expected_index": [
+      {
+        "person_id": "p_alina",
+        "article_ids": [
+          "a_101"
+        ]
+      },
+      {
+        "person_id": "p_boris",
+        "article_ids": [
+          "a_102"
+        ]
+      },
+      {
+        "person_id": "p_vera",
+        "article_ids": []
+      }
+    ],
+    "expected_status": {
+      "state_version": 1,
+      "pending_event_ids": [],
+      "lagging_article_ids": [],
+      "complete": true
+    }
+  },
+  "requests": {
+    "update": {
+      "command_id": "cmd_update",
+      "actor_id": "u_editor",
+      "article_id": "a_101",
+      "expected_article_version": 1,
+      "author_ids": [
+        "p_boris",
+        "p_alina"
+      ]
+    },
+    "next": {
+      "command_id": "cmd_next",
+      "actor_id": "u_editor",
+      "article_id": "a_101",
+      "expected_article_version": 2,
+      "author_ids": [
+        "p_vera"
+      ]
+    },
+    "order": {
+      "command_id": "cmd_order",
+      "actor_id": "u_editor",
+      "article_id": "a_101",
+      "expected_article_version": 2,
+      "author_ids": [
+        "p_alina",
+        "p_boris"
+      ]
+    },
+    "noop": {
+      "command_id": "cmd_noop",
+      "actor_id": "u_editor",
+      "article_id": "a_101",
+      "expected_article_version": 1,
+      "author_ids": [
+        "p_alina"
+      ]
+    },
+    "noop_current": {
+      "command_id": "cmd_noop_current",
+      "actor_id": "u_editor",
+      "article_id": "a_101",
+      "expected_article_version": 2,
+      "author_ids": [
+        "p_boris",
+        "p_alina"
+      ]
+    },
+    "noop_stale_article": {
+      "command_id": "cmd_noop_stale",
+      "actor_id": "u_editor",
+      "article_id": "a_101",
+      "expected_article_version": 1,
+      "author_ids": [
+        "p_boris",
+        "p_alina"
+      ]
+    },
+    "initial_stale_article": {
+      "command_id": "cmd_initial_stale",
+      "actor_id": "u_editor",
+      "article_id": "a_101",
+      "expected_article_version": 2,
+      "author_ids": [
+        "p_alina"
+      ]
+    },
+    "guarded": {
+      "command_id": "cmd_guarded",
+      "actor_id": "u_editor",
+      "article_id": "a_101",
+      "expected_article_version": 2,
+      "author_ids": [
+        "p_vera"
+      ]
+    },
+    "same_key_other_payload": {
+      "command_id": "cmd_update",
+      "actor_id": "u_editor",
+      "article_id": "a_101",
+      "expected_article_version": 1,
+      "author_ids": [
+        "p_alina",
+        "p_boris"
+      ]
+    },
+    "same_key_other_version": {
+      "command_id": "cmd_update",
+      "actor_id": "u_editor",
+      "article_id": "a_101",
+      "expected_article_version": 2,
+      "author_ids": [
+        "p_boris",
+        "p_alina"
+      ]
+    },
+    "reusable_empty": {
+      "command_id": "cmd_reusable",
+      "actor_id": "u_editor",
+      "article_id": "a_101",
+      "expected_article_version": 1,
+      "author_ids": []
+    },
+    "reusable_duplicate": {
+      "command_id": "cmd_reusable",
+      "actor_id": "u_editor",
+      "article_id": "a_101",
+      "expected_article_version": 1,
+      "author_ids": [
+        "p_alina",
+        "p_alina"
+      ]
+    },
+    "reusable_unknown": {
+      "command_id": "cmd_reusable",
+      "actor_id": "u_editor",
+      "article_id": "a_101",
+      "expected_article_version": 1,
+      "author_ids": [
+        "p_missing"
+      ]
+    },
+    "reusable_valid": {
+      "command_id": "cmd_reusable",
+      "actor_id": "u_editor",
+      "article_id": "a_101",
+      "expected_article_version": 1,
+      "author_ids": [
+        "p_boris",
+        "p_alina"
+      ]
+    },
+    "denied": {
+      "command_id": "cmd_denied",
+      "actor_id": "u_boris",
+      "article_id": "a_101",
+      "expected_article_version": 1,
+      "author_ids": [
+        "p_boris"
+      ]
+    },
+    "unknown_article": {
+      "command_id": "cmd_missing",
+      "actor_id": "u_editor",
+      "article_id": "a_missing",
+      "expected_article_version": 1,
+      "author_ids": [
+        "p_alina"
+      ]
+    }
+  },
+  "manual_sequences": [
+    {
+      "id": "A01",
+      "purpose": "Полное coauthor значение и отдельные command, index/inbox, producer ACK boundaries.",
+      "steps": [
+        {
+          "action": {
+            "op": "replace",
+            "request_ref": "update"
+          },
+          "expected": {
+            "/observation/status": "RESULT",
+            "/observation/code": "UPDATED",
+            "/actual_commit": true,
+            "/state/state_version": 2,
+            "/state/articles/0/article_revision": 2,
+            "/observation/replayed": false,
+            "/state/articles/0/author_ids": [
+              "p_boris",
+              "p_alina"
+            ],
+            "/observation/observed_state_version": 2,
+            "/observation/receipt/committed_state_version": 2,
+            "/transition_status/complete": false,
+            "/transition_status/pending_event_ids": [
+              "ev_a_101_r2"
+            ],
+            "/transition_status/lagging_article_ids": [
+              "a_101"
+            ],
+            "/state/articles/1/author_ids": [
+              "p_boris"
+            ],
+            "/state/articles/0/editor_ids": [
+              "u_editor"
+            ],
+            "/state/outbox/0/author_ids": [
+              "p_boris",
+              "p_alina"
+            ],
+            "/search/p_boris": [
+              "a_102"
+            ]
+          },
+          "checkpoint": "canonical_after_replace"
+        },
+        {
+          "action": {
+            "op": "deliver",
+            "event_id": "ev_a_101_r2"
+          },
+          "expected": {
+            "/observation/status": "RESULT",
+            "/observation/code": "APPLIED",
+            "/actual_commit": true,
+            "/state/state_version": 3,
+            "/state/articles/0/article_revision": 2,
+            "/observation/replayed": false,
+            "/state/articles/0/author_ids": [
+              "p_boris",
+              "p_alina"
+            ],
+            "/observation/observed_state_version": 3,
+            "/observation/receipt/committed_state_version": 3,
+            "/transition_status/complete": false,
+            "/transition_status/pending_event_ids": [
+              "ev_a_101_r2"
+            ],
+            "/transition_status/lagging_article_ids": [],
+            "/state/projections/0/author_ids": [
+              "p_boris",
+              "p_alina"
+            ],
+            "/state/projections/0/article_revision": 2,
+            "/search/p_alina": [
+              "a_101"
+            ],
+            "/search/p_boris": [
+              "a_101",
+              "a_102"
+            ],
+            "/search/p_vera": []
+          },
+          "checkpoint": "canonical_after_delivery"
+        },
+        {
+          "action": {
+            "op": "ack",
+            "event_id": "ev_a_101_r2"
+          },
+          "expected": {
+            "/observation/status": "RESULT",
+            "/observation/code": "ACKNOWLEDGED",
+            "/actual_commit": true,
+            "/state/state_version": 4,
+            "/state/articles/0/article_revision": 2,
+            "/observation/replayed": false,
+            "/state/articles/0/author_ids": [
+              "p_boris",
+              "p_alina"
+            ],
+            "/observation/observed_state_version": 4,
+            "/observation/receipt/committed_state_version": 4,
+            "/transition_status/complete": true,
+            "/transition_status/pending_event_ids": [],
+            "/transition_status/lagging_article_ids": []
+          },
+          "checkpoint": "canonical_after_ack"
+        },
+        {
+          "action": {
+            "op": "replace",
+            "expected_state_version": 1,
+            "request_ref": "update"
+          },
+          "expected": {
+            "/observation/status": "RESULT",
+            "/observation/code": "UPDATED",
+            "/actual_commit": false,
+            "/state/state_version": 4,
+            "/state/articles/0/article_revision": 2,
+            "/observation/replayed": true,
+            "/state/articles/0/author_ids": [
+              "p_boris",
+              "p_alina"
+            ],
+            "/observation/observed_state_version": 4,
+            "/observation/receipt/committed_state_version": 2
+          }
+        }
+      ]
+    },
+    {
+      "id": "A02",
+      "purpose": "Потерянные ответы не превращают committed durable truth в rollback; recovery только читает.",
+      "steps": [
+        {
+          "action": {
+            "op": "replace",
+            "cut": "after_commit_before_reply",
+            "request_ref": "update"
+          },
+          "expected": {
+            "/observation/status": "UNKNOWN",
+            "/observation/code": "REPLY_LOST",
+            "/actual_commit": true,
+            "/state/state_version": 2,
+            "/state/articles/0/article_revision": 2,
+            "/observation/replayed": false,
+            "/state/articles/0/author_ids": [
+              "p_boris",
+              "p_alina"
+            ],
+            "/observation/receipt": null,
+            "/observation/observed_state_version": null
+          }
+        },
+        {
+          "action": {
+            "op": "recover_command",
+            "request_ref": "update"
+          },
+          "expected": {
+            "/observation/status": "RESULT",
+            "/observation/code": "UPDATED",
+            "/actual_commit": false,
+            "/state/state_version": 2,
+            "/state/articles/0/article_revision": 2,
+            "/observation/replayed": true,
+            "/state/articles/0/author_ids": [
+              "p_boris",
+              "p_alina"
+            ],
+            "/observation/observed_state_version": 2,
+            "/observation/receipt/committed_state_version": 2
+          }
+        },
+        {
+          "action": {
+            "op": "deliver",
+            "cut": "after_commit_before_reply",
+            "event_id": "ev_a_101_r2"
+          },
+          "expected": {
+            "/observation/status": "UNKNOWN",
+            "/observation/code": "REPLY_LOST",
+            "/actual_commit": true,
+            "/state/state_version": 3,
+            "/state/articles/0/article_revision": 2,
+            "/observation/replayed": false,
+            "/state/articles/0/author_ids": [
+              "p_boris",
+              "p_alina"
+            ],
+            "/observation/receipt": null,
+            "/observation/observed_state_version": null
+          }
+        },
+        {
+          "action": {
+            "op": "recover_event",
+            "event_id": "ev_a_101_r2"
+          },
+          "expected": {
+            "/observation/status": "RESULT",
+            "/observation/code": "APPLIED",
+            "/actual_commit": false,
+            "/state/state_version": 3,
+            "/state/articles/0/article_revision": 2,
+            "/observation/replayed": true,
+            "/state/articles/0/author_ids": [
+              "p_boris",
+              "p_alina"
+            ],
+            "/observation/observed_state_version": 3,
+            "/observation/receipt/committed_state_version": 3
+          }
+        },
+        {
+          "action": {
+            "op": "deliver",
+            "expected_state_version": 1,
+            "event_id": "ev_a_101_r2"
+          },
+          "expected": {
+            "/observation/status": "RESULT",
+            "/observation/code": "APPLIED",
+            "/actual_commit": false,
+            "/state/state_version": 3,
+            "/state/articles/0/article_revision": 2,
+            "/observation/replayed": true,
+            "/state/articles/0/author_ids": [
+              "p_boris",
+              "p_alina"
+            ],
+            "/observation/observed_state_version": 3,
+            "/observation/receipt/committed_state_version": 3
+          }
+        },
+        {
+          "action": {
+            "op": "ack",
+            "cut": "after_commit_before_reply",
+            "event_id": "ev_a_101_r2"
+          },
+          "expected": {
+            "/observation/status": "UNKNOWN",
+            "/observation/code": "REPLY_LOST",
+            "/actual_commit": true,
+            "/state/state_version": 4,
+            "/state/articles/0/article_revision": 2,
+            "/observation/replayed": false,
+            "/state/articles/0/author_ids": [
+              "p_boris",
+              "p_alina"
+            ],
+            "/observation/receipt": null,
+            "/observation/observed_state_version": null
+          }
+        },
+        {
+          "action": {
+            "op": "ack",
+            "expected_state_version": 1,
+            "event_id": "ev_a_101_r2"
+          },
+          "expected": {
+            "/observation/status": "RESULT",
+            "/observation/code": "ACKNOWLEDGED",
+            "/actual_commit": false,
+            "/state/state_version": 4,
+            "/state/articles/0/article_revision": 2,
+            "/observation/replayed": true,
+            "/state/articles/0/author_ids": [
+              "p_boris",
+              "p_alina"
+            ],
+            "/observation/observed_state_version": 4,
+            "/observation/receipt/committed_state_version": 4,
+            "/transition_status/complete": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "A03",
+      "purpose": "До commit ни одна часть boundary не становится durable; отсутствие receipt отражает момент чтения.",
+      "steps": [
+        {
+          "action": {
+            "op": "replace",
+            "cut": "before_commit",
+            "request_ref": "update"
+          },
+          "expected": {
+            "/observation/status": "UNKNOWN",
+            "/observation/code": "REPLY_LOST",
+            "/actual_commit": false,
+            "/state/state_version": 1,
+            "/state/articles/0/article_revision": 1,
+            "/observation/replayed": false,
+            "/state/articles/0/author_ids": [
+              "p_alina"
+            ],
+            "/observation/receipt": null,
+            "/observation/observed_state_version": null
+          }
+        },
+        {
+          "action": {
+            "op": "recover_command",
+            "request_ref": "update"
+          },
+          "expected": {
+            "/observation/status": "ABSENT_AT_READ",
+            "/observation/code": "NO_RECEIPT",
+            "/actual_commit": false,
+            "/state/state_version": 1,
+            "/state/articles/0/article_revision": 1,
+            "/observation/replayed": false,
+            "/state/articles/0/author_ids": [
+              "p_alina"
+            ],
+            "/observation/observed_state_version": 1,
+            "/observation/receipt": null
+          }
+        },
+        {
+          "action": {
+            "op": "replace",
+            "request_ref": "update"
+          },
+          "expected": {
+            "/observation/status": "RESULT",
+            "/observation/code": "UPDATED",
+            "/actual_commit": true,
+            "/state/state_version": 2,
+            "/state/articles/0/article_revision": 2,
+            "/observation/replayed": false,
+            "/state/articles/0/author_ids": [
+              "p_boris",
+              "p_alina"
+            ],
+            "/observation/observed_state_version": 2
+          }
+        },
+        {
+          "action": {
+            "op": "deliver",
+            "cut": "before_commit",
+            "event_id": "ev_a_101_r2"
+          },
+          "expected": {
+            "/observation/status": "UNKNOWN",
+            "/observation/code": "REPLY_LOST",
+            "/actual_commit": false,
+            "/state/state_version": 2,
+            "/state/articles/0/article_revision": 2,
+            "/observation/replayed": false,
+            "/state/articles/0/author_ids": [
+              "p_boris",
+              "p_alina"
+            ],
+            "/observation/receipt": null,
+            "/observation/observed_state_version": null
+          }
+        },
+        {
+          "action": {
+            "op": "recover_event",
+            "event_id": "ev_a_101_r2"
+          },
+          "expected": {
+            "/observation/status": "ABSENT_AT_READ",
+            "/observation/code": "NO_RECEIPT",
+            "/actual_commit": false,
+            "/state/state_version": 2,
+            "/state/articles/0/article_revision": 2,
+            "/observation/replayed": false,
+            "/state/articles/0/author_ids": [
+              "p_boris",
+              "p_alina"
+            ],
+            "/observation/observed_state_version": 2,
+            "/observation/receipt": null
+          }
+        },
+        {
+          "action": {
+            "op": "deliver",
+            "event_id": "ev_a_101_r2"
+          },
+          "expected": {
+            "/observation/status": "RESULT",
+            "/observation/code": "APPLIED",
+            "/actual_commit": true,
+            "/state/state_version": 3,
+            "/state/articles/0/article_revision": 2,
+            "/observation/replayed": false,
+            "/state/articles/0/author_ids": [
+              "p_boris",
+              "p_alina"
+            ],
+            "/observation/observed_state_version": 3
+          }
+        },
+        {
+          "action": {
+            "op": "ack",
+            "cut": "before_commit",
+            "event_id": "ev_a_101_r2"
+          },
+          "expected": {
+            "/observation/status": "UNKNOWN",
+            "/observation/code": "REPLY_LOST",
+            "/actual_commit": false,
+            "/state/state_version": 3,
+            "/state/articles/0/article_revision": 2,
+            "/observation/replayed": false,
+            "/state/articles/0/author_ids": [
+              "p_boris",
+              "p_alina"
+            ],
+            "/observation/receipt": null,
+            "/observation/observed_state_version": null
+          }
+        },
+        {
+          "action": {
+            "op": "ack",
+            "event_id": "ev_a_101_r2"
+          },
+          "expected": {
+            "/observation/status": "RESULT",
+            "/observation/code": "ACKNOWLEDGED",
+            "/actual_commit": true,
+            "/state/state_version": 4,
+            "/state/articles/0/article_revision": 2,
+            "/observation/replayed": false,
+            "/state/articles/0/author_ids": [
+              "p_boris",
+              "p_alina"
+            ],
+            "/observation/observed_state_version": 4,
+            "/transition_status/complete": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "A04",
+      "purpose": "NOOP имеет durable receipt/StateVersion, но не новую article revision или event; stale CAS не скрывается равными authors.",
+      "steps": [
+        {
+          "action": {
+            "op": "replace",
+            "request_ref": "noop"
+          },
+          "expected": {
+            "/observation/status": "RESULT",
+            "/observation/code": "NOOP",
+            "/actual_commit": true,
+            "/state/state_version": 2,
+            "/state/articles/0/article_revision": 1,
+            "/observation/replayed": false,
+            "/state/articles/0/author_ids": [
+              "p_alina"
+            ],
+            "/observation/observed_state_version": 2,
+            "/observation/receipt/committed_state_version": 2,
+            "/transition_status/complete": true,
+            "/transition_status/pending_event_ids": [],
+            "/transition_status/lagging_article_ids": [],
+            "/state/outbox": []
+          },
+          "checkpoint": "noop_committed"
+        },
+        {
+          "action": {
+            "op": "replace",
+            "expected_state_version": 1,
+            "request_ref": "noop"
+          },
+          "expected": {
+            "/observation/status": "RESULT",
+            "/observation/code": "NOOP",
+            "/actual_commit": false,
+            "/state/state_version": 2,
+            "/state/articles/0/article_revision": 1,
+            "/observation/replayed": true,
+            "/state/articles/0/author_ids": [
+              "p_alina"
+            ],
+            "/observation/observed_state_version": 2,
+            "/observation/receipt/committed_state_version": 2
+          }
+        },
+        {
+          "action": {
+            "op": "replace",
+            "expected_state_version": 1,
+            "request_ref": "initial_stale_article"
+          },
+          "expected": {
+            "/observation/status": "REJECTED",
+            "/observation/code": "STATE_CONFLICT",
+            "/actual_commit": false,
+            "/state/state_version": 2,
+            "/state/articles/0/article_revision": 1,
+            "/observation/replayed": false,
+            "/state/articles/0/author_ids": [
+              "p_alina"
+            ],
+            "/observation/observed_state_version": 2,
+            "/observation/receipt": null
+          }
+        },
+        {
+          "action": {
+            "op": "replace",
+            "request_ref": "initial_stale_article"
+          },
+          "expected": {
+            "/observation/status": "REJECTED",
+            "/observation/code": "ARTICLE_CONFLICT",
+            "/actual_commit": false,
+            "/state/state_version": 2,
+            "/state/articles/0/article_revision": 1,
+            "/observation/replayed": false,
+            "/state/articles/0/author_ids": [
+              "p_alina"
+            ],
+            "/observation/observed_state_version": 2,
+            "/observation/receipt": null
+          }
+        },
+        {
+          "action": {
+            "op": "replace",
+            "request_ref": "update"
+          },
+          "expected": {
+            "/observation/status": "RESULT",
+            "/observation/code": "UPDATED",
+            "/actual_commit": true,
+            "/state/state_version": 3,
+            "/state/articles/0/article_revision": 2,
+            "/observation/replayed": false,
+            "/state/articles/0/author_ids": [
+              "p_boris",
+              "p_alina"
+            ],
+            "/observation/observed_state_version": 3
+          }
+        },
+        {
+          "action": {
+            "op": "replace",
+            "request_ref": "noop_stale_article"
+          },
+          "expected": {
+            "/observation/status": "REJECTED",
+            "/observation/code": "ARTICLE_CONFLICT",
+            "/actual_commit": false,
+            "/state/state_version": 3,
+            "/state/articles/0/article_revision": 2,
+            "/observation/replayed": false,
+            "/state/articles/0/author_ids": [
+              "p_boris",
+              "p_alina"
+            ],
+            "/observation/observed_state_version": 3,
+            "/observation/receipt": null
+          }
+        },
+        {
+          "action": {
+            "op": "replace",
+            "request_ref": "noop"
+          },
+          "expected": {
+            "/observation/status": "RESULT",
+            "/observation/code": "NOOP",
+            "/actual_commit": false,
+            "/state/state_version": 3,
+            "/state/articles/0/article_revision": 2,
+            "/observation/replayed": true,
+            "/state/articles/0/author_ids": [
+              "p_boris",
+              "p_alina"
+            ],
+            "/observation/observed_state_version": 3,
+            "/observation/receipt/committed_state_version": 2
+          }
+        }
+      ]
+    },
+    {
+      "id": "A05",
+      "purpose": "После lost reply и следующей правки retry исходного key возвращает исходный result; payload/CAS входят в exact binding.",
+      "steps": [
+        {
+          "action": {
+            "op": "replace",
+            "cut": "after_commit_before_reply",
+            "request_ref": "update"
+          },
+          "expected": {
+            "/observation/status": "UNKNOWN",
+            "/observation/code": "REPLY_LOST",
+            "/actual_commit": true,
+            "/state/state_version": 2,
+            "/state/articles/0/article_revision": 2,
+            "/observation/replayed": false,
+            "/state/articles/0/author_ids": [
+              "p_boris",
+              "p_alina"
+            ],
+            "/observation/receipt": null,
+            "/observation/observed_state_version": null
+          }
+        },
+        {
+          "action": {
+            "op": "replace",
+            "request_ref": "next"
+          },
+          "expected": {
+            "/observation/status": "RESULT",
+            "/observation/code": "UPDATED",
+            "/actual_commit": true,
+            "/state/state_version": 3,
+            "/state/articles/0/article_revision": 3,
+            "/observation/replayed": false,
+            "/state/articles/0/author_ids": [
+              "p_vera"
+            ],
+            "/observation/observed_state_version": 3
+          },
+          "checkpoint": "two_updates"
+        },
+        {
+          "action": {
+            "op": "replace",
+            "expected_state_version": 1,
+            "request_ref": "update"
+          },
+          "expected": {
+            "/observation/status": "RESULT",
+            "/observation/code": "UPDATED",
+            "/actual_commit": false,
+            "/state/state_version": 3,
+            "/state/articles/0/article_revision": 3,
+            "/observation/replayed": true,
+            "/state/articles/0/author_ids": [
+              "p_vera"
+            ],
+            "/observation/observed_state_version": 3,
+            "/observation/receipt/committed_state_version": 2,
+            "/observation/receipt/article_revision": 2
+          }
+        },
+        {
+          "action": {
+            "op": "replace",
+            "request_ref": "same_key_other_payload"
+          },
+          "expected": {
+            "/observation/status": "REJECTED",
+            "/observation/code": "IDEMPOTENCY_CONFLICT",
+            "/actual_commit": false,
+            "/state/state_version": 3,
+            "/state/articles/0/article_revision": 3,
+            "/observation/replayed": false,
+            "/state/articles/0/author_ids": [
+              "p_vera"
+            ],
+            "/observation/observed_state_version": 3,
+            "/observation/receipt": null
+          }
+        },
+        {
+          "action": {
+            "op": "replace",
+            "request_ref": "same_key_other_version"
+          },
+          "expected": {
+            "/observation/status": "REJECTED",
+            "/observation/code": "IDEMPOTENCY_CONFLICT",
+            "/actual_commit": false,
+            "/state/state_version": 3,
+            "/state/articles/0/article_revision": 3,
+            "/observation/replayed": false,
+            "/state/articles/0/author_ids": [
+              "p_vera"
+            ],
+            "/observation/observed_state_version": 3,
+            "/observation/receipt": null
+          }
+        },
+        {
+          "action": {
+            "op": "recover_command",
+            "request_ref": "same_key_other_payload"
+          },
+          "expected": {
+            "/observation/status": "REJECTED",
+            "/observation/code": "IDEMPOTENCY_CONFLICT",
+            "/actual_commit": false,
+            "/state/state_version": 3,
+            "/state/articles/0/article_revision": 3,
+            "/observation/replayed": false,
+            "/state/articles/0/author_ids": [
+              "p_vera"
+            ],
+            "/observation/observed_state_version": 3,
+            "/observation/receipt": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "A06",
+      "purpose": "Перестановка authors — domain UPDATE; неизменный membership не делает watermark свежим автоматически.",
+      "steps": [
+        {
+          "action": {
+            "op": "replace",
+            "request_ref": "update"
+          },
+          "expected": {
+            "/observation/status": "RESULT",
+            "/observation/code": "UPDATED",
+            "/actual_commit": true,
+            "/state/state_version": 2,
+            "/state/articles/0/article_revision": 2,
+            "/observation/replayed": false,
+            "/state/articles/0/author_ids": [
+              "p_boris",
+              "p_alina"
+            ],
+            "/observation/observed_state_version": 2
+          }
+        },
+        {
+          "action": {
+            "op": "deliver",
+            "event_id": "ev_a_101_r2"
+          },
+          "expected": {
+            "/observation/status": "RESULT",
+            "/observation/code": "APPLIED",
+            "/actual_commit": true,
+            "/state/state_version": 3,
+            "/state/articles/0/article_revision": 2,
+            "/observation/replayed": false,
+            "/state/articles/0/author_ids": [
+              "p_boris",
+              "p_alina"
+            ],
+            "/observation/observed_state_version": 3
+          }
+        },
+        {
+          "action": {
+            "op": "replace",
+            "request_ref": "order"
+          },
+          "expected": {
+            "/observation/status": "RESULT",
+            "/observation/code": "UPDATED",
+            "/actual_commit": true,
+            "/state/state_version": 4,
+            "/state/articles/0/article_revision": 3,
+            "/observation/replayed": false,
+            "/state/articles/0/author_ids": [
+              "p_alina",
+              "p_boris"
+            ],
+            "/observation/observed_state_version": 4,
+            "/transition_status/complete": false,
+            "/transition_status/lagging_article_ids": [
+              "a_101"
+            ],
+            "/state/projections/0/author_ids": [
+              "p_boris",
+              "p_alina"
+            ],
+            "/state/projections/0/article_revision": 2,
+            "/search/p_boris": [
+              "a_101",
+              "a_102"
+            ]
+          }
+        },
+        {
+          "action": {
+            "op": "deliver",
+            "event_id": "ev_a_101_r3"
+          },
+          "expected": {
+            "/observation/status": "RESULT",
+            "/observation/code": "APPLIED",
+            "/actual_commit": true,
+            "/state/state_version": 5,
+            "/state/articles/0/article_revision": 3,
+            "/observation/replayed": false,
+            "/state/articles/0/author_ids": [
+              "p_alina",
+              "p_boris"
+            ],
+            "/observation/observed_state_version": 5,
+            "/transition_status/lagging_article_ids": [],
+            "/state/projections/0/author_ids": [
+              "p_alina",
+              "p_boris"
+            ],
+            "/state/projections/0/article_revision": 3,
+            "/search/p_boris": [
+              "a_101",
+              "a_102"
+            ]
+          }
+        },
+        {
+          "action": {
+            "op": "ack",
+            "event_id": "ev_a_101_r2"
+          },
+          "expected": {
+            "/observation/status": "RESULT",
+            "/observation/code": "ACKNOWLEDGED",
+            "/actual_commit": true,
+            "/state/state_version": 6,
+            "/state/articles/0/article_revision": 3,
+            "/observation/replayed": false,
+            "/state/articles/0/author_ids": [
+              "p_alina",
+              "p_boris"
+            ],
+            "/observation/observed_state_version": 6,
+            "/transition_status/complete": false
+          }
+        },
+        {
+          "action": {
+            "op": "ack",
+            "event_id": "ev_a_101_r3"
+          },
+          "expected": {
+            "/observation/status": "RESULT",
+            "/observation/code": "ACKNOWLEDGED",
+            "/actual_commit": true,
+            "/state/state_version": 7,
+            "/state/articles/0/article_revision": 3,
+            "/observation/replayed": false,
+            "/state/articles/0/author_ids": [
+              "p_alina",
+              "p_boris"
+            ],
+            "/observation/observed_state_version": 7,
+            "/transition_status/complete": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "A07",
+      "purpose": "Полный snapshot v3 перед v2: late event получает SUPERSEDED без rollback; outcome сохраняется для duplicate.",
+      "steps": [
+        {
+          "action": {
+            "op": "replace",
+            "request_ref": "update"
+          },
+          "expected": {
+            "/observation/status": "RESULT",
+            "/observation/code": "UPDATED",
+            "/actual_commit": true,
+            "/state/state_version": 2,
+            "/state/articles/0/article_revision": 2,
+            "/observation/replayed": false,
+            "/state/articles/0/author_ids": [
+              "p_boris",
+              "p_alina"
+            ],
+            "/observation/observed_state_version": 2
+          }
+        },
+        {
+          "action": {
+            "op": "replace",
+            "request_ref": "next"
+          },
+          "expected": {
+            "/observation/status": "RESULT",
+            "/observation/code": "UPDATED",
+            "/actual_commit": true,
+            "/state/state_version": 3,
+            "/state/articles/0/article_revision": 3,
+            "/observation/replayed": false,
+            "/state/articles/0/author_ids": [
+              "p_vera"
+            ],
+            "/observation/observed_state_version": 3
+          }
+        },
+        {
+          "action": {
+            "op": "deliver",
+            "event_id": "ev_a_101_r3"
+          },
+          "expected": {
+            "/observation/status": "RESULT",
+            "/observation/code": "APPLIED",
+            "/actual_commit": true,
+            "/state/state_version": 4,
+            "/state/articles/0/article_revision": 3,
+            "/observation/replayed": false,
+            "/state/articles/0/author_ids": [
+              "p_vera"
+            ],
+            "/observation/observed_state_version": 4,
+            "/observation/receipt/committed_state_version": 4,
+            "/state/projections/0/article_revision": 3,
+            "/state/projections/0/author_ids": [
+              "p_vera"
+            ],
+            "/search/p_alina": [],
+            "/search/p_boris": [
+              "a_102"
+            ],
+            "/search/p_vera": [
+              "a_101"
+            ]
+          },
+          "checkpoint": "newer_first"
+        },
+        {
+          "action": {
+            "op": "deliver",
+            "event_id": "ev_a_101_r2"
+          },
+          "expected": {
+            "/observation/status": "RESULT",
+            "/observation/code": "SUPERSEDED",
+            "/actual_commit": true,
+            "/state/state_version": 5,
+            "/state/articles/0/article_revision": 3,
+            "/observation/replayed": false,
+            "/state/articles/0/author_ids": [
+              "p_vera"
+            ],
+            "/observation/observed_state_version": 5,
+            "/observation/receipt/committed_state_version": 5,
+            "/state/projections/0/article_revision": 3,
+            "/state/projections/0/author_ids": [
+              "p_vera"
+            ],
+            "/observation/receipt/projected_article_revision": 3
+          },
+          "checkpoint": "newer_then_late"
+        },
+        {
+          "action": {
+            "op": "deliver",
+            "event_id": "ev_a_101_r2"
+          },
+          "expected": {
+            "/observation/status": "RESULT",
+            "/observation/code": "SUPERSEDED",
+            "/actual_commit": false,
+            "/state/state_version": 5,
+            "/state/articles/0/article_revision": 3,
+            "/observation/replayed": true,
+            "/state/articles/0/author_ids": [
+              "p_vera"
+            ],
+            "/observation/observed_state_version": 5,
+            "/observation/receipt/committed_state_version": 5
+          }
+        },
+        {
+          "action": {
+            "op": "ack",
+            "event_id": "ev_a_101_r2"
+          },
+          "expected": {
+            "/observation/status": "RESULT",
+            "/observation/code": "ACKNOWLEDGED",
+            "/actual_commit": true,
+            "/state/state_version": 6,
+            "/state/articles/0/article_revision": 3,
+            "/observation/replayed": false,
+            "/state/articles/0/author_ids": [
+              "p_vera"
+            ],
+            "/observation/observed_state_version": 6
+          }
+        },
+        {
+          "action": {
+            "op": "ack",
+            "event_id": "ev_a_101_r3"
+          },
+          "expected": {
+            "/observation/status": "RESULT",
+            "/observation/code": "ACKNOWLEDGED",
+            "/actual_commit": true,
+            "/state/state_version": 7,
+            "/state/articles/0/article_revision": 3,
+            "/observation/replayed": false,
+            "/state/articles/0/author_ids": [
+              "p_vera"
+            ],
+            "/observation/observed_state_version": 7,
+            "/transition_status/complete": true
+          },
+          "checkpoint": "newer_first_complete"
+        }
+      ]
+    },
+    {
+      "id": "A08",
+      "purpose": "Обратный delivery order сходится по projection/index, но сохраняет другую receipt history.",
+      "steps": [
+        {
+          "action": {
+            "op": "replace",
+            "request_ref": "update"
+          },
+          "expected": {
+            "/observation/status": "RESULT",
+            "/observation/code": "UPDATED",
+            "/actual_commit": true,
+            "/state/state_version": 2,
+            "/state/articles/0/article_revision": 2,
+            "/observation/replayed": false,
+            "/state/articles/0/author_ids": [
+              "p_boris",
+              "p_alina"
+            ],
+            "/observation/observed_state_version": 2
+          }
+        },
+        {
+          "action": {
+            "op": "replace",
+            "request_ref": "next"
+          },
+          "expected": {
+            "/observation/status": "RESULT",
+            "/observation/code": "UPDATED",
+            "/actual_commit": true,
+            "/state/state_version": 3,
+            "/state/articles/0/article_revision": 3,
+            "/observation/replayed": false,
+            "/state/articles/0/author_ids": [
+              "p_vera"
+            ],
+            "/observation/observed_state_version": 3
+          }
+        },
+        {
+          "action": {
+            "op": "deliver",
+            "event_id": "ev_a_101_r2"
+          },
+          "expected": {
+            "/observation/status": "RESULT",
+            "/observation/code": "APPLIED",
+            "/actual_commit": true,
+            "/state/state_version": 4,
+            "/state/articles/0/article_revision": 3,
+            "/observation/replayed": false,
+            "/state/articles/0/author_ids": [
+              "p_vera"
+            ],
+            "/observation/observed_state_version": 4,
+            "/transition_status/lagging_article_ids": [
+              "a_101"
+            ],
+            "/state/projections/0/article_revision": 2
+          }
+        },
+        {
+          "action": {
+            "op": "deliver",
+            "event_id": "ev_a_101_r3"
+          },
+          "expected": {
+            "/observation/status": "RESULT",
+            "/observation/code": "APPLIED",
+            "/actual_commit": true,
+            "/state/state_version": 5,
+            "/state/articles/0/article_revision": 3,
+            "/observation/replayed": false,
+            "/state/articles/0/author_ids": [
+              "p_vera"
+            ],
+            "/observation/observed_state_version": 5,
+            "/transition_status/lagging_article_ids": []
+          }
+        },
+        {
+          "action": {
+            "op": "ack",
+            "event_id": "ev_a_101_r2"
+          },
+          "expected": {
+            "/observation/status": "RESULT",
+            "/observation/code": "ACKNOWLEDGED",
+            "/actual_commit": true,
+            "/state/state_version": 6,
+            "/state/articles/0/article_revision": 3,
+            "/observation/replayed": false,
+            "/state/articles/0/author_ids": [
+              "p_vera"
+            ],
+            "/observation/observed_state_version": 6
+          }
+        },
+        {
+          "action": {
+            "op": "ack",
+            "event_id": "ev_a_101_r3"
+          },
+          "expected": {
+            "/observation/status": "RESULT",
+            "/observation/code": "ACKNOWLEDGED",
+            "/actual_commit": true,
+            "/state/state_version": 7,
+            "/state/articles/0/article_revision": 3,
+            "/observation/replayed": false,
+            "/state/articles/0/author_ids": [
+              "p_vera"
+            ],
+            "/observation/observed_state_version": 7,
+            "/transition_status/complete": true
+          },
+          "checkpoint": "older_first_complete"
+        }
+      ]
+    },
+    {
+      "id": "A09",
+      "purpose": "Отказ не резервирует key; committed receipt связывает его с полным request. Authorship не является ACL.",
+      "steps": [
+        {
+          "action": {
+            "op": "replace",
+            "request_ref": "reusable_empty"
+          },
+          "expected": {
+            "/observation/status": "REJECTED",
+            "/observation/code": "EMPTY_AUTHORS",
+            "/actual_commit": false,
+            "/state/state_version": 1,
+            "/state/articles/0/article_revision": 1,
+            "/observation/replayed": false,
+            "/observation/observed_state_version": 1,
+            "/observation/receipt": null
+          }
+        },
+        {
+          "action": {
+            "op": "replace",
+            "request_ref": "reusable_duplicate"
+          },
+          "expected": {
+            "/observation/status": "REJECTED",
+            "/observation/code": "DUPLICATE_AUTHOR",
+            "/actual_commit": false,
+            "/state/state_version": 1,
+            "/state/articles/0/article_revision": 1,
+            "/observation/replayed": false,
+            "/observation/observed_state_version": 1,
+            "/observation/receipt": null
+          }
+        },
+        {
+          "action": {
+            "op": "replace",
+            "request_ref": "reusable_unknown"
+          },
+          "expected": {
+            "/observation/status": "REJECTED",
+            "/observation/code": "UNKNOWN_PERSON",
+            "/actual_commit": false,
+            "/state/state_version": 1,
+            "/state/articles/0/article_revision": 1,
+            "/observation/replayed": false,
+            "/observation/observed_state_version": 1,
+            "/observation/receipt": null
+          }
+        },
+        {
+          "action": {
+            "op": "replace",
+            "request_ref": "unknown_article"
+          },
+          "expected": {
+            "/observation/status": "REJECTED",
+            "/observation/code": "UNKNOWN_ARTICLE",
+            "/actual_commit": false,
+            "/state/state_version": 1,
+            "/state/articles/0/article_revision": 1,
+            "/observation/replayed": false,
+            "/observation/observed_state_version": 1,
+            "/observation/receipt": null
+          }
+        },
+        {
+          "action": {
+            "op": "replace",
+            "request_ref": "denied"
+          },
+          "expected": {
+            "/observation/status": "REJECTED",
+            "/observation/code": "PERMISSION_DENIED",
+            "/actual_commit": false,
+            "/state/state_version": 1,
+            "/state/articles/0/article_revision": 1,
+            "/observation/replayed": false,
+            "/observation/observed_state_version": 1,
+            "/observation/receipt": null
+          }
+        },
+        {
+          "action": {
+            "op": "replace",
+            "request_ref": "reusable_valid"
+          },
+          "expected": {
+            "/observation/status": "RESULT",
+            "/observation/code": "UPDATED",
+            "/actual_commit": true,
+            "/state/state_version": 2,
+            "/state/articles/0/article_revision": 2,
+            "/observation/replayed": false,
+            "/state/articles/0/author_ids": [
+              "p_boris",
+              "p_alina"
+            ],
+            "/observation/observed_state_version": 2
+          }
+        },
+        {
+          "action": {
+            "op": "replace",
+            "request_ref": "reusable_empty"
+          },
+          "expected": {
+            "/observation/status": "REJECTED",
+            "/observation/code": "IDEMPOTENCY_CONFLICT",
+            "/actual_commit": false,
+            "/state/state_version": 2,
+            "/state/articles/0/article_revision": 2,
+            "/observation/replayed": false,
+            "/state/articles/0/author_ids": [
+              "p_boris",
+              "p_alina"
+            ],
+            "/observation/observed_state_version": 2,
+            "/observation/receipt": null
+          }
+        },
+        {
+          "action": {
+            "op": "replace",
+            "request_ref": "denied"
+          },
+          "expected": {
+            "/observation/status": "REJECTED",
+            "/observation/code": "PERMISSION_DENIED",
+            "/actual_commit": false,
+            "/state/state_version": 2,
+            "/state/articles/0/article_revision": 2,
+            "/observation/replayed": false,
+            "/state/articles/0/author_ids": [
+              "p_boris",
+              "p_alina"
+            ],
+            "/observation/observed_state_version": 2,
+            "/observation/receipt": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "A10",
+      "purpose": "ACK требует сохранённой обработки; index commit оставляет outbox pending; старый ACK guard не блокирует replay.",
+      "steps": [
+        {
+          "action": {
+            "op": "replace",
+            "request_ref": "update"
+          },
+          "expected": {
+            "/observation/status": "RESULT",
+            "/observation/code": "UPDATED",
+            "/actual_commit": true,
+            "/state/state_version": 2,
+            "/state/articles/0/article_revision": 2,
+            "/observation/replayed": false,
+            "/state/articles/0/author_ids": [
+              "p_boris",
+              "p_alina"
+            ],
+            "/observation/observed_state_version": 2
+          }
+        },
+        {
+          "action": {
+            "op": "ack",
+            "event_id": "ev_a_101_r2"
+          },
+          "expected": {
+            "/observation/status": "REJECTED",
+            "/observation/code": "EVENT_NOT_PROCESSED",
+            "/actual_commit": false,
+            "/state/state_version": 2,
+            "/state/articles/0/article_revision": 2,
+            "/observation/replayed": false,
+            "/state/articles/0/author_ids": [
+              "p_boris",
+              "p_alina"
+            ],
+            "/observation/observed_state_version": 2,
+            "/observation/receipt": null
+          }
+        },
+        {
+          "action": {
+            "op": "ack",
+            "event_id": "ev_missing"
+          },
+          "expected": {
+            "/observation/status": "REJECTED",
+            "/observation/code": "UNKNOWN_EVENT",
+            "/actual_commit": false,
+            "/state/state_version": 2,
+            "/state/articles/0/article_revision": 2,
+            "/observation/replayed": false,
+            "/state/articles/0/author_ids": [
+              "p_boris",
+              "p_alina"
+            ],
+            "/observation/observed_state_version": 2,
+            "/observation/receipt": null
+          }
+        },
+        {
+          "action": {
+            "op": "deliver",
+            "event_id": "ev_a_101_r2"
+          },
+          "expected": {
+            "/observation/status": "RESULT",
+            "/observation/code": "APPLIED",
+            "/actual_commit": true,
+            "/state/state_version": 3,
+            "/state/articles/0/article_revision": 2,
+            "/observation/replayed": false,
+            "/state/articles/0/author_ids": [
+              "p_boris",
+              "p_alina"
+            ],
+            "/observation/observed_state_version": 3,
+            "/transition_status/complete": false,
+            "/transition_status/pending_event_ids": [
+              "ev_a_101_r2"
+            ]
+          }
+        },
+        {
+          "action": {
+            "op": "ack",
+            "expected_state_version": 2,
+            "event_id": "ev_a_101_r2"
+          },
+          "expected": {
+            "/observation/status": "REJECTED",
+            "/observation/code": "STATE_CONFLICT",
+            "/actual_commit": false,
+            "/state/state_version": 3,
+            "/state/articles/0/article_revision": 2,
+            "/observation/replayed": false,
+            "/state/articles/0/author_ids": [
+              "p_boris",
+              "p_alina"
+            ],
+            "/observation/observed_state_version": 3,
+            "/observation/receipt": null
+          }
+        },
+        {
+          "action": {
+            "op": "ack",
+            "event_id": "ev_a_101_r2"
+          },
+          "expected": {
+            "/observation/status": "RESULT",
+            "/observation/code": "ACKNOWLEDGED",
+            "/actual_commit": true,
+            "/state/state_version": 4,
+            "/state/articles/0/article_revision": 2,
+            "/observation/replayed": false,
+            "/state/articles/0/author_ids": [
+              "p_boris",
+              "p_alina"
+            ],
+            "/observation/observed_state_version": 4,
+            "/transition_status/complete": true
+          }
+        },
+        {
+          "action": {
+            "op": "ack",
+            "expected_state_version": 1,
+            "event_id": "ev_a_101_r2"
+          },
+          "expected": {
+            "/observation/status": "RESULT",
+            "/observation/code": "ACKNOWLEDGED",
+            "/actual_commit": false,
+            "/state/state_version": 4,
+            "/state/articles/0/article_revision": 2,
+            "/observation/replayed": true,
+            "/state/articles/0/author_ids": [
+              "p_boris",
+              "p_alina"
+            ],
+            "/observation/observed_state_version": 4
+          }
+        }
+      ]
+    },
+    {
+      "id": "A11",
+      "purpose": "Delivery изменяет StateVersion при прежней article revision: stale per-attempt guard проверяется отдельно от business CAS.",
+      "steps": [
+        {
+          "action": {
+            "op": "replace",
+            "request_ref": "update"
+          },
+          "expected": {
+            "/observation/status": "RESULT",
+            "/observation/code": "UPDATED",
+            "/actual_commit": true,
+            "/state/state_version": 2,
+            "/state/articles/0/article_revision": 2,
+            "/observation/replayed": false,
+            "/state/articles/0/author_ids": [
+              "p_boris",
+              "p_alina"
+            ],
+            "/observation/observed_state_version": 2
+          }
+        },
+        {
+          "action": {
+            "op": "deliver",
+            "event_id": "ev_a_101_r2"
+          },
+          "expected": {
+            "/observation/status": "RESULT",
+            "/observation/code": "APPLIED",
+            "/actual_commit": true,
+            "/state/state_version": 3,
+            "/state/articles/0/article_revision": 2,
+            "/observation/replayed": false,
+            "/state/articles/0/author_ids": [
+              "p_boris",
+              "p_alina"
+            ],
+            "/observation/observed_state_version": 3
+          }
+        },
+        {
+          "action": {
+            "op": "replace",
+            "expected_state_version": 2,
+            "request_ref": "guarded"
+          },
+          "expected": {
+            "/observation/status": "REJECTED",
+            "/observation/code": "STATE_CONFLICT",
+            "/actual_commit": false,
+            "/state/state_version": 3,
+            "/state/articles/0/article_revision": 2,
+            "/observation/replayed": false,
+            "/state/articles/0/author_ids": [
+              "p_boris",
+              "p_alina"
+            ],
+            "/observation/observed_state_version": 3,
+            "/observation/receipt": null
+          }
+        },
+        {
+          "action": {
+            "op": "replace",
+            "expected_state_version": 3,
+            "request_ref": "guarded"
+          },
+          "expected": {
+            "/observation/status": "RESULT",
+            "/observation/code": "UPDATED",
+            "/actual_commit": true,
+            "/state/state_version": 4,
+            "/state/articles/0/article_revision": 3,
+            "/observation/replayed": false,
+            "/state/articles/0/author_ids": [
+              "p_vera"
+            ],
+            "/observation/observed_state_version": 4
+          }
+        }
+      ]
+    },
+    {
+      "id": "A12",
+      "purpose": "Недоступное recovery ничего не выводит о commit; доступное чтение различает отсутствие и retained receipt.",
+      "steps": [
+        {
+          "action": {
+            "op": "recover_command",
+            "available": false,
+            "request_ref": "update"
+          },
+          "expected": {
+            "/observation/status": "UNKNOWN",
+            "/observation/code": "READ_UNAVAILABLE",
+            "/actual_commit": false,
+            "/state/state_version": 1,
+            "/state/articles/0/article_revision": 1,
+            "/observation/replayed": false,
+            "/state/articles/0/author_ids": [
+              "p_alina"
+            ],
+            "/observation/receipt": null,
+            "/observation/observed_state_version": null
+          }
+        },
+        {
+          "action": {
+            "op": "recover_command",
+            "request_ref": "update"
+          },
+          "expected": {
+            "/observation/status": "ABSENT_AT_READ",
+            "/observation/code": "NO_RECEIPT",
+            "/actual_commit": false,
+            "/state/state_version": 1,
+            "/state/articles/0/article_revision": 1,
+            "/observation/replayed": false,
+            "/state/articles/0/author_ids": [
+              "p_alina"
+            ],
+            "/observation/observed_state_version": 1,
+            "/observation/receipt": null
+          }
+        },
+        {
+          "action": {
+            "op": "replace",
+            "cut": "after_commit_before_reply",
+            "request_ref": "update"
+          },
+          "expected": {
+            "/observation/status": "UNKNOWN",
+            "/observation/code": "REPLY_LOST",
+            "/actual_commit": true,
+            "/state/state_version": 2,
+            "/state/articles/0/article_revision": 2,
+            "/observation/replayed": false,
+            "/state/articles/0/author_ids": [
+              "p_boris",
+              "p_alina"
+            ],
+            "/observation/receipt": null,
+            "/observation/observed_state_version": null
+          }
+        },
+        {
+          "action": {
+            "op": "recover_command",
+            "available": false,
+            "request_ref": "update"
+          },
+          "expected": {
+            "/observation/status": "UNKNOWN",
+            "/observation/code": "READ_UNAVAILABLE",
+            "/actual_commit": false,
+            "/state/state_version": 2,
+            "/state/articles/0/article_revision": 2,
+            "/observation/replayed": false,
+            "/state/articles/0/author_ids": [
+              "p_boris",
+              "p_alina"
+            ],
+            "/observation/receipt": null,
+            "/observation/observed_state_version": null
+          }
+        },
+        {
+          "action": {
+            "op": "recover_event",
+            "available": false,
+            "event_id": "ev_a_101_r2"
+          },
+          "expected": {
+            "/observation/status": "UNKNOWN",
+            "/observation/code": "READ_UNAVAILABLE",
+            "/actual_commit": false,
+            "/state/state_version": 2,
+            "/state/articles/0/article_revision": 2,
+            "/observation/replayed": false,
+            "/state/articles/0/author_ids": [
+              "p_boris",
+              "p_alina"
+            ],
+            "/observation/receipt": null,
+            "/observation/observed_state_version": null
+          }
+        },
+        {
+          "action": {
+            "op": "recover_event",
+            "event_id": "ev_a_101_r2"
+          },
+          "expected": {
+            "/observation/status": "ABSENT_AT_READ",
+            "/observation/code": "NO_RECEIPT",
+            "/actual_commit": false,
+            "/state/state_version": 2,
+            "/state/articles/0/article_revision": 2,
+            "/observation/replayed": false,
+            "/state/articles/0/author_ids": [
+              "p_boris",
+              "p_alina"
+            ],
+            "/observation/observed_state_version": 2,
+            "/observation/receipt": null
+          }
+        },
+        {
+          "action": {
+            "op": "recover_command",
+            "request_ref": "update"
+          },
+          "expected": {
+            "/observation/status": "RESULT",
+            "/observation/code": "UPDATED",
+            "/actual_commit": false,
+            "/state/state_version": 2,
+            "/state/articles/0/article_revision": 2,
+            "/observation/replayed": true,
+            "/state/articles/0/author_ids": [
+              "p_boris",
+              "p_alina"
+            ],
+            "/observation/observed_state_version": 2,
+            "/observation/receipt/committed_state_version": 2
+          }
+        }
+      ]
+    }
+  ],
+  "bounded_matrix": {
+    "state_checkpoints": [
+      "initial",
+      "canonical_after_replace",
+      "canonical_after_delivery",
+      "canonical_after_ack",
+      "noop_committed",
+      "two_updates",
+      "newer_first",
+      "newer_then_late"
+    ],
+    "request_refs": [
+      "update",
+      "next",
+      "order",
+      "noop",
+      "same_key_other_payload",
+      "reusable_empty"
+    ],
+    "event_actions": "deliver and acknowledge every retained local outbox event",
+    "state_guards": [
+      "default_current_input",
+      "explicit_current",
+      "explicit_stale_current_plus_one"
+    ],
+    "cuts": [
+      "none",
+      "before_commit",
+      "after_commit_before_reply"
+    ],
+    "bound_note": "Exact Cartesian product for these eight authored reachable snapshots and six requests, plus all retained local events in each snapshot. No exhaustive claim about arbitrary histories or real storage."
+  },
+  "mutants": [
+    "M01_SPLIT_PRODUCER_COMMIT",
+    "M02_INBOX_WITHOUT_PROJECTION",
+    "M03_KEY_ONLY_RECEIPT_REPLAY"
+  ]
+}

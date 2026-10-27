@@ -1,0 +1,15 @@
+module m
+
+entity E {
+  // terms ["evil"]
+  purpose "a"
+}
+
+contract C about E {
+  rule r // пояснение
+    "текст"
+}
+
+fn a() -> Int64 { - // знак
+ 9223372036854775808 } /// о b
+fn b() -> () {}

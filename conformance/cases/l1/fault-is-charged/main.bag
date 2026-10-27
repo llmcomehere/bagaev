@@ -1,0 +1,7 @@
+@id("rrf853")
+module main
+
+@id("phz28t")
+pub fn main() -> Int64 {
+  1 / 0
+}

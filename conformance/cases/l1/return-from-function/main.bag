@@ -1,0 +1,12 @@
+@id("qzvj4s")
+module main
+
+@id("b2qvvw")
+fn f() -> Int64 {
+  return 1;
+}
+
+@id("rsfvd4")
+pub fn main() -> Int64 {
+  f()
+}

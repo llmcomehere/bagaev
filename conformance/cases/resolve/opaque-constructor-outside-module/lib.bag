@@ -1,0 +1,5 @@
+@id("d9hvtq")
+module lib
+
+@id("vcge7a")
+pub type Id = opaque String

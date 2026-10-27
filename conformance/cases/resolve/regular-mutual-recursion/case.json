@@ -1,0 +1,18 @@
+{
+  "id": "resolve/regular-mutual-recursion",
+  "spec": [
+    "spec/language/surface.md#3-объявления-и-идентичность",
+    "spec/language/types.md#9-eq-key-и-persistable"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "expect": {
+    "phase": "check",
+    "outcome": "ACCEPTED"
+  }
+}

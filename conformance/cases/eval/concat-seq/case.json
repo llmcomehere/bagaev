@@ -1,0 +1,39 @@
+{
+  "id": "eval/concat-seq",
+  "spec": [
+    "spec/language/surface.md#4-выражения",
+    "spec/ir/bir.md#2-формы"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "run": {
+    "entry": "main.main"
+  },
+  "expect": {
+    "phase": "run",
+    "effects": [],
+    "outcome": "RETURNED",
+    "value": {
+      "type": "Seq<Int64>",
+      "items": [
+        {
+          "type": "Int64",
+          "value": "1"
+        },
+        {
+          "type": "Int64",
+          "value": "2"
+        },
+        {
+          "type": "Int64",
+          "value": "3"
+        }
+      ]
+    }
+  }
+}

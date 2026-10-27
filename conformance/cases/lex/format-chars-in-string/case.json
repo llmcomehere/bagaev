@@ -1,0 +1,18 @@
+{
+  "id": "lex/format-chars-in-string",
+  "spec": [
+    "spec/language/lexical.md#1-кодировка-и-символы",
+    "spec/language/lexical.md#4-литералы"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "expect": {
+    "phase": "parse",
+    "outcome": "ACCEPTED"
+  }
+}

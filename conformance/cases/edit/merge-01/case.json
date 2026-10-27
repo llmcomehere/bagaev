@@ -1,0 +1,146 @@
+{
+  "id": "edit/merge-01",
+  "spec": [
+    "spec/protocol/agent-protocol.md#3-sourceedit-и-идентичность"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "app.bag"
+  ],
+  "run": {
+    "change": {
+      "principal": "agent",
+      "steps": [
+        {
+          "request": {
+            "operation": "change_begin",
+            "idempotency_key": "b1-kkkkkkkkkkkkkkkkkkkk",
+            "arguments": {
+              "intent": "изменение"
+            }
+          }
+        },
+        {
+          "request": {
+            "operation": "apply",
+            "change_id": "$change",
+            "expected_work_revision": 1,
+            "idempotency_key": "a1-kkkkkkkkkkkkkkkkkkkk",
+            "arguments": {
+              "source_edit": {
+                "files": [
+                  {
+                    "path": "app.bag",
+                    "base_sha256": "$sha:app.bag",
+                    "whole_file": "@id(\"cq0001\")\nmodule app\n\nuse std.test\n\n@id(\"cq0002\")\npub entity Greeting {\n  purpose \"Приветствие пользователю\"\n  terms [\"привет\"]\n  not_about [\"прощание\"]\n}\n\n@id(\"cq0003\")\npub contract Polite about Greeting {\n  @id(\"cq0004\") rule nonempty \"приветствие не пустое\"\n}\n\n@id(\"cq0005\")\npub fn greet(name: String) -> String\n  implements Polite.nonempty\n{\n  \"Привет, \" ++ name\n}\n\n@id(\"cq000h\")\npub fn shout(name: String) -> String {\n  greet(name) ++ \"!\"\n}\n\n@id(\"cq0008\")\ntest greet_nonempty\n  checks Polite.nonempty\n{\n  test.expect(\"не пусто\", greet(\"x\") != \"\")\n}\n"
+                  }
+                ],
+                "identity_ops": [
+                  {
+                    "op": "merge",
+                    "from": [
+                      "cq0006"
+                    ],
+                    "into": "cq000h",
+                    "reason": "r"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "request": {
+            "operation": "apply",
+            "change_id": "$change",
+            "expected_work_revision": 1,
+            "idempotency_key": "a2-kkkkkkkkkkkkkkkkkkkk",
+            "arguments": {
+              "source_edit": {
+                "files": [
+                  {
+                    "path": "app.bag",
+                    "base_sha256": "$sha:app.bag",
+                    "whole_file": "@id(\"cq0001\")\nmodule app\n\nuse std.test\n\n@id(\"cq0002\")\npub entity Greeting {\n  purpose \"Приветствие пользователю\"\n  terms [\"привет\"]\n  not_about [\"прощание\"]\n}\n\n@id(\"cq0003\")\npub contract Polite about Greeting {\n  @id(\"cq0004\") rule nonempty \"приветствие не пустое\"\n}\n\n@id(\"cq0005\")\npub fn greet(name: String) -> String\n  implements Polite.nonempty\n{\n  \"Привет, \" ++ name\n}\n\n@id(\"cq000h\")\npub fn shout(name: String) -> String {\n  greet(name) ++ \"!\"\n}\n\n@id(\"cq0008\")\ntest greet_nonempty\n  checks Polite.nonempty\n{\n  test.expect(\"не пусто\", greet(\"x\") != \"\")\n}\n"
+                  }
+                ],
+                "identity_ops": [
+                  {
+                    "op": "merge",
+                    "from": [
+                      "cq0006",
+                      "cq0007"
+                    ],
+                    "into": "cq000h",
+                    "reason": "одна функция"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "expect": {
+    "phase": "edit",
+    "outcome": "COMPLETED",
+    "value": [
+      {
+        "status": "succeeded",
+        "replayed": false,
+        "work_revision": 1
+      },
+      {
+        "status": "blocked",
+        "replayed": false,
+        "code": "IDENTITY_OP_MISMATCH",
+        "data": {
+          "op": 0
+        }
+      },
+      {
+        "status": "succeeded",
+        "replayed": false,
+        "work_revision": 2,
+        "touched": {
+          "app.bag": [
+            [
+              0,
+              627
+            ]
+          ]
+        },
+        "identity": {
+          "lineage": [
+            {
+              "op": "merge",
+              "predecessors": [
+                "cq0006",
+                "cq0007"
+              ],
+              "successors": [
+                "cq000h"
+              ],
+              "reason": "одна функция"
+            }
+          ],
+          "removed": [
+            "cq0006",
+            "cq0007"
+          ],
+          "added": [
+            "cq000h"
+          ],
+          "renamed": []
+        },
+        "draft": false,
+        "diagnostics": []
+      }
+    ]
+  },
+  "note": "merge требует не меньше двух источников и нового ID преемника; источники и преемник — в lineage"
+}

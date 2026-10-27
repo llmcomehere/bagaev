@@ -1,0 +1,8 @@
+@id("88cn5t")
+module main
+use std.json
+
+@id("c1gfwe")
+pub fn main() -> String {
+  json.quote("a\"b\\c\n")
+}

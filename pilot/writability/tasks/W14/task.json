@@ -1,0 +1,10 @@
+{
+  "id": "W14",
+  "kind": "edit",
+  "title": "Новый вариант перечисления",
+  "c_target": "main.bag",
+  "t_target": "main.ts",
+  "c_expect": {
+    "keep_ids_from_context": "main.bag"
+  }
+}

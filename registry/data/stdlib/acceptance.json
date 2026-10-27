@@ -1,0 +1,1148 @@
+{
+  "schema": "bagaev-stdlib-acceptance-plan/0.1",
+  "status": "NOT_RUN",
+  "actual_executions": 0,
+  "cases": [
+    {
+      "case_id": "SA-001",
+      "api_id": "STD-001",
+      "symbol": "std.bool.not",
+      "input_description": "true",
+      "expected_description": "false",
+      "status": "NOT_RUN",
+      "independent_oracle_status": "TO_BE_IMPLEMENTED",
+      "scope": "proposed_v1_library_integration",
+      "blocked_by_contract": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1"
+      ]
+    },
+    {
+      "case_id": "SA-002",
+      "api_id": "STD-002",
+      "symbol": "std.i64.eq",
+      "input_description": "MIN,MAX",
+      "expected_description": "false",
+      "status": "NOT_RUN",
+      "independent_oracle_status": "TO_BE_IMPLEMENTED",
+      "scope": "proposed_v1_library_integration",
+      "blocked_by_contract": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1"
+      ]
+    },
+    {
+      "case_id": "SA-003",
+      "api_id": "STD-003",
+      "symbol": "std.i64.lt",
+      "input_description": "MIN,MAX",
+      "expected_description": "true",
+      "status": "NOT_RUN",
+      "independent_oracle_status": "TO_BE_IMPLEMENTED",
+      "scope": "proposed_v1_library_integration",
+      "blocked_by_contract": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1"
+      ]
+    },
+    {
+      "case_id": "SA-004",
+      "api_id": "STD-004",
+      "symbol": "std.i64.add",
+      "input_description": "MAX,1",
+      "expected_description": "Err(Overflow)",
+      "status": "NOT_RUN",
+      "independent_oracle_status": "TO_BE_IMPLEMENTED",
+      "scope": "proposed_v1_library_integration",
+      "blocked_by_contract": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1"
+      ]
+    },
+    {
+      "case_id": "SA-005",
+      "api_id": "STD-005",
+      "symbol": "std.i64.sub",
+      "input_description": "MIN,1",
+      "expected_description": "Err(Overflow)",
+      "status": "NOT_RUN",
+      "independent_oracle_status": "TO_BE_IMPLEMENTED",
+      "scope": "proposed_v1_library_integration",
+      "blocked_by_contract": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1"
+      ]
+    },
+    {
+      "case_id": "SA-006",
+      "api_id": "STD-006",
+      "symbol": "std.i64.mul",
+      "input_description": "MIN,-1",
+      "expected_description": "Err(Overflow)",
+      "status": "NOT_RUN",
+      "independent_oracle_status": "TO_BE_IMPLEMENTED",
+      "scope": "proposed_v1_library_integration",
+      "blocked_by_contract": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1"
+      ]
+    },
+    {
+      "case_id": "SA-007",
+      "api_id": "STD-007",
+      "symbol": "std.i64.div",
+      "input_description": "MIN,-1",
+      "expected_description": "Err(Overflow)",
+      "status": "NOT_RUN",
+      "independent_oracle_status": "TO_BE_IMPLEMENTED",
+      "scope": "proposed_v1_library_integration",
+      "blocked_by_contract": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1"
+      ]
+    },
+    {
+      "case_id": "SA-008",
+      "api_id": "STD-008",
+      "symbol": "std.i64.rem",
+      "input_description": "MIN,-1",
+      "expected_description": "Ok(0)",
+      "status": "NOT_RUN",
+      "independent_oracle_status": "TO_BE_IMPLEMENTED",
+      "scope": "proposed_v1_library_integration",
+      "blocked_by_contract": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1"
+      ]
+    },
+    {
+      "case_id": "SA-009",
+      "api_id": "STD-009",
+      "symbol": "std.i64.neg",
+      "input_description": "MIN",
+      "expected_description": "Err(Overflow)",
+      "status": "NOT_RUN",
+      "independent_oracle_status": "TO_BE_IMPLEMENTED",
+      "scope": "proposed_v1_library_integration",
+      "blocked_by_contract": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1"
+      ]
+    },
+    {
+      "case_id": "SA-010",
+      "api_id": "STD-010",
+      "symbol": "std.i64.parse_decimal",
+      "input_description": "\"99999999999999999999x\"",
+      "expected_description": "Err(InvalidSyntax(index=20,reason=InvalidDigit))",
+      "status": "NOT_RUN",
+      "independent_oracle_status": "TO_BE_IMPLEMENTED",
+      "scope": "proposed_v1_library_integration",
+      "blocked_by_contract": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1"
+      ]
+    },
+    {
+      "case_id": "SA-011",
+      "api_id": "STD-011",
+      "symbol": "std.i64.format_decimal",
+      "input_description": "MIN",
+      "expected_description": "\"-9223372036854775808\"",
+      "status": "NOT_RUN",
+      "independent_oracle_status": "TO_BE_IMPLEMENTED",
+      "scope": "proposed_v1_library_integration",
+      "blocked_by_contract": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1"
+      ]
+    },
+    {
+      "case_id": "SA-012",
+      "api_id": "STD-012",
+      "symbol": "std.value.equal",
+      "input_description": "Map<Int64,Option<Int64>>{1:None}, same map",
+      "expected_description": "true",
+      "status": "NOT_RUN",
+      "independent_oracle_status": "TO_BE_IMPLEMENTED",
+      "scope": "proposed_v1_library_integration",
+      "blocked_by_contract": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1"
+      ]
+    },
+    {
+      "case_id": "SA-013",
+      "api_id": "STD-013",
+      "symbol": "std.value.compare",
+      "input_description": "Int64(-1),Int64(0)",
+      "expected_description": "-1",
+      "status": "NOT_RUN",
+      "independent_oracle_status": "TO_BE_IMPLEMENTED",
+      "scope": "proposed_v1_library_integration",
+      "blocked_by_contract": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1"
+      ]
+    },
+    {
+      "case_id": "SA-014",
+      "api_id": "STD-014",
+      "symbol": "std.option.is_some",
+      "input_description": "None<Int64>",
+      "expected_description": "false",
+      "status": "NOT_RUN",
+      "independent_oracle_status": "TO_BE_IMPLEMENTED",
+      "scope": "proposed_v1_library_integration",
+      "blocked_by_contract": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1"
+      ]
+    },
+    {
+      "case_id": "SA-015",
+      "api_id": "STD-015",
+      "symbol": "std.option.value_or",
+      "input_description": "Some(5), ready default9",
+      "expected_description": "5; default expression was already evaluated",
+      "status": "NOT_RUN",
+      "independent_oracle_status": "TO_BE_IMPLEMENTED",
+      "scope": "proposed_v1_library_integration",
+      "blocked_by_contract": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1"
+      ]
+    },
+    {
+      "case_id": "SA-016",
+      "api_id": "STD-016",
+      "symbol": "std.option.map_pure",
+      "input_description": "None<Int64>, Fn Int64→Int64 divergent body with {}",
+      "expected_description": "None<Int64>; callback body calls0",
+      "status": "NOT_RUN",
+      "independent_oracle_status": "TO_BE_IMPLEMENTED",
+      "scope": "proposed_v1_library_integration",
+      "blocked_by_contract": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1"
+      ]
+    },
+    {
+      "case_id": "SA-017",
+      "api_id": "STD-017",
+      "symbol": "std.result.is_ok",
+      "input_description": "Err<String,Int64>(7)",
+      "expected_description": "false",
+      "status": "NOT_RUN",
+      "independent_oracle_status": "TO_BE_IMPLEMENTED",
+      "scope": "proposed_v1_library_integration",
+      "blocked_by_contract": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1"
+      ]
+    },
+    {
+      "case_id": "SA-018",
+      "api_id": "STD-018",
+      "symbol": "std.result.map_pure",
+      "input_description": "Err<Int64,String>(\"e\"), f(x)=x+1 returning Int64 via explicit Match",
+      "expected_description": "Err(\"e\"); calls0",
+      "status": "NOT_RUN",
+      "independent_oracle_status": "TO_BE_IMPLEMENTED",
+      "scope": "proposed_v1_library_integration",
+      "blocked_by_contract": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1"
+      ]
+    },
+    {
+      "case_id": "SA-019",
+      "api_id": "STD-019",
+      "symbol": "std.result.map_error_pure",
+      "input_description": "Ok<Int64,String>(8), f(e)=scalar_length(e)",
+      "expected_description": "Ok(8); calls0",
+      "status": "NOT_RUN",
+      "independent_oracle_status": "TO_BE_IMPLEMENTED",
+      "scope": "proposed_v1_library_integration",
+      "blocked_by_contract": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1"
+      ]
+    },
+    {
+      "case_id": "SA-020",
+      "api_id": "STD-020",
+      "symbol": "std.seq.length",
+      "input_description": "Seq<Int64>[]",
+      "expected_description": "0",
+      "status": "NOT_RUN",
+      "independent_oracle_status": "TO_BE_IMPLEMENTED",
+      "scope": "proposed_v1_library_integration",
+      "blocked_by_contract": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1"
+      ]
+    },
+    {
+      "case_id": "SA-021",
+      "api_id": "STD-021",
+      "symbol": "std.seq.get",
+      "input_description": "[10,20], -1",
+      "expected_description": "None",
+      "status": "NOT_RUN",
+      "independent_oracle_status": "TO_BE_IMPLEMENTED",
+      "scope": "proposed_v1_library_integration",
+      "blocked_by_contract": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1"
+      ]
+    },
+    {
+      "case_id": "SA-022",
+      "api_id": "STD-022",
+      "symbol": "std.seq.append",
+      "input_description": "[10],20",
+      "expected_description": "[10,20]; old=[10]",
+      "status": "NOT_RUN",
+      "independent_oracle_status": "TO_BE_IMPLEMENTED",
+      "scope": "proposed_v1_library_integration",
+      "blocked_by_contract": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1"
+      ]
+    },
+    {
+      "case_id": "SA-023",
+      "api_id": "STD-023",
+      "symbol": "std.seq.concat",
+      "input_description": "[1,2],[3]",
+      "expected_description": "[1,2,3]",
+      "status": "NOT_RUN",
+      "independent_oracle_status": "TO_BE_IMPLEMENTED",
+      "scope": "proposed_v1_library_integration",
+      "blocked_by_contract": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1"
+      ]
+    },
+    {
+      "case_id": "SA-024",
+      "api_id": "STD-024",
+      "symbol": "std.seq.slice",
+      "input_description": "[1,2],2,2",
+      "expected_description": "Ok([])",
+      "status": "NOT_RUN",
+      "independent_oracle_status": "TO_BE_IMPLEMENTED",
+      "scope": "proposed_v1_library_integration",
+      "blocked_by_contract": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1"
+      ]
+    },
+    {
+      "case_id": "SA-025",
+      "api_id": "STD-025",
+      "symbol": "std.seq.map_pure",
+      "input_description": "[1,2], f(x)=x",
+      "expected_description": "[1,2]; call order[1,2]",
+      "status": "NOT_RUN",
+      "independent_oracle_status": "TO_BE_IMPLEMENTED",
+      "scope": "proposed_v1_library_integration",
+      "blocked_by_contract": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1"
+      ]
+    },
+    {
+      "case_id": "SA-026",
+      "api_id": "STD-026",
+      "symbol": "std.seq.fold_pure",
+      "input_description": "[1,2], initial10, f(acc,x)=10*acc+x with explicit checked-error handling",
+      "expected_description": "1012",
+      "status": "NOT_RUN",
+      "independent_oracle_status": "TO_BE_IMPLEMENTED",
+      "scope": "proposed_v1_library_integration",
+      "blocked_by_contract": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1"
+      ]
+    },
+    {
+      "case_id": "SA-027",
+      "api_id": "STD-027",
+      "symbol": "std.map.build",
+      "input_description": "[Entry(2,\"a\"),Entry(1,\"b\"),Entry(2,\"c\")]",
+      "expected_description": "Err(DataError{DuplicateKey,first=0,second=2})",
+      "status": "NOT_RUN",
+      "independent_oracle_status": "TO_BE_IMPLEMENTED",
+      "scope": "proposed_v1_library_integration",
+      "blocked_by_contract": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1"
+      ]
+    },
+    {
+      "case_id": "SA-028",
+      "api_id": "STD-028",
+      "symbol": "std.map.get",
+      "input_description": "{1:\"a\",3:\"c\"},2",
+      "expected_description": "None",
+      "status": "NOT_RUN",
+      "independent_oracle_status": "TO_BE_IMPLEMENTED",
+      "scope": "proposed_v1_library_integration",
+      "blocked_by_contract": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1"
+      ]
+    },
+    {
+      "case_id": "SA-029",
+      "api_id": "STD-029",
+      "symbol": "std.map.length",
+      "input_description": "Map<Int64,Int64>{}",
+      "expected_description": "0",
+      "status": "NOT_RUN",
+      "independent_oracle_status": "TO_BE_IMPLEMENTED",
+      "scope": "proposed_v1_library_integration",
+      "blocked_by_contract": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1"
+      ]
+    },
+    {
+      "case_id": "SA-030",
+      "api_id": "STD-030",
+      "symbol": "std.map.entries",
+      "input_description": "{3:\"c\",1:\"a\"}",
+      "expected_description": "[Entry(1,\"a\"),Entry(3,\"c\")]",
+      "status": "NOT_RUN",
+      "independent_oracle_status": "TO_BE_IMPLEMENTED",
+      "scope": "proposed_v1_library_integration",
+      "blocked_by_contract": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1"
+      ]
+    },
+    {
+      "case_id": "SA-031",
+      "api_id": "STD-031",
+      "symbol": "std.map.put",
+      "input_description": "{1:\"a\",3:\"c\"},1,\"new\"",
+      "expected_description": "{1:\"new\",3:\"c\"}; old map unchanged",
+      "status": "NOT_RUN",
+      "independent_oracle_status": "TO_BE_IMPLEMENTED",
+      "scope": "proposed_v1_library_integration",
+      "blocked_by_contract": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1"
+      ]
+    },
+    {
+      "case_id": "SA-032",
+      "api_id": "STD-032",
+      "symbol": "std.map.remove",
+      "input_description": "{1:\"a\",3:\"c\"},2",
+      "expected_description": "map semantically equal to original",
+      "status": "NOT_RUN",
+      "independent_oracle_status": "TO_BE_IMPLEMENTED",
+      "scope": "proposed_v1_library_integration",
+      "blocked_by_contract": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1"
+      ]
+    },
+    {
+      "case_id": "SA-033",
+      "api_id": "STD-033",
+      "symbol": "std.string.scalar_length",
+      "input_description": "\"😀\"",
+      "expected_description": "1",
+      "status": "NOT_RUN",
+      "independent_oracle_status": "TO_BE_IMPLEMENTED",
+      "scope": "proposed_v1_library_integration",
+      "blocked_by_contract": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1"
+      ]
+    },
+    {
+      "case_id": "SA-034",
+      "api_id": "STD-034",
+      "symbol": "std.string.scalar_get",
+      "input_description": "\"A😀\",1",
+      "expected_description": "Some(128512)",
+      "status": "NOT_RUN",
+      "independent_oracle_status": "TO_BE_IMPLEMENTED",
+      "scope": "proposed_v1_library_integration",
+      "blocked_by_contract": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1"
+      ]
+    },
+    {
+      "case_id": "SA-035",
+      "api_id": "STD-035",
+      "symbol": "std.string.slice",
+      "input_description": "\"A😀B\",1,2",
+      "expected_description": "Ok(\"😀\")",
+      "status": "NOT_RUN",
+      "independent_oracle_status": "TO_BE_IMPLEMENTED",
+      "scope": "proposed_v1_library_integration",
+      "blocked_by_contract": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1"
+      ]
+    },
+    {
+      "case_id": "SA-036",
+      "api_id": "STD-036",
+      "symbol": "std.string.concat",
+      "input_description": "\"e\",\"́\"",
+      "expected_description": "two scalars U+0065 U+0301; no normalization",
+      "status": "NOT_RUN",
+      "independent_oracle_status": "TO_BE_IMPLEMENTED",
+      "scope": "proposed_v1_library_integration",
+      "blocked_by_contract": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1"
+      ]
+    },
+    {
+      "case_id": "SA-037",
+      "api_id": "STD-037",
+      "symbol": "std.string.from_scalars",
+      "input_description": "[65,55296,66]",
+      "expected_description": "Err(ScalarError{index=1,value=55296})",
+      "status": "NOT_RUN",
+      "independent_oracle_status": "TO_BE_IMPLEMENTED",
+      "scope": "proposed_v1_library_integration",
+      "blocked_by_contract": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1"
+      ]
+    },
+    {
+      "case_id": "SA-038",
+      "api_id": "STD-038",
+      "symbol": "std.string.to_scalars",
+      "input_description": "\"😀\"",
+      "expected_description": "[128512]",
+      "status": "NOT_RUN",
+      "independent_oracle_status": "TO_BE_IMPLEMENTED",
+      "scope": "proposed_v1_library_integration",
+      "blocked_by_contract": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1"
+      ]
+    },
+    {
+      "case_id": "SA-039",
+      "api_id": "STD-039",
+      "symbol": "std.bytes.length",
+      "input_description": "Bytes[F0,9F,98,80]",
+      "expected_description": "4",
+      "status": "NOT_RUN",
+      "independent_oracle_status": "TO_BE_IMPLEMENTED",
+      "scope": "proposed_v1_library_integration",
+      "blocked_by_contract": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1"
+      ]
+    },
+    {
+      "case_id": "SA-040",
+      "api_id": "STD-040",
+      "symbol": "std.bytes.get",
+      "input_description": "Bytes[FF],0",
+      "expected_description": "Some(255)",
+      "status": "NOT_RUN",
+      "independent_oracle_status": "TO_BE_IMPLEMENTED",
+      "scope": "proposed_v1_library_integration",
+      "blocked_by_contract": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1"
+      ]
+    },
+    {
+      "case_id": "SA-041",
+      "api_id": "STD-041",
+      "symbol": "std.bytes.slice",
+      "input_description": "Bytes[F0,9F,98,80],0,1",
+      "expected_description": "Ok(Bytes[F0]); no UTF8 validation",
+      "status": "NOT_RUN",
+      "independent_oracle_status": "TO_BE_IMPLEMENTED",
+      "scope": "proposed_v1_library_integration",
+      "blocked_by_contract": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1"
+      ]
+    },
+    {
+      "case_id": "SA-042",
+      "api_id": "STD-042",
+      "symbol": "std.bytes.concat",
+      "input_description": "Bytes[00],Bytes[FF]",
+      "expected_description": "Bytes[00,FF]",
+      "status": "NOT_RUN",
+      "independent_oracle_status": "TO_BE_IMPLEMENTED",
+      "scope": "proposed_v1_library_integration",
+      "blocked_by_contract": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1"
+      ]
+    },
+    {
+      "case_id": "SA-043",
+      "api_id": "STD-043",
+      "symbol": "std.bytes.from_octets",
+      "input_description": "[0,256,1]",
+      "expected_description": "Err(OctetError{index=1,value=256})",
+      "status": "NOT_RUN",
+      "independent_oracle_status": "TO_BE_IMPLEMENTED",
+      "scope": "proposed_v1_library_integration",
+      "blocked_by_contract": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1"
+      ]
+    },
+    {
+      "case_id": "SA-044",
+      "api_id": "STD-044",
+      "symbol": "std.bytes.to_octets",
+      "input_description": "Bytes[00,FF]",
+      "expected_description": "[0,255]",
+      "status": "NOT_RUN",
+      "independent_oracle_status": "TO_BE_IMPLEMENTED",
+      "scope": "proposed_v1_library_integration",
+      "blocked_by_contract": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1"
+      ]
+    },
+    {
+      "case_id": "SA-045",
+      "api_id": "STD-045",
+      "symbol": "std.utf8.encode",
+      "input_description": "\"﻿\"",
+      "expected_description": "Bytes[EF,BB,BF] exactly",
+      "status": "NOT_RUN",
+      "independent_oracle_status": "TO_BE_IMPLEMENTED",
+      "scope": "proposed_v1_library_integration",
+      "blocked_by_contract": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1",
+        "UTF8-WORK-0.1"
+      ]
+    },
+    {
+      "case_id": "SA-046",
+      "api_id": "STD-046",
+      "symbol": "std.utf8.decode",
+      "input_description": "Bytes[C0,80]",
+      "expected_description": "Err(DataError{Utf8Leading,first=0,second=-1})",
+      "status": "NOT_RUN",
+      "independent_oracle_status": "TO_BE_IMPLEMENTED",
+      "scope": "proposed_v1_library_integration",
+      "blocked_by_contract": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1",
+        "UTF8-WORK-0.1"
+      ]
+    },
+    {
+      "case_id": "SA-047",
+      "api_id": "STD-047",
+      "symbol": "std.codec.encode",
+      "input_description": "Int64(-1), exact admitted VALUE-CODEC-V1",
+      "expected_description": "exact independent golden bytes of this codec; fixture blocked until contract exists",
+      "status": "NOT_RUN",
+      "independent_oracle_status": "TO_BE_IMPLEMENTED",
+      "scope": "proposed_v1_library_integration",
+      "blocked_by_contract": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1",
+        "VALUE-CODEC-V1"
+      ]
+    },
+    {
+      "case_id": "SA-048",
+      "api_id": "STD-048",
+      "symbol": "std.codec.decode",
+      "input_description": "exact encoded Int64(7), matching VALUE-CODEC-V1",
+      "expected_description": "Ok(7); foreign context must Err according to locked codec",
+      "status": "NOT_RUN",
+      "independent_oracle_status": "TO_BE_IMPLEMENTED",
+      "scope": "proposed_v1_library_integration",
+      "blocked_by_contract": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1",
+        "VALUE-CODEC-V1"
+      ]
+    },
+    {
+      "case_id": "SA-049",
+      "api_id": "STD-049",
+      "symbol": "std.test.check",
+      "input_description": "\"c1\",false",
+      "expected_description": "Fail(TestFailure{case_id=\"c1\",code=ConditionFalse(Unit)})",
+      "status": "NOT_RUN",
+      "independent_oracle_status": "TO_BE_IMPLEMENTED",
+      "scope": "proposed_v1_library_integration",
+      "blocked_by_contract": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1"
+      ]
+    },
+    {
+      "case_id": "SA-050",
+      "api_id": "STD-050",
+      "symbol": "std.test.check_equal",
+      "input_description": "\"c2\",Int64(1),Int64(2)",
+      "expected_description": "Fail(TestFailure{case_id=\"c2\",code=ValueMismatch(Unit)})",
+      "status": "NOT_RUN",
+      "independent_oracle_status": "TO_BE_IMPLEMENTED",
+      "scope": "proposed_v1_library_integration",
+      "blocked_by_contract": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1"
+      ]
+    },
+    {
+      "case_id": "SA-051",
+      "api_id": "STD-051",
+      "symbol": "std.test.all",
+      "input_description": "[Pass(\"x\"),Fail(TestFailure{case_id=\"x\",code=ConditionFalse(Unit)})]",
+      "expected_description": "{total=2,passed=1,failed=1,failures=[{index=1,failure:TestFailure{case_id=\"x\",code=ConditionFalse(Unit)}}]}",
+      "status": "NOT_RUN",
+      "independent_oracle_status": "TO_BE_IMPLEMENTED",
+      "scope": "proposed_v1_library_integration",
+      "blocked_by_contract": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1"
+      ]
+    },
+    {
+      "case_id": "SA-052",
+      "api_id": "STD-052",
+      "symbol": "std.store.snapshot",
+      "input_description": "authorized root S=7 at ActiveRef generation4; concurrent change to generation5",
+      "expected_description": "one coherent {active4,7} or {active5,newS}, never mixed",
+      "status": "NOT_RUN",
+      "independent_oracle_status": "TO_BE_IMPLEMENTED",
+      "scope": "proposed_v1_library_integration",
+      "blocked_by_contract": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1",
+        "STORE-V1",
+        "CAPABILITY-V1",
+        "JOURNAL-V1",
+        "REGISTERED-SERVICE-V1"
+      ]
+    },
+    {
+      "case_id": "SA-053",
+      "api_id": "STD-053",
+      "symbol": "std.store.commit",
+      "input_description": "same admitted KeyRef with same semantic request; head changed after first Applied",
+      "expected_description": "same historical Applied receipt; no second root/outbox commit",
+      "status": "NOT_RUN",
+      "independent_oracle_status": "TO_BE_IMPLEMENTED",
+      "scope": "proposed_v1_library_integration",
+      "blocked_by_contract": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1",
+        "STORE-V1",
+        "EVENTS-V1",
+        "APP-IDEMPOTENCY-V1",
+        "CAPABILITY-V1",
+        "JOURNAL-V1",
+        "REGISTERED-SERVICE-V1"
+      ]
+    },
+    {
+      "case_id": "SA-054",
+      "api_id": "STD-054",
+      "symbol": "std.store.status",
+      "input_description": "retired KeyRef, historical receipt payload deleted",
+      "expected_description": "ClosedWithoutPayload if retained intent ID; otherwise AdmissionClosed; never KnownNotAdmitted from missing payload",
+      "status": "NOT_RUN",
+      "independent_oracle_status": "TO_BE_IMPLEMENTED",
+      "scope": "proposed_v1_library_integration",
+      "blocked_by_contract": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1",
+        "STORE-V1",
+        "APP-IDEMPOTENCY-V1",
+        "CAPABILITY-V1",
+        "JOURNAL-V1",
+        "REGISTERED-SERVICE-V1"
+      ]
+    },
+    {
+      "case_id": "SA-055",
+      "api_id": "STD-055",
+      "symbol": "std.events.read",
+      "input_description": "cursor position2, pinned frontier5, limit2, complete log",
+      "expected_description": "positions3,4; next4; frontier5",
+      "status": "NOT_RUN",
+      "independent_oracle_status": "TO_BE_IMPLEMENTED",
+      "scope": "proposed_v1_library_integration",
+      "blocked_by_contract": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1",
+        "EVENTS-V1",
+        "CAPABILITY-V1",
+        "JOURNAL-V1",
+        "REGISTERED-SERVICE-V1"
+      ]
+    },
+    {
+      "case_id": "SA-056",
+      "api_id": "STD-056",
+      "symbol": "std.events.apply",
+      "input_description": "same consumer/event payload, already Applied; changed new root proposal and current head",
+      "expected_description": "historical Applied receipt; no new root/outbox/frontier change",
+      "status": "NOT_RUN",
+      "independent_oracle_status": "TO_BE_IMPLEMENTED",
+      "scope": "proposed_v1_library_integration",
+      "blocked_by_contract": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1",
+        "STORE-V1",
+        "EVENTS-V1",
+        "APP-IDEMPOTENCY-V1",
+        "CAPABILITY-V1",
+        "JOURNAL-V1",
+        "REGISTERED-SERVICE-V1"
+      ]
+    },
+    {
+      "case_id": "SA-057",
+      "api_id": "STD-057",
+      "symbol": "std.events.status",
+      "input_description": "ConsumerCap without status/read permission",
+      "expected_description": "PermissionDenied; no receipt disclosure, no new apply",
+      "status": "NOT_RUN",
+      "independent_oracle_status": "TO_BE_IMPLEMENTED",
+      "scope": "proposed_v1_library_integration",
+      "blocked_by_contract": [
+        "TYPE-V1",
+        "MACHINE-V1",
+        "STDLIB-API-0.1",
+        "EVENTS-V1",
+        "APP-IDEMPOTENCY-V1",
+        "CAPABILITY-V1",
+        "JOURNAL-V1",
+        "REGISTERED-SERVICE-V1"
+      ]
+    },
+    {
+      "case_id": "SX-001",
+      "rule": "NEG-LOOKUP",
+      "input_description": "std.seq.mpa_pure",
+      "expected_description": "UNKNOWN_STDLIB_SYMBOL; no fuzzy correction into executable",
+      "status": "NOT_RUN",
+      "independent_oracle_status": "TO_BE_IMPLEMENTED",
+      "scope": "proposed_v1_library_integration"
+    },
+    {
+      "case_id": "SX-002",
+      "rule": "PREFIX-BOUNDARY",
+      "input_description": "std.gpuX.run",
+      "expected_description": "UNKNOWN_STDLIB_SYMBOL; not UNSUPPORTED_PROFILE from std.gpu",
+      "status": "NOT_RUN",
+      "independent_oracle_status": "TO_BE_IMPLEMENTED",
+      "scope": "proposed_v1_library_integration"
+    },
+    {
+      "case_id": "SX-003",
+      "rule": "TYPE-KIND",
+      "input_description": "call std.types.BoundsError as function",
+      "expected_description": "STDLIB_KIND_MISMATCH; record construction uses language form",
+      "status": "NOT_RUN",
+      "independent_oracle_status": "TO_BE_IMPLEMENTED",
+      "scope": "proposed_v1_library_integration"
+    },
+    {
+      "case_id": "SX-004",
+      "rule": "MISSING-SERVICE",
+      "input_description": "std.store.commit with no APP-IDEMPOTENCY-V1 exact artifact",
+      "expected_description": "INPUT_NOT_READY; V1 required obligation remains open",
+      "status": "NOT_RUN",
+      "independent_oracle_status": "TO_BE_IMPLEMENTED",
+      "scope": "proposed_v1_library_integration"
+    },
+    {
+      "case_id": "SX-005",
+      "rule": "WRONG-BINDING",
+      "input_description": "same name/version label with altered behavior bytes",
+      "expected_description": "hash/kind/contract mismatch; never silently use bytes",
+      "status": "NOT_RUN",
+      "independent_oracle_status": "TO_BE_IMPLEMENTED",
+      "scope": "proposed_v1_library_integration"
+    },
+    {
+      "case_id": "SX-006",
+      "rule": "NO-NATIVE-SUBSTITUTION",
+      "input_description": "trusted service export replaced by native FFI provider needing HostCall",
+      "expected_description": "STDLIB_CONTRACT_MISMATCH until explicit admitted signature/revision",
+      "status": "NOT_RUN",
+      "independent_oracle_status": "TO_BE_IMPLEMENTED",
+      "scope": "proposed_v1_library_integration"
+    },
+    {
+      "case_id": "SX-007",
+      "rule": "UNREACHABLE",
+      "input_description": "unknown std API inside dead branch/unused declaration",
+      "expected_description": "resolve diagnostic before launch; not optimized away",
+      "status": "NOT_RUN",
+      "independent_oracle_status": "TO_BE_IMPLEMENTED",
+      "scope": "proposed_v1_library_integration"
+    },
+    {
+      "case_id": "SX-008",
+      "rule": "EFFECTFUL-FN",
+      "input_description": "map_pure supplied Fn with nonempty effect set",
+      "expected_description": "Type/effect diagnostic; no implicit effect-row instantiation",
+      "status": "NOT_RUN",
+      "independent_oracle_status": "TO_BE_IMPLEMENTED",
+      "scope": "proposed_v1_library_integration"
+    },
+    {
+      "case_id": "SX-009",
+      "rule": "STRICT-DEFAULT",
+      "input_description": "value_or(Some(5), divergent default expression)",
+      "expected_description": "default executes; SemanticStop possible before entering value_or",
+      "status": "NOT_RUN",
+      "independent_oracle_status": "TO_BE_IMPLEMENTED",
+      "scope": "proposed_v1_library_integration"
+    },
+    {
+      "case_id": "SX-010",
+      "rule": "WHOLE-EQ",
+      "input_description": "equal(None<Fn>,None<Fn>)",
+      "expected_description": "predicate diagnostic even though actual payload empty",
+      "status": "NOT_RUN",
+      "independent_oracle_status": "TO_BE_IMPLEMENTED",
+      "scope": "proposed_v1_library_integration"
+    },
+    {
+      "case_id": "SX-011",
+      "rule": "PHANTOM",
+      "input_description": "registered Phantom<Fn>{} with no Fn payload fields",
+      "expected_description": "Eq/Persistable follow instantiated fields; descriptor identity preserved",
+      "status": "NOT_RUN",
+      "independent_oracle_status": "TO_BE_IMPLEMENTED",
+      "scope": "proposed_v1_library_integration"
+    },
+    {
+      "case_id": "SX-012",
+      "rule": "TYPE-NOMINAL",
+      "input_description": "compare PersonId and ArticleId same physical layout",
+      "expected_description": "TypeMismatch, not false or0",
+      "status": "NOT_RUN",
+      "independent_oracle_status": "TO_BE_IMPLEMENTED",
+      "scope": "proposed_v1_library_integration"
+    },
+    {
+      "case_id": "SX-013",
+      "rule": "SLICE-BOUNDS",
+      "input_description": "slice length2 start2 end1",
+      "expected_description": "Err BoundsError{length2,start2,end1}; no clamp",
+      "status": "NOT_RUN",
+      "independent_oracle_status": "TO_BE_IMPLEMENTED",
+      "scope": "proposed_v1_library_integration"
+    },
+    {
+      "case_id": "SX-014",
+      "rule": "MAP-OPERANDS",
+      "input_description": "duplicate early map pair then late effect/divergence expression",
+      "expected_description": "all source operands processed before duplicate detection; late termination can prevent build",
+      "status": "NOT_RUN",
+      "independent_oracle_status": "TO_BE_IMPLEMENTED",
+      "scope": "proposed_v1_library_integration"
+    },
+    {
+      "case_id": "SX-015",
+      "rule": "CANCEL-RETURN",
+      "input_description": "cancel visible before LIB_RETURN after successful inner traversal",
+      "expected_description": "Cancelled; no partially published value",
+      "status": "NOT_RUN",
+      "independent_oracle_status": "TO_BE_IMPLEMENTED",
+      "scope": "proposed_v1_library_integration"
+    },
+    {
+      "case_id": "SX-016",
+      "rule": "SHARED-BUDGET",
+      "input_description": "map callback exhausted parent remaining budget",
+      "expected_description": "BudgetExceeded; no callback budget reset; no returned partial Seq",
+      "status": "NOT_RUN",
+      "independent_oracle_status": "TO_BE_IMPLEMENTED",
+      "scope": "proposed_v1_library_integration"
+    },
+    {
+      "case_id": "SX-017",
+      "rule": "ZERO-WIRE",
+      "input_description": "huge count of Unit/empty-record values",
+      "expected_description": "prospective nodes/arena bound applies despite tiny payload bytes",
+      "status": "NOT_RUN",
+      "independent_oracle_status": "TO_BE_IMPLEMENTED",
+      "scope": "proposed_v1_library_integration"
+    },
+    {
+      "case_id": "SX-018",
+      "rule": "SERVICE-ROLES",
+      "input_description": "consumer with root A, input log B, output log C",
+      "expected_description": "three distinct resource dependency bindings; current authorization checked per role",
+      "status": "NOT_RUN",
+      "independent_oracle_status": "TO_BE_IMPLEMENTED",
+      "scope": "proposed_v1_library_integration"
+    },
+    {
+      "case_id": "SX-019",
+      "rule": "REVOKED-READ",
+      "input_description": "receipt exists; permission revoked before duplicate/status read",
+      "expected_description": "PermissionDenied, no receipt leak/no fresh execution",
+      "status": "NOT_RUN",
+      "independent_oracle_status": "TO_BE_IMPLEMENTED",
+      "scope": "proposed_v1_library_integration"
+    },
+    {
+      "case_id": "SX-020",
+      "rule": "KEY-CONFLICT",
+      "input_description": "same user KeyRef but changed expected state or replacement root",
+      "expected_description": "KeyConflict, unlike intentional event same-identity dedup rule",
+      "status": "NOT_RUN",
+      "independent_oracle_status": "TO_BE_IMPLEMENTED",
+      "scope": "proposed_v1_library_integration"
+    },
+    {
+      "case_id": "SX-021",
+      "rule": "LOST-ACK",
+      "input_description": "crash after durable local commit before returned response",
+      "expected_description": "retained intent; lookup returns same Applied when established; no auto new key/retry",
+      "status": "NOT_RUN",
+      "independent_oracle_status": "TO_BE_IMPLEMENTED",
+      "scope": "proposed_v1_library_integration"
+    },
+    {
+      "case_id": "SX-022",
+      "rule": "EVENT-GAP",
+      "input_description": "required page range has lost retained entry",
+      "expected_description": "JournalGap, not empty success; no advance over gap",
+      "status": "NOT_RUN",
+      "independent_oracle_status": "TO_BE_IMPLEMENTED",
+      "scope": "proposed_v1_library_integration"
+    },
+    {
+      "case_id": "SX-023",
+      "rule": "EVENT-ORDER",
+      "input_description": "fresh consumer apply skips next event position",
+      "expected_description": "InvalidArgument before commit; duplicate history remains accessible first",
+      "status": "NOT_RUN",
+      "independent_oracle_status": "TO_BE_IMPLEMENTED",
+      "scope": "proposed_v1_library_integration"
+    },
+    {
+      "case_id": "SX-024",
+      "rule": "EVENT-PAYLOAD",
+      "input_description": "same event_id with different payload_digest",
+      "expected_description": "conflict; no rewrite of old dedup binding",
+      "status": "NOT_RUN",
+      "independent_oracle_status": "TO_BE_IMPLEMENTED",
+      "scope": "proposed_v1_library_integration"
+    },
+    {
+      "case_id": "SX-025",
+      "rule": "NEGATIVE-DEPENDENCY",
+      "input_description": "catalog adds formerly absent std symbol",
+      "expected_description": "Absence witness invalidated; source can be resolved anew",
+      "status": "NOT_RUN",
+      "independent_oracle_status": "TO_BE_IMPLEMENTED",
+      "scope": "proposed_v1_library_integration"
+    },
+    {
+      "case_id": "SX-026",
+      "rule": "ERROR-DEPENDENCY",
+      "input_description": "map.build silently changes duplicate behavior, signature unchanged",
+      "expected_description": "Symbol/error contract ref changes; old consumers/evidence stale",
+      "status": "NOT_RUN",
+      "independent_oracle_status": "TO_BE_IMPLEMENTED",
+      "scope": "proposed_v1_library_integration"
+    },
+    {
+      "case_id": "SX-027",
+      "rule": "TEST-NO-ACCEPTANCE",
+      "input_description": "all([]) returns summary0/0/0",
+      "expected_description": "does not produce AcceptanceRecord or prove required suite executed",
+      "status": "NOT_RUN",
+      "independent_oracle_status": "TO_BE_IMPLEMENTED",
+      "scope": "proposed_v1_library_integration"
+    },
+    {
+      "case_id": "SX-028",
+      "rule": "ACTUAL-EXPORTS",
+      "input_description": "provider exports extra/missing public function vs catalog",
+      "expected_description": "independent export set checker rejects; manifest alone insufficient",
+      "status": "NOT_RUN",
+      "independent_oracle_status": "TO_BE_IMPLEMENTED",
+      "scope": "proposed_v1_library_integration"
+    }
+  ]
+}

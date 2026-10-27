@@ -1,0 +1,7 @@
+@id("z03mv5")
+module main
+
+@id("ejakpe")
+fn f(a: Int64) -> Int64 {
+  a ++ a
+}

@@ -1,0 +1,7 @@
+@id("wk38c9")
+module main
+
+@id("r9cte8")
+pub test t {
+  ()
+}

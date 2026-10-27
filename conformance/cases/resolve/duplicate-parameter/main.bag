@@ -1,0 +1,7 @@
+@id("y764cg")
+module main
+
+@id("mz9tq3")
+fn f(a: Int64, a: Int64) -> Int64 {
+  a
+}

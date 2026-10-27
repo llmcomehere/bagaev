@@ -1,0 +1,118 @@
+{
+  "id": "migrate/foreign-lock-01",
+  "spec": [
+    "spec/runtime/host.md#7-миграция"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "app.bag",
+    "v2/app.bag"
+  ],
+  "run": {
+    "steps": [
+      {
+        "op": "seed",
+        "table": "app.S.counts",
+        "rows": [
+          [
+            {
+              "type": "String",
+              "value": "a"
+            },
+            {
+              "type": "Int64",
+              "value": "5"
+            }
+          ]
+        ]
+      },
+      {
+        "op": "lock"
+      },
+      {
+        "op": "command",
+        "entry": "app.bump",
+        "args": [
+          {
+            "type": "String",
+            "value": "a"
+          },
+          {
+            "type": "Int64",
+            "value": "1"
+          }
+        ],
+        "namespace": "app",
+        "key": "key-000000000001"
+      },
+      {
+        "op": "migrate",
+        "program": "v2"
+      },
+      {
+        "op": "migrate",
+        "action": "abort"
+      },
+      {
+        "op": "command",
+        "entry": "app.bump",
+        "args": [
+          {
+            "type": "String",
+            "value": "a"
+          },
+          {
+            "type": "Int64",
+            "value": "1"
+          }
+        ],
+        "namespace": "app",
+        "key": "key-000000000001"
+      }
+    ],
+    "state_program": ""
+  },
+  "expect": {
+    "phase": "migrate",
+    "outcome": "COMPLETED",
+    "value": [
+      {
+        "outcome": "COMMITTED",
+        "rows": 1,
+        "state_version": 1
+      },
+      {
+        "outcome": "LOCKED"
+      },
+      {
+        "outcome": "REFUSED",
+        "code": "MIGRATION_IN_PROGRESS"
+      },
+      {
+        "outcome": "REFUSED",
+        "code": "MIGRATION_IN_PROGRESS"
+      },
+      {
+        "outcome": "ABORTED",
+        "dropped": []
+      },
+      {
+        "value": {
+          "type": "Result<Int64,app.BumpError>",
+          "tag": "Ok",
+          "payload": {
+            "type": "Int64",
+            "value": "6"
+          }
+        },
+        "outcome": "COMMITTED",
+        "final": true,
+        "replayed": false,
+        "state_version": 2
+      }
+    ]
+  }
+}

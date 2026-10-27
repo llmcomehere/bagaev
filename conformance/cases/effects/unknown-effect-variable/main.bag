@@ -1,0 +1,7 @@
+@id("xr46wv")
+module main
+
+@id("bahd5r")
+fn f(g: fn() -> () uses e) -> () {
+  g()
+}

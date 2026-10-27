@@ -1,0 +1,9 @@
+@id("e8pcav")
+module main
+
+@id("58bjv2")
+fn f(x: Int64) -> Int64 {
+  match x {
+    Some(v) => v,
+  }
+}

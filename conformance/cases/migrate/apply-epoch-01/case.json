@@ -1,0 +1,243 @@
+{
+  "id": "migrate/apply-epoch-01",
+  "spec": [
+    "spec/runtime/host.md#7-миграция",
+    "spec/runtime/host.md#2-привязка-схемы"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "app.bag",
+    "v2/app.bag"
+  ],
+  "run": {
+    "steps": [
+      {
+        "op": "seed",
+        "table": "app.S.counts",
+        "rows": [
+          [
+            {
+              "type": "String",
+              "value": "b"
+            },
+            {
+              "type": "Int64",
+              "value": "7"
+            }
+          ],
+          [
+            {
+              "type": "String",
+              "value": "a"
+            },
+            {
+              "type": "Int64",
+              "value": "5"
+            }
+          ]
+        ]
+      },
+      {
+        "op": "query",
+        "entry": "app.get",
+        "args": [
+          {
+            "type": "String",
+            "value": "a"
+          }
+        ],
+        "program": "v2"
+      },
+      {
+        "op": "migrate",
+        "action": "plan",
+        "program": "v2"
+      },
+      {
+        "op": "migrate",
+        "program": "v2"
+      },
+      {
+        "op": "query",
+        "entry": "app.get",
+        "args": [
+          {
+            "type": "String",
+            "value": "a"
+          }
+        ],
+        "program": "v2"
+      },
+      {
+        "op": "migrate",
+        "program": "v2"
+      },
+      {
+        "op": "query",
+        "entry": "app.get",
+        "args": [
+          {
+            "type": "String",
+            "value": "a"
+          }
+        ]
+      }
+    ],
+    "state_program": "v2"
+  },
+  "expect": {
+    "phase": "migrate",
+    "outcome": "COMPLETED",
+    "value": [
+      {
+        "outcome": "COMMITTED",
+        "rows": 2,
+        "state_version": 1
+      },
+      {
+        "outcome": "REFUSED",
+        "code": "SCHEMA_BINDING_MISMATCH"
+      },
+      {
+        "epoch": 0,
+        "state_version": 1,
+        "tables": [
+          {
+            "table": "app.S.counts",
+            "id": "aa0003",
+            "action": "migrate",
+            "migration": "app.to_tally",
+            "from": "Int64",
+            "to": "app.Tally"
+          },
+          {
+            "table": "app.S.seen",
+            "id": "aa0004",
+            "action": "keep"
+          }
+        ],
+        "events": [
+          {
+            "event": "app.Bumped",
+            "id": "aa0005",
+            "action": "keep"
+          }
+        ],
+        "outcome": "PLANNED"
+      },
+      {
+        "outcome": "APPLIED",
+        "epoch": 1,
+        "state_version": 2,
+        "rows": 2,
+        "tables": [
+          {
+            "table": "app.S.counts",
+            "id": "aa0003",
+            "action": "migrate",
+            "migration": "app.to_tally",
+            "from": "Int64",
+            "to": "app.Tally"
+          },
+          {
+            "table": "app.S.seen",
+            "id": "aa0004",
+            "action": "keep"
+          }
+        ],
+        "events": [
+          {
+            "event": "app.Bumped",
+            "id": "aa0005",
+            "action": "keep"
+          }
+        ]
+      },
+      {
+        "outcome": "RETURNED",
+        "value": {
+          "type": "Option<app.Tally>",
+          "tag": "Some",
+          "payload": {
+            "type": "app.Tally",
+            "fields": {
+              "total": {
+                "type": "Int64",
+                "value": "5"
+              },
+              "bumps": {
+                "type": "Int64",
+                "value": "1"
+              }
+            }
+          }
+        }
+      },
+      {
+        "epoch": 1,
+        "state_version": 2,
+        "outcome": "UP_TO_DATE",
+        "tables": [],
+        "events": []
+      },
+      {
+        "outcome": "REFUSED",
+        "code": "SCHEMA_BINDING_MISMATCH"
+      }
+    ],
+    "state": {
+      "state_version": 2,
+      "epoch": 1,
+      "tables": {
+        "app.S.counts": [
+          [
+            {
+              "type": "String",
+              "value": "a"
+            },
+            {
+              "type": "app.Tally",
+              "fields": {
+                "total": {
+                  "type": "Int64",
+                  "value": "5"
+                },
+                "bumps": {
+                  "type": "Int64",
+                  "value": "1"
+                }
+              }
+            }
+          ],
+          [
+            {
+              "type": "String",
+              "value": "b"
+            },
+            {
+              "type": "app.Tally",
+              "fields": {
+                "total": {
+                  "type": "Int64",
+                  "value": "7"
+                },
+                "bumps": {
+                  "type": "Int64",
+                  "value": "1"
+                }
+              }
+            }
+          ]
+        ],
+        "app.S.seen": []
+      },
+      "outbox": [],
+      "inbox": [],
+      "pending": []
+    }
+  },
+  "note": "после переключения прежняя программа отклоняется; повтор apply — UP_TO_DATE (HST-14, HST-15)"
+}

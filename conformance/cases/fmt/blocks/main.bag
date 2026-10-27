@@ -1,0 +1,8 @@
+module m
+
+fn f() -> Int64 { let x: Int64 = 1;
+
+
+  { x }; if x == 1 { 2 } else { 3 }
+  {}
+  x }

@@ -1,0 +1,37 @@
+/// Комментарии читателей. Автор комментария — не автор статьи.
+@id("qhg54q")
+module blog.comments
+
+use std.store
+use std.seq
+use std.map
+use blog.db.{Blog, Comment}
+use blog.people
+use blog.articles
+
+@id("80ermt")
+pub command add_comment(id: String, article: String, person: String, text: String) -> Result<(), String>
+  uses { reads Blog.articles, writes Blog.comments }
+{
+  let a = articles.article_id(article);
+  match store.get(Blog.articles, a) {
+    None => Err("NOT_FOUND"),
+    Some(_) => {
+      store.put(Blog.comments, id, Comment { id: id, article: a, author: people.person_id(person), text: text });
+      Ok(())
+    },
+  }
+}
+
+@id("mc1z4n")
+pub query comments_of(article: String) -> Seq<String>
+  uses { reads Blog.comments }
+{
+  let a = articles.article_id(article);
+  let none: Seq<String> = [];
+  seq.fold(map.entries(store.all(Blog.comments)), none, fn(acc, e) => if e.value.article == a {
+    seq.append(acc, e.value.text)
+  } else {
+    acc
+  })
+}

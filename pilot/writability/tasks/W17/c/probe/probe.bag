@@ -1,0 +1,9 @@
+@id("zkzzjn")
+module probe
+
+use main
+
+@id("5dpz8g")
+fn check(xs: Seq<Int64>) -> Seq<Int64> {
+  main.running_totals(xs)
+}

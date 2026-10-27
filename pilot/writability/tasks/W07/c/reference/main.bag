@@ -1,0 +1,9 @@
+module main
+
+use std.seq
+use std.map
+use std.option
+
+pub fn frequencies(words: Seq<String>) -> Map<String, Int64> {
+  seq.fold(words, Map {}, fn(m, w) => map.put(m, w, option.value_or(map.get(m, w), 0) + 1))
+}

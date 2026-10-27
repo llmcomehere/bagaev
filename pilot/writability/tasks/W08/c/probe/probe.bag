@@ -1,0 +1,12 @@
+@id("gcdm4g")
+module probe
+
+use main
+
+@id("8eenfq")
+fn check(s: String) -> String {
+  match main.make_email(s) {
+    Some(e) => main.email_text(e),
+    None => "",
+  }
+}

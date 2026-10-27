@@ -1,0 +1,31 @@
+{
+  "id": "stdlib/result-map-err",
+  "spec": [
+    "spec/stdlib/acceptance.md",
+    "spec/runtime/machine.md#5-примитивы-и-fault"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "run": {
+    "entry": "main.main"
+  },
+  "expect": {
+    "phase": "run",
+    "effects": [],
+    "outcome": "RETURNED",
+    "value": {
+      "type": "Result<Int64,String>",
+      "tag": "Err",
+      "payload": {
+        "type": "String",
+        "value": "e"
+      }
+    }
+  },
+  "note": "SA-018"
+}

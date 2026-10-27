@@ -1,0 +1,25 @@
+/// Строки — последовательности Unicode scalar values; конкатенация `++`.
+@id("ftv9qa")
+module strings
+
+use std.string
+use std.i64
+
+@id("xa1yjd")
+pub fn greet(name: String) -> String {
+  "Привет, " ++ name ++ "!"
+}
+
+@id("10pt40")
+pub fn describe(n: Int64) -> String {
+  if n == 1 {
+    "один"
+  } else {
+    i64.format_decimal(n)
+  }
+}
+
+@id("vtwq8n")
+pub fn main() -> Int64 {
+  string.scalar_length(greet("мир"))
+}

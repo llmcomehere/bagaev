@@ -1,0 +1,32 @@
+{
+  "profile": "P5-OPT-0.1",
+  "status": "WORKING_DESIGN",
+  "spec_ref": "spec/toolchain/pipeline-bridge.md",
+  "replaces_prior_admission": false,
+  "requires_new_exact_admissions": [
+    "P5-OPT-0.1",
+    "P6-LINK-OPT-0.1",
+    "P7-EMIT-OPT-0.1",
+    "STAGERESULT-OPT-0.1",
+    "TARGET-REFERENCE-OPT-0.1"
+  ],
+  "primary_role": "lowered_ir",
+  "code_bearing_roles": [
+    "lowered_ir",
+    "reference_lowered_ir"
+  ],
+  "metadata_roles": [
+    "optimization_request",
+    "preservation_certificate",
+    "preservation_receipt",
+    "origin_map_set"
+  ],
+  "new_target_forms": [
+    "REPLAY_REGION",
+    "SCALAR_SLOT",
+    "KNOWN_ARM"
+  ],
+  "build_input_inventory_rule": "Only objects available before the build; derived stage-local request/seed/candidate/certificate/receipt go to output observations.",
+  "original_R21_files_modified": false,
+  "production_validation": "NOT_RUN"
+}

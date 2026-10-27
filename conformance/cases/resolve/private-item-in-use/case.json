@@ -1,0 +1,33 @@
+{
+  "id": "resolve/private-item-in-use",
+  "spec": [
+    "spec/language/surface.md#2-файл-модуль-имена",
+    "spec/language/checking.md#3-имена-и-объявления-фаза-resolve"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "lib.bag",
+    "main.bag"
+  ],
+  "expect": {
+    "phase": "check",
+    "outcome": "PRELAUNCH",
+    "diagnostics": [
+      {
+        "code": "PRIVATE_ITEM",
+        "file": "main.bag",
+        "span": [
+          41,
+          47
+        ],
+        "data": {
+          "name": "hidden",
+          "module": "lib"
+        }
+      }
+    ]
+  }
+}

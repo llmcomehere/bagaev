@@ -1,0 +1,15 @@
+module m
+
+fn f() -> String {
+  let a = g(
+    1, 2);
+  let b = g(1,
+    2);
+  let s = [
+1];
+  let r = T {
+ a: 1 };
+  "x" ++ y
+    ++ "z" ++
+  w
+}

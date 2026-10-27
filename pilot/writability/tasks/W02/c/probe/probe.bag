@@ -1,0 +1,9 @@
+@id("pts3qf")
+module probe
+
+use main
+
+@id("x4bd3p")
+fn check(xs: Seq<Int64>) -> Int64 {
+  main.max_or(xs, 0)
+}

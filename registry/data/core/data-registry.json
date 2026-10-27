@@ -1,0 +1,415 @@
+{
+  "schema_version": "bagaev-data-registry/0.1",
+  "iteration": "R07",
+  "status": "research_profile_contract",
+  "profile": "DATA-0.1",
+  "profile_revision": "data-core/r07-v1",
+  "codec_revision": "data-wire/r07-v1",
+  "authoritative_api_ref": "experiments/data-core/API.md",
+  "full_v1": false,
+  "source_frontend_implemented": false,
+  "integrated_core_data_machine": false,
+  "job_fields": [
+    "source_id",
+    "revision",
+    "schemas",
+    "operation",
+    "profile_revision"
+  ],
+  "ready_value_fields": [
+    "type",
+    "data"
+  ],
+  "operations": [
+    {
+      "id": "record",
+      "fields": [
+        "op",
+        "type",
+        "fields"
+      ]
+    },
+    {
+      "id": "variant",
+      "fields": [
+        "op",
+        "type",
+        "tag",
+        "value"
+      ]
+    },
+    {
+      "id": "sequence",
+      "fields": [
+        "op",
+        "item_type",
+        "items"
+      ]
+    },
+    {
+      "id": "map_build",
+      "fields": [
+        "op",
+        "key_type",
+        "value_type",
+        "entries"
+      ]
+    },
+    {
+      "id": "field",
+      "fields": [
+        "op",
+        "record",
+        "field"
+      ]
+    },
+    {
+      "id": "equal",
+      "fields": [
+        "op",
+        "left",
+        "right"
+      ]
+    },
+    {
+      "id": "compare",
+      "fields": [
+        "op",
+        "left",
+        "right"
+      ]
+    },
+    {
+      "id": "length",
+      "fields": [
+        "op",
+        "value"
+      ]
+    },
+    {
+      "id": "seq_get",
+      "fields": [
+        "op",
+        "sequence",
+        "index"
+      ]
+    },
+    {
+      "id": "seq_append",
+      "fields": [
+        "op",
+        "sequence",
+        "value"
+      ]
+    },
+    {
+      "id": "map_get",
+      "fields": [
+        "op",
+        "map",
+        "key"
+      ]
+    },
+    {
+      "id": "utf8_encode",
+      "fields": [
+        "op",
+        "value"
+      ]
+    },
+    {
+      "id": "utf8_decode",
+      "fields": [
+        "op",
+        "value"
+      ]
+    },
+    {
+      "id": "encode",
+      "fields": [
+        "op",
+        "value"
+      ]
+    },
+    {
+      "id": "decode",
+      "fields": [
+        "op",
+        "type",
+        "bytes"
+      ]
+    }
+  ],
+  "scalar_types": [
+    "Bool",
+    "Int64",
+    "Unit",
+    "String",
+    "Bytes",
+    "DataError",
+    "Capability",
+    "HostHandle"
+  ],
+  "type_constructors": {
+    "var": [
+      "tag",
+      "id"
+    ],
+    "fn": [
+      "tag",
+      "params",
+      "result"
+    ],
+    "seq": [
+      "tag",
+      "item"
+    ],
+    "map": [
+      "tag",
+      "key",
+      "value"
+    ],
+    "option": [
+      "tag",
+      "item"
+    ],
+    "result": [
+      "tag",
+      "ok",
+      "err"
+    ],
+    "nominal": [
+      "tag",
+      "id",
+      "revision",
+      "args"
+    ]
+  },
+  "predicates": [
+    "Eq",
+    "Key",
+    "Persistable"
+  ],
+  "error_codes": [
+    "DuplicateKey",
+    "Utf8Leading",
+    "Utf8Continuation",
+    "Utf8Overlong",
+    "Utf8Surrogate",
+    "Utf8Range",
+    "Utf8Truncated",
+    "UnexpectedEnd",
+    "ContextMismatch",
+    "InvalidEncoding",
+    "UnknownVariant",
+    "NonCanonicalMap",
+    "TrailingBytes"
+  ],
+  "charged_rules": [
+    {
+      "id": "JOB_START",
+      "steps": 1
+    },
+    {
+      "id": "JOB_FINISH",
+      "steps": 1
+    },
+    {
+      "id": "RECORD_FIELD",
+      "steps": 1
+    },
+    {
+      "id": "VARIANT_WRAP",
+      "steps": 1
+    },
+    {
+      "id": "SEQUENCE_ITEM",
+      "steps": 1
+    },
+    {
+      "id": "FIELD_SELECT",
+      "steps": 1
+    },
+    {
+      "id": "LENGTH_ITEM",
+      "steps": 1
+    },
+    {
+      "id": "SEQ_GET",
+      "steps": 1
+    },
+    {
+      "id": "SEQUENCE_APPEND",
+      "steps": 1
+    },
+    {
+      "id": "COMPARE_NODE",
+      "steps": 1
+    },
+    {
+      "id": "COMPARE_UNIT",
+      "steps": 1
+    },
+    {
+      "id": "COMPARE_END",
+      "steps": 1
+    },
+    {
+      "id": "COMPARE_NEXT",
+      "steps": 1
+    },
+    {
+      "id": "MAP_STAGE",
+      "steps": 1
+    },
+    {
+      "id": "MAP_PROBE",
+      "steps": 1
+    },
+    {
+      "id": "MAP_DECIDE",
+      "steps": 1
+    },
+    {
+      "id": "MAP_COPY",
+      "steps": 1
+    },
+    {
+      "id": "MAP_ADD",
+      "steps": 1
+    },
+    {
+      "id": "MAP_COMMIT",
+      "steps": 1
+    },
+    {
+      "id": "MAP_LOOKUP",
+      "steps": 1
+    },
+    {
+      "id": "MAP_LOOKUP_DECIDE",
+      "steps": 1
+    },
+    {
+      "id": "MAP_LOOKUP_END",
+      "steps": 1
+    },
+    {
+      "id": "UTF8_SCALAR",
+      "steps": 1
+    },
+    {
+      "id": "UTF8_WRITE",
+      "steps": 1
+    },
+    {
+      "id": "UTF8_READ",
+      "steps": 1
+    },
+    {
+      "id": "UTF8_END",
+      "steps": 1
+    },
+    {
+      "id": "ENCODE_WRITE",
+      "steps": 1
+    },
+    {
+      "id": "ENCODE_NODE",
+      "steps": 1
+    },
+    {
+      "id": "ENCODE_NEXT",
+      "steps": 1
+    },
+    {
+      "id": "ENCODE_SCAN",
+      "steps": 1
+    },
+    {
+      "id": "ENCODE_SCALAR",
+      "steps": 1
+    },
+    {
+      "id": "DECODE_READ",
+      "steps": 1
+    },
+    {
+      "id": "DECODE_NODE",
+      "steps": 1
+    },
+    {
+      "id": "DECODE_NEXT",
+      "steps": 1
+    },
+    {
+      "id": "DECODE_SCALAR",
+      "steps": 1
+    },
+    {
+      "id": "DECODE_LENGTH",
+      "steps": 1
+    },
+    {
+      "id": "DECODE_TAG",
+      "steps": 1
+    },
+    {
+      "id": "DECODE_ASSEMBLE",
+      "steps": 1
+    },
+    {
+      "id": "DECODE_MAP_ORDER",
+      "steps": 1
+    },
+    {
+      "id": "DECODE_END",
+      "steps": 1
+    }
+  ],
+  "terminal_charge": 0,
+  "boundary_order": [
+    "terminal",
+    "visible_cancellation",
+    "zero_step_budget",
+    "next_unit_physical_guard",
+    "charged_unit"
+  ],
+  "limits": {
+    "raw_nodes": 65536,
+    "raw_depth": 128,
+    "schemas": 64,
+    "members": 64,
+    "parameters": 8,
+    "type_depth": 32,
+    "type_work": 8192,
+    "value_depth": 32,
+    "value_nodes": 4096,
+    "string_scalars": 1024,
+    "bytes": 32768,
+    "items": 256,
+    "output": 32768,
+    "work_frames": 4096,
+    "budget": 262144,
+    "identifier_scalars": 128
+  },
+  "wire_magic_hex": "4244303701",
+  "wire_header_bytes": 69,
+  "roundtrip_headroom": {
+    "encode_payload_nodes": 4095,
+    "encode_payload_depth": 31,
+    "derived_result_type_checked": true,
+    "prospective_decode_envelope_checked": true,
+    "object_keys_count_as_nodes": false,
+    "per_wire_byte_raw_nodes": 1,
+    "formula": "min(output, raw_nodes - raw_node_count(prospective_empty_decode_job))"
+  },
+  "scope_notes": [
+    "Only ready typed values; no source expression evaluation or inference.",
+    "Standalone DATA job machine; frozen CORE is neither imported nor reinterpreted.",
+    "Each authored bridge job has its own budget; external coordination is not a V1 program trace.",
+    "Finite immutable values and DAG nominal registry; recursive data/Float/BigInt remain full-V1 pending decisions.",
+    "Whole-type predicates, semantic key order, strict scalar Unicode and exact registry/type/codec wire binding.",
+    "No host effects, DB, physical durability, migration/activation, T15, speedup or universal proof."
+  ]
+}

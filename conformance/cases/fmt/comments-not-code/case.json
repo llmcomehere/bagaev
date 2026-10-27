@@ -1,0 +1,21 @@
+{
+  "id": "fmt/comments-not-code",
+  "spec": [
+    "spec/language/format.md#комментарии",
+    "spec/language/format.md#объявления"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "expect": {
+    "phase": "fmt",
+    "outcome": "FORMATTED",
+    "value": {
+      "main.bag": "module m\n\nentity E {\n  // terms [\"evil\"]\n  purpose \"a\"\n}\n\ncontract C about E {\n  // пояснение\n  rule r \"текст\"\n}\n\nfn a() -> Int64 {\n  // знак\n  -9223372036854775808\n}\n\n/// о b\nfn b() -> () {}\n"
+    }
+  }
+}

@@ -1,0 +1,1356 @@
+{
+  "schema": "bagaev-diag-registry/1",
+  "registry": "DIAG-1",
+  "status": "r26, контракт V1 (D80)",
+  "phase_order": [
+    "lex",
+    "parse",
+    "resolve",
+    "type",
+    "effect",
+    "run",
+    "host",
+    "links",
+    "edit",
+    "accept"
+  ],
+  "kinds": {
+    "diagnostic": "PRELAUNCH: программа не принята",
+    "fault": "FAULT (OUT-01)",
+    "semantic_stop": "SEMANTIC_STOP (OUT-01)",
+    "implementation_stop": "IMPLEMENTATION_STOP (OUT-01)",
+    "refusal": "отказ хоста или протокола до действия",
+    "blocker": "блокер приёмки WorkState: не отказ операции, а причина неготовности (CHG-13)"
+  },
+  "fix_kinds": [
+    "none",
+    "insert",
+    "replace",
+    "delete",
+    "assign_id",
+    "annotate"
+  ],
+  "codes": [
+    {
+      "code": "INVALID_UTF8",
+      "phase": "lex",
+      "kind": "diagnostic",
+      "rule": "LEX-01",
+      "message_ru": "Некорректная последовательность UTF-8 по смещению {offset}",
+      "fix": "none"
+    },
+    {
+      "code": "SOURCE_BOM",
+      "phase": "lex",
+      "kind": "diagnostic",
+      "rule": "LEX-01",
+      "message_ru": "Файл начинается с BOM; исходник — UTF-8 без BOM",
+      "fix": "delete"
+    },
+    {
+      "code": "SOURCE_NOT_NFC",
+      "phase": "lex",
+      "kind": "diagnostic",
+      "rule": "LEX-02",
+      "message_ru": "Текст не в нормальной форме NFC",
+      "fix": "replace"
+    },
+    {
+      "code": "FORBIDDEN_CHARACTER",
+      "phase": "lex",
+      "kind": "diagnostic",
+      "rule": "LEX-03",
+      "message_ru": "Управляющий символ U+{cp} вне строки",
+      "fix": "none"
+    },
+    {
+      "code": "BIDI_CONTROL_IN_SOURCE",
+      "phase": "lex",
+      "kind": "diagnostic",
+      "rule": "LEX-03",
+      "message_ru": "Символ управления направлением U+{cp} запрещён; в строке используйте \\u{{…}}",
+      "fix": "replace"
+    },
+    {
+      "code": "STRAY_CR",
+      "phase": "lex",
+      "kind": "diagnostic",
+      "rule": "LEX-04",
+      "message_ru": "Одиночный CR; перевод строки — LF или CRLF",
+      "fix": "replace"
+    },
+    {
+      "code": "UNTERMINATED_STRING",
+      "phase": "lex",
+      "kind": "diagnostic",
+      "rule": "LEX-09",
+      "message_ru": "Строка не закрыта до конца строки",
+      "fix": "insert"
+    },
+    {
+      "code": "INVALID_ESCAPE",
+      "phase": "lex",
+      "kind": "diagnostic",
+      "rule": "LEX-09",
+      "message_ru": "Недопустимое экранирование {text}",
+      "fix": "none"
+    },
+    {
+      "code": "INVALID_BYTE_LITERAL",
+      "phase": "lex",
+      "kind": "diagnostic",
+      "rule": "LEX-10",
+      "message_ru": "Символ вне ASCII в байтовом литерале; используйте \\xHH",
+      "fix": "replace"
+    },
+    {
+      "code": "MALFORMED_NUMBER",
+      "phase": "lex",
+      "kind": "diagnostic",
+      "rule": "LEX-11",
+      "message_ru": "Неверная запись числа {text}",
+      "fix": "none"
+    },
+    {
+      "code": "LEADING_ZERO",
+      "phase": "lex",
+      "kind": "diagnostic",
+      "rule": "LEX-11",
+      "message_ru": "Ведущий ноль в десятичном литерале {text}",
+      "fix": "delete"
+    },
+    {
+      "code": "INT_LITERAL_OUT_OF_RANGE",
+      "phase": "lex",
+      "kind": "diagnostic",
+      "rule": "LEX-11",
+      "message_ru": "Литерал {text} вне диапазона Int64",
+      "fix": "none"
+    },
+    {
+      "code": "UNEXPECTED_CHARACTER",
+      "phase": "lex",
+      "kind": "diagnostic",
+      "rule": "LEX-14",
+      "message_ru": "Неожиданный символ {text}",
+      "fix": "none"
+    },
+    {
+      "code": "UNSUPPORTED_FEATURE",
+      "phase": "any",
+      "kind": "diagnostic",
+      "rule": "SURF-45; D71; V1-X01…X08",
+      "message_ru": "Возможность {feature_id} не входит в профиль V1",
+      "fix": "none"
+    },
+    {
+      "code": "RESERVED_WORD_AS_NAME",
+      "phase": "parse",
+      "kind": "diagnostic",
+      "rule": "LEX-08",
+      "message_ru": "Зарезервированное слово {text} нельзя использовать как имя",
+      "fix": "replace"
+    },
+    {
+      "code": "UNEXPECTED_TOKEN",
+      "phase": "parse",
+      "kind": "diagnostic",
+      "rule": "GRAMMAR-1",
+      "message_ru": "Неожиданный токен {text}; ожидалось: {expected}",
+      "fix": "none"
+    },
+    {
+      "code": "UNEXPECTED_EOF",
+      "phase": "parse",
+      "kind": "diagnostic",
+      "rule": "GRAMMAR-1",
+      "message_ru": "Файл закончился; ожидалось: {expected}",
+      "fix": "insert"
+    },
+    {
+      "code": "INVALID_USE_GROUP",
+      "phase": "parse",
+      "kind": "diagnostic",
+      "rule": "SURF-02",
+      "message_ru": "Группа {…} допустима только последним сегментом use и без as",
+      "fix": "none"
+    },
+    {
+      "code": "MIXED_AND_OR",
+      "phase": "parse",
+      "kind": "diagnostic",
+      "rule": "SURF-53",
+      "message_ru": "Смешение and и or без скобок",
+      "fix": "insert"
+    },
+    {
+      "code": "NONASSOC_COMPARISON",
+      "phase": "parse",
+      "kind": "diagnostic",
+      "rule": "SURF-54",
+      "message_ru": "Сравнения не цепляются: используйте and",
+      "fix": "replace"
+    },
+    {
+      "code": "MISSING_COMMA_IN_MATCH",
+      "phase": "parse",
+      "kind": "diagnostic",
+      "rule": "SURF-55",
+      "message_ru": "Нужна запятая после ветви match",
+      "fix": "insert"
+    },
+    {
+      "code": "RECORD_LITERAL_IN_CONDITION",
+      "phase": "parse",
+      "kind": "diagnostic",
+      "rule": "SURF-52",
+      "message_ru": "Литерал записи в условии берётся в скобки",
+      "fix": "insert"
+    },
+    {
+      "code": "RECORD_LITERAL_NOT_AFTER_PATH",
+      "phase": "parse",
+      "kind": "diagnostic",
+      "rule": "SURF-57",
+      "message_ru": "Тело записи { … } допустимо только сразу после пути типа",
+      "fix": "none"
+    },
+    {
+      "code": "MIXED_RECORD_ENTRIES",
+      "phase": "parse",
+      "kind": "diagnostic",
+      "rule": "SURF-57",
+      "message_ru": "В одном литерале смешаны поля записи и пары карты",
+      "fix": "none"
+    },
+    {
+      "code": "MODULE_PATH_MISMATCH",
+      "phase": "resolve",
+      "kind": "diagnostic",
+      "rule": "SURF-01",
+      "message_ru": "Модуль {module} объявлен в файле {path}",
+      "fix": "replace"
+    },
+    {
+      "code": "UNKNOWN_MODULE",
+      "phase": "resolve",
+      "kind": "diagnostic",
+      "rule": "SURF-02",
+      "message_ru": "Неизвестный модуль {name}",
+      "fix": "none"
+    },
+    {
+      "code": "PRIVATE_ITEM",
+      "phase": "resolve",
+      "kind": "diagnostic",
+      "rule": "SURF-02",
+      "message_ru": "{name} не объявлен как pub в модуле {module}",
+      "fix": "none"
+    },
+    {
+      "code": "MODULE_IMPORT_CYCLE",
+      "phase": "resolve",
+      "kind": "diagnostic",
+      "rule": "SURF-02; V1-X08",
+      "message_ru": "Цикл импорта модулей: {cycle}",
+      "fix": "none"
+    },
+    {
+      "code": "DUPLICATE_DECLARATION",
+      "phase": "resolve",
+      "kind": "diagnostic",
+      "rule": "SURF-03",
+      "message_ru": "Имя {name} уже объявлено в этом модуле",
+      "fix": "none"
+    },
+    {
+      "code": "OPAQUE_CONSTRUCTOR_OUTSIDE_MODULE",
+      "phase": "resolve",
+      "kind": "diagnostic",
+      "rule": "SURF-04",
+      "message_ru": "Конструктор opaque-типа {type} доступен только в модуле {module}",
+      "fix": "none"
+    },
+    {
+      "code": "UNKNOWN_NAME",
+      "phase": "resolve",
+      "kind": "diagnostic",
+      "rule": "SURF-06",
+      "message_ru": "Неизвестное имя {name}",
+      "fix": "none"
+    },
+    {
+      "code": "UNKNOWN_TYPE",
+      "phase": "resolve",
+      "kind": "diagnostic",
+      "rule": "SURF-06",
+      "message_ru": "Неизвестный тип {name}",
+      "fix": "none"
+    },
+    {
+      "code": "UNKNOWN_FIELD",
+      "phase": "type",
+      "kind": "diagnostic",
+      "rule": "SURF-25",
+      "message_ru": "У типа {type} нет поля {name}",
+      "fix": "none"
+    },
+    {
+      "code": "UNKNOWN_VARIANT",
+      "phase": "resolve",
+      "kind": "diagnostic",
+      "rule": "SURF-06",
+      "message_ru": "У типа {type} нет варианта {name}",
+      "fix": "none"
+    },
+    {
+      "code": "MISSING_ENTITY_ID",
+      "phase": "resolve",
+      "kind": "diagnostic",
+      "rule": "SURF-07",
+      "message_ru": "У декларации нет @id",
+      "fix": "assign_id"
+    },
+    {
+      "code": "MALFORMED_ENTITY_ID",
+      "phase": "resolve",
+      "kind": "diagnostic",
+      "rule": "SURF-07",
+      "message_ru": "@id({text}) — нужно 6 символов Crockford base32",
+      "fix": "assign_id"
+    },
+    {
+      "code": "DUPLICATE_ENTITY_ID",
+      "phase": "resolve",
+      "kind": "diagnostic",
+      "rule": "SURF-07",
+      "message_ru": "@id({id}) уже использован: {other}; копия получает новый ID",
+      "fix": "assign_id"
+    },
+    {
+      "code": "UNKNOWN_ATTRIBUTE",
+      "phase": "resolve",
+      "kind": "diagnostic",
+      "rule": "SURF-08",
+      "message_ru": "Неизвестный атрибут @{name}",
+      "fix": "none"
+    },
+    {
+      "code": "DUPLICATE_PARAMETER",
+      "phase": "resolve",
+      "kind": "diagnostic",
+      "rule": "SURF-09",
+      "message_ru": "Параметр {name} повторён",
+      "fix": "none"
+    },
+    {
+      "code": "IRREGULAR_RECURSIVE_TYPE",
+      "phase": "resolve",
+      "kind": "diagnostic",
+      "rule": "SURF-10; D69",
+      "message_ru": "Рекурсивное обращение к {type} с другими аргументами типов",
+      "fix": "none"
+    },
+    {
+      "code": "INVALID_LINK_TARGET",
+      "phase": "resolve",
+      "kind": "diagnostic",
+      "rule": "SURF-11; SURF-15",
+      "message_ru": "{path} не сущность, контракт или правило",
+      "fix": "none"
+    },
+    {
+      "code": "TYPE_MISMATCH",
+      "phase": "type",
+      "kind": "diagnostic",
+      "rule": "TYPES-0.1 §4",
+      "message_ru": "Ожидался {expected}, получен {actual}",
+      "fix": "none"
+    },
+    {
+      "code": "RIGID_TYPE_MISMATCH",
+      "phase": "type",
+      "kind": "diagnostic",
+      "rule": "TYPES-0.1 §4",
+      "message_ru": "Параметр типа {param} не совпадает с {actual}",
+      "fix": "none"
+    },
+    {
+      "code": "OCCURS_CHECK",
+      "phase": "type",
+      "kind": "diagnostic",
+      "rule": "TYPES-0.1 §4",
+      "message_ru": "Бесконечный тип: {meta} входит в {type}",
+      "fix": "none"
+    },
+    {
+      "code": "RIGID_ESCAPE",
+      "phase": "type",
+      "kind": "diagnostic",
+      "rule": "TYPES-0.1 §4",
+      "message_ru": "Параметр типа {param} выходит из своей области",
+      "fix": "none"
+    },
+    {
+      "code": "TYPE_ARITY",
+      "phase": "type",
+      "kind": "diagnostic",
+      "rule": "TYPES-0.1 §2",
+      "message_ru": "У {type} {expected} аргументов типа, указано {actual}",
+      "fix": "none"
+    },
+    {
+      "code": "ARGUMENT_COUNT",
+      "phase": "type",
+      "kind": "diagnostic",
+      "rule": "SURF-24",
+      "message_ru": "{name} принимает {expected} аргументов, передано {actual}",
+      "fix": "none"
+    },
+    {
+      "code": "AMBIGUOUS_TYPE_ARGUMENT",
+      "phase": "type",
+      "kind": "diagnostic",
+      "rule": "TYPES-0.1 §5; SURF-28",
+      "message_ru": "Тип {param} не определён; добавьте аннотацию let",
+      "fix": "annotate"
+    },
+    {
+      "code": "FUNCTION_TYPE_REQUIRED",
+      "phase": "type",
+      "kind": "diagnostic",
+      "rule": "TYPES-0.1 §7",
+      "message_ru": "Вызываемое выражение не функция",
+      "fix": "none"
+    },
+    {
+      "code": "PARAMETER_TYPE_REQUIRED",
+      "phase": "type",
+      "kind": "diagnostic",
+      "rule": "TYPES-0.1 §7; SURF-41",
+      "message_ru": "Тип параметра {name} лямбды не известен; аннотируйте",
+      "fix": "annotate"
+    },
+    {
+      "code": "NOT_A_SUM_TYPE",
+      "phase": "type",
+      "kind": "diagnostic",
+      "rule": "SURF-32",
+      "message_ru": "match по значению типа {type}, а не суммы",
+      "fix": "none"
+    },
+    {
+      "code": "NON_EXHAUSTIVE_MATCH",
+      "phase": "type",
+      "kind": "diagnostic",
+      "rule": "SURF-32",
+      "message_ru": "Не покрыты варианты: {missing}",
+      "fix": "insert"
+    },
+    {
+      "code": "DUPLICATE_MATCH_ARM",
+      "phase": "type",
+      "kind": "diagnostic",
+      "rule": "SURF-32",
+      "message_ru": "Вариант {tag} уже обработан",
+      "fix": "delete"
+    },
+    {
+      "code": "UNKNOWN_MATCH_TAG",
+      "phase": "type",
+      "kind": "diagnostic",
+      "rule": "SURF-32",
+      "message_ru": "{tag} не вариант типа {type}",
+      "fix": "none"
+    },
+    {
+      "code": "MISSING_FIELD",
+      "phase": "type",
+      "kind": "diagnostic",
+      "rule": "SURF-26",
+      "message_ru": "Не задано поле {name}",
+      "fix": "insert"
+    },
+    {
+      "code": "DUPLICATE_FIELD",
+      "phase": "type",
+      "kind": "diagnostic",
+      "rule": "SURF-26",
+      "message_ru": "Поле {name} задано дважды",
+      "fix": "delete"
+    },
+    {
+      "code": "BOUND_NOT_SATISFIED",
+      "phase": "type",
+      "kind": "diagnostic",
+      "rule": "TYPES-0.1 §9",
+      "message_ru": "Тип {type} не удовлетворяет {bound}",
+      "fix": "none"
+    },
+    {
+      "code": "RESULT_DISCARDED",
+      "phase": "type",
+      "kind": "diagnostic",
+      "rule": "SURF-51",
+      "message_ru": "Result отброшен; используйте let _ = …",
+      "fix": "replace"
+    },
+    {
+      "code": "EXPECTED_UNIT_STATEMENT",
+      "phase": "type",
+      "kind": "diagnostic",
+      "rule": "SURF-50",
+      "message_ru": "Выражение-оператор должно иметь тип Unit, получен {actual}",
+      "fix": "insert"
+    },
+    {
+      "code": "QUESTION_MARK_CONTEXT",
+      "phase": "type",
+      "kind": "diagnostic",
+      "rule": "SURF-39",
+      "message_ru": "? требует функции с результатом {expected}",
+      "fix": "none"
+    },
+    {
+      "code": "DUPLICATE_MAP_KEY",
+      "phase": "type",
+      "kind": "diagnostic",
+      "rule": "SURF-30",
+      "message_ru": "Ключ {key} повторён в литерале карты",
+      "fix": "delete"
+    },
+    {
+      "code": "TABLE_TYPE_NOT_MAP",
+      "phase": "type",
+      "kind": "diagnostic",
+      "rule": "SURF-12",
+      "message_ru": "Тип таблицы {name} должен быть Map<K, V>",
+      "fix": "none"
+    },
+    {
+      "code": "COMMAND_RESULT_NOT_RESULT",
+      "phase": "type",
+      "kind": "diagnostic",
+      "rule": "SURF-14",
+      "message_ru": "Результат command должен быть Result<T, E>",
+      "fix": "none"
+    },
+    {
+      "code": "EVENT_NOT_PERSISTABLE",
+      "phase": "type",
+      "kind": "diagnostic",
+      "rule": "SURF-13",
+      "message_ru": "Поле {name} события не Persistable",
+      "fix": "none"
+    },
+    {
+      "code": "UNDECLARED_EFFECT",
+      "phase": "effect",
+      "kind": "diagnostic",
+      "rule": "EFF-04",
+      "message_ru": "Эффект {atoms} не объявлен в uses",
+      "fix": "insert"
+    },
+    {
+      "code": "EFFECT_NOT_ALLOWED_IN_CONTEXT",
+      "phase": "effect",
+      "kind": "diagnostic",
+      "rule": "EFF-09",
+      "message_ru": "{atom} недопустим в {context}",
+      "fix": "none"
+    },
+    {
+      "code": "UNKNOWN_EFFECT_TARGET",
+      "phase": "effect",
+      "kind": "diagnostic",
+      "rule": "EFF-01",
+      "message_ru": "{path} не таблица или событие",
+      "fix": "none"
+    },
+    {
+      "code": "UNKNOWN_HOST_ADAPTER",
+      "phase": "effect",
+      "kind": "diagnostic",
+      "rule": "EFF-02",
+      "message_ru": "Адаптер хоста {name} не зарегистрирован",
+      "fix": "none"
+    },
+    {
+      "code": "TABLE_REF_NOT_STATIC",
+      "phase": "effect",
+      "kind": "diagnostic",
+      "rule": "EFF-07",
+      "message_ru": "Таблица должна быть указана путём, а не вычисленным значением",
+      "fix": "none"
+    },
+    {
+      "code": "TABLE_PARAM_ONLY_IN_STD",
+      "phase": "effect",
+      "kind": "diagnostic",
+      "rule": "EFF-07",
+      "message_ru": "Параметры вида Table допустимы только в std.store",
+      "fix": "none"
+    },
+    {
+      "code": "ARITHMETIC_OVERFLOW",
+      "phase": "run",
+      "kind": "fault",
+      "rule": "OUT-01",
+      "message_ru": "Переполнение Int64 в {op}",
+      "fix": "none"
+    },
+    {
+      "code": "DIVISION_BY_ZERO",
+      "phase": "run",
+      "kind": "fault",
+      "rule": "OUT-01",
+      "message_ru": "Деление на ноль",
+      "fix": "none"
+    },
+    {
+      "code": "DUPLICATE_KEY",
+      "phase": "run",
+      "kind": "fault",
+      "rule": "OUT-01",
+      "message_ru": "Повтор ключа карты: позиции {first} и {second}",
+      "fix": "none"
+    },
+    {
+      "code": "TEST_ASSERTION",
+      "phase": "run",
+      "kind": "fault",
+      "rule": "OUT-01",
+      "message_ru": "Проверка теста не выполнена: {label}",
+      "fix": "none"
+    },
+    {
+      "code": "BUDGET_EXCEEDED",
+      "phase": "run",
+      "kind": "semantic_stop",
+      "rule": "OUT-01",
+      "message_ru": "Израсходован бюджет шагов",
+      "fix": "none"
+    },
+    {
+      "code": "CANCELLED",
+      "phase": "run",
+      "kind": "semantic_stop",
+      "rule": "OUT-01",
+      "message_ru": "Исполнение отменено",
+      "fix": "none"
+    },
+    {
+      "code": "NOT_IMPLEMENTED",
+      "phase": "run",
+      "kind": "implementation_stop",
+      "rule": "OUT-01",
+      "message_ru": "Реализация ещё не поддерживает {what}",
+      "fix": "none"
+    },
+    {
+      "code": "RESOURCE_LIMIT",
+      "phase": "run",
+      "kind": "implementation_stop",
+      "rule": "OUT-01",
+      "message_ru": "Превышен защитный предел реализации {limit}",
+      "fix": "none"
+    },
+    {
+      "code": "STACK_LIMIT",
+      "phase": "run",
+      "kind": "implementation_stop",
+      "rule": "OUT-01",
+      "message_ru": "Превышен предел глубины стека реализации",
+      "fix": "none"
+    },
+    {
+      "code": "MACHINE_INVARIANT",
+      "phase": "run",
+      "kind": "implementation_stop",
+      "rule": "OUT-01",
+      "message_ru": "Нарушен инвариант машины",
+      "fix": "none"
+    },
+    {
+      "code": "INTERNAL_ERROR",
+      "phase": "run",
+      "kind": "implementation_stop",
+      "rule": "OUT-01",
+      "message_ru": "Внутренняя ошибка реализации",
+      "fix": "none"
+    },
+    {
+      "code": "HOST_EFFECT_OUTSIDE_TRANSACTION",
+      "phase": "host",
+      "kind": "refusal",
+      "rule": "EFF-08",
+      "message_ru": "{atom} исполним только внутри точки входа",
+      "fix": "none"
+    },
+    {
+      "code": "ACCESS_DENIED",
+      "phase": "host",
+      "kind": "refusal",
+      "rule": "EFF-11; HST-08; HST-09",
+      "message_ru": "Нет права: точка входа {entry} для {caller} или операция {atom}",
+      "fix": "none"
+    },
+    {
+      "code": "IDEMPOTENCY_CONFLICT",
+      "phase": "host",
+      "kind": "refusal",
+      "rule": "CANON-10; HST-05",
+      "message_ru": "Ключ {namespace}:{key} уже использован с другим запросом",
+      "fix": "none"
+    },
+    {
+      "code": "STALE_STATE",
+      "phase": "host",
+      "kind": "refusal",
+      "rule": "D44; HST-05; HST-15",
+      "message_ru": "Состояние изменилось: ожидалась версия {expected}, текущая {actual}",
+      "fix": "none"
+    },
+    {
+      "code": "MIGRATION_IN_PROGRESS",
+      "phase": "host",
+      "kind": "refusal",
+      "rule": "D10; HST-15",
+      "message_ru": "Идёт миграция {lock}, писатели остановлены",
+      "fix": "none"
+    },
+    {
+      "code": "MIGRATION_BACKLOG",
+      "phase": "host",
+      "kind": "refusal",
+      "rule": "D10; HST-15",
+      "message_ru": "Недоставленных событий: {count}; миграция требует пустой очереди",
+      "fix": "none"
+    },
+    {
+      "code": "NON_CANONICAL_JSON",
+      "phase": "host",
+      "kind": "refusal",
+      "rule": "CANON-06",
+      "message_ru": "Документ не в канонической форме BAG-CJSON-1",
+      "fix": "none"
+    },
+    {
+      "code": "STALE_SOURCE",
+      "phase": "edit",
+      "kind": "refusal",
+      "rule": "CHG-04",
+      "message_ru": "Файл {file} изменился с базы правки",
+      "fix": "none"
+    },
+    {
+      "code": "AMBIGUOUS_EDIT",
+      "phase": "edit",
+      "kind": "refusal",
+      "rule": "CHG-04",
+      "message_ru": "Фрагмент для замены встречается {count} раз",
+      "fix": "none"
+    },
+    {
+      "code": "OVERLAPPING_EDITS",
+      "phase": "edit",
+      "kind": "refusal",
+      "rule": "CHG-04",
+      "message_ru": "Правки пересекаются",
+      "fix": "none"
+    },
+    {
+      "code": "ENTITY_REMOVED_WITHOUT_INTENT",
+      "phase": "edit",
+      "kind": "refusal",
+      "rule": "CHG-06",
+      "message_ru": "Декларация @id({id}) исчезла без identity_op",
+      "fix": "none"
+    },
+    {
+      "code": "STALE_BASE",
+      "phase": "accept",
+      "kind": "refusal",
+      "rule": "CHG-16",
+      "message_ru": "Принятая версия изменилась: база {base}, текущая {head}",
+      "fix": "none"
+    },
+    {
+      "code": "WORK_CONFLICT",
+      "phase": "accept",
+      "kind": "refusal",
+      "rule": "CHG-15",
+      "message_ru": "Рабочее состояние изменилось: ожидалась ревизия {expected}",
+      "fix": "none"
+    },
+    {
+      "code": "PUB_NOT_ALLOWED",
+      "phase": "resolve",
+      "kind": "diagnostic",
+      "rule": "SURF-04",
+      "message_ru": "pub не допускается у {kind}: им владеет хост",
+      "fix": "delete"
+    },
+    {
+      "code": "ENTRYPOINT_NOT_CALLABLE",
+      "phase": "resolve",
+      "kind": "diagnostic",
+      "rule": "SURF-04",
+      "message_ru": "{name} — точка входа; её вызывает хост, а не код",
+      "fix": "none"
+    },
+    {
+      "code": "ENTRYPOINT_NOT_EXPORTED",
+      "phase": "host",
+      "kind": "refusal",
+      "rule": "SURF-04",
+      "message_ru": "{name} не pub и не экспортирован хосту",
+      "fix": "none"
+    },
+    {
+      "code": "DUPLICATE_MEMBER",
+      "phase": "resolve",
+      "kind": "diagnostic",
+      "rule": "SURF-03",
+      "message_ru": "{name} уже объявлено в {decl}",
+      "fix": "none"
+    },
+    {
+      "code": "UNKNOWN_ENTRYPOINT",
+      "phase": "host",
+      "kind": "refusal",
+      "rule": "SURF-09; HST-05",
+      "message_ru": "Нет точки входа {name} нужного вида",
+      "fix": "none"
+    },
+    {
+      "code": "ENTRYPOINT_SIGNATURE",
+      "phase": "host",
+      "kind": "refusal",
+      "rule": "SURF-09",
+      "message_ru": "{name} принимает параметры; bag run исполняет функции без параметров",
+      "fix": "none"
+    },
+    {
+      "code": "MIGRATION_TYPE_MISMATCH",
+      "phase": "type",
+      "kind": "diagnostic",
+      "rule": "SURF-14",
+      "message_ru": "Миграция возвращает {actual}, а таблица {table} хранит {expected}",
+      "fix": "none"
+    },
+    {
+      "code": "MIGRATION_FAILED",
+      "phase": "host",
+      "kind": "refusal",
+      "rule": "SURF-14; D10; HST-15",
+      "message_ru": "Миграция таблицы {table} остановлена на ключе {key}: {error}; ничего не активировано",
+      "fix": "none"
+    },
+    {
+      "code": "RECORD_UPDATE_WITHOUT_FIELDS",
+      "phase": "parse",
+      "kind": "diagnostic",
+      "rule": "SURF-27",
+      "message_ru": "Обновление записи без явных полей; используйте саму базу",
+      "fix": "none"
+    },
+    {
+      "code": "UNKNOWN_EFFECT_VARIABLE",
+      "phase": "effect",
+      "kind": "diagnostic",
+      "rule": "EFF-06",
+      "message_ru": "Эффект-переменная {name} не объявлена в обобщениях",
+      "fix": "none"
+    },
+    {
+      "code": "SCHEMA_BINDING_MISMATCH",
+      "phase": "host",
+      "kind": "refusal",
+      "rule": "HST-04",
+      "message_ru": "Схема программы не совпадает с активной привязкой хранилища; нужна миграция",
+      "fix": "none"
+    },
+    {
+      "code": "REQUEST_INVALID",
+      "phase": "host",
+      "kind": "refusal",
+      "rule": "HST-05",
+      "message_ru": "Запрос не соответствует точке входа: {detail}",
+      "fix": "none"
+    },
+    {
+      "code": "REPLAY_DIVERGENCE",
+      "phase": "host",
+      "kind": "implementation_stop",
+      "rule": "HST-13",
+      "message_ru": "Исполнение расходится с журналом: {detail}",
+      "fix": "none"
+    },
+    {
+      "code": "MIGRATION_PLAN_INVALID",
+      "phase": "host",
+      "kind": "refusal",
+      "rule": "HST-14",
+      "message_ru": "Миграцию нельзя спланировать: {problems}",
+      "fix": "none"
+    },
+    {
+      "code": "MIGRATION_NOT_BOUND",
+      "phase": "host",
+      "kind": "refusal",
+      "rule": "HST-14",
+      "message_ru": "Хранилище ещё не привязано к программе; мигрировать нечего",
+      "fix": "none"
+    },
+    {
+      "code": "STATE_VERSION_EXHAUSTED",
+      "phase": "host",
+      "kind": "refusal",
+      "rule": "HST-03; CANON-07",
+      "message_ru": "StateVersion достиг предела Int64; новая фиксация невозможна",
+      "fix": "none"
+    },
+    {
+      "code": "UNKNOWN_ENTITY",
+      "phase": "links",
+      "kind": "refusal",
+      "rule": "LNK-08 §7",
+      "message_ru": "Нет сущности {entity} в графе",
+      "fix": "none"
+    },
+    {
+      "code": "MANDATORY_ENVELOPE_TOO_LARGE",
+      "phase": "links",
+      "kind": "refusal",
+      "rule": "LNK-08-19",
+      "message_ru": "Обязательная оболочка контекста ({envelope_tokens}) больше бюджета {budget}",
+      "fix": "none"
+    },
+    {
+      "code": "PROJECT_EXISTS",
+      "phase": "accept",
+      "kind": "refusal",
+      "rule": "CHG-01",
+      "message_ru": "Проект уже инициализирован: head {head}",
+      "fix": "none"
+    },
+    {
+      "code": "PROJECT_NOT_INITIALIZED",
+      "phase": "accept",
+      "kind": "refusal",
+      "rule": "CHG-01",
+      "message_ru": "Нет проектного хранилища: сначала bag project init",
+      "fix": "none"
+    },
+    {
+      "code": "UNKNOWN_OPERATION",
+      "phase": "accept",
+      "kind": "refusal",
+      "rule": "CHG-15",
+      "message_ru": "Нет операции протокола {operation}",
+      "fix": "none"
+    },
+    {
+      "code": "UNKNOWN_CHANGE",
+      "phase": "accept",
+      "kind": "refusal",
+      "rule": "CHG-15",
+      "message_ru": "Нет работы {change_id}",
+      "fix": "none"
+    },
+    {
+      "code": "FILE_EXISTS",
+      "phase": "edit",
+      "kind": "refusal",
+      "rule": "CHG-04",
+      "message_ru": "Файл {path} уже есть в кандидате",
+      "fix": "none"
+    },
+    {
+      "code": "RANGE_INVALID",
+      "phase": "edit",
+      "kind": "refusal",
+      "rule": "CHG-04",
+      "message_ru": "Диапазон [{start}, {end}) вне файла или не на границе UTF-8",
+      "fix": "none"
+    },
+    {
+      "code": "CANDIDATE_UNPARSABLE",
+      "phase": "edit",
+      "kind": "refusal",
+      "rule": "CHG-06",
+      "message_ru": "Кандидат не разбирается: идентичность проверить нельзя",
+      "fix": "none"
+    },
+    {
+      "code": "CANDIDATE_INVALID",
+      "phase": "accept",
+      "kind": "refusal",
+      "rule": "CHG-08",
+      "message_ru": "Кандидат не проходит проверку: свидетельств и приёмки нет",
+      "fix": "none"
+    },
+    {
+      "code": "ENTITY_ID_RETIRED",
+      "phase": "edit",
+      "kind": "refusal",
+      "rule": "CHG-06",
+      "message_ru": "ID {ids} были в принятых снимках и удалены: повторно не используются",
+      "fix": "none"
+    },
+    {
+      "code": "IDENTITY_OP_MISMATCH",
+      "phase": "edit",
+      "kind": "refusal",
+      "rule": "CHG-06",
+      "message_ru": "Объявленная операция идентичности не совпадает с фактом",
+      "fix": "none"
+    },
+    {
+      "code": "OPEN_OBLIGATIONS",
+      "phase": "accept",
+      "kind": "refusal",
+      "rule": "CHG-16",
+      "message_ru": "Приёмка заблокирована: {blockers}",
+      "fix": "none"
+    },
+    {
+      "code": "REBASE_NOT_NEEDED",
+      "phase": "accept",
+      "kind": "refusal",
+      "rule": "CHG-18",
+      "message_ru": "Head совпадает с базой работы",
+      "fix": "none"
+    },
+    {
+      "code": "REBASE_CONFLICT",
+      "phase": "accept",
+      "kind": "refusal",
+      "rule": "CHG-18",
+      "message_ru": "Правку файла {path} нельзя перенести на новый head",
+      "fix": "none"
+    },
+    {
+      "code": "EDIT_INVARIANT",
+      "phase": "edit",
+      "kind": "refusal",
+      "rule": "CHG-04",
+      "message_ru": "Нарушен инвариант сохранности байтов вне правок (ошибка реализации)",
+      "fix": "none"
+    },
+    {
+      "code": "INTERNAL",
+      "phase": "accept",
+      "kind": "refusal",
+      "rule": "CHG-15",
+      "message_ru": "Внутренняя ошибка реализации: {detail}; состояние не изменено",
+      "fix": "none"
+    },
+    {
+      "code": "POLICY_INVALID",
+      "phase": "accept",
+      "kind": "refusal",
+      "rule": "CHG-10",
+      "message_ru": "Политика приёмки .bagaev/policy.json неверна: {detail}",
+      "fix": "none"
+    },
+    {
+      "code": "ENTITY_KIND_CHANGED",
+      "phase": "edit",
+      "kind": "refusal",
+      "rule": "CHG-06; 01 §3",
+      "message_ru": "Вид сущности {ids} изменился под тем же ID: нужен delete и новый ID",
+      "fix": "none"
+    },
+    {
+      "code": "WORK_NOT_OPEN",
+      "phase": "accept",
+      "kind": "blocker",
+      "rule": "CHG-13",
+      "message_ru": "Работа закрыта: {status}",
+      "fix": "none"
+    },
+    {
+      "code": "NEEDS_REBASE",
+      "phase": "accept",
+      "kind": "blocker",
+      "rule": "CHG-13; CHG-18",
+      "message_ru": "head изменился с базы работы — нужен rebase",
+      "fix": "none"
+    },
+    {
+      "code": "POLICY_CHANGED",
+      "phase": "accept",
+      "kind": "blocker",
+      "rule": "CHG-10; CHG-13",
+      "message_ru": "Политика приёмки изменилась с закреплённой — нужен pin_policy с причиной",
+      "fix": "none"
+    },
+    {
+      "code": "ANALYSIS_INCOMPLETE",
+      "phase": "accept",
+      "kind": "blocker",
+      "rule": "CHG-13; LNK-08-14",
+      "message_ru": "Анализ влияния не завершён: frontier {frontier}",
+      "fix": "none"
+    },
+    {
+      "code": "OBLIGATION_OPEN",
+      "phase": "accept",
+      "kind": "blocker",
+      "rule": "CHG-13",
+      "message_ru": "Обязательство {obligation} открыто",
+      "fix": "none"
+    },
+    {
+      "code": "OBLIGATION_UNKNOWN",
+      "phase": "accept",
+      "kind": "blocker",
+      "rule": "CHG-13; T10-C01",
+      "message_ru": "Обязательство {obligation} неизвестно",
+      "fix": "none"
+    },
+    {
+      "code": "OBLIGATION_CONTRADICTED",
+      "phase": "accept",
+      "kind": "blocker",
+      "rule": "CHG-12; CHG-13",
+      "message_ru": "Обязательство {obligation} противоречит применимому свидетельству",
+      "fix": "none"
+    },
+    {
+      "code": "CLAUSE_OPEN",
+      "phase": "accept",
+      "kind": "blocker",
+      "rule": "CHG-09; CHG-13",
+      "message_ru": "Условие контракта {clause} не подтверждено",
+      "fix": "none"
+    },
+    {
+      "code": "CLAUSE_CONTRADICTED",
+      "phase": "accept",
+      "kind": "blocker",
+      "rule": "CHG-09; CHG-13",
+      "message_ru": "Условие контракта {clause} опровергнуто",
+      "fix": "none"
+    },
+    {
+      "code": "EVIDENCE_CONTRADICTED",
+      "phase": "accept",
+      "kind": "blocker",
+      "rule": "CHG-12; CHG-13; A05",
+      "message_ru": "Применимое свидетельство теста {test}: {verdict}",
+      "fix": "none"
+    },
+    {
+      "code": "TESTS_NOT_RUN",
+      "phase": "accept",
+      "kind": "blocker",
+      "rule": "CHG-13",
+      "message_ru": "Затронутые тесты не прогнаны на кандидате: {tests}",
+      "fix": "none"
+    },
+    {
+      "code": "SCOPE_EXCEEDED",
+      "phase": "accept",
+      "kind": "blocker",
+      "rule": "CHG-09; CHG-13",
+      "message_ru": "Изменены сущности вне области работы: {entities}",
+      "fix": "none"
+    },
+    {
+      "code": "SUPERSEDES_UNKNOWN",
+      "phase": "accept",
+      "kind": "blocker",
+      "rule": "CHG-13; SURF-15",
+      "message_ru": "Цель supersedes {target} не встречается в истории или жива",
+      "fix": "none"
+    },
+    {
+      "code": "TS_PROJECT_INVALID",
+      "phase": "type",
+      "kind": "diagnostic",
+      "rule": "CHG-01а",
+      "message_ru": "Проект TypeScript без tsconfig.json: проверить кандидата нельзя",
+      "fix": "none"
+    },
+    {
+      "code": "TS_CHECK_FAILED",
+      "phase": "type",
+      "kind": "diagnostic",
+      "rule": "CHG-01а",
+      "message_ru": "Компилятор TypeScript отклонил кандидата: {message}",
+      "fix": "none"
+    }
+  ],
+  "aliases": [
+    {
+      "alias": "InfiniteType",
+      "code": "OCCURS_CHECK",
+      "source": "spec/language/types.md"
+    },
+    {
+      "alias": "SkolemEscape",
+      "code": "RIGID_ESCAPE",
+      "source": "spec/language/types.md"
+    },
+    {
+      "alias": "SKOLEM_ESCAPE",
+      "code": "RIGID_ESCAPE",
+      "source": "spec/toolchain/pipeline.md"
+    },
+    {
+      "alias": "RigidTypeMismatch",
+      "code": "RIGID_TYPE_MISMATCH",
+      "source": "spec/language/types.md"
+    },
+    {
+      "alias": "TypeMismatch",
+      "code": "TYPE_MISMATCH",
+      "source": "spec/language/types.md"
+    },
+    {
+      "alias": "AmbiguousTypeArgument",
+      "code": "AMBIGUOUS_TYPE_ARGUMENT",
+      "source": "spec/language/types.md"
+    },
+    {
+      "alias": "AMBIGUOUS_INSTANTIATION",
+      "code": "AMBIGUOUS_TYPE_ARGUMENT",
+      "source": "spec/toolchain/pipeline.md"
+    },
+    {
+      "alias": "FunctionTypeRequired",
+      "code": "FUNCTION_TYPE_REQUIRED",
+      "source": "spec/language/types.md"
+    },
+    {
+      "alias": "ParameterTypeRequired",
+      "code": "PARAMETER_TYPE_REQUIRED",
+      "source": "spec/language/types.md"
+    },
+    {
+      "alias": "NonExhaustiveMatch",
+      "code": "NON_EXHAUSTIVE_MATCH",
+      "source": "spec/language/types.md"
+    },
+    {
+      "alias": "UnknownType",
+      "code": "UNKNOWN_TYPE",
+      "source": "spec/language/data-values.md"
+    },
+    {
+      "alias": "TypeArityMismatch",
+      "code": "TYPE_ARITY",
+      "source": "spec/language/data-values.md"
+    },
+    {
+      "alias": "TYPE_ARGUMENT_ARITY",
+      "code": "TYPE_ARITY",
+      "source": "models/r07-core/experiments/core-machine/API.md"
+    },
+    {
+      "alias": "UNSATISFIED_PREDICATE",
+      "code": "BOUND_NOT_SATISFIED",
+      "source": "spec/toolchain/pipeline.md"
+    },
+    {
+      "alias": "ImplementationLimit",
+      "code": "RESOURCE_LIMIT",
+      "source": "spec/language/data-values.md"
+    },
+    {
+      "alias": "TYPE_LIMIT",
+      "code": "RESOURCE_LIMIT",
+      "source": "spec/toolchain/pipeline.md"
+    },
+    {
+      "alias": "UnsupportedFeature",
+      "code": "UNSUPPORTED_FEATURE",
+      "source": "spec/language/semantic-core.md"
+    },
+    {
+      "alias": "DuplicateKey",
+      "code": "DUPLICATE_KEY",
+      "source": "spec/language/data-values.md"
+    },
+    {
+      "alias": "KEY_CONFLICT",
+      "code": "IDEMPOTENCY_CONFLICT",
+      "source": "spec/distribution/release.md"
+    },
+    {
+      "alias": "KeyConflict",
+      "code": "IDEMPOTENCY_CONFLICT",
+      "source": "spec/stdlib/types.md"
+    },
+    {
+      "alias": "FORBIDDEN",
+      "code": "ACCESS_DENIED",
+      "source": "spec/protocol/idempotency-lifecycle.md"
+    },
+    {
+      "alias": "UNAUTHORIZED",
+      "code": "ACCESS_DENIED",
+      "source": "spec/distribution/bootstrap.md"
+    },
+    {
+      "alias": "UNBOUND_VARIABLE",
+      "code": "UNKNOWN_NAME",
+      "source": "models/r07-core/experiments/core-machine/API.md"
+    },
+    {
+      "alias": "UNRESOLVED_TYPE",
+      "code": "AMBIGUOUS_TYPE_ARGUMENT",
+      "source": "spec/toolchain/pipeline.md"
+    },
+    {
+      "alias": "CYCLIC_PACKAGE_IMPORT",
+      "code": "MODULE_IMPORT_CYCLE",
+      "source": "spec/profiles/v1.md"
+    },
+    {
+      "alias": "UNSUPPORTED_PROFILE",
+      "code": "UNSUPPORTED_FEATURE",
+      "source": "spec/stdlib/api.md"
+    },
+    {
+      "alias": "REGISTERED_ADAPTER_REQUIRED",
+      "code": "UNKNOWN_HOST_ADAPTER",
+      "source": "spec/stdlib/api.md"
+    }
+  ],
+  "retired": [
+    {
+      "code": "RecursiveGroupRequired",
+      "by": "D74",
+      "note": "Все функции модуля — одна рекурсивная группа; явной группы нет"
+    },
+    {
+      "code": "POLYMORPHIC_RECURSION",
+      "by": "D74",
+      "note": "Полиморфная рекурсия верхнего уровня разрешена при явных сигнатурах"
+    },
+    {
+      "code": "PendingRecursiveData",
+      "by": "D69",
+      "note": "Рекурсивные номинальные типы включены"
+    },
+    {
+      "code": "PENDING_RECURSIVE_DATA",
+      "by": "D69",
+      "note": "То же в API DATA-0.1"
+    },
+    {
+      "code": "PendingSpecification",
+      "by": "D69; D71",
+      "note": "В опубликованном V1 не допускается; Float/BigInt — UNSUPPORTED_FEATURE"
+    },
+    {
+      "code": "INPUT_NOT_READY",
+      "by": "D69; D71",
+      "note": "Опубликованный V1 не содержит не готовых входов; std.float/std.bigint → UNSUPPORTED_FEATURE"
+    }
+  ]
+}

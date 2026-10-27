@@ -1,0 +1,34 @@
+{
+  "id": "W16",
+  "kind": "edit",
+  "title": "Новый эффект",
+  "c_target": "main.bag",
+  "t_target": "main.ts",
+  "c_expect": {
+    "keep_ids_from_context": "main.bag",
+    "decls": {
+      "final_price": {
+        "kind": "fn",
+        "params": [
+          "String",
+          "Int64"
+        ],
+        "ret": "Int64",
+        "actual": [
+          "reads main.Catalog.discounts"
+        ]
+      },
+      "quote": {
+        "kind": "query",
+        "params": [
+          "String",
+          "Int64"
+        ],
+        "ret": "Int64",
+        "actual": [
+          "reads main.Catalog.discounts"
+        ]
+      }
+    }
+  }
+}

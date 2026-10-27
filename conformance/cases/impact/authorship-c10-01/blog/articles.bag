@@ -1,0 +1,38 @@
+/// Статьи: текущая схема и прежняя (до перехода к нескольким авторам).
+@id("w34swk")
+module blog.articles
+
+use blog.people.{PersonId}
+use blog.authorship.{Authors}
+
+@id("bhb7qw")
+pub type ArticleId = opaque String
+
+/// Схема до перехода: ровно один автор.
+@id("d5p4t5")
+pub type ArticleV1 = record {
+  @id("a2e081") id: ArticleId,
+  @id("txr3ar") title: String,
+  @id("mvahga") author: PersonId,
+  @id("23pr14") revision: Int64,
+}
+
+@id("0911pz")
+pub type Article = record {
+  @id("dh73p6") id: ArticleId,
+  @id("4qj7zw") title: String,
+  @id("tfpcsg") authors: Authors,
+  @id("89sea6") revision: Int64,
+}
+
+@id("2c08qz")
+pub fn article_id(raw: String) -> ArticleId {
+  ArticleId(raw)
+}
+
+@id("nc4v76")
+pub fn id_text(a: ArticleId) -> String {
+  match a {
+    ArticleId(s) => s,
+  }
+}

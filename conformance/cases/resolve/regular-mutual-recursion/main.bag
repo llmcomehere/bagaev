@@ -1,0 +1,19 @@
+@id("6ebsv0")
+module main
+
+@id("hpgbnq")
+type List<T> = enum {
+  @id("mv17g8") Nil,
+  @id("888rh4") Cons(Node<T>),
+}
+
+@id("sqgk2f")
+type Node<T> = record {
+  @id("xrrvvx") head: T,
+  @id("t4wds7") tail: List<T>,
+}
+
+@id("ax7qt8")
+fn same(a: List<Int64>, b: List<Int64>) -> Bool {
+  a == b
+}

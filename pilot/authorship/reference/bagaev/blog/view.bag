@@ -1,0 +1,67 @@
+/// Представления состояния для общего CLI-контракта пилота (pilot/authorship/contract.md).
+@id("xy20gs")
+module blog.view
+
+use std.store
+use std.seq
+use std.map
+use blog.db.{Blog}
+use blog.people
+use blog.actors
+use blog.articles
+
+@id("m3dq0g")
+pub type ArticleView = record {
+  @id("61dwyq") article_id: String,
+  @id("wy8pnz") article_revision: Int64,
+  @id("te0nh8") title: String,
+  @id("efpvmd") author_ids: Seq<String>,
+  @id("tzsta4") editor_ids: Seq<String>,
+}
+
+@id("zt2wqy")
+pub type IndexRow = record {
+  @id("pygv96") person_id: String,
+  @id("c1vypf") article_ids: Seq<String>,
+}
+
+@id("102826")
+pub type NotificationRow = record {
+  @id("rb6qtn") key: String,
+  @id("g929c1") to: String,
+  @id("axzqtw") article_id: String,
+}
+
+@id("3sagy2")
+pub query articles_view() -> Seq<ArticleView>
+  uses { reads Blog.articles }
+{
+  seq.map(map.entries(store.all(Blog.articles)), fn(e) => ArticleView {
+    article_id: articles.id_text(e.key),
+    article_revision: e.value.revision,
+    title: e.value.title,
+    author_ids: seq.map(e.value.authors, fn(p) => people.id_text(p)),
+    editor_ids: seq.map(e.value.editors, fn(x) => actors.id_text(x)),
+  })
+}
+
+@id("j3bq6a")
+pub query index_view() -> Seq<IndexRow>
+  uses { reads Blog.author_index }
+{
+  seq.map(map.entries(store.all(Blog.author_index)), fn(e) => IndexRow {
+    person_id: people.id_text(e.key),
+    article_ids: seq.map(e.value, fn(a) => articles.id_text(a)),
+  })
+}
+
+@id("yjzsey")
+pub query notifications_view() -> Seq<NotificationRow>
+  uses { reads Blog.notifications }
+{
+  seq.map(map.entries(store.all(Blog.notifications)), fn(e) => NotificationRow {
+    key: e.key,
+    to: e.value.to,
+    article_id: articles.id_text(e.value.article),
+  })
+}

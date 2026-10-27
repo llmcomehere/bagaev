@@ -1,0 +1,100 @@
+/// Редактор авторства: одна транзакция command. Ok фиксирует статью и событие в outbox,
+/// Err не меняет ничего.
+@id("78kp28")
+module blog.editor
+
+use std.store
+use std.seq
+use std.string
+use std.i64
+use std.result
+use blog.db.{Blog}
+use blog.people
+use blog.actors.{ActorId}
+use blog.actors
+use blog.articles.{ArticleId, Article}
+use blog.articles
+use blog.authorship
+use blog.authorship.{AuthorError, AuthorshipShape}
+use blog.events.{AuthorshipChanged}
+
+@id("vw2yht")
+pub type EditError = enum {
+  @id("28rk4s") NotFound,
+  @id("fptktm") PermissionDenied,
+  @id("fhmfza") StaleRevision,
+  @id("bj6yjz") Invalid(AuthorError),
+}
+
+/// Право правки даёт только список редакторов статьи, а не авторство.
+@id("x76het")
+pub fn can_edit(a: Article, actor: ActorId) -> Bool {
+  seq.fold(a.editors, false, fn(acc, e) => acc or e == actor)
+}
+
+/// Код отказа по общему контракту CLI пилота.
+@id("18xa1x")
+pub fn error_code(e: EditError) -> String {
+  match e {
+    EditError.NotFound => "NOT_FOUND",
+    EditError.PermissionDenied => "PERMISSION_DENIED",
+    EditError.StaleRevision => "STALE_REVISION",
+    EditError.Invalid(a) => author_code(a),
+  }
+}
+
+@id("7ypxbt")
+fn author_code(e: AuthorError) -> String {
+  match e {
+    AuthorError.NotExactlyOne => "EXACTLY_ONE_AUTHOR",
+    AuthorError.UnknownPerson(_) => "UNKNOWN_PERSON",
+  }
+}
+
+/// ID события: `ev_` + ID статьи без подчёркиваний + `_r` + ревизия.
+@id("e3p0rv")
+pub fn event_id(a: ArticleId, revision: Int64) -> String {
+  "ev_" ++ compact(articles.id_text(a)) ++ "_r" ++ i64.format_decimal(revision)
+}
+
+@id("7jy42r")
+fn compact(s: String) -> String {
+  let kept = seq.fold(string.to_scalars(s), [], fn(acc, c) => if c == 95 {
+    acc
+  } else {
+    seq.append(acc, c)
+  });
+  match string.from_scalars(kept) {
+    Ok(t) => t,
+    Err(_) => s,
+  }
+}
+
+@id("md3zps")
+fn guard(ok: Bool, e: EditError) -> Result<(), EditError> {
+  if ok {
+    Ok(())
+  } else {
+    Err(e)
+  }
+}
+
+@id("ebrf6k")
+pub command set_authors(actor: String, article: String, author_ids: Seq<String>, expected_revision: Int64) -> Result<Int64, String>
+  uses { reads Blog.articles, reads Blog.people, writes Blog.articles, emits AuthorshipChanged }
+  requires AuthorshipShape.single, AuthorshipShape.existing
+{
+  let id = articles.article_id(article);
+  let old = match store.get(Blog.articles, id) {
+    Some(a) => a,
+    None => return Err(error_code(EditError.NotFound)),
+  };
+  let _ = result.map_error(guard(can_edit(old, actors.actor_id(actor)), EditError.PermissionDenied), error_code)?;
+  let _ = result.map_error(guard(old.revision == expected_revision, EditError.StaleRevision), error_code)?;
+  let requested = seq.map(author_ids, fn(p) => people.person_id(p));
+  let author = result.map_error(authorship.check_author(requested, store.all(Blog.people)), fn(e) => error_code(EditError.Invalid(e)))?;
+  let updated = Article { ..old, author: author, revision: old.revision + 1 };
+  store.put(Blog.articles, id, updated);
+  emit AuthorshipChanged { event_id: event_id(id, updated.revision), article: id, author: author, revision: updated.revision };
+  Ok(updated.revision)
+}

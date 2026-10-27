@@ -1,0 +1,141 @@
+{
+  "id": "events/crash-handler-01",
+  "spec": [
+    "spec/runtime/host.md#5-события",
+    "spec/runtime/host.md#8-сбои-и-восстановление"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "app.bag"
+  ],
+  "run": {
+    "steps": [
+      {
+        "op": "command",
+        "entry": "app.bump",
+        "args": [
+          {
+            "type": "String",
+            "value": "a"
+          },
+          {
+            "type": "Int64",
+            "value": "2"
+          }
+        ],
+        "namespace": "app",
+        "key": "key-000000000001"
+      },
+      {
+        "op": "deliver",
+        "crash_at": "before_commit"
+      },
+      {
+        "op": "deliver"
+      },
+      {
+        "op": "deliver"
+      }
+    ]
+  },
+  "expect": {
+    "phase": "events",
+    "outcome": "COMPLETED",
+    "value": [
+      {
+        "value": {
+          "type": "Result<Int64,app.BumpError>",
+          "tag": "Ok",
+          "payload": {
+            "type": "Int64",
+            "value": "2"
+          }
+        },
+        "outcome": "COMMITTED",
+        "final": true,
+        "replayed": false,
+        "state_version": 1
+      },
+      {
+        "outcome": "CRASHED",
+        "at": "before_commit"
+      },
+      {
+        "outcome": "DELIVERED",
+        "deliveries": [
+          {
+            "handler": "app.remember",
+            "seq": 1,
+            "outcome": "COMMITTED",
+            "replayed": false,
+            "state_version": 2
+          }
+        ]
+      },
+      {
+        "outcome": "DELIVERED",
+        "deliveries": []
+      }
+    ],
+    "state": {
+      "state_version": 2,
+      "epoch": 0,
+      "tables": {
+        "app.S.counts": [
+          [
+            {
+              "type": "String",
+              "value": "a"
+            },
+            {
+              "type": "Int64",
+              "value": "2"
+            }
+          ]
+        ],
+        "app.S.seen": [
+          [
+            {
+              "type": "String",
+              "value": "a"
+            },
+            {
+              "type": "Int64",
+              "value": "2"
+            }
+          ]
+        ]
+      },
+      "outbox": [
+        {
+          "seq": 1,
+          "event": "app.Bumped",
+          "payload": {
+            "type": "app.Bumped",
+            "fields": {
+              "name": {
+                "type": "String",
+                "value": "a"
+              },
+              "total": {
+                "type": "Int64",
+                "value": "2"
+              }
+            }
+          }
+        }
+      ],
+      "inbox": [
+        {
+          "handler": "app.remember",
+          "seq": 1,
+          "outcome": "COMMITTED"
+        }
+      ],
+      "pending": []
+    }
+  }
+}

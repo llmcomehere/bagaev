@@ -1,0 +1,27 @@
+{
+  "id": "parse/record-literal-not-after-path",
+  "spec": [
+    "spec/language/surface.md#6-правила-разбора-которые-грамматика-не-выражает"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "expect": {
+    "phase": "parse",
+    "outcome": "PRELAUNCH",
+    "diagnostics": [
+      {
+        "code": "RECORD_LITERAL_NOT_AFTER_PATH",
+        "file": "main.bag",
+        "span": [
+          38,
+          39
+        ]
+      }
+    ]
+  }
+}

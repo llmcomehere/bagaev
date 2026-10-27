@@ -1,0 +1,12 @@
+@id("6yzf1n")
+module main
+
+@id("a2sw3t")
+pub query q() -> Int64 {
+  1
+}
+
+@id("w011na")
+fn f() -> Int64 {
+  q()
+}

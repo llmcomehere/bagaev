@@ -1,0 +1,8 @@
+@id("g79p3w")
+module main
+use std.value
+
+@id("ggte40")
+pub fn main() -> Int64 {
+  value.compare(-1, 0)
+}

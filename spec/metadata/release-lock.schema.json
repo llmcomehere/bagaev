@@ -1,0 +1,4054 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:bagaev:r20:metadata:0.1",
+  "title": "R20 closed metadata shapes; semantic obligations remain procedural",
+  "oneOf": [
+    {
+      "$ref": "#/$defs/PackageDescriptor"
+    },
+    {
+      "$ref": "#/$defs/Manifest"
+    },
+    {
+      "$ref": "#/$defs/CatalogSnapshot"
+    },
+    {
+      "$ref": "#/$defs/DependencyLock"
+    },
+    {
+      "$ref": "#/$defs/TreeInventory"
+    },
+    {
+      "$ref": "#/$defs/ResolveRequest"
+    },
+    {
+      "$ref": "#/$defs/ResolveResult"
+    },
+    {
+      "$ref": "#/$defs/LockVerification"
+    },
+    {
+      "$ref": "#/$defs/Materialization"
+    },
+    {
+      "$ref": "#/$defs/BuildPlan"
+    },
+    {
+      "$ref": "#/$defs/BuildResult"
+    },
+    {
+      "$ref": "#/$defs/BuildEvidence"
+    },
+    {
+      "$ref": "#/$defs/ReleaseCandidate"
+    },
+    {
+      "$ref": "#/$defs/CandidateCheck"
+    },
+    {
+      "$ref": "#/$defs/CandidateSeal"
+    },
+    {
+      "$ref": "#/$defs/ReleaseIntent"
+    },
+    {
+      "$ref": "#/$defs/ReleaseOperationResult"
+    }
+  ],
+  "$defs": {
+    "Id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128,
+      "pattern": "^[A-Za-z][A-Za-z0-9_.-]{0,127}(?![\\s\\S])"
+    },
+    "Hash": {
+      "type": "string",
+      "minLength": 64,
+      "maxLength": 64,
+      "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+    },
+    "U64": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 20,
+      "pattern": "^(?:0|[1-9][0-9]{0,18}|1[0-7][0-9]{18}|18[0-3][0-9]{17}|184[0-3][0-9]{16}|1844[0-5][0-9]{15}|18446[0-6][0-9]{14}|184467[0-3][0-9]{13}|1844674[0-3][0-9]{12}|184467440[0-6][0-9]{10}|1844674407[0-2][0-9]{9}|18446744073[0-6][0-9]{8}|1844674407370[0-8][0-9]{6}|18446744073709[0-4][0-9]{5}|184467440737095[0-4][0-9]{4}|18446744073709550[0-9]{3}|18446744073709551[0-5][0-9]{2}|1844674407370955160[0-9]{1}|1844674407370955161[0-4]|18446744073709551615)(?![\\s\\S])"
+    },
+    "U32": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 10,
+      "pattern": "^(?:0|[1-9][0-9]{0,8}|[1-3][0-9]{9}|4[0-1][0-9]{8}|42[0-8][0-9]{7}|429[0-3][0-9]{6}|4294[0-8][0-9]{5}|42949[0-5][0-9]{4}|429496[0-6][0-9]{3}|4294967[0-1][0-9]{2}|42949672[0-8][0-9]{1}|429496729[0-4]|4294967295)(?![\\s\\S])"
+    },
+    "ObjectRef": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "$ref": "#/$defs/Id"
+        },
+        "format": {
+          "$ref": "#/$defs/Id"
+        },
+        "codec": {
+          "$ref": "#/$defs/Id"
+        },
+        "sha256": {
+          "$ref": "#/$defs/Hash"
+        },
+        "bytes": {
+          "$ref": "#/$defs/U64"
+        }
+      },
+      "required": [
+        "kind",
+        "format",
+        "codec",
+        "sha256",
+        "bytes"
+      ],
+      "additionalProperties": false
+    },
+    "KeyRef": {
+      "type": "object",
+      "properties": {
+        "project_id": {
+          "$ref": "#/$defs/Id"
+        },
+        "namespace_id": {
+          "$ref": "#/$defs/Id"
+        },
+        "generation": {
+          "$ref": "#/$defs/U64"
+        },
+        "key": {
+          "$ref": "#/$defs/Id"
+        }
+      },
+      "required": [
+        "project_id",
+        "namespace_id",
+        "generation",
+        "key"
+      ],
+      "additionalProperties": false
+    },
+    "Version": {
+      "type": "array",
+      "prefixItems": [
+        {
+          "$ref": "#/$defs/U32"
+        },
+        {
+          "$ref": "#/$defs/U32"
+        },
+        {
+          "$ref": "#/$defs/U32"
+        }
+      ],
+      "items": false,
+      "minItems": 3,
+      "maxItems": 3
+    },
+    "PackageKey": {
+      "type": "object",
+      "properties": {
+        "publisher": {
+          "$ref": "#/$defs/Id"
+        },
+        "name": {
+          "$ref": "#/$defs/Id"
+        }
+      },
+      "required": [
+        "publisher",
+        "name"
+      ],
+      "additionalProperties": false
+    },
+    "Domain": {
+      "type": "object",
+      "properties": {
+        "role": {
+          "enum": [
+            "build",
+            "host",
+            "target"
+          ]
+        },
+        "platform_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "Platform"
+                }
+              }
+            }
+          ]
+        },
+        "abi_profile_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "ABIProfile"
+                }
+              }
+            }
+          ]
+        }
+      },
+      "required": [
+        "role",
+        "platform_ref",
+        "abi_profile_ref"
+      ],
+      "additionalProperties": false
+    },
+    "Interfaces": {
+      "type": "object",
+      "properties": {
+        "abi_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "ABIInterface"
+                }
+              }
+            }
+          ]
+        },
+        "effects_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "EffectInterface"
+                }
+              }
+            }
+          ]
+        }
+      },
+      "required": [
+        "abi_ref",
+        "effects_ref"
+      ],
+      "additionalProperties": false
+    },
+    "Atom": {
+      "type": "object",
+      "properties": {
+        "op": {
+          "enum": [
+            "eq",
+            "lt",
+            "le",
+            "gt",
+            "ge"
+          ]
+        },
+        "version": {
+          "$ref": "#/$defs/Version"
+        }
+      },
+      "required": [
+        "op",
+        "version"
+      ],
+      "additionalProperties": false
+    },
+    "Constraint": {
+      "type": "array",
+      "items": {
+        "type": "array",
+        "items": {
+          "$ref": "#/$defs/Atom"
+        },
+        "minItems": 0,
+        "maxItems": 16
+      },
+      "minItems": 1,
+      "maxItems": 16
+    },
+    "Requirement": {
+      "type": "object",
+      "properties": {
+        "clause_id": {
+          "$ref": "#/$defs/Id"
+        },
+        "import_name": {
+          "$ref": "#/$defs/Id"
+        },
+        "package_key": {
+          "$ref": "#/$defs/PackageKey"
+        },
+        "domain": {
+          "$ref": "#/$defs/Domain"
+        },
+        "constraint": {
+          "$ref": "#/$defs/Constraint"
+        },
+        "features": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Id"
+          },
+          "minItems": 0,
+          "maxItems": 256,
+          "uniqueItems": true
+        },
+        "when_feature": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Id"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "clause_id",
+        "import_name",
+        "package_key",
+        "domain",
+        "constraint",
+        "features",
+        "when_feature"
+      ],
+      "additionalProperties": false
+    },
+    "Input": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "$ref": "#/$defs/Id"
+        },
+        "role": {
+          "enum": [
+            "source",
+            "compiler",
+            "linker",
+            "generator",
+            "stdlib",
+            "sysroot",
+            "native",
+            "data",
+            "platform",
+            "recipe",
+            "plugin"
+          ]
+        },
+        "ref": {
+          "$ref": "#/$defs/ObjectRef"
+        }
+      },
+      "required": [
+        "name",
+        "role",
+        "ref"
+      ],
+      "additionalProperties": false
+    },
+    "Bounds": {
+      "type": "object",
+      "properties": {
+        "max_keys": {
+          "$ref": "#/$defs/U64"
+        },
+        "max_candidates_per_key": {
+          "$ref": "#/$defs/U64"
+        },
+        "max_edges": {
+          "$ref": "#/$defs/U64"
+        },
+        "max_features": {
+          "$ref": "#/$defs/U64"
+        },
+        "max_domains": {
+          "$ref": "#/$defs/U64"
+        },
+        "max_search_visits": {
+          "$ref": "#/$defs/U64"
+        },
+        "max_clause_evaluations": {
+          "$ref": "#/$defs/U64"
+        },
+        "max_output_bytes": {
+          "$ref": "#/$defs/U64"
+        }
+      },
+      "required": [
+        "max_keys",
+        "max_candidates_per_key",
+        "max_edges",
+        "max_features",
+        "max_domains",
+        "max_search_visits",
+        "max_clause_evaluations",
+        "max_output_bytes"
+      ],
+      "additionalProperties": false
+    },
+    "Node": {
+      "type": "object",
+      "properties": {
+        "instance_id": {
+          "$ref": "#/$defs/Hash"
+        },
+        "package_key": {
+          "$ref": "#/$defs/PackageKey"
+        },
+        "domain": {
+          "$ref": "#/$defs/Domain"
+        },
+        "version": {
+          "$ref": "#/$defs/Version"
+        },
+        "descriptor_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "PackageDescriptor"
+                }
+              }
+            }
+          ]
+        },
+        "source_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "TreeInventory"
+                }
+              }
+            }
+          ]
+        },
+        "features": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Id"
+          },
+          "minItems": 0,
+          "maxItems": 256,
+          "uniqueItems": true
+        },
+        "nominal_namespace_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "NominalNamespace"
+                }
+              }
+            }
+          ]
+        },
+        "interfaces": {
+          "$ref": "#/$defs/Interfaces"
+        }
+      },
+      "required": [
+        "instance_id",
+        "package_key",
+        "domain",
+        "version",
+        "descriptor_ref",
+        "source_ref",
+        "features",
+        "nominal_namespace_ref",
+        "interfaces"
+      ],
+      "additionalProperties": false
+    },
+    "Edge": {
+      "type": "object",
+      "properties": {
+        "source_instance": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Hash"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "import_name": {
+          "$ref": "#/$defs/Id"
+        },
+        "role": {
+          "enum": [
+            "build",
+            "host",
+            "target"
+          ]
+        },
+        "target_instance": {
+          "$ref": "#/$defs/Hash"
+        },
+        "clause_id": {
+          "$ref": "#/$defs/Id"
+        },
+        "requirement_sha256": {
+          "$ref": "#/$defs/Hash"
+        }
+      },
+      "required": [
+        "source_instance",
+        "import_name",
+        "role",
+        "target_instance",
+        "clause_id",
+        "requirement_sha256"
+      ],
+      "additionalProperties": false
+    },
+    "RootBinding": {
+      "type": "object",
+      "properties": {
+        "import_name": {
+          "$ref": "#/$defs/Id"
+        },
+        "target_instance": {
+          "$ref": "#/$defs/Hash"
+        },
+        "requirement_sha256": {
+          "$ref": "#/$defs/Hash"
+        }
+      },
+      "required": [
+        "import_name",
+        "target_instance",
+        "requirement_sha256"
+      ],
+      "additionalProperties": false
+    },
+    "Output": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "$ref": "#/$defs/Id"
+        },
+        "platform_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "Platform"
+                }
+              }
+            }
+          ]
+        },
+        "artifact_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "Artifact"
+                }
+              }
+            }
+          ]
+        },
+        "media_type": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        }
+      },
+      "required": [
+        "name",
+        "platform_ref",
+        "artifact_ref",
+        "media_type"
+      ],
+      "additionalProperties": false
+    },
+    "Target": {
+      "type": "object",
+      "properties": {
+        "destination_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "Destination"
+                }
+              }
+            }
+          ]
+        },
+        "namespace": {
+          "$ref": "#/$defs/Id"
+        },
+        "name": {
+          "$ref": "#/$defs/Id"
+        },
+        "precondition_kind": {
+          "enum": [
+            "IMMUTABLE_CONTENT",
+            "GENERATION_CAS",
+            "CONTENT_CAS"
+          ]
+        },
+        "generation": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/U64"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "current_binding_ref": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "destination_ref",
+        "namespace",
+        "name",
+        "precondition_kind",
+        "generation",
+        "current_binding_ref"
+      ],
+      "additionalProperties": false
+    },
+    "Action": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "$ref": "#/$defs/Id"
+        },
+        "payload_ref": {
+          "$ref": "#/$defs/ObjectRef"
+        },
+        "media_type": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "transformation_ref": {
+          "anyOf": [
+            {
+              "allOf": [
+                {
+                  "$ref": "#/$defs/ObjectRef"
+                },
+                {
+                  "properties": {
+                    "kind": {
+                      "const": "TransformationProfile"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "name",
+        "payload_ref",
+        "media_type",
+        "transformation_ref"
+      ],
+      "additionalProperties": false
+    },
+    "PackageDescriptor": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "const": "PackageDescriptor"
+        },
+        "profile": {
+          "const": "R20-META-0.1"
+        },
+        "package_key": {
+          "$ref": "#/$defs/PackageKey"
+        },
+        "version": {
+          "$ref": "#/$defs/Version"
+        },
+        "source_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "TreeInventory"
+                }
+              }
+            }
+          ]
+        },
+        "source_kind": {
+          "enum": [
+            "REGISTRY_ARCHIVE",
+            "GIT_SNAPSHOT",
+            "WORKSPACE_SNAPSHOT",
+            "GENERATED"
+          ]
+        },
+        "source_profile_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "SourceProfile"
+                }
+              }
+            }
+          ]
+        },
+        "nominal_namespace_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "NominalNamespace"
+                }
+              }
+            }
+          ]
+        },
+        "supported_domains": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Domain"
+          },
+          "minItems": 1,
+          "maxItems": 16,
+          "uniqueItems": true
+        },
+        "dependencies": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Requirement"
+          },
+          "minItems": 0,
+          "maxItems": 32768
+        },
+        "features": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Id"
+          },
+          "minItems": 0,
+          "maxItems": 256,
+          "uniqueItems": true
+        },
+        "feature_implications": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "from": {
+                "$ref": "#/$defs/Id"
+              },
+              "to": {
+                "$ref": "#/$defs/Id"
+              }
+            },
+            "required": [
+              "from",
+              "to"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 0,
+          "maxItems": 65536,
+          "uniqueItems": true
+        },
+        "feature_exclusions": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/Id"
+            },
+            "minItems": 2,
+            "maxItems": 2,
+            "uniqueItems": true
+          },
+          "minItems": 0,
+          "maxItems": 32640,
+          "uniqueItems": true
+        },
+        "interfaces": {
+          "$ref": "#/$defs/Interfaces"
+        },
+        "build_inputs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Input"
+          },
+          "minItems": 0,
+          "maxItems": 4096
+        },
+        "recipe_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "BuildRecipe"
+                }
+              }
+            }
+          ]
+        }
+      },
+      "required": [
+        "kind",
+        "profile",
+        "package_key",
+        "version",
+        "source_ref",
+        "source_kind",
+        "source_profile_ref",
+        "nominal_namespace_ref",
+        "supported_domains",
+        "dependencies",
+        "features",
+        "feature_implications",
+        "feature_exclusions",
+        "interfaces",
+        "build_inputs",
+        "recipe_ref"
+      ],
+      "additionalProperties": false
+    },
+    "Manifest": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "const": "Manifest"
+        },
+        "profile": {
+          "const": "R20-META-0.1"
+        },
+        "source_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "SourceBundle"
+                }
+              }
+            }
+          ]
+        },
+        "resolution_contract_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "PackageResolutionContract"
+                }
+              }
+            }
+          ]
+        },
+        "roots": {
+          "type": "array",
+          "items": {
+            "allOf": [
+              {
+                "$ref": "#/$defs/Requirement"
+              },
+              {
+                "properties": {
+                  "when_feature": {
+                    "type": "null"
+                  }
+                }
+              }
+            ]
+          },
+          "minItems": 0,
+          "maxItems": 4096
+        },
+        "domains": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Domain"
+          },
+          "minItems": 1,
+          "maxItems": 16,
+          "uniqueItems": true
+        },
+        "build_recipe_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "BuildRecipe"
+                }
+              }
+            }
+          ]
+        },
+        "toolchain_inputs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Input"
+          },
+          "minItems": 1,
+          "maxItems": 4096
+        },
+        "features": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Id"
+          },
+          "minItems": 0,
+          "maxItems": 0,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "kind",
+        "profile",
+        "source_ref",
+        "resolution_contract_ref",
+        "roots",
+        "domains",
+        "build_recipe_ref",
+        "toolchain_inputs",
+        "features"
+      ],
+      "additionalProperties": false
+    },
+    "CatalogSnapshot": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "const": "CatalogSnapshot"
+        },
+        "profile": {
+          "const": "R20-META-0.1"
+        },
+        "adapter_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "CatalogAdapter"
+                }
+              }
+            }
+          ]
+        },
+        "descriptors": {
+          "type": "array",
+          "items": {
+            "allOf": [
+              {
+                "$ref": "#/$defs/ObjectRef"
+              },
+              {
+                "properties": {
+                  "kind": {
+                    "const": "PackageDescriptor"
+                  }
+                }
+              }
+            ]
+          },
+          "minItems": 0,
+          "maxItems": 262144,
+          "uniqueItems": true
+        },
+        "aliases": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "alias": {
+                "$ref": "#/$defs/Id"
+              },
+              "package_key": {
+                "$ref": "#/$defs/PackageKey"
+              }
+            },
+            "required": [
+              "alias",
+              "package_key"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 0,
+          "maxItems": 4096,
+          "uniqueItems": true
+        },
+        "origin_evidence": {
+          "type": "array",
+          "items": {
+            "allOf": [
+              {
+                "$ref": "#/$defs/ObjectRef"
+              },
+              {
+                "properties": {
+                  "kind": {
+                    "const": "OriginEvidence"
+                  }
+                }
+              }
+            ]
+          },
+          "minItems": 1,
+          "maxItems": 4096,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "kind",
+        "profile",
+        "adapter_ref",
+        "descriptors",
+        "aliases",
+        "origin_evidence"
+      ],
+      "additionalProperties": false
+    },
+    "DependencyLock": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "const": "DependencyLock"
+        },
+        "profile": {
+          "const": "R20-META-0.1"
+        },
+        "manifest_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "Manifest"
+                }
+              }
+            }
+          ]
+        },
+        "catalog_snapshot_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "CatalogSnapshot"
+                }
+              }
+            }
+          ]
+        },
+        "resolver_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "Resolver"
+                }
+              }
+            }
+          ]
+        },
+        "policy_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "LockPolicy"
+                }
+              }
+            }
+          ]
+        },
+        "domains": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Domain"
+          },
+          "minItems": 1,
+          "maxItems": 16,
+          "uniqueItems": true
+        },
+        "roots": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/RootBinding"
+          },
+          "minItems": 0,
+          "maxItems": 4096
+        },
+        "nodes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Node"
+          },
+          "minItems": 0,
+          "maxItems": 4096
+        },
+        "edges": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Edge"
+          },
+          "minItems": 0,
+          "maxItems": 32768
+        },
+        "build_inputs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Input"
+          },
+          "minItems": 1,
+          "maxItems": 4096
+        },
+        "update_parent_ref": {
+          "anyOf": [
+            {
+              "allOf": [
+                {
+                  "$ref": "#/$defs/ObjectRef"
+                },
+                {
+                  "properties": {
+                    "kind": {
+                      "const": "DependencyLock"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "bounds": {
+          "$ref": "#/$defs/Bounds"
+        }
+      },
+      "required": [
+        "kind",
+        "profile",
+        "manifest_ref",
+        "catalog_snapshot_ref",
+        "resolver_ref",
+        "policy_ref",
+        "domains",
+        "roots",
+        "nodes",
+        "edges",
+        "build_inputs",
+        "update_parent_ref",
+        "bounds"
+      ],
+      "additionalProperties": false
+    },
+    "TreeInventory": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "const": "TreeInventory"
+        },
+        "profile": {
+          "const": "R20-META-0.1"
+        },
+        "tree_profile": {
+          "const": "BAG-TREE-1"
+        },
+        "files": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "path": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 1024,
+                "pattern": "^[A-Za-z0-9._-]+(?:/[A-Za-z0-9._-]+)*(?![\\s\\S])"
+              },
+              "executable": {
+                "type": "boolean"
+              },
+              "content_ref": {
+                "allOf": [
+                  {
+                    "$ref": "#/$defs/ObjectRef"
+                  },
+                  {
+                    "properties": {
+                      "kind": {
+                        "const": "FileBytes"
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            "required": [
+              "path",
+              "executable",
+              "content_ref"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 0,
+          "maxItems": 100000
+        },
+        "total_bytes": {
+          "$ref": "#/$defs/U64"
+        }
+      },
+      "required": [
+        "kind",
+        "profile",
+        "tree_profile",
+        "files",
+        "total_bytes"
+      ],
+      "additionalProperties": false
+    },
+    "ResolveRequest": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "const": "ResolveRequest"
+        },
+        "profile": {
+          "const": "R20-META-0.1"
+        },
+        "mode": {
+          "enum": [
+            "RESOLVE",
+            "UPDATE"
+          ]
+        },
+        "manifest_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "Manifest"
+                }
+              }
+            }
+          ]
+        },
+        "catalog_snapshot_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "CatalogSnapshot"
+                }
+              }
+            }
+          ]
+        },
+        "resolver_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "Resolver"
+                }
+              }
+            }
+          ]
+        },
+        "policy_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "LockPolicy"
+                }
+              }
+            }
+          ]
+        },
+        "old_lock_ref": {
+          "anyOf": [
+            {
+              "allOf": [
+                {
+                  "$ref": "#/$defs/ObjectRef"
+                },
+                {
+                  "properties": {
+                    "kind": {
+                      "const": "DependencyLock"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "mutable_keys": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "package_key": {
+                "$ref": "#/$defs/PackageKey"
+              },
+              "domain": {
+                "$ref": "#/$defs/Domain"
+              }
+            },
+            "required": [
+              "package_key",
+              "domain"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 0,
+          "maxItems": 4096,
+          "uniqueItems": true
+        },
+        "allow_new_keys": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "package_key": {
+                "$ref": "#/$defs/PackageKey"
+              },
+              "domain": {
+                "$ref": "#/$defs/Domain"
+              }
+            },
+            "required": [
+              "package_key",
+              "domain"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 0,
+          "maxItems": 4096,
+          "uniqueItems": true
+        },
+        "bounds": {
+          "$ref": "#/$defs/Bounds"
+        }
+      },
+      "required": [
+        "kind",
+        "profile",
+        "mode",
+        "manifest_ref",
+        "catalog_snapshot_ref",
+        "resolver_ref",
+        "policy_ref",
+        "old_lock_ref",
+        "mutable_keys",
+        "allow_new_keys",
+        "bounds"
+      ],
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "mode": {
+                "const": "UPDATE"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "old_lock_ref": {
+                "allOf": [
+                  {
+                    "$ref": "#/$defs/ObjectRef"
+                  },
+                  {
+                    "properties": {
+                      "kind": {
+                        "const": "DependencyLock"
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "mode": {
+                "const": "RESOLVE"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "old_lock_ref": {
+                "type": "null"
+              },
+              "mutable_keys": {
+                "maxItems": 0
+              },
+              "allow_new_keys": {
+                "maxItems": 0
+              }
+            }
+          }
+        }
+      ]
+    },
+    "ResolveResult": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "const": "ResolveResult"
+        },
+        "profile": {
+          "const": "R20-META-0.1"
+        },
+        "request_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "ResolveRequest"
+                }
+              }
+            }
+          ]
+        },
+        "snapshot_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "CatalogSnapshot"
+                }
+              }
+            }
+          ]
+        },
+        "status": {
+          "enum": [
+            "SOLVED",
+            "UNSAT_SNAPSHOT",
+            "UNKNOWN_LIMIT",
+            "INVALID_INPUT",
+            "UNTRUSTED_INPUT",
+            "UNSUPPORTED_PROFILE",
+            "INPUT_NOT_READY",
+            "OUT_OF_SCOPE_UPDATE",
+            "PIN_CONFLICT"
+          ]
+        },
+        "lock_ref": {
+          "anyOf": [
+            {
+              "allOf": [
+                {
+                  "$ref": "#/$defs/ObjectRef"
+                },
+                {
+                  "properties": {
+                    "kind": {
+                      "const": "DependencyLock"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "trace_ref": {
+          "anyOf": [
+            {
+              "allOf": [
+                {
+                  "$ref": "#/$defs/ObjectRef"
+                },
+                {
+                  "properties": {
+                    "kind": {
+                      "const": "ResolutionTrace"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "inventory_ref": {
+          "anyOf": [
+            {
+              "allOf": [
+                {
+                  "$ref": "#/$defs/ObjectRef"
+                },
+                {
+                  "properties": {
+                    "kind": {
+                      "const": "InputInventory"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "search_visits": {
+          "$ref": "#/$defs/U64"
+        },
+        "clause_evaluations": {
+          "$ref": "#/$defs/U64"
+        },
+        "diagnostics_ref": {
+          "anyOf": [
+            {
+              "allOf": [
+                {
+                  "$ref": "#/$defs/ObjectRef"
+                },
+                {
+                  "properties": {
+                    "kind": {
+                      "const": "Diagnostics"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "kind",
+        "profile",
+        "request_ref",
+        "snapshot_ref",
+        "status",
+        "lock_ref",
+        "trace_ref",
+        "inventory_ref",
+        "search_visits",
+        "clause_evaluations",
+        "diagnostics_ref"
+      ],
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "SOLVED"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "lock_ref": {
+                "allOf": [
+                  {
+                    "$ref": "#/$defs/ObjectRef"
+                  },
+                  {
+                    "properties": {
+                      "kind": {
+                        "const": "DependencyLock"
+                      }
+                    }
+                  }
+                ]
+              },
+              "trace_ref": {
+                "allOf": [
+                  {
+                    "$ref": "#/$defs/ObjectRef"
+                  },
+                  {
+                    "properties": {
+                      "kind": {
+                        "const": "ResolutionTrace"
+                      }
+                    }
+                  }
+                ]
+              },
+              "inventory_ref": {
+                "allOf": [
+                  {
+                    "$ref": "#/$defs/ObjectRef"
+                  },
+                  {
+                    "properties": {
+                      "kind": {
+                        "const": "InputInventory"
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "lock_ref": {
+                "type": "null"
+              },
+              "inventory_ref": {
+                "type": "null"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "LockVerification": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "const": "LockVerification"
+        },
+        "profile": {
+          "const": "R20-META-0.1"
+        },
+        "lock_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "DependencyLock"
+                }
+              }
+            }
+          ]
+        },
+        "verifier_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "LockVerifier"
+                }
+              }
+            }
+          ]
+        },
+        "closure_sha256": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Hash"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "inventory_ref": {
+          "anyOf": [
+            {
+              "allOf": [
+                {
+                  "$ref": "#/$defs/ObjectRef"
+                },
+                {
+                  "properties": {
+                    "kind": {
+                      "const": "InputInventory"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "result": {
+          "enum": [
+            "LOCK_VALID",
+            "LOCK_INVALID",
+            "INPUT_NOT_READY",
+            "UNSUPPORTED_PROFILE"
+          ]
+        },
+        "diagnostics_ref": {
+          "anyOf": [
+            {
+              "allOf": [
+                {
+                  "$ref": "#/$defs/ObjectRef"
+                },
+                {
+                  "properties": {
+                    "kind": {
+                      "const": "Diagnostics"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "kind",
+        "profile",
+        "lock_ref",
+        "verifier_ref",
+        "closure_sha256",
+        "inventory_ref",
+        "result",
+        "diagnostics_ref"
+      ],
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "result": {
+                "const": "LOCK_VALID"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "closure_sha256": {
+                "$ref": "#/$defs/Hash"
+              },
+              "inventory_ref": {
+                "allOf": [
+                  {
+                    "$ref": "#/$defs/ObjectRef"
+                  },
+                  {
+                    "properties": {
+                      "kind": {
+                        "const": "InputInventory"
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "result": {
+                "enum": [
+                  "INPUT_NOT_READY",
+                  "UNSUPPORTED_PROFILE"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "closure_sha256": {
+                "type": "null"
+              },
+              "inventory_ref": {
+                "type": "null"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "Materialization": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "const": "Materialization"
+        },
+        "profile": {
+          "const": "R20-META-0.1"
+        },
+        "lock_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "DependencyLock"
+                }
+              }
+            }
+          ]
+        },
+        "inventory_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "InputInventory"
+                }
+              }
+            }
+          ]
+        },
+        "tree_profile": {
+          "const": "BAG-TREE-1"
+        },
+        "mounts_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "MountInventory"
+                }
+              }
+            }
+          ]
+        },
+        "byte_checks_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "ByteChecks"
+                }
+              }
+            }
+          ]
+        },
+        "origin_check_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "OriginCheck"
+                }
+              }
+            }
+          ]
+        },
+        "policy_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "MaterializationPolicy"
+                }
+              }
+            }
+          ]
+        }
+      },
+      "required": [
+        "kind",
+        "profile",
+        "lock_ref",
+        "inventory_ref",
+        "tree_profile",
+        "mounts_ref",
+        "byte_checks_ref",
+        "origin_check_ref",
+        "policy_ref"
+      ],
+      "additionalProperties": false
+    },
+    "BuildPlan": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "const": "BuildPlan"
+        },
+        "profile": {
+          "const": "R20-META-0.1"
+        },
+        "accepted_source_ref": {
+          "anyOf": [
+            {
+              "allOf": [
+                {
+                  "$ref": "#/$defs/ObjectRef"
+                },
+                {
+                  "properties": {
+                    "kind": {
+                      "const": "AcceptedSource"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "source_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "SourceBundle"
+                }
+              }
+            }
+          ]
+        },
+        "meaning_lock_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "MeaningLock"
+                }
+              }
+            }
+          ]
+        },
+        "lock_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "DependencyLock"
+                }
+              }
+            }
+          ]
+        },
+        "environment_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "Environment"
+                }
+              }
+            }
+          ]
+        },
+        "recipe_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "BuildRecipe"
+                }
+              }
+            }
+          ]
+        },
+        "toolchain_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "Toolchain"
+                }
+              }
+            }
+          ]
+        },
+        "platform_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "Platform"
+                }
+              }
+            }
+          ]
+        },
+        "input_inventory_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "InputInventory"
+                }
+              }
+            }
+          ]
+        },
+        "execution_policy_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "BuildExecutionPolicy"
+                }
+              }
+            }
+          ]
+        },
+        "output_contract_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "OutputContract"
+                }
+              }
+            }
+          ]
+        },
+        "budget_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "Budget"
+                }
+              }
+            }
+          ]
+        }
+      },
+      "required": [
+        "kind",
+        "profile",
+        "accepted_source_ref",
+        "source_ref",
+        "meaning_lock_ref",
+        "lock_ref",
+        "environment_ref",
+        "recipe_ref",
+        "toolchain_ref",
+        "platform_ref",
+        "input_inventory_ref",
+        "execution_policy_ref",
+        "output_contract_ref",
+        "budget_ref"
+      ],
+      "additionalProperties": false
+    },
+    "BuildResult": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "const": "BuildResult"
+        },
+        "profile": {
+          "const": "R20-META-0.1"
+        },
+        "plan_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "BuildPlan"
+                }
+              }
+            }
+          ]
+        },
+        "invocation_id": {
+          "$ref": "#/$defs/Id"
+        },
+        "outputs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Output"
+          },
+          "minItems": 0,
+          "maxItems": 64
+        },
+        "observations_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "BuildObservations"
+                }
+              }
+            }
+          ]
+        },
+        "effect_log_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "EffectLog"
+                }
+              }
+            }
+          ]
+        },
+        "outcome": {
+          "enum": [
+            "BUILD_SUCCEEDED",
+            "BUILD_FAILED",
+            "UNKNOWN",
+            "CANCELED"
+          ]
+        },
+        "input_closure": {
+          "enum": [
+            "INPUT_CLOSED",
+            "DECLARED_ONLY",
+            "UNKNOWN"
+          ]
+        },
+        "adapter_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "BuildAdapter"
+                }
+              }
+            }
+          ]
+        }
+      },
+      "required": [
+        "kind",
+        "profile",
+        "plan_ref",
+        "invocation_id",
+        "outputs",
+        "observations_ref",
+        "effect_log_ref",
+        "outcome",
+        "input_closure",
+        "adapter_ref"
+      ],
+      "additionalProperties": false
+    },
+    "BuildEvidence": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "const": "BuildEvidence"
+        },
+        "profile": {
+          "const": "R20-META-0.1"
+        },
+        "result_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "BuildResult"
+                }
+              }
+            }
+          ]
+        },
+        "builder_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "BuilderIdentity"
+                }
+              }
+            }
+          ]
+        },
+        "verifier_refs": {
+          "type": "array",
+          "items": {
+            "allOf": [
+              {
+                "$ref": "#/$defs/ObjectRef"
+              },
+              {
+                "properties": {
+                  "kind": {
+                    "const": "VerifierIdentity"
+                  }
+                }
+              }
+            ]
+          },
+          "minItems": 0,
+          "maxItems": 64,
+          "uniqueItems": true
+        },
+        "evidence_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ObjectRef"
+          },
+          "minItems": 0,
+          "maxItems": 4096,
+          "uniqueItems": true
+        },
+        "reproduction_ref": {
+          "anyOf": [
+            {
+              "allOf": [
+                {
+                  "$ref": "#/$defs/ObjectRef"
+                },
+                {
+                  "properties": {
+                    "kind": {
+                      "const": "ReproductionEvidence"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "scope_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "EvidenceScope"
+                }
+              }
+            }
+          ]
+        },
+        "trust_policy_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "TrustPolicy"
+                }
+              }
+            }
+          ]
+        }
+      },
+      "required": [
+        "kind",
+        "profile",
+        "result_ref",
+        "builder_ref",
+        "verifier_refs",
+        "evidence_refs",
+        "reproduction_ref",
+        "scope_ref",
+        "trust_policy_ref"
+      ],
+      "additionalProperties": false
+    },
+    "ReleaseCandidate": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "const": "ReleaseCandidate"
+        },
+        "profile": {
+          "const": "R20-META-0.1"
+        },
+        "accepted_source_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "AcceptedSource"
+                }
+              }
+            }
+          ]
+        },
+        "meaning_lock_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "MeaningLock"
+                }
+              }
+            }
+          ]
+        },
+        "environment_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "Environment"
+                }
+              }
+            }
+          ]
+        },
+        "lock_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "DependencyLock"
+                }
+              }
+            }
+          ]
+        },
+        "build_results": {
+          "type": "array",
+          "items": {
+            "allOf": [
+              {
+                "$ref": "#/$defs/ObjectRef"
+              },
+              {
+                "properties": {
+                  "kind": {
+                    "const": "BuildResult"
+                  }
+                }
+              }
+            ]
+          },
+          "minItems": 1,
+          "maxItems": 64,
+          "uniqueItems": true
+        },
+        "artifacts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Output"
+          },
+          "minItems": 1,
+          "maxItems": 64
+        },
+        "index_ref": {
+          "anyOf": [
+            {
+              "allOf": [
+                {
+                  "$ref": "#/$defs/ObjectRef"
+                },
+                {
+                  "properties": {
+                    "kind": {
+                      "const": "ArtifactIndex"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "evidence_refs": {
+          "type": "array",
+          "items": {
+            "allOf": [
+              {
+                "$ref": "#/$defs/ObjectRef"
+              },
+              {
+                "properties": {
+                  "kind": {
+                    "const": "BuildEvidence"
+                  }
+                }
+              }
+            ]
+          },
+          "minItems": 1,
+          "maxItems": 64,
+          "uniqueItems": true
+        },
+        "release_policy_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "ReleasePolicy"
+                }
+              }
+            }
+          ]
+        }
+      },
+      "required": [
+        "kind",
+        "profile",
+        "accepted_source_ref",
+        "meaning_lock_ref",
+        "environment_ref",
+        "lock_ref",
+        "build_results",
+        "artifacts",
+        "index_ref",
+        "evidence_refs",
+        "release_policy_ref"
+      ],
+      "additionalProperties": false
+    },
+    "CandidateCheck": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "const": "CandidateCheck"
+        },
+        "profile": {
+          "const": "R20-META-0.1"
+        },
+        "candidate_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "ReleaseCandidate"
+                }
+              }
+            }
+          ]
+        },
+        "checker_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "CandidateChecker"
+                }
+              }
+            }
+          ]
+        },
+        "policy_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "ReleasePolicy"
+                }
+              }
+            }
+          ]
+        },
+        "inventory_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "EvidenceInventory"
+                }
+              }
+            }
+          ]
+        },
+        "status": {
+          "enum": [
+            "PASS",
+            "FAIL",
+            "UNKNOWN",
+            "INPUT_NOT_READY"
+          ]
+        },
+        "freshness_policy_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "FreshnessPolicy"
+                }
+              }
+            }
+          ]
+        },
+        "authority_epoch": {
+          "$ref": "#/$defs/U64"
+        },
+        "scope_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "EvidenceScope"
+                }
+              }
+            }
+          ]
+        }
+      },
+      "required": [
+        "kind",
+        "profile",
+        "candidate_ref",
+        "checker_ref",
+        "policy_ref",
+        "inventory_ref",
+        "status",
+        "freshness_policy_ref",
+        "authority_epoch",
+        "scope_ref"
+      ],
+      "additionalProperties": false
+    },
+    "CandidateSeal": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "const": "CandidateSeal"
+        },
+        "profile": {
+          "const": "R20-META-0.1"
+        },
+        "candidate_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "ReleaseCandidate"
+                }
+              }
+            }
+          ]
+        },
+        "checks": {
+          "type": "array",
+          "items": {
+            "allOf": [
+              {
+                "$ref": "#/$defs/ObjectRef"
+              },
+              {
+                "properties": {
+                  "kind": {
+                    "const": "CandidateCheck"
+                  }
+                }
+              }
+            ]
+          },
+          "minItems": 1,
+          "maxItems": 4096,
+          "uniqueItems": true
+        },
+        "inventory_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "EvidenceInventory"
+                }
+              }
+            }
+          ]
+        }
+      },
+      "required": [
+        "kind",
+        "profile",
+        "candidate_ref",
+        "checks",
+        "inventory_ref"
+      ],
+      "additionalProperties": false
+    },
+    "ReleaseIntent": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "const": "ReleaseIntent"
+        },
+        "profile": {
+          "const": "R20-META-0.1"
+        },
+        "project_identity_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "ProjectIdentity"
+                }
+              }
+            }
+          ]
+        },
+        "principal_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "PrincipalIdentity"
+                }
+              }
+            }
+          ]
+        },
+        "intent_key": {
+          "$ref": "#/$defs/KeyRef"
+        },
+        "action": {
+          "enum": [
+            "PUBLISH_CONTENT",
+            "PROMOTE_ALIAS",
+            "DEPLOY_BINDING",
+            "COMPENSATE"
+          ]
+        },
+        "seal_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "CandidateSeal"
+                }
+              }
+            }
+          ]
+        },
+        "policy_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "ReleasePolicy"
+                }
+              }
+            }
+          ]
+        },
+        "target": {
+          "$ref": "#/$defs/Target"
+        },
+        "actions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Action"
+          },
+          "minItems": 1,
+          "maxItems": 64
+        },
+        "adapter_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "ReleaseAdapter"
+                }
+              }
+            }
+          ]
+        },
+        "guarantee_profile_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "AdapterGuarantees"
+                }
+              }
+            }
+          ]
+        },
+        "authority_domain_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "AuthorityDomain"
+                }
+              }
+            }
+          ]
+        },
+        "expected_authority_epoch": {
+          "$ref": "#/$defs/U64"
+        },
+        "fence_domain_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "FenceDomain"
+                }
+              }
+            }
+          ]
+        },
+        "budget_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "Budget"
+                }
+              }
+            }
+          ]
+        },
+        "retention_policy_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "RetentionPolicy"
+                }
+              }
+            }
+          ]
+        },
+        "compensates_ref": {
+          "anyOf": [
+            {
+              "allOf": [
+                {
+                  "$ref": "#/$defs/ObjectRef"
+                },
+                {
+                  "properties": {
+                    "kind": {
+                      "const": "ReleaseIntent"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "deployment_plan_ref": {
+          "anyOf": [
+            {
+              "allOf": [
+                {
+                  "$ref": "#/$defs/ObjectRef"
+                },
+                {
+                  "properties": {
+                    "kind": {
+                      "const": "DeploymentPlan"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "kind",
+        "profile",
+        "project_identity_ref",
+        "principal_ref",
+        "intent_key",
+        "action",
+        "seal_ref",
+        "policy_ref",
+        "target",
+        "actions",
+        "adapter_ref",
+        "guarantee_profile_ref",
+        "authority_domain_ref",
+        "expected_authority_epoch",
+        "fence_domain_ref",
+        "budget_ref",
+        "retention_policy_ref",
+        "compensates_ref",
+        "deployment_plan_ref"
+      ],
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "action": {
+                "const": "DEPLOY_BINDING"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "deployment_plan_ref": {
+                "allOf": [
+                  {
+                    "$ref": "#/$defs/ObjectRef"
+                  },
+                  {
+                    "properties": {
+                      "kind": {
+                        "const": "DeploymentPlan"
+                      }
+                    }
+                  }
+                ]
+              },
+              "target": {
+                "properties": {
+                  "precondition_kind": {
+                    "const": "GENERATION_CAS"
+                  },
+                  "generation": {
+                    "$ref": "#/$defs/U64"
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "action": {
+                "const": "COMPENSATE"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "compensates_ref": {
+                "allOf": [
+                  {
+                    "$ref": "#/$defs/ObjectRef"
+                  },
+                  {
+                    "properties": {
+                      "kind": {
+                        "const": "ReleaseIntent"
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "compensates_ref": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "target": {
+                "properties": {
+                  "precondition_kind": {
+                    "const": "GENERATION_CAS"
+                  }
+                }
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "target": {
+                "properties": {
+                  "generation": {
+                    "$ref": "#/$defs/U64"
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "ReleaseOperationResult": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "const": "ReleaseOperationResult"
+        },
+        "profile": {
+          "const": "R20-META-0.1"
+        },
+        "intent_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "ReleaseIntent"
+                }
+              }
+            }
+          ]
+        },
+        "attempt_id": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Id"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "phase": {
+          "enum": [
+            "PREPARE",
+            "RESERVE",
+            "ARM",
+            "DISPATCH",
+            "RECONCILE",
+            "OBSERVE",
+            "TERMINAL"
+          ]
+        },
+        "status": {
+          "enum": [
+            "PREPARED",
+            "RESERVED",
+            "MAY_HAVE_RUN",
+            "CONFIRMED_SUCCESS",
+            "CONFIRMED_REJECTION",
+            "CONFIRMED_NOT_APPLIED",
+            "LOCAL_REJECTED_BEFORE_DISPATCH",
+            "CONTENT_OBSERVED",
+            "UNKNOWN_MAY_HAVE_RUN",
+            "CANCELED_BEFORE_DISPATCH",
+            "STALE_BASE",
+            "SUPERSEDED_OBSERVED",
+            "PARTIAL",
+            "INPUT_NOT_READY",
+            "DENIED",
+            "UNSUPPORTED_DESTINATION",
+            "LIMIT"
+          ]
+        },
+        "local_commit_ref": {
+          "anyOf": [
+            {
+              "allOf": [
+                {
+                  "$ref": "#/$defs/ObjectRef"
+                },
+                {
+                  "properties": {
+                    "kind": {
+                      "const": "LocalCommit"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "target_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "Destination"
+                }
+              }
+            }
+          ]
+        },
+        "candidate_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "ReleaseCandidate"
+                }
+              }
+            }
+          ]
+        },
+        "remote_receipt_ref": {
+          "anyOf": [
+            {
+              "allOf": [
+                {
+                  "$ref": "#/$defs/ObjectRef"
+                },
+                {
+                  "properties": {
+                    "kind": {
+                      "const": "RemoteReceipt"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "observation_ref": {
+          "anyOf": [
+            {
+              "allOf": [
+                {
+                  "$ref": "#/$defs/ObjectRef"
+                },
+                {
+                  "properties": {
+                    "kind": {
+                      "const": "RemoteObservation"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "member_results_ref": {
+          "anyOf": [
+            {
+              "allOf": [
+                {
+                  "$ref": "#/$defs/ObjectRef"
+                },
+                {
+                  "properties": {
+                    "kind": {
+                      "const": "MemberResultInventory"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "diagnostics_ref": {
+          "anyOf": [
+            {
+              "allOf": [
+                {
+                  "$ref": "#/$defs/ObjectRef"
+                },
+                {
+                  "properties": {
+                    "kind": {
+                      "const": "Diagnostics"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "scope_ref": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "EvidenceScope"
+                }
+              }
+            }
+          ]
+        }
+      },
+      "required": [
+        "kind",
+        "profile",
+        "intent_ref",
+        "attempt_id",
+        "phase",
+        "status",
+        "local_commit_ref",
+        "target_ref",
+        "candidate_ref",
+        "remote_receipt_ref",
+        "observation_ref",
+        "member_results_ref",
+        "diagnostics_ref",
+        "scope_ref"
+      ],
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "PREPARED"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "phase": {
+                "enum": [
+                  "PREPARE"
+                ]
+              },
+              "attempt_id": {
+                "type": "null"
+              },
+              "local_commit_ref": {
+                "type": "null"
+              },
+              "remote_receipt_ref": {
+                "type": "null"
+              },
+              "observation_ref": {
+                "type": "null"
+              },
+              "member_results_ref": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "RESERVED"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "phase": {
+                "enum": [
+                  "RESERVE"
+                ]
+              },
+              "attempt_id": {
+                "$ref": "#/$defs/Id"
+              },
+              "local_commit_ref": {
+                "allOf": [
+                  {
+                    "$ref": "#/$defs/ObjectRef"
+                  },
+                  {
+                    "properties": {
+                      "kind": {
+                        "const": "LocalCommit"
+                      }
+                    }
+                  }
+                ]
+              },
+              "remote_receipt_ref": {
+                "type": "null"
+              },
+              "observation_ref": {
+                "type": "null"
+              },
+              "member_results_ref": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "MAY_HAVE_RUN"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "phase": {
+                "enum": [
+                  "ARM",
+                  "DISPATCH"
+                ]
+              },
+              "attempt_id": {
+                "$ref": "#/$defs/Id"
+              },
+              "local_commit_ref": {
+                "allOf": [
+                  {
+                    "$ref": "#/$defs/ObjectRef"
+                  },
+                  {
+                    "properties": {
+                      "kind": {
+                        "const": "LocalCommit"
+                      }
+                    }
+                  }
+                ]
+              },
+              "remote_receipt_ref": {
+                "type": "null"
+              },
+              "observation_ref": {
+                "type": "null"
+              },
+              "member_results_ref": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "CONFIRMED_SUCCESS"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "phase": {
+                "enum": [
+                  "DISPATCH",
+                  "RECONCILE",
+                  "TERMINAL"
+                ]
+              },
+              "attempt_id": {
+                "$ref": "#/$defs/Id"
+              },
+              "local_commit_ref": {
+                "allOf": [
+                  {
+                    "$ref": "#/$defs/ObjectRef"
+                  },
+                  {
+                    "properties": {
+                      "kind": {
+                        "const": "LocalCommit"
+                      }
+                    }
+                  }
+                ]
+              },
+              "remote_receipt_ref": {
+                "allOf": [
+                  {
+                    "$ref": "#/$defs/ObjectRef"
+                  },
+                  {
+                    "properties": {
+                      "kind": {
+                        "const": "RemoteReceipt"
+                      }
+                    }
+                  }
+                ]
+              },
+              "member_results_ref": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "CONFIRMED_REJECTION"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "phase": {
+                "enum": [
+                  "DISPATCH",
+                  "RECONCILE",
+                  "TERMINAL"
+                ]
+              },
+              "attempt_id": {
+                "$ref": "#/$defs/Id"
+              },
+              "local_commit_ref": {
+                "allOf": [
+                  {
+                    "$ref": "#/$defs/ObjectRef"
+                  },
+                  {
+                    "properties": {
+                      "kind": {
+                        "const": "LocalCommit"
+                      }
+                    }
+                  }
+                ]
+              },
+              "remote_receipt_ref": {
+                "allOf": [
+                  {
+                    "$ref": "#/$defs/ObjectRef"
+                  },
+                  {
+                    "properties": {
+                      "kind": {
+                        "const": "RemoteReceipt"
+                      }
+                    }
+                  }
+                ]
+              },
+              "member_results_ref": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "CONFIRMED_NOT_APPLIED"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "phase": {
+                "enum": [
+                  "RECONCILE",
+                  "TERMINAL"
+                ]
+              },
+              "attempt_id": {
+                "$ref": "#/$defs/Id"
+              },
+              "local_commit_ref": {
+                "allOf": [
+                  {
+                    "$ref": "#/$defs/ObjectRef"
+                  },
+                  {
+                    "properties": {
+                      "kind": {
+                        "const": "LocalCommit"
+                      }
+                    }
+                  }
+                ]
+              },
+              "remote_receipt_ref": {
+                "allOf": [
+                  {
+                    "$ref": "#/$defs/ObjectRef"
+                  },
+                  {
+                    "properties": {
+                      "kind": {
+                        "const": "RemoteReceipt"
+                      }
+                    }
+                  }
+                ]
+              },
+              "member_results_ref": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "LOCAL_REJECTED_BEFORE_DISPATCH"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "phase": {
+                "enum": [
+                  "TERMINAL"
+                ]
+              },
+              "attempt_id": {
+                "$ref": "#/$defs/Id"
+              },
+              "local_commit_ref": {
+                "allOf": [
+                  {
+                    "$ref": "#/$defs/ObjectRef"
+                  },
+                  {
+                    "properties": {
+                      "kind": {
+                        "const": "LocalCommit"
+                      }
+                    }
+                  }
+                ]
+              },
+              "remote_receipt_ref": {
+                "type": "null"
+              },
+              "observation_ref": {
+                "type": "null"
+              },
+              "member_results_ref": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "CONTENT_OBSERVED"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "phase": {
+                "enum": [
+                  "OBSERVE",
+                  "RECONCILE"
+                ]
+              },
+              "remote_receipt_ref": {
+                "type": "null"
+              },
+              "observation_ref": {
+                "allOf": [
+                  {
+                    "$ref": "#/$defs/ObjectRef"
+                  },
+                  {
+                    "properties": {
+                      "kind": {
+                        "const": "RemoteObservation"
+                      }
+                    }
+                  }
+                ]
+              },
+              "member_results_ref": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "UNKNOWN_MAY_HAVE_RUN"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "phase": {
+                "enum": [
+                  "DISPATCH",
+                  "RECONCILE"
+                ]
+              },
+              "attempt_id": {
+                "$ref": "#/$defs/Id"
+              },
+              "local_commit_ref": {
+                "allOf": [
+                  {
+                    "$ref": "#/$defs/ObjectRef"
+                  },
+                  {
+                    "properties": {
+                      "kind": {
+                        "const": "LocalCommit"
+                      }
+                    }
+                  }
+                ]
+              },
+              "remote_receipt_ref": {
+                "type": "null"
+              },
+              "member_results_ref": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "CANCELED_BEFORE_DISPATCH"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "phase": {
+                "enum": [
+                  "TERMINAL"
+                ]
+              },
+              "attempt_id": {
+                "$ref": "#/$defs/Id"
+              },
+              "local_commit_ref": {
+                "allOf": [
+                  {
+                    "$ref": "#/$defs/ObjectRef"
+                  },
+                  {
+                    "properties": {
+                      "kind": {
+                        "const": "LocalCommit"
+                      }
+                    }
+                  }
+                ]
+              },
+              "remote_receipt_ref": {
+                "type": "null"
+              },
+              "observation_ref": {
+                "type": "null"
+              },
+              "member_results_ref": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "STALE_BASE"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "phase": {
+                "enum": [
+                  "PREPARE",
+                  "RESERVE",
+                  "ARM",
+                  "DISPATCH",
+                  "RECONCILE"
+                ]
+              },
+              "local_commit_ref": {
+                "type": "null"
+              },
+              "remote_receipt_ref": {
+                "type": "null"
+              },
+              "member_results_ref": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "SUPERSEDED_OBSERVED"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "phase": {
+                "enum": [
+                  "RECONCILE",
+                  "OBSERVE"
+                ]
+              },
+              "attempt_id": {
+                "$ref": "#/$defs/Id"
+              },
+              "remote_receipt_ref": {
+                "type": "null"
+              },
+              "observation_ref": {
+                "allOf": [
+                  {
+                    "$ref": "#/$defs/ObjectRef"
+                  },
+                  {
+                    "properties": {
+                      "kind": {
+                        "const": "RemoteObservation"
+                      }
+                    }
+                  }
+                ]
+              },
+              "member_results_ref": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "PARTIAL"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "phase": {
+                "enum": [
+                  "DISPATCH",
+                  "RECONCILE",
+                  "OBSERVE"
+                ]
+              },
+              "attempt_id": {
+                "$ref": "#/$defs/Id"
+              },
+              "remote_receipt_ref": {
+                "type": "null"
+              },
+              "member_results_ref": {
+                "allOf": [
+                  {
+                    "$ref": "#/$defs/ObjectRef"
+                  },
+                  {
+                    "properties": {
+                      "kind": {
+                        "const": "MemberResultInventory"
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "INPUT_NOT_READY"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "phase": {
+                "enum": [
+                  "PREPARE",
+                  "RESERVE",
+                  "ARM",
+                  "DISPATCH",
+                  "RECONCILE",
+                  "OBSERVE"
+                ]
+              },
+              "local_commit_ref": {
+                "type": "null"
+              },
+              "remote_receipt_ref": {
+                "type": "null"
+              },
+              "member_results_ref": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "DENIED"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "phase": {
+                "enum": [
+                  "PREPARE",
+                  "RESERVE",
+                  "ARM",
+                  "DISPATCH",
+                  "RECONCILE",
+                  "OBSERVE"
+                ]
+              },
+              "local_commit_ref": {
+                "type": "null"
+              },
+              "remote_receipt_ref": {
+                "type": "null"
+              },
+              "member_results_ref": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "UNSUPPORTED_DESTINATION"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "phase": {
+                "enum": [
+                  "PREPARE",
+                  "RESERVE",
+                  "ARM",
+                  "DISPATCH",
+                  "RECONCILE",
+                  "OBSERVE"
+                ]
+              },
+              "local_commit_ref": {
+                "type": "null"
+              },
+              "remote_receipt_ref": {
+                "type": "null"
+              },
+              "member_results_ref": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "LIMIT"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "phase": {
+                "enum": [
+                  "PREPARE",
+                  "RESERVE",
+                  "ARM",
+                  "DISPATCH",
+                  "RECONCILE",
+                  "OBSERVE"
+                ]
+              },
+              "local_commit_ref": {
+                "type": "null"
+              },
+              "remote_receipt_ref": {
+                "type": "null"
+              },
+              "member_results_ref": {
+                "type": "null"
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

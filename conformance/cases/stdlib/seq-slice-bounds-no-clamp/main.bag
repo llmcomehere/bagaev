@@ -1,0 +1,9 @@
+@id("ck9c4x")
+module main
+use std.seq
+use std.data
+
+@id("w0sg5d")
+pub fn main() -> Result<Seq<Int64>, data.BoundsError> {
+  seq.slice([1, 2], 2, 1)
+}

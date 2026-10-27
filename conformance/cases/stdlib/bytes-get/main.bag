@@ -1,0 +1,8 @@
+@id("7cbzbj")
+module main
+use std.bytes
+
+@id("g5ys41")
+pub fn main() -> Option<Int64> {
+  bytes.get(b"\xff", 0)
+}

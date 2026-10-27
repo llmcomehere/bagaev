@@ -1,0 +1,16 @@
+module main
+
+pub type AgeError = enum {
+  Negative,
+  TooLarge(Int64),
+}
+
+pub fn validate_age(a: Int64) -> Result<Int64, AgeError> {
+  if a < 0 {
+    return Err(AgeError.Negative)
+  }
+  if a > 150 {
+    return Err(AgeError.TooLarge(a))
+  }
+  Ok(a)
+}

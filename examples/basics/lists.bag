@@ -1,0 +1,46 @@
+/// Рекурсивный тип (D69), рекурсия и обобщённые функции с эффект-переменной (D70).
+@id("8xpacx")
+module lists
+
+use std.seq
+
+@id("6vf62b")
+pub type List<T> = enum {
+  @id("7emrc9") Nil,
+  @id("3b53xd") Cons(Node<T>),
+}
+
+@id("hcnwzb")
+pub type Node<T> = record {
+  @id("wr5jcy") head: T,
+  @id("jazkpn") tail: List<T>,
+}
+
+@id("ynq5c6")
+pub fn from_seq<T>(xs: Seq<T>, i: Int64) -> List<T> {
+  match seq.get(xs, i) {
+    None => List.Nil,
+    Some(x) => List.Cons(Node { head: x, tail: from_seq(xs, i + 1) }),
+  }
+}
+
+@id("72yea0")
+pub fn length<T>(l: List<T>) -> Int64 {
+  match l {
+    List.Nil => 0,
+    List.Cons(n) => 1 + length(n.tail),
+  }
+}
+
+@id("y4ndcq")
+pub fn apply_all<T, U, !e>(xs: Seq<T>, f: fn(T) -> U uses e) -> Seq<U>
+  uses e
+{
+  seq.map(xs, f)
+}
+
+@id("ck6jjn")
+pub fn main() -> Int64 {
+  let squares = apply_all([1, 2, 3], fn(x) => x * x);
+  length(from_seq(squares, 0)) + seq.fold(squares, 0, fn(acc, x) => acc + x)
+}

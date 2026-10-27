@@ -1,0 +1,18 @@
+module main
+
+pub type Size = record {
+  w: Int64,
+  h: Int64,
+}
+
+pub type Shape = enum {
+  Circle(Int64),
+  Rect(Size),
+}
+
+pub fn area(s: Shape) -> Int64 {
+  match s {
+    Shape.Circle(r) => 3 * r * r,
+    Shape.Rect(z) => z.w * z.h,
+  }
+}

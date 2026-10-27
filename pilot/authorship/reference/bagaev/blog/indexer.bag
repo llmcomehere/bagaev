@@ -1,0 +1,37 @@
+/// Обработчик события пересчитывает сохранённый индекс «человек → статьи».
+/// Повтор доставки того же события дедуплицируется хостом.
+@id("nsvyqn")
+module blog.indexer
+
+use std.store
+use std.seq
+use std.map
+use std.option
+use blog.db.{Blog}
+use blog.people.{PersonId}
+use blog.articles.{ArticleId}
+use blog.authorship.{AttributionComplete}
+use blog.events.{AuthorshipChanged}
+
+@id("nnza70")
+handler index_authorship(ev: AuthorshipChanged)
+  uses { reads Blog.author_index, writes Blog.author_index }
+  implements AttributionComplete.complete
+{
+  let index = remove_article(store.all(Blog.author_index), ev.article);
+  store.replace_all(Blog.author_index, seq.fold(ev.authors, index, fn(acc, p) => map.put(acc, p, seq.append(option.value_or(map.get(acc, p), []), ev.article))));
+}
+
+@id("c2k0wq")
+fn remove_article(index: Map<PersonId, Seq<ArticleId>>, a: ArticleId) -> Map<PersonId, Seq<ArticleId>> {
+  seq.fold(map.entries(index), index, fn(acc, e) => map.put(acc, e.key, without(e.value, a)))
+}
+
+@id("1ej32c")
+fn without(xs: Seq<ArticleId>, a: ArticleId) -> Seq<ArticleId> {
+  seq.fold(xs, [], fn(acc, x) => if x == a {
+    acc
+  } else {
+    seq.append(acc, x)
+  })
+}

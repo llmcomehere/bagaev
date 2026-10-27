@@ -1,0 +1,7 @@
+@id("fzspv2")
+module main
+
+@id("ww2spy")
+fn f() -> () {
+  let n = None;
+}

@@ -1,0 +1,23 @@
+@id("fm5tp9")
+module main
+use std.seq
+
+@id("y2n9wb")
+type P = record {
+  @id("91fgha") n: Int64,
+}
+
+@id("zzvq25")
+fn apply(f: fn(P) -> Int64, xs: Seq<P>) -> Seq<Int64> {
+  seq.map(xs, f)
+}
+
+@id("rpycxe")
+fn g<T, U>(f: fn(T) -> U, x: T) -> U {
+  f(x)
+}
+
+@id("tfakd9")
+fn h(p: P) -> Int64 {
+  g(fn(q) => q.n, p)
+}

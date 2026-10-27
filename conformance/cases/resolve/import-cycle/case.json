@@ -1,0 +1,32 @@
+{
+  "id": "resolve/import-cycle",
+  "spec": [
+    "spec/language/surface.md#2-файл-модуль-имена",
+    "spec/language/checking.md#3-имена-и-объявления-фаза-resolve"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "a.bag",
+    "b.bag"
+  ],
+  "expect": {
+    "phase": "check",
+    "outcome": "PRELAUNCH",
+    "diagnostics": [
+      {
+        "code": "MODULE_IMPORT_CYCLE",
+        "file": "a.bag",
+        "span": [
+          40,
+          41
+        ],
+        "data": {
+          "cycle": "a -> b -> a"
+        }
+      }
+    ]
+  }
+}

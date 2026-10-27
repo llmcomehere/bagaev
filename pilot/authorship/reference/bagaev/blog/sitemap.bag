@@ -1,0 +1,16 @@
+/// Карта сайта: адреса статей.
+@id("wser4b")
+module blog.sitemap
+
+use std.store
+use std.seq
+use std.map
+use blog.db.{Blog}
+use blog.articles
+
+@id("ed37y0")
+pub query sitemap() -> String
+  uses { reads Blog.articles }
+{
+  seq.fold(map.entries(store.all(Blog.articles)), "", fn(acc, e) => acc ++ "/articles/" ++ articles.id_text(e.key) ++ "\n")
+}

@@ -1,0 +1,8 @@
+@id("x86sxy")
+module main
+use std.i64
+
+@id("2ppemb")
+pub fn main() -> Int64 {
+7
+}

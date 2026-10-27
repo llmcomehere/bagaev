@@ -1,0 +1,25 @@
+@id("nnntb5")
+module main
+
+@id("bkwm8y")
+type Article = record {
+  @id("1dt8q9") title: String,
+}
+
+@id("stm933")
+store Blog {
+  @id("bay95j") table articles: Map<Int64, Article>
+}
+
+@id("0yak37")
+event Renamed {
+  @id("d3zsrn") id: Int64,
+  @id("289fp1") title: String,
+}
+
+@id("q039ec")
+fn f() -> ()
+  uses { emits Article }
+{
+  ()
+}

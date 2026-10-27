@@ -1,0 +1,12 @@
+@id("6nbb8p")
+module main
+
+@id("440hf8")
+fn g(x: Int64) -> Int64 {
+  x
+}
+
+@id("nzms4w")
+fn f() -> Int64 {
+  g(1, 2)
+}

@@ -1,0 +1,33 @@
+{
+  "id": "types/type-mismatch-let",
+  "spec": [
+    "spec/language/surface.md#4-выражения",
+    "spec/language/types.md#7-синтез-и-проверка-выражений",
+    "spec/language/checking.md#5-тела-фазы-type-и-effect"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "expect": {
+    "phase": "check",
+    "outcome": "PRELAUNCH",
+    "diagnostics": [
+      {
+        "code": "TYPE_MISMATCH",
+        "file": "main.bag",
+        "span": [
+          74,
+          75
+        ],
+        "data": {
+          "expected": "String",
+          "actual": "Int64"
+        }
+      }
+    ]
+  }
+}

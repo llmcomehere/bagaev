@@ -1,0 +1,8 @@
+@id("sntarm")
+module main
+use std.string
+
+@id("dtfx99")
+pub fn main() -> Int64 {
+  string.scalar_length("Привет, " ++ "😀")
+}

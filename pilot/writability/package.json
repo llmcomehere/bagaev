@@ -1,0 +1,8 @@
+{
+  "name": "bagaev-writability-probe",
+  "private": true,
+  "description": "Плечо T пробника пишемости: компилятор TypeScript закреплён точной версией (protocol.md)",
+  "devDependencies": {
+    "typescript": "5.9.3"
+  }
+}

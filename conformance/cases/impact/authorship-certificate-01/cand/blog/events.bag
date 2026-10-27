@@ -1,0 +1,13 @@
+/// Событие изменения авторства несёт полный снимок (D45).
+@id("9atntz")
+module blog.events
+
+use blog.articles.{ArticleId}
+use blog.authorship.{Authors}
+
+@id("agbnt9")
+pub event AuthorshipChanged {
+  @id("nxg0mt") article: ArticleId,
+  @id("9enbwb") authors: Authors,
+  @id("c6bk3v") revision: Int64,
+}

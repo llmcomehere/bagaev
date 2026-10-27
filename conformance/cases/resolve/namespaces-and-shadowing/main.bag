@@ -1,0 +1,23 @@
+@id("vvtggg")
+module main
+use std.seq
+
+
+@id("v5n7cd")
+type Item = record { @id("xh8nnf") n: Int64 }
+
+@id("fggnh8")
+fn Item(n: Int64) -> Item {
+  Item { n: n }
+}
+
+@id("7nqb59")
+fn shadow(seq: Int64) -> Int64 {
+  let seq = seq + 1;
+  seq
+}
+
+@id("8fakwj")
+fn uses_module(xs: Seq<Int64>) -> Int64 {
+  seq.length(xs)
+}

@@ -1,0 +1,392 @@
+{
+  "id": "migrate/key-rename-value-01",
+  "spec": [
+    "spec/runtime/host.md#2-привязка-схемы",
+    "spec/runtime/host.md#7-миграция",
+    "spec/runtime/host.md#3-команда",
+    "spec/runtime/host.md#4-запрос"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "app.bag",
+    "v2/app.bag"
+  ],
+  "run": {
+    "steps": [
+      {
+        "op": "seed",
+        "table": "app.S.items",
+        "rows": [
+          [
+            {
+              "type": "app.Envelope",
+              "fields": {
+                "part": {
+                  "type": "Option<app.OldKey>",
+                  "tag": "Some",
+                  "payload": {
+                    "type": "app.OldKey",
+                    "value": {
+                      "type": "String",
+                      "value": "b"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "type": "Int64",
+              "value": "9"
+            }
+          ],
+          [
+            {
+              "type": "app.Envelope",
+              "fields": {
+                "part": {
+                  "type": "Option<app.OldKey>",
+                  "tag": "Some",
+                  "payload": {
+                    "type": "app.OldKey",
+                    "value": {
+                      "type": "String",
+                      "value": "a"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "type": "Int64",
+              "value": "7"
+            }
+          ]
+        ]
+      },
+      {
+        "op": "query",
+        "entry": "app.get",
+        "args": [
+          {
+            "type": "String",
+            "value": "a"
+          }
+        ],
+        "program": "v2"
+      },
+      {
+        "op": "migrate",
+        "action": "plan",
+        "program": "v2"
+      },
+      {
+        "op": "migrate",
+        "program": "v2"
+      },
+      {
+        "op": "query",
+        "entry": "app.get",
+        "args": [
+          {
+            "type": "String",
+            "value": "a"
+          }
+        ],
+        "program": "v2"
+      },
+      {
+        "op": "command",
+        "entry": "app.put",
+        "args": [
+          {
+            "type": "String",
+            "value": "a"
+          },
+          {
+            "type": "Int64",
+            "value": "8"
+          }
+        ],
+        "namespace": "app",
+        "key": "key-000000000001",
+        "program": "v2"
+      },
+      {
+        "op": "query",
+        "entry": "app.get",
+        "args": [
+          {
+            "type": "String",
+            "value": "a"
+          }
+        ],
+        "program": "v2"
+      },
+      {
+        "op": "command",
+        "entry": "app.remove",
+        "args": [
+          {
+            "type": "String",
+            "value": "a"
+          }
+        ],
+        "namespace": "app",
+        "key": "key-000000000002",
+        "program": "v2"
+      },
+      {
+        "op": "query",
+        "entry": "app.get",
+        "args": [
+          {
+            "type": "String",
+            "value": "a"
+          }
+        ],
+        "program": "v2"
+      },
+      {
+        "op": "query",
+        "entry": "app.get",
+        "args": [
+          {
+            "type": "String",
+            "value": "b"
+          }
+        ],
+        "program": "v2"
+      },
+      {
+        "op": "migrate",
+        "program": "v2"
+      },
+      {
+        "op": "query",
+        "entry": "app.get",
+        "args": [
+          {
+            "type": "String",
+            "value": "b"
+          }
+        ],
+        "program": "v2"
+      }
+    ],
+    "state_program": "v2"
+  },
+  "expect": {
+    "phase": "migrate",
+    "outcome": "COMPLETED",
+    "value": [
+      {
+        "outcome": "COMMITTED",
+        "rows": 2,
+        "state_version": 1
+      },
+      {
+        "outcome": "REFUSED",
+        "code": "SCHEMA_BINDING_MISMATCH"
+      },
+      {
+        "outcome": "PLANNED",
+        "epoch": 0,
+        "state_version": 1,
+        "tables": [
+          {
+            "table": "app.S.items",
+            "id": "aa0003",
+            "action": "migrate",
+            "migration": "app.to_tally",
+            "from": "Int64",
+            "to": "app.Tally"
+          }
+        ],
+        "events": []
+      },
+      {
+        "outcome": "APPLIED",
+        "epoch": 1,
+        "state_version": 2,
+        "rows": 2,
+        "tables": [
+          {
+            "table": "app.S.items",
+            "id": "aa0003",
+            "action": "migrate",
+            "migration": "app.to_tally",
+            "from": "Int64",
+            "to": "app.Tally"
+          }
+        ],
+        "events": []
+      },
+      {
+        "outcome": "RETURNED",
+        "value": {
+          "type": "Option<app.Tally>",
+          "tag": "Some",
+          "payload": {
+            "type": "app.Tally",
+            "fields": {
+              "total": {
+                "type": "Int64",
+                "value": "7"
+              },
+              "bumps": {
+                "type": "Int64",
+                "value": "1"
+              }
+            }
+          }
+        }
+      },
+      {
+        "value": {
+          "type": "Result<Unit,String>",
+          "tag": "Ok",
+          "payload": {
+            "type": "Unit"
+          }
+        },
+        "outcome": "COMMITTED",
+        "final": true,
+        "replayed": false,
+        "state_version": 3
+      },
+      {
+        "outcome": "RETURNED",
+        "value": {
+          "type": "Option<app.Tally>",
+          "tag": "Some",
+          "payload": {
+            "type": "app.Tally",
+            "fields": {
+              "total": {
+                "type": "Int64",
+                "value": "8"
+              },
+              "bumps": {
+                "type": "Int64",
+                "value": "1"
+              }
+            }
+          }
+        }
+      },
+      {
+        "value": {
+          "type": "Result<Unit,String>",
+          "tag": "Ok",
+          "payload": {
+            "type": "Unit"
+          }
+        },
+        "outcome": "COMMITTED",
+        "final": true,
+        "replayed": false,
+        "state_version": 4
+      },
+      {
+        "outcome": "RETURNED",
+        "value": {
+          "type": "Option<app.Tally>",
+          "tag": "None"
+        }
+      },
+      {
+        "outcome": "RETURNED",
+        "value": {
+          "type": "Option<app.Tally>",
+          "tag": "Some",
+          "payload": {
+            "type": "app.Tally",
+            "fields": {
+              "total": {
+                "type": "Int64",
+                "value": "9"
+              },
+              "bumps": {
+                "type": "Int64",
+                "value": "1"
+              }
+            }
+          }
+        }
+      },
+      {
+        "outcome": "UP_TO_DATE",
+        "epoch": 1,
+        "state_version": 4,
+        "tables": [],
+        "events": []
+      },
+      {
+        "outcome": "RETURNED",
+        "value": {
+          "type": "Option<app.Tally>",
+          "tag": "Some",
+          "payload": {
+            "type": "app.Tally",
+            "fields": {
+              "total": {
+                "type": "Int64",
+                "value": "9"
+              },
+              "bumps": {
+                "type": "Int64",
+                "value": "1"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "state": {
+      "state_version": 4,
+      "epoch": 1,
+      "tables": {
+        "app.S.items": [
+          [
+            {
+              "type": "app.Envelope",
+              "fields": {
+                "part": {
+                  "type": "Option<app.NewKey>",
+                  "tag": "Some",
+                  "payload": {
+                    "type": "app.NewKey",
+                    "value": {
+                      "type": "String",
+                      "value": "b"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "type": "app.Tally",
+              "fields": {
+                "total": {
+                  "type": "Int64",
+                  "value": "9"
+                },
+                "bumps": {
+                  "type": "Int64",
+                  "value": "1"
+                }
+              }
+            }
+          ]
+        ]
+      },
+      "outbox": [],
+      "inbox": [],
+      "pending": []
+    }
+  },
+  "note": "переименование ключа сохраняет get/put/remove и единственность логического ключа; при неизменном внешнем Envelope учитывается вложенное имя; явная миграция значения не копирует старые байты ключа"
+}

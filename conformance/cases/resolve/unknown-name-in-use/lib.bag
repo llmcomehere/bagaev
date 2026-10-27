@@ -1,0 +1,12 @@
+@id("9f0059")
+module lib
+
+@id("gteksh")
+fn hidden() -> Int64 {
+  1
+}
+
+@id("w79qne")
+pub fn open() -> Int64 {
+  2
+}

@@ -1,0 +1,8 @@
+@id("y76j4s")
+module main
+use std.i64
+
+@id("jndsrk")
+pub fn main() -> Bool {
+  i64.lt(-9223372036854775808, 9223372036854775807)
+}

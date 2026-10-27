@@ -1,0 +1,20 @@
+{
+  "id": "fmt/decl-bodies",
+  "spec": [
+    "spec/language/format.md#объявления"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "expect": {
+    "phase": "fmt",
+    "outcome": "FORMATTED",
+    "value": {
+      "main.bag": "module m\n\ntype E = enum {\n  A,\n  B(Int64),\n}\n\ntype R = record {}\n\nstore S {\n  table t: Map<Int64, Bool>\n  table d: Seq<Int64> derived_from X\n}\n\nevent Ev {\n  a: Int64,\n}\n\nentity X {\n  purpose \"смысл\"\n  terms [\"a\", \"b\"]\n}\n\ncontract C about X {\n  rule r \"текст\"\n}\n"
+    }
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "id": "types/unknown-field",
+  "spec": [
+    "spec/language/surface.md#4-выражения",
+    "spec/language/checking.md#5-тела-фазы-type-и-effect"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "expect": {
+    "phase": "check",
+    "outcome": "PRELAUNCH",
+    "diagnostics": [
+      {
+        "code": "UNKNOWN_FIELD",
+        "file": "main.bag",
+        "span": [
+          162,
+          163
+        ],
+        "data": {
+          "type": "main.Point",
+          "name": "z"
+        }
+      }
+    ]
+  }
+}

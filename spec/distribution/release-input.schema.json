@@ -1,0 +1,491 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "BOOTSTRAP-0.1 release inputs: structural grammar only",
+  "$comment": "Schema validity does not establish hashes of missing bytes, signatures, release currentness, semantic closure, actual T03 source compatibility, source execution or permissions. Exact semantic gates are bootstrap.md. No production tool binaries are supplied by schema examples.",
+  "oneOf": [
+    {
+      "$ref": "#/$defs/StarterDescriptor"
+    },
+    {
+      "$ref": "#/$defs/ReleaseDescriptor"
+    },
+    {
+      "$ref": "#/$defs/EnvironmentLock"
+    }
+  ],
+  "$defs": {
+    "Digest": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+    },
+    "Counter": {
+      "type": "string",
+      "pattern": "^(?:0|[1-9][0-9]{0,17}|[1-8][0-9]{18}|9[0-1][0-9]{17}|92[0-1][0-9]{16}|922[0-2][0-9]{15}|9223[0-2][0-9]{14}|92233[0-6][0-9]{13}|922337[0-1][0-9]{12}|92233720[0-2][0-9]{10}|922337203[0-5][0-9]{9}|9223372036[0-7][0-9]{8}|92233720368[0-4][0-9]{7}|922337203685[0-3][0-9]{6}|9223372036854[0-6][0-9]{5}|92233720368547[0-6][0-9]{4}|922337203685477[0-4][0-9]{3}|9223372036854775[0-7][0-9]{2}|922337203685477580[0-6][0-9]{0}|9223372036854775807)(?![\\s\\S])"
+    },
+    "Id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*(?![\\s\\S])"
+    },
+    "RelativePath": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 1024,
+      "pattern": "^(?!\\.{1,2}(?:/|$))(?!.*(?:/\\.{1,2})(?:/|$))[A-Za-z0-9._-]{1,128}(?:/[A-Za-z0-9._-]{1,128})*(?![\\s\\S])"
+    },
+    "ArtifactRef": {
+      "type": "object",
+      "properties": {
+        "sha256": {
+          "$ref": "#/$defs/Digest"
+        },
+        "size_bytes": {
+          "$ref": "#/$defs/Counter"
+        },
+        "media_type": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        }
+      },
+      "required": [
+        "sha256",
+        "size_bytes",
+        "media_type"
+      ],
+      "additionalProperties": false
+    },
+    "FormatRef": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "$ref": "#/$defs/Id"
+        },
+        "revision": {
+          "$ref": "#/$defs/Id"
+        },
+        "contract_sha256": {
+          "$ref": "#/$defs/Digest"
+        }
+      },
+      "required": [
+        "name",
+        "revision",
+        "contract_sha256"
+      ],
+      "additionalProperties": false
+    },
+    "FileEntry": {
+      "type": "object",
+      "properties": {
+        "path": {
+          "$ref": "#/$defs/RelativePath"
+        },
+        "kind": {
+          "const": "regular"
+        },
+        "mode": {
+          "enum": [
+            "0444",
+            "0555"
+          ]
+        },
+        "artifact": {
+          "$ref": "#/$defs/ArtifactRef"
+        }
+      },
+      "required": [
+        "path",
+        "kind",
+        "mode",
+        "artifact"
+      ],
+      "additionalProperties": false
+    },
+    "Edge": {
+      "type": "object",
+      "properties": {
+        "from": {
+          "$ref": "#/$defs/Digest"
+        },
+        "to": {
+          "$ref": "#/$defs/Digest"
+        }
+      },
+      "required": [
+        "from",
+        "to"
+      ],
+      "additionalProperties": false
+    },
+    "ExpectedOutcome": {
+      "type": "object",
+      "properties": {
+        "termination": {
+          "const": "Returned"
+        },
+        "value": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "const": "Int64"
+            },
+            "decimal": {
+              "const": "42"
+            }
+          },
+          "required": [
+            "type",
+            "decimal"
+          ],
+          "additionalProperties": false
+        },
+        "application_stdout_bytes": {
+          "const": "0"
+        },
+        "host_calls": {
+          "type": "array",
+          "items": {},
+          "minItems": 0,
+          "maxItems": 0
+        },
+        "unsettled_effects": {
+          "type": "array",
+          "items": {},
+          "minItems": 0,
+          "maxItems": 0
+        },
+        "cli_exit": {
+          "const": 0
+        }
+      },
+      "required": [
+        "termination",
+        "value",
+        "application_stdout_bytes",
+        "host_calls",
+        "unsettled_effects",
+        "cli_exit"
+      ],
+      "additionalProperties": false
+    },
+    "StarterDescriptor": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "const": "StarterDescriptor"
+        },
+        "schema": {
+          "const": "BOOTSTRAP-0.1"
+        },
+        "template": {
+          "$ref": "#/$defs/ArtifactRef"
+        },
+        "files": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/FileEntry"
+          },
+          "minItems": 1,
+          "maxItems": 65536,
+          "uniqueItems": true
+        },
+        "source_format": {
+          "$ref": "#/$defs/FormatRef"
+        },
+        "semantic_profile": {
+          "$ref": "#/$defs/FormatRef"
+        },
+        "package_lock": {
+          "$ref": "#/$defs/ArtifactRef"
+        },
+        "entry": {
+          "$ref": "#/$defs/Id"
+        },
+        "capabilities": {
+          "type": "array",
+          "items": {},
+          "minItems": 0,
+          "maxItems": 0
+        },
+        "expected_static": {
+          "const": "PASS"
+        },
+        "expected_run": {
+          "$ref": "#/$defs/ExpectedOutcome"
+        },
+        "golden_origin": {
+          "$ref": "#/$defs/ArtifactRef"
+        }
+      },
+      "required": [
+        "kind",
+        "schema",
+        "template",
+        "files",
+        "source_format",
+        "semantic_profile",
+        "package_lock",
+        "entry",
+        "capabilities",
+        "expected_static",
+        "expected_run",
+        "golden_origin"
+      ],
+      "additionalProperties": false
+    },
+    "ReleaseDescriptor": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "const": "ReleaseDescriptor"
+        },
+        "schema": {
+          "const": "BOOTSTRAP-0.1"
+        },
+        "release_label": {
+          "$ref": "#/$defs/Id"
+        },
+        "status": {
+          "enum": [
+            "DRAFT",
+            "ISSUED"
+          ]
+        },
+        "platform_profile": {
+          "const": "BAG-INSTALL-LINUX-X64-1"
+        },
+        "tools": {
+          "type": "object",
+          "properties": {
+            "bootstrap_verifier": {
+              "$ref": "#/$defs/ArtifactRef"
+            },
+            "compiler": {
+              "$ref": "#/$defs/ArtifactRef"
+            },
+            "runtime": {
+              "$ref": "#/$defs/ArtifactRef"
+            },
+            "cli": {
+              "$ref": "#/$defs/ArtifactRef"
+            },
+            "stdlib": {
+              "$ref": "#/$defs/ArtifactRef"
+            }
+          },
+          "required": [
+            "bootstrap_verifier",
+            "compiler",
+            "runtime",
+            "cli",
+            "stdlib"
+          ],
+          "additionalProperties": false
+        },
+        "closure": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ArtifactRef"
+          },
+          "minItems": 1,
+          "maxItems": 4096,
+          "uniqueItems": true
+        },
+        "edges": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Edge"
+          },
+          "minItems": 0,
+          "maxItems": 16384,
+          "uniqueItems": true
+        },
+        "formats": {
+          "type": "object",
+          "properties": {
+            "source": {
+              "$ref": "#/$defs/FormatRef"
+            },
+            "ir": {
+              "$ref": "#/$defs/FormatRef"
+            },
+            "value": {
+              "$ref": "#/$defs/FormatRef"
+            },
+            "package": {
+              "$ref": "#/$defs/FormatRef"
+            },
+            "project": {
+              "$ref": "#/$defs/FormatRef"
+            },
+            "protocol": {
+              "$ref": "#/$defs/FormatRef"
+            }
+          },
+          "required": [
+            "source",
+            "ir",
+            "value",
+            "package",
+            "project",
+            "protocol"
+          ],
+          "additionalProperties": false
+        },
+        "starter_descriptor": {
+          "$ref": "#/$defs/ArtifactRef"
+        },
+        "environment_policy": {
+          "$ref": "#/$defs/ArtifactRef"
+        },
+        "verification_suites": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ArtifactRef"
+          },
+          "minItems": 1,
+          "maxItems": 128,
+          "uniqueItems": true
+        },
+        "provenance_policy": {
+          "$ref": "#/$defs/ArtifactRef"
+        }
+      },
+      "required": [
+        "kind",
+        "schema",
+        "release_label",
+        "status",
+        "platform_profile",
+        "tools",
+        "closure",
+        "edges",
+        "formats",
+        "starter_descriptor",
+        "environment_policy",
+        "verification_suites",
+        "provenance_policy"
+      ],
+      "additionalProperties": false
+    },
+    "EnvironmentLock": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "const": "EnvironmentLock"
+        },
+        "schema": {
+          "const": "BOOTSTRAP-0.1"
+        },
+        "platform_profile": {
+          "const": "BAG-INSTALL-LINUX-X64-1"
+        },
+        "release_descriptor": {
+          "$ref": "#/$defs/ArtifactRef"
+        },
+        "artifacts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ArtifactRef"
+          },
+          "minItems": 1,
+          "maxItems": 4096,
+          "uniqueItems": true
+        },
+        "edges": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Edge"
+          },
+          "minItems": 0,
+          "maxItems": 16384,
+          "uniqueItems": true
+        },
+        "tools": {
+          "type": "object",
+          "properties": {
+            "bootstrap_verifier": {
+              "$ref": "#/$defs/ArtifactRef"
+            },
+            "compiler": {
+              "$ref": "#/$defs/ArtifactRef"
+            },
+            "runtime": {
+              "$ref": "#/$defs/ArtifactRef"
+            },
+            "cli": {
+              "$ref": "#/$defs/ArtifactRef"
+            },
+            "stdlib": {
+              "$ref": "#/$defs/ArtifactRef"
+            }
+          },
+          "required": [
+            "bootstrap_verifier",
+            "compiler",
+            "runtime",
+            "cli",
+            "stdlib"
+          ],
+          "additionalProperties": false
+        },
+        "formats": {
+          "type": "object",
+          "properties": {
+            "source": {
+              "$ref": "#/$defs/FormatRef"
+            },
+            "ir": {
+              "$ref": "#/$defs/FormatRef"
+            },
+            "value": {
+              "$ref": "#/$defs/FormatRef"
+            },
+            "package": {
+              "$ref": "#/$defs/FormatRef"
+            },
+            "project": {
+              "$ref": "#/$defs/FormatRef"
+            },
+            "protocol": {
+              "$ref": "#/$defs/FormatRef"
+            }
+          },
+          "required": [
+            "source",
+            "ir",
+            "value",
+            "package",
+            "project",
+            "protocol"
+          ],
+          "additionalProperties": false
+        },
+        "build_recipe": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ArtifactRef"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "kind",
+        "schema",
+        "platform_profile",
+        "release_descriptor",
+        "artifacts",
+        "edges",
+        "tools",
+        "formats",
+        "build_recipe"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

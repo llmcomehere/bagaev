@@ -1,0 +1,12 @@
+@id("3qgc26")
+module main
+
+@id("4ajr8q")
+fn f(b: Bool) -> Int64 {
+  if b {
+    1
+  } else {
+    2
+  }
+  3
+}

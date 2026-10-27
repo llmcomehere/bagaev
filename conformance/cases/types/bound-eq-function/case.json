@@ -1,0 +1,33 @@
+{
+  "id": "types/bound-eq-function",
+  "spec": [
+    "spec/language/surface.md#4-выражения",
+    "spec/language/types.md#9-eq-key-и-persistable",
+    "spec/language/checking.md#5-тела-фазы-type-и-effect"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "expect": {
+    "phase": "check",
+    "outcome": "PRELAUNCH",
+    "diagnostics": [
+      {
+        "code": "BOUND_NOT_SATISFIED",
+        "file": "main.bag",
+        "span": [
+          81,
+          87
+        ],
+        "data": {
+          "type": "fn(Int64) -> Int64",
+          "bound": "Eq"
+        }
+      }
+    ]
+  }
+}

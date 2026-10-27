@@ -1,0 +1,32 @@
+{
+  "id": "l1/fault-is-charged",
+  "spec": [
+    "spec/runtime/machine.md#4-закрытый-каталог-правил",
+    "spec/runtime/machine.md#5-примитивы-и-fault"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L1",
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "run": {
+    "entry": "main.main"
+  },
+  "expect": {
+    "phase": "run",
+    "effects": [],
+    "outcome": "FAULT",
+    "code": "DIVISION_BY_ZERO",
+    "steps": 5,
+    "trace_l1": [
+      "PRIM_ENTER",
+      "CONST",
+      "PRIM_NEXT",
+      "CONST",
+      "PRIM_APPLY"
+    ]
+  }
+}

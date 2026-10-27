@@ -1,0 +1,2 @@
+module m
+fn f() -> Int64 { 0x7fff_ffff }

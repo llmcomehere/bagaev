@@ -1,0 +1,9 @@
+@id("m1gxpf")
+module main
+use std.seq
+
+@id("v3kgda")
+pub fn main() -> Int64 {
+  let xs: Seq<Int64> = [];
+  seq.length(xs)
+}

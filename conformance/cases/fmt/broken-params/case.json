@@ -1,0 +1,21 @@
+{
+  "id": "fmt/broken-params",
+  "spec": [
+    "spec/language/format.md#объявления",
+    "spec/language/format.md#блоки-и-выражения"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "expect": {
+    "phase": "fmt",
+    "outcome": "FORMATTED",
+    "value": {
+      "main.bag": "module m\n\nfn f(\n  a: Int64,\n  b: Map<Int64, Bool>,\n) -> Int64 {\n  a\n}\n\nhandler on_e(e: E) {\n  ()\n}\n"
+    }
+  }
+}

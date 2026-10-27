@@ -1,0 +1,27 @@
+{
+  "id": "l1/core-c08-b0-cx",
+  "spec": [
+    "spec/runtime/machine.md#7-соответствие-core-01",
+    "spec/runtime/machine.md#3-шаг"
+  ],
+  "origin": "model:models/r07-core/fixtures/core-machine.json#bounded_matrix",
+  "levels": [
+    "L1",
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "run": {
+    "entry": "main.main",
+    "fuel": 0
+  },
+  "expect": {
+    "phase": "run",
+    "effects": [],
+    "outcome": "SEMANTIC_STOP",
+    "code": "BUDGET_EXCEEDED",
+    "steps": 0,
+    "trace_l1": []
+  }
+}

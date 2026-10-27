@@ -1,0 +1,8 @@
+@id("xc8p51")
+module main
+use std.i64
+
+@id("0py4ys")
+pub fn main() -> Result<Int64, i64.ArithmeticError> {
+  i64.add(40, 2)
+}

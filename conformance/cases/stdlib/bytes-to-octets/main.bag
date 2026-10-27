@@ -1,0 +1,8 @@
+@id("3975g9")
+module main
+use std.bytes
+
+@id("qn08q8")
+pub fn main() -> Seq<Int64> {
+  bytes.to_octets(b"\x00\xff")
+}

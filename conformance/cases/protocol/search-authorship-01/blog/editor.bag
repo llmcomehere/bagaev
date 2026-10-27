@@ -1,0 +1,39 @@
+/// Редактор авторства: одна транзакция command (D81). Ok фиксирует статью и событие в outbox,
+/// Err или FAULT не меняют ничего (O01, C02).
+@id("cdnjg7")
+module blog.editor
+
+use std.store
+use std.result
+use blog.db.{Blog}
+use blog.acl.{ActorId, AclError}
+use blog.acl
+use blog.people.{PersonId}
+use blog.articles.{ArticleId, Article}
+use blog.authorship
+use blog.authorship.{AuthorsError, AuthorsShape}
+use blog.events.{AuthorshipChanged}
+
+@id("syhqmx")
+pub type EditError = enum {
+  @id("8z8z6f") Denied(AclError),
+  @id("1eys0y") Invalid(AuthorsError),
+  @id("1818d9") NotFound(ArticleId),
+}
+
+@id("pb1fzm")
+pub command set_authors(actor: ActorId, article: ArticleId, new_ids: Seq<PersonId>) -> Result<(), EditError>
+  uses { reads Blog.acl, reads Blog.articles, reads Blog.people, writes Blog.articles, emits AuthorshipChanged }
+  requires AuthorsShape.nonempty, AuthorsShape.unique
+{
+  let _ = result.map_error(acl.require_editor(store.all(Blog.acl), actor), fn(e) => EditError.Denied(e))?;
+  let list = result.map_error(authorship.make(new_ids, store.all(Blog.people)), fn(e) => EditError.Invalid(e))?;
+  let old = match store.get(Blog.articles, article) {
+    Some(a) => a,
+    None => return Err(EditError.NotFound(article)),
+  };
+  let updated = Article { ..old, authors: list, revision: old.revision + 1 };
+  store.put(Blog.articles, article, updated);
+  emit AuthorshipChanged { article: article, authors: list, revision: updated.revision };
+  Ok(())
+}

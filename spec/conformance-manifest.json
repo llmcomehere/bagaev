@@ -1,0 +1,2345 @@
+{
+  "schema": "bagaev-conformance-manifest/1",
+  "description": "Нормативные правила V1 и случаи conformance/, которые их подтверждают. Правило без исполнимой проверки помечается NOT_YET_EXECUTABLE с причиной. Покрытие считает tools/exec_report.py (registry/EXEC_METHOD.md).",
+  "rules": [
+    {
+      "rule_id": "GRAMMAR-1",
+      "spec": "spec/language/grammar.ebnf",
+      "status": "EXECUTABLE",
+      "cases": [
+        "parse/unexpected-token",
+        "parse/unexpected-eof",
+        "parse/nested-pattern",
+        "parse/trailing-commas",
+        "parse/items-and-links",
+        "parse/fn-type-uses-binding",
+        "parse/empty-enum",
+        "parse/empty-attribute-arguments",
+        "parse/empty-use-group",
+        "parse/empty-generics",
+        "parse/empty-type-arguments",
+        "parse/effect-parameter-in-type"
+      ]
+    },
+    {
+      "rule_id": "LEX-01",
+      "spec": "spec/language/lexical.md#1-кодировка-и-символы",
+      "cases": [
+        "lex/bom",
+        "lex/invalid-utf8"
+      ],
+      "status": "EXECUTABLE"
+    },
+    {
+      "rule_id": "LEX-02",
+      "spec": "spec/language/lexical.md#1-кодировка-и-символы",
+      "cases": [
+        "lex/not-nfc"
+      ],
+      "status": "EXECUTABLE"
+    },
+    {
+      "rule_id": "LEX-03",
+      "spec": "spec/language/lexical.md#1-кодировка-и-символы",
+      "cases": [
+        "lex/bidi-in-comment",
+        "lex/bidi-in-string",
+        "lex/control-in-bytes",
+        "lex/control-in-string",
+        "lex/forbidden-control",
+        "lex/format-chars-in-string",
+        "lex/line-separator-in-comment",
+        "lex/nbsp-outside-string",
+        "lex/private-use-character"
+      ],
+      "status": "EXECUTABLE"
+    },
+    {
+      "rule_id": "LEX-04",
+      "spec": "spec/language/lexical.md#1-кодировка-и-символы",
+      "cases": [
+        "lex/crlf",
+        "lex/stray-cr",
+        "lex/stray-cr-in-comment",
+        "lex/stray-cr-in-string"
+      ],
+      "status": "EXECUTABLE"
+    },
+    {
+      "rule_id": "LEX-05",
+      "spec": "spec/language/lexical.md#2-пробелы-и-комментарии",
+      "cases": [
+        "lex/comments"
+      ],
+      "status": "EXECUTABLE"
+    },
+    {
+      "rule_id": "LEX-06",
+      "spec": "spec/language/lexical.md#2-пробелы-и-комментарии",
+      "cases": [
+        "lex/comments"
+      ],
+      "status": "EXECUTABLE"
+    },
+    {
+      "rule_id": "LEX-07",
+      "spec": "spec/language/lexical.md#3-идентификаторы-и-ключевые-слова",
+      "cases": [
+        "lex/superscript-after-name",
+        "lex/unicode-identifier"
+      ],
+      "status": "EXECUTABLE"
+    },
+    {
+      "rule_id": "LEX-08",
+      "spec": "spec/language/lexical.md#3-идентификаторы-и-ключевые-слова",
+      "cases": [
+        "parse/reserved-word-as-name",
+        "lex/contextual-words-as-names"
+      ],
+      "status": "EXECUTABLE",
+      "partial": true,
+      "partial_note": "случаи покрывают часть правила (синтаксис); остальное — Ф2"
+    },
+    {
+      "rule_id": "LEX-09",
+      "spec": "spec/language/lexical.md#4-литералы",
+      "cases": [
+        "lex/escape-too-long",
+        "lex/invalid-escape",
+        "lex/string-escapes",
+        "lex/surrogate-escape",
+        "lex/unterminated-string"
+      ],
+      "status": "EXECUTABLE"
+    },
+    {
+      "rule_id": "LEX-10",
+      "spec": "spec/language/lexical.md#4-литералы",
+      "cases": [
+        "lex/bytes-non-ascii",
+        "lex/bytes-escapes"
+      ],
+      "status": "EXECUTABLE"
+    },
+    {
+      "rule_id": "LEX-11",
+      "spec": "spec/language/lexical.md#4-литералы",
+      "cases": [
+        "lex/double-underscore",
+        "lex/hex-min",
+        "lex/hex-underscore",
+        "lex/int-out-of-range",
+        "lex/leading-zero",
+        "lex/literal-above-min",
+        "lex/min-int",
+        "lex/non-ascii-digit",
+        "lex/number-then-letters",
+        "lex/trailing-underscore",
+        "lex/zero-underscore",
+        "parse/min-after-binary-minus"
+      ],
+      "status": "EXECUTABLE"
+    },
+    {
+      "rule_id": "LEX-12",
+      "spec": "spec/language/lexical.md#4-литералы",
+      "cases": [
+        "lex/float-literal"
+      ],
+      "status": "EXECUTABLE"
+    },
+    {
+      "rule_id": "LEX-13",
+      "spec": "spec/language/lexical.md#4-литералы",
+      "cases": [
+        "parse/true-is-reserved",
+        "parse/unit-is-two-tokens"
+      ],
+      "status": "EXECUTABLE"
+    },
+    {
+      "rule_id": "LEX-14",
+      "spec": "spec/language/lexical.md#5-пунктуация-и-операторы",
+      "cases": [
+        "lex/unexpected-character"
+      ],
+      "status": "EXECUTABLE"
+    },
+    {
+      "rule_id": "LEX-15",
+      "spec": "spec/language/lexical.md#6-координаты",
+      "cases": [
+        "lex/bom",
+        "lex/invalid-escape",
+        "lex/bytes-non-ascii"
+      ],
+      "status": "EXECUTABLE",
+      "partial": true,
+      "partial_note": "случаи проверяют диапазоны диагностик; побайтную сборку токенов и trivia проверяет тест эталона ref/tests/test_syntax.py (Lossless) — языконезависимого случая нет"
+    },
+    {
+      "rule_id": "LEX-17",
+      "spec": "spec/language/lexical.md#6-координаты",
+      "cases": [
+        "lex/bidi-in-string",
+        "lex/bom",
+        "lex/bytes-non-ascii",
+        "lex/double-underscore",
+        "lex/escape-too-long",
+        "lex/float-literal",
+        "lex/forbidden-control",
+        "lex/int-out-of-range",
+        "lex/invalid-escape",
+        "lex/invalid-utf8",
+        "lex/leading-zero",
+        "lex/not-nfc",
+        "lex/number-then-letters",
+        "lex/stray-cr",
+        "lex/surrogate-escape",
+        "lex/unexpected-character",
+        "lex/unterminated-string"
+      ],
+      "status": "EXECUTABLE"
+    },
+    {
+      "rule_id": "LEX-16",
+      "spec": "spec/language/lexical.md#6-координаты",
+      "cases": [
+        "lex/first-error-by-offset"
+      ],
+      "status": "EXECUTABLE"
+    },
+    {
+      "rule_id": "SURF-01",
+      "spec": "spec/language/surface.md#2-файл-модуль-имена",
+      "cases": [
+        "resolve/module-path-mismatch",
+        "resolve/imports-group-and-alias",
+        "resolve/stdlib-needs-use",
+        "resolve/std-namespace-reserved"
+      ],
+      "status": "EXECUTABLE"
+    },
+    {
+      "rule_id": "SURF-02",
+      "spec": "spec/language/surface.md#2-файл-модуль-имена",
+      "cases": [
+        "parse/use-group-not-last",
+        "parse/items-and-links",
+        "resolve/imports-group-and-alias",
+        "resolve/private-item-in-use",
+        "resolve/unknown-module",
+        "resolve/import-cycle",
+        "resolve/unknown-name-in-use",
+        "resolve/cycle-of-three"
+      ],
+      "status": "EXECUTABLE"
+    },
+    {
+      "rule_id": "SURF-03",
+      "spec": "spec/language/surface.md#2-файл-модуль-имена",
+      "cases": [
+        "resolve/namespaces-and-shadowing",
+        "resolve/duplicate-declaration",
+        "resolve/duplicate-with-import",
+        "resolve/duplicate-member"
+      ],
+      "status": "EXECUTABLE"
+    },
+    {
+      "rule_id": "SURF-04",
+      "spec": "spec/language/surface.md#2-файл-модуль-имена",
+      "cases": [
+        "resolve/pub-not-allowed",
+        "resolve/private-item-in-use",
+        "resolve/private-item-in-path",
+        "resolve/entrypoint-not-callable",
+        "resolve/opaque-constructor-outside-module",
+        "resolve/group-import-skips-private-namesake",
+        "resolve/private-contract-in-link"
+      ],
+      "status": "EXECUTABLE",
+      "partial": true,
+      "partial_note": "статическая часть — случаи check; ENTRYPOINT_NOT_EXPORTED проверяет хост — Ф4"
+    },
+    {
+      "rule_id": "SURF-05",
+      "spec": "spec/language/surface.md#2-файл-модуль-имена",
+      "cases": [
+        "resolve/stdlib-needs-use",
+        "types/generics-lambdas-match"
+      ],
+      "status": "EXECUTABLE"
+    },
+    {
+      "rule_id": "SURF-06",
+      "spec": "spec/language/surface.md#2-файл-модуль-имена",
+      "cases": [
+        "resolve/unknown-variant",
+        "resolve/unknown-name",
+        "resolve/stdlib-needs-use",
+        "types/unknown-field"
+      ],
+      "status": "EXECUTABLE"
+    },
+    {
+      "rule_id": "SURF-07",
+      "spec": "spec/language/surface.md#3-объявления-и-идентичность",
+      "cases": [
+        "resolve/missing-entity-id",
+        "resolve/missing-entity-id-variant",
+        "resolve/missing-entity-id-module",
+        "resolve/malformed-entity-id",
+        "resolve/malformed-entity-id-letter-u",
+        "resolve/duplicate-entity-id"
+      ],
+      "status": "EXECUTABLE"
+    },
+    {
+      "rule_id": "SURF-08",
+      "spec": "spec/language/surface.md#3-объявления-и-идентичность",
+      "cases": [
+        "resolve/unknown-attribute"
+      ],
+      "status": "EXECUTABLE"
+    },
+    {
+      "rule_id": "SURF-09",
+      "spec": "spec/language/surface.md#3-объявления-и-идентичность",
+      "cases": [
+        "resolve/duplicate-parameter",
+        "types/generics-lambdas-match",
+        "effects/undeclared-read",
+        "outcomes/unknown-entrypoint",
+        "outcomes/entrypoint-signature"
+      ],
+      "status": "EXECUTABLE"
+    },
+    {
+      "rule_id": "SURF-10",
+      "spec": "spec/language/surface.md#3-объявления-и-идентичность",
+      "cases": [
+        "resolve/irregular-recursive-type",
+        "resolve/regular-mutual-recursion",
+        "resolve/opaque-constructor-outside-module",
+        "resolve/imports-group-and-alias",
+        "parse/empty-enum",
+        "types/opaque-duplicate-arm",
+        "types/opaque-empty-match"
+      ],
+      "status": "EXECUTABLE"
+    },
+    {
+      "rule_id": "SURF-11",
+      "spec": "spec/language/surface.md#3-объявления-и-идентичность",
+      "cases": [
+        "resolve/invalid-link-target",
+        "resolve/links-to-contract-rules"
+      ],
+      "status": "EXECUTABLE"
+    },
+    {
+      "rule_id": "SURF-12",
+      "spec": "spec/language/surface.md#3-объявления-и-идентичность",
+      "cases": [
+        "types/table-type-not-map",
+        "types/table-value-not-persistable",
+        "effects/entrypoints-and-polymorphism"
+      ],
+      "status": "EXECUTABLE",
+      "partial": true,
+      "partial_note": "статическая часть — случаи check; транзакции хоста — Ф4"
+    },
+    {
+      "rule_id": "SURF-13",
+      "spec": "spec/language/surface.md#3-объявления-и-идентичность",
+      "cases": [
+        "types/event-not-persistable",
+        "effects/undeclared-emit"
+      ],
+      "status": "EXECUTABLE",
+      "partial": true,
+      "partial_note": "статическая часть — случаи check; транзакции хоста — Ф4"
+    },
+    {
+      "rule_id": "SURF-14",
+      "spec": "spec/language/surface.md#3-объявления-и-идентичность",
+      "cases": [
+        "types/command-result-not-result",
+        "types/migration-type-mismatch",
+        "effects/migration-is-pure",
+        "effects/query-cannot-write",
+        "effects/entrypoints-and-polymorphism"
+      ],
+      "status": "EXECUTABLE",
+      "partial": true,
+      "partial_note": "статическая часть — случаи check; транзакции хоста — Ф4"
+    },
+    {
+      "rule_id": "SURF-15",
+      "spec": "spec/language/surface.md#3-объявления-и-идентичность",
+      "cases": [
+        "accept/supersedes-unknown-01",
+        "graph/all-kinds-01",
+        "impact/authorship-c05-01",
+        "resolve/invalid-link-target",
+        "resolve/links-to-contract-rules"
+      ],
+      "status": "EXECUTABLE"
+    },
+    {
+      "rule_id": "SURF-20",
+      "spec": "spec/language/surface.md#4-выражения",
+      "cases": [
+        "types/records-maps-equality",
+        "l1/core-c01",
+        "l1/core-c18"
+      ],
+      "status": "EXECUTABLE"
+    },
+    {
+      "rule_id": "SURF-21",
+      "spec": "spec/language/surface.md#4-выражения",
+      "cases": [
+        "resolve/unknown-name",
+        "l1/core-c02"
+      ],
+      "status": "EXECUTABLE"
+    },
+    {
+      "rule_id": "SURF-22",
+      "spec": "spec/language/surface.md#4-выражения",
+      "cases": [
+        "types/type-mismatch-let",
+        "types/result-explicitly-ignored",
+        "l1/core-c02",
+        "l1/statement-chain",
+        "eval/shadowing"
+      ],
+      "status": "EXECUTABLE"
+    },
+    {
+      "rule_id": "SURF-23",
+      "spec": "spec/language/surface.md#4-выражения",
+      "cases": [
+        "types/type-mismatch-tail",
+        "l1/block-without-tail",
+        "l1/statement-chain",
+        "types/never-ends-block"
+      ],
+      "status": "EXECUTABLE"
+    },
+    {
+      "rule_id": "SURF-24",
+      "spec": "spec/language/surface.md#4-выражения",
+      "cases": [
+        "types/argument-count",
+        "types/type-mismatch-argument",
+        "l1/core-c06",
+        "l1/core-c07",
+        "l1/core-c08",
+        "eval/argument-order-first-fault"
+      ],
+      "status": "EXECUTABLE"
+    },
+    {
+      "rule_id": "SURF-25",
+      "spec": "spec/language/surface.md#4-выражения",
+      "cases": [
+        "types/unknown-field",
+        "l1/record-field"
+      ],
+      "status": "EXECUTABLE"
+    },
+    {
+      "rule_id": "SURF-26",
+      "spec": "spec/language/surface.md#4-выражения",
+      "cases": [
+        "types/missing-field",
+        "types/duplicate-field",
+        "l1/record-field",
+        "eval/record-update-order"
+      ],
+      "status": "EXECUTABLE"
+    },
+    {
+      "rule_id": "SURF-27",
+      "spec": "spec/language/surface.md#4-выражения",
+      "cases": [
+        "types/records-maps-equality",
+        "eval/record-update-order"
+      ],
+      "status": "EXECUTABLE"
+    },
+    {
+      "rule_id": "SURF-28",
+      "spec": "spec/language/surface.md#4-выражения",
+      "cases": [
+        "types/ambiguous-none",
+        "resolve/unknown-variant",
+        "l1/core-c16",
+        "eval/enum-match"
+      ],
+      "status": "EXECUTABLE"
+    },
+    {
+      "rule_id": "SURF-29",
+      "spec": "spec/language/surface.md#4-выражения",
+      "cases": [
+        "types/ambiguous-empty-seq",
+        "l1/seq-literal",
+        "l1/empty-seq"
+      ],
+      "status": "EXECUTABLE"
+    },
+    {
+      "rule_id": "SURF-30",
+      "spec": "spec/language/surface.md#4-выражения",
+      "cases": [
+        "types/duplicate-map-key",
+        "types/records-maps-equality",
+        "l1/map-literal",
+        "data/map-duplicate-key-fault",
+        "data/map-entries-in-key-order"
+      ],
+      "status": "EXECUTABLE"
+    },
+    {
+      "rule_id": "SURF-31",
+      "spec": "spec/language/surface.md#4-выражения",
+      "cases": [
+        "types/if-without-else-not-unit",
+        "types/generics-lambdas-match",
+        "l1/core-c03",
+        "l1/core-c04",
+        "eval/if-without-else"
+      ],
+      "status": "EXECUTABLE"
+    },
+    {
+      "rule_id": "SURF-32",
+      "spec": "spec/language/surface.md#4-выражения",
+      "cases": [
+        "types/non-exhaustive-match",
+        "types/duplicate-match-arm",
+        "types/unknown-match-tag",
+        "types/not-a-sum-type",
+        "types/opaque-duplicate-arm",
+        "types/opaque-empty-match",
+        "l1/core-c14",
+        "l1/opaque-wrap-unwrap",
+        "eval/enum-match"
+      ],
+      "status": "EXECUTABLE"
+    },
+    {
+      "rule_id": "SURF-33",
+      "spec": "spec/language/surface.md#4-выражения",
+      "cases": [
+        "types/and-needs-bool",
+        "l1/and-is-if",
+        "eval/short-circuit"
+      ],
+      "status": "EXECUTABLE"
+    },
+    {
+      "rule_id": "SURF-34",
+      "spec": "spec/language/surface.md#4-выражения",
+      "cases": [
+        "types/not-needs-bool",
+        "eval/not-operator"
+      ],
+      "status": "EXECUTABLE"
+    },
+    {
+      "rule_id": "SURF-35",
+      "spec": "spec/language/surface.md#4-выражения",
+      "cases": [
+        "types/arithmetic-needs-int",
+        "outcomes/overflow-fault-site",
+        "outcomes/remainder-by-zero",
+        "outcomes/min-div-minus-one",
+        "outcomes/min-rem-minus-one",
+        "outcomes/remainder-sign"
+      ],
+      "status": "EXECUTABLE"
+    },
+    {
+      "rule_id": "SURF-36",
+      "spec": "spec/language/surface.md#4-выражения",
+      "cases": [
+        "types/concat-needs-sequence",
+        "types/concat-same-type",
+        "eval/string-concat",
+        "eval/concat-seq",
+        "data/bytes-observation"
+      ],
+      "status": "EXECUTABLE"
+    },
+    {
+      "rule_id": "SURF-37",
+      "spec": "spec/language/surface.md#4-выражения",
+      "cases": [
+        "types/bound-eq-function",
+        "types/records-maps-equality",
+        "data/structural-equality"
+      ],
+      "status": "EXECUTABLE"
+    },
+    {
+      "rule_id": "SURF-38",
+      "spec": "spec/language/surface.md#4-выражения",
+      "cases": [
+        "types/bound-key-map",
+        "data/key-order"
+      ],
+      "status": "EXECUTABLE"
+    },
+    {
+      "rule_id": "SURF-39",
+      "spec": "spec/language/surface.md#4-выражения",
+      "cases": [
+        "types/question-mark-context",
+        "types/question-mark-other-error",
+        "types/generics-lambdas-match",
+        "eval/question-mark-result",
+        "l1/question-mark-option"
+      ],
+      "status": "EXECUTABLE"
+    },
+    {
+      "rule_id": "SURF-40",
+      "spec": "spec/language/surface.md#4-выражения",
+      "cases": [
+        "types/never-ends-block",
+        "l1/return-from-function",
+        "eval/return-from-nested-block",
+        "eval/return-register"
+      ],
+      "status": "EXECUTABLE"
+    },
+    {
+      "rule_id": "SURF-41",
+      "spec": "spec/language/surface.md#4-выражения",
+      "cases": [
+        "types/parameter-type-required",
+        "types/lambda-argument-order",
+        "types/generics-lambdas-match",
+        "l1/core-c05",
+        "l1/core-c08",
+        "l1/core-c09",
+        "eval/closure-capture"
+      ],
+      "status": "EXECUTABLE"
+    },
+    {
+      "rule_id": "SURF-42",
+      "spec": "spec/language/surface.md#4-выражения",
+      "cases": [
+        "effects/undeclared-emit",
+        "effects/entrypoints-and-polymorphism"
+      ],
+      "status": "EXECUTABLE",
+      "partial": true,
+      "partial_note": "статическая часть — случаи check; транзакции хоста — Ф4"
+    },
+    {
+      "rule_id": "SURF-45",
+      "spec": "spec/language/surface.md#5-литералы-и-числа",
+      "cases": [
+        "resolve/float-type-unsupported"
+      ],
+      "status": "EXECUTABLE",
+      "partial": true,
+      "partial_note": "статическая часть — случаи check; литералы — случаи lex; имя BigInt без отдельного случая"
+    },
+    {
+      "rule_id": "SURF-50",
+      "spec": "spec/language/surface.md#6-правила-разбора-которые-грамматика-не-выражает",
+      "cases": [
+        "parse/block-like-statements",
+        "types/expected-unit-statement"
+      ],
+      "status": "EXECUTABLE"
+    },
+    {
+      "rule_id": "SURF-51",
+      "spec": "spec/language/surface.md#6-правила-разбора-которые-грамматика-не-выражает",
+      "cases": [
+        "types/result-discarded",
+        "types/result-explicitly-ignored"
+      ],
+      "status": "EXECUTABLE"
+    },
+    {
+      "rule_id": "SURF-52",
+      "spec": "spec/language/surface.md#6-правила-разбора-которые-грамматика-не-выражает",
+      "cases": [
+        "parse/record-literal-in-condition",
+        "parse/record-literal-in-parens"
+      ],
+      "status": "EXECUTABLE"
+    },
+    {
+      "rule_id": "SURF-53",
+      "spec": "spec/language/surface.md#6-правила-разбора-которые-грамматика-не-выражает",
+      "cases": [
+        "parse/mixed-and-or"
+      ],
+      "status": "EXECUTABLE"
+    },
+    {
+      "rule_id": "SURF-54",
+      "spec": "spec/language/surface.md#6-правила-разбора-которые-грамматика-не-выражает",
+      "cases": [
+        "parse/nonassoc-comparison"
+      ],
+      "status": "EXECUTABLE"
+    },
+    {
+      "rule_id": "SURF-55",
+      "spec": "spec/language/surface.md#6-правила-разбора-которые-грамматика-не-выражает",
+      "cases": [
+        "parse/missing-comma-in-match",
+        "parse/match-block-arm-without-comma"
+      ],
+      "status": "EXECUTABLE"
+    },
+    {
+      "rule_id": "SURF-59",
+      "spec": "spec/language/surface.md#6-правила-разбора-которые-грамматика-не-выражает",
+      "cases": [
+        "parse/unexpected-token",
+        "parse/unexpected-eof",
+        "parse/reserved-word-as-name"
+      ],
+      "status": "EXECUTABLE"
+    },
+    {
+      "rule_id": "SURF-56",
+      "spec": "spec/language/surface.md#6-правила-разбора-которые-грамматика-не-выражает",
+      "cases": [
+        "parse/fn-type-uses-binding"
+      ],
+      "status": "EXECUTABLE"
+    },
+    {
+      "rule_id": "SURF-57",
+      "spec": "spec/language/surface.md#6-правила-разбора-которые-грамматика-не-выражает",
+      "cases": [
+        "parse/record-literal-not-after-path",
+        "parse/mixed-record-entries",
+        "parse/record-update-without-fields"
+      ],
+      "status": "EXECUTABLE"
+    },
+    {
+      "rule_id": "SURF-58",
+      "spec": "spec/language/surface.md#6-правила-разбора-которые-грамматика-не-выражает",
+      "cases": [
+        "resolve/first-error-by-phase"
+      ],
+      "status": "EXECUTABLE",
+      "partial": true,
+      "partial_note": "статическая часть — случаи check; проверен порядок фаз между файлами; порядок кодов на одном месте — без отдельного случая"
+    },
+    {
+      "rule_id": "EFF-01",
+      "spec": "spec/language/effects.md#1-атомы",
+      "cases": [
+        "effects/undeclared-read",
+        "effects/undeclared-emit",
+        "effects/unknown-effect-target",
+        "effects/emits-not-event",
+        "effects/unknown-host-adapter",
+        "effects/entrypoints-and-polymorphism",
+        "effects/private-store-in-row"
+      ],
+      "status": "EXECUTABLE",
+      "partial": true,
+      "partial_note": "статическая часть — случаи check; ребро consumes и извлечение связей — Ф5"
+    },
+    {
+      "rule_id": "EFF-02",
+      "spec": "spec/language/effects.md#1-атомы",
+      "cases": [
+        "effects/unknown-host-adapter"
+      ],
+      "status": "EXECUTABLE"
+    },
+    {
+      "rule_id": "EFF-03",
+      "spec": "spec/language/effects.md#2-ряд-эффектов",
+      "cases": [
+        "effects/entrypoints-and-polymorphism",
+        "effects/unknown-effect-variable"
+      ],
+      "status": "EXECUTABLE"
+    },
+    {
+      "rule_id": "EFF-04",
+      "spec": "spec/language/effects.md#2-ряд-эффектов",
+      "cases": [
+        "effects/undeclared-read",
+        "effects/undeclared-through-callee",
+        "effects/undeclared-through-lambda",
+        "effects/migration-is-pure"
+      ],
+      "status": "EXECUTABLE"
+    },
+    {
+      "rule_id": "EFF-05",
+      "spec": "spec/language/effects.md#2-ряд-эффектов",
+      "cases": [
+        "effects/undeclared-through-callee",
+        "effects/entrypoints-and-polymorphism"
+      ],
+      "status": "EXECUTABLE"
+    },
+    {
+      "rule_id": "EFF-06",
+      "spec": "spec/language/effects.md#3-эффект-переменные",
+      "cases": [
+        "effects/entrypoints-and-polymorphism",
+        "effects/undeclared-through-lambda",
+        "effects/effect-variable-exact-match",
+        "effects/unknown-effect-variable",
+        "effects/effect-variable-in-result"
+      ],
+      "status": "EXECUTABLE"
+    },
+    {
+      "rule_id": "EFF-07",
+      "spec": "spec/language/effects.md#3-эффект-переменные",
+      "cases": [
+        "effects/table-ref-not-static",
+        "effects/table-param-only-in-std",
+        "effects/entrypoints-and-polymorphism",
+        "effects/table-name-misspelled",
+        "effects/table-argument-variable"
+      ],
+      "status": "EXECUTABLE"
+    },
+    {
+      "rule_id": "EFF-08",
+      "spec": "spec/language/effects.md#4-хранилище-события-и-точки-входа",
+      "cases": [
+        "outcomes/effects-outside-transaction",
+        "store/commit-retry-01"
+      ],
+      "status": "EXECUTABLE"
+    },
+    {
+      "rule_id": "EFF-09",
+      "spec": "spec/language/effects.md#4-хранилище-события-и-точки-входа",
+      "cases": [
+        "effects/query-cannot-write",
+        "effects/migration-is-pure",
+        "effects/entrypoints-and-polymorphism",
+        "store/commit-retry-01",
+        "store/err-final-receipt-01",
+        "events/deliver-once-01",
+        "migrate/apply-epoch-01"
+      ],
+      "status": "EXECUTABLE",
+      "partial": true,
+      "partial_note": "test на отдельной копии хранилища (HST-18) проверяет ref/tests, фазы test в корпусе нет"
+    },
+    {
+      "rule_id": "EFF-10",
+      "spec": "spec/language/effects.md#4-хранилище-события-и-точки-входа",
+      "cases": [
+        "store/commit-retry-01",
+        "store/err-final-receipt-01",
+        "store/authority-01",
+        "events/deliver-once-01"
+      ],
+      "status": "EXECUTABLE"
+    },
+    {
+      "rule_id": "EFF-11",
+      "spec": "spec/language/effects.md#4-хранилище-события-и-точки-входа",
+      "cases": [
+        "store/authority-01"
+      ],
+      "status": "EXECUTABLE"
+    },
+    {
+      "rule_id": "EFF-12",
+      "spec": "spec/language/effects.md#5-связи-которые-дают-эффекты",
+      "cases": [
+        "graph/all-kinds-01",
+        "graph/migrates-supersedes-01",
+        "graph/relations-01"
+      ],
+      "status": "EXECUTABLE"
+    },
+    {
+      "rule_id": "EFF-13",
+      "spec": "spec/language/effects.md#5-связи-которые-дают-эффекты",
+      "cases": [
+        "graph/all-kinds-01",
+        "impact/references-01",
+        "impact/std-alias-01"
+      ],
+      "status": "EXECUTABLE"
+    },
+    {
+      "rule_id": "CANON-01",
+      "spec": "spec/kernel/canonical.md#1-bag-cjson-1",
+      "cases": [],
+      "status": "NOT_YET_EXECUTABLE",
+      "reason": "кодек BAG-CJSON-1 и дайджесты — с первым хешируемым артефактом: receipts (Ф4), снимки (Ф6), канонический BIR (Ф9)"
+    },
+    {
+      "rule_id": "CANON-02",
+      "spec": "spec/kernel/canonical.md#1-bag-cjson-1",
+      "cases": [],
+      "status": "NOT_YET_EXECUTABLE",
+      "reason": "кодек BAG-CJSON-1 и дайджесты — с первым хешируемым артефактом: receipts (Ф4), снимки (Ф6), канонический BIR (Ф9)"
+    },
+    {
+      "rule_id": "CANON-03",
+      "spec": "spec/kernel/canonical.md#1-bag-cjson-1",
+      "cases": [],
+      "status": "NOT_YET_EXECUTABLE",
+      "reason": "кодек BAG-CJSON-1 и дайджесты — с первым хешируемым артефактом: receipts (Ф4), снимки (Ф6), канонический BIR (Ф9)"
+    },
+    {
+      "rule_id": "CANON-04",
+      "spec": "spec/kernel/canonical.md#1-bag-cjson-1",
+      "cases": [
+        "stdlib/json-quote"
+      ],
+      "status": "EXECUTABLE",
+      "partial": true,
+      "partial_note": "строковые литералы json.quote; кодек документов BAG-CJSON-1 — с первым хешируемым артефактом (BIR-10, Ф6/Ф9)"
+    },
+    {
+      "rule_id": "CANON-05",
+      "spec": "spec/kernel/canonical.md#1-bag-cjson-1",
+      "cases": [],
+      "status": "NOT_YET_EXECUTABLE",
+      "reason": "кодек BAG-CJSON-1 и дайджесты — с первым хешируемым артефактом: receipts (Ф4), снимки (Ф6), канонический BIR (Ф9)"
+    },
+    {
+      "rule_id": "CANON-06",
+      "spec": "spec/kernel/canonical.md#1-bag-cjson-1",
+      "cases": [],
+      "status": "NOT_YET_EXECUTABLE",
+      "reason": "кодек BAG-CJSON-1 и дайджесты — с первым хешируемым артефактом: receipts (Ф4), снимки (Ф6), канонический BIR (Ф9)"
+    },
+    {
+      "rule_id": "CANON-07",
+      "spec": "spec/kernel/canonical.md#2-числа-счётчики-хеши",
+      "cases": [],
+      "status": "NOT_YET_EXECUTABLE",
+      "reason": "кодек BAG-CJSON-1 и дайджесты — с первым хешируемым артефактом: receipts (Ф4), снимки (Ф6), канонический BIR (Ф9)"
+    },
+    {
+      "rule_id": "CANON-08",
+      "spec": "spec/kernel/canonical.md#2-числа-счётчики-хеши",
+      "cases": [],
+      "status": "NOT_YET_EXECUTABLE",
+      "reason": "дайджесты хоста (HST-05, HST-14) в наблюдения L2 не входят; векторы дайджестов — со снимками (Ф6) и каноническим BIR (Ф9)"
+    },
+    {
+      "rule_id": "CANON-09",
+      "spec": "spec/kernel/canonical.md#3-ссылки",
+      "cases": [],
+      "status": "NOT_YET_EXECUTABLE",
+      "reason": "кодек BAG-CJSON-1 и дайджесты — с первым хешируемым артефактом: receipts (Ф4), снимки (Ф6), канонический BIR (Ф9)"
+    },
+    {
+      "rule_id": "CANON-10",
+      "spec": "spec/kernel/canonical.md#3-ссылки",
+      "cases": [
+        "store/admission-refusals-01",
+        "store/idempotency-conflict-01",
+        "store/commit-retry-01"
+      ],
+      "status": "EXECUTABLE"
+    },
+    {
+      "rule_id": "CANON-11",
+      "spec": "spec/kernel/canonical.md#4-наблюдаемое-значение",
+      "cases": [
+        "data/map-entries-in-key-order",
+        "data/bytes-observation",
+        "data/nested-observation",
+        "data/opaque-observation",
+        "l1/core-c17",
+        "l1/core-c18"
+      ],
+      "status": "EXECUTABLE",
+      "partial": true,
+      "partial_note": "форма значения (поля, теги, написание типов) проверена; байтовая форма BAG-CJSON-1 — с первым хешируемым значением (receipts, Ф4)"
+    },
+    {
+      "rule_id": "OUT-01",
+      "spec": "spec/kernel/outcomes.md#1-исход-запуска-программы",
+      "cases": [
+        "outcomes/overflow-fault-site",
+        "outcomes/budget-exceeded",
+        "outcomes/codec-not-implemented",
+        "outcomes/test-assertion-fault",
+        "outcomes/check-errors-prelaunch",
+        "l1/core-c01"
+      ],
+      "status": "EXECUTABLE",
+      "partial": true,
+      "partial_note": "исходы run; откат транзакции при FAULT — хост Ф4"
+    },
+    {
+      "rule_id": "OUT-08",
+      "spec": "spec/kernel/outcomes.md#1-исход-запуска-программы",
+      "cases": [
+        "parse/unexpected-token",
+        "resolve/unknown-name",
+        "parse/block-like-statements"
+      ],
+      "status": "EXECUTABLE"
+    },
+    {
+      "rule_id": "OUT-02",
+      "spec": "spec/kernel/outcomes.md#2-исход-внешней-операции",
+      "cases": [],
+      "status": "NOT_YET_EXECUTABLE",
+      "reason": "Ф3–Ф4: исходы исполнения в эталоне"
+    },
+    {
+      "rule_id": "OUT-03",
+      "spec": "spec/kernel/outcomes.md#3-исход-точки-входа",
+      "cases": [
+        "store/commit-retry-01",
+        "store/err-final-receipt-01",
+        "store/fault-no-receipt-01",
+        "store/crash-after-commit-01"
+      ],
+      "status": "EXECUTABLE"
+    },
+    {
+      "rule_id": "OUT-04",
+      "spec": "spec/kernel/outcomes.md#4-статусы-анализа-и-знаний",
+      "cases": [],
+      "status": "NOT_YET_EXECUTABLE",
+      "reason": "Ф3–Ф4: исходы исполнения в эталоне"
+    },
+    {
+      "rule_id": "OUT-05",
+      "spec": "spec/kernel/outcomes.md#4-статусы-анализа-и-знаний",
+      "cases": [
+        "impact/propagation-01",
+        "impact/budget-frontier-01",
+        "impact/access-unknown-01",
+        "impact/certificate-interface-01"
+      ],
+      "status": "EXECUTABLE"
+    },
+    {
+      "rule_id": "OUT-06",
+      "spec": "spec/kernel/outcomes.md#4-статусы-анализа-и-знаний",
+      "cases": [
+        "context/full-01",
+        "context/blocked-01"
+      ],
+      "status": "EXECUTABLE"
+    },
+    {
+      "rule_id": "OUT-07",
+      "spec": "spec/kernel/outcomes.md#5-статусы-проверок-инструментов",
+      "cases": [],
+      "status": "NOT_YET_EXECUTABLE",
+      "reason": "Ф3–Ф4: исходы исполнения в эталоне"
+    },
+    {
+      "rule_id": "FMT-01",
+      "spec": "spec/language/format.md#файл",
+      "status": "EXECUTABLE",
+      "cases": [
+        "fmt/file-layout"
+      ]
+    },
+    {
+      "rule_id": "FMT-02",
+      "spec": "spec/language/format.md#файл",
+      "status": "EXECUTABLE",
+      "cases": [
+        "fmt/blocks",
+        "fmt/decl-bodies"
+      ]
+    },
+    {
+      "rule_id": "FMT-03",
+      "spec": "spec/language/format.md#файл",
+      "status": "EXECUTABLE",
+      "cases": [
+        "fmt/file-layout"
+      ]
+    },
+    {
+      "rule_id": "FMT-04",
+      "spec": "spec/language/format.md#объявления",
+      "status": "EXECUTABLE",
+      "cases": [
+        "fmt/attrs-and-docs"
+      ]
+    },
+    {
+      "rule_id": "FMT-05",
+      "spec": "spec/language/format.md#объявления",
+      "status": "EXECUTABLE",
+      "cases": [
+        "fmt/signature-clauses",
+        "fmt/broken-params"
+      ]
+    },
+    {
+      "rule_id": "FMT-06",
+      "spec": "spec/language/format.md#объявления",
+      "status": "EXECUTABLE",
+      "cases": [
+        "fmt/signature-clauses",
+        "fmt/effect-row-variable"
+      ]
+    },
+    {
+      "rule_id": "FMT-07",
+      "spec": "spec/language/format.md#объявления",
+      "status": "EXECUTABLE",
+      "cases": [
+        "fmt/decl-bodies"
+      ]
+    },
+    {
+      "rule_id": "FMT-08",
+      "spec": "spec/language/format.md#блоки-и-выражения",
+      "status": "EXECUTABLE",
+      "cases": [
+        "fmt/blocks"
+      ]
+    },
+    {
+      "rule_id": "FMT-09",
+      "spec": "spec/language/format.md#блоки-и-выражения",
+      "status": "EXECUTABLE",
+      "cases": [
+        "fmt/blocks"
+      ]
+    },
+    {
+      "rule_id": "FMT-10",
+      "spec": "spec/language/format.md#блоки-и-выражения",
+      "status": "EXECUTABLE",
+      "cases": [
+        "fmt/if-match"
+      ]
+    },
+    {
+      "rule_id": "FMT-11",
+      "spec": "spec/language/format.md#блоки-и-выражения",
+      "status": "EXECUTABLE",
+      "cases": [
+        "fmt/spacing"
+      ]
+    },
+    {
+      "rule_id": "FMT-12",
+      "spec": "spec/language/format.md#блоки-и-выражения",
+      "status": "EXECUTABLE",
+      "cases": [
+        "fmt/author-breaks",
+        "fmt/broken-params"
+      ]
+    },
+    {
+      "rule_id": "FMT-13",
+      "spec": "spec/language/format.md#блоки-и-выражения",
+      "status": "EXECUTABLE",
+      "cases": [
+        "fmt/literals"
+      ]
+    },
+    {
+      "rule_id": "FMT-14",
+      "spec": "spec/language/format.md#комментарии",
+      "status": "EXECUTABLE",
+      "cases": [
+        "fmt/comments",
+        "fmt/comments-not-code"
+      ]
+    },
+    {
+      "rule_id": "FMT-15",
+      "spec": "spec/language/format.md#отказ",
+      "status": "EXECUTABLE",
+      "cases": [
+        "fmt/refuse-syntax-error"
+      ]
+    },
+    {
+      "rule_id": "FMT-16",
+      "spec": "spec/language/format.md#назначение-id",
+      "status": "NOT_YET_EXECUTABLE",
+      "cases": [],
+      "reason": "ID случайны, языконезависимого ожидания нет; свойства (все места SURF-07, уникальность, алфавит, повторный запуск ничего не меняет) проверяет ref/tests/test_fmt.py"
+    },
+    {
+      "rule_id": "CHK-01",
+      "spec": "spec/language/checking.md#1-проект",
+      "status": "EXECUTABLE",
+      "cases": [
+        "resolve/module-path-mismatch",
+        "resolve/imports-group-and-alias",
+        "resolve/std-namespace-reserved"
+      ]
+    },
+    {
+      "rule_id": "CHK-02",
+      "spec": "spec/language/checking.md#1-проект",
+      "status": "EXECUTABLE",
+      "cases": [
+        "resolve/first-error-by-phase"
+      ]
+    },
+    {
+      "rule_id": "CHK-03",
+      "spec": "spec/language/checking.md#1-проект",
+      "status": "NOT_YET_EXECUTABLE",
+      "cases": [],
+      "reason": "отсутствие каскада не выражается префиксным сравнением диагностик; проверяет ref/tests/test_sema.py"
+    },
+    {
+      "rule_id": "CHK-04",
+      "spec": "spec/language/checking.md#2-встроенные-модули-std",
+      "status": "EXECUTABLE",
+      "cases": [
+        "resolve/stdlib-needs-use",
+        "types/generics-lambdas-match",
+        "effects/entrypoints-and-polymorphism"
+      ]
+    },
+    {
+      "rule_id": "CHK-05",
+      "spec": "spec/language/checking.md#3-имена-и-объявления-фаза-resolve",
+      "status": "EXECUTABLE",
+      "cases": [
+        "resolve/imports-group-and-alias",
+        "resolve/duplicate-with-import",
+        "resolve/namespaces-and-shadowing",
+        "resolve/group-import-skips-private-namesake"
+      ]
+    },
+    {
+      "rule_id": "CHK-06",
+      "spec": "spec/language/checking.md#3-имена-и-объявления-фаза-resolve",
+      "status": "EXECUTABLE",
+      "cases": [
+        "resolve/namespaces-and-shadowing"
+      ]
+    },
+    {
+      "rule_id": "CHK-07",
+      "spec": "spec/language/checking.md#3-имена-и-объявления-фаза-resolve",
+      "status": "EXECUTABLE",
+      "cases": [
+        "types/unknown-match-tag",
+        "types/generics-lambdas-match",
+        "resolve/imports-group-and-alias"
+      ]
+    },
+    {
+      "rule_id": "CHK-08",
+      "spec": "spec/language/checking.md#3-имена-и-объявления-фаза-resolve",
+      "status": "EXECUTABLE",
+      "cases": [
+        "resolve/duplicate-declaration",
+        "resolve/duplicate-entity-id",
+        "resolve/duplicate-member",
+        "resolve/duplicate-parameter",
+        "resolve/duplicate-with-import",
+        "resolve/entrypoint-not-callable",
+        "resolve/float-type-unsupported",
+        "resolve/import-cycle",
+        "resolve/invalid-link-target",
+        "resolve/irregular-recursive-type",
+        "resolve/malformed-entity-id",
+        "resolve/malformed-entity-id-letter-u",
+        "resolve/missing-entity-id",
+        "resolve/missing-entity-id-module",
+        "resolve/missing-entity-id-variant",
+        "resolve/module-path-mismatch",
+        "resolve/opaque-constructor-outside-module",
+        "resolve/private-item-in-path",
+        "resolve/private-item-in-use",
+        "resolve/pub-not-allowed",
+        "resolve/stdlib-needs-use",
+        "resolve/unknown-attribute",
+        "resolve/unknown-module",
+        "resolve/unknown-name",
+        "resolve/unknown-name-in-use",
+        "resolve/unknown-type",
+        "resolve/unknown-variant",
+        "resolve/group-import-skips-private-namesake",
+        "resolve/cycle-of-three",
+        "resolve/std-namespace-reserved",
+        "resolve/private-contract-in-link"
+      ]
+    },
+    {
+      "rule_id": "CHK-09",
+      "spec": "spec/language/checking.md#4-объявления-фазы-type-и-effect",
+      "status": "EXECUTABLE",
+      "cases": [
+        "types/type-arity",
+        "types/table-type-not-map",
+        "types/table-value-not-persistable",
+        "types/event-not-persistable",
+        "types/command-result-not-result",
+        "types/migration-type-mismatch",
+        "types/map-key-must-be-key",
+        "types/type-parameter-bound"
+      ]
+    },
+    {
+      "rule_id": "CHK-10",
+      "spec": "spec/language/checking.md#4-объявления-фазы-type-и-effect",
+      "status": "EXECUTABLE",
+      "cases": [
+        "effects/unknown-effect-target",
+        "effects/emits-not-event",
+        "effects/unknown-host-adapter",
+        "effects/unknown-effect-variable",
+        "effects/query-cannot-write",
+        "effects/table-param-only-in-std"
+      ]
+    },
+    {
+      "rule_id": "CHK-11",
+      "spec": "spec/language/checking.md#5-тела-фазы-type-и-effect",
+      "status": "EXECUTABLE",
+      "cases": [
+        "types/lambda-argument-order",
+        "types/generics-lambdas-match",
+        "types/never-is-not-expected"
+      ]
+    },
+    {
+      "rule_id": "CHK-12",
+      "spec": "spec/language/checking.md#5-тела-фазы-type-и-effect",
+      "status": "EXECUTABLE",
+      "cases": [
+        "types/ambiguous-none",
+        "types/ambiguous-empty-seq",
+        "types/parameter-type-required",
+        "types/bound-generic-call",
+        "effects/effect-variable-in-result"
+      ]
+    },
+    {
+      "rule_id": "CHK-13",
+      "spec": "spec/language/checking.md#5-тела-фазы-type-и-effect",
+      "status": "EXECUTABLE",
+      "cases": [
+        "types/never-ends-block"
+      ]
+    },
+    {
+      "rule_id": "CHK-14",
+      "spec": "spec/language/checking.md#5-тела-фазы-type-и-effect",
+      "status": "EXECUTABLE",
+      "cases": [
+        "effects/undeclared-through-lambda",
+        "effects/undeclared-through-callee",
+        "effects/undeclared-emit",
+        "effects/entrypoints-and-polymorphism"
+      ]
+    },
+    {
+      "rule_id": "CHK-15",
+      "spec": "spec/language/checking.md#5-тела-фазы-type-и-effect",
+      "status": "EXECUTABLE",
+      "cases": [
+        "types/ambiguous-empty-seq",
+        "types/ambiguous-none",
+        "types/argument-count",
+        "types/bound-eq-function",
+        "types/bound-generic-call",
+        "types/bound-key-map",
+        "types/command-result-not-result",
+        "types/concat-needs-sequence",
+        "types/concat-same-type",
+        "types/duplicate-field",
+        "types/duplicate-map-key",
+        "types/duplicate-match-arm",
+        "types/event-not-persistable",
+        "types/expected-unit-statement",
+        "types/function-type-required",
+        "types/if-without-else-not-unit",
+        "types/lambda-argument-order",
+        "types/migration-type-mismatch",
+        "types/missing-field",
+        "types/non-exhaustive-match",
+        "types/not-a-sum-type",
+        "types/parameter-type-required",
+        "types/question-mark-context",
+        "types/question-mark-other-error",
+        "types/result-discarded",
+        "types/rigid-type-mismatch",
+        "types/table-type-not-map",
+        "types/table-value-not-persistable",
+        "types/type-arity",
+        "types/type-mismatch-argument",
+        "types/type-mismatch-let",
+        "types/type-mismatch-tail",
+        "types/unknown-field",
+        "types/unknown-match-tag",
+        "effects/effect-variable-exact-match",
+        "effects/table-ref-not-static",
+        "effects/undeclared-emit",
+        "effects/undeclared-read",
+        "types/never-is-not-expected",
+        "types/opaque-duplicate-arm",
+        "types/opaque-empty-match",
+        "types/and-needs-bool",
+        "types/not-needs-bool",
+        "types/arithmetic-needs-int",
+        "effects/table-argument-variable",
+        "effects/table-name-misspelled"
+      ]
+    },
+    {
+      "rule_id": "CHK-16",
+      "spec": "spec/language/checking.md#5-тела-фазы-type-и-effect",
+      "status": "EXECUTABLE",
+      "cases": [
+        "types/unknown-field",
+        "types/migration-type-mismatch",
+        "types/bound-eq-function",
+        "effects/undeclared-read",
+        "effects/effect-variable-exact-match"
+      ]
+    },
+    {
+      "rule_id": "BIR-01",
+      "spec": "spec/ir/bir.md#1-модуль-и-функции",
+      "status": "EXECUTABLE",
+      "cases": [
+        "l1/return-from-function",
+        "eval/mutual-recursion"
+      ]
+    },
+    {
+      "rule_id": "BIR-02",
+      "spec": "spec/ir/bir.md#1-модуль-и-функции",
+      "status": "EXECUTABLE",
+      "cases": [
+        "eval/higher-order-std",
+        "l1/core-c17"
+      ]
+    },
+    {
+      "rule_id": "BIR-03",
+      "spec": "spec/ir/bir.md#1-модуль-и-функции",
+      "status": "EXECUTABLE",
+      "cases": [
+        "outcomes/overflow-fault-site"
+      ]
+    },
+    {
+      "rule_id": "BIR-04",
+      "spec": "spec/ir/bir.md#2-формы",
+      "status": "EXECUTABLE",
+      "cases": [
+        "l1/core-c09",
+        "eval/closure-capture",
+        "eval/shadowing"
+      ]
+    },
+    {
+      "rule_id": "BIR-05",
+      "spec": "spec/ir/bir.md#2-формы",
+      "status": "EXECUTABLE",
+      "cases": [
+        "l1/block-without-tail",
+        "l1/statement-chain"
+      ]
+    },
+    {
+      "rule_id": "BIR-06",
+      "spec": "spec/ir/bir.md#2-формы",
+      "status": "EXECUTABLE",
+      "cases": [
+        "eval/record-update-order"
+      ]
+    },
+    {
+      "rule_id": "BIR-07",
+      "spec": "spec/ir/bir.md#2-формы",
+      "status": "EXECUTABLE",
+      "cases": [
+        "l1/question-mark-option",
+        "eval/question-mark-result"
+      ]
+    },
+    {
+      "rule_id": "BIR-08",
+      "spec": "spec/ir/bir.md#2-формы",
+      "status": "EXECUTABLE",
+      "cases": [
+        "outcomes/overflow-fault-site",
+        "outcomes/remainder-sign",
+        "data/key-order",
+        "eval/string-concat",
+        "eval/concat-seq",
+        "eval/not-operator"
+      ]
+    },
+    {
+      "rule_id": "BIR-09",
+      "spec": "spec/ir/bir.md#2-формы",
+      "status": "EXECUTABLE",
+      "cases": [
+        "eval/higher-order-std",
+        "eval/map-callback-order",
+        "stdlib/seq-fold",
+        "stdlib/seq-map-identity"
+      ]
+    },
+    {
+      "rule_id": "MCH-01",
+      "spec": "spec/runtime/machine.md#1-уровни-соответствия-d76",
+      "status": "EXECUTABLE",
+      "cases": [
+        "l1/core-c01",
+        "l1/record-field",
+        "eval/recursion"
+      ]
+    },
+    {
+      "rule_id": "MCH-02",
+      "spec": "spec/runtime/machine.md#2-состояние-и-значения",
+      "status": "EXECUTABLE",
+      "cases": [
+        "l1/core-c08",
+        "l1/core-c09",
+        "eval/return-register",
+        "eval/shadowing"
+      ]
+    },
+    {
+      "rule_id": "MCH-03",
+      "spec": "spec/runtime/machine.md#2-состояние-и-значения",
+      "status": "EXECUTABLE",
+      "cases": [
+        "data/structural-equality",
+        "data/nested-observation",
+        "data/opaque-observation"
+      ]
+    },
+    {
+      "rule_id": "MCH-04",
+      "spec": "spec/runtime/machine.md#3-шаг",
+      "status": "EXECUTABLE",
+      "cases": [
+        "l1/core-c01-b0-cx",
+        "l1/core-c06-b7-cx",
+        "l1/core-c07-b10-c10",
+        "l1/core-c08-b14-c0",
+        "l1/core-c14-b13-c4",
+        "outcomes/budget-exceeded",
+        "l1/core-c06-b4-c4",
+        "l1/core-c08-b7-c7"
+      ]
+    },
+    {
+      "rule_id": "MCH-05",
+      "spec": "spec/runtime/machine.md#4-закрытый-каталог-правил",
+      "status": "EXECUTABLE",
+      "cases": [
+        "l1/record-field",
+        "l1/seq-literal",
+        "l1/empty-seq",
+        "l1/map-literal",
+        "l1/return-from-function",
+        "l1/question-mark-option",
+        "l1/and-is-if",
+        "l1/opaque-wrap-unwrap",
+        "l1/core-c16",
+        "eval/return-register"
+      ]
+    },
+    {
+      "rule_id": "MCH-07",
+      "spec": "spec/runtime/machine.md#5-примитивы-и-fault",
+      "status": "EXECUTABLE",
+      "cases": [
+        "stdlib/i64-parse-syntax-first",
+        "stdlib/seq-slice-bounds-no-clamp",
+        "stdlib/utf8-decode-leading",
+        "stdlib/map-build-duplicate",
+        "outcomes/codec-not-implemented",
+        "stdlib/data-core-i00",
+        "stdlib/data-core-i01",
+        "stdlib/data-core-i02",
+        "stdlib/data-core-i03",
+        "stdlib/data-core-i04",
+        "stdlib/data-core-i05",
+        "stdlib/data-core-i06",
+        "stdlib/data-core-i07",
+        "stdlib/data-core-u00",
+        "stdlib/data-core-u03",
+        "stdlib/data-core-u06",
+        "stdlib/data-core-u07",
+        "stdlib/data-core-u08",
+        "stdlib/parse-decimal-signonly-1",
+        "stdlib/parse-decimal-leadingzero-2",
+        "stdlib/parse-decimal-leadingzero-1",
+        "stdlib/parse-decimal-invaliddigit-0"
+      ]
+    },
+    {
+      "rule_id": "MCH-08",
+      "spec": "spec/runtime/machine.md#5-примитивы-и-fault",
+      "status": "EXECUTABLE",
+      "cases": [
+        "outcomes/overflow-fault-site",
+        "outcomes/remainder-by-zero",
+        "outcomes/min-div-minus-one",
+        "outcomes/test-assertion-fault",
+        "data/map-duplicate-key-fault",
+        "l1/fault-is-charged"
+      ]
+    },
+    {
+      "rule_id": "MCH-09",
+      "spec": "spec/runtime/machine.md#6-запуск",
+      "status": "EXECUTABLE",
+      "cases": [
+        "outcomes/unknown-entrypoint",
+        "outcomes/entrypoint-signature",
+        "outcomes/effects-outside-transaction",
+        "outcomes/check-errors-prelaunch"
+      ]
+    },
+    {
+      "rule_id": "MCH-11",
+      "spec": "spec/runtime/machine.md#7-соответствие-core-01",
+      "status": "EXECUTABLE",
+      "cases": [
+        "l1/core-c01",
+        "l1/core-c02",
+        "l1/core-c03",
+        "l1/core-c04",
+        "l1/core-c05",
+        "l1/core-c06",
+        "l1/core-c07",
+        "l1/core-c08",
+        "l1/core-c09",
+        "l1/core-c14",
+        "l1/core-c16",
+        "l1/core-c17",
+        "l1/core-c18",
+        "l1/core-a01",
+        "l1/core-a06",
+        "l1/core-a11"
+      ]
+    },
+    {
+      "rule_id": "BIR-10",
+      "spec": "spec/ir/bir.md#3-каноническая-форма",
+      "status": "NOT_YET_EXECUTABLE",
+      "cases": [],
+      "reason": "канонический BIR и паритет G2 — Ф9"
+    },
+    {
+      "rule_id": "MCH-06",
+      "spec": "spec/runtime/machine.md#4-закрытый-каталог-правил",
+      "status": "EXECUTABLE",
+      "cases": [
+        "store/commit-retry-01",
+        "store/authority-01",
+        "store/query-snapshot-01"
+      ]
+    },
+    {
+      "rule_id": "MCH-10",
+      "spec": "spec/runtime/machine.md#6-запуск",
+      "status": "NOT_YET_EXECUTABLE",
+      "cases": [],
+      "reason": "фазы test в корпусе нет; bag test проверяет ref/tests/test_machine.py"
+    },
+    {
+      "rule_id": "MCH-12",
+      "spec": "spec/runtime/machine.md#приложение-a-функции-std-на-bagaev",
+      "status": "EXECUTABLE",
+      "cases": [
+        "eval/higher-order-std",
+        "eval/map-callback-order",
+        "stdlib/seq-fold",
+        "stdlib/seq-map-identity",
+        "stdlib/option-map-none",
+        "stdlib/result-map-err",
+        "stdlib/result-map-error-ok"
+      ]
+    },
+    {
+      "rule_id": "HST-01",
+      "spec": "spec/runtime/host.md#1-хранилище",
+      "status": "EXECUTABLE",
+      "cases": [
+        "store/crash-before-begin-01",
+        "store/crash-before-commit-01",
+        "store/crash-after-commit-01",
+        "events/crash-handler-01",
+        "migrate/crash-prepare-01",
+        "migrate/crash-swap-01"
+      ],
+      "partial": true,
+      "partial_note": "физическая потеря питания не моделируется: точки сбоя — завершение процесса (HST-16)"
+    },
+    {
+      "rule_id": "HST-02",
+      "spec": "spec/runtime/host.md#1-хранилище",
+      "status": "EXECUTABLE",
+      "cases": [
+        "store/query-snapshot-01",
+        "store/commit-retry-01"
+      ],
+      "partial": true,
+      "partial_note": "раскладка таблиц SQLite — внутреннее дело хоста; в L2 видно только состояние"
+    },
+    {
+      "rule_id": "HST-03",
+      "spec": "spec/runtime/host.md#1-хранилище",
+      "status": "EXECUTABLE",
+      "cases": [
+        "store/commit-retry-01",
+        "store/err-final-receipt-01",
+        "store/query-snapshot-01",
+        "events/deliver-once-01"
+      ]
+    },
+    {
+      "rule_id": "HST-04",
+      "spec": "spec/runtime/host.md#2-привязка-схемы",
+      "status": "EXECUTABLE",
+      "cases": [
+        "migrate/apply-epoch-01",
+        "migrate/event-change-01",
+        "migrate/same-name-shape-01",
+        "migrate/key-rename-01",
+        "migrate/nested-key-rename-01",
+        "migrate/key-rename-value-01"
+      ]
+    },
+    {
+      "rule_id": "HST-05",
+      "spec": "spec/runtime/host.md#3-команда",
+      "status": "EXECUTABLE",
+      "cases": [
+        "store/admission-refusals-01",
+        "store/receipt-before-stale-guard-01",
+        "store/idempotency-conflict-01",
+        "store/authority-01"
+      ]
+    },
+    {
+      "rule_id": "HST-06",
+      "spec": "spec/runtime/host.md#3-команда",
+      "status": "EXECUTABLE",
+      "cases": [
+        "store/commit-retry-01",
+        "store/err-final-receipt-01",
+        "store/fault-no-receipt-01"
+      ]
+    },
+    {
+      "rule_id": "HST-07",
+      "spec": "spec/runtime/host.md#3-команда",
+      "status": "EXECUTABLE",
+      "cases": [
+        "store/commit-retry-01",
+        "store/idempotency-conflict-01",
+        "store/fault-no-receipt-01",
+        "store/receipt-before-stale-guard-01"
+      ]
+    },
+    {
+      "rule_id": "HST-08",
+      "spec": "spec/runtime/host.md#3-команда",
+      "status": "EXECUTABLE",
+      "cases": [
+        "store/commit-retry-01",
+        "store/authority-01"
+      ]
+    },
+    {
+      "rule_id": "HST-09",
+      "spec": "spec/runtime/host.md#3-команда",
+      "status": "EXECUTABLE",
+      "cases": [
+        "store/authority-01"
+      ]
+    },
+    {
+      "rule_id": "HST-10",
+      "spec": "spec/runtime/host.md#4-запрос",
+      "status": "EXECUTABLE",
+      "cases": [
+        "store/query-snapshot-01"
+      ]
+    },
+    {
+      "rule_id": "HST-11",
+      "spec": "spec/runtime/host.md#5-события",
+      "status": "EXECUTABLE",
+      "cases": [
+        "events/deliver-once-01",
+        "events/fault-keeps-order-01",
+        "events/crash-handler-01",
+        "migrate/backlog-01"
+      ]
+    },
+    {
+      "rule_id": "HST-12",
+      "spec": "spec/runtime/host.md#6-журнал-и-replay",
+      "status": "EXECUTABLE",
+      "cases": [
+        "store/replay-01"
+      ],
+      "partial": true,
+      "partial_note": "содержимое журнала наблюдается только через replay"
+    },
+    {
+      "rule_id": "HST-13",
+      "spec": "spec/runtime/host.md#6-журнал-и-replay",
+      "status": "EXECUTABLE",
+      "cases": [
+        "store/replay-01",
+        "store/replay-divergence-01"
+      ]
+    },
+    {
+      "rule_id": "HST-14",
+      "spec": "spec/runtime/host.md#7-миграция",
+      "status": "EXECUTABLE",
+      "cases": [
+        "migrate/apply-epoch-01",
+        "migrate/event-change-01",
+        "migrate/plan-invalid-01",
+        "migrate/same-name-shape-01",
+        "migrate/key-rename-01",
+        "migrate/nested-key-rename-01",
+        "migrate/key-rename-value-01"
+      ]
+    },
+    {
+      "rule_id": "HST-15",
+      "spec": "spec/runtime/host.md#7-миграция",
+      "status": "EXECUTABLE",
+      "cases": [
+        "migrate/apply-epoch-01",
+        "migrate/backlog-01",
+        "migrate/row-failure-01",
+        "migrate/foreign-lock-01",
+        "migrate/key-rename-01",
+        "migrate/nested-key-rename-01",
+        "migrate/key-rename-value-01",
+        "migrate/key-rename-rollback-01"
+      ]
+    },
+    {
+      "rule_id": "HST-16",
+      "spec": "spec/runtime/host.md#8-сбои-и-восстановление",
+      "status": "EXECUTABLE",
+      "cases": [
+        "store/crash-before-begin-01",
+        "store/crash-before-commit-01",
+        "store/crash-after-commit-01",
+        "events/crash-handler-01",
+        "migrate/crash-prepare-01",
+        "migrate/crash-swap-01",
+        "migrate/key-rename-crash-before-swap-commit-01",
+        "migrate/key-rename-crash-after-swap-01"
+      ]
+    },
+    {
+      "rule_id": "HST-17",
+      "spec": "spec/runtime/host.md#9-команды-и-наблюдения",
+      "status": "EXECUTABLE",
+      "cases": [
+        "store/commit-retry-01",
+        "store/admission-refusals-01",
+        "store/replay-01",
+        "events/deliver-once-01",
+        "migrate/apply-epoch-01",
+        "migrate/foreign-lock-01"
+      ],
+      "partial": true,
+      "partial_note": "синтаксис CLI проверяет ref/tests/test_host.py; корпус наблюдает формы ответов через conformance-exec"
+    },
+    {
+      "rule_id": "HST-18",
+      "spec": "spec/runtime/host.md#9-команды-и-наблюдения",
+      "status": "NOT_YET_EXECUTABLE",
+      "cases": [],
+      "reason": "фазы test в корпусе нет; test с эффектами исполняет ref/tests (пример blog.tests.store_copy_is_isolated)"
+    },
+    {
+      "rule_id": "HST-19",
+      "spec": "spec/runtime/host.md#9-команды-и-наблюдения",
+      "status": "EXECUTABLE",
+      "cases": [
+        "store/fault-no-receipt-01",
+        "store/authority-01",
+        "store/crash-before-commit-01"
+      ],
+      "partial": true,
+      "partial_note": "RESOURCE_LIMIT на глубоком значении и отсутствие открытой транзакции после исключения проверяет ref/tests/test_host.py"
+    },
+    {
+      "rule_id": "LNK-08-01",
+      "spec": "spec/links/08-bagaev-extraction.md#1-назначение",
+      "status": "EXECUTABLE",
+      "cases": [
+        "graph/all-kinds-01",
+        "impact/propagation-01"
+      ],
+      "partial": true,
+      "partial_note": "только чтение и отказ на непроверенной программе — ref/tests/test_links.py (ReadOnly)"
+    },
+    {
+      "rule_id": "LNK-08-02",
+      "spec": "spec/links/08-bagaev-extraction.md#2-узлы-и-ревизии",
+      "status": "EXECUTABLE",
+      "cases": [
+        "impact/rename-keeps-id-01",
+        "impact/new-id-is-remove-add-01",
+        "impact/type-change-01",
+        "graph/all-kinds-01"
+      ]
+    },
+    {
+      "rule_id": "LNK-08-03",
+      "spec": "spec/links/08-bagaev-extraction.md#3-рёбра",
+      "status": "EXECUTABLE",
+      "cases": [
+        "graph/all-kinds-01",
+        "graph/relations-01",
+        "impact/std-alias-01"
+      ]
+    },
+    {
+      "rule_id": "LNK-08-04",
+      "spec": "spec/links/08-bagaev-extraction.md#3-рёбра",
+      "status": "EXECUTABLE",
+      "cases": [
+        "graph/all-kinds-01",
+        "impact/references-01"
+      ]
+    },
+    {
+      "rule_id": "LNK-08-05",
+      "spec": "spec/links/08-bagaev-extraction.md#3-рёбра",
+      "status": "EXECUTABLE",
+      "cases": [
+        "graph/all-kinds-01",
+        "impact/type-change-01"
+      ]
+    },
+    {
+      "rule_id": "LNK-08-06",
+      "spec": "spec/links/08-bagaev-extraction.md#3-рёбра",
+      "status": "EXECUTABLE",
+      "cases": [
+        "graph/all-kinds-01"
+      ]
+    },
+    {
+      "rule_id": "LNK-08-07",
+      "spec": "spec/links/08-bagaev-extraction.md#3-рёбра",
+      "status": "EXECUTABLE",
+      "cases": [
+        "graph/all-kinds-01"
+      ]
+    },
+    {
+      "rule_id": "LNK-08-08",
+      "spec": "spec/links/08-bagaev-extraction.md#3-рёбра",
+      "status": "EXECUTABLE",
+      "cases": [
+        "graph/all-kinds-01",
+        "graph/migrates-supersedes-01",
+        "impact/removed-edge-union-01"
+      ],
+      "partial": true,
+      "partial_note": "supersedes: сверка с историей — Ф6"
+    },
+    {
+      "rule_id": "LNK-08-09",
+      "spec": "spec/links/08-bagaev-extraction.md#3-рёбра",
+      "status": "EXECUTABLE",
+      "cases": [
+        "graph/migrates-supersedes-01",
+        "impact/migrates-01"
+      ]
+    },
+    {
+      "rule_id": "LNK-08-10",
+      "spec": "spec/links/08-bagaev-extraction.md#3-рёбра",
+      "status": "EXECUTABLE",
+      "cases": [
+        "graph/relations-01"
+      ]
+    },
+    {
+      "rule_id": "LNK-08-11",
+      "spec": "spec/links/08-bagaev-extraction.md#4-граф-и-покрытие",
+      "status": "EXECUTABLE",
+      "cases": [
+        "graph/all-kinds-01"
+      ],
+      "partial": true,
+      "partial_note": "схему графа проверяет tools/check.py --exec (граф примеров) и ref/tests/test_links.py, если установлен jsonschema"
+    },
+    {
+      "rule_id": "LNK-08-12",
+      "spec": "spec/links/08-bagaev-extraction.md#5-влияние",
+      "status": "EXECUTABLE",
+      "cases": [
+        "impact/authorship-c12-01",
+        "impact/authorship-certificate-01",
+        "impact/authorship-test-store-01",
+        "impact/migrates-01",
+        "impact/propagation-01"
+      ]
+    },
+    {
+      "rule_id": "LNK-08-13",
+      "spec": "spec/links/08-bagaev-extraction.md#5-влияние",
+      "status": "EXECUTABLE",
+      "cases": [
+        "impact/authorship-c08-scope-01",
+        "impact/callee-new-id-01",
+        "impact/new-id-is-remove-add-01",
+        "impact/std-alias-01"
+      ]
+    },
+    {
+      "rule_id": "LNK-08-14",
+      "spec": "spec/links/08-bagaev-extraction.md#5-влияние",
+      "status": "EXECUTABLE",
+      "cases": [
+        "impact/access-unknown-01",
+        "impact/authorship-c11-01",
+        "impact/authorship-c12-01",
+        "impact/budget-frontier-01",
+        "impact/cycle-01",
+        "impact/propagation-01",
+        "impact/unavailable-unreached-01",
+        "impact/unknown-upgrade-01"
+      ]
+    },
+    {
+      "rule_id": "LNK-08-15",
+      "spec": "spec/links/08-bagaev-extraction.md#5-влияние",
+      "status": "EXECUTABLE",
+      "cases": [
+        "impact/authorship-certificate-01",
+        "impact/certificate-interface-01",
+        "impact/certificate-needs-pass-01",
+        "impact/certificate-sig-changed-01",
+        "impact/certificate-weakened-test-01"
+      ]
+    },
+    {
+      "rule_id": "LNK-08-16",
+      "spec": "spec/links/08-bagaev-extraction.md#5-влияние",
+      "status": "EXECUTABLE",
+      "cases": [
+        "impact/why-excluded-recheck-stale-01",
+        "impact/why-excluded-recheck-applicable-01",
+        "impact/why-excluded-recheck-closure-01",
+        "impact/authorship-c08-pipeline-01",
+        "impact/authorship-c08-resize-01"
+      ]
+    },
+    {
+      "rule_id": "LNK-08-17",
+      "spec": "spec/links/08-bagaev-extraction.md#5-влияние",
+      "status": "EXECUTABLE",
+      "cases": [
+        "impact/authorship-c05-01",
+        "impact/authorship-c10-01",
+        "impact/certificate-interface-01",
+        "impact/removed-edge-union-01",
+        "impact/rule-changed-01"
+      ]
+    },
+    {
+      "rule_id": "LNK-08-18",
+      "spec": "spec/links/08-bagaev-extraction.md#4-граф-и-покрытие",
+      "status": "NOT_YET_EXECUTABLE",
+      "cases": [],
+      "reason": "сверку инкрементального и полного графа исполняет conformance/tools/incremental_vs_full.py (check.py --exec), а не случай корпуса"
+    },
+    {
+      "rule_id": "LNK-08-19",
+      "spec": "spec/links/08-bagaev-extraction.md#6-contextpack",
+      "status": "EXECUTABLE",
+      "cases": [
+        "context/envelope-too-large-01",
+        "context/full-01",
+        "context/incomplete-analysis-01"
+      ],
+      "partial": true,
+      "partial_note": "страницы без потери обязательств проверяет ref/tests/test_links.py"
+    },
+    {
+      "rule_id": "LNK-08-20",
+      "spec": "spec/links/08-bagaev-extraction.md#6-contextpack",
+      "status": "EXECUTABLE",
+      "cases": [
+        "context/blocked-01",
+        "context/full-01",
+        "context/incomplete-analysis-01"
+      ],
+      "partial": true,
+      "partial_note": "курсор, отметки ITEM_TOO_LARGE и страницы при малом бюджете — ref/tests/test_links.py"
+    },
+    {
+      "rule_id": "CHG-01",
+      "spec": "spec/protocol/agent-protocol.md#1-проектное-хранилище",
+      "status": "EXECUTABLE",
+      "cases": [
+        "accept/flow-01"
+      ],
+      "partial": true,
+      "partial_note": "повторный init и раскладка .bagaev — ref/tests/test_change.py"
+    },
+    {
+      "rule_id": "CHG-02",
+      "spec": "spec/protocol/agent-protocol.md#2-снимок",
+      "status": "EXECUTABLE",
+      "cases": [
+        "accept/flow-01"
+      ],
+      "partial": true,
+      "partial_note": "неизменность SnapshotId при свидетельствах и приёмке — ref/tests/test_change.py"
+    },
+    {
+      "rule_id": "CHG-03",
+      "spec": "spec/protocol/agent-protocol.md#3-sourceedit-и-идентичность",
+      "status": "EXECUTABLE",
+      "cases": [
+        "edit/assign-ids-01",
+        "edit/old-text-ambiguous-01",
+        "edit/path-alias-01",
+        "edit/remove-without-intent-01",
+        "edit/replace-span-01"
+      ]
+    },
+    {
+      "rule_id": "CHG-04",
+      "spec": "spec/protocol/agent-protocol.md#3-sourceedit-и-идентичность",
+      "status": "EXECUTABLE",
+      "cases": [
+        "edit/old-text-ambiguous-01",
+        "edit/old-text-overlap-01",
+        "edit/overlap-01",
+        "edit/path-alias-01",
+        "edit/range-invalid-01",
+        "edit/stale-source-01"
+      ],
+      "partial": true,
+      "partial_note": "случайные правки против наивного применения — ref/tests/test_change.py"
+    },
+    {
+      "rule_id": "CHG-05",
+      "spec": "spec/protocol/agent-protocol.md#3-sourceedit-и-идентичность",
+      "status": "EXECUTABLE",
+      "cases": [
+        "accept/rebase-assign-ids-01",
+        "edit/assign-ids-01"
+      ]
+    },
+    {
+      "rule_id": "CHG-06",
+      "spec": "spec/protocol/agent-protocol.md#3-sourceedit-и-идентичность",
+      "status": "EXECUTABLE",
+      "cases": [
+        "accept/rename-refs-01",
+        "edit/copy-identity-01",
+        "edit/kind-change-01",
+        "edit/merge-01",
+        "edit/remove-without-intent-01",
+        "edit/rename-keeps-id-01",
+        "edit/retired-id-01",
+        "edit/split-01"
+      ]
+    },
+    {
+      "rule_id": "CHG-07",
+      "spec": "spec/protocol/agent-protocol.md#3-sourceedit-и-идентичность",
+      "status": "EXECUTABLE",
+      "cases": [
+        "accept/merge-rule-01",
+        "accept/split-rule-01",
+        "edit/copy-identity-01",
+        "edit/merge-01",
+        "edit/remove-without-intent-01",
+        "edit/split-01"
+      ]
+    },
+    {
+      "rule_id": "CHG-08",
+      "spec": "spec/protocol/agent-protocol.md#3-sourceedit-и-идентичность",
+      "status": "EXECUTABLE",
+      "cases": [
+        "accept/draft-01"
+      ]
+    },
+    {
+      "rule_id": "CHG-09",
+      "spec": "spec/protocol/agent-protocol.md#4-changecontract-и-политика",
+      "status": "EXECUTABLE",
+      "cases": [
+        "accept/assumption-01",
+        "accept/clause-remove-01",
+        "accept/policy-changed-01",
+        "accept/scope-01",
+        "accept/scope-rename-01",
+        "accept/weakened-second-test-01",
+        "accept/weakened-test-01"
+      ]
+    },
+    {
+      "rule_id": "CHG-10",
+      "spec": "spec/protocol/agent-protocol.md#4-changecontract-и-политика",
+      "status": "EXECUTABLE",
+      "cases": [
+        "accept/assumption-01",
+        "accept/d83a-policy-01",
+        "accept/policy-01",
+        "accept/policy-changed-01",
+        "protocol/authority-01"
+      ]
+    },
+    {
+      "rule_id": "CHG-11",
+      "spec": "spec/protocol/agent-protocol.md#5-свидетельства",
+      "status": "EXECUTABLE",
+      "cases": [
+        "accept/flow-01",
+        "accept/authorship-c04-01"
+      ]
+    },
+    {
+      "rule_id": "CHG-12",
+      "spec": "spec/protocol/agent-protocol.md#5-свидетельства",
+      "status": "EXECUTABLE",
+      "cases": [
+        "accept/authorship-c04-01",
+        "accept/contradicted-01",
+        "accept/evidence-transfer-01",
+        "accept/fail-unlinked-test-01",
+        "accept/weakened-second-test-01"
+      ]
+    },
+    {
+      "rule_id": "CHG-13",
+      "spec": "spec/protocol/agent-protocol.md#6-workstate",
+      "status": "EXECUTABLE",
+      "cases": [
+        "accept/authorship-c06-resume-01",
+        "accept/draft-01",
+        "accept/fail-unlinked-test-01",
+        "accept/flow-01",
+        "accept/merge-rule-01",
+        "accept/new-rule-01",
+        "accept/policy-changed-01",
+        "accept/rename-refs-01",
+        "accept/scope-rename-01",
+        "accept/split-rule-01",
+        "accept/supersedes-unknown-01",
+        "accept/unknown-budget-01",
+        "accept/weakened-second-test-01",
+        "accept/weakened-test-01",
+        "protocol/abandon-01"
+      ]
+    },
+    {
+      "rule_id": "CHG-14",
+      "spec": "spec/protocol/agent-protocol.md#7-операции-протокола",
+      "status": "EXECUTABLE",
+      "cases": [
+        "protocol/authority-01",
+        "protocol/request-invalid-01"
+      ]
+    },
+    {
+      "rule_id": "CHG-15",
+      "spec": "spec/protocol/agent-protocol.md#7-операции-протокола",
+      "status": "EXECUTABLE",
+      "cases": [
+        "protocol/idempotency-01",
+        "protocol/request-invalid-01",
+        "accept/flow-01"
+      ]
+    },
+    {
+      "rule_id": "CHG-16",
+      "spec": "spec/protocol/agent-protocol.md#8-приёмка",
+      "status": "EXECUTABLE",
+      "cases": [
+        "accept/authorship-c04-01",
+        "accept/authorship-c06-resume-01",
+        "accept/flow-01",
+        "accept/stale-base-rebase-01",
+        "accept/unknown-budget-01",
+        "accept/weakened-second-test-01"
+      ],
+      "partial": true,
+      "partial_note": "одновременная приёмка двух процессов и точки сбоя с kill -9 — ref/tests/test_change.py"
+    },
+    {
+      "rule_id": "CHG-17",
+      "spec": "spec/protocol/agent-protocol.md#8-приёмка",
+      "status": "EXECUTABLE",
+      "cases": [
+        "accept/flow-01"
+      ],
+      "partial": true,
+      "partial_note": "отсутствие исполнения при приёмке — ref/tests/test_change.py (заглушка машины)"
+    },
+    {
+      "rule_id": "CHG-18",
+      "spec": "spec/protocol/agent-protocol.md#9-перенос-на-новый-head",
+      "status": "EXECUTABLE",
+      "cases": [
+        "accept/composition-break-01",
+        "accept/rebase-assign-ids-01",
+        "accept/rebase-conflict-01",
+        "accept/stale-base-rebase-01"
+      ]
+    },
+    {
+      "rule_id": "CHG-19",
+      "spec": "spec/protocol/agent-protocol.md#7-операции-протокола",
+      "status": "EXECUTABLE",
+      "cases": [
+        "protocol/search-01",
+        "protocol/search-authorship-01"
+      ]
+    },
+    {
+      "rule_id": "CHG-20",
+      "spec": "spec/protocol/agent-protocol.md#10-транспорты",
+      "status": "NOT_YET_EXECUTABLE",
+      "cases": [],
+      "reason": "паритет транспортов проверяет bag mcp --selftest (tools/check.py --exec, ref/tests/test_change.py), а не случай корпуса"
+    }
+  ]
+}

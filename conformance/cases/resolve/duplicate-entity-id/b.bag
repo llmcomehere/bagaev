@@ -1,0 +1,7 @@
+@id("tgr7rh")
+module b
+
+@id("k3m9qa")
+fn f() -> Int64 {
+  1
+}

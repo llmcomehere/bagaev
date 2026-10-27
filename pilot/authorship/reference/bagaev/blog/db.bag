@@ -1,0 +1,36 @@
+/// Долговечное хранилище приложения: эффекты указываются по таблицам.
+@id("3e4ryk")
+module blog.db
+
+use blog.people.{PersonId, Person}
+use blog.actors.{ActorId, Actor}
+use blog.articles.{ArticleId, Article}
+use blog.authorship
+
+/// Комментарий читателя; его автор — не автор статьи.
+@id("v69203")
+pub type Comment = record {
+  @id("8me8j3") id: String,
+  @id("mb5z9a") article: ArticleId,
+  @id("f4t45q") author: PersonId,
+  @id("h1gcwg") text: String,
+}
+
+/// Письмо, поставленное в очередь отправки.
+@id("j8zc80")
+pub type Notification = record {
+  @id("r20qme") to: String,
+  @id("hztvj9") article: ArticleId,
+  @id("grn55n") subject: String,
+}
+
+@id("r1y02y")
+pub store Blog {
+  @id("5np9sc") table people: Map<PersonId, Person>
+  @id("bnwgpw") table actors: Map<ActorId, Actor>
+  @id("mzbvpn") table articles: Map<ArticleId, Article>
+  @id("pzthmm") table author_index: Map<PersonId, Seq<ArticleId>> derived_from authorship.Authorship
+  @id("f2b6dw") table notifications: Map<String, Notification>
+  @id("c5f791") table comments: Map<String, Comment>
+  @id("wkv12w") table views: Map<ArticleId, Int64>
+}

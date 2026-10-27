@@ -1,0 +1,9 @@
+@id("qt4gbz")
+module main
+use std.map
+use std.data
+
+@id("dtpp07")
+pub fn main() -> Result<Map<Int64, String>, data.DataError> {
+  map.build([map.Entry { key: 2, value: "a" }, map.Entry { key: 1, value: "b" }, map.Entry { key: 2, value: "c" }])
+}

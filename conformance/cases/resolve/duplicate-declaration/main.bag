@@ -1,0 +1,12 @@
+@id("sx1nb1")
+module main
+
+@id("nk4kxz")
+fn f() -> Int64 {
+  1
+}
+
+@id("224ecz")
+fn f() -> Int64 {
+  2
+}

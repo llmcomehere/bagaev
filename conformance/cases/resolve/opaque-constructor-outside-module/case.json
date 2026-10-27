@@ -1,0 +1,34 @@
+{
+  "id": "resolve/opaque-constructor-outside-module",
+  "spec": [
+    "spec/language/surface.md#2-файл-модуль-имена",
+    "spec/language/surface.md#3-объявления-и-идентичность",
+    "spec/language/checking.md#3-имена-и-объявления-фаза-resolve"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "lib.bag",
+    "main.bag"
+  ],
+  "expect": {
+    "phase": "check",
+    "outcome": "PRELAUNCH",
+    "diagnostics": [
+      {
+        "code": "OPAQUE_CONSTRUCTOR_OUTSIDE_MODULE",
+        "file": "main.bag",
+        "span": [
+          71,
+          77
+        ],
+        "data": {
+          "type": "Id",
+          "module": "lib"
+        }
+      }
+    ]
+  }
+}

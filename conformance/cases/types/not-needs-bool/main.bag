@@ -1,0 +1,7 @@
+@id("yag746")
+module main
+
+@id("gwvvkb")
+fn f(a: Int64) -> Bool {
+  not a
+}

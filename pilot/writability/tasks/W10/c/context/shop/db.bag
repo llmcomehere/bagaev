@@ -1,0 +1,13 @@
+@id("98a298")
+module shop.db
+
+@id("yrkqc9")
+pub type Item = record {
+  @id("1rrmhp") price: Int64,
+  @id("14vm1d") stock: Int64,
+}
+
+@id("sjpmqw")
+pub store Shop {
+  @id("4n1fbp") table items: Map<String, Item>
+}

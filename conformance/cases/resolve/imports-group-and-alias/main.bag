@@ -1,0 +1,11 @@
+@id("fgacr0")
+module main
+
+use lib.people as ppl
+use lib.people.{PersonId as Pid, make}
+
+@id("93dpra")
+fn roundtrip(s: String) -> String {
+  let p: Pid = make(s);
+  ppl.text(p)
+}

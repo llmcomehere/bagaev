@@ -1,0 +1,32 @@
+{
+  "id": "resolve/module-path-mismatch",
+  "spec": [
+    "spec/language/surface.md#2-файл-модуль-имена",
+    "spec/language/checking.md#1-проект"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "expect": {
+    "phase": "check",
+    "outcome": "PRELAUNCH",
+    "diagnostics": [
+      {
+        "code": "MODULE_PATH_MISMATCH",
+        "file": "main.bag",
+        "span": [
+          21,
+          26
+        ],
+        "data": {
+          "module": "other",
+          "path": "main.bag"
+        }
+      }
+    ]
+  }
+}

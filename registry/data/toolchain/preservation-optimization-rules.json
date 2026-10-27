@@ -1,0 +1,60 @@
+{
+  "profile": "OPT-RULES-0.1",
+  "status": "WORKING_DESIGN",
+  "reference_rule": "KEEP-REFERENCE",
+  "reference_counts_as_optimization": false,
+  "rules": [
+    {
+      "rule_id": "R22-CLOSED-SCALAR-REPLAY",
+      "precondition": "Closed scalar/Result subtree",
+      "checker_algorithm": "Bounded independent local evaluator replay; reconstruct every state, cost and origin; preserve BASE_K",
+      "physical_change": "Skip arithmetic and selected local choices physically while keeping every logical boundary",
+      "spec_ref": "spec/toolchain/optimization-rules.md",
+      "production_verified": false
+    },
+    {
+      "rule_id": "R22-LEXICAL-SCALAR",
+      "precondition": "Exact scoped Var whose strict Let initializer has a closed scalar fact",
+      "checker_algorithm": "Re-derive declaring BinderId/scope/type/initializer result; retain Let and slot",
+      "physical_change": "Replace physical variable read with pinned value while retaining VAR transition",
+      "spec_ref": "spec/toolchain/optimization-rules.md",
+      "production_verified": false
+    },
+    {
+      "rule_id": "R22-KNOWN-ARM",
+      "precondition": "Known Bool/Result condition from literal or verified lexical fact",
+      "checker_algorithm": "Retain condition execution and selection transition; exact chosen arm and payload scope",
+      "physical_change": "Preselect continuation physically without dropping source events",
+      "spec_ref": "spec/toolchain/optimization-rules.md",
+      "production_verified": false
+    }
+  ],
+  "driver_order": [
+    "R22-CLOSED-SCALAR-REPLAY",
+    "R22-LEXICAL-SCALAR",
+    "R22-KNOWN-ARM"
+  ],
+  "one_application_per_original_region": true,
+  "global_limits_do_not_reset_on_keep": true,
+  "disallowed": [
+    "UNDECLARED_RULE",
+    "COST_REMOVAL",
+    "HOST_REORDER",
+    "INPUT_SAMPLE_ASSUMPTION",
+    "TCO",
+    "INLINING",
+    "DYNAMIC_DATA_BATCH",
+    "LIVE_PATCH"
+  ],
+  "limits": {
+    "payload_bytes": 16777216,
+    "ir_nodes": 100000,
+    "traversal_depth": 4096,
+    "rewrite_steps": 4096,
+    "local_replay_transitions": 4096,
+    "total_checkpoints": 262144,
+    "scalar_pool_entries": 65536,
+    "reconstruction_nodes": 262144,
+    "checker_work_units": 16777216
+  }
+}

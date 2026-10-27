@@ -1,0 +1,4 @@
+module m
+fn f(p: P) -> P {
+  P { ..p }
+}

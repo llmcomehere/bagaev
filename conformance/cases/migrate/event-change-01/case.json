@@ -1,0 +1,169 @@
+{
+  "id": "migrate/event-change-01",
+  "spec": [
+    "spec/runtime/host.md#7-миграция",
+    "spec/runtime/host.md#2-привязка-схемы"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "app.bag",
+    "v6/app.bag"
+  ],
+  "run": {
+    "steps": [
+      {
+        "op": "command",
+        "entry": "app.bump",
+        "args": [
+          {
+            "type": "String",
+            "value": "a"
+          },
+          {
+            "type": "Int64",
+            "value": "2"
+          }
+        ],
+        "namespace": "app",
+        "key": "key-000000000001"
+      },
+      {
+        "op": "deliver"
+      },
+      {
+        "op": "command",
+        "entry": "app.bump",
+        "args": [
+          {
+            "type": "String",
+            "value": "a"
+          },
+          {
+            "type": "Int64",
+            "value": "1"
+          }
+        ],
+        "namespace": "app",
+        "key": "key-000000000002",
+        "program": "v6"
+      },
+      {
+        "op": "migrate",
+        "program": "v6"
+      },
+      {
+        "op": "command",
+        "entry": "app.bump",
+        "args": [
+          {
+            "type": "String",
+            "value": "a"
+          },
+          {
+            "type": "Int64",
+            "value": "1"
+          }
+        ],
+        "namespace": "app",
+        "key": "key-000000000002",
+        "program": "v6"
+      },
+      {
+        "op": "deliver",
+        "program": "v6"
+      }
+    ],
+    "state_program": "v6"
+  },
+  "expect": {
+    "phase": "migrate",
+    "outcome": "COMPLETED",
+    "value": [
+      {
+        "value": {
+          "type": "Result<Int64,app.BumpError>",
+          "tag": "Ok",
+          "payload": {
+            "type": "Int64",
+            "value": "2"
+          }
+        },
+        "outcome": "COMMITTED",
+        "final": true,
+        "replayed": false,
+        "state_version": 1
+      },
+      {
+        "outcome": "DELIVERED",
+        "deliveries": [
+          {
+            "handler": "app.remember",
+            "seq": 1,
+            "outcome": "COMMITTED",
+            "replayed": false,
+            "state_version": 2
+          }
+        ]
+      },
+      {
+        "outcome": "REFUSED",
+        "code": "SCHEMA_BINDING_MISMATCH"
+      },
+      {
+        "outcome": "APPLIED",
+        "epoch": 1,
+        "state_version": 3,
+        "rows": 0,
+        "tables": [
+          {
+            "table": "app.S.counts",
+            "id": "aa0003",
+            "action": "keep"
+          },
+          {
+            "table": "app.S.seen",
+            "id": "aa0004",
+            "action": "keep"
+          }
+        ],
+        "events": [
+          {
+            "event": "app.Bumped",
+            "id": "aa0005",
+            "action": "change"
+          }
+        ]
+      },
+      {
+        "value": {
+          "type": "Result<Int64,app.BumpError>",
+          "tag": "Ok",
+          "payload": {
+            "type": "Int64",
+            "value": "3"
+          }
+        },
+        "outcome": "COMMITTED",
+        "final": true,
+        "replayed": false,
+        "state_version": 4
+      },
+      {
+        "outcome": "DELIVERED",
+        "deliveries": [
+          {
+            "handler": "app.remember",
+            "seq": 2,
+            "outcome": "COMMITTED",
+            "replayed": false,
+            "state_version": 5
+          }
+        ]
+      }
+    ]
+  },
+  "note": "тип события входит в привязку: новое поле требует миграции; дренаж до неё гарантирует, что старых недоставленных нет"
+}

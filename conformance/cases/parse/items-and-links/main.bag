@@ -1,0 +1,14 @@
+@id("a0b1c2")
+module m
+use std.seq
+use a.b.{C, D as E}
+@id("a0b1c3") entity A { purpose "p" terms ["x", "y"] not_about [] }
+@id("a0b1c4") contract K about A { @id("a0b1c5") rule r "text" }
+@id("a0b1c6") pub store S { @id("a0b1c7") table t: Map<Int64, Int64> derived_from A }
+@id("a0b1c8") pub event Ev { @id("a0b1c9") n: Int64 }
+@id("a0b1ca") pub command c(n: Int64) -> Result<(), Int64> uses { reads S.t, writes S.t, emits Ev } implements K.r { Ok(()) }
+@id("a0b1cb") pub query q() -> Int64 uses { reads S.t } requires K.r { 0 }
+@id("a0b1cc") handler h(ev: Ev) uses { writes S.t } { () }
+@id("a0b1cd") migration mg on S.t (old: Int64) -> Result<Int64, Int64> { Ok(old) }
+@id("a0b1ce") test t1 checks K.r { () }
+@id("a0b1cf") fn old_api() -> Int64 supersedes "a0b1cg" { 1 }

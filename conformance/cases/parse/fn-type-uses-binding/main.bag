@@ -1,0 +1,4 @@
+module m
+fn twice<!e>(f: fn(Int64) -> Int64 uses e) -> (fn(Int64) -> Int64 uses e) uses {} {
+  fn(x) => f(f(x))
+}

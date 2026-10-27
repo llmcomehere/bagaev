@@ -1,0 +1,28 @@
+{
+  "id": "data/opaque-observation",
+  "spec": [
+    "spec/kernel/canonical.md#4-наблюдаемое-значение"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "run": {
+    "entry": "main.main"
+  },
+  "expect": {
+    "phase": "run",
+    "effects": [],
+    "outcome": "RETURNED",
+    "value": {
+      "type": "main.Id",
+      "value": {
+        "type": "String",
+        "value": "k"
+      }
+    }
+  }
+}

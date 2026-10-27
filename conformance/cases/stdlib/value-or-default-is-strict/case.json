@@ -1,0 +1,24 @@
+{
+  "id": "stdlib/value-or-default-is-strict",
+  "spec": [
+    "spec/runtime/machine.md#5-примитивы-и-fault",
+    "spec/language/surface.md#4-выражения"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "run": {
+    "entry": "main.main"
+  },
+  "expect": {
+    "phase": "run",
+    "effects": [],
+    "outcome": "FAULT",
+    "code": "DIVISION_BY_ZERO"
+  },
+  "note": "SA-015: аргумент по умолчанию вычисляется до вызова"
+}

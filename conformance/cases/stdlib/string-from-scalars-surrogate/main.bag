@@ -1,0 +1,9 @@
+@id("x6qdt0")
+module main
+use std.string
+use std.data
+
+@id("sj0a5y")
+pub fn main() -> Result<String, data.ScalarError> {
+  string.from_scalars([65, 55296, 66])
+}

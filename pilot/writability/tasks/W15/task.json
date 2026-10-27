@@ -1,0 +1,13 @@
+{
+  "id": "W15",
+  "kind": "edit",
+  "title": "Переименование поля",
+  "c_target": "main.bag",
+  "t_target": "main.ts",
+  "c_expect": {
+    "keep_ids_from_context": "main.bag",
+    "renamed": {
+      "title": "name"
+    }
+  }
+}

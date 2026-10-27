@@ -1,0 +1,97 @@
+{
+  "id": "impact/authorship-test-store-01",
+  "spec": [
+    "spec/links/08-bagaev-extraction.md#5-влияние"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "blog/acl.bag",
+    "blog/articles.bag",
+    "blog/authorship.bag",
+    "blog/byline.bag",
+    "blog/db.bag",
+    "blog/editor.bag",
+    "blog/events.bag",
+    "blog/export.bag",
+    "blog/image.bag",
+    "blog/indexer.bag",
+    "blog/migration.bag",
+    "blog/people.bag",
+    "blog/search.bag",
+    "blog/tests.bag",
+    "cand/blog/acl.bag",
+    "cand/blog/articles.bag",
+    "cand/blog/authorship.bag",
+    "cand/blog/byline.bag",
+    "cand/blog/db.bag",
+    "cand/blog/editor.bag",
+    "cand/blog/events.bag",
+    "cand/blog/export.bag",
+    "cand/blog/image.bag",
+    "cand/blog/indexer.bag",
+    "cand/blog/migration.bag",
+    "cand/blog/people.bag",
+    "cand/blog/search.bag",
+    "cand/blog/tests.bag"
+  ],
+  "run": {
+    "links": {
+      "op": "impact",
+      "candidate": "cand"
+    }
+  },
+  "expect": {
+    "phase": "impact",
+    "outcome": "IMPACT",
+    "value": {
+      "status": "COMPLETE",
+      "readiness": "ELIGIBLE_IF_ALL_OBLIGATIONS_PASS",
+      "seeds": [
+        [
+          "blog.articles.article_id",
+          "changed"
+        ]
+      ],
+      "in_scope": [
+        [
+          "blog.articles.article_id",
+          0
+        ],
+        [
+          "blog.tests.export_keeps_all_authors",
+          1
+        ],
+        [
+          "blog.tests.store_copy_is_isolated",
+          1
+        ]
+      ],
+      "unknown": [],
+      "unknown_incomplete": 0,
+      "frontier": [],
+      "obligations": [
+        [
+          "blog.authorship.AttributionComplete.complete",
+          "blog.tests.export_keeps_all_authors",
+          "checks",
+          "open",
+          [
+            "base",
+            "candidate"
+          ]
+        ]
+      ],
+      "closed": [],
+      "tests_to_run": [
+        "blog.tests.export_keeps_all_authors",
+        "blog.tests.store_copy_is_isolated"
+      ],
+      "gaps": [],
+      "watch": {}
+    }
+  },
+  "note": "article_id вызывают только тесты; store_copy_is_isolated пишет в Blog.articles своей копии хранилища (HST-18) — рабочие таблицы и редактор не затронуты (LNK-08-12)"
+}

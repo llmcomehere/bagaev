@@ -1,0 +1,28 @@
+{
+  "id": "parse/reserved-word-as-name",
+  "spec": [
+    "spec/language/lexical.md#3-идентификаторы-и-ключевые-слова",
+    "spec/language/surface.md#6-правила-разбора-которые-грамматика-не-выражает"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "expect": {
+    "phase": "parse",
+    "outcome": "PRELAUNCH",
+    "diagnostics": [
+      {
+        "code": "RESERVED_WORD_AS_NAME",
+        "file": "main.bag",
+        "span": [
+          31,
+          36
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+/// Литерал карты: пары вычисляются слева направо, повтор ключа — FAULT (SURF-30);
+/// проверяемая форма — std.map.build.
+@id("hddrdt")
+module maps
+
+use std.map
+use std.option
+
+@id("pywvfb")
+pub fn prices() -> Map<String, Int64> {
+  Map { "хлеб" => 50, "сыр" => 400 }
+}
+
+@id("g2vrze")
+pub fn price_of(name: String) -> Int64 {
+  option.value_or(map.get(prices(), name), 0)
+}
+
+@id("e9vpnj")
+pub fn main() -> Int64 {
+  price_of("сыр") + map.length(prices())
+}

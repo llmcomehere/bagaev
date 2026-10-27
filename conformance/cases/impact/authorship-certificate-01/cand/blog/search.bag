@@ -1,0 +1,18 @@
+/// Поиск статей по человеку читает только сохранённый индекс (O04, C09).
+@id("byss9z")
+module blog.search
+
+use std.store
+use std.option
+use blog.db.{Blog}
+use blog.people.{PersonId}
+use blog.articles.{ArticleId}
+use blog.authorship.{AttributionComplete}
+
+@id("2mtfg0")
+pub query articles_by(person: PersonId) -> Seq<ArticleId>
+  uses { reads Blog.author_index }
+  requires AttributionComplete.complete
+{
+  option.value_or(store.get(Blog.author_index, person), [])
+}

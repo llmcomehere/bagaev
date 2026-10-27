@@ -1,0 +1,27 @@
+{
+  "id": "data/map-duplicate-key-fault",
+  "spec": [
+    "spec/language/surface.md#4-выражения",
+    "spec/runtime/machine.md#5-примитивы-и-fault"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "run": {
+    "entry": "main.main"
+  },
+  "expect": {
+    "phase": "run",
+    "effects": [],
+    "outcome": "FAULT",
+    "code": "DUPLICATE_KEY",
+    "data": {
+      "first": 0,
+      "second": 2
+    }
+  }
+}

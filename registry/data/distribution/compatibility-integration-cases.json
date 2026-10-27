@@ -1,0 +1,284 @@
+{
+  "schema": "R19-INTEGRATION-ROUTE-0.1",
+  "case_classes_require_expansion_per_real_kind_operation": true,
+  "not_finite_oracle_intents": true,
+  "cases": [
+    {
+      "id": "IC19-01",
+      "subject_input": "Извлечь registry inventory из всех real writers/readers; добавить один незарегистрированный persistent kind",
+      "expected_observation": "Release gate сообщает точный REGISTRY_COVERAGE_GAP. Без вставленного вида coverage замкнут по всем F01–F18, а не только по заранее составленному списку",
+      "criteria": [
+        "T18-C01"
+      ],
+      "status": "NOT_RUN",
+      "actual_evidence": null
+    },
+    {
+      "id": "IC19-02",
+      "subject_input": "Два contract/build artifacts с одинаковым label, разными bytes; отдельно SemVer labels с build metadata",
+      "expected_observation": "Exact refs различаются; конфликт не разрешается по порядку версии; ни read-admission, ни project repin не меняются молча",
+      "criteria": [
+        "T18-C01",
+        "T18-C02"
+      ],
+      "status": "NOT_RUN",
+      "actual_evidence": null
+    },
+    {
+      "id": "IC19-03",
+      "subject_input": "Old source использует имя, ставшее keyword новой edition; установить новый host tool",
+      "expected_observation": "Старый pinned MeaningLock продолжает прежнюю трактовку либо явно отказывает из-за недоступного old reader; новая grammar не применяется автоматически",
+      "criteria": [
+        "T18-C01",
+        "T18-C02"
+      ],
+      "status": "NOT_RUN",
+      "actual_evidence": null
+    },
+    {
+      "id": "IC19-04",
+      "subject_input": "Values с missing/null/empty/default, nominally distinct same-layout types, max integer и ordered entries",
+      "expected_observation": "Transform/checker сохраняют typed relation каждого случая; overflow/truncation/default injection/nominal collapse отвергаются. Parse-only success отдельно от rewrite",
+      "criteria": [
+        "T18-C01",
+        "T18-C02"
+      ],
+      "status": "NOT_RUN",
+      "actual_evidence": null
+    },
+    {
+      "id": "IC19-05",
+      "subject_input": "Old/new textual IR, binary IR, opcode/cost/optimizer metadata, supported и unsupported revisions",
+      "expected_observation": "Operation matrix различает decode/execute/rewrite. Неизвестный required opcode/cost не пропускается; metadata removal требует declared inert-preservation policy",
+      "criteria": [
+        "T18-C01",
+        "T18-C02"
+      ],
+      "status": "NOT_RUN",
+      "actual_evidence": null
+    },
+    {
+      "id": "IC19-06",
+      "subject_input": "Same wire-compatible package c изменённым API/ABI или generated-code/runtime pair",
+      "expected_observation": "Link/execute refuse несовместимый exact interface/runtime pair; wire compatibility не даёт runtime compatibility",
+      "criteria": [
+        "T18-C01",
+        "T18-C02"
+      ],
+      "status": "NOT_RUN",
+      "actual_evidence": null
+    },
+    {
+      "id": "IC19-07",
+      "subject_input": "Unknown inert annotation bytes с важными пустыми/default формами; lossless formatter и JSON/field-copy converter",
+      "expected_observation": "Opaque/allowed metadata view работает; preserving rewrite оставляет exact bytes. Потеря annotation даёт PROTECTED_STATE_LOSS",
+      "criteria": [
+        "T18-C01",
+        "T18-C02"
+      ],
+      "status": "NOT_RUN",
+      "actual_evidence": null
+    },
+    {
+      "id": "IC19-08",
+      "subject_input": "Неизвестная required semantic feature; ordinary unknown field; вход самостоятельно ставит critical=false",
+      "expected_observation": "Trusted policy определяет критичность; decode/execute/resume refuse. Input label не даёт себе права быть inert",
+      "criteria": [
+        "T18-C01",
+        "T18-C02"
+      ],
+      "status": "NOT_RUN",
+      "actual_evidence": null
+    },
+    {
+      "id": "IC19-09",
+      "subject_input": "A→B и B→C с несовпадающими domains/observations; обратный B→A; два overlapping claims для разных targets",
+      "expected_observation": "Нет автоматической транзитивности/обратимости. Exact target/domain/scope обязателен; неоднозначность без explicit claim отклоняется",
+      "criteria": [
+        "T18-C01"
+      ],
+      "status": "NOT_RUN",
+      "actual_evidence": null
+    },
+    {
+      "id": "IC19-10",
+      "subject_input": "Один artifact, query каждого из восьми operation capabilities; checker только value domain",
+      "expected_observation": "Ответы перечисляют exact capability. Inspect не исполняет payload; VERIFY historical не выдаёт REUSE; value certificate не разрешает full preservation",
+      "criteria": [
+        "T18-C01",
+        "T18-C02"
+      ],
+      "status": "NOT_RUN",
+      "actual_evidence": null
+    },
+    {
+      "id": "IC19-11",
+      "subject_input": "Working source мигрирует на новую edition/environment, accepted head остаётся old",
+      "expected_observation": "Оба source versions сохраняют свои MeaningLock/Environment refs; old accepted не интерпретируется новым default, new working не получает acceptance",
+      "criteria": [
+        "T18-C01",
+        "T18-C02"
+      ],
+      "status": "NOT_RUN",
+      "actual_evidence": null
+    },
+    {
+      "id": "IC19-12",
+      "subject_input": "Два transforms дают тот же final scalar, но меняют semantic cost, момент cancel или порядок/target эффекта",
+      "expected_observation": "Full preservation checker отвергает их либо выдаёт UNKNOWN недостаточного observation coverage. Explicit SEMANTIC_CHANGE создаёт новые obligations",
+      "criteria": [
+        "T18-C02"
+      ],
+      "status": "NOT_RUN",
+      "actual_evidence": null
+    },
+    {
+      "id": "IC19-13",
+      "subject_input": "Canonical graph содержит structural, authored и observed edges, UNKNOWN/gap; новый extractor не умеет воспроизвести старое observation",
+      "expected_observation": "Structural edges пересчитаны с mapping; authored/observed history не потеряны. Reverse queries корректны в обе стороны после rebuild; old subject refs не переназначены",
+      "criteria": [
+        "T18-C01",
+        "T18-C02"
+      ],
+      "status": "NOT_RUN",
+      "actual_evidence": null
+    },
+    {
+      "id": "IC19-14",
+      "subject_input": "Historical PASS на old build/subject; repin bug-fixed build; попытка reuse без transfer basis",
+      "expected_observation": "Historical receipt unchanged. Новая acceptance видит affected applicability/known defect; proof transfer требует exact method/domain basis",
+      "criteria": [
+        "T18-C01",
+        "T18-C02"
+      ],
+      "status": "NOT_RUN",
+      "actual_evidence": null
+    },
+    {
+      "id": "IC19-15",
+      "subject_input": "Persisted job с pending reservation, spent budget, cancel request; новый runtime использует другие cost units",
+      "expected_observation": "Exact continuation relation или SUSPENDED_INCOMPATIBLE_RUNTIME; долг, budget и cancellation не reset. Current RESUME admission отдельно",
+      "criteria": [
+        "T18-C01",
+        "T18-C02"
+      ],
+      "status": "NOT_RUN",
+      "actual_evidence": null
+    },
+    {
+      "id": "IC19-16",
+      "subject_input": "Endpoint пересылает иной negotiation transcript/выбирает контракт ниже required capabilities; reconnect на другой сервер",
+      "expected_observation": "Authentication/integrity adapter обнаруживает подмену; выбранный exact SessionBinding проверен; отсутствие общего contract — explicit refusal, без silent downgrade",
+      "criteria": [
+        "T18-C01",
+        "T18-C02"
+      ],
+      "status": "NOT_RUN",
+      "actual_evidence": null
+    },
+    {
+      "id": "IC19-17",
+      "subject_input": "После смены protocol codec повторить старый key/request с original revision; тот же key с новым meaning/digest",
+      "expected_observation": "Сначала current read rights и historical lookup; exact receipt или bounded original wrapper. Иной digest конфликтует; decoder retirement не освобождает namespace",
+      "criteria": [
+        "T18-C01",
+        "T18-C02"
+      ],
+      "status": "NOT_RUN",
+      "actual_evidence": null
+    },
+    {
+      "id": "IC19-18",
+      "subject_input": "Host default update, parallel launch, install GC; old project pinned environment",
+      "expected_observation": "Project/environment/version refs unchanged; GC сохраняет live и UNKNOWN launch pins. Новый default не подменяет executable старого проекта",
+      "criteria": [
+        "T18-C02"
+      ],
+      "status": "NOT_RUN",
+      "actual_evidence": null
+    },
+    {
+      "id": "IC19-19",
+      "subject_input": "Обычная запись после preview/check; затем вернуть content hash к старому значению при выросшей generation",
+      "expected_observation": "Final cut mismatch и ABA дают STALE_SOURCE_CUT; candidate/certificate/semantic intent не перепривязываются. Новый plan/key связывает current state",
+      "criteria": [
+        "T18-C02"
+      ],
+      "status": "NOT_RUN",
+      "actual_evidence": null
+    },
+    {
+      "id": "IC19-20",
+      "subject_input": "Старый worker продолжает actual storage write/dispatch при FENCING и после activation; один participant не отвечает",
+      "expected_observation": "FENCING не объявляется final без реального барьера; actual commit/dispatch guard отвергает stale epoch/write contract. Silence не считается fenced",
+      "criteria": [
+        "T18-C02"
+      ],
+      "status": "NOT_RUN",
+      "actual_evidence": null
+    },
+    {
+      "id": "IC19-21",
+      "subject_input": "Crash перед/после каждого durable phase, authority reply loss, local commit acknowledgement loss, cancel/commit race",
+      "expected_observation": "Однозначный authority outcome по same attempt; до authority commit допустим доказанный abort, после — завершение выбранного target/QUARANTINED. Нет двойного действия или partially published binding",
+      "criteria": [
+        "T18-C02"
+      ],
+      "status": "NOT_RUN",
+      "actual_evidence": null
+    },
+    {
+      "id": "IC19-22",
+      "subject_input": "Authority committed migration A; recovery B получила свежий epoch; A запоздало пытается local activation",
+      "expected_observation": "Actual commit guard отказывает A по exact current authority/attempt/target. Старый receipt не открывает прежний epoch и не перезаписывает B",
+      "criteria": [
+        "T18-C02"
+      ],
+      "status": "NOT_RUN",
+      "actual_evidence": null
+    },
+    {
+      "id": "IC19-23",
+      "subject_input": "После activation создать новые writes/UNKNOWN effects/receipts и потратить budget, затем запросить old snapshot rollback",
+      "expected_observation": "Snapshot не становится active. Новая reverse migration строится от current state; unsupported inverse/domain отклоняется, свежие записи/долги не теряются",
+      "criteria": [
+        "T18-C01",
+        "T18-C02"
+      ],
+      "status": "NOT_RUN",
+      "actual_evidence": null
+    },
+    {
+      "id": "IC19-24",
+      "subject_input": "Максимальные refs/depth/object counts, uint64 exhaustion, large annotations, small state→oversized response, staging quota",
+      "expected_observation": "Точный bounded refusal до irreversible publication; counters не wrap; committed result доступен только объявленным bounded receipt protocol. Нет silent truncation",
+      "criteria": [
+        "T18-C01",
+        "T18-C02"
+      ],
+      "status": "NOT_RUN",
+      "actual_evidence": null
+    },
+    {
+      "id": "IC19-25",
+      "subject_input": "Retire decoder, когда old project/job/key/evidence/recovery ref ещё reachable; затем объявленный archival service недоступен",
+      "expected_observation": "Retirement gate удерживает необходимые codecs/refs либо явно отказывает; ARCHIVE_UNAVAILABLE не превращает history в empty object и не разрешает key reuse",
+      "criteria": [
+        "T18-C01",
+        "T18-C02"
+      ],
+      "status": "NOT_RUN",
+      "actual_evidence": null
+    },
+    {
+      "id": "IC19-26",
+      "subject_input": "Разрешённый SEMANTIC_CHANGE и независимый STORAGE_REENCODE; release/deploy adapters подключены",
+      "expected_observation": "Первый создаёт новый working candidate и обязательства принятия; второй не присваивает acceptance. Ни migration, ни acceptance не запускают publish/deploy без отдельного admission",
+      "criteria": [
+        "T18-C02"
+      ],
+      "status": "NOT_RUN",
+      "actual_evidence": null
+    }
+  ]
+}

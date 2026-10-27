@@ -1,0 +1,17 @@
+@id("3nsndz")
+module lib.people
+
+@id("ytf0hj")
+pub type PersonId = opaque String
+
+@id("1k4qd9")
+pub fn make(s: String) -> PersonId {
+  PersonId(s)
+}
+
+@id("7ggzzq")
+pub fn text(p: PersonId) -> String {
+  match p {
+    PersonId(s) => s,
+  }
+}

@@ -1,0 +1,7 @@
+@id("8mvhds")
+module a
+
+@id("02e4ty")
+store S {
+  @id("mm4s92") table t: Map<Int64, Int64>
+}

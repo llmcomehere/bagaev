@@ -1,0 +1,31 @@
+{
+  "id": "resolve/invalid-link-target",
+  "spec": [
+    "spec/language/surface.md#3-объявления-и-идентичность",
+    "spec/language/checking.md#3-имена-и-объявления-фаза-resolve"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "expect": {
+    "phase": "check",
+    "outcome": "PRELAUNCH",
+    "diagnostics": [
+      {
+        "code": "INVALID_LINK_TARGET",
+        "file": "main.bag",
+        "span": [
+          116,
+          126
+        ],
+        "data": {
+          "path": "Thing.rule"
+        }
+      }
+    ]
+  }
+}

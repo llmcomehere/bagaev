@@ -1,0 +1,7 @@
+module m
+
+fn f(
+a: Int64, b: Map<Int64,Bool>) -> Int64 { a }
+
+handler on_e(
+  e: E) { () }

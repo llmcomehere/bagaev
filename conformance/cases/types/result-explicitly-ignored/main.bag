@@ -1,0 +1,8 @@
+@id("hjxrpv")
+module main
+use std.i64
+
+@id("x1kcmt")
+fn f() -> () {
+  let _ = i64.add(1, 2);
+}

@@ -1,0 +1,13 @@
+@id("0bnpjt")
+module main
+
+@id("xbeqan")
+type Point = record {
+  @id("jt9qmf") x: Int64,
+  @id("jyhjbn") y: Int64,
+}
+
+@id("qm5bkv")
+pub fn main() -> Int64 {
+  Point { y: 2, x: 1 }.x
+}

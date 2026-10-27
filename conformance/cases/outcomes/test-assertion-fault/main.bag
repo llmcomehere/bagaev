@@ -1,0 +1,8 @@
+@id("s0yppx")
+module main
+use std.test
+
+@id("azxg51")
+pub fn main() -> () {
+  test.expect("нужно true", 1 > 2)
+}

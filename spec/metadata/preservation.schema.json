@@ -1,0 +1,933 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:bagaev:r22:metadata:0.1",
+  "title": "R22 closed metadata shape only; exact referenced payload semantics must be checked separately",
+  "oneOf": [
+    {
+      "$ref": "#/$defs/ObservationContract"
+    },
+    {
+      "$ref": "#/$defs/OptimizationRequest"
+    },
+    {
+      "$ref": "#/$defs/RewriteStep"
+    },
+    {
+      "$ref": "#/$defs/CheckpointPlan"
+    },
+    {
+      "$ref": "#/$defs/PreservationCertificate"
+    },
+    {
+      "$ref": "#/$defs/VerificationReceipt"
+    },
+    {
+      "$ref": "#/$defs/DeoptDescriptor"
+    },
+    {
+      "$ref": "#/$defs/OutputMapSet"
+    }
+  ],
+  "$defs": {
+    "ObjectRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+        },
+        "bytes": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 16777216
+        },
+        "format": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        }
+      },
+      "required": [
+        "sha256",
+        "bytes",
+        "format"
+      ]
+    },
+    "ScopeConstraint": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "tag": {
+              "const": "EXACT_REF"
+            },
+            "name": {
+              "enum": [
+                "target_contract",
+                "semantic_profile"
+              ]
+            },
+            "value": {
+              "$ref": "#/$defs/ObjectRef"
+            }
+          },
+          "required": [
+            "tag",
+            "name",
+            "value"
+          ]
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "tag": {
+              "const": "ENUM"
+            },
+            "name": {
+              "const": "entrypoint"
+            },
+            "values": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 128
+              },
+              "minItems": 1,
+              "maxItems": 256,
+              "uniqueItems": true
+            }
+          },
+          "required": [
+            "tag",
+            "name",
+            "values"
+          ]
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "tag": {
+              "const": "INTERVAL"
+            },
+            "name": {
+              "enum": [
+                "input_items",
+                "value_bytes",
+                "stack_frames"
+              ]
+            },
+            "lower": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 18446744073709551615
+            },
+            "upper": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 18446744073709551615
+            }
+          },
+          "required": [
+            "tag",
+            "name",
+            "lower",
+            "upper"
+          ]
+        }
+      ]
+    },
+    "ObservationContract": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "schema": {
+          "const": "R22-META-0.1"
+        },
+        "kind": {
+          "const": "ObservationContract"
+        },
+        "profile": {
+          "const": "EXACT-BOUNDARIES-0.1"
+        },
+        "dimensions": {
+          "const": [
+            "source_subject",
+            "typed_values",
+            "logical_position",
+            "control_and_frames",
+            "semantic_state",
+            "budgets",
+            "cancellation",
+            "effect_prefix",
+            "settlement",
+            "termination",
+            "origin",
+            "closure_correspondence"
+          ]
+        },
+        "source_semantics_ref": {
+          "$ref": "#/$defs/ObjectRef"
+        },
+        "resource_policy_ref": {
+          "$ref": "#/$defs/ObjectRef"
+        },
+        "environment_policy_ref": {
+          "$ref": "#/$defs/ObjectRef"
+        },
+        "value_equality_ref": {
+          "$ref": "#/$defs/ObjectRef"
+        },
+        "settlement_contract_ref": {
+          "$ref": "#/$defs/ObjectRef"
+        },
+        "physical_cost_in_semantic_equality": {
+          "const": false
+        }
+      },
+      "required": [
+        "schema",
+        "kind",
+        "profile",
+        "dimensions",
+        "source_semantics_ref",
+        "resource_policy_ref",
+        "environment_policy_ref",
+        "value_equality_ref",
+        "settlement_contract_ref",
+        "physical_cost_in_semantic_equality"
+      ]
+    },
+    "OptimizationRequest": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "schema": {
+          "const": "R22-META-0.1"
+        },
+        "kind": {
+          "const": "OptimizationRequest"
+        },
+        "source_subject_ref": {
+          "$ref": "#/$defs/ObjectRef"
+        },
+        "origin_ir_ref": {
+          "$ref": "#/$defs/ObjectRef"
+        },
+        "input_ir_ref": {
+          "$ref": "#/$defs/ObjectRef"
+        },
+        "parent_certificate_ref": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "source_bundle_ref": {
+          "$ref": "#/$defs/ObjectRef"
+        },
+        "meaning_lock_ref": {
+          "$ref": "#/$defs/ObjectRef"
+        },
+        "dependency_lock_ref": {
+          "$ref": "#/$defs/ObjectRef"
+        },
+        "environment_ref": {
+          "$ref": "#/$defs/ObjectRef"
+        },
+        "target_contract_ref": {
+          "$ref": "#/$defs/ObjectRef"
+        },
+        "form_registry_ref": {
+          "$ref": "#/$defs/ObjectRef"
+        },
+        "primitive_registry_ref": {
+          "$ref": "#/$defs/ObjectRef"
+        },
+        "charge_registry_ref": {
+          "$ref": "#/$defs/ObjectRef"
+        },
+        "rule_catalog_ref": {
+          "$ref": "#/$defs/ObjectRef"
+        },
+        "observation_ref": {
+          "$ref": "#/$defs/ObjectRef"
+        },
+        "checker_admission_ref": {
+          "$ref": "#/$defs/ObjectRef"
+        },
+        "limits_ref": {
+          "$ref": "#/$defs/ObjectRef"
+        },
+        "mode": {
+          "enum": [
+            "REFERENCE",
+            "SAFE_OPT",
+            "REQUIRE_OPT"
+          ]
+        },
+        "scope": {
+          "const": "FULL_V1_POLICY"
+        }
+      },
+      "required": [
+        "schema",
+        "kind",
+        "source_subject_ref",
+        "origin_ir_ref",
+        "input_ir_ref",
+        "parent_certificate_ref",
+        "source_bundle_ref",
+        "meaning_lock_ref",
+        "dependency_lock_ref",
+        "environment_ref",
+        "target_contract_ref",
+        "form_registry_ref",
+        "primitive_registry_ref",
+        "charge_registry_ref",
+        "rule_catalog_ref",
+        "observation_ref",
+        "checker_admission_ref",
+        "limits_ref",
+        "mode",
+        "scope"
+      ]
+    },
+    "RewriteStep": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "schema": {
+          "const": "R22-META-0.1"
+        },
+        "kind": {
+          "const": "RewriteStep"
+        },
+        "index": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 4095
+        },
+        "rule": {
+          "enum": [
+            "R22-CLOSED-SCALAR-REPLAY",
+            "R22-LEXICAL-SCALAR",
+            "R22-KNOWN-ARM"
+          ]
+        },
+        "source_subject_ref": {
+          "$ref": "#/$defs/ObjectRef"
+        },
+        "origin_ir_ref": {
+          "$ref": "#/$defs/ObjectRef"
+        },
+        "before_ir_ref": {
+          "$ref": "#/$defs/ObjectRef"
+        },
+        "after_ir_ref": {
+          "$ref": "#/$defs/ObjectRef"
+        },
+        "region_path": {
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 128
+              },
+              {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 99999
+              }
+            ]
+          },
+          "minItems": 0,
+          "maxItems": 4096
+        },
+        "source_region_ref": {
+          "$ref": "#/$defs/ObjectRef"
+        },
+        "checkpoint_plan_ref": {
+          "$ref": "#/$defs/ObjectRef"
+        },
+        "fact_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ObjectRef"
+          },
+          "minItems": 0,
+          "maxItems": 4096
+        },
+        "changes_physical_program": {
+          "const": true
+        }
+      },
+      "required": [
+        "schema",
+        "kind",
+        "index",
+        "rule",
+        "source_subject_ref",
+        "origin_ir_ref",
+        "before_ir_ref",
+        "after_ir_ref",
+        "region_path",
+        "source_region_ref",
+        "checkpoint_plan_ref",
+        "fact_refs",
+        "changes_physical_program"
+      ]
+    },
+    "CheckpointPlan": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "schema": {
+          "const": "R22-META-0.1"
+        },
+        "kind": {
+          "const": "CheckpointPlan"
+        },
+        "source_subject_ref": {
+          "$ref": "#/$defs/ObjectRef"
+        },
+        "origin_ir_ref": {
+          "$ref": "#/$defs/ObjectRef"
+        },
+        "candidate_ir_ref": {
+          "$ref": "#/$defs/ObjectRef"
+        },
+        "source_region_ref": {
+          "$ref": "#/$defs/ObjectRef"
+        },
+        "plan_payload_ref": {
+          "$ref": "#/$defs/ObjectRef"
+        },
+        "reconstruction_ref": {
+          "$ref": "#/$defs/ObjectRef"
+        },
+        "context_parameters": {
+          "const": [
+            "BASE_ENV",
+            "BASE_K",
+            "DYNAMIC_OCCURRENCE_PREFIX"
+          ]
+        },
+        "transition_count": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 4096
+        },
+        "entries": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "position": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 4095
+              },
+              "source_rule": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 128
+              },
+              "source_node": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 128
+              },
+              "source_occurrence_template": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 256
+              },
+              "charges": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "kind": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 128
+                    },
+                    "units": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 18446744073709551615
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "units"
+                  ]
+                },
+                "minItems": 1,
+                "maxItems": 32
+              }
+            },
+            "required": [
+              "position",
+              "source_rule",
+              "source_node",
+              "source_occurrence_template",
+              "charges"
+            ]
+          },
+          "minItems": 1,
+          "maxItems": 4096
+        },
+        "local_completion": {
+          "const": "READY_VALUE_TO_BASE_K"
+        },
+        "publish_one_transition_per_advance": {
+          "const": true
+        }
+      },
+      "required": [
+        "schema",
+        "kind",
+        "source_subject_ref",
+        "origin_ir_ref",
+        "candidate_ir_ref",
+        "source_region_ref",
+        "plan_payload_ref",
+        "reconstruction_ref",
+        "context_parameters",
+        "transition_count",
+        "entries",
+        "local_completion",
+        "publish_one_transition_per_advance"
+      ]
+    },
+    "PreservationCertificate": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "schema": {
+          "const": "R22-META-0.1"
+        },
+        "kind": {
+          "const": "PreservationCertificate"
+        },
+        "request_ref": {
+          "$ref": "#/$defs/ObjectRef"
+        },
+        "source_subject_ref": {
+          "$ref": "#/$defs/ObjectRef"
+        },
+        "origin_ir_ref": {
+          "$ref": "#/$defs/ObjectRef"
+        },
+        "input_ir_ref": {
+          "$ref": "#/$defs/ObjectRef"
+        },
+        "candidate_ir_ref": {
+          "$ref": "#/$defs/ObjectRef"
+        },
+        "parent_certificate_ref": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "observation_ref": {
+          "$ref": "#/$defs/ObjectRef"
+        },
+        "rule_catalog_ref": {
+          "$ref": "#/$defs/ObjectRef"
+        },
+        "origin_map_set_ref": {
+          "$ref": "#/$defs/ObjectRef"
+        },
+        "target_contract_ref": {
+          "$ref": "#/$defs/ObjectRef"
+        },
+        "claim_kind": {
+          "const": "RULE_REPLAY"
+        },
+        "steps": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "index": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 4095
+              },
+              "step_ref": {
+                "$ref": "#/$defs/ObjectRef"
+              },
+              "before_ir_ref": {
+                "$ref": "#/$defs/ObjectRef"
+              },
+              "after_ir_ref": {
+                "$ref": "#/$defs/ObjectRef"
+              }
+            },
+            "required": [
+              "index",
+              "step_ref",
+              "before_ir_ref",
+              "after_ir_ref"
+            ]
+          },
+          "minItems": 0,
+          "maxItems": 4096
+        },
+        "constraints": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ScopeConstraint"
+          },
+          "minItems": 0,
+          "maxItems": 256
+        },
+        "coverage": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "policy": {
+              "const": "FULL_V1_DISPATCH"
+            },
+            "form_count": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100000
+            },
+            "coverage_ref": {
+              "$ref": "#/$defs/ObjectRef"
+            },
+            "claimed_complete": {
+              "const": true
+            }
+          },
+          "required": [
+            "policy",
+            "form_count",
+            "coverage_ref",
+            "claimed_complete"
+          ]
+        },
+        "normative_acceptance": {
+          "const": false
+        }
+      },
+      "required": [
+        "schema",
+        "kind",
+        "request_ref",
+        "source_subject_ref",
+        "origin_ir_ref",
+        "input_ir_ref",
+        "candidate_ir_ref",
+        "parent_certificate_ref",
+        "observation_ref",
+        "rule_catalog_ref",
+        "origin_map_set_ref",
+        "target_contract_ref",
+        "claim_kind",
+        "steps",
+        "constraints",
+        "coverage",
+        "normative_acceptance"
+      ]
+    },
+    "VerificationReceipt": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "schema": {
+          "const": "R22-META-0.1"
+        },
+        "kind": {
+          "const": "VerificationReceipt"
+        },
+        "certificate_ref": {
+          "$ref": "#/$defs/ObjectRef"
+        },
+        "request_ref": {
+          "$ref": "#/$defs/ObjectRef"
+        },
+        "source_subject_ref": {
+          "$ref": "#/$defs/ObjectRef"
+        },
+        "origin_ir_ref": {
+          "$ref": "#/$defs/ObjectRef"
+        },
+        "input_ir_ref": {
+          "$ref": "#/$defs/ObjectRef"
+        },
+        "candidate_ir_ref": {
+          "$ref": "#/$defs/ObjectRef"
+        },
+        "observation_ref": {
+          "$ref": "#/$defs/ObjectRef"
+        },
+        "checker_ref": {
+          "$ref": "#/$defs/ObjectRef"
+        },
+        "outcome": {
+          "enum": [
+            "VALID",
+            "INPUT_NOT_READY",
+            "UNSUPPORTED",
+            "INVALID_SOURCE",
+            "UNTRUSTED_INPUT",
+            "INVALID_CERTIFICATE",
+            "OBSERVATION_MISMATCH",
+            "CHECK_LIMIT",
+            "TOOL_LIMIT",
+            "CANCELLED",
+            "NO_APPLICABLE_RULE",
+            "INTERNAL_ERROR"
+          ]
+        },
+        "method": {
+          "const": "RULE_REPLAY"
+        },
+        "coverage_complete": {
+          "type": "boolean"
+        },
+        "work": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "used": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 18446744073709551615
+            },
+            "limit": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 18446744073709551615
+            }
+          },
+          "required": [
+            "used",
+            "limit"
+          ]
+        },
+        "diagnostic_codes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128
+          },
+          "minItems": 0,
+          "maxItems": 4096
+        },
+        "accepted": {
+          "const": false
+        },
+        "normative_acceptance": {
+          "const": false
+        }
+      },
+      "required": [
+        "schema",
+        "kind",
+        "certificate_ref",
+        "request_ref",
+        "source_subject_ref",
+        "origin_ir_ref",
+        "input_ir_ref",
+        "candidate_ir_ref",
+        "observation_ref",
+        "checker_ref",
+        "outcome",
+        "method",
+        "coverage_complete",
+        "work",
+        "diagnostic_codes",
+        "accepted",
+        "normative_acceptance"
+      ]
+    },
+    "DeoptDescriptor": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "schema": {
+          "const": "R22-META-0.1"
+        },
+        "kind": {
+          "const": "DeoptDescriptor"
+        },
+        "source_subject_ref": {
+          "$ref": "#/$defs/ObjectRef"
+        },
+        "origin_ir_ref": {
+          "$ref": "#/$defs/ObjectRef"
+        },
+        "candidate_ir_ref": {
+          "$ref": "#/$defs/ObjectRef"
+        },
+        "runtime_boundary_ref": {
+          "$ref": "#/$defs/ObjectRef"
+        },
+        "observation_ref": {
+          "$ref": "#/$defs/ObjectRef"
+        },
+        "reconstruction_ref": {
+          "$ref": "#/$defs/ObjectRef"
+        },
+        "logical_position": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 18446744073709551615
+        },
+        "budgets": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "kind": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 128
+              },
+              "remaining": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 18446744073709551615
+              }
+            },
+            "required": [
+              "kind",
+              "remaining"
+            ]
+          },
+          "minItems": 1,
+          "maxItems": 32
+        },
+        "journal_position": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 18446744073709551615
+        },
+        "dispatched_operation_keys": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 256
+          },
+          "minItems": 0,
+          "maxItems": 4096,
+          "uniqueItems": true
+        },
+        "settlement_snapshot_ref": {
+          "$ref": "#/$defs/ObjectRef"
+        },
+        "reactivates_terminal": {
+          "const": false
+        },
+        "resets_budget": {
+          "const": false
+        },
+        "replays_effects": {
+          "const": false
+        },
+        "external_transfer": {
+          "const": false
+        }
+      },
+      "required": [
+        "schema",
+        "kind",
+        "source_subject_ref",
+        "origin_ir_ref",
+        "candidate_ir_ref",
+        "runtime_boundary_ref",
+        "observation_ref",
+        "reconstruction_ref",
+        "logical_position",
+        "budgets",
+        "journal_position",
+        "dispatched_operation_keys",
+        "settlement_snapshot_ref",
+        "reactivates_terminal",
+        "resets_budget",
+        "replays_effects",
+        "external_transfer"
+      ]
+    },
+    "OutputMapSet": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "schema": {
+          "const": "R22-META-0.1"
+        },
+        "kind": {
+          "const": "OutputMapSet"
+        },
+        "stage_profile": {
+          "const": "P5-OPT-0.1"
+        },
+        "primary_role": {
+          "const": "lowered_ir"
+        },
+        "maps": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "role": {
+                "enum": [
+                  "lowered_ir",
+                  "reference_lowered_ir"
+                ]
+              },
+              "payload_ref": {
+                "$ref": "#/$defs/ObjectRef"
+              },
+              "map_ref": {
+                "$ref": "#/$defs/ObjectRef"
+              }
+            },
+            "required": [
+              "role",
+              "payload_ref",
+              "map_ref"
+            ]
+          },
+          "minItems": 2,
+          "maxItems": 2
+        }
+      },
+      "required": [
+        "schema",
+        "kind",
+        "stage_profile",
+        "primary_role",
+        "maps"
+      ]
+    }
+  }
+}

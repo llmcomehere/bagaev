@@ -1,0 +1,20 @@
+{
+  "id": "fmt/author-breaks",
+  "spec": [
+    "spec/language/format.md#блоки-и-выражения"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "expect": {
+    "phase": "fmt",
+    "outcome": "FORMATTED",
+    "value": {
+      "main.bag": "module m\n\nfn f() -> String {\n  let a = g(\n    1,\n    2,\n  );\n  let b = g(1, 2);\n  let s = [\n    1,\n  ];\n  let r = T {\n    a: 1,\n  };\n  \"x\" ++ y\n    ++ \"z\"\n    ++ w\n}\n"
+    }
+  }
+}

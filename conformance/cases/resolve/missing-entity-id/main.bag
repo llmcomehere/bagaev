@@ -1,0 +1,6 @@
+@id("63qy8b")
+module main
+
+fn f() -> Int64 {
+  1
+}

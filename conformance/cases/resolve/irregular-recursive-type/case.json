@@ -1,0 +1,31 @@
+{
+  "id": "resolve/irregular-recursive-type",
+  "spec": [
+    "spec/language/surface.md#3-объявления-и-идентичность",
+    "spec/language/checking.md#3-имена-и-объявления-фаза-resolve"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "expect": {
+    "phase": "check",
+    "outcome": "PRELAUNCH",
+    "diagnostics": [
+      {
+        "code": "IRREGULAR_RECURSIVE_TYPE",
+        "file": "main.bag",
+        "span": [
+          111,
+          123
+        ],
+        "data": {
+          "type": "Nest"
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+/// Учётные записи, которые выполняют команды. Учётная запись может быть связана с человеком.
+@id("35qg4p")
+module blog.actors
+
+use blog.people.{PersonId}
+
+@id("180dd8")
+pub type ActorId = opaque String
+
+@id("xsbak4")
+pub type Actor = record {
+  @id("wq2s7p") id: ActorId,
+  @id("3k2sm7") person: Option<PersonId>,
+}
+
+@id("3bnhd2")
+pub fn actor_id(raw: String) -> ActorId {
+  ActorId(raw)
+}
+
+@id("qcfpp5")
+pub fn id_text(a: ActorId) -> String {
+  match a {
+    ActorId(s) => s,
+  }
+}

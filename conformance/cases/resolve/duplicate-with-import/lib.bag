@@ -1,0 +1,12 @@
+@id("p4j8be")
+module lib
+
+@id("ns00r4")
+fn hidden() -> Int64 {
+  1
+}
+
+@id("36jyvm")
+pub fn open() -> Int64 {
+  2
+}

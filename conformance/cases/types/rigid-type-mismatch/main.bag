@@ -1,0 +1,7 @@
+@id("mpfas0")
+module main
+
+@id("aa7t5q")
+fn f<T>(x: T) -> Int64 {
+  x
+}

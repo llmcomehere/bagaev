@@ -1,0 +1,8 @@
+@id("0ptf7g")
+module main
+use std.i64
+
+@id("h7h9z9")
+pub fn main() -> Result<Int64, i64.ArithmeticError> {
+  i64.div(-9223372036854775808, -1)
+}

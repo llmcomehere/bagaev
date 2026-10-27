@@ -1,0 +1,43 @@
+{
+  "id": "stdlib/seq-slice-bounds-no-clamp",
+  "spec": [
+    "spec/runtime/machine.md#5-примитивы-и-fault"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "run": {
+    "entry": "main.main"
+  },
+  "expect": {
+    "phase": "run",
+    "effects": [],
+    "outcome": "RETURNED",
+    "value": {
+      "type": "Result<Seq<Int64>,std.data.BoundsError>",
+      "tag": "Err",
+      "payload": {
+        "type": "std.data.BoundsError",
+        "fields": {
+          "length": {
+            "type": "Int64",
+            "value": "2"
+          },
+          "start": {
+            "type": "Int64",
+            "value": "2"
+          },
+          "end": {
+            "type": "Int64",
+            "value": "1"
+          }
+        }
+      }
+    }
+  },
+  "note": "SX-013"
+}

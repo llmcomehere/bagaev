@@ -1,0 +1,4 @@
+@id("wp5mg1")
+module a
+
+use b

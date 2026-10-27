@@ -1,0 +1,27 @@
+@id("b1nhwh")
+module main
+use std.store
+
+@id("r8ff5j")
+type Article = record {
+  @id("qqpv6j") title: String,
+}
+
+@id("qg925g")
+store Blog {
+  @id("f4tb1w") table articles: Map<Int64, Article>
+}
+
+@id("0gn2q9")
+event Renamed {
+  @id("jk33qe") id: Int64,
+  @id("1cnsfz") title: String,
+}
+
+@id("dqs7ym")
+migration up on Blog.articles(old: Article) -> Result<Article, String> {
+  match store.get(Blog.articles, 1) {
+    Some(a) => Ok(a),
+    None => Ok(old),
+  }
+}

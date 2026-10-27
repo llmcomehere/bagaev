@@ -1,0 +1,28 @@
+{
+  "id": "parse/empty-enum",
+  "spec": [
+    "spec/language/grammar.ebnf",
+    "spec/language/surface.md#6-правила-разбора-которые-грамматика-не-выражает"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "expect": {
+    "phase": "parse",
+    "outcome": "PRELAUNCH",
+    "diagnostics": [
+      {
+        "code": "UNEXPECTED_TOKEN",
+        "file": "main.bag",
+        "span": [
+          24,
+          25
+        ]
+      }
+    ]
+  }
+}

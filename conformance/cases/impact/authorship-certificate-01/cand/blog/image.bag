@@ -1,0 +1,21 @@
+/// Обработка изображений не зависит от авторства: в типах входов нет Authors,
+/// эффектов нет — основание исключения D83(b). Вариант с водяным знаком (C08)
+/// добавляет зависимость и делает это основание неприменимым.
+@id("w4681p")
+module blog.image
+
+use std.bytes
+
+@id("9ypeqr")
+pub fn resize(img: Bytes, width: Int64, height: Int64) -> Bytes {
+  if width <= 0 or height <= 0 {
+    img
+  } else {
+    bytes.concat(b"RSZ", img)
+  }
+}
+
+@id("47495y")
+pub fn image_pipeline(img: Bytes) -> Bytes {
+  resize(img, 640, 480)
+}

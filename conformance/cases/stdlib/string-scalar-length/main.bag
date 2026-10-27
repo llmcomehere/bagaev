@@ -1,0 +1,8 @@
+@id("57xye8")
+module main
+use std.string
+
+@id("ryp3f0")
+pub fn main() -> Int64 {
+  string.scalar_length("😀")
+}

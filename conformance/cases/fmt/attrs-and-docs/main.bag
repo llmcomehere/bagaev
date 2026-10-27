@@ -1,0 +1,5 @@
+module m
+
+/// Точка.
+@id("aaaaaa") pub type T = record { @id("bbbbbb")
+ a: Int64, @id("cccccc") b: Bool }

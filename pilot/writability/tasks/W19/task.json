@@ -1,0 +1,8 @@
+{
+  "id": "W19",
+  "kind": "write",
+  "title": "Проверка возраста",
+  "c_target": "main.bag",
+  "t_target": "main.ts",
+  "c_expect": {}
+}

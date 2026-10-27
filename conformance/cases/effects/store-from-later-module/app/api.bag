@@ -1,0 +1,20 @@
+@id("3aa6nk")
+module app.api
+
+use std.store
+use app.db.{Shop, Ev}
+
+@id("shrt6r")
+pub query price(name: String) -> Option<Int64>
+  uses { reads Shop.items }
+{
+  store.get(Shop.items, name)
+}
+
+@id("8x1a91")
+pub command touch(name: String) -> Result<(), String>
+  uses { emits Ev }
+{
+  emit Ev { name: name };
+  Ok(())
+}

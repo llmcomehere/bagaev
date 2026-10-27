@@ -1,0 +1,9 @@
+@id("2ckmj1")
+module main
+use std.map
+
+@id("arczg1")
+pub fn main() -> Int64 {
+  let m: Map<Int64, Int64> = Map {};
+  map.length(m)
+}

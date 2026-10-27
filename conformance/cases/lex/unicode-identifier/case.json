@@ -1,0 +1,17 @@
+{
+  "id": "lex/unicode-identifier",
+  "spec": [
+    "spec/language/lexical.md#3-идентификаторы-и-ключевые-слова"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "expect": {
+    "phase": "parse",
+    "outcome": "ACCEPTED"
+  }
+}

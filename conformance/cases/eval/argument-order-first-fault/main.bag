@@ -1,0 +1,12 @@
+@id("7x3zzr")
+module main
+
+@id("t24n7k")
+fn pair(a: Int64, b: Int64) -> Int64 {
+  a
+}
+
+@id("p9j0vh")
+pub fn main() -> Int64 {
+  pair(1 / 0, 9223372036854775807 + 1)
+}

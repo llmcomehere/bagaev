@@ -1,0 +1,9 @@
+@id("n01bmr")
+module main
+
+@id("w25kmf")
+pub fn main() -> () {
+  if false {
+    ()
+  }
+}

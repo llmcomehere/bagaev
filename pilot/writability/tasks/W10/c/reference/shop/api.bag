@@ -1,0 +1,13 @@
+module shop.api
+
+use std.store
+use shop.db.{Shop}
+
+pub query price(name: String) -> Option<Int64>
+  uses { reads Shop.items }
+{
+  match store.get(Shop.items, name) {
+    Some(it) => Some(it.price),
+    None => None,
+  }
+}

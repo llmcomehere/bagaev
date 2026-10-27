@@ -1,0 +1,71 @@
+@id("56ytzn")
+module main
+use std.store
+use std.seq
+use std.test
+
+@id("kkzshg")
+type Article = record {
+  @id("3hwxaa") title: String,
+}
+
+@id("6t9wrw")
+store Blog {
+  @id("hhbrd6") table articles: Map<Int64, Article>
+}
+
+@id("g6kt45")
+event Renamed {
+  @id("01rhda") id: Int64,
+  @id("4q0018") title: String,
+}
+
+@id("g1wr84")
+fn title_of(id: Int64) -> String
+  uses { reads Blog.articles }
+{
+  match store.get(Blog.articles, id) {
+    Some(a) => a.title,
+    None => "",
+  }
+}
+
+@id("6kmxwc")
+fn apply_all<T, U, !e>(xs: Seq<T>, f: fn(T) -> U uses e) -> Seq<U>
+  uses e
+{
+  seq.map(xs, f)
+}
+
+@id("p1ngem")
+pub query titles(ids: Seq<Int64>) -> Seq<String>
+  uses { reads Blog.articles }
+{
+  apply_all(ids, fn(id) => title_of(id))
+}
+
+@id("88n8vm")
+pub command rename(id: Int64, title: String) -> Result<(), String>
+  uses { reads Blog.articles, writes Blog.articles, emits Renamed }
+{
+  match store.get(Blog.articles, id) {
+    None => Err("нет статьи"),
+    Some(a) => {
+      store.put(Blog.articles, id, Article { ..a, title: title });
+      emit Renamed { id: id, title: title };
+      Ok(())
+    },
+  }
+}
+
+@id("a3w83x")
+handler on_renamed(ev: Renamed)
+  uses { reads Blog.articles }
+{
+  let _ = title_of(ev.id);
+}
+
+@id("wtcbcr")
+test pure_helper {
+  test.expect("пусто", seq.length(apply_all([1, 2], fn(x) => x + 1)) == 2)
+}

@@ -1,0 +1,12 @@
+module main
+
+use std.seq
+use std.option
+
+pub fn running_totals(xs: Seq<Int64>) -> Seq<Int64> {
+  seq.fold(xs, [], fn(acc, x) => seq.append(acc, x + last(acc)))
+}
+
+fn last(xs: Seq<Int64>) -> Int64 {
+  option.value_or(seq.get(xs, seq.length(xs) - 1), 0)
+}

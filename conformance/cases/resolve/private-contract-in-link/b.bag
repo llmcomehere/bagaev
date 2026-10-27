@@ -1,0 +1,11 @@
+@id("pbqdh7")
+module b
+
+use a
+
+@id("mabt7k")
+fn f() -> Int64
+  implements a.C.r
+{
+  1
+}

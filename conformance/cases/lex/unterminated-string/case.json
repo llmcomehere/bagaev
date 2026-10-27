@@ -1,0 +1,27 @@
+{
+  "id": "lex/unterminated-string",
+  "spec": [
+    "spec/language/lexical.md#4-литералы"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "expect": {
+    "phase": "parse",
+    "outcome": "PRELAUNCH",
+    "diagnostics": [
+      {
+        "code": "UNTERMINATED_STRING",
+        "file": "main.bag",
+        "span": [
+          28,
+          32
+        ]
+      }
+    ]
+  }
+}

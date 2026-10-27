@@ -1,0 +1,7 @@
+@id("17q9xh")
+module main
+
+@id("dzdn2a")
+pub fn main() -> Bool {
+  false and 1 / 0 == 0
+}

@@ -1,0 +1,40 @@
+{
+  "id": "stdlib/string-from-scalars-surrogate",
+  "spec": [
+    "spec/stdlib/acceptance.md",
+    "spec/runtime/machine.md#5-примитивы-и-fault"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "run": {
+    "entry": "main.main"
+  },
+  "expect": {
+    "phase": "run",
+    "effects": [],
+    "outcome": "RETURNED",
+    "value": {
+      "type": "Result<String,std.data.ScalarError>",
+      "tag": "Err",
+      "payload": {
+        "type": "std.data.ScalarError",
+        "fields": {
+          "index": {
+            "type": "Int64",
+            "value": "1"
+          },
+          "value": {
+            "type": "Int64",
+            "value": "55296"
+          }
+        }
+      }
+    }
+  },
+  "note": "SA-037"
+}

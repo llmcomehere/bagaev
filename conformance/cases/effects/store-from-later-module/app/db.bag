@@ -1,0 +1,12 @@
+@id("bqbfda")
+module app.db
+
+@id("11zzww")
+pub store Shop {
+  @id("h4x70x") table items: Map<String, Int64>
+}
+
+@id("1tt9bv")
+pub event Ev {
+  @id("cayemr") name: String,
+}

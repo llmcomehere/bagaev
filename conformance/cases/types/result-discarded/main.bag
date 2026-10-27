@@ -1,0 +1,8 @@
+@id("6xcrpm")
+module main
+use std.i64
+
+@id("qmqjmg")
+fn f() -> () {
+  i64.add(1, 2);
+}

@@ -1,0 +1,9 @@
+@id("w8a55k")
+module main
+use std.i64
+
+@id("zj3s98")
+pub fn main() -> Int64 {
+  let x: Int64 = 7;
+  x
+}

@@ -1,0 +1,28 @@
+@id("3b7x9t")
+module main
+
+@id("6hc2wk")
+type Point = record {
+  @id("6jyq81") x: Int64,
+  @id("cyper5") y: Int64,
+}
+
+@id("cky9ed")
+fn moved(p: Point) -> Point {
+  Point { ..p, x: p.x + 1 }
+}
+
+@id("c773bn")
+fn origin(p: Point) -> Bool {
+  p == Point { x: 0, y: 0 }
+}
+
+@id("0e29br")
+fn names() -> Map<Int64, String> {
+  Map { 1 => "один", 2 => "два" }
+}
+
+@id("7xqcwf")
+fn empty() -> Map<String, Seq<Int64>> {
+  Map {}
+}

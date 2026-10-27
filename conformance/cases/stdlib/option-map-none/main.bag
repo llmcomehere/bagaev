@@ -1,0 +1,9 @@
+@id("91zvcb")
+module main
+use std.option
+
+@id("jc4s97")
+pub fn main() -> Option<Int64> {
+  let n: Option<Int64> = None;
+  option.map(n, fn(x: Int64) => x + 1)
+}

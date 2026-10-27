@@ -1,0 +1,7 @@
+@id("czmk3m")
+module main
+
+@id("r3gw71")
+fn f() -> Int64 {
+  g(1)
+}

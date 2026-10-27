@@ -1,0 +1,8 @@
+@id("xwsw1s")
+module main
+use std.bytes
+
+@id("bte3hm")
+pub fn main() -> Bytes {
+  bytes.concat(b"\x00", b"\xff")
+}

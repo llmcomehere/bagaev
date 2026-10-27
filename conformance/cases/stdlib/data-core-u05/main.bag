@@ -1,0 +1,13 @@
+@id("wm2122")
+module main
+use std.utf8
+use std.string
+use std.bytes
+use std.seq
+
+@id("rd16a6")
+pub fn main() -> Seq<Int64> {
+  let s = "\u{e9}";
+  let b = utf8.encode(s);
+  seq.concat([string.scalar_length(s), bytes.length(b)], bytes.to_octets(b))
+}

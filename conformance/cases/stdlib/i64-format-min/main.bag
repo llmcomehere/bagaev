@@ -1,0 +1,8 @@
+@id("694hw7")
+module main
+use std.i64
+
+@id("zkbfbn")
+pub fn main() -> String {
+  i64.format_decimal(-9223372036854775808)
+}

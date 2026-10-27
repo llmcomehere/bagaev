@@ -1,0 +1,32 @@
+{
+  "id": "types/concat-needs-sequence",
+  "spec": [
+    "spec/language/surface.md#4-выражения",
+    "spec/language/checking.md#5-тела-фазы-type-и-effect"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "main.bag"
+  ],
+  "expect": {
+    "phase": "check",
+    "outcome": "PRELAUNCH",
+    "diagnostics": [
+      {
+        "code": "TYPE_MISMATCH",
+        "file": "main.bag",
+        "span": [
+          69,
+          70
+        ],
+        "data": {
+          "expected": "String | Bytes | Seq<T>",
+          "actual": "Int64"
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,7 @@
+@id("f1vqmq")
+module b
+
+@id("j6hawa")
+fn g() -> Int64 {
+  missing
+}

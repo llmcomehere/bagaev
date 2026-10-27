@@ -1,0 +1,139 @@
+{
+  "id": "impact/certificate-needs-pass-01",
+  "spec": [
+    "spec/links/08-bagaev-extraction.md#5-влияние"
+  ],
+  "origin": "independent",
+  "levels": [
+    "L2"
+  ],
+  "files": [
+    "app.bag",
+    "cand/app.bag"
+  ],
+  "run": {
+    "links": {
+      "op": "impact",
+      "candidate": "cand",
+      "with_tests": true,
+      "watch": [
+        "app.add"
+      ]
+    }
+  },
+  "expect": {
+    "phase": "impact",
+    "outcome": "IMPACT",
+    "value": {
+      "status": "COMPLETE",
+      "readiness": "ELIGIBLE_IF_ALL_OBLIGATIONS_PASS",
+      "seeds": [
+        [
+          "app.origin",
+          "changed"
+        ]
+      ],
+      "in_scope": [
+        [
+          "app.Added",
+          2
+        ],
+        [
+          "app.S",
+          3
+        ],
+        [
+          "app.S.copy",
+          4
+        ],
+        [
+          "app.S.totals",
+          2
+        ],
+        [
+          "app.add",
+          1
+        ],
+        [
+          "app.on_added",
+          3
+        ],
+        [
+          "app.origin",
+          0
+        ],
+        [
+          "app.origin_positive",
+          1
+        ],
+        [
+          "app.total",
+          5
+        ]
+      ],
+      "unknown": [],
+      "unknown_incomplete": 0,
+      "frontier": [],
+      "obligations": [
+        [
+          "app.Counting",
+          "app.S.copy",
+          "derived_from",
+          "open",
+          [
+            "base",
+            "candidate"
+          ]
+        ],
+        [
+          "app.Exact.positive",
+          "app.add",
+          "requires",
+          "open",
+          [
+            "base",
+            "candidate"
+          ]
+        ],
+        [
+          "app.Exact.positive",
+          "app.origin",
+          "implements",
+          "open",
+          [
+            "base",
+            "candidate"
+          ]
+        ],
+        [
+          "app.Exact.positive",
+          "app.origin_positive",
+          "checks",
+          "open",
+          [
+            "base",
+            "candidate"
+          ]
+        ]
+      ],
+      "closed": [],
+      "tests_to_run": [
+        "app.origin_positive"
+      ],
+      "gaps": [
+        [
+          "app.add",
+          "EXTERNAL_CONSUMERS"
+        ],
+        [
+          "app.total",
+          "EXTERNAL_CONSUMERS"
+        ]
+      ],
+      "watch": {
+        "app.add": "in_scope"
+      }
+    }
+  },
+  "note": "проверка правила на кандидате падает: сертификата нет, зависимость add от origin остаётся"
+}
